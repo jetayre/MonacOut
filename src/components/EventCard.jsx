@@ -55,6 +55,30 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           {isFav ? "❤️" : "🤍"}
         </button>
 
+        {/* Category — top left */}
+        <button
+          onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
+          style={{
+            position: "absolute",
+            top: 8,
+            left: 10,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "-apple-system, sans-serif",
+            fontSize: 8,
+            fontWeight: 700,
+            letterSpacing: 1.5,
+            textTransform: "uppercase",
+            color: borderColor,
+            padding: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: 3,
+            lineHeight: 1,
+          }}
+        ><span style={{ fontSize: 10 }}>{event.emoji}</span>{event.cat}</button>
+
         {/* Title */}
         <div style={{
           fontFamily: "Georgia, serif",
@@ -70,6 +94,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           marginBottom: 12,
           paddingRight: 28,
           paddingLeft: 4,
+          paddingTop: 8,
         }}>
           {event.title}
         </div>
@@ -82,32 +107,6 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           margin: "0 auto 12px",
           borderRadius: 1,
         }} />
-
-        {/* Category */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 8,
-          marginBottom: 10,
-        }}>
-          <span style={{ fontSize: 15 }}>{event.emoji}</span>
-          <button
-            onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "-apple-system, sans-serif",
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: 2.5,
-              textTransform: "uppercase",
-              color: borderColor,
-              padding: 0,
-            }}
-          >{event.cat}</button>
-        </div>
 
         {/* Free badge */}
         {event.free && (

@@ -118,20 +118,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             background: WHITE,
             position: "relative",
           }}>
-            {/* Top-left label */}
-            <div style={{
-              position: "absolute",
-              top: 6,
-              left: 8,
-              fontFamily: "-apple-system, sans-serif",
-              fontSize: 7,
-              fontWeight: 700,
-              letterSpacing: 1.5,
-              textTransform: "uppercase",
-              color: GOLD,
-              lineHeight: 1.4,
-              textAlign: "left",
-            }}>Concert<br/>Opéra</div>
             <div style={{
               fontFamily: "Georgia, serif",
               fontStyle: "italic",
