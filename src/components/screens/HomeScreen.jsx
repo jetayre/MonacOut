@@ -119,10 +119,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             <div style={{
               fontFamily: "Georgia, serif",
               fontStyle: "italic",
-              fontSize: 13,
+              fontSize: 17,
               color: GOLD,
               letterSpacing: 0.5,
-              marginBottom: 4,
+              marginBottom: 6,
             }}>Monaco dans votre poche</div>
             <div style={{
               fontFamily: "Georgia, serif",
