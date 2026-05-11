@@ -43,6 +43,18 @@ export default function Shell({ tab, setTab, children }) {
           zIndex: 100,
         }} />
 
+        {/* White mask — hides content scrolling into the dynamic island zone */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 46,
+          background: "#FFFFFF",
+          zIndex: 60,
+          pointerEvents: "none",
+        }} />
+
         {/* Scrollable content area */}
         <div style={{
           flex: 1,
