@@ -11,6 +11,8 @@ function getBorderColor(cat) {
   if (["ATELIER","DANSE","EXPOSITION","FESTIVAL","SPECTACLE","GALA"].includes(cat)) return "#5A1A7A";
   if (["BIEN-ÊTRE"].includes(cat)) return "#1A6A5A";
   if (["CONFÉRENCE"].includes(cat)) return "#1A4A2A";
+  if (["FOODY","BRUNCH"].includes(cat)) return "#C85A1A";
+  if (["ENCHÈRES"].includes(cat)) return "#6A5010";
   return GOLD;
 }
 
