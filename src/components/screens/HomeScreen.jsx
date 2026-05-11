@@ -21,10 +21,29 @@ const FILTERS = [
   { id: "famille", label: "👨‍👩‍👧 Famille" },
 ];
 
+const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
+
+function toFrDate(d) {
+  return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
+}
+
+function getWeekendDates() {
+  const today = new Date();
+  const day = today.getDay();
+  const daysToSat = day === 0 ? 6 : day === 6 ? 0 : 6 - day;
+  const daysToSun = day === 0 ? 0 : 7 - day;
+  const sat = new Date(today); sat.setDate(today.getDate() + daysToSat);
+  const sun = new Date(today); sun.setDate(today.getDate() + daysToSun);
+  return [toFrDate(sat), toFrDate(sun)];
+}
+
 function filterEvents(events, filterId) {
+  const todayStr = toFrDate(new Date());
+  const weekendDates = getWeekendDates();
   switch (filterId) {
-    case "today": return events.filter(e => e.date === "Dim 10 mai");
-    case "weekend": return events.filter(e => e.date === "Dim 10 mai" || e.date === "Sam 16 mai");
+    case "today": return events.filter(e => e.date === todayStr);
+    case "weekend": return events.filter(e => weekendDates.includes(e.date));
     case "sport": return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","SPORT","RALLYE","TENNIS"].includes(e.cat));
     case "culture": return events.filter(e => ["MUSICAL","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE"].includes(e.cat));
     case "music": return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
