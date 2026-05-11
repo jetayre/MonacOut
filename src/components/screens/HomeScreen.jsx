@@ -131,12 +131,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               letterSpacing: 0.5,
               marginBottom: 6,
             }}>Monaco dans votre poche</div>
-            <div style={{
-              fontFamily: "Georgia, serif",
-              fontStyle: "italic",
-              fontSize: 11,
-              color: GREY,
-            }}>{ALL_EVENTS.length} événements · Jan — Déc 2026</div>
           </div>
         </div>
       </div>
