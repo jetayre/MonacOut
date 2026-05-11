@@ -73,7 +73,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       {/* Header */}
       <div style={{
         background: WHITE,
-        padding: "24px 20px 20px",
+        padding: "12px 20px 16px",
         display: "flex",
         justifyContent: "center",
       }}>
@@ -167,6 +167,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       {!search && <div style={{
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
         gap: 8,
         padding: "0 20px 16px",
       }}>
