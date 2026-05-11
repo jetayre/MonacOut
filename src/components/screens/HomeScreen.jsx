@@ -43,34 +43,49 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Header */}
       <div style={{
-        background: `linear-gradient(160deg, ${DARK} 0%, #2C2018 100%)`,
+        background: WHITE,
         padding: "24px 20px 20px",
+        display: "flex",
+        justifyContent: "center",
       }}>
         <div style={{
-          fontFamily: "-apple-system, sans-serif",
-          fontSize: 10,
-          fontWeight: 600,
-          letterSpacing: 2,
-          textTransform: "uppercase",
-          color: GOLD2,
-          marginBottom: 4,
-        }}>Dimanche 10 mai 2026</div>
-        <div style={{
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          fontWeight: "bold",
-          fontSize: 34,
-          color: WHITE,
-          letterSpacing: 1,
-          lineHeight: 1.1,
-        }}>MonacOut</div>
-        <div style={{
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          fontSize: 13,
-          color: GOLD2,
-          marginTop: 4,
-        }}>{ALL_EVENTS.length} événements · Janvier — Décembre 2026</div>
+          border: `2px solid ${GOLD}`,
+          borderRadius: 4,
+          padding: "16px 32px",
+          textAlign: "center",
+          display: "inline-block",
+        }}>
+          <div style={{
+            fontFamily: "-apple-system, sans-serif",
+            fontSize: 9,
+            fontWeight: 600,
+            letterSpacing: 2.5,
+            textTransform: "uppercase",
+            color: GOLD,
+            marginBottom: 6,
+          }}>Dimanche 10 mai 2026</div>
+          <div style={{
+            fontFamily: "Georgia, serif",
+            fontStyle: "italic",
+            fontWeight: "bold",
+            fontSize: 36,
+            color: DARK,
+            letterSpacing: 1,
+            lineHeight: 1,
+          }}>MonacOut</div>
+          <div style={{
+            width: 40,
+            height: 1.5,
+            background: GOLD,
+            margin: "8px auto 6px",
+          }} />
+          <div style={{
+            fontFamily: "Georgia, serif",
+            fontStyle: "italic",
+            fontSize: 12,
+            color: GREY,
+          }}>{ALL_EVENTS.length} événements · Jan — Déc 2026</div>
+        </div>
       </div>
 
       {/* Hot picks */}
