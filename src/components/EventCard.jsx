@@ -34,7 +34,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
       <div style={{
         border: `1px solid ${borderColor}`,
         borderRadius: 2,
-        padding: "24px 16px 20px",
+        padding: "18px 16px 20px",
         position: "relative",
       }}>
 
@@ -94,7 +94,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           marginBottom: 12,
           paddingRight: 28,
           paddingLeft: 4,
-          paddingTop: 8,
+          paddingTop: 2,
         }}>
           {event.title}
         </div>
