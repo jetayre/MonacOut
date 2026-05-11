@@ -112,14 +112,14 @@ export default function ProfileScreen() {
                 color: WHITE,
                 fontFamily: "Georgia, serif",
                 marginBottom: 8,
-              }}>V</div>
+              }}>A</div>
               <div style={{
                 fontFamily: "Georgia, serif",
                 fontStyle: "italic",
                 fontSize: 26,
                 color: DARK,
                 marginBottom: 2,
-              }}>Véronique</div>
+              }}>Agathe</div>
               <div style={{
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 9,
@@ -161,7 +161,7 @@ export default function ProfileScreen() {
             lineHeight: 1.9,
             padding: "0 20px 20px",
           }}>
-            Stéphanie et Véronique partagent une conviction commune : Monaco regorge d'événements exceptionnels, et chaque résident mérite d'en profiter pleinement. MonacOut est née de cette envie de rassembler, en un seul endroit, toute la richesse culturelle et sportive de la Principauté.
+            Stéphanie et Agathe partagent une conviction commune : Monaco regorge d'événements exceptionnels, et chaque résident mérite d'en profiter pleinement. MonacOut est née de cette envie de rassembler, en un seul endroit, toute la richesse culturelle et sportive de la Principauté.
           </div>
 
           {/* Conviction box */}
