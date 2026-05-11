@@ -3,148 +3,180 @@ const DARK = "#1C1612";
 const GREY = "#6A635A";
 const WHITE = "#FFFFFF";
 
+function getBorderColor(cat) {
+  if (["FOOTBALL","BASKET","FORMULE 1","SPORT","RALLYE","TENNIS"].includes(cat)) return "#8B1728";
+  if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS"].includes(cat)) return "#1A2A5A";
+  if (["CINÉMA"].includes(cat)) return "#1A2A5A";
+  if (["SOIRÉE","DJ SET","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
+  return "#B8966E";
+}
+
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick }) {
   const isFav = favorites?.includes(event.id);
+  const borderColor = getBorderColor(event.cat);
 
   return (
     <div
       onClick={() => onClick(event)}
       style={{
         background: WHITE,
-        borderRadius: 20,
-        overflow: "hidden",
-        marginBottom: 14,
-        boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        borderRadius: 12,
+        border: `3px solid ${borderColor}`,
+        marginBottom: 16,
         cursor: "pointer",
         position: "relative",
+        padding: "20px 16px 16px",
       }}
     >
-      {/* gradient header */}
+      {/* Fav button */}
+      <button
+        onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
+        style={{
+          position: "absolute",
+          top: 12,
+          right: 12,
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          fontSize: 18,
+          lineHeight: 1,
+        }}
+      >
+        {isFav ? "❤️" : "🤍"}
+      </button>
+
+      {/* Title */}
       <div style={{
-        background: event.fallback,
-        minHeight: 90,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "28px 44px 14px",
-        position: "relative",
+        fontFamily: "Georgia, serif",
+        fontStyle: "italic",
+        fontWeight: "bold",
+        fontSize: 22,
+        letterSpacing: 0.5,
+        textTransform: "uppercase",
+        color: DARK,
+        lineHeight: 1.2,
+        whiteSpace: "pre-line",
+        textAlign: "center",
+        marginBottom: 10,
+        paddingRight: 24,
+        paddingLeft: 4,
       }}>
-        {event.hot && (
-          <div style={{
-            position: "absolute",
-            top: 10,
-            left: 12,
-            background: "rgba(0,0,0,0.35)",
-            borderRadius: 20,
-            padding: "2px 8px",
-            fontSize: 9,
-            fontFamily: "-apple-system, sans-serif",
-            fontWeight: 700,
-            letterSpacing: 1.5,
-            color: "#FFD580",
-            textTransform: "uppercase",
-          }}>🔥 À ne pas manquer</div>
-        )}
-        {event.free && (
-          <div style={{
-            position: "absolute",
-            top: 10,
-            left: event.hot ? "auto" : 12,
-            right: event.hot ? 44 : "auto",
-            background: "rgba(255,255,255,0.25)",
-            borderRadius: 20,
-            padding: "2px 8px",
-            fontSize: 9,
-            fontFamily: "-apple-system, sans-serif",
-            fontWeight: 700,
-            letterSpacing: 1.5,
-            color: WHITE,
-            textTransform: "uppercase",
-          }}>Entrée libre</div>
-        )}
-        <div style={{ fontSize: 22, marginBottom: 6, lineHeight: 1 }}>{event.emoji}</div>
-        <div style={{
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          fontWeight: "bold",
-          fontSize: 14,
-          letterSpacing: 0.8,
-          textTransform: "uppercase",
-          color: WHITE,
-          textAlign: "center",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          width: "100%",
-          textShadow: "0 1px 4px rgba(0,0,0,0.4)",
-        }}>
-          {event.title.replace(/\n/g, " ")}
-        </div>
-        <button
-          onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-          style={{
-            position: "absolute",
-            top: 8,
-            right: 10,
-            background: "rgba(0,0,0,0.25)",
-            border: "none",
-            borderRadius: "50%",
-            width: 30,
-            height: 30,
-            cursor: "pointer",
-            fontSize: 15,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {isFav ? "❤️" : "🤍"}
-        </button>
+        {event.title}
       </div>
 
-      {/* body */}
-      <div style={{ padding: "10px 14px 12px", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <div style={{ flex: 1 }}>
-          <button
-            onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
-            style={{
-              background: "none",
-              border: "none",
-              padding: 0,
-              cursor: "pointer",
-              fontFamily: "-apple-system, sans-serif",
-              fontSize: 11,
-              fontWeight: 600,
-              color: GOLD,
-              letterSpacing: 1,
-              textTransform: "uppercase",
-              marginBottom: 3,
-              display: "block",
-              textDecoration: "underline",
-              textUnderlineOffset: 2,
-            }}
-          >
-            {event.cat}
-          </button>
-          <div style={{
+      {/* Short divider */}
+      <div style={{
+        width: 40,
+        height: 2,
+        background: borderColor,
+        margin: "0 auto 10px",
+        borderRadius: 1,
+      }} />
+
+      {/* Category */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6,
+        marginBottom: 8,
+      }}>
+        <span style={{ fontSize: 14 }}>{event.emoji}</span>
+        <button
+          onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
             fontFamily: "-apple-system, sans-serif",
-            fontSize: 12,
-            color: "#6A635A",
-            marginBottom: 3,
-          }}>
-            {event.subtitle}
-          </div>
-          <div style={{
-            fontFamily: "-apple-system, sans-serif",
-            fontSize: 12,
-            fontWeight: 600,
-            color: DARK,
-          }}>
-            {event.date} · {event.time}
-          </div>
-        </div>
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: 2,
+            textTransform: "uppercase",
+            color: borderColor,
+            textDecoration: "underline",
+            textUnderlineOffset: 2,
+          }}
+        >{event.cat}</button>
       </div>
+
+      {/* Hot badge */}
+      {event.hot && (
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 10,
+        }}>
+          <div style={{
+            border: `1.5px solid ${borderColor}`,
+            borderRadius: 20,
+            padding: "3px 12px",
+            fontFamily: "-apple-system, sans-serif",
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: 1,
+            color: DARK,
+          }}>🔥 À NE PAS MANQUER</div>
+        </div>
+      )}
+
+      {/* Free badge */}
+      {event.free && (
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 10,
+        }}>
+          <div style={{
+            border: `1.5px solid #2A7A3A`,
+            borderRadius: 20,
+            padding: "3px 12px",
+            fontFamily: "-apple-system, sans-serif",
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: 1,
+            color: "#2A7A3A",
+          }}>✅ ENTRÉE LIBRE</div>
+        </div>
+      )}
+
+      {/* Subtitle */}
+      <div style={{
+        fontFamily: "Georgia, serif",
+        fontStyle: "italic",
+        fontSize: 13,
+        color: GREY,
+        textAlign: "center",
+        marginBottom: 6,
+      }}>{event.subtitle}</div>
+
+      {/* Date */}
+      <div style={{
+        fontFamily: "-apple-system, sans-serif",
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: 1,
+        textTransform: "uppercase",
+        color: DARK,
+        textAlign: "center",
+        marginBottom: 12,
+      }}>{event.date} · {event.time}</div>
+
+      {/* Separator */}
+      <div style={{
+        height: 1,
+        background: "#E8E0D4",
+        marginBottom: 12,
+      }} />
+
+      {/* Description */}
+      <div style={{
+        fontFamily: "Georgia, serif",
+        fontSize: 13,
+        color: GREY,
+        textAlign: "center",
+        lineHeight: 1.7,
+      }}>{event.desc}</div>
     </div>
   );
 }
