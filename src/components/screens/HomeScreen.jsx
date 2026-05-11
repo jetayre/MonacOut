@@ -51,9 +51,15 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         <div style={{
           border: `2px solid ${GOLD}`,
           borderRadius: 4,
-          padding: "16px 32px",
-          textAlign: "center",
+          padding: 5,
           display: "inline-block",
+          width: "calc(100% - 32px)",
+        }}>
+        <div style={{
+          border: `1.5px solid ${GOLD}`,
+          borderRadius: 2,
+          padding: "16px 20px",
+          textAlign: "center",
         }}>
           <div style={{
             fontFamily: "-apple-system, sans-serif",
@@ -85,6 +91,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             fontSize: 12,
             color: GREY,
           }}>{ALL_EVENTS.length} événements · Jan — Déc 2026</div>
+        </div>
         </div>
       </div>
 
