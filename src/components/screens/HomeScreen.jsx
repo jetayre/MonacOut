@@ -56,6 +56,7 @@ function filterEvents(events, filterId) {
 export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange }) {
   const setFilter = onFilterChange || (() => {});
   const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   const baseFiltered = filterEvents(ALL_EVENTS, filter);
   const filtered = search.trim()
@@ -81,10 +82,27 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       {/* Title frame */}
       <div style={{
         background: WHITE,
-        padding: "6px 20px 12px",
+        padding: "4px 20px 8px",
         display: "flex",
         justifyContent: "center",
+        position: "relative",
       }}>
+        {/* Loupe */}
+        <button
+          onClick={() => setShowSearch(s => !s)}
+          style={{
+            position: "absolute",
+            right: 24,
+            top: "50%",
+            transform: "translateY(-50%)",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontSize: 16,
+            padding: 4,
+            zIndex: 1,
+          }}
+        >🔍</button>
         <div style={{
           border: `1.5px solid ${GOLD}`,
           borderRadius: 2,
@@ -95,7 +113,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           <div style={{
             border: `1px solid ${GOLD}`,
             borderRadius: 1,
-            padding: "18px 24px",
+            padding: "10px 24px",
             textAlign: "center",
             background: WHITE,
           }}>
@@ -136,72 +154,75 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         </div>
       </div>
 
-      {/* Search bar */}
-      <div style={{ padding: "0 20px 8px", background: WHITE }}>
+      {/* Filters */}
+      {!showSearch && (
         <div style={{
           display: "flex",
-          alignItems: "center",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: 6,
+          padding: "6px 16px 10px",
           background: WHITE,
-          border: `1.5px solid ${search ? GOLD : BORDER}`,
-          borderRadius: 24,
-          padding: "8px 16px",
-          gap: 8,
-          marginBottom: 16,
         }}>
-          <span style={{ fontSize: 14, opacity: 0.5 }}>🔍</span>
-          <input
-            type="text"
-            placeholder="Rechercher un événement..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            style={{
-              border: "none",
-              outline: "none",
-              flex: 1,
-              fontFamily: "-apple-system, sans-serif",
-              fontSize: 13,
-              color: DARK,
-              background: "transparent",
-            }}
-          />
-          {search && (
+          {FILTERS.map(f => (
             <button
-              onClick={() => setSearch("")}
-              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, opacity: 0.5, padding: 0 }}
-            >✕</button>
-          )}
+              key={f.id}
+              onClick={() => setFilter(f.id)}
+              style={{
+                flexShrink: 0,
+                padding: "5px 11px",
+                borderRadius: 20,
+                border: `1.5px solid ${filter === f.id ? GOLD : BORDER}`,
+                background: filter === f.id ? GOLD : WHITE,
+                color: filter === f.id ? WHITE : GREY,
+                fontFamily: "-apple-system, sans-serif",
+                fontSize: 11,
+                fontWeight: 600,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >{f.label}</button>
+          ))}
         </div>
-      </div>
+      )}
 
-      {/* Filters — hidden during search */}
-      {!search && <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        gap: 6,
-        padding: "8px 16px 12px",
-        background: WHITE,
-      }}>
-        {FILTERS.map(f => (
+      {/* Search input — visible only when loupe clicked */}
+      {showSearch && (
+        <div style={{ padding: "6px 16px 10px", background: WHITE, display: "flex", gap: 8, alignItems: "center" }}>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            flex: 1,
+            border: `1.5px solid ${GOLD}`,
+            borderRadius: 24,
+            padding: "7px 14px",
+            gap: 8,
+            background: WHITE,
+          }}>
+            <span style={{ fontSize: 13, opacity: 0.5 }}>🔍</span>
+            <input
+              autoFocus
+              type="text"
+              placeholder="Rechercher..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              style={{
+                border: "none", outline: "none", flex: 1,
+                fontFamily: "-apple-system, sans-serif",
+                fontSize: 13, color: DARK, background: "transparent",
+              }}
+            />
+          </div>
           <button
-            key={f.id}
-            onClick={() => setFilter(f.id)}
+            onClick={() => { setShowSearch(false); setSearch(""); }}
             style={{
-              flexShrink: 0,
-              padding: "5px 11px",
-              borderRadius: 20,
-              border: `1.5px solid ${filter === f.id ? GOLD : BORDER}`,
-              background: filter === f.id ? GOLD : WHITE,
-              color: filter === f.id ? WHITE : GREY,
+              background: "none", border: "none", cursor: "pointer",
               fontFamily: "-apple-system, sans-serif",
-              fontSize: 11,
-              fontWeight: 600,
-              cursor: "pointer",
-              whiteSpace: "nowrap",
+              fontSize: 12, fontWeight: 600, color: GREY,
             }}
-          >{f.label}</button>
-        ))}
-      </div>}
+          >Annuler</button>
+        </div>
+      )}
       </div>{/* end sticky header */}
 
       {/* Event list */}
