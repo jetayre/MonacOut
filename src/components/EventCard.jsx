@@ -24,8 +24,10 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         background: event.fallback,
         minHeight: 90,
         display: "flex",
-        alignItems: "flex-end",
-        padding: "12px 14px 10px",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "28px 44px 14px",
         position: "relative",
       }}>
         {event.hot && (
@@ -48,7 +50,8 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           <div style={{
             position: "absolute",
             top: 10,
-            right: 44,
+            left: event.hot ? "auto" : 12,
+            right: event.hot ? 44 : "auto",
             background: "rgba(255,255,255,0.25)",
             borderRadius: 20,
             padding: "2px 8px",
@@ -60,21 +63,23 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             textTransform: "uppercase",
           }}>Entrée libre</div>
         )}
-        <div style={{ fontSize: 28, marginRight: 10, lineHeight: 1 }}>{event.emoji}</div>
+        <div style={{ fontSize: 22, marginBottom: 6, lineHeight: 1 }}>{event.emoji}</div>
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
           fontWeight: "bold",
-          fontSize: 15,
-          letterSpacing: 0.5,
+          fontSize: 14,
+          letterSpacing: 0.8,
           textTransform: "uppercase",
           color: WHITE,
-          lineHeight: 1.15,
-          whiteSpace: "pre-line",
-          flex: 1,
+          textAlign: "center",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          width: "100%",
           textShadow: "0 1px 4px rgba(0,0,0,0.4)",
         }}>
-          {event.title}
+          {event.title.replace(/\n/g, " ")}
         </div>
         <button
           onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
