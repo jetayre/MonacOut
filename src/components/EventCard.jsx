@@ -27,6 +27,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         cursor: "pointer",
         position: "relative",
         padding: 5,
+        boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
       }}
     >
       {/* Inner frame */}

@@ -204,15 +204,23 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             fontSize: 15,
           }}>Aucun événement pour ce filtre.</div>
         ) : (
-          filtered.map(e => (
-            <EventCard
+          filtered.map((e, index) => (
+            <div
               key={e.id}
+              style={{
+                position: "sticky",
+                top: 8 + index * 3,
+                zIndex: index + 1,
+              }}
+            >
+            <EventCard
               event={e}
               onClick={onSelectEvent}
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={onCategoryClick}
             />
+            </div>
           ))
         )}
       </div>
