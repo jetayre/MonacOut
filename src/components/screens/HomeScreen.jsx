@@ -49,16 +49,17 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         justifyContent: "center",
       }}>
         <div style={{
-          border: `2px solid ${GOLD}`,
-          borderRadius: 4,
+          border: `6px solid ${GOLD}`,
+          borderRadius: 3,
           padding: 5,
           display: "inline-block",
           width: "calc(100% - 32px)",
+          boxShadow: `inset 0 0 0 2px ${GOLD}`,
         }}>
         <div style={{
-          border: `1.5px solid ${GOLD}`,
-          borderRadius: 2,
-          padding: "16px 20px",
+          border: `2px solid ${GOLD}`,
+          borderRadius: 1,
+          padding: "14px 20px",
           textAlign: "center",
         }}>
           <div style={{
@@ -74,10 +75,11 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             fontFamily: "Georgia, serif",
             fontStyle: "italic",
             fontWeight: "bold",
-            fontSize: 36,
-            color: DARK,
-            letterSpacing: 1,
+            fontSize: 38,
+            color: "#1A2A4A",
+            letterSpacing: 2,
             lineHeight: 1,
+            whiteSpace: "nowrap",
           }}>MonacOut</div>
           <div style={{
             width: 40,
