@@ -118,15 +118,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             background: WHITE,
           }}>
             <div style={{
-              fontFamily: "-apple-system, sans-serif",
-              fontSize: 9,
-              fontWeight: 600,
-              letterSpacing: 2.5,
-              textTransform: "uppercase",
-              color: GOLD,
-              marginBottom: 8,
-            }}>Lundi 11 mai 2026</div>
-            <div style={{
               fontFamily: "Georgia, serif",
               fontStyle: "italic",
               fontWeight: "bold",
