@@ -159,11 +159,12 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Description */}
         <div style={{
-          fontFamily: "-apple-system, sans-serif",
+          fontFamily: "Georgia, serif",
+          fontStyle: "normal",
           fontSize: 14,
           color: NAVY_LIGHT,
           textAlign: "center",
-          lineHeight: 1.6,
+          lineHeight: 1.7,
         }}>{event.desc}</div>
 
       </div>
