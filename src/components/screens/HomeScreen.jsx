@@ -76,6 +76,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         top: 0,
         zIndex: 50,
         background: LIGHT,
+        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
       }}>
       {/* Title frame */}
       <div style={{
@@ -136,7 +137,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       </div>
 
       {/* Search bar */}
-      <div style={{ padding: "16px 20px 0" }}>
+      <div style={{ padding: "12px 20px 0", background: LIGHT }}>
         <div style={{
           display: "flex",
           alignItems: "center",
@@ -177,8 +178,9 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
-        gap: 8,
-        padding: "0 20px 16px",
+        gap: 6,
+        padding: "8px 16px 12px",
+        background: LIGHT,
       }}>
         {FILTERS.map(f => (
           <button
@@ -186,13 +188,13 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             onClick={() => setFilter(f.id)}
             style={{
               flexShrink: 0,
-              padding: "6px 14px",
+              padding: "5px 11px",
               borderRadius: 20,
               border: `1.5px solid ${filter === f.id ? GOLD : BORDER}`,
               background: filter === f.id ? GOLD : WHITE,
               color: filter === f.id ? WHITE : GREY,
               fontFamily: "-apple-system, sans-serif",
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: 600,
               cursor: "pointer",
               whiteSpace: "nowrap",
