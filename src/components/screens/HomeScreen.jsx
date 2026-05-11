@@ -49,51 +49,51 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         justifyContent: "center",
       }}>
         <div style={{
-          border: `6px solid ${GOLD}`,
-          borderRadius: 3,
-          padding: 5,
+          border: `1.5px solid ${GOLD}`,
+          borderRadius: 2,
+          padding: 4,
           display: "inline-block",
-          width: "calc(100% - 32px)",
-          boxShadow: `inset 0 0 0 2px ${GOLD}`,
-        }}>
-        <div style={{
-          border: `2px solid ${GOLD}`,
-          borderRadius: 1,
-          padding: "14px 20px",
-          textAlign: "center",
+          width: "calc(100% - 40px)",
         }}>
           <div style={{
-            fontFamily: "-apple-system, sans-serif",
-            fontSize: 9,
-            fontWeight: 600,
-            letterSpacing: 2.5,
-            textTransform: "uppercase",
-            color: GOLD,
-            marginBottom: 6,
-          }}>Lundi 11 mai 2026</div>
-          <div style={{
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-            fontWeight: "bold",
-            fontSize: 38,
-            color: "#1A2A4A",
-            letterSpacing: 2,
-            lineHeight: 1,
-            whiteSpace: "nowrap",
-          }}>MonacOut</div>
-          <div style={{
-            width: 40,
-            height: 1.5,
-            background: GOLD,
-            margin: "8px auto 6px",
-          }} />
-          <div style={{
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-            fontSize: 12,
-            color: GREY,
-          }}>{ALL_EVENTS.length} événements · Jan — Déc 2026</div>
-        </div>
+            border: `1px solid ${GOLD}`,
+            borderRadius: 1,
+            padding: "18px 24px",
+            textAlign: "center",
+            background: WHITE,
+          }}>
+            <div style={{
+              fontFamily: "-apple-system, sans-serif",
+              fontSize: 9,
+              fontWeight: 600,
+              letterSpacing: 2.5,
+              textTransform: "uppercase",
+              color: GOLD,
+              marginBottom: 8,
+            }}>Lundi 11 mai 2026</div>
+            <div style={{
+              fontFamily: "Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: "bold",
+              fontSize: 38,
+              color: "#1A2A4A",
+              letterSpacing: 1,
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+            }}>MonacOut</div>
+            <div style={{
+              width: 36,
+              height: 1.5,
+              background: GOLD,
+              margin: "10px auto 8px",
+            }} />
+            <div style={{
+              fontFamily: "Georgia, serif",
+              fontStyle: "italic",
+              fontSize: 12,
+              color: GREY,
+            }}>{ALL_EVENTS.length} événements · Jan — Déc 2026</div>
+          </div>
         </div>
       </div>
 
