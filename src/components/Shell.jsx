@@ -47,7 +47,7 @@ export default function Shell({ tab, setTab, children }) {
         <div style={{
           flex: 1,
           overflowY: "auto",
-          paddingTop: 56,
+          paddingTop: 46,
           paddingBottom: 0,
           scrollbarWidth: "none",
           msOverflowStyle: "none",

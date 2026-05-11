@@ -81,7 +81,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       {/* Title frame */}
       <div style={{
         background: WHITE,
-        padding: "12px 20px 16px",
+        padding: "6px 20px 12px",
         display: "flex",
         justifyContent: "center",
       }}>
