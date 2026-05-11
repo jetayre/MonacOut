@@ -101,26 +101,6 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         >{event.cat}</button>
       </div>
 
-      {/* Hot badge */}
-      {event.hot && (
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: 10,
-        }}>
-          <div style={{
-            border: `1.5px solid ${borderColor}`,
-            borderRadius: 20,
-            padding: "3px 12px",
-            fontFamily: "-apple-system, sans-serif",
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: 1,
-            color: NAVY,
-          }}>🔥 À NE PAS MANQUER</div>
-        </div>
-      )}
-
       {/* Free badge */}
       {event.free && (
         <div style={{
