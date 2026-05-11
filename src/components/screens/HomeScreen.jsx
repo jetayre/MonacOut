@@ -147,9 +147,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       {/* Filters — hidden during search */}
       {!search && <div style={{
         display: "flex",
+        flexWrap: "wrap",
         gap: 8,
-        overflowX: "auto",
-        scrollbarWidth: "none",
         padding: "0 20px 16px",
       }}>
         {FILTERS.map(f => (
