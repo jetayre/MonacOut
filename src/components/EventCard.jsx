@@ -1,14 +1,15 @@
 const GOLD = "#B8966E";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
+const NAVY = "#1A2A4A";
+const NAVY_LIGHT = "#2A3A5A";
+const GREY = "#6A7A8A";
 const WHITE = "#FFFFFF";
 
 function getBorderColor(cat) {
   if (["FOOTBALL","BASKET","FORMULE 1","SPORT","RALLYE","TENNIS"].includes(cat)) return "#8B1728";
   if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS"].includes(cat)) return "#1A2A5A";
   if (["CINÉMA"].includes(cat)) return "#1A2A5A";
-  if (["SOIRÉE","DJ SET","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
-  return "#B8966E";
+  if (["SOIRÉE","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
+  return GOLD;
 }
 
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick }) {
@@ -20,8 +21,8 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
       onClick={() => onClick(event)}
       style={{
         background: WHITE,
-        borderRadius: 12,
-        border: `3px solid ${borderColor}`,
+        borderRadius: 8,
+        border: `1.5px solid ${borderColor}`,
         marginBottom: 16,
         cursor: "pointer",
         position: "relative",
@@ -53,7 +54,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         fontSize: 22,
         letterSpacing: 0.5,
         textTransform: "uppercase",
-        color: DARK,
+        color: NAVY,
         lineHeight: 1.2,
         whiteSpace: "pre-line",
         textAlign: "center",
@@ -66,8 +67,8 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
       {/* Short divider */}
       <div style={{
-        width: 40,
-        height: 2,
+        width: 36,
+        height: 1.5,
         background: borderColor,
         margin: "0 auto 10px",
         borderRadius: 1,
@@ -93,13 +94,32 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             fontWeight: 700,
             letterSpacing: 2,
             textTransform: "uppercase",
-            color: borderColor,
+            color: NAVY,
             textDecoration: "underline",
             textUnderlineOffset: 2,
           }}
         >{event.cat}</button>
       </div>
 
+      {/* Hot badge */}
+      {event.hot && (
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 10,
+        }}>
+          <div style={{
+            border: `1.5px solid ${borderColor}`,
+            borderRadius: 20,
+            padding: "3px 12px",
+            fontFamily: "-apple-system, sans-serif",
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: 1,
+            color: NAVY,
+          }}>🔥 À NE PAS MANQUER</div>
+        </div>
+      )}
 
       {/* Free badge */}
       {event.free && (
@@ -109,14 +129,14 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           marginBottom: 10,
         }}>
           <div style={{
-            border: `1.5px solid #2A7A3A`,
+            border: `1.5px solid #2A6A3A`,
             borderRadius: 20,
             padding: "3px 12px",
             fontFamily: "-apple-system, sans-serif",
             fontSize: 11,
             fontWeight: 700,
             letterSpacing: 1,
-            color: "#2A7A3A",
+            color: "#1A4A2A",
           }}>✅ ENTRÉE LIBRE</div>
         </div>
       )}
@@ -138,7 +158,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         fontWeight: 700,
         letterSpacing: 1,
         textTransform: "uppercase",
-        color: DARK,
+        color: NAVY,
         textAlign: "center",
         marginBottom: 12,
       }}>{event.date} · {event.time}</div>
@@ -146,15 +166,16 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
       {/* Separator */}
       <div style={{
         height: 1,
-        background: "#E8E0D4",
+        background: "#D8E0E8",
         marginBottom: 12,
       }} />
 
       {/* Description */}
       <div style={{
         fontFamily: "Georgia, serif",
+        fontStyle: "italic",
         fontSize: 13,
-        color: GREY,
+        color: NAVY_LIGHT,
         textAlign: "center",
         lineHeight: 1.7,
       }}>{event.desc}</div>
