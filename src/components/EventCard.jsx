@@ -9,6 +9,8 @@ function getBorderColor(cat) {
   if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS","CINÉMA"].includes(cat)) return "#1A2A5A";
   if (["SOIRÉE","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
   if (["ATELIER","DANSE","EXPOSITION","FESTIVAL","SPECTACLE","GALA"].includes(cat)) return "#5A1A7A";
+  if (["BIEN-ÊTRE"].includes(cat)) return "#1A6A5A";
+  if (["CONFÉRENCE"].includes(cat)) return "#1A4A2A";
   return GOLD;
 }
 

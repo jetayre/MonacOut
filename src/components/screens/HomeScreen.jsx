@@ -20,6 +20,7 @@ const FILTERS = [
   { id: "cinema", label: "🎬 Cinéma" },
   { id: "famille", label: "👨‍👩‍👧 Famille" },
   { id: "ateliers", label: "🎨 Ateliers" },
+  { id: "bienetre", label: "🧘 Bien-être" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -51,6 +52,7 @@ function filterEvents(events, filterId) {
     case "cinema": return events.filter(e => e.cat === "CINÉMA");
     case "famille": return events.filter(e => e.free === true);
     case "ateliers": return events.filter(e => ["ATELIER","DANSE"].includes(e.cat));
+    case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
     default: return events;
   }
 }
