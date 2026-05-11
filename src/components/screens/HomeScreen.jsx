@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
 
@@ -35,9 +36,18 @@ function filterEvents(events, filterId) {
 
 export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange }) {
   const setFilter = onFilterChange || (() => {});
+  const [search, setSearch] = useState("");
 
-  const filtered = filterEvents(ALL_EVENTS, filter);
-  const hot = ALL_EVENTS.filter(e => e.hot && e.date === "Dim 10 mai").slice(0, 3);
+  const baseFiltered = filterEvents(ALL_EVENTS, filter);
+  const filtered = search.trim()
+    ? ALL_EVENTS.filter(e => {
+        const q = search.toLowerCase();
+        return e.title.toLowerCase().includes(q)
+          || e.subtitle?.toLowerCase().includes(q)
+          || e.cat.toLowerCase().includes(q)
+          || e.desc?.toLowerCase().includes(q);
+      })
+    : baseFiltered;
 
   return (
     <div style={{ background: LIGHT, minHeight: "100%" }}>
@@ -97,63 +107,45 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         </div>
       </div>
 
-      {/* Hot picks */}
-      <div style={{ padding: "20px 20px 0" }}>
-        <div style={{
-          fontFamily: "-apple-system, sans-serif",
-          fontSize: 10,
-          fontWeight: 700,
-          letterSpacing: 2,
-          textTransform: "uppercase",
-          color: GOLD,
-          marginBottom: 10,
-        }}>🔥 À ne pas manquer ce soir</div>
+      {/* Search bar */}
+      <div style={{ padding: "16px 20px 0" }}>
         <div style={{
           display: "flex",
-          gap: 10,
-          overflowX: "auto",
-          scrollbarWidth: "none",
-          marginBottom: 20,
-          paddingBottom: 4,
+          alignItems: "center",
+          background: WHITE,
+          border: `1.5px solid ${search ? GOLD : BORDER}`,
+          borderRadius: 24,
+          padding: "8px 16px",
+          gap: 8,
+          marginBottom: 16,
         }}>
-          {hot.map(e => (
-            <div
-              key={e.id}
-              onClick={() => onSelectEvent(e)}
-              style={{
-                minWidth: 140,
-                height: 110,
-                borderRadius: 16,
-                background: e.fallback,
-                flexShrink: 0,
-                cursor: "pointer",
-                padding: "10px 12px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div style={{ fontSize: 22, marginBottom: 4 }}>{e.emoji}</div>
-              <div style={{
-                fontFamily: "Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: "bold",
-                fontSize: 11,
-                color: WHITE,
-                textTransform: "uppercase",
-                lineHeight: 1.2,
-                whiteSpace: "pre-line",
-                textShadow: "0 1px 4px rgba(0,0,0,0.5)",
-              }}>{e.title}</div>
-            </div>
-          ))}
+          <span style={{ fontSize: 14, opacity: 0.5 }}>🔍</span>
+          <input
+            type="text"
+            placeholder="Rechercher un événement..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            style={{
+              border: "none",
+              outline: "none",
+              flex: 1,
+              fontFamily: "-apple-system, sans-serif",
+              fontSize: 13,
+              color: DARK,
+              background: "transparent",
+            }}
+          />
+          {search && (
+            <button
+              onClick={() => setSearch("")}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, opacity: 0.5, padding: 0 }}
+            >✕</button>
+          )}
         </div>
       </div>
 
-      {/* Filters */}
-      <div style={{
+      {/* Filters — hidden during search */}
+      {!search && <div style={{
         display: "flex",
         gap: 8,
         overflowX: "auto",
@@ -179,7 +171,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             }}
           >{f.label}</button>
         ))}
-      </div>
+      </div>}
 
       {/* Event list */}
       <div style={{ padding: "0 16px 20px" }}>
