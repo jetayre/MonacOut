@@ -59,18 +59,18 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
           fontWeight: "bold",
-          fontSize: 28,
+          fontSize: 34,
           color: WHITE,
-          letterSpacing: 0.5,
+          letterSpacing: 1,
           lineHeight: 1.1,
-        }}>Ce soir à Monaco</div>
+        }}>MonacOut</div>
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
           fontSize: 13,
           color: GOLD2,
           marginTop: 4,
-        }}>{ALL_EVENTS.length} événements cette semaine</div>
+        }}>{ALL_EVENTS.length} événements · Janvier — Décembre 2026</div>
       </div>
 
       {/* Hot picks */}
