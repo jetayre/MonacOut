@@ -70,7 +70,14 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
 
   return (
     <div style={{ background: LIGHT, minHeight: "100%" }}>
-      {/* Header */}
+      {/* Sticky header */}
+      <div style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: LIGHT,
+      }}>
+      {/* Title frame */}
       <div style={{
         background: WHITE,
         padding: "12px 20px 16px",
@@ -199,6 +206,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           >{f.label}</button>
         ))}
       </div>}
+      </div>{/* end sticky header */}
 
       {/* Event list */}
       <div style={{ padding: "0 16px 20px" }}>
