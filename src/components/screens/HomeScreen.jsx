@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
+import CalendarPicker from "../CalendarPicker";
 
 const GOLD = "#B8966E";
-const GOLD2 = "#D4B896";
 const DARK = "#1C1612";
 const GREY = "#6A635A";
 const LIGHT = "#F8F4EF";
@@ -26,6 +26,8 @@ const FILTERS = [
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
+const MOIS_IDX = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
+const MOIS_NOM_COURT = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
 
 function toFrDate(d) {
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
@@ -39,6 +41,14 @@ function getWeekendDates() {
   const sat = new Date(today); sat.setDate(today.getDate() + daysToSat);
   const sun = new Date(today); sun.setDate(today.getDate() + daysToSun);
   return [toFrDate(sat), toFrDate(sun)];
+}
+
+function parseEventDate(dateStr) {
+  const parts = dateStr.trim().split(" ");
+  const day = parseInt(parts[1]);
+  const month = MOIS_IDX[parts[2]];
+  if (isNaN(day) || month === undefined) return null;
+  return new Date(2026, month, day);
 }
 
 function filterEvents(events, filterId) {
@@ -64,177 +74,165 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   const setFilter = onFilterChange || (() => {});
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [rangeStart, setRangeStart] = useState(null);
+  const [rangeEnd, setRangeEnd] = useState(null);
 
-  const baseFiltered = filterEvents(ALL_EVENTS, filter);
-  const filtered = search.trim()
-    ? ALL_EVENTS.filter(e => {
-        const q = search.toLowerCase();
-        return e.title.toLowerCase().includes(q)
-          || e.subtitle?.toLowerCase().includes(q)
-          || e.cat.toLowerCase().includes(q)
-          || e.desc?.toLowerCase().includes(q);
-      })
-    : baseFiltered;
+  function handleCalendarConfirm(start, end) {
+    setRangeStart(start);
+    setRangeEnd(end);
+    setShowCalendar(false);
+    setSearch("");
+  }
+
+  function clearRange() {
+    setRangeStart(null);
+    setRangeEnd(null);
+  }
+
+  // Determine filtered events
+  let filtered;
+  if (rangeStart) {
+    const endBound = rangeEnd || rangeStart;
+    filtered = ALL_EVENTS.filter(e => {
+      const d = parseEventDate(e.date);
+      if (!d) return false;
+      return d >= rangeStart && d <= endBound;
+    });
+  } else if (search.trim()) {
+    const q = search.toLowerCase();
+    filtered = ALL_EVENTS.filter(e =>
+      e.title.toLowerCase().includes(q) ||
+      e.subtitle?.toLowerCase().includes(q) ||
+      e.cat.toLowerCase().includes(q) ||
+      e.desc?.toLowerCase().includes(q)
+    );
+  } else {
+    filtered = filterEvents(ALL_EVENTS, filter);
+  }
+
+  const rangeLabel = rangeStart
+    ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
+      ? `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]} — ${rangeEnd.getDate()} ${MOIS_NOM_COURT[rangeEnd.getMonth()]}`
+      : `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
+    : null;
+
+  if (showCalendar) {
+    return (
+      <CalendarPicker
+        onClose={() => setShowCalendar(false)}
+        onConfirm={handleCalendarConfirm}
+      />
+    );
+  }
 
   return (
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Sticky header */}
       <div style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        background: WHITE,
-        borderBottom: `1px solid ${BORDER}`,
+        position: "sticky", top: 0, zIndex: 50,
+        background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-      {/* Title frame */}
-      <div style={{
-        background: WHITE,
-        padding: "4px 20px 8px",
-        display: "flex",
-        justifyContent: "center",
-        position: "relative",
-      }}>
-        {/* Loupe */}
-        <button
-          onClick={() => setShowSearch(s => !s)}
-          style={{
-            position: "absolute",
-            right: 24,
-            top: "50%",
-            transform: "translateY(-50%)",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: 16,
-            padding: 4,
-            zIndex: 1,
-          }}
-        >🔍</button>
+        {/* Title frame */}
         <div style={{
-          border: `1.5px solid ${GOLD}`,
-          borderRadius: 2,
-          padding: 4,
-          display: "inline-block",
-          width: "calc(100% - 40px)",
+          background: WHITE, padding: "4px 20px 8px",
+          display: "flex", justifyContent: "center", position: "relative",
         }}>
-          <div style={{
-            border: `1px solid ${GOLD}`,
-            borderRadius: 1,
-            padding: "10px 24px",
-            textAlign: "center",
-            background: WHITE,
-            position: "relative",
-          }}>
-            <div style={{
-              fontFamily: "Georgia, serif",
-              fontStyle: "italic",
-              fontWeight: "bold",
-              fontSize: 38,
-              color: "#1A2A4A",
-              letterSpacing: 1,
-              lineHeight: 1,
-              whiteSpace: "nowrap",
-            }}>MonacOut</div>
-            <div style={{
-              width: 36,
-              height: 1.5,
-              background: GOLD,
-              margin: "10px auto 6px",
-            }} />
-            <div style={{
-              fontFamily: "Georgia, serif",
-              fontStyle: "italic",
-              fontSize: 17,
-              color: GOLD,
-              letterSpacing: 0.5,
-              marginBottom: 6,
-            }}>Monaco dans votre poche</div>
+          <button
+            onClick={() => setShowSearch(s => !s)}
+            style={{ position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
+          >🔍</button>
+          <div style={{ border: `1.5px solid ${GOLD}`, borderRadius: 2, padding: 4, display: "inline-block", width: "calc(100% - 40px)" }}>
+            <div style={{ border: `1px solid ${GOLD}`, borderRadius: 1, padding: "10px 24px", textAlign: "center", background: WHITE }}>
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 38, color: "#1A2A4A", letterSpacing: 1, lineHeight: 1, whiteSpace: "nowrap" }}>MonacOut</div>
+              <div style={{ width: 36, height: 1.5, background: GOLD, margin: "10px auto 6px" }} />
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 17, color: GOLD, letterSpacing: 0.5, marginBottom: 6 }}>Monaco dans votre poche</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Filters */}
-      {!showSearch && (
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: 6,
-          padding: "6px 16px 10px",
-          background: WHITE,
-        }}>
-          {FILTERS.map(f => (
+        {/* Filters or Search */}
+        {!showSearch && (
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 6, padding: "6px 16px 10px", background: WHITE }}>
+
+            {/* Calendar icon pill */}
             <button
-              key={f.id}
-              onClick={() => setFilter(f.id)}
+              onClick={() => setShowCalendar(true)}
               style={{
                 flexShrink: 0,
                 padding: "5px 11px",
                 borderRadius: 20,
-                border: `1.5px solid ${filter === f.id ? GOLD : BORDER}`,
-                background: filter === f.id ? GOLD : WHITE,
-                color: filter === f.id ? WHITE : GREY,
+                border: `1.5px solid ${rangeLabel ? GOLD : BORDER}`,
+                background: rangeLabel ? GOLD : WHITE,
+                color: rangeLabel ? WHITE : GREY,
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 11,
                 fontWeight: 600,
                 cursor: "pointer",
                 whiteSpace: "nowrap",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
               }}
-            >{f.label}</button>
-          ))}
-        </div>
-      )}
+            >
+              📅 {rangeLabel || "Agenda"}
+            </button>
 
-      {/* Search input — visible only when loupe clicked */}
-      {showSearch && (
-        <div style={{ padding: "6px 16px 10px", background: WHITE, display: "flex", gap: 8, alignItems: "center" }}>
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            flex: 1,
-            border: `1.5px solid ${GOLD}`,
-            borderRadius: 24,
-            padding: "7px 14px",
-            gap: 8,
-            background: WHITE,
-          }}>
-            <span style={{ fontSize: 13, opacity: 0.5 }}>🔍</span>
-            <input
-              autoFocus
-              type="text"
-              placeholder="Rechercher..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{
-                border: "none", outline: "none", flex: 1,
-                fontFamily: "-apple-system, sans-serif",
-                fontSize: 13, color: DARK, background: "transparent",
-              }}
-            />
+            {/* Clear range button */}
+            {rangeLabel && (
+              <button
+                onClick={clearRange}
+                style={{ flexShrink: 0, padding: "5px 9px", borderRadius: 20, border: `1.5px solid #DDD`, background: WHITE, color: GREY, fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 600, cursor: "pointer" }}
+              >✕</button>
+            )}
+
+            {/* Normal filters (hidden when range active) */}
+            {!rangeLabel && FILTERS.map(f => (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id)}
+                style={{
+                  flexShrink: 0,
+                  padding: "5px 11px",
+                  borderRadius: 20,
+                  border: `1.5px solid ${filter === f.id ? GOLD : BORDER}`,
+                  background: filter === f.id ? GOLD : WHITE,
+                  color: filter === f.id ? WHITE : GREY,
+                  fontFamily: "-apple-system, sans-serif",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >{f.label}</button>
+            ))}
           </div>
-          <button
-            onClick={() => { setShowSearch(false); setSearch(""); }}
-            style={{
-              background: "none", border: "none", cursor: "pointer",
-              fontFamily: "-apple-system, sans-serif",
-              fontSize: 12, fontWeight: 600, color: GREY,
-            }}
-          >Annuler</button>
-        </div>
-      )}
-      </div>{/* end sticky header */}
+        )}
+
+        {showSearch && (
+          <div style={{ padding: "6px 16px 10px", background: WHITE, display: "flex", gap: 8, alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", flex: 1, border: `1.5px solid ${GOLD}`, borderRadius: 24, padding: "7px 14px", gap: 8, background: WHITE }}>
+              <span style={{ fontSize: 13, opacity: 0.5 }}>🔍</span>
+              <input
+                autoFocus
+                type="text"
+                placeholder="Rechercher..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                style={{ border: "none", outline: "none", flex: 1, fontFamily: "-apple-system, sans-serif", fontSize: 13, color: DARK, background: "transparent" }}
+              />
+            </div>
+            <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "-apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>Annuler</button>
+          </div>
+        )}
+      </div>
 
       {/* Event list */}
       <div style={{ padding: "0 16px 20px" }}>
         {filtered.length === 0 ? (
-          <div style={{
-            textAlign: "center",
-            padding: "40px 20px",
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-            color: GREY,
-            fontSize: 15,
-          }}>Aucun événement pour ce filtre.</div>
+          <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
+            Aucun événement pour cette période.
+          </div>
         ) : (
           filtered.map(e => (
             <EventCard

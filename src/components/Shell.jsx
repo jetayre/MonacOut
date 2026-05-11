@@ -3,7 +3,6 @@ const DARK = "#1C1612";
 
 const NAV = [
   { id: "home", icon: "🏠", label: "Accueil" },
-  { id: "agenda", icon: "📅", label: "Agenda" },
   { id: "map", icon: "📍", label: "Carte" },
   { id: "favorites", icon: "❤️", label: "Favoris" },
   { id: "profile", icon: "👤", label: "Profil" },
