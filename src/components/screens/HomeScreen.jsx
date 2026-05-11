@@ -75,8 +75,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: LIGHT,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+        background: WHITE,
+        borderBottom: `1px solid ${BORDER}`,
       }}>
       {/* Title frame */}
       <div style={{
@@ -137,7 +137,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       </div>
 
       {/* Search bar */}
-      <div style={{ padding: "12px 20px 0", background: LIGHT }}>
+      <div style={{ padding: "0 20px 8px", background: WHITE }}>
         <div style={{
           display: "flex",
           alignItems: "center",
@@ -180,7 +180,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         justifyContent: "center",
         gap: 6,
         padding: "8px 16px 12px",
-        background: LIGHT,
+        background: WHITE,
       }}>
         {FILTERS.map(f => (
           <button
