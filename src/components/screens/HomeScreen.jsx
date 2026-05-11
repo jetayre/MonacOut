@@ -63,7 +63,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             textTransform: "uppercase",
             color: GOLD,
             marginBottom: 6,
-          }}>Dimanche 10 mai 2026</div>
+          }}>Lundi 11 mai 2026</div>
           <div style={{
             fontFamily: "Georgia, serif",
             fontStyle: "italic",
