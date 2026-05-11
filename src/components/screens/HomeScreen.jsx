@@ -11,7 +11,6 @@ const BORDER = "#E8E0D4";
 const WHITE = "#FFFFFF";
 
 const FILTERS = [
-  { id: "all", label: "Tout" },
   { id: "today", label: "Aujourd'hui" },
   { id: "weekend", label: "Week-end" },
   { id: "sport", label: "⚽ Sport" },
