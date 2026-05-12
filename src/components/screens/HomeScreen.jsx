@@ -197,7 +197,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search — single scrollable row */}
         {!showSearch && (
           <div style={{
-            display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 5,
+            display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 5,
             padding: "7px 10px 8px",
             background: WHITE, borderTop: `1px solid ${BORDER}`,
           }}>
