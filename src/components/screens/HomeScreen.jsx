@@ -208,17 +208,18 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 key={f.id}
                 onClick={() => setFilter(f.id)}
                 style={{
-                  padding: "5px 10px",
+                  padding: "5px 4px",
                   borderRadius: 20,
                   border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
                   background: filter === f.id ? GOLD : WHITE,
                   color: filter === f.id ? WHITE : GREY,
                   fontFamily: "-apple-system, sans-serif",
-                  fontSize: 11,
+                  fontSize: 10,
                   fontWeight: 600,
                   cursor: "pointer",
-                  whiteSpace: "nowrap",
+                  whiteSpace: "normal",
                   textAlign: "center",
+                  lineHeight: 1.25,
                 }}
               >{t.filters[f.id] || f.label}</button>
             ))}
