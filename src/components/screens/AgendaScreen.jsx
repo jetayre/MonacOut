@@ -4,246 +4,167 @@ import EventCard from "../EventCard";
 
 const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
-const DARK = "#1A2A5A";
 const GREY = "#6A7A9A";
 const LIGHT = "#F5F5FA";
 const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
-const MOIS_COURT_MAP = ["jan","fev","mar","avr","mai","juin","juil","aout","sep","oct","nov","dec"];
-const JOURS_FR       = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
-const MOIS_FR        = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+const JOURS_FR  = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
+const MOIS_FULL = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const MOIS_MATCH = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+const DAY_HEADERS = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
 
-function getTodayFrDate() {
-  const d = new Date();
-  return `${JOURS_FR[d.getDay()]} ${d.getDate()} ${MOIS_FR[d.getMonth()]}`;
-}
-function getCurrentMonthId() {
-  return MOIS_COURT_MAP[new Date().getMonth()];
+function daysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
 }
 
-const MONTHS = [
-  { id: "jan",  label: "Jan",  full: "Janvier 2026",   match: "jan"  },
-  { id: "fev",  label: "Fév",  full: "Février 2026",   match: "fév"  },
-  { id: "mar",  label: "Mar",  full: "Mars 2026",      match: "mar"  },
-  { id: "avr",  label: "Avr",  full: "Avril 2026",     match: "avr"  },
-  { id: "mai",  label: "Mai",  full: "Mai 2026",       match: "mai"  },
-  { id: "juin", label: "Juin", full: "Juin 2026",      match: "juin" },
-  { id: "juil", label: "Juil", full: "Juillet 2026",   match: "juil" },
-  { id: "aout", label: "Août", full: "Août 2026",      match: "août" },
-  { id: "sep",  label: "Sep",  full: "Septembre 2026", match: "sep"  },
-  { id: "oct",  label: "Oct",  full: "Octobre 2026",   match: "oct"  },
-  { id: "nov",  label: "Nov",  full: "Novembre 2026",  match: "nov"  },
-  { id: "dec",  label: "Déc",  full: "Décembre 2026",  match: "déc"  },
-];
+function firstDayOfMonth(year, month) {
+  const d = new Date(year, month, 1).getDay();
+  return d === 0 ? 6 : d - 1; // Monday = 0
+}
 
-function getMonthDays(monthMatch) {
-  const dates = [...new Set(
-    ALL_EVENTS
-      .filter(e => e.date.split(" ").pop() === monthMatch)
-      .map(e => e.date)
-  )];
-  return dates.sort((a, b) => parseInt(a.split(" ")[1]) - parseInt(b.split(" ")[1]));
+function getEventDaySet(year, month) {
+  const match = MOIS_MATCH[month];
+  const set = new Set();
+  ALL_EVENTS.forEach(e => {
+    const parts = e.date.trim().split(" ");
+    if (parts[2] === match) set.add(parseInt(parts[1]));
+  });
+  return set;
+}
+
+function getEventsForDay(year, month, dayNum) {
+  const match = MOIS_MATCH[month];
+  const weekday = new Date(year, month, dayNum).getDay();
+  const dayStr = `${JOURS_FR[weekday]} ${dayNum} ${match}`;
+  return ALL_EVENTS.filter(e => e.date === dayStr);
 }
 
 export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
-  const [monthId, setMonthId] = useState(getCurrentMonthId);
-  const currentMonth = MONTHS.find(m => m.id === monthId) || MONTHS[4];
-  const days = getMonthDays(currentMonth.match);
+  const now = new Date();
+  const [year]  = useState(2026);
+  const [month, setMonth] = useState(now.getFullYear() === 2026 ? now.getMonth() : 4);
+  const [selectedDay, setSelectedDay] = useState(
+    now.getFullYear() === 2026 && getEventDaySet(2026, now.getMonth()).has(now.getDate())
+      ? now.getDate()
+      : null
+  );
 
-  const [selectedDay, setSelectedDay] = useState(() => {
-    const todayStr = getTodayFrDate();
-    const curId = getCurrentMonthId();
-    const curMonth = MONTHS.find(m => m.id === curId) || MONTHS[4];
-    const monthDays = getMonthDays(curMonth.match);
-    return monthDays.includes(todayStr) ? todayStr : (monthDays[0] || "");
-  });
+  const eventDays = getEventDaySet(year, month);
+  const events = selectedDay ? getEventsForDay(year, month, selectedDay) : [];
+  const totalDays = daysInMonth(year, month);
+  const offset = firstDayOfMonth(year, month);
 
-  function switchMonth(m) {
-    setMonthId(m.id);
-    const newDays = getMonthDays(m.match);
-    setSelectedDay(newDays[0] || "");
-  }
+  const cells = [
+    ...Array(offset).fill(null),
+    ...Array.from({ length: totalDays }, (_, i) => i + 1),
+  ];
+  while (cells.length % 7 !== 0) cells.push(null);
 
-  const events = ALL_EVENTS.filter(e => e.date === selectedDay);
+  const isToday = (d) =>
+    d !== null && new Date().getFullYear() === year &&
+    new Date().getMonth() === month && new Date().getDate() === d;
 
   return (
     <div style={{ background: LIGHT, minHeight: "100%" }}>
+
       {/* Header */}
       <div style={{
         background: `linear-gradient(160deg, ${NAVY} 0%, #0F1935 100%)`,
-        padding: "20px 20px 18px",
+        padding: "18px 20px 14px",
       }}>
-        <div style={{
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          fontWeight: "bold",
-          fontSize: 24,
-          color: WHITE,
-          letterSpacing: 0.5,
-        }}>{lang === "en" ? "Calendar" : "Agenda"}</div>
-        <div style={{
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          fontSize: 13,
-          color: "#D4B896",
-          marginTop: 2,
-        }}>Monaco · {lang === "en" ? "January — December 2026" : "Janvier — Décembre 2026"}</div>
+        <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 22, color: WHITE }}>
+          {lang === "en" ? "Calendar" : "Agenda"}
+        </div>
+        <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#D4B896", marginTop: 2 }}>
+          Monaco · 2026
+        </div>
       </div>
 
-      {/* Month pills */}
-      <div style={{
-        display: "flex",
-        gap: 6,
-        padding: "12px 14px 10px",
-        overflowX: "auto",
-        scrollbarWidth: "none",
-        background: WHITE,
-        borderBottom: `1px solid ${BORDER}`,
-      }}>
-        {MONTHS.map(m => {
-          const hasEvents = getMonthDays(m.match).length > 0;
-          const isActive = m.id === monthId;
-          return (
-            <button
-              key={m.id}
-              onClick={() => switchMonth(m)}
-              style={{
-                flexShrink: 0,
-                padding: "5px 11px",
-                borderRadius: 20,
-                border: `1.5px solid ${isActive ? NAVY : hasEvents ? BORDER : "#E8E8F0"}`,
-                background: isActive ? NAVY : WHITE,
-                color: isActive ? WHITE : hasEvents ? DARK : "#C0B8B0",
-                fontFamily: "-apple-system, sans-serif",
-                fontSize: 11,
-                fontWeight: 600,
-                cursor: hasEvents ? "pointer" : "default",
-                position: "relative",
-              }}
-            >
-              {m.label}
-              {hasEvents && !isActive && (
-                <span style={{
-                  position: "absolute",
-                  top: 2,
-                  right: 4,
-                  width: 4,
-                  height: 4,
-                  borderRadius: "50%",
-                  background: NAVY,
-                  opacity: 0.6,
-                }} />
-              )}
-            </button>
-          );
-        })}
-      </div>
+      {/* Calendar card */}
+      <div style={{ background: WHITE, margin: "12px 12px 0", borderRadius: 12, border: `1px solid ${BORDER}`, overflow: "hidden" }}>
 
-      {/* Day pills */}
-      {days.length > 0 ? (
-        <div style={{
-          display: "flex",
-          gap: 8,
-          padding: "12px 14px",
-          overflowX: "auto",
-          scrollbarWidth: "none",
-          background: WHITE,
-          borderBottom: `1px solid ${BORDER}`,
-        }}>
-          {days.map(d => {
-            const isActive = d === selectedDay;
-            const parts = d.split(" ");
+        {/* Month navigation */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 10px", borderBottom: `1px solid ${BORDER}` }}>
+          <button
+            onClick={() => { setMonth(m => Math.max(0, m - 1)); setSelectedDay(null); }}
+            disabled={month === 0}
+            style={{ background: "none", border: "none", cursor: month === 0 ? "default" : "pointer", fontSize: 18, color: month === 0 ? BORDER : GOLD, padding: "0 8px" }}
+          >‹</button>
+          <div style={{ fontFamily: "Georgia, serif", fontWeight: "bold", fontSize: 17, color: NAVY, letterSpacing: 0.5 }}>
+            {MOIS_FULL[month]} {year}
+          </div>
+          <button
+            onClick={() => { setMonth(m => Math.min(11, m + 1)); setSelectedDay(null); }}
+            disabled={month === 11}
+            style={{ background: "none", border: "none", cursor: month === 11 ? "default" : "pointer", fontSize: 18, color: month === 11 ? BORDER : GOLD, padding: "0 8px" }}
+          >›</button>
+        </div>
+
+        {/* Day-of-week headers */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", padding: "8px 10px 4px" }}>
+          {DAY_HEADERS.map(d => (
+            <div key={d} style={{ textAlign: "center", fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 700, color: GREY, letterSpacing: 0.5 }}>
+              {d}
+            </div>
+          ))}
+        </div>
+
+        {/* Day cells */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 3, padding: "4px 10px 12px" }}>
+          {cells.map((day, i) => {
+            if (day === null) return <div key={i} />;
+            const hasEvent = eventDays.has(day);
+            const isSelected = selectedDay === day;
+            const today = isToday(day);
             return (
               <button
-                key={d}
-                onClick={() => setSelectedDay(d)}
+                key={i}
+                onClick={() => hasEvent && setSelectedDay(isSelected ? null : day)}
                 style={{
-                  flexShrink: 0,
-                  minWidth: 44,
-                  padding: "6px 8px",
-                  borderRadius: 12,
-                  border: `1.5px solid ${isActive ? NAVY : BORDER}`,
-                  background: isActive ? NAVY : WHITE,
-                  cursor: "pointer",
+                  aspectRatio: "1",
+                  borderRadius: 8,
+                  border: today ? `2px solid ${GOLD}` : isSelected ? `2px solid ${NAVY}` : "2px solid transparent",
+                  background: isSelected ? NAVY : hasEvent ? `rgba(184,150,110,0.12)` : "transparent",
+                  color: isSelected ? WHITE : hasEvent ? NAVY : "#C0C8D8",
+                  fontFamily: "-apple-system, sans-serif",
+                  fontSize: 13,
+                  fontWeight: hasEvent ? 700 : 400,
+                  cursor: hasEvent ? "pointer" : "default",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: 1,
+                  justifyContent: "center",
+                  gap: 2,
+                  padding: 2,
+                  position: "relative",
                 }}
               >
-                <span style={{
-                  fontFamily: "-apple-system, sans-serif",
-                  fontSize: 9,
-                  fontWeight: 600,
-                  color: isActive ? WHITE : GREY,
-                  textTransform: "uppercase",
-                  letterSpacing: 0.5,
-                }}>{parts[0]}</span>
-                <span style={{
-                  fontFamily: "-apple-system, sans-serif",
-                  fontSize: 15,
-                  fontWeight: 700,
-                  color: isActive ? WHITE : DARK,
-                }}>{parts[1]}</span>
-                <div style={{
-                  width: 4,
-                  height: 4,
-                  borderRadius: "50%",
-                  background: isActive ? WHITE : GOLD,
-                }} />
+                {day}
+                {hasEvent && (
+                  <div style={{ width: 4, height: 4, borderRadius: "50%", background: isSelected ? WHITE : GOLD }} />
+                )}
               </button>
             );
           })}
         </div>
-      ) : (
-        <div style={{
-          background: WHITE,
-          borderBottom: `1px solid ${BORDER}`,
-          padding: "14px 20px",
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          color: GREY,
-          fontSize: 13,
-        }}>{lang === "en" ? "No events this month." : "Aucun événement programmé ce mois."}</div>
-      )}
+      </div>
 
-      {/* Events */}
-      <div style={{ padding: "16px 16px 20px" }}>
-        {selectedDay && (
-          <div style={{
-            fontFamily: "-apple-system, sans-serif",
-            fontSize: 10,
-            fontWeight: 700,
-            letterSpacing: 2,
-            textTransform: "uppercase",
-            color: NAVY,
-            marginBottom: 12,
-          }}>
-            {selectedDay} · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}
-          </div>
-        )}
-        {events.length === 0 && selectedDay ? (
-          <div style={{
-            textAlign: "center",
-            padding: "40px 20px",
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-            color: GREY,
-            fontSize: 15,
-          }}>{lang === "en" ? "No events today." : "Aucun événement ce jour."}</div>
+      {/* Selected day events */}
+      <div style={{ padding: "14px 12px 20px" }}>
+        {selectedDay ? (
+          <>
+            <div style={{ fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: NAVY, marginBottom: 12 }}>
+              {JOURS_FR[new Date(year, month, selectedDay).getDay()]} {selectedDay} {MOIS_MATCH[month]} · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}
+            </div>
+            {events.map(e => (
+              <EventCard key={e.id} event={e} onClick={onSelectEvent} favorites={favorites} onToggleFav={onToggleFav} onCategoryClick={onCategoryClick} lang={lang} />
+            ))}
+          </>
         ) : (
-          events.map(e => (
-            <EventCard
-              key={e.id}
-              event={e}
-              onClick={onSelectEvent}
-              favorites={favorites}
-              onToggleFav={onToggleFav}
-              onCategoryClick={onCategoryClick}
-              lang={lang}
-            />
-          ))
+          <div style={{ textAlign: "center", padding: "30px 20px", fontFamily: "Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 14 }}>
+            {lang === "en" ? "Select a highlighted date to see events." : "Sélectionnez une date pour voir les événements."}
+          </div>
         )}
       </div>
     </div>
