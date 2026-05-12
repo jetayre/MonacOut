@@ -44,14 +44,26 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
   const now = new Date();
   const [year]  = useState(2026);
   const [month, setMonth] = useState(now.getFullYear() === 2026 ? now.getMonth() : 4);
-  const [selectedDay, setSelectedDay] = useState(
-    now.getFullYear() === 2026 && getEventDaySet(2026, now.getMonth()).has(now.getDate())
-      ? now.getDate()
-      : null
-  );
+  const [selectedDays, setSelectedDays] = useState(() => {
+    const s = new Set();
+    if (now.getFullYear() === 2026 && getEventDaySet(2026, now.getMonth()).has(now.getDate()))
+      s.add(now.getDate());
+    return s;
+  });
 
   const eventDays = getEventDaySet(year, month);
-  const events = selectedDay ? getEventsForDay(year, month, selectedDay) : [];
+
+  function toggleDay(day) {
+    setSelectedDays(prev => {
+      const next = new Set(prev);
+      next.has(day) ? next.delete(day) : next.add(day);
+      return next;
+    });
+  }
+
+  const events = [...selectedDays]
+    .sort((a, b) => a - b)
+    .flatMap(d => getEventsForDay(year, month, d));
   const totalDays = daysInMonth(year, month);
   const offset = firstDayOfMonth(year, month);
 
@@ -87,7 +99,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
         {/* Month navigation */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 10px", borderBottom: `1px solid ${BORDER}` }}>
           <button
-            onClick={() => { setMonth(m => Math.max(0, m - 1)); setSelectedDay(null); }}
+            onClick={() => { setMonth(m => Math.max(0, m - 1)); setSelectedDays(new Set()); }}
             disabled={month === 0}
             style={{ background: "none", border: "none", cursor: month === 0 ? "default" : "pointer", fontSize: 18, color: month === 0 ? BORDER : GOLD, padding: "0 8px" }}
           >‹</button>
@@ -95,7 +107,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
             {MOIS_FULL[month]} {year}
           </div>
           <button
-            onClick={() => { setMonth(m => Math.min(11, m + 1)); setSelectedDay(null); }}
+            onClick={() => { setMonth(m => Math.min(11, m + 1)); setSelectedDays(new Set()); }}
             disabled={month === 11}
             style={{ background: "none", border: "none", cursor: month === 11 ? "default" : "pointer", fontSize: 18, color: month === 11 ? BORDER : GOLD, padding: "0 8px" }}
           >›</button>
@@ -115,12 +127,12 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
           {cells.map((day, i) => {
             if (day === null) return <div key={i} />;
             const hasEvent = eventDays.has(day);
-            const isSelected = selectedDay === day;
+            const isSelected = selectedDays.has(day);
             const today = isToday(day);
             return (
               <button
                 key={i}
-                onClick={() => hasEvent && setSelectedDay(isSelected ? null : day)}
+                onClick={() => hasEvent && toggleDay(day)}
                 style={{
                   aspectRatio: "1",
                   borderRadius: 8,
@@ -152,10 +164,13 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
 
       {/* Selected day events */}
       <div style={{ padding: "14px 12px 20px" }}>
-        {selectedDay ? (
+        {selectedDays.size > 0 ? (
           <>
             <div style={{ fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: NAVY, marginBottom: 12 }}>
-              {JOURS_FR[new Date(year, month, selectedDay).getDay()]} {selectedDay} {MOIS_MATCH[month]} · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}
+              {selectedDays.size === 1
+                ? `${JOURS_FR[new Date(year, month, [...selectedDays][0]).getDay()]} ${[...selectedDays][0]} ${MOIS_MATCH[month]}`
+                : `${selectedDays.size} dates · ${MOIS_FULL[month]}`
+              } · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}
             </div>
             {events.map(e => (
               <EventCard key={e.id} event={e} onClick={onSelectEvent} favorites={favorites} onToggleFav={onToggleFav} onCategoryClick={onCategoryClick} lang={lang} />
