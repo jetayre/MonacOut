@@ -158,7 +158,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       }}>
         {/* Title frame — tableau double-border, full width */}
         <div style={{
-          background: WHITE, padding: "5px 16px 0",
+          background: WHITE, padding: "3px 16px 0",
           position: "relative",
         }}>
           {/* Language toggle — inside frame top left */}
@@ -178,10 +178,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             style={{ position: "absolute", right: 18, top: 18, background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4, zIndex: 2 }}
           >🔍</button>
           {/* Outer border — cadre doré */}
-          <div style={{ border: `1.5px solid ${GOLD}`, padding: 4 }}>
+          <div style={{ border: `1.5px solid ${GOLD}`, padding: 2 }}>
             {/* Inner border */}
-            <div style={{ border: `3px solid ${GOLD}`, padding: "5px 16px 5px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={290} />
+            <div style={{ border: `3px solid ${GOLD}`, padding: "3px 16px 3px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={230} />
               <div style={{
                 fontFamily: "Georgia, serif",
                 fontStyle: "italic",
