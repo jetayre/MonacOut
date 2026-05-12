@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 
+const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
+const DARK = "#1A2A5A";
+const GREY = "#6A7A9A";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F8F4EF";
+const LIGHT = "#F5F5FA";
 
 const PINS = [
   { name: "Grimaldi Forum", x: 72, y: 30, color: "#C8A8D8", events: ["MUSICAL","SALON"] },
@@ -29,7 +30,7 @@ export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" 
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Header */}
       <div style={{
-        background: `linear-gradient(160deg, ${DARK} 0%, #2C2018 100%)`,
+        background: `linear-gradient(160deg, ${NAVY} 0%, #0F1935 100%)`,
         padding: "20px 20px 18px",
       }}>
         <div style={{
@@ -95,7 +96,7 @@ export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" 
                   cy={pin.y}
                   r={active?.name === pin.name ? 5 : 3.5}
                   fill={pin.color}
-                  stroke={active?.name === pin.name ? GOLD : WHITE}
+                  stroke={active?.name === pin.name ? NAVY : WHITE}
                   strokeWidth={active?.name === pin.name ? 1.5 : 1}
                   opacity={0.9}
                 />
@@ -124,7 +125,7 @@ export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" 
           fontWeight: 700,
           letterSpacing: 2,
           textTransform: "uppercase",
-          color: GOLD,
+          color: NAVY,
           marginBottom: 10,
         }}>
           {active ? `📍 ${active.name}` : "Lieux culturels & sportifs"}
@@ -202,7 +203,7 @@ export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" 
                     style={{
                       background: "none", border: "none", padding: 0, cursor: "pointer",
                       fontFamily: "-apple-system, sans-serif", fontSize: 10,
-                      fontWeight: 700, color: GOLD, letterSpacing: 1,
+                      fontWeight: 700, color: NAVY, letterSpacing: 1,
                       textTransform: "uppercase", marginTop: 2,
                       textDecoration: "underline", textUnderlineOffset: 2,
                     }}
@@ -215,7 +216,7 @@ export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" 
               style={{
                 background: "none",
                 border: "none",
-                color: GOLD,
+                color: NAVY,
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 12,
                 fontWeight: 600,

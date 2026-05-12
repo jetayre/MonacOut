@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const GOLD = "#B8966E";
+const GOLD = "#1A2A5A";
 const NAVY = "#1A2A4A";
 const WHITE = "#FFFFFF";
-const GREY = "#6A7A8A";
+const GREY = "#6A7A9A";
 
 const JOURS_FR = ["L", "M", "M", "J", "V", "S", "D"];
 const JOURS_EN = ["M", "T", "W", "T", "F", "S", "S"];
@@ -103,15 +103,15 @@ export default function CalendarPicker({ onClose, onConfirm, onChange, inline = 
             >
               {/* Range strip */}
               {inRange && (
-                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", left: col === 0 ? "50%" : 0, right: col === 6 ? "50%" : 0, height: 28, background: "#F0E4D0", zIndex: 0 }} />
+                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", left: col === 0 ? "50%" : 0, right: col === 6 ? "50%" : 0, height: 28, background: "#DDE4F5", zIndex: 0 }} />
               )}
               {/* Start strip right */}
               {isStart && end && (
-                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", left: "50%", right: col === 6 ? "50%" : 0, height: 28, background: "#F0E4D0", zIndex: 0 }} />
+                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", left: "50%", right: col === 6 ? "50%" : 0, height: 28, background: "#DDE4F5", zIndex: 0 }} />
               )}
               {/* End strip left */}
               {isEnd && start && (
-                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", right: "50%", left: col === 0 ? "50%" : 0, height: 28, background: "#F0E4D0", zIndex: 0 }} />
+                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", right: "50%", left: col === 0 ? "50%" : 0, height: 28, background: "#DDE4F5", zIndex: 0 }} />
               )}
               {/* Day circle */}
               {day && (

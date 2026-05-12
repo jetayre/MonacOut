@@ -1,11 +1,12 @@
 import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
 
+const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
+const DARK = "#1A2A5A";
+const GREY = "#6A7A9A";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F8F4EF";
+const LIGHT = "#F5F5FA";
 
 export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const favEvents = ALL_EVENTS.filter(e => favorites.includes(e.id));
@@ -14,7 +15,7 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Header */}
       <div style={{
-        background: `linear-gradient(160deg, ${DARK} 0%, #2C2018 100%)`,
+        background: `linear-gradient(160deg, ${NAVY} 0%, #0F1935 100%)`,
         padding: "20px 20px 18px",
       }}>
         <div style={{

@@ -1,12 +1,13 @@
 import { ALL_EVENTS } from "../../data/events";
 
+const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
 const GOLD2 = "#D4B896";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
+const DARK = "#1A2A5A";
+const GREY = "#6A7A9A";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F8F4EF";
-const BORDER = "#E8E0D4";
+const LIGHT = "#F5F5FA";
+const BORDER = "#DDE0F0";
 
 export default function DetailScreen({ event, onBack, favorites, onToggleFav, onSelectEvent, onCategoryClick, lang = "fr" }) {
   if (!event) return null;
@@ -196,7 +197,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               fontWeight: 700,
               letterSpacing: 2,
               textTransform: "uppercase",
-              color: GOLD,
+              color: NAVY,
             }}>{lang === "en" ? "See also · " : "Voir aussi · "}{event.cat}</div>
             <button
               onClick={() => onCategoryClick?.(event.cat)}
@@ -206,7 +207,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 11,
                 fontWeight: 600,
-                color: GOLD,
+                color: NAVY,
                 cursor: "pointer",
                 textDecoration: "underline",
                 textUnderlineOffset: 2,

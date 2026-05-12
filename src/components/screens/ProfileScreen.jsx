@@ -1,10 +1,11 @@
+const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
 const GOLD2 = "#D4B896";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
+const DARK = "#1A2A5A";
+const GREY = "#6A7A9A";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F8F4EF";
-const BORDER = "#E8E0D4";
+const LIGHT = "#F5F5FA";
+const BORDER = "#DDE0F0";
 
 export default function ProfileScreen({ lang = "fr" }) {
   const t = lang === "en"
@@ -34,7 +35,7 @@ export default function ProfileScreen({ lang = "fr" }) {
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Header */}
       <div style={{
-        background: `linear-gradient(160deg, ${DARK} 0%, #2C2018 100%)`,
+        background: `linear-gradient(160deg, ${NAVY} 0%, #0F1935 100%)`,
         padding: "20px 20px 18px",
       }}>
         <div style={{

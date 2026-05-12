@@ -2,11 +2,12 @@ import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
 
+const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
-const LIGHT = "#F8F4EF";
-const BORDER = "#E8E0D4";
+const DARK = "#1A2A5A";
+const GREY = "#6A7A9A";
+const LIGHT = "#F5F5FA";
+const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const MONTHS = [
@@ -55,7 +56,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Header */}
       <div style={{
-        background: `linear-gradient(160deg, ${DARK} 0%, #2C2018 100%)`,
+        background: `linear-gradient(160deg, ${NAVY} 0%, #0F1935 100%)`,
         padding: "20px 20px 18px",
       }}>
         <div style={{
@@ -96,8 +97,8 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
                 flexShrink: 0,
                 padding: "5px 11px",
                 borderRadius: 20,
-                border: `1.5px solid ${isActive ? GOLD : hasEvents ? BORDER : "#F0EBE5"}`,
-                background: isActive ? GOLD : WHITE,
+                border: `1.5px solid ${isActive ? NAVY : hasEvents ? BORDER : "#E8E8F0"}`,
+                background: isActive ? NAVY : WHITE,
                 color: isActive ? WHITE : hasEvents ? DARK : "#C0B8B0",
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 11,
@@ -115,7 +116,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
                   width: 4,
                   height: 4,
                   borderRadius: "50%",
-                  background: GOLD,
+                  background: NAVY,
                   opacity: 0.6,
                 }} />
               )}
@@ -147,8 +148,8 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
                   minWidth: 44,
                   padding: "6px 8px",
                   borderRadius: 12,
-                  border: `1.5px solid ${isActive ? GOLD : BORDER}`,
-                  background: isActive ? GOLD : WHITE,
+                  border: `1.5px solid ${isActive ? NAVY : BORDER}`,
+                  background: isActive ? NAVY : WHITE,
                   cursor: "pointer",
                   display: "flex",
                   flexDirection: "column",
@@ -201,7 +202,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
             fontWeight: 700,
             letterSpacing: 2,
             textTransform: "uppercase",
-            color: GOLD,
+            color: NAVY,
             marginBottom: 12,
           }}>
             {selectedDay} · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}

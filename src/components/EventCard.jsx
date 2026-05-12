@@ -1,6 +1,6 @@
 const GOLD = "#B8966E";
-const NAVY = "#1A2A4A";
-const NAVY_LIGHT = "#2A3A5A";
+const NAVY = "#1A2A5A";
+const NAVY_LIGHT = "#2A3A6A";
 const GREY = "#6A7A8A";
 const WHITE = "#FFFFFF";
 
@@ -13,7 +13,7 @@ function getBorderColor(cat) {
   if (["CONFÉRENCE"].includes(cat)) return "#1A4A2A";
   if (["FOODY","BRUNCH"].includes(cat)) return "#C85A1A";
   if (["ENCHÈRES"].includes(cat)) return "#6A5010";
-  return GOLD;
+  return NAVY;
 }
 
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
@@ -158,7 +158,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         {/* Separator */}
         <div style={{
           height: 1,
-          background: "#D8E0E8",
+          background: "#DDE0F0",
           marginBottom: 14,
         }} />
 

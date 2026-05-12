@@ -1,5 +1,4 @@
-const GOLD = "#B8966E";
-const DARK = "#1C1612";
+const NAVY = "#1A2A5A";
 
 const NAV_IDS = [
   { id: "home", icon: "🏠", key: "home" },
@@ -12,7 +11,7 @@ export default function Shell({ tab, setTab, children, t }) {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "#E0D8D0",
+      background: "#E8E8F0",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -27,7 +26,7 @@ export default function Shell({ tab, setTab, children, t }) {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        boxShadow: "0 24px 80px rgba(0,0,0,0.3)",
+        boxShadow: "0 24px 80px rgba(26,42,90,0.25)",
       }}>
         {/* Dynamic island */}
         <div style={{
@@ -42,19 +41,17 @@ export default function Shell({ tab, setTab, children, t }) {
           zIndex: 100,
         }} />
 
-        {/* White mask — hides content scrolling into the dynamic island zone */}
+        {/* White mask */}
         <div style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
+          top: 0, left: 0, right: 0,
           height: 46,
           background: "#FFFFFF",
           zIndex: 60,
           pointerEvents: "none",
         }} />
 
-        {/* Scrollable content area */}
+        {/* Scrollable content */}
         <div style={{
           flex: 1,
           overflowY: "auto",
@@ -62,16 +59,14 @@ export default function Shell({ tab, setTab, children, t }) {
           paddingBottom: 0,
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-        }}
-          className="hide-scrollbar"
-        >
+        }} className="hide-scrollbar">
           {children}
         </div>
 
         {/* Bottom nav */}
         <div style={{
           height: 72,
-          borderTop: "1px solid #E8E0D4",
+          borderTop: `1px solid #E0E4F0`,
           background: "#FFFFFF",
           display: "flex",
           alignItems: "flex-start",
@@ -102,7 +97,7 @@ export default function Shell({ tab, setTab, children, t }) {
                   top: -9,
                   width: 20,
                   height: 3,
-                  background: GOLD,
+                  background: NAVY,
                   borderRadius: 2,
                 }} />
               )}
@@ -111,7 +106,7 @@ export default function Shell({ tab, setTab, children, t }) {
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 10,
                 fontWeight: tab === n.id ? 700 : 400,
-                color: tab === n.id ? GOLD : "#6A635A",
+                color: tab === n.id ? NAVY : "#8A90A0",
                 letterSpacing: 0.3,
               }}>{t?.nav[n.key] || n.key}</span>
             </button>

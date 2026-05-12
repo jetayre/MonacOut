@@ -4,11 +4,12 @@ import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 import MonacOutLogo from "../MonacOutLogo";
 
+const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
-const DARK = "#1C1612";
-const GREY = "#6A635A";
-const LIGHT = "#F8F4EF";
-const BORDER = "#E8E0D4";
+const DARK = "#1A2A5A";
+const GREY = "#6A7A9A";
+const LIGHT = "#F5F5FA";
+const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const FILTERS = [
@@ -144,11 +145,11 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           <div style={{ position: "absolute", left: 24, top: "50%", transform: "translateY(-50%)", display: "flex", gap: 4, zIndex: 1 }}>
             <button
               onClick={() => setLang?.("fr")}
-              style={{ background: "none", border: lang === "fr" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.45 }}
+              style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.45 }}
             >🇫🇷</button>
             <button
               onClick={() => setLang?.("en")}
-              style={{ background: "none", border: lang === "en" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.45 }}
+              style={{ background: "none", border: lang === "en" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.45 }}
             >🇬🇧</button>
           </div>
           {/* Search — top right */}
@@ -156,10 +157,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             onClick={() => setShowSearch(s => !s)}
             style={{ position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
           >🔍</button>
-          <div style={{ border: `1.5px solid ${GOLD}`, borderRadius: 2, padding: 4, display: "inline-block", width: "calc(100% - 40px)" }}>
+          <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 2, padding: 4, display: "inline-block", width: "calc(100% - 40px)" }}>
             <div style={{ border: `1px solid ${GOLD}`, borderRadius: 1, padding: "8px 16px 10px", textAlign: "center", background: WHITE }}>
               <MonacOutLogo width={200} />
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 14, color: GOLD, letterSpacing: 0.5, marginTop: -4, paddingBottom: 4 }}>{t.tagline}</div>
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 14, color: NAVY, letterSpacing: 0.5, marginTop: -4, paddingBottom: 4, opacity: 0.6 }}>{t.tagline}</div>
             </div>
           </div>
         </div>
@@ -175,8 +176,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 flexShrink: 0,
                 padding: "5px 11px",
                 borderRadius: 20,
-                border: `1.5px solid ${(rangeLabel || showCalendar) ? GOLD : BORDER}`,
-                background: (rangeLabel || showCalendar) ? GOLD : WHITE,
+                border: `1.5px solid ${(rangeLabel || showCalendar) ? NAVY : BORDER}`,
+                background: (rangeLabel || showCalendar) ? NAVY : WHITE,
                 color: (rangeLabel || showCalendar) ? WHITE : GREY,
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 11,
@@ -208,8 +209,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                   flexShrink: 0,
                   padding: "5px 11px",
                   borderRadius: 20,
-                  border: `1.5px solid ${filter === f.id ? GOLD : BORDER}`,
-                  background: filter === f.id ? GOLD : WHITE,
+                  border: `1.5px solid ${filter === f.id ? NAVY : BORDER}`,
+                  background: filter === f.id ? NAVY : WHITE,
                   color: filter === f.id ? WHITE : GREY,
                   fontFamily: "-apple-system, sans-serif",
                   fontSize: 11,
@@ -224,7 +225,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
 
         {showSearch && (
           <div style={{ padding: "6px 16px 10px", background: WHITE, display: "flex", gap: 8, alignItems: "center" }}>
-            <div style={{ display: "flex", alignItems: "center", flex: 1, border: `1.5px solid ${GOLD}`, borderRadius: 24, padding: "7px 14px", gap: 8, background: WHITE }}>
+            <div style={{ display: "flex", alignItems: "center", flex: 1, border: `1.5px solid ${NAVY}`, borderRadius: 24, padding: "7px 14px", gap: 8, background: WHITE }}>
               <span style={{ fontSize: 13, opacity: 0.5 }}>🔍</span>
               <input
                 autoFocus
