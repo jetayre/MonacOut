@@ -1,4 +1,5 @@
 const NAVY = "#1A2A5A";
+const GOLD = "#B8966E";
 
 const NAV_IDS = [
   { id: "home",      icon: "🏠", key: "home"      },
@@ -70,8 +71,7 @@ export default function Shell({ tab, setTab, children, t }) {
           borderTop: `1px solid #E0E4F0`,
           background: "#FFFFFF",
           display: "flex",
-          alignItems: "flex-start",
-          paddingTop: 8,
+          alignItems: "stretch",
           flexShrink: 0,
           zIndex: 50,
         }}>
@@ -87,28 +87,38 @@ export default function Shell({ tab, setTab, children, t }) {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: 3,
-                padding: "0 4px",
+                justifyContent: "center",
+                gap: 4,
+                padding: 0,
                 position: "relative",
               }}
             >
               {tab === n.id && (
                 <div style={{
                   position: "absolute",
-                  top: -9,
+                  top: 0,
                   width: 20,
                   height: 3,
-                  background: NAVY,
+                  background: GOLD,
                   borderRadius: 2,
                 }} />
               )}
-              <span style={{ fontSize: 20 }}>{n.icon}</span>
+              <span style={{
+                fontSize: 22,
+                lineHeight: 1,
+                display: "block",
+                background: tab === n.id ? `rgba(184,150,110,0.15)` : "transparent",
+                borderRadius: 10,
+                padding: "2px 6px",
+                border: tab === n.id ? `1.5px solid ${GOLD}` : "1.5px solid transparent",
+              }}>{n.icon}</span>
               <span style={{
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 10,
                 fontWeight: tab === n.id ? 700 : 400,
-                color: tab === n.id ? NAVY : "#8A90A0",
+                color: tab === n.id ? GOLD : "#8A90A0",
                 letterSpacing: 0.3,
+                lineHeight: 1,
               }}>{t?.nav[n.key] || n.key}</span>
             </button>
           ))}
