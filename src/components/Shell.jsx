@@ -1,10 +1,11 @@
 const NAVY = "#1A2A5A";
 
 const NAV_IDS = [
-  { id: "home", icon: "🏠", key: "home" },
-  { id: "map", icon: "📍", key: "map" },
+  { id: "home",      icon: "🏠", key: "home"      },
+  { id: "agenda",    icon: "📅", key: "agenda"    },
+  { id: "map",       icon: "📍", key: "map"       },
   { id: "favorites", icon: "❤️", key: "favorites" },
-  { id: "profile", icon: "👤", key: "profile" },
+  { id: "profile",   icon: "👤", key: "profile"   },
 ];
 
 export default function Shell({ tab, setTab, children, t }) {

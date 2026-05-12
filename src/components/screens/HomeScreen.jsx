@@ -171,11 +171,11 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             onClick={() => setShowSearch(s => !s)}
             style={{ position: "absolute", right: 18, top: 18, background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4, zIndex: 2 }}
           >🔍</button>
-          {/* Outer border — tableau épais */}
-          <div style={{ border: `3px solid ${NAVY}`, padding: 6 }}>
-            {/* Inner border — fine ligne intérieure */}
-            <div style={{ border: `1.5px solid ${NAVY}`, padding: "22px 16px 20px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={210} />
+          {/* Outer border — cadre doré */}
+          <div style={{ border: `3px solid ${GOLD}`, padding: 6 }}>
+            {/* Inner border */}
+            <div style={{ border: `1.5px solid ${GOLD}`, padding: "22px 16px 20px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={250} />
             </div>
           </div>
         </div>
