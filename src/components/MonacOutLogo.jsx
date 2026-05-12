@@ -6,7 +6,7 @@ export default function MonacOutLogo({ width = 250 }) {
       src={logoSrc}
       alt="MonacOut"
       width={width}
-      style={{ display: "block", margin: "0 auto", filter: "brightness(0) saturate(100%) invert(13%) sepia(79%) saturate(631%) hue-rotate(193deg) brightness(74%) contrast(104%)" }}
+      style={{ display: "block", margin: "0 auto", filter: "brightness(0) saturate(100%) invert(13%) sepia(79%) saturate(631%) hue-rotate(193deg) brightness(74%) contrast(104%) drop-shadow(0.6px 0 0px #1A2A5A) drop-shadow(-0.6px 0 0px #1A2A5A) drop-shadow(0 0.6px 0px #1A2A5A) drop-shadow(0 -0.6px 0px #1A2A5A) drop-shadow(0.6px 0.6px 0px #1A2A5A) drop-shadow(-0.6px -0.6px 0px #1A2A5A)" }}
     />
   );
 }
