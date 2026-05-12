@@ -216,20 +216,20 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
             {/* Time filter row */}
-            <div style={{ display: "flex", gap: 5, padding: "7px 10px 4px" }}>
+            <div style={{ display: "flex", gap: 6, padding: "8px 10px 5px" }}>
               {TIME_FILTERS.map(f => (
                 <button
                   key={f.id}
                   onClick={() => setFilter(f.id)}
                   style={{
                     flexShrink: 0,
-                    padding: "5px 12px",
+                    padding: "7px 16px",
                     borderRadius: 20,
                     border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
                     background: filter === f.id ? GOLD : WHITE,
                     color: filter === f.id ? WHITE : GREY,
                     fontFamily: "-apple-system, sans-serif",
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: 600,
                     cursor: "pointer",
                     whiteSpace: "nowrap",
