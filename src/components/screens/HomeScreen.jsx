@@ -12,11 +12,13 @@ const LIGHT = "#F5F5FA";
 const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
-const FILTERS = [
-  { id: "all",      label: "Tout" },
-  { id: "today",    label: "Aujourd'hui" },
-  { id: "weekend",  label: "Week-end" },
-  { id: "week",     label: "Semaine" },
+const TIME_FILTERS = [
+  { id: "all",     label: "Tout" },
+  { id: "today",   label: "Aujourd'hui" },
+  { id: "weekend", label: "Week-end" },
+  { id: "week",    label: "Semaine" },
+];
+const CAT_FILTERS = [
   { id: "sport",    label: "⚽ Sport" },
   { id: "culture",  label: "🎭 Culture" },
   { id: "cinema",   label: "🎬 Cinéma" },
@@ -68,7 +70,7 @@ function parseEventDate(dateStr) {
   return new Date(2026, month, day);
 }
 
-function filterEvents(events, filterId) {
+function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date());
   const weekendDates = getWeekendDates();
   switch (filterId) {
@@ -79,6 +81,12 @@ function filterEvents(events, filterId) {
       const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
       return events.filter(e => { const d = parseEventDate(e.date); return d && d >= today && d <= sun; });
     }
+    default: return events;
+  }
+}
+
+function filterByCat(events, catId) {
+  switch (catId) {
     case "sport": return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
     case "culture": return events.filter(e => ["MUSICAL","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
     case "music": return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
@@ -97,12 +105,12 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { today: "Today", weekend: "Weekend", week: "This week", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar" },
+        filters: { all: "All", today: "Today", weekend: "Weekend", week: "This week", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
+        filters: { all: "Tout", today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
@@ -110,6 +118,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   const [showCalendar, setShowCalendar] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
+  const [catFilter, setCatFilter] = useState(null);
 
   function handleCalendarChange(start, end) {
     setRangeStart(start || null);
@@ -140,7 +149,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       e.desc?.toLowerCase().includes(q)
     );
   } else {
-    filtered = filterEvents(ALL_EVENTS, filter);
+    filtered = filterByCat(filterByTime(ALL_EVENTS, filter), catFilter);
   }
 
   const rangeLabel = rangeStart
@@ -194,35 +203,58 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           </div>
         </div>
 
-        {/* Filters or Search — single scrollable row */}
+        {/* Filters or Search */}
         {!showSearch && (
-          <div style={{
-            display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 5,
-            padding: "7px 10px 8px",
-            background: WHITE, borderTop: `1px solid ${BORDER}`,
-          }}>
-
-            {/* Normal filters */}
-            {FILTERS.map(f => (
-              <button
-                key={f.id}
-                onClick={() => setFilter(f.id)}
-                style={{
-                  padding: "5px 4px",
-                  borderRadius: 20,
-                  border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
-                  background: filter === f.id ? GOLD : WHITE,
-                  color: filter === f.id ? WHITE : GREY,
-                  fontFamily: "-apple-system, sans-serif",
-                  fontSize: 10,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  whiteSpace: "normal",
-                  textAlign: "center",
-                  lineHeight: 1.25,
-                }}
-              >{t.filters[f.id] || f.label}</button>
-            ))}
+          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
+            {/* Time filter row */}
+            <div style={{ display: "flex", gap: 5, padding: "7px 10px 4px" }}>
+              {TIME_FILTERS.map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => setFilter(f.id)}
+                  style={{
+                    flexShrink: 0,
+                    padding: "5px 12px",
+                    borderRadius: 20,
+                    border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
+                    background: filter === f.id ? GOLD : WHITE,
+                    color: filter === f.id ? WHITE : GREY,
+                    fontFamily: "-apple-system, sans-serif",
+                    fontSize: 10,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                  }}
+                >{t.filters[f.id] || f.label}</button>
+              ))}
+            </div>
+            {/* Category filter grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 4, padding: "4px 10px 8px" }}>
+              {CAT_FILTERS.map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => {
+                const next = catFilter === f.id ? null : f.id;
+                setCatFilter(next);
+                if (next) setFilter("all");
+              }}
+                  style={{
+                    padding: "5px 4px",
+                    borderRadius: 20,
+                    border: `1.5px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
+                    background: catFilter === f.id ? NAVY : WHITE,
+                    color: catFilter === f.id ? WHITE : GREY,
+                    fontFamily: "-apple-system, sans-serif",
+                    fontSize: 10,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    whiteSpace: "normal",
+                    textAlign: "center",
+                    lineHeight: 1.25,
+                  }}
+                >{t.filters[f.id] || f.label}</button>
+              ))}
+            </div>
           </div>
         )}
 
@@ -269,7 +301,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               onClick={onSelectEvent}
               favorites={favorites}
               onToggleFav={onToggleFav}
-              onCategoryClick={onCategoryClick}
+              onCategoryClick={(catId) => setCatFilter(c => c === catId ? null : catId)}
               lang={lang}
             />
           ))
