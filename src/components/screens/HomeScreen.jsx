@@ -241,18 +241,18 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 if (next) setFilter("all");
               }}
                   style={{
-                    padding: "3px 2px",
+                    padding: "2px 1px",
                     borderRadius: 20,
-                    border: `1.5px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
+                    border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
                     background: catFilter === f.id ? NAVY : WHITE,
                     color: catFilter === f.id ? WHITE : GREY,
                     fontFamily: "-apple-system, sans-serif",
-                    fontSize: 9,
+                    fontSize: 8,
                     fontWeight: 600,
                     cursor: "pointer",
                     whiteSpace: "normal",
                     textAlign: "center",
-                    lineHeight: 1.2,
+                    lineHeight: 1.15,
                   }}
                 >{t.filters[f.id] || f.label}</button>
               ))}
