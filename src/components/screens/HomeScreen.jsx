@@ -172,8 +172,16 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           {/* Outer border — cadre doré */}
           <div style={{ border: `3px solid ${GOLD}`, padding: 4 }}>
             {/* Inner border */}
-            <div style={{ border: `1.5px solid ${GOLD}`, padding: "14px 16px 12px", textAlign: "center", background: WHITE }}>
+            <div style={{ border: `1.5px solid ${GOLD}`, padding: "10px 16px 10px", textAlign: "center", background: WHITE }}>
               <MonacOutLogo width={250} />
+              <div style={{
+                fontFamily: "Georgia, serif",
+                fontStyle: "italic",
+                fontSize: 12,
+                color: GOLD,
+                letterSpacing: 1,
+                marginTop: 6,
+              }}>{t.tagline}</div>
             </div>
           </div>
         </div>
