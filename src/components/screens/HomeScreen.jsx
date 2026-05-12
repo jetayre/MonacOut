@@ -13,16 +13,19 @@ const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const FILTERS = [
-  { id: "all",     label: "Tout" },
-  { id: "today",   label: "Aujourd'hui" },
-  { id: "weekend", label: "Week-end" },
-  { id: "week",    label: "Semaine" },
-  { id: "sport",   label: "⚽ Sport" },
-  { id: "culture", label: "🎭 Culture" },
-  { id: "cinema",  label: "🎬 Cinéma" },
-  { id: "music",   label: "🎵 Musique" },
-  { id: "famille", label: "👨‍👩‍👧 Famille" },
-  { id: "foody",   label: "🍽️ Foody" },
+  { id: "all",      label: "Tout" },
+  { id: "today",    label: "Aujourd'hui" },
+  { id: "weekend",  label: "Week-end" },
+  { id: "week",     label: "Semaine" },
+  { id: "sport",    label: "⚽ Sport" },
+  { id: "culture",  label: "🎭 Culture" },
+  { id: "cinema",   label: "🎬 Cinéma" },
+  { id: "music",    label: "🎵 Musique" },
+  { id: "famille",  label: "👨‍👩‍👧 Famille" },
+  { id: "foody",    label: "🍽️ Foody" },
+  { id: "bienetre", label: "🧘 Bien-être" },
+  { id: "encheres", label: "🔨 Enchères" },
+  { id: "ateliers", label: "🎨 Ateliers" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
