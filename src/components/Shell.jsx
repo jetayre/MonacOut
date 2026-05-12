@@ -67,7 +67,7 @@ export default function Shell({ tab, setTab, children, t }) {
 
         {/* Bottom nav */}
         <div style={{
-          height: 72,
+          height: 82,
           borderTop: `1px solid #E0E4F0`,
           background: "#FFFFFF",
           display: "flex",
@@ -106,20 +106,20 @@ export default function Shell({ tab, setTab, children, t }) {
                 }} />
               )}
               <span style={{
-                fontSize: 26,
+                fontSize: 28,
                 lineHeight: 1,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: 42,
-                height: 34,
+                width: 46,
+                height: 38,
                 background: tab === n.id ? `rgba(184,150,110,0.15)` : "transparent",
                 borderRadius: 10,
                 border: tab === n.id ? `1.5px solid ${GOLD}` : `1px solid rgba(184,150,110,0.35)`,
               }}>{n.icon}</span>
               <span style={{
                 fontFamily: "-apple-system, sans-serif",
-                fontSize: 10,
+                fontSize: 11,
                 fontWeight: tab === n.id ? 700 : 400,
                 color: tab === n.id ? GOLD : "#8A90A0",
                 letterSpacing: 0.3,
