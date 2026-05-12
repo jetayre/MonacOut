@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
+import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 
@@ -191,15 +192,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           <div style={{ border: `1.5px solid ${NAVY}`, padding: 1 }}>
             {/* Inner border */}
             <div style={{ border: `2px solid ${NAVY}`, padding: "4px 12px 5px", textAlign: "center", background: WHITE }}>
-              <div style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 700,
-                fontSize: 34,
-                color: NAVY,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-                lineHeight: 1,
-              }}>MonacOut</div>
+              <MonacOutLogo width={210} />
               <div style={{
                 fontFamily: "Georgia, serif",
                 fontStyle: "normal",
