@@ -196,10 +196,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               <div style={{
                 fontFamily: "Georgia, serif",
                 fontStyle: "normal",
-                fontSize: 12,
+                fontSize: 16,
                 color: NAVY,
                 letterSpacing: 1,
-                marginTop: 6,
+                marginTop: 4,
               }}>{t.tagline}</div>
             </div>
           </div>
