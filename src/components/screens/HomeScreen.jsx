@@ -13,15 +13,17 @@ const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const FILTERS = [
-  { id: "all",     label: "Tout" },
-  { id: "sport", label: "⚽ Sport" },
-  { id: "culture", label: "🎭 Culture" },
-  { id: "cinema", label: "🎬 Cinéma" },
-  { id: "music", label: "🎵 Musique" },
-  { id: "famille", label: "👨‍👩‍👧 Famille" },
+  { id: "all",      label: "Tout" },
+  { id: "today",    label: "Aujourd'hui" },
+  { id: "weekend",  label: "Week-end" },
+  { id: "sport",    label: "⚽ Sport" },
+  { id: "culture",  label: "🎭 Culture" },
+  { id: "cinema",   label: "🎬 Cinéma" },
+  { id: "music",    label: "🎵 Musique" },
+  { id: "famille",  label: "👨‍👩‍👧 Famille" },
   { id: "ateliers", label: "🎨 Ateliers" },
   { id: "bienetre", label: "🧘 Bien-être" },
-  { id: "foody", label: "🍽️ Foody" },
+  { id: "foody",    label: "🍽️ Foody" },
   { id: "encheres", label: "🔨 Enchères" },
 ];
 
@@ -190,7 +192,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {!showSearch && (
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
+            gridTemplateColumns: "repeat(6, 1fr)",
             gap: 5,
             padding: "7px 10px 8px",
             background: WHITE, borderTop: `1px solid ${BORDER}`,
@@ -204,11 +206,11 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 style={{
                   padding: "4px 0",
                   borderRadius: 20,
-                  border: `1.5px solid ${filter === f.id ? NAVY : BORDER}`,
-                  background: filter === f.id ? NAVY : WHITE,
+                  border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
+                  background: filter === f.id ? GOLD : WHITE,
                   color: filter === f.id ? WHITE : GREY,
                   fontFamily: "-apple-system, sans-serif",
-                  fontSize: 10,
+                  fontSize: 9,
                   fontWeight: 600,
                   cursor: "pointer",
                   whiteSpace: "nowrap",
