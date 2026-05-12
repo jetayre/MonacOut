@@ -3,22 +3,28 @@ import { useState } from "react";
 const GOLD = "#B8966E";
 const NAVY = "#1A2A4A";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F8F4EF";
 const GREY = "#6A7A8A";
 
-const JOURS = ["L", "M", "M", "J", "V", "S", "D"];
-const MOIS_NOM = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+const JOURS_FR = ["L", "M", "M", "J", "V", "S", "D"];
+const JOURS_EN = ["M", "T", "W", "T", "F", "S", "S"];
+const MOIS_FR = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+const MOIS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function sameDay(a, b) {
   return a && b && a.toDateString() === b.toDateString();
 }
 
-export default function CalendarPicker({ onClose, onConfirm }) {
+// inline=true: compact panel with no full-screen wrapper, calls onChange(start, end) immediately on each selection
+// inline=false (default): full-screen with header + confirm button, calls onConfirm(start, end) on button click
+export default function CalendarPicker({ onClose, onConfirm, onChange, inline = false, lang = "fr", initialStart = null, initialEnd = null }) {
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth());
-  const [start, setStart] = useState(null);
-  const [end, setEnd] = useState(null);
+  const [start, setStart] = useState(initialStart);
+  const [end, setEnd] = useState(initialEnd);
+
+  const JOURS = lang === "en" ? JOURS_EN : JOURS_FR;
+  const MOIS_NOM = lang === "en" ? MOIS_EN : MOIS_FR;
 
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDow = new Date(year, month, 1).getDay();
@@ -32,39 +38,26 @@ export default function CalendarPicker({ onClose, onConfirm }) {
   function handleDay(day) {
     if (!day) return;
     const clicked = new Date(year, month, day);
+    let newStart, newEnd;
     if (!start || (start && end)) {
-      setStart(clicked);
-      setEnd(null);
+      newStart = clicked;
+      newEnd = null;
     } else {
       if (clicked < start) {
-        setEnd(start); setStart(clicked);
+        newStart = clicked; newEnd = start;
       } else {
-        setEnd(clicked);
+        newStart = start; newEnd = clicked;
       }
     }
+    setStart(newStart);
+    setEnd(newEnd);
+    if (inline) onChange?.(newStart, newEnd);
   }
 
-  function cellStyle(day, col) {
-    if (!day) return {};
-    const d = new Date(year, month, day);
-    const isStart = sameDay(d, start);
-    const isEnd = sameDay(d, end);
-    const inRange = start && end && d > start && d < end;
-    const isToday = sameDay(d, today);
-
-    let bg = "transparent";
-    let color = NAVY;
-    let borderRadius = "50%";
-    let fontWeight = isToday ? 700 : 400;
-
-    if (isStart || isEnd) {
-      bg = GOLD; color = WHITE;
-    } else if (inRange) {
-      bg = "#F0E4D0";
-      borderRadius = col === 0 ? "50% 0 0 50%" : col === 6 ? "0 50% 50% 0" : "0";
-    }
-
-    return { background: bg, color, borderRadius, fontWeight };
+  function handleReset() {
+    setStart(null);
+    setEnd(null);
+    if (inline) onChange?.(null, null);
   }
 
   function prevMonth() {
@@ -76,143 +69,109 @@ export default function CalendarPicker({ onClose, onConfirm }) {
     else setMonth(m => m + 1);
   }
 
-  const selText = start && end
-    ? `Du ${start.getDate()} ${MOIS_NOM[start.getMonth()].slice(0,3).toLowerCase()} au ${end.getDate()} ${MOIS_NOM[end.getMonth()].slice(0,3).toLowerCase()}`
-    : start
-    ? `Depuis le ${start.getDate()} ${MOIS_NOM[start.getMonth()].slice(0,3).toLowerCase()}`
-    : "Sélectionnez une date de début";
+  const grid = (
+    <>
+      {/* Month navigation */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+        <button onClick={prevMonth} style={{ background: "none", border: `1px solid #E8E0D4`, borderRadius: "50%", width: 30, height: 30, cursor: "pointer", fontSize: 14, color: NAVY, display: "flex", alignItems: "center", justifyContent: "center" }}>‹</button>
+        <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: NAVY, fontWeight: "bold" }}>
+          {MOIS_NOM[month]} {year}
+        </div>
+        <button onClick={nextMonth} style={{ background: "none", border: `1px solid #E8E0D4`, borderRadius: "50%", width: 30, height: 30, cursor: "pointer", fontSize: 14, color: NAVY, display: "flex", alignItems: "center", justifyContent: "center" }}>›</button>
+      </div>
+
+      {/* Day headers */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", marginBottom: 4 }}>
+        {JOURS.map((j, i) => (
+          <div key={i} style={{ textAlign: "center", fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 0.5, color: GREY, paddingBottom: 4 }}>{j}</div>
+        ))}
+      </div>
+
+      {/* Days grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)" }}>
+        {cells.map((day, i) => {
+          const col = i % 7;
+          const isToday = day && sameDay(new Date(year, month, day), today);
+          const isStart = day && sameDay(new Date(year, month, day), start);
+          const isEnd = day && sameDay(new Date(year, month, day), end);
+          const inRange = day && start && end && new Date(year, month, day) > start && new Date(year, month, day) < end;
+          return (
+            <div
+              key={i}
+              onClick={() => handleDay(day)}
+              style={{ height: 36, display: "flex", alignItems: "center", justifyContent: "center", cursor: day ? "pointer" : "default", position: "relative" }}
+            >
+              {/* Range strip */}
+              {inRange && (
+                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", left: col === 0 ? "50%" : 0, right: col === 6 ? "50%" : 0, height: 28, background: "#F0E4D0", zIndex: 0 }} />
+              )}
+              {/* Start strip right */}
+              {isStart && end && (
+                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", left: "50%", right: col === 6 ? "50%" : 0, height: 28, background: "#F0E4D0", zIndex: 0 }} />
+              )}
+              {/* End strip left */}
+              {isEnd && start && (
+                <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", right: "50%", left: col === 0 ? "50%" : 0, height: 28, background: "#F0E4D0", zIndex: 0 }} />
+              )}
+              {/* Day circle */}
+              {day && (
+                <div style={{
+                  width: 30, height: 30, borderRadius: "50%",
+                  background: isStart || isEnd ? GOLD : "transparent",
+                  color: isStart || isEnd ? WHITE : NAVY,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontFamily: "-apple-system, sans-serif", fontSize: 12,
+                  fontWeight: isToday ? 700 : 400,
+                  zIndex: 1, position: "relative",
+                  boxShadow: isToday && !isStart && !isEnd ? `inset 0 -2px 0 ${GOLD}` : "none",
+                }}>
+                  {day}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+
+  // Inline mode: compact panel, no full-screen
+  if (inline) {
+    const resetLabel = lang === "en" ? "Reset" : "Réinit.";
+    return (
+      <div style={{ background: WHITE, borderBottom: "1px solid #E8E0D4", padding: "12px 16px 14px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 14, color: NAVY }}>
+            {lang === "en" ? "Select dates" : "Sélectionner des dates"}
+          </div>
+          <button onClick={handleReset} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "-apple-system, sans-serif", fontSize: 11, color: GREY, padding: 0 }}>{resetLabel}</button>
+        </div>
+        {grid}
+      </div>
+    );
+  }
+
+  // Standalone full-screen mode
+  const calTitle = lang === "en" ? "Calendar" : "Agenda";
+  const resetLabel = lang === "en" ? "Reset" : "Réinit.";
+  const confirmLabel = start
+    ? (lang === "en" ? "See events →" : "Voir les événements →")
+    : (lang === "en" ? "Select a date" : "Sélectionnez une date");
 
   return (
     <div style={{ background: WHITE, minHeight: "100%", display: "flex", flexDirection: "column" }}>
-
-      {/* Header */}
       <div style={{ background: WHITE, borderBottom: "1px solid #E8E0D4", padding: "14px 20px 12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 22, color: NAVY, padding: 0, lineHeight: 1 }}>←</button>
-        <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 20, color: NAVY }}>Agenda</div>
-        <button onClick={() => { setStart(null); setEnd(null); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "-apple-system, sans-serif", fontSize: 11, color: GREY, padding: 0 }}>Réinit.</button>
+        <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 20, color: NAVY }}>{calTitle}</div>
+        <button onClick={handleReset} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "-apple-system, sans-serif", fontSize: 11, color: GREY, padding: 0 }}>{resetLabel}</button>
       </div>
-
-      <div style={{ padding: "20px 16px", flex: 1 }}>
-
-        {/* Month navigation */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
-          <button onClick={prevMonth} style={{ background: "none", border: `1px solid #E8E0D4`, borderRadius: "50%", width: 32, height: 32, cursor: "pointer", fontSize: 14, color: NAVY, display: "flex", alignItems: "center", justifyContent: "center" }}>‹</button>
-          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 17, color: NAVY, fontWeight: "bold" }}>
-            {MOIS_NOM[month]} {year}
-          </div>
-          <button onClick={nextMonth} style={{ background: "none", border: `1px solid #E8E0D4`, borderRadius: "50%", width: 32, height: 32, cursor: "pointer", fontSize: 14, color: NAVY, display: "flex", alignItems: "center", justifyContent: "center" }}>›</button>
-        </div>
-
-        {/* Day headers */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", marginBottom: 6 }}>
-          {JOURS.map((j, i) => (
-            <div key={i} style={{ textAlign: "center", fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 0.5, color: GREY, paddingBottom: 4 }}>{j}</div>
-          ))}
-        </div>
-
-        {/* Days grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)" }}>
-          {cells.map((day, i) => {
-            const col = i % 7;
-            const style = cellStyle(day, col);
-            const isToday = day && sameDay(new Date(year, month, day), today);
-            return (
-              <div
-                key={i}
-                onClick={() => handleDay(day)}
-                style={{
-                  height: 40,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: day ? "pointer" : "default",
-                  position: "relative",
-                }}
-              >
-                {/* Range background (full width strip) */}
-                {day && start && end && new Date(year, month, day) > start && new Date(year, month, day) < end && (
-                  <div style={{
-                    position: "absolute",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    left: col === 0 ? "50%" : 0,
-                    right: col === 6 ? "50%" : 0,
-                    height: 32,
-                    background: "#F0E4D0",
-                    zIndex: 0,
-                  }} />
-                )}
-                {/* Start date left strip */}
-                {day && sameDay(new Date(year, month, day), start) && end && (
-                  <div style={{
-                    position: "absolute", top: "50%", transform: "translateY(-50%)",
-                    left: "50%", right: col === 6 ? "50%" : 0, height: 32,
-                    background: "#F0E4D0", zIndex: 0,
-                  }} />
-                )}
-                {/* End date right strip */}
-                {day && sameDay(new Date(year, month, day), end) && start && (
-                  <div style={{
-                    position: "absolute", top: "50%", transform: "translateY(-50%)",
-                    right: "50%", left: col === 0 ? "50%" : 0, height: 32,
-                    background: "#F0E4D0", zIndex: 0,
-                  }} />
-                )}
-                {/* Day circle */}
-                {day && (
-                  <div style={{
-                    width: 34, height: 34,
-                    borderRadius: "50%",
-                    background: (sameDay(new Date(year, month, day), start) || sameDay(new Date(year, month, day), end)) ? GOLD : "transparent",
-                    color: (sameDay(new Date(year, month, day), start) || sameDay(new Date(year, month, day), end)) ? WHITE : NAVY,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "-apple-system, sans-serif",
-                    fontSize: 13,
-                    fontWeight: isToday ? 700 : 400,
-                    zIndex: 1,
-                    position: "relative",
-                    boxShadow: isToday && !sameDay(new Date(year, month, day), start) && !sameDay(new Date(year, month, day), end)
-                      ? `inset 0 -2px 0 ${GOLD}` : "none",
-                  }}>
-                    {day}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Selection label */}
-        <div style={{
-          margin: "20px 0 6px",
-          textAlign: "center",
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
-          fontSize: 14,
-          color: start ? NAVY : GREY,
-        }}>{selText}</div>
-
-      </div>
-
-      {/* Confirm button */}
+      <div style={{ padding: "20px 16px", flex: 1 }}>{grid}</div>
       <div style={{ padding: "12px 20px 28px", background: WHITE, borderTop: "1px solid #E8E0D4" }}>
         <button
           onClick={() => start && onConfirm(start, end || start)}
-          style={{
-            width: "100%",
-            padding: "14px",
-            background: start ? GOLD : "#D8D0C8",
-            color: WHITE,
-            border: "none",
-            borderRadius: 24,
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-            fontSize: 16,
-            cursor: start ? "pointer" : "default",
-            letterSpacing: 0.5,
-          }}
+          style={{ width: "100%", padding: "14px", background: start ? GOLD : "#D8D0C8", color: WHITE, border: "none", borderRadius: 24, fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 16, cursor: start ? "pointer" : "default", letterSpacing: 0.5 }}
         >
-          {start ? "Voir les événements →" : "Sélectionnez une date"}
+          {confirmLabel}
         </button>
       </div>
     </div>

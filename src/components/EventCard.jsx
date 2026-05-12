@@ -16,7 +16,7 @@ function getBorderColor(cat) {
   return GOLD;
 }
 
-export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick }) {
+export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
   const borderColor = getBorderColor(event.cat);
 
@@ -129,7 +129,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               fontWeight: 700,
               letterSpacing: 1,
               color: "#1A4A2A",
-            }}>✅ ENTRÉE LIBRE</div>
+            }}>{lang === "en" ? "✅ FREE ENTRY" : "✅ ENTRÉE LIBRE"}</div>
           </div>
         )}
 

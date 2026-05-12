@@ -8,7 +8,7 @@ const WHITE = "#FFFFFF";
 const LIGHT = "#F8F4EF";
 const BORDER = "#E8E0D4";
 
-export default function DetailScreen({ event, onBack, favorites, onToggleFav, onSelectEvent, onCategoryClick }) {
+export default function DetailScreen({ event, onBack, favorites, onToggleFav, onSelectEvent, onCategoryClick, lang = "fr" }) {
   if (!event) return null;
   const isFav = favorites?.includes(event.id);
 
@@ -44,7 +44,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             fontWeight: 600,
             cursor: "pointer",
           }}
-        >← Retour</button>
+        >{lang === "en" ? "← Back" : "← Retour"}</button>
 
         <button
           onClick={() => onToggleFav(event.id)}
@@ -146,7 +146,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               fontSize: 12,
               fontWeight: 700,
               color: "#2A7A3A",
-            }}>Entrée libre</span>
+            }}>{lang === "en" ? "Free entry" : "Entrée libre"}</span>
           </div>
         )}
 
@@ -155,7 +155,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           fontSize: 11,
           color: GREY,
           marginBottom: 20,
-        }}>Source : {event.source}</div>
+        }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
         <a
           href={event.link}
@@ -176,7 +176,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             letterSpacing: 0.5,
           }}
         >
-          Plus d'informations →
+          {lang === "en" ? "More information →" : "Plus d'informations →"}
         </a>
       </div>
 
@@ -197,7 +197,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               letterSpacing: 2,
               textTransform: "uppercase",
               color: GOLD,
-            }}>Voir aussi · {event.cat}</div>
+            }}>{lang === "en" ? "See also · " : "Voir aussi · "}{event.cat}</div>
             <button
               onClick={() => onCategoryClick?.(event.cat)}
               style={{
@@ -211,7 +211,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
                 textDecoration: "underline",
                 textUnderlineOffset: 2,
               }}
-            >Tout voir →</button>
+            >{lang === "en" ? "See all →" : "Tout voir →"}</button>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

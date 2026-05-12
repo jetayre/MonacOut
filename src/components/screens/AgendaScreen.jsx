@@ -33,7 +33,7 @@ function getMonthDays(monthMatch) {
   return dates.sort((a, b) => parseInt(a.split(" ")[1]) - parseInt(b.split(" ")[1]));
 }
 
-export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick }) {
+export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const [monthId, setMonthId] = useState("mai");
   const currentMonth = MONTHS.find(m => m.id === monthId);
   const days = getMonthDays(currentMonth.match);
@@ -65,14 +65,14 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
           fontSize: 24,
           color: WHITE,
           letterSpacing: 0.5,
-        }}>Agenda</div>
+        }}>{lang === "en" ? "Calendar" : "Agenda"}</div>
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
           fontSize: 13,
           color: "#D4B896",
           marginTop: 2,
-        }}>Monaco · Janvier — Décembre 2026</div>
+        }}>Monaco · {lang === "en" ? "January — December 2026" : "Janvier — Décembre 2026"}</div>
       </div>
 
       {/* Month pills */}
@@ -189,7 +189,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
           fontStyle: "italic",
           color: GREY,
           fontSize: 13,
-        }}>Aucun événement programmé ce mois.</div>
+        }}>{lang === "en" ? "No events this month." : "Aucun événement programmé ce mois."}</div>
       )}
 
       {/* Events */}
@@ -204,7 +204,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
             color: GOLD,
             marginBottom: 12,
           }}>
-            {selectedDay} · {events.length} événement{events.length !== 1 ? "s" : ""}
+            {selectedDay} · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}
           </div>
         )}
         {events.length === 0 && selectedDay ? (
@@ -215,7 +215,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
             fontStyle: "italic",
             color: GREY,
             fontSize: 15,
-          }}>Aucun événement ce jour.</div>
+          }}>{lang === "en" ? "No events today." : "Aucun événement ce jour."}</div>
         ) : (
           events.map(e => (
             <EventCard
@@ -225,6 +225,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={onCategoryClick}
+              lang={lang}
             />
           ))
         )}

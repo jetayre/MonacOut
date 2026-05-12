@@ -1,14 +1,14 @@
 const GOLD = "#B8966E";
 const DARK = "#1C1612";
 
-const NAV = [
-  { id: "home", icon: "🏠", label: "Accueil" },
-  { id: "map", icon: "📍", label: "Carte" },
-  { id: "favorites", icon: "❤️", label: "Favoris" },
-  { id: "profile", icon: "👤", label: "Profil" },
+const NAV_IDS = [
+  { id: "home", icon: "🏠", key: "home" },
+  { id: "map", icon: "📍", key: "map" },
+  { id: "favorites", icon: "❤️", key: "favorites" },
+  { id: "profile", icon: "👤", key: "profile" },
 ];
 
-export default function Shell({ tab, setTab, children }) {
+export default function Shell({ tab, setTab, children, t }) {
   return (
     <div style={{
       minHeight: "100vh",
@@ -79,7 +79,7 @@ export default function Shell({ tab, setTab, children }) {
           flexShrink: 0,
           zIndex: 50,
         }}>
-          {NAV.map(n => (
+          {NAV_IDS.map(n => (
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
@@ -113,7 +113,7 @@ export default function Shell({ tab, setTab, children }) {
                 fontWeight: tab === n.id ? 700 : 400,
                 color: tab === n.id ? GOLD : "#6A635A",
                 letterSpacing: 0.3,
-              }}>{n.label}</span>
+              }}>{t?.nav[n.key] || n.key}</span>
             </button>
           ))}
         </div>

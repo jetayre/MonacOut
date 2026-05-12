@@ -6,7 +6,30 @@ const WHITE = "#FFFFFF";
 const LIGHT = "#F8F4EF";
 const BORDER = "#E8E0D4";
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ lang = "fr" }) {
+  const t = lang === "en"
+    ? {
+        profileSub: "About MonacOut",
+        cofounder: "Co-founder",
+        quote: "Monaco is a permanent stage. We wanted everyone to be part of it.",
+        story: "Stéphanie and Agathe share a common belief: Monaco is full of exceptional events, and every resident deserves to enjoy them fully. MonacOut was born from the desire to bring together, in one place, all the cultural and sporting richness of the Principality.",
+        conviction: "\"Monaco's cultural wealth belongs to all its residents.\"",
+        statement: "All of Monaco, in your pocket.",
+        sources: "Official sources",
+        eventsPerWeek: "Events/week",
+        madeWith: "Made with love",
+      }
+    : {
+        profileSub: "À propos de MonacOut",
+        cofounder: "Co-fondatrice",
+        quote: "Monaco est une scène permanente. Nous voulions que chacun puisse en être acteur.",
+        story: "Stéphanie et Agathe partagent une conviction commune : Monaco regorge d'événements exceptionnels, et chaque résident mérite d'en profiter pleinement. MonacOut est née de cette envie de rassembler, en un seul endroit, toute la richesse culturelle et sportive de la Principauté.",
+        conviction: "\"La richesse culturelle de Monaco appartient à tous ses résidents.\"",
+        statement: "Tout Monaco, dans votre poche.",
+        sources: "Sources officielles",
+        eventsPerWeek: "Événements/semaine",
+        madeWith: "Fait avec amour",
+      };
   return (
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Header */}
@@ -20,14 +43,14 @@ export default function ProfileScreen() {
           fontWeight: "bold",
           fontSize: 24,
           color: WHITE,
-        }}>Profil</div>
+        }}>{lang === "en" ? "Profile" : "Profil"}</div>
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
           fontSize: 13,
           color: "#D4B896",
           marginTop: 2,
-        }}>À propos de MonacOut</div>
+        }}>{t.profileSub}</div>
       </div>
 
       <div style={{ padding: "20px 16px" }}>
@@ -80,7 +103,7 @@ export default function ProfileScreen() {
                 letterSpacing: 1.5,
                 textTransform: "uppercase",
                 color: GOLD,
-              }}>Co-fondatrice</div>
+              }}>{t.cofounder}</div>
             </div>
 
             {/* Divider */}
@@ -127,7 +150,7 @@ export default function ProfileScreen() {
                 letterSpacing: 1.5,
                 textTransform: "uppercase",
                 color: GREY,
-              }}>Co-fondatrice</div>
+              }}>{t.cofounder}</div>
             </div>
           </div>
 
@@ -149,7 +172,7 @@ export default function ProfileScreen() {
             lineHeight: 1.5,
             marginBottom: 16,
           }}>
-            "Monaco est une scène permanente. Nous voulions que chacun puisse en être acteur."
+            {t.quote}
           </div>
 
           {/* Story */}
@@ -161,7 +184,7 @@ export default function ProfileScreen() {
             lineHeight: 1.9,
             padding: "0 20px 20px",
           }}>
-            Stéphanie et Agathe partagent une conviction commune : Monaco regorge d'événements exceptionnels, et chaque résident mérite d'en profiter pleinement. MonacOut est née de cette envie de rassembler, en un seul endroit, toute la richesse culturelle et sportive de la Principauté.
+            {t.story}
           </div>
 
           {/* Conviction box */}
@@ -179,7 +202,7 @@ export default function ProfileScreen() {
               color: DARK,
               lineHeight: 1.6,
             }}>
-              "La richesse culturelle de Monaco appartient à tous ses résidents."
+              {t.conviction}
             </div>
           </div>
 
@@ -194,7 +217,7 @@ export default function ProfileScreen() {
             padding: "0 20px 20px",
             letterSpacing: 0.5,
           }}>
-            Tout Monaco, dans votre poche.
+            {t.statement}
           </div>
         </div>
 
@@ -221,7 +244,7 @@ export default function ProfileScreen() {
               fontSize: 10,
               color: GREY,
               letterSpacing: 0.5,
-            }}>Sources officielles</div>
+            }}>{t.sources}</div>
           </div>
           <div style={{ width: 1, height: 36, background: BORDER }} />
           <div style={{ textAlign: "center" }}>
@@ -237,7 +260,7 @@ export default function ProfileScreen() {
               fontSize: 10,
               color: GREY,
               letterSpacing: 0.5,
-            }}>Événements/semaine</div>
+            }}>{t.eventsPerWeek}</div>
           </div>
           <div style={{ width: 1, height: 36, background: BORDER }} />
           <div style={{ textAlign: "center" }}>
@@ -247,7 +270,7 @@ export default function ProfileScreen() {
               fontSize: 10,
               color: GREY,
               letterSpacing: 0.5,
-            }}>Fait avec amour</div>
+            }}>{t.madeWith}</div>
           </div>
         </div>
       </div>

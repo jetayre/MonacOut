@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { T } from "./i18n";
 import Shell from "./components/Shell";
 import HomeScreen from "./components/screens/HomeScreen";
 import AgendaScreen from "./components/screens/AgendaScreen";
@@ -21,6 +22,7 @@ export default function App() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [homeFilter, setHomeFilter] = useState("all");
+  const [lang, setLang] = useState("fr");
 
   function handleTabChange(newTab) {
     setSelectedEvent(null);
@@ -44,6 +46,7 @@ export default function App() {
     favorites,
     onToggleFav: toggleFav,
     onCategoryClick: navigateToCategory,
+    lang,
   };
 
   function renderScreen() {
@@ -58,7 +61,7 @@ export default function App() {
     }
     switch (tab) {
       case "home":
-        return <HomeScreen {...sharedProps} filter={homeFilter} onFilterChange={setHomeFilter} />;
+        return <HomeScreen {...sharedProps} filter={homeFilter} onFilterChange={setHomeFilter} setLang={setLang} />;
       case "agenda":
         return <AgendaScreen {...sharedProps} />;
       case "map":
@@ -66,14 +69,14 @@ export default function App() {
       case "favorites":
         return <FavoritesScreen {...sharedProps} />;
       case "profile":
-        return <ProfileScreen />;
+        return <ProfileScreen lang={lang} />;
       default:
         return null;
     }
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]}>
       {renderScreen()}
     </Shell>
   );

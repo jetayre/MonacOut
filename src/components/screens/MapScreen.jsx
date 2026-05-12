@@ -18,7 +18,7 @@ const PINS = [
   { name: "La Note Bleue", x: 80, y: 20, color: "#90D8F8", events: ["JAZZ LIVE","DJ SET"] },
 ];
 
-export default function MapScreen({ onSelectEvent, onCategoryClick }) {
+export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" }) {
   const [active, setActive] = useState(null);
 
   const pinEvents = active
@@ -38,14 +38,14 @@ export default function MapScreen({ onSelectEvent, onCategoryClick }) {
           fontWeight: "bold",
           fontSize: 24,
           color: WHITE,
-        }}>Carte</div>
+        }}>{lang === "en" ? "Map" : "Carte"}</div>
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
           fontSize: 13,
           color: "#D4B896",
           marginTop: 2,
-        }}>Principauté de Monaco</div>
+        }}>{lang === "en" ? "Principality of Monaco" : "Principauté de Monaco"}</div>
       </div>
 
       {/* Map */}

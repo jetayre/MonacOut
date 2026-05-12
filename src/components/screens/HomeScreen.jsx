@@ -70,19 +70,29 @@ function filterEvents(events, filterId) {
   }
 }
 
-export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange }) {
+export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang }) {
   const setFilter = onFilterChange || (() => {});
+  const t = lang === "en"
+    ? {
+        tagline: "Monaco in your pocket",
+        filters: { today: "Today", weekend: "Weekend", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar" },
+        empty: "No events for this period.",
+      }
+    : {
+        tagline: "Monaco dans votre poche",
+        filters: { today: "Aujourd'hui", weekend: "Week-end", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
+        empty: "Aucun événement pour cette période.",
+      };
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
 
-  function handleCalendarConfirm(start, end) {
-    setRangeStart(start);
-    setRangeEnd(end);
-    setShowCalendar(false);
-    setSearch("");
+  function handleCalendarChange(start, end) {
+    setRangeStart(start || null);
+    setRangeEnd(end || null);
+    if (start) setSearch("");
   }
 
   function clearRange() {
@@ -117,15 +127,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       : `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
     : null;
 
-  if (showCalendar) {
-    return (
-      <CalendarPicker
-        onClose={() => setShowCalendar(false)}
-        onConfirm={handleCalendarConfirm}
-      />
-    );
-  }
-
   return (
     <div style={{ background: LIGHT, minHeight: "100%" }}>
       {/* Sticky header */}
@@ -138,6 +139,18 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           background: WHITE, padding: "4px 20px 8px",
           display: "flex", justifyContent: "center", position: "relative",
         }}>
+          {/* Language toggle — top left */}
+          <div style={{ position: "absolute", left: 24, top: "50%", transform: "translateY(-50%)", display: "flex", gap: 4, zIndex: 1 }}>
+            <button
+              onClick={() => setLang?.("fr")}
+              style={{ background: "none", border: lang === "fr" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.45 }}
+            >🇫🇷</button>
+            <button
+              onClick={() => setLang?.("en")}
+              style={{ background: "none", border: lang === "en" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.45 }}
+            >🇬🇧</button>
+          </div>
+          {/* Search — top right */}
           <button
             onClick={() => setShowSearch(s => !s)}
             style={{ position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
@@ -146,7 +159,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             <div style={{ border: `1px solid ${GOLD}`, borderRadius: 1, padding: "10px 24px", textAlign: "center", background: WHITE }}>
               <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 38, color: "#1A2A4A", letterSpacing: 1, lineHeight: 1, whiteSpace: "nowrap" }}>MonacOut</div>
               <div style={{ width: 36, height: 1.5, background: GOLD, margin: "10px auto 6px" }} />
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 17, color: GOLD, letterSpacing: 0.5, marginBottom: 6 }}>Monaco dans votre poche</div>
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 17, color: GOLD, letterSpacing: 0.5, marginBottom: 6 }}>{t.tagline}</div>
             </div>
           </div>
         </div>
@@ -157,14 +170,14 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
 
             {/* Calendar icon pill */}
             <button
-              onClick={() => setShowCalendar(true)}
+              onClick={() => setShowCalendar(s => !s)}
               style={{
                 flexShrink: 0,
                 padding: "5px 11px",
                 borderRadius: 20,
-                border: `1.5px solid ${rangeLabel ? GOLD : BORDER}`,
-                background: rangeLabel ? GOLD : WHITE,
-                color: rangeLabel ? WHITE : GREY,
+                border: `1.5px solid ${(rangeLabel || showCalendar) ? GOLD : BORDER}`,
+                background: (rangeLabel || showCalendar) ? GOLD : WHITE,
+                color: (rangeLabel || showCalendar) ? WHITE : GREY,
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 11,
                 fontWeight: 600,
@@ -175,13 +188,13 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 gap: 4,
               }}
             >
-              📅 {rangeLabel || "Agenda"}
+              📅 {rangeLabel || t.filters.agenda}
             </button>
 
-            {/* Clear range button */}
-            {rangeLabel && (
+            {/* Clear range / close calendar button */}
+            {(rangeLabel || showCalendar) && (
               <button
-                onClick={clearRange}
+                onClick={() => { clearRange(); setShowCalendar(false); }}
                 style={{ flexShrink: 0, padding: "5px 9px", borderRadius: 20, border: `1.5px solid #DDD`, background: WHITE, color: GREY, fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 600, cursor: "pointer" }}
               >✕</button>
             )}
@@ -204,7 +217,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                   cursor: "pointer",
                   whiteSpace: "nowrap",
                 }}
-              >{f.label}</button>
+              >{t.filters[f.id] || f.label}</button>
             ))}
           </div>
         )}
@@ -227,11 +240,22 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         )}
       </div>
 
+      {/* Inline calendar panel */}
+      {showCalendar && (
+        <CalendarPicker
+          inline
+          lang={lang}
+          initialStart={rangeStart}
+          initialEnd={rangeEnd}
+          onChange={handleCalendarChange}
+        />
+      )}
+
       {/* Event list */}
       <div style={{ padding: "0 16px 20px" }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
-            Aucun événement pour cette période.
+            {t.empty}
           </div>
         ) : (
           filtered.map(e => (
@@ -242,6 +266,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={onCategoryClick}
+              lang={lang}
             />
           ))
         )}

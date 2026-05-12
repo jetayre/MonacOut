@@ -7,7 +7,7 @@ const GREY = "#6A635A";
 const WHITE = "#FFFFFF";
 const LIGHT = "#F8F4EF";
 
-export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick }) {
+export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const favEvents = ALL_EVENTS.filter(e => favorites.includes(e.id));
 
   return (
@@ -23,7 +23,7 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
           fontWeight: "bold",
           fontSize: 24,
           color: WHITE,
-        }}>Mes Favoris</div>
+        }}>{lang === "en" ? "My Favorites" : "Mes Favoris"}</div>
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
@@ -31,7 +31,9 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
           color: "#D4B896",
           marginTop: 2,
         }}>
-          {favEvents.length} événement{favEvents.length !== 1 ? "s" : ""} sauvegardé{favEvents.length !== 1 ? "s" : ""}
+          {lang === "en"
+            ? `${favEvents.length} saved event${favEvents.length !== 1 ? "s" : ""}`
+            : `${favEvents.length} événement${favEvents.length !== 1 ? "s" : ""} sauvegardé${favEvents.length !== 1 ? "s" : ""}`}
         </div>
       </div>
 
@@ -49,7 +51,7 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
               fontSize: 18,
               color: DARK,
               marginBottom: 8,
-            }}>Aucun favori pour l'instant</div>
+            }}>{lang === "en" ? "No favorites yet" : "Aucun favori pour l'instant"}</div>
             <div style={{
               fontFamily: "Georgia, serif",
               fontStyle: "italic",
@@ -57,7 +59,7 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
               color: GREY,
               lineHeight: 1.6,
             }}>
-              Appuyez sur le ❤️ sur n'importe quel événement pour le retrouver ici.
+              {lang === "en" ? "Tap the ❤️ on any event to save it here." : "Appuyez sur le ❤️ sur n'importe quel événement pour le retrouver ici."}
             </div>
           </div>
         ) : (
@@ -69,6 +71,7 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={onCategoryClick}
+              lang={lang}
             />
           ))
         )}
