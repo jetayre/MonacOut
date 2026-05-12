@@ -188,39 +188,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             background: WHITE, borderTop: `1px solid ${BORDER}`,
           }}>
 
-            {/* Calendar icon pill */}
-            <button
-              onClick={() => setShowCalendar(s => !s)}
-              style={{
-                flexShrink: 0,
-                padding: "4px 10px",
-                borderRadius: 20,
-                border: `1.5px solid ${(rangeLabel || showCalendar) ? NAVY : BORDER}`,
-                background: (rangeLabel || showCalendar) ? NAVY : WHITE,
-                color: (rangeLabel || showCalendar) ? WHITE : GREY,
-                fontFamily: "-apple-system, sans-serif",
-                fontSize: 10,
-                fontWeight: 600,
-                cursor: "pointer",
-                whiteSpace: "nowrap",
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-              }}
-            >
-              📅 {rangeLabel || t.filters.agenda}
-            </button>
-
-            {/* Clear range / close calendar */}
-            {(rangeLabel || showCalendar) && (
-              <button
-                onClick={() => { clearRange(); setShowCalendar(false); }}
-                style={{ flexShrink: 0, padding: "4px 8px", borderRadius: 20, border: `1.5px solid #DDD`, background: WHITE, color: GREY, fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 600, cursor: "pointer" }}
-              >✕</button>
-            )}
-
             {/* Normal filters */}
-            {!rangeLabel && FILTERS.map(f => (
+            {FILTERS.map(f => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
