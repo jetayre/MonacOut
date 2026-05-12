@@ -16,6 +16,7 @@ const FILTERS = [
   { id: "all",      label: "Tout" },
   { id: "today",    label: "Aujourd'hui" },
   { id: "weekend",  label: "Week-end" },
+  { id: "week",     label: "Semaine" },
   { id: "sport",    label: "⚽ Sport" },
   { id: "culture",  label: "🎭 Culture" },
   { id: "cinema",   label: "🎬 Cinéma" },
@@ -73,6 +74,11 @@ function filterEvents(events, filterId) {
   switch (filterId) {
     case "today": return events.filter(e => e.date === todayStr);
     case "weekend": return events.filter(e => weekendDates.includes(e.date));
+    case "week": {
+      const today = new Date(); today.setHours(0,0,0,0);
+      const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
+      return events.filter(e => { const d = parseEventDate(e.date); return d && d >= today && d <= sun; });
+    }
     case "sport": return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
     case "culture": return events.filter(e => ["MUSICAL","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
     case "music": return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
@@ -91,12 +97,12 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { today: "Today", weekend: "Weekend", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar" },
+        filters: { today: "Today", weekend: "Weekend", week: "This week", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { today: "Aujourd'hui", weekend: "Week-end", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
+        filters: { today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
@@ -191,9 +197,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search — single scrollable row */}
         {!showSearch && (
           <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(6, 1fr)",
-            gap: 5,
+            display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 5,
             padding: "7px 10px 8px",
             background: WHITE, borderTop: `1px solid ${BORDER}`,
           }}>
@@ -204,18 +208,17 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 key={f.id}
                 onClick={() => setFilter(f.id)}
                 style={{
-                  padding: "4px 0",
+                  padding: "5px 10px",
                   borderRadius: 20,
                   border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
                   background: filter === f.id ? GOLD : WHITE,
                   color: filter === f.id ? WHITE : GREY,
                   fontFamily: "-apple-system, sans-serif",
-                  fontSize: 9,
+                  fontSize: 11,
                   fontWeight: 600,
                   cursor: "pointer",
                   whiteSpace: "nowrap",
                   textAlign: "center",
-                  overflow: "hidden",
                 }}
               >{t.filters[f.id] || f.label}</button>
             ))}
