@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
+import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 
@@ -190,16 +191,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           {/* Outer border — cadre marine */}
           <div style={{ border: `1.5px solid ${NAVY}`, padding: 1 }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${NAVY}`, padding: "8px 12px 8px", textAlign: "center", background: WHITE }}>
-              <div style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 700,
-                fontSize: 28,
-                color: NAVY,
-                letterSpacing: 4,
-                textTransform: "uppercase",
-                lineHeight: 1,
-              }}>MonacOut</div>
+            <div style={{ border: `2px solid ${NAVY}`, padding: "4px 12px 5px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={210} />
               <div style={{
                 fontFamily: "Georgia, serif",
                 fontStyle: "normal",
@@ -207,7 +200,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 fontSize: 13,
                 color: NAVY,
                 letterSpacing: 1,
-                marginTop: 4,
+                marginTop: 1,
               }}>{t.tagline}</div>
             </div>
           </div>
