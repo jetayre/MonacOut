@@ -93,7 +93,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         empty: "No events for this period.",
       }
     : {
-        tagline: "Monaco dans votre poche",
+        tagline: "Monaco dans la poche",
         filters: { today: "Aujourd'hui", weekend: "Week-end", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
