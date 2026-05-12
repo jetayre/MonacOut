@@ -28,7 +28,7 @@ function getEventDaySet(year, month) {
   const set = new Set();
   ALL_EVENTS.forEach(e => {
     const parts = e.date.trim().split(" ");
-    if (parts[2] === match) set.add(parseInt(parts[1]));
+    if (parts[2] === match && (e.year || 2026) === year) set.add(parseInt(parts[1]));
   });
   return set;
 }
@@ -37,19 +37,32 @@ function getEventsForDay(year, month, dayNum) {
   const match = MOIS_MATCH[month];
   const weekday = new Date(year, month, dayNum).getDay();
   const dayStr = `${JOURS_FR[weekday]} ${dayNum} ${match}`;
-  return ALL_EVENTS.filter(e => e.date === dayStr);
+  return ALL_EVENTS.filter(e => e.date === dayStr && (e.year || 2026) === year);
 }
 
 export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const now = new Date();
-  const [year]  = useState(2026);
-  const [month, setMonth] = useState(now.getFullYear() === 2026 ? now.getMonth() : 4);
+  const [year, setYear]  = useState(now.getFullYear());
+  const [month, setMonth] = useState(now.getMonth());
   const [selectedDays, setSelectedDays] = useState(() => {
     const s = new Set();
-    if (now.getFullYear() === 2026 && getEventDaySet(2026, now.getMonth()).has(now.getDate()))
+    if (getEventDaySet(now.getFullYear(), now.getMonth()).has(now.getDate()))
       s.add(now.getDate());
     return s;
   });
+
+  function goPrev() {
+    if (month === 0) { setYear(y => y - 1); setMonth(11); }
+    else { setMonth(m => m - 1); }
+    setSelectedDays(new Set());
+  }
+  function goNext() {
+    if (month === 11) { setYear(y => y + 1); setMonth(0); }
+    else { setMonth(m => m + 1); }
+    setSelectedDays(new Set());
+  }
+  const canPrev = !(year === now.getFullYear() && month === now.getMonth());
+  const canNext = !(year === 2027 && month === 4);
 
   const eventDays = getEventDaySet(year, month);
 
@@ -89,7 +102,7 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
           {lang === "en" ? "Calendar" : "Agenda"}
         </div>
         <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#D4B896", marginTop: 2 }}>
-          Monaco · 2026
+          Monaco · {year}
         </div>
       </div>
 
@@ -99,17 +112,17 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
         {/* Month navigation */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 10px", borderBottom: `1px solid ${BORDER}` }}>
           <button
-            onClick={() => { setMonth(m => Math.max(0, m - 1)); setSelectedDays(new Set()); }}
-            disabled={month === 0}
-            style={{ background: "none", border: "none", cursor: month === 0 ? "default" : "pointer", fontSize: 18, color: month === 0 ? BORDER : GOLD, padding: "0 8px" }}
+            onClick={goPrev}
+            disabled={!canPrev}
+            style={{ background: "none", border: "none", cursor: canPrev ? "pointer" : "default", fontSize: 18, color: canPrev ? GOLD : BORDER, padding: "0 8px" }}
           >‹</button>
           <div style={{ fontFamily: "Georgia, serif", fontWeight: "bold", fontSize: 17, color: NAVY, letterSpacing: 0.5 }}>
             {MOIS_FULL[month]} {year}
           </div>
           <button
-            onClick={() => { setMonth(m => Math.min(11, m + 1)); setSelectedDays(new Set()); }}
-            disabled={month === 11}
-            style={{ background: "none", border: "none", cursor: month === 11 ? "default" : "pointer", fontSize: 18, color: month === 11 ? BORDER : GOLD, padding: "0 8px" }}
+            onClick={goNext}
+            disabled={!canNext}
+            style={{ background: "none", border: "none", cursor: canNext ? "pointer" : "default", fontSize: 18, color: canNext ? GOLD : BORDER, padding: "0 8px" }}
           >›</button>
         </div>
 

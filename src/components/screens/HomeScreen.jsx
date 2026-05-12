@@ -28,6 +28,7 @@ const CAT_FILTERS = [
   { id: "bienetre", label: "🧘 Bien-être" },
   { id: "encheres", label: "🔨 Enchères" },
   { id: "ateliers", label: "🎨 Ateliers" },
+  { id: "gratuit",  label: "🆓 Gratuit" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -96,6 +97,7 @@ function filterByCat(events, catId) {
     case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
     case "foody": return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
     case "encheres": return events.filter(e => ["ENCHÈRES"].includes(e.cat));
+    case "gratuit": return events.filter(e => e.free === true);
     default: return events;
   }
 }
@@ -105,12 +107,12 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { all: "All", today: "Today", weekend: "Weekend", week: "This week", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar" },
+        filters: { all: "All", today: "Today", weekend: "Weekend", week: "This week", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", gratuit: "🆓 Free", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { all: "Tout", today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda" },
+        filters: { all: "Tout", today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", gratuit: "🆓 Gratuit", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");

@@ -9,18 +9,26 @@ import ProfileScreen from "./components/screens/ProfileScreen";
 import DetailScreen from "./components/screens/DetailScreen";
 
 const CAT_TO_FILTER = {
-  FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
-  MUSICAL: "culture", "CONFÉRENCE": "culture", EXPOSITION: "culture", FESTIVAL: "culture",
-  GALA: "culture", "FÊTE NATIONALE": "culture", "MARCHÉ": "culture", SALON: "culture", SPECTACLE: "culture",
-  CHANTS: "music", "OPÉRA": "music", CONCERT: "music", "JAZZ LIVE": "music", "DJ SET": "music",
-  "CINÉMA": "cinema",
-  FAMILLE: "famille",
+  FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
+  SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
+  CONCERT: "music", "OPÉRA": "music", MUSICAL: "music", "JAZZ LIVE": "music",
+  "DJ SET": "music", CHANTS: "music",
+  THÉÂTRE: "culture", "CONFÉRENCE": "culture", EXPOSITION: "culture", FESTIVAL: "culture",
+  GALA: "culture", "FÊTE NATIONALE": "culture", MARCHÉ: "culture", SALON: "culture",
+  SPECTACLE: "culture", CINÉMA: "cinema",
+  ATELIER: "ateliers", DANSE: "ateliers",
+  "BIEN-ÊTRE": "bienetre",
+  BRUNCH: "foody", APÉRO: "foody", SOIRÉE: "foody", FOODY: "foody",
+  ENCHÈRES: "encheres",
 };
 
 export default function App() {
   const [tab, setTab] = useState("home");
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
+    catch { return []; }
+  });
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
 
@@ -30,9 +38,11 @@ export default function App() {
   }
 
   function toggleFav(id) {
-    setFavorites(prev =>
-      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
-    );
+    setFavorites(prev => {
+      const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
+      localStorage.setItem("monacout_favs", JSON.stringify(next));
+      return next;
+    });
   }
 
   function navigateToCategory(cat) {

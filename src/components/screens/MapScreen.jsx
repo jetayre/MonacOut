@@ -9,14 +9,23 @@ const WHITE = "#FFFFFF";
 const LIGHT = "#F5F5FA";
 
 const PINS = [
-  { name: "Grimaldi Forum", x: 72, y: 30, color: "#C8A8D8", events: ["MUSICAL","SALON"] },
-  { name: "Opéra Garnier", x: 65, y: 40, color: "#B8A8D0", events: ["CONCERT"] },
-  { name: "Musée Océano", x: 38, y: 72, color: "#90B8D0", events: ["EXPOSITION"] },
-  { name: "Stade Louis II", x: 22, y: 62, color: "#D0A8A8", events: ["FOOTBALL"] },
-  { name: "Salle Médecin", x: 55, y: 52, color: "#D4B898", events: ["BASKET"] },
-  { name: "Circuit Monaco", x: 60, y: 44, color: "#D4B8A0", events: ["FORMULE 1"] },
-  { name: "Marché Condamine", x: 45, y: 48, color: "#A8C8B0", events: ["FAMILLE"] },
-  { name: "La Note Bleue", x: 80, y: 20, color: "#90D8F8", events: ["JAZZ LIVE","DJ SET"] },
+  { name: "Grimaldi Forum",    x: 72, y: 30, color: "#C8A8D8", events: ["MUSICAL","SALON","GALA","CONFÉRENCE","ENCHÈRES"] },
+  { name: "Opéra Garnier MC",  x: 65, y: 40, color: "#B8A8D0", events: ["CONCERT","OPÉRA"] },
+  { name: "Musée Océano",      x: 38, y: 72, color: "#90B8D0", events: ["EXPOSITION","ATELIER"] },
+  { name: "Stade Louis II",    x: 22, y: 62, color: "#D0A8A8", events: ["FOOTBALL","SPORT"] },
+  { name: "Salle Médecin",     x: 55, y: 52, color: "#D4B898", events: ["BASKET"] },
+  { name: "Circuit Monaco",    x: 60, y: 44, color: "#D4B8A0", events: ["FORMULE 1","FORMULE E","RALLYE"] },
+  { name: "Marché Condamine",  x: 47, y: 50, color: "#A8C8B0", events: ["MARCHÉ","BRUNCH","APÉRO","FOODY"] },
+  { name: "La Note Bleue",     x: 80, y: 20, color: "#90D8F8", events: ["JAZZ LIVE","DJ SET","BRUNCH","APÉRO","SOIRÉE"] },
+  { name: "Théâtre P. Grace",  x: 70, y: 36, color: "#D4A8C8", events: ["THÉÂTRE"] },
+  { name: "Fort Antoine",      x: 44, y: 64, color: "#C8B0D8", events: ["THÉÂTRE","SPECTACLE"] },
+  { name: "Salle Léo Ferré",   x: 17, y: 59, color: "#90B8D8", events: ["CONCERT","JAZZ LIVE","DANSE","SPECTACLE"] },
+  { name: "Palais Princier",   x: 38, y: 67, color: "#D4B896", events: ["FÊTE NATIONALE","CHANTS"] },
+  { name: "Country Club MC",   x: 78, y: 24, color: "#A8D8A8", events: ["TENNIS"] },
+  { name: "Port Hercule",      x: 52, y: 53, color: "#90D0E8", events: ["SALON"] },
+  { name: "Thermes Marins",    x: 63, y: 36, color: "#A8C8D8", events: ["BIEN-ÊTRE"] },
+  { name: "Cinémas 2 Monaco",  x: 57, y: 49, color: "#D4C8A0", events: ["CINÉMA"] },
+  { name: "NMNM",              x: 74, y: 27, color: "#C8A8D8", events: ["EXPOSITION","ATELIER"] },
 ];
 
 export default function MapScreen({ onSelectEvent, onCategoryClick, lang = "fr" }) {

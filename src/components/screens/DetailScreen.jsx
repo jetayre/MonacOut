@@ -9,6 +9,18 @@ const WHITE = "#FFFFFF";
 const LIGHT = "#F5F5FA";
 const BORDER = "#DDE0F0";
 
+function handleShare(event, lang) {
+  if (navigator.share) {
+    navigator.share({
+      title: event.title.replace(/\n/g, " "),
+      text: `${event.subtitle} · ${event.date} · ${event.time}`,
+      url: window.location.href,
+    }).catch(() => {});
+  } else {
+    navigator.clipboard?.writeText(window.location.href).catch(() => {});
+  }
+}
+
 export default function DetailScreen({ event, onBack, favorites, onToggleFav, onSelectEvent, onCategoryClick, lang = "fr" }) {
   if (!event) return null;
   const isFav = favorites?.includes(event.id);
@@ -46,6 +58,25 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             cursor: "pointer",
           }}
         >{lang === "en" ? "← Back" : "← Retour"}</button>
+
+        <button
+          onClick={() => handleShare(event, lang)}
+          style={{
+            position: "absolute",
+            top: 14,
+            right: 62,
+            background: "rgba(0,0,0,0.3)",
+            border: "none",
+            borderRadius: "50%",
+            width: 38,
+            height: 38,
+            cursor: "pointer",
+            fontSize: 18,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >🔗</button>
 
         <button
           onClick={() => onToggleFav(event.id)}
