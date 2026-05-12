@@ -181,8 +181,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search — single scrollable row */}
         {!showSearch && (
           <div style={{
-            display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 6,
-            padding: "7px 12px 8px",
+            display: "grid",
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gap: 5,
+            padding: "7px 10px 8px",
             background: WHITE, borderTop: `1px solid ${BORDER}`,
           }}>
 
@@ -192,8 +194,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 key={f.id}
                 onClick={() => setFilter(f.id)}
                 style={{
-                  flexShrink: 0,
-                  padding: "4px 10px",
+                  padding: "4px 0",
                   borderRadius: 20,
                   border: `1.5px solid ${filter === f.id ? NAVY : BORDER}`,
                   background: filter === f.id ? NAVY : WHITE,
@@ -203,6 +204,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                   fontWeight: 600,
                   cursor: "pointer",
                   whiteSpace: "nowrap",
+                  textAlign: "center",
+                  overflow: "hidden",
                 }}
               >{t.filters[f.id] || f.label}</button>
             ))}
