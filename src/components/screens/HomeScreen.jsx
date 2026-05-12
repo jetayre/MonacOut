@@ -239,7 +239,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               ))}
             </div>
             {/* Category filter grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 2, padding: "1px 10px 5px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 3, padding: "2px 10px 6px" }}>
               {CAT_FILTERS.map(f => (
                 <button
                   key={f.id}
@@ -249,18 +249,18 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 if (next) setFilter("all");
               }}
                   style={{
-                    padding: "2px 0px",
+                    padding: "5px 2px",
                     borderRadius: 20,
                     border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
                     background: catFilter === f.id ? NAVY : WHITE,
                     color: catFilter === f.id ? WHITE : GREY,
                     fontFamily: "-apple-system, sans-serif",
-                    fontSize: 8,
+                    fontSize: 10,
                     fontWeight: 600,
                     cursor: "pointer",
                     whiteSpace: "normal",
                     textAlign: "center",
-                    lineHeight: 1.15,
+                    lineHeight: 1.25,
                   }}
                 >{t.filters[f.id] || f.label}</button>
               ))}
