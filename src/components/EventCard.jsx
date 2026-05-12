@@ -172,6 +172,31 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           lineHeight: 1.7,
         }}>{event.desc}</div>
 
+        {/* Billetterie */}
+        {event.link && (
+          <div style={{ textAlign: "center", marginTop: 14 }}>
+            <a
+              href={event.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{
+                fontFamily: "-apple-system, sans-serif",
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: 1.5,
+                textTransform: "uppercase",
+                color: WHITE,
+                background: borderColor,
+                padding: "6px 18px",
+                borderRadius: 20,
+                textDecoration: "none",
+                display: "inline-block",
+              }}
+            >Billetterie</a>
+          </div>
+        )}
+
       </div>
     </div>
   );
