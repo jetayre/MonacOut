@@ -171,18 +171,11 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             onClick={() => setShowSearch(s => !s)}
             style={{ position: "absolute", right: 18, top: 18, background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4, zIndex: 2 }}
           >🔍</button>
-          {/* Outer border — épais */}
-          <div style={{ border: `2.5px solid ${NAVY}`, padding: 8 }}>
-            {/* Inner border */}
-            <div style={{ border: `1px solid ${NAVY}`, padding: "18px 16px 18px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={216} />
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: NAVY, letterSpacing: 0.5, marginTop: -4, opacity: 0.55 }}>{t.tagline}</div>
-              <div style={{ letterSpacing: 2.5, fontFamily: "Georgia, serif", fontSize: 10, fontWeight: 700, color: NAVY, marginTop: 6, textTransform: "uppercase" }}>
-                {getTodayLabel()}
-              </div>
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: GREY, marginTop: 2, paddingBottom: 2 }}>
-                {getWeekCount()} événements cette semaine
-              </div>
+          {/* Outer border — tableau épais */}
+          <div style={{ border: `3px solid ${NAVY}`, padding: 6 }}>
+            {/* Inner border — fine ligne intérieure */}
+            <div style={{ border: `1.5px solid ${NAVY}`, padding: "22px 16px 20px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={210} />
             </div>
           </div>
         </div>
