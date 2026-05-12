@@ -88,25 +88,30 @@ export default function MonacOutLogo({ width = 220 }) {
       >MonacOut</text>
 
       {/* ── Ornament ── */}
-      <line x1={cx-118} y1={ornY} x2={cx-38} y2={ornY} stroke={NAVY} strokeWidth="0.65" />
-      <line x1={cx+38}  y1={ornY} x2={cx+118} y2={ornY} stroke={NAVY} strokeWidth="0.65" />
-      <line x1={cx-118} y1={ornY-3} x2={cx-118} y2={ornY+3} stroke={NAVY} strokeWidth="0.9" />
-      <line x1={cx+118} y1={ornY-3} x2={cx+118} y2={ornY+3} stroke={NAVY} strokeWidth="0.9" />
+      {/* Horizontal lines */}
+      <line x1={cx-118} y1={ornY} x2={cx-42} y2={ornY} stroke={NAVY} strokeWidth="0.6" />
+      <line x1={cx+42}  y1={ornY} x2={cx+118} y2={ornY} stroke={NAVY} strokeWidth="0.6" />
+      {/* End ticks */}
+      <line x1={cx-118} y1={ornY-3.5} x2={cx-118} y2={ornY+3.5} stroke={NAVY} strokeWidth="0.9" />
+      <line x1={cx+118} y1={ornY-3.5} x2={cx+118} y2={ornY+3.5} stroke={NAVY} strokeWidth="0.9" />
 
-      {/* Left scroll — S-curve flourish */}
-      <path
-        d={`M${cx-38},${ornY} C${cx-38},${ornY+12} ${cx-58},${ornY+12} ${cx-58},${ornY} C${cx-58},${ornY-8} ${cx-50},${ornY-8} ${cx-46},${ornY}`}
-        stroke={NAVY} strokeWidth="0.75" fill="none"
-      />
-      {/* Right scroll — mirrored */}
-      <path
-        d={`M${cx+38},${ornY} C${cx+38},${ornY+12} ${cx+58},${ornY+12} ${cx+58},${ornY} C${cx+58},${ornY-8} ${cx+50},${ornY-8} ${cx+46},${ornY}`}
-        stroke={NAVY} strokeWidth="0.75" fill="none"
-      />
+      {/* Left outer loop */}
+      <path d={`M${cx-42},${ornY} C${cx-42},${ornY+14} ${cx-66},${ornY+14} ${cx-66},${ornY}`}
+        stroke={NAVY} strokeWidth="0.8" fill="none" />
+      {/* Left inner loop — tighter */}
+      <path d={`M${cx-46},${ornY} C${cx-46},${ornY+9} ${cx-62},${ornY+9} ${cx-62},${ornY}`}
+        stroke={NAVY} strokeWidth="0.55" fill="none" />
+
+      {/* Right outer loop */}
+      <path d={`M${cx+42},${ornY} C${cx+42},${ornY+14} ${cx+66},${ornY+14} ${cx+66},${ornY}`}
+        stroke={NAVY} strokeWidth="0.8" fill="none" />
+      {/* Right inner loop — tighter */}
+      <path d={`M${cx+46},${ornY} C${cx+46},${ornY+9} ${cx+62},${ornY+9} ${cx+62},${ornY}`}
+        stroke={NAVY} strokeWidth="0.55" fill="none" />
 
       {/* Center stacked diamonds */}
-      <path d={diamond(cx, ornY,    5, 8)} fill={NAVY} />
-      <path d={diamond(cx, ornY+12, 3, 4.5)} fill={NAVY} />
+      <path d={diamond(cx, ornY,    5.5, 9)} fill={NAVY} />
+      <path d={diamond(cx, ornY+14, 3,   5)} fill={NAVY} />
     </svg>
   );
 }

@@ -136,32 +136,32 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Title frame — tableau double-border */}
+        {/* Title frame — tableau double-border, full width */}
         <div style={{
-          background: WHITE, padding: "6px 8px 0",
+          background: WHITE, padding: "5px 5px 0",
           position: "relative",
         }}>
-          {/* Language toggle — top left (outside frame) */}
-          <div style={{ position: "absolute", left: 14, top: 12, display: "flex", gap: 4, zIndex: 1 }}>
+          {/* Language toggle — inside frame top left */}
+          <div style={{ position: "absolute", left: 18, top: 18, display: "flex", gap: 4, zIndex: 2 }}>
             <button
               onClick={() => setLang?.("fr")}
-              style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.45 }}
+              style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 16, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
             >🇫🇷</button>
             <button
               onClick={() => setLang?.("en")}
-              style={{ background: "none", border: lang === "en" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.45 }}
+              style={{ background: "none", border: lang === "en" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 16, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
             >🇬🇧</button>
           </div>
-          {/* Search — top right */}
+          {/* Search — inside frame top right */}
           <button
             onClick={() => setShowSearch(s => !s)}
-            style={{ position: "absolute", right: 14, top: 12, background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
+            style={{ position: "absolute", right: 18, top: 18, background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4, zIndex: 2 }}
           >🔍</button>
-          {/* Outer border */}
-          <div style={{ border: `2px solid ${NAVY}`, padding: 7 }}>
+          {/* Outer border — épais */}
+          <div style={{ border: `2.5px solid ${NAVY}`, padding: 8 }}>
             {/* Inner border */}
-            <div style={{ border: `1px solid ${NAVY}`, padding: "14px 20px 16px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={210} />
+            <div style={{ border: `1px solid ${NAVY}`, padding: "18px 16px 18px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={216} />
               <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: NAVY, letterSpacing: 0.5, marginTop: -4, paddingBottom: 2, opacity: 0.55 }}>{t.tagline}</div>
             </div>
           </div>
