@@ -191,7 +191,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           {/* Outer border — cadre marine */}
           <div style={{ border: `1.5px solid ${NAVY}`, padding: 1 }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${NAVY}`, padding: "4px 12px 5px", textAlign: "center", background: WHITE }}>
+            <div style={{ border: `2px solid ${NAVY}`, padding: "0px 12px 4px", textAlign: "center", background: WHITE }}>
               <MonacOutLogo width={290} />
               <div style={{
                 fontFamily: "Georgia, serif",
@@ -200,7 +200,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 fontSize: 13,
                 color: NAVY,
                 letterSpacing: 1,
-                marginTop: 1,
+                marginTop: -4,
               }}>{t.tagline}</div>
             </div>
           </div>
