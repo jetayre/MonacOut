@@ -14,8 +14,6 @@ const WHITE = "#FFFFFF";
 
 const FILTERS = [
   { id: "all",     label: "Tout" },
-  { id: "today",   label: "Aujourd'hui" },
-  { id: "weekend", label: "Week-end" },
   { id: "sport", label: "⚽ Sport" },
   { id: "culture", label: "🎭 Culture" },
   { id: "music", label: "🎵 Musique" },
@@ -152,7 +150,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       }}>
         {/* Title frame — tableau double-border, full width */}
         <div style={{
-          background: WHITE, padding: "5px 20px 0",
+          background: WHITE, padding: "5px 16px 0",
           position: "relative",
         }}>
           {/* Language toggle — inside frame top left */}
