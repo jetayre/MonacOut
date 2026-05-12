@@ -97,6 +97,8 @@ export default function Shell({ tab, setTab, children, t }) {
                 <div style={{
                   position: "absolute",
                   top: 0,
+                  left: "50%",
+                  transform: "translateX(-50%)",
                   width: 20,
                   height: 3,
                   background: GOLD,
@@ -106,10 +108,13 @@ export default function Shell({ tab, setTab, children, t }) {
               <span style={{
                 fontSize: 22,
                 lineHeight: 1,
-                display: "block",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 36,
+                height: 28,
                 background: tab === n.id ? `rgba(184,150,110,0.15)` : "transparent",
                 borderRadius: 10,
-                padding: "2px 6px",
                 border: tab === n.id ? `1.5px solid ${GOLD}` : "1.5px solid transparent",
               }}>{n.icon}</span>
               <span style={{
