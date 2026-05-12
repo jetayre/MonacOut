@@ -106,13 +106,13 @@ export default function Shell({ tab, setTab, children, t }) {
                 }} />
               )}
               <span style={{
-                fontSize: 22,
+                fontSize: 26,
                 lineHeight: 1,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: 36,
-                height: 28,
+                width: 42,
+                height: 34,
                 background: tab === n.id ? `rgba(184,150,110,0.15)` : "transparent",
                 borderRadius: 10,
                 border: tab === n.id ? `1.5px solid ${GOLD}` : `1px solid rgba(184,150,110,0.35)`,

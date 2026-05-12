@@ -175,7 +175,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           <div style={{ border: `1.5px solid ${GOLD}`, padding: 4 }}>
             {/* Inner border */}
             <div style={{ border: `3px solid ${GOLD}`, padding: "5px 16px 5px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={250} />
+              <MonacOutLogo width={290} />
               <div style={{
                 fontFamily: "Georgia, serif",
                 fontStyle: "italic",
