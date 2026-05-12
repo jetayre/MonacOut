@@ -16,6 +16,7 @@ const FILTERS = [
   { id: "all",     label: "Tout" },
   { id: "sport", label: "⚽ Sport" },
   { id: "culture", label: "🎭 Culture" },
+  { id: "cinema", label: "🎬 Cinéma" },
   { id: "music", label: "🎵 Musique" },
   { id: "famille", label: "👨‍👩‍👧 Famille" },
   { id: "ateliers", label: "🎨 Ateliers" },
