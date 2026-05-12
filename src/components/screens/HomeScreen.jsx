@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
+import MonacOutLogo from "../MonacOutLogo";
 
 const GOLD = "#B8966E";
 const DARK = "#1C1612";
@@ -156,10 +157,9 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             style={{ position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
           >🔍</button>
           <div style={{ border: `1.5px solid ${GOLD}`, borderRadius: 2, padding: 4, display: "inline-block", width: "calc(100% - 40px)" }}>
-            <div style={{ border: `1px solid ${GOLD}`, borderRadius: 1, padding: "10px 24px", textAlign: "center", background: WHITE }}>
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: "bold", fontSize: 38, color: "#1A2A4A", letterSpacing: 1, lineHeight: 1, whiteSpace: "nowrap" }}>MonacOut</div>
-              <div style={{ width: 36, height: 1.5, background: GOLD, margin: "10px auto 6px" }} />
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 17, color: GOLD, letterSpacing: 0.5, marginBottom: 6 }}>{t.tagline}</div>
+            <div style={{ border: `1px solid ${GOLD}`, borderRadius: 1, padding: "8px 16px 10px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={200} />
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 14, color: GOLD, letterSpacing: 0.5, marginTop: -4, paddingBottom: 4 }}>{t.tagline}</div>
             </div>
           </div>
         </div>
