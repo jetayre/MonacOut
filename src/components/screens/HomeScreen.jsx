@@ -152,7 +152,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       }}>
         {/* Title frame — tableau double-border, full width */}
         <div style={{
-          background: WHITE, padding: "5px 5px 0",
+          background: WHITE, padding: "5px 20px 0",
           position: "relative",
         }}>
           {/* Language toggle — inside frame top left */}
