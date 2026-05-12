@@ -13,19 +13,16 @@ const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const FILTERS = [
-  { id: "all",      label: "Tout" },
-  { id: "today",    label: "Aujourd'hui" },
-  { id: "weekend",  label: "Week-end" },
-  { id: "week",     label: "Semaine" },
-  { id: "sport",    label: "⚽ Sport" },
-  { id: "culture",  label: "🎭 Culture" },
-  { id: "cinema",   label: "🎬 Cinéma" },
-  { id: "music",    label: "🎵 Musique" },
-  { id: "famille",  label: "👨‍👩‍👧 Famille" },
-  { id: "ateliers", label: "🎨 Ateliers" },
-  { id: "bienetre", label: "🧘 Bien-être" },
-  { id: "foody",    label: "🍽️ Foody" },
-  { id: "encheres", label: "🔨 Enchères" },
+  { id: "all",     label: "Tout" },
+  { id: "today",   label: "Aujourd'hui" },
+  { id: "weekend", label: "Week-end" },
+  { id: "week",    label: "Semaine" },
+  { id: "sport",   label: "⚽ Sport" },
+  { id: "culture", label: "🎭 Culture" },
+  { id: "cinema",  label: "🎬 Cinéma" },
+  { id: "music",   label: "🎵 Musique" },
+  { id: "famille", label: "👨‍👩‍👧 Famille" },
+  { id: "foody",   label: "🍽️ Foody" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -86,7 +83,7 @@ function filterEvents(events, filterId) {
     case "famille": return events.filter(e => e.free === true);
     case "ateliers": return events.filter(e => ["ATELIER","DANSE"].includes(e.cat));
     case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
-    case "foody": return events.filter(e => ["FOODY","BRUNCH","APÉRO"].includes(e.cat));
+    case "foody": return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
     case "encheres": return events.filter(e => ["ENCHÈRES"].includes(e.cat));
     default: return events;
   }
