@@ -8,7 +8,7 @@ function getBorderColor(cat) {
   if (["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(cat)) return "#8B1728";
   if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS","CINÉMA"].includes(cat)) return "#1A2A5A";
   if (["SOIRÉE","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
-  if (["ATELIER","DANSE","EXPOSITION","FESTIVAL","SPECTACLE","GALA"].includes(cat)) return "#5A1A7A";
+  if (["ATELIER","DANSE","EXPOSITION","FESTIVAL","SPECTACLE","GALA","THÉÂTRE"].includes(cat)) return "#5A1A7A";
   if (["BIEN-ÊTRE"].includes(cat)) return "#1A6A5A";
   if (["CONFÉRENCE"].includes(cat)) return "#1A4A2A";
   if (["FOODY","BRUNCH"].includes(cat)) return "#C85A1A";
@@ -153,7 +153,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           color: NAVY,
           textAlign: "center",
           marginBottom: 14,
-        }}>{event.date} 2026 · {event.time}</div>
+        }}>{event.date} {event.year || 2026} · {event.time}</div>
 
         {/* Separator */}
         <div style={{

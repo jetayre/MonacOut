@@ -45,7 +45,7 @@ function getTodayLabel() {
 function getWeekCount() {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
-  return ALL_EVENTS.filter(e => { const d = parseEventDate(e.date); return d && d >= today && d <= sun; }).length;
+  return ALL_EVENTS.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= sun; }).length;
 }
 
 function toFrDate(d) {
@@ -62,12 +62,12 @@ function getWeekendDates() {
   return [toFrDate(sat), toFrDate(sun)];
 }
 
-function parseEventDate(dateStr) {
-  const parts = dateStr.trim().split(" ");
+function parseEventDate(e) {
+  const parts = e.date.trim().split(" ");
   const day = parseInt(parts[1]);
   const month = MOIS_IDX[parts[2]];
   if (isNaN(day) || month === undefined) return null;
-  return new Date(2026, month, day);
+  return new Date(e.year || 2026, month, day);
 }
 
 function filterByTime(events, filterId) {
@@ -79,7 +79,7 @@ function filterByTime(events, filterId) {
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
       const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
-      return events.filter(e => { const d = parseEventDate(e.date); return d && d >= today && d <= sun; });
+      return events.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= sun; });
     }
     default: return events;
   }
@@ -88,7 +88,7 @@ function filterByTime(events, filterId) {
 function filterByCat(events, catId) {
   switch (catId) {
     case "sport": return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
-    case "culture": return events.filter(e => ["MUSICAL","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
+    case "culture": return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
     case "music": return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
     case "cinema": return events.filter(e => e.cat === "CINÉMA");
     case "famille": return events.filter(e => e.free === true);
@@ -136,7 +136,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   if (rangeStart) {
     const endBound = rangeEnd || rangeStart;
     filtered = ALL_EVENTS.filter(e => {
-      const d = parseEventDate(e.date);
+      const d = parseEventDate(e);
       if (!d) return false;
       return d >= rangeStart && d <= endBound;
     });
