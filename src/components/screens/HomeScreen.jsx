@@ -172,10 +172,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             style={{ position: "absolute", right: 18, top: 18, background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4, zIndex: 2 }}
           >🔍</button>
           {/* Outer border — cadre doré */}
-          <div style={{ border: `3px solid ${GOLD}`, padding: 6 }}>
+          <div style={{ border: `3px solid ${GOLD}`, padding: 4 }}>
             {/* Inner border */}
-            <div style={{ border: `1.5px solid ${GOLD}`, padding: "22px 16px 20px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={250} />
+            <div style={{ border: `1.5px solid ${GOLD}`, padding: "10px 16px 8px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={220} />
             </div>
           </div>
         </div>
