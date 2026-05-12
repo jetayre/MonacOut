@@ -115,7 +115,7 @@ export default function Shell({ tab, setTab, children, t }) {
                 height: 28,
                 background: tab === n.id ? `rgba(184,150,110,0.15)` : "transparent",
                 borderRadius: 10,
-                border: tab === n.id ? `1.5px solid ${GOLD}` : "1.5px solid transparent",
+                border: tab === n.id ? `1.5px solid ${GOLD}` : `1px solid rgba(184,150,110,0.35)`,
               }}>{n.icon}</span>
               <span style={{
                 fontFamily: "-apple-system, sans-serif",
