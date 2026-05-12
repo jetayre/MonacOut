@@ -106,7 +106,7 @@ export default function Shell({ tab, setTab, children, t }) {
                 }} />
               )}
               <span style={{
-                fontSize: 28,
+                fontSize: 24,
                 lineHeight: 1,
                 display: "flex",
                 alignItems: "center",
@@ -116,7 +116,8 @@ export default function Shell({ tab, setTab, children, t }) {
                 background: tab === n.id ? `rgba(184,150,110,0.15)` : "transparent",
                 borderRadius: 10,
                 border: tab === n.id ? `1.5px solid ${GOLD}` : `1px solid rgba(184,150,110,0.35)`,
-              }}>{n.icon}</span>
+                overflow: "hidden",
+              }}><span style={{ fontSize: 24, display: "block", textAlign: "center", width: 28, height: 28, lineHeight: "28px" }}>{n.icon}</span></span>
               <span style={{
                 fontFamily: "-apple-system, sans-serif",
                 fontSize: 11,
