@@ -13,7 +13,8 @@ const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const FILTERS = [
-  { id: "today", label: "Aujourd'hui" },
+  { id: "all",     label: "Tout" },
+  { id: "today",   label: "Aujourd'hui" },
   { id: "weekend", label: "Week-end" },
   { id: "sport", label: "⚽ Sport" },
   { id: "culture", label: "🎭 Culture" },
@@ -30,6 +31,19 @@ const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
 const MOIS_IDX = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
 const MOIS_NOM_COURT = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+const JOURS_FULL = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const MOIS_FULL  = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+
+function getTodayLabel() {
+  const d = new Date();
+  return `${JOURS_FULL[d.getDay()]} ${d.getDate()} ${MOIS_FULL[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function getWeekCount() {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
+  return ALL_EVENTS.filter(e => { const d = parseEventDate(e.date); return d && d >= today && d <= sun; }).length;
+}
 
 function toFrDate(d) {
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
@@ -162,7 +176,13 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             {/* Inner border */}
             <div style={{ border: `1px solid ${NAVY}`, padding: "18px 16px 18px", textAlign: "center", background: WHITE }}>
               <MonacOutLogo width={216} />
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: NAVY, letterSpacing: 0.5, marginTop: -4, paddingBottom: 2, opacity: 0.55 }}>{t.tagline}</div>
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: NAVY, letterSpacing: 0.5, marginTop: -4, opacity: 0.55 }}>{t.tagline}</div>
+              <div style={{ letterSpacing: 2.5, fontFamily: "Georgia, serif", fontSize: 10, fontWeight: 700, color: NAVY, marginTop: 6, textTransform: "uppercase" }}>
+                {getTodayLabel()}
+              </div>
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: GREY, marginTop: 2, paddingBottom: 2 }}>
+                {getWeekCount()} événements cette semaine
+              </div>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function App() {
   const [tab, setTab] = useState("home");
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [favorites, setFavorites] = useState([]);
-  const [homeFilter, setHomeFilter] = useState("all");
+  const [homeFilter, setHomeFilter] = useState("today");
   const [lang, setLang] = useState("fr");
 
   function handleTabChange(newTab) {

@@ -10,6 +10,18 @@ const LIGHT = "#F5F5FA";
 const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
+const MOIS_COURT_MAP = ["jan","fev","mar","avr","mai","juin","juil","aout","sep","oct","nov","dec"];
+const JOURS_FR       = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
+const MOIS_FR        = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+
+function getTodayFrDate() {
+  const d = new Date();
+  return `${JOURS_FR[d.getDay()]} ${d.getDate()} ${MOIS_FR[d.getMonth()]}`;
+}
+function getCurrentMonthId() {
+  return MOIS_COURT_MAP[new Date().getMonth()];
+}
+
 const MONTHS = [
   { id: "jan",  label: "Jan",  full: "Janvier 2026",   match: "jan"  },
   { id: "fev",  label: "Fév",  full: "Février 2026",   match: "fév"  },
@@ -35,13 +47,16 @@ function getMonthDays(monthMatch) {
 }
 
 export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
-  const [monthId, setMonthId] = useState("mai");
-  const currentMonth = MONTHS.find(m => m.id === monthId);
+  const [monthId, setMonthId] = useState(getCurrentMonthId);
+  const currentMonth = MONTHS.find(m => m.id === monthId) || MONTHS[4];
   const days = getMonthDays(currentMonth.match);
 
   const [selectedDay, setSelectedDay] = useState(() => {
-    const initial = getMonthDays("mai");
-    return initial[0] || "";
+    const todayStr = getTodayFrDate();
+    const curId = getCurrentMonthId();
+    const curMonth = MONTHS.find(m => m.id === curId) || MONTHS[4];
+    const monthDays = getMonthDays(curMonth.match);
+    return monthDays.includes(todayStr) ? todayStr : (monthDays[0] || "");
   });
 
   function switchMonth(m) {
