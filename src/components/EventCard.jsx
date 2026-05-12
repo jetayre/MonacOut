@@ -27,7 +27,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
       style={{
         background: WHITE,
         borderRadius: 4,
-        border: `2px solid ${borderColor}`,
+        border: `1px solid ${borderColor}`,
         marginBottom: 16,
         cursor: "pointer",
         position: "relative",
@@ -37,7 +37,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
     >
       {/* Inner frame */}
       <div style={{
-        border: `1px solid ${borderColor}`,
+        border: `2px solid ${borderColor}`,
         borderRadius: 2,
         padding: "18px 16px 20px",
         position: "relative",
