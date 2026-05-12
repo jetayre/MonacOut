@@ -168,8 +168,8 @@ export default function AgendaScreen({ onSelectEvent, favorites, onToggleFav, on
           <>
             <div style={{ fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: NAVY, marginBottom: 12 }}>
               {selectedDays.size === 1
-                ? `${JOURS_FR[new Date(year, month, [...selectedDays][0]).getDay()]} ${[...selectedDays][0]} ${MOIS_MATCH[month]}`
-                : `${selectedDays.size} dates · ${MOIS_FULL[month]}`
+                ? `${JOURS_FR[new Date(year, month, [...selectedDays][0]).getDay()]} ${[...selectedDays][0]} ${MOIS_MATCH[month]} 2026`
+                : `${selectedDays.size} dates · ${MOIS_FULL[month]} 2026`
               } · {events.length} {lang === "en" ? `event${events.length !== 1 ? "s" : ""}` : `événement${events.length !== 1 ? "s" : ""}`}
             </div>
             {events.map(e => (

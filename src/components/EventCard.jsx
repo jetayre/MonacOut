@@ -153,7 +153,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           color: NAVY,
           textAlign: "center",
           marginBottom: 14,
-        }}>{event.date} · {event.time}</div>
+        }}>{event.date} 2026 · {event.time}</div>
 
         {/* Separator */}
         <div style={{
