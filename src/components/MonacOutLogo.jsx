@@ -1,131 +1,115 @@
 const NAVY = "#1A2A5A";
 
 export default function MonacOutLogo({ width = 220 }) {
-  const cx = 130;
+  const cx = 132;
   const vw = 268;
-  const vh = 244;
+  const vh = 240;
   const h = Math.round((vh / vw) * width);
+  const cb = 76; // crown base band top y
 
-  // Crown geometry — base band top at y=78
-  const cb = 78;
-
-  // Spire helper: pointed shaft from base to tip
   function spire(x, baseY, tipY, hw) {
-    const shoulderY = tipY + (baseY - tipY) * 0.38;
-    return `M${x - hw},${baseY} L${x - hw},${shoulderY} Q${x - hw},${tipY + 4} ${x},${tipY} Q${x + hw},${tipY + 4} ${x + hw},${shoulderY} L${x + hw},${baseY} Z`;
+    const s = tipY + (baseY - tipY) * 0.36;
+    return `M${x-hw},${baseY} L${x-hw},${s} Q${x-hw},${tipY+2.5} ${x},${tipY} Q${x+hw},${tipY+2.5} ${x+hw},${s} L${x+hw},${baseY} Z`;
   }
 
-  // Small diamond
   function diamond(x, y, rx, ry) {
-    return `M${x},${y - ry} L${x + rx},${y} L${x},${y + ry} L${x - rx},${y} Z`;
+    return `M${x},${y-ry} L${x+rx},${y} L${x},${y+ry} L${x-rx},${y} Z`;
   }
 
-  const ornY = 222;
+  const ornY = 220;
 
   return (
     <svg viewBox={`0 0 ${vw} ${vh}`} width={width} height={h} xmlns="http://www.w3.org/2000/svg">
 
-      {/* ─── Crown ─── */}
+      {/* ── Crown ── */}
       <g fill={NAVY}>
-        {/* Base band */}
-        <rect x={cx - 48} y={cb - 8} width={96} height={8} rx={1.5} />
-        {/* Bottom-centre pendant diamond */}
-        <path d={diamond(cx, cb + 5, 4, 6)} />
+        {/* Base band — thin, elegant */}
+        <rect x={cx-36} y={cb} width={72} height={5} rx={1} />
 
-        {/* 9 graduated spires — center tallest, shorter toward edges */}
-        {/* cx±0  */ }
-        <path d={spire(cx,       cb - 8, 13, 4.5)} />
-        <path d={diamond(cx,     7,  5, 8)} />
-        <path d={diamond(cx,     23, 3, 4.5)} />
+        {/* Center spire — tallest, finest */}
+        <path d={spire(cx, cb, 9, 2.2)} />
+        <circle cx={cx} cy={9} r={3} />
+        <circle cx={cx} cy={9} r={1.3} fill="white" />
 
-        {/* cx±12 */}
-        <path d={spire(cx - 12, cb - 8, 24, 3.5)} />
-        <path d={spire(cx + 12, cb - 8, 24, 3.5)} />
-        <path d={diamond(cx - 12, 19, 3, 4.5)} />
-        <path d={diamond(cx + 12, 19, 3, 4.5)} />
+        {/* Inner spires (±14) */}
+        <path d={spire(cx-14, cb, 25, 1.8)} />
+        <path d={spire(cx+14, cb, 25, 1.8)} />
+        <circle cx={cx-14} cy={25} r={2.3} />
+        <circle cx={cx+14} cy={25} r={2.3} />
+        <circle cx={cx-14} cy={25} r={0.9} fill="white" />
+        <circle cx={cx+14} cy={25} r={0.9} fill="white" />
 
-        {/* cx±24 */}
-        <path d={spire(cx - 24, cb - 8, 34, 3)} />
-        <path d={spire(cx + 24, cb - 8, 34, 3)} />
-        <path d={diamond(cx - 24, 29, 2.5, 4)} />
-        <path d={diamond(cx + 24, 29, 2.5, 4)} />
+        {/* Mid spires (±24) */}
+        <path d={spire(cx-24, cb, 40, 1.6)} />
+        <path d={spire(cx+24, cb, 40, 1.6)} />
+        <circle cx={cx-24} cy={40} r={2} />
+        <circle cx={cx+24} cy={40} r={2} />
 
-        {/* cx±36 */}
-        <path d={spire(cx - 36, cb - 8, 46, 2.5)} />
-        <path d={spire(cx + 36, cb - 8, 46, 2.5)} />
+        {/* Outer spires (±33) */}
+        <path d={spire(cx-33, cb, 54, 1.4)} />
+        <path d={spire(cx+33, cb, 54, 1.4)} />
+        <circle cx={cx-33} cy={54} r={1.6} />
+        <circle cx={cx+33} cy={54} r={1.6} />
 
-        {/* cx±47 (outer, shortest) */}
-        <path d={spire(cx - 47, cb - 8, 55, 2)} />
-        <path d={spire(cx + 47, cb - 8, 55, 2)} />
+        {/* Pendant diamond below band */}
+        <path d={diamond(cx, cb+8, 3, 5)} />
       </g>
 
-      {/* ─── M (solid fill) ─── */}
+      {/* Arch windows cut into base band */}
+      <g fill="white">
+        <path d={`M${cx-5},${cb} Q${cx},${cb-7} ${cx+5},${cb} Z`} />
+        <path d={`M${cx-19},${cb} Q${cx-14},${cb-6} ${cx-9},${cb} Z`} />
+        <path d={`M${cx+9},${cb} Q${cx+14},${cb-6} ${cx+19},${cb} Z`} />
+        <path d={`M${cx-31},${cb} Q${cx-26},${cb-5} ${cx-21},${cb} Z`} />
+        <path d={`M${cx+21},${cb} Q${cx+26},${cb-5} ${cx+31},${cb} Z`} />
+      </g>
+
+      {/* ── M — thin elegant Playfair regular ── */}
       <text
-        x="48" y="178"
-        fontFamily="'Playfair Display', 'Georgia', serif"
-        fontWeight="700"
-        fontSize="128"
+        x="38" y="178"
+        fontFamily="'Playfair Display', Georgia, serif"
+        fontStyle="normal" fontWeight="400" fontSize="128"
         fill={NAVY}
       >M</text>
 
-      {/* ─── O (white fill, navy stroke — cuts over M) ─── */}
+      {/* ── O — white fill, navy outline ── */}
       <text
-        x="122" y="178"
-        fontFamily="'Playfair Display', 'Georgia', serif"
-        fontWeight="700"
-        fontSize="112"
-        fill="white"
-        stroke={NAVY}
-        strokeWidth="1.8"
+        x="118" y="178"
+        fontFamily="'Playfair Display', Georgia, serif"
+        fontStyle="normal" fontWeight="400" fontSize="112"
+        fill="white" stroke={NAVY} strokeWidth="1.4"
       >O</text>
 
-      {/* ─── MonacOut script ─── */}
+      {/* ── MonacOut — calligraphic script ── */}
       <text
-        x={cx} y="206"
-        fontFamily="'Cormorant Garamond', 'Georgia', serif"
-        fontStyle="italic"
-        fontWeight="600"
-        fontSize="33"
-        fill={NAVY}
-        textAnchor="middle"
-        letterSpacing="0.5"
+        x={cx} y="210"
+        fontFamily="'Great Vibes', 'Cormorant Garamond', Georgia, serif"
+        fontWeight="400" fontSize="40"
+        fill={NAVY} textAnchor="middle"
       >MonacOut</text>
 
-      {/* ─── Ornament ─── */}
-      {/* Horizontal lines */}
-      <line x1={cx - 122} y1={ornY} x2={cx - 34} y2={ornY} stroke={NAVY} strokeWidth="0.7" />
-      <line x1={cx + 34} y1={ornY} x2={cx + 122} y2={ornY} stroke={NAVY} strokeWidth="0.7" />
-      {/* Small vertical end-ticks */}
-      <line x1={cx - 122} y1={ornY - 3.5} x2={cx - 122} y2={ornY + 3.5} stroke={NAVY} strokeWidth="0.8" />
-      <line x1={cx + 122} y1={ornY - 3.5} x2={cx + 122} y2={ornY + 3.5} stroke={NAVY} strokeWidth="0.8" />
+      {/* ── Ornament ── */}
+      {/* Horizontal lines left / right */}
+      <line x1={cx-118} y1={ornY} x2={cx-40} y2={ornY} stroke={NAVY} strokeWidth="0.65" />
+      <line x1={cx+40}  y1={ornY} x2={cx+118} y2={ornY} stroke={NAVY} strokeWidth="0.65" />
+      {/* End ticks */}
+      <line x1={cx-118} y1={ornY-3} x2={cx-118} y2={ornY+3} stroke={NAVY} strokeWidth="0.85" />
+      <line x1={cx+118} y1={ornY-3} x2={cx+118} y2={ornY+3} stroke={NAVY} strokeWidth="0.85" />
 
-      {/* Left scroll — outer arc */}
+      {/* Left scroll — downward loop */}
       <path
-        d={`M${cx - 34},${ornY} C${cx - 34},${ornY + 16} ${cx - 66},${ornY + 16} ${cx - 66},${ornY}`}
-        stroke={NAVY} strokeWidth="0.85" fill="none"
+        d={`M${cx-40},${ornY} C${cx-40},${ornY+13} ${cx-62},${ornY+13} ${cx-62},${ornY} C${cx-62},${ornY-7} ${cx-54},${ornY-7} ${cx-50},${ornY}`}
+        stroke={NAVY} strokeWidth="0.8" fill="none"
       />
-      {/* Left scroll — inner arc */}
+      {/* Right scroll — mirrored */}
       <path
-        d={`M${cx - 37},${ornY} C${cx - 37},${ornY + 10} ${cx - 63},${ornY + 10} ${cx - 63},${ornY}`}
-        stroke={NAVY} strokeWidth="0.6" fill="none"
-      />
-      {/* Right scroll — outer arc */}
-      <path
-        d={`M${cx + 34},${ornY} C${cx + 34},${ornY + 16} ${cx + 66},${ornY + 16} ${cx + 66},${ornY}`}
-        stroke={NAVY} strokeWidth="0.85" fill="none"
-      />
-      {/* Right scroll — inner arc */}
-      <path
-        d={`M${cx + 37},${ornY} C${cx + 37},${ornY + 10} ${cx + 63},${ornY + 10} ${cx + 63},${ornY}`}
-        stroke={NAVY} strokeWidth="0.6" fill="none"
+        d={`M${cx+40},${ornY} C${cx+40},${ornY+13} ${cx+62},${ornY+13} ${cx+62},${ornY} C${cx+62},${ornY-7} ${cx+54},${ornY-7} ${cx+50},${ornY}`}
+        stroke={NAVY} strokeWidth="0.8" fill="none"
       />
 
-      {/* Centre diamond */}
-      <path d={diamond(cx, ornY, 6, 9)} fill={NAVY} />
-      {/* Small pendant diamond below */}
-      <path d={diamond(cx, ornY + 14, 3.5, 5)} fill={NAVY} />
-      {/* Connecting stem */}
-      <line x1={cx} y1={ornY + 9} x2={cx} y2={ornY + 9} stroke={NAVY} strokeWidth="0" />
+      {/* Center ornament — stacked diamonds */}
+      <path d={diamond(cx, ornY,    5.5, 8.5)} fill={NAVY} />
+      <path d={diamond(cx, ornY+13, 3,   4.5)} fill={NAVY} />
     </svg>
   );
 }

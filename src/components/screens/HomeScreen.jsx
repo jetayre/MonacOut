@@ -136,13 +136,13 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Title frame */}
+        {/* Title frame — tableau double-border */}
         <div style={{
-          background: WHITE, padding: "4px 20px 8px",
-          display: "flex", justifyContent: "center", position: "relative",
+          background: WHITE, padding: "6px 8px 0",
+          position: "relative",
         }}>
-          {/* Language toggle — top left */}
-          <div style={{ position: "absolute", left: 24, top: "50%", transform: "translateY(-50%)", display: "flex", gap: 4, zIndex: 1 }}>
+          {/* Language toggle — top left (outside frame) */}
+          <div style={{ position: "absolute", left: 14, top: 12, display: "flex", gap: 4, zIndex: 1 }}>
             <button
               onClick={() => setLang?.("fr")}
               style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 18, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.45 }}
@@ -155,65 +155,73 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           {/* Search — top right */}
           <button
             onClick={() => setShowSearch(s => !s)}
-            style={{ position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
+            style={{ position: "absolute", right: 14, top: 12, background: "none", border: "none", cursor: "pointer", fontSize: 16, padding: 4, zIndex: 1 }}
           >🔍</button>
-          <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 2, padding: 4, display: "inline-block", width: "calc(100% - 40px)" }}>
-            <div style={{ border: `1px solid ${GOLD}`, borderRadius: 1, padding: "8px 16px 10px", textAlign: "center", background: WHITE }}>
-              <MonacOutLogo width={200} />
-              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 14, color: NAVY, letterSpacing: 0.5, marginTop: -4, paddingBottom: 4, opacity: 0.6 }}>{t.tagline}</div>
+          {/* Outer border */}
+          <div style={{ border: `2px solid ${NAVY}`, padding: 7 }}>
+            {/* Inner border */}
+            <div style={{ border: `1px solid ${NAVY}`, padding: "14px 20px 16px", textAlign: "center", background: WHITE }}>
+              <MonacOutLogo width={210} />
+              <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: NAVY, letterSpacing: 0.5, marginTop: -4, paddingBottom: 2, opacity: 0.55 }}>{t.tagline}</div>
             </div>
           </div>
         </div>
 
-        {/* Filters or Search */}
+        {/* Filters or Search — single scrollable row */}
         {!showSearch && (
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 6, padding: "6px 16px 10px", background: WHITE }}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 6,
+            padding: "7px 12px 8px",
+            overflowX: "auto", WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none", msOverflowStyle: "none",
+            background: WHITE, borderTop: `1px solid ${BORDER}`,
+          }}>
 
             {/* Calendar icon pill */}
             <button
               onClick={() => setShowCalendar(s => !s)}
               style={{
                 flexShrink: 0,
-                padding: "5px 11px",
+                padding: "4px 10px",
                 borderRadius: 20,
                 border: `1.5px solid ${(rangeLabel || showCalendar) ? NAVY : BORDER}`,
                 background: (rangeLabel || showCalendar) ? NAVY : WHITE,
                 color: (rangeLabel || showCalendar) ? WHITE : GREY,
                 fontFamily: "-apple-system, sans-serif",
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: 600,
                 cursor: "pointer",
                 whiteSpace: "nowrap",
                 display: "flex",
                 alignItems: "center",
-                gap: 4,
+                gap: 3,
               }}
             >
               📅 {rangeLabel || t.filters.agenda}
             </button>
 
-            {/* Clear range / close calendar button */}
+            {/* Clear range / close calendar */}
             {(rangeLabel || showCalendar) && (
               <button
                 onClick={() => { clearRange(); setShowCalendar(false); }}
-                style={{ flexShrink: 0, padding: "5px 9px", borderRadius: 20, border: `1.5px solid #DDD`, background: WHITE, color: GREY, fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 600, cursor: "pointer" }}
+                style={{ flexShrink: 0, padding: "4px 8px", borderRadius: 20, border: `1.5px solid #DDD`, background: WHITE, color: GREY, fontFamily: "-apple-system, sans-serif", fontSize: 10, fontWeight: 600, cursor: "pointer" }}
               >✕</button>
             )}
 
-            {/* Normal filters (hidden when range active) */}
+            {/* Normal filters */}
             {!rangeLabel && FILTERS.map(f => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
                 style={{
                   flexShrink: 0,
-                  padding: "5px 11px",
+                  padding: "4px 10px",
                   borderRadius: 20,
                   border: `1.5px solid ${filter === f.id ? NAVY : BORDER}`,
                   background: filter === f.id ? NAVY : WHITE,
                   color: filter === f.id ? WHITE : GREY,
                   fontFamily: "-apple-system, sans-serif",
-                  fontSize: 11,
+                  fontSize: 10,
                   fontWeight: 600,
                   cursor: "pointer",
                   whiteSpace: "nowrap",
