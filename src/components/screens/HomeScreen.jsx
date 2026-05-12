@@ -17,7 +17,6 @@ const FILTERS = [
   { id: "sport", label: "⚽ Sport" },
   { id: "culture", label: "🎭 Culture" },
   { id: "music", label: "🎵 Musique" },
-  { id: "cinema", label: "🎬 Cinéma" },
   { id: "famille", label: "👨‍👩‍👧 Famille" },
   { id: "ateliers", label: "🎨 Ateliers" },
   { id: "bienetre", label: "🧘 Bien-être" },
@@ -72,7 +71,7 @@ function filterEvents(events, filterId) {
     case "today": return events.filter(e => e.date === todayStr);
     case "weekend": return events.filter(e => weekendDates.includes(e.date));
     case "sport": return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
-    case "culture": return events.filter(e => ["MUSICAL","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE"].includes(e.cat));
+    case "culture": return events.filter(e => ["MUSICAL","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
     case "music": return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
     case "cinema": return events.filter(e => e.cat === "CINÉMA");
     case "famille": return events.filter(e => e.free === true);
