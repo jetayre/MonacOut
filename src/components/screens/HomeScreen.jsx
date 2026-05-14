@@ -5,11 +5,11 @@ import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 
 const NAVY = "#1A2A5A";
-const GOLD = "#B8966E";
-const DARK_GOLD = "#9A7820";
+const GOLD = "#C4A46B";
+const DARK_GOLD = "#C4A46B";
 const DARK = "#1A2A5A";
 const GREY = "#6A7A9A";
-const LIGHT = "#F5F5FA";
+const LIGHT = "#FAF8F5";
 const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 

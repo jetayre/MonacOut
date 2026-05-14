@@ -1,12 +1,12 @@
 import { ALL_EVENTS } from "../../data/events";
 
 const NAVY = "#1A2A5A";
-const GOLD = "#B8966E";
-const GOLD2 = "#D4B896";
+const GOLD = "#C4A46B";
+const GOLD2 = "#DCC898";
 const DARK = "#1A2A5A";
 const GREY = "#6A7A9A";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F5F5FA";
+const LIGHT = "#FAF8F5";
 const BORDER = "#DDE0F0";
 
 function handleShare(event, lang) {

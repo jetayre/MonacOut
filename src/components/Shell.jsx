@@ -1,5 +1,5 @@
 const NAVY = "#1A2A5A";
-const GOLD = "#B8966E";
+const GOLD = "#C4A46B";
 
 const CAT_FILTERS = [
   { id: "ateliers", label: "🎨 Ateliers",  labelEn: "🎨 Workshops" },
@@ -41,7 +41,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
   return (
     <div style={{
       minHeight: "100vh",
-      background: "#E8E8F0",
+      background: "#E8E2D8",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",

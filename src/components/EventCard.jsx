@@ -1,4 +1,4 @@
-const GOLD = "#B8966E";
+const GOLD = "#C4A46B";
 const NAVY = "#1A2A5A";
 const NAVY_LIGHT = "#2A3A6A";
 const GREY = "#6A7A8A";
@@ -86,14 +86,13 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Title */}
         <div style={{
-          fontFamily: "Georgia, serif",
-          fontStyle: "normal",
-          fontWeight: "bold",
-          fontSize: 24,
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontStyle: "italic",
+          fontWeight: 600,
+          fontSize: 26,
           letterSpacing: 0.5,
-          textTransform: "uppercase",
           color: NAVY,
-          lineHeight: 1.2,
+          lineHeight: 1.15,
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",

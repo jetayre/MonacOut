@@ -1,4 +1,4 @@
-const DARK_GOLD = "#9A7820";
+const DARK_GOLD = "#C4A46B";
 
 export default function MonacOutLogo({ width = 290 }) {
   const scale = width / 290;
