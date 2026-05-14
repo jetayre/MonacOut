@@ -1,7 +1,7 @@
 import { ALL_EVENTS } from "../../data/events";
 
 const NAVY = "#0F1D3A";
-const GOLD = "#0F1D3A";
+const GOLD = "#B8962E";
 const GOLD2 = "#FFFFFF";
 const GREY = "#6A6860";
 const WHITE = "#FFFFFF";

@@ -6,15 +6,13 @@ const WHITE = "#FFFFFF";
 
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
-  const borderColor = NAVY;
-
   return (
     <div
       onClick={() => onClick(event)}
       style={{
         background: WHITE,
         borderRadius: 4,
-        border: `1px solid ${borderColor}`,
+        border: `1.5px solid ${GOLD}`,
         marginBottom: 16,
         cursor: "pointer",
         position: "relative",
@@ -22,9 +20,9 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
       }}
     >
-      {/* Inner frame */}
+      {/* Inner frame — navy */}
       <div style={{
-        border: `2px solid ${borderColor}`,
+        border: `2px solid ${NAVY}`,
         borderRadius: 2,
         padding: "18px 16px 20px",
         position: "relative",

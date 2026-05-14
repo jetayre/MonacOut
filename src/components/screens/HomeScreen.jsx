@@ -153,9 +153,9 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       }}>
         {/* Title frame */}
         <div style={{ background: WHITE, padding: "0 12px", position: "relative" }}>
-          {/* Outer border */}
-          <div style={{ border: `1.5px solid ${NAVY}`, padding: 1, position: "relative" }}>
-            {/* Inner border */}
+          {/* Outer border — or */}
+          <div style={{ border: `1.5px solid #B8962E`, padding: 1, position: "relative" }}>
+            {/* Inner border — bleu nuit */}
             <div style={{ border: `2px solid ${NAVY}`, padding: "4px 10px 5px", background: WHITE, position: "relative" }}>
               {/* Search icon inside frame top-right */}
               <button
@@ -184,8 +184,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 fontStyle: "italic",
                 fontWeight: 400,
                 fontSize: 11,
-                color: NAVY,
-                opacity: 0.6,
+                color: "#B8962E",
+                opacity: 1,
                 letterSpacing: 1,
                 textAlign: "center",
                 marginTop: -4,
