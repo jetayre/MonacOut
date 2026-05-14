@@ -112,17 +112,6 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
                 >
                   <n.Icon color={color} active={active} />
                   {t?.nav[n.key] || n.key}
-                  {active && (
-                    <div style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: "15%",
-                      right: "15%",
-                      height: 2,
-                      background: NAVY,
-                      borderRadius: 1,
-                    }} />
-                  )}
                 </button>
               );
             })}
