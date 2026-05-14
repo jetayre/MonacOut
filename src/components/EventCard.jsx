@@ -89,19 +89,22 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontFamily: "Georgia, serif",
           fontStyle: "normal",
           fontWeight: "bold",
-          fontSize: 28,
+          fontSize: 24,
           letterSpacing: 0.5,
           textTransform: "uppercase",
           color: NAVY,
-          lineHeight: 1.15,
-          whiteSpace: "pre-line",
+          lineHeight: 1.2,
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
           textAlign: "center",
           marginBottom: 12,
           paddingRight: 28,
           paddingLeft: 4,
           paddingTop: 2,
         }}>
-          {event.title}
+          {event.title.replace(/\n/g, " ")}
         </div>
 
         {/* Short divider */}
@@ -137,39 +140,39 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "italic",
-          fontSize: 14,
+          fontSize: 13,
           color: GREY,
-          textAlign: "center",
-          marginBottom: 8,
+          textAlign: "left",
+          marginBottom: 6,
         }}>{event.subtitle}</div>
 
         {/* Date */}
         <div style={{
           fontFamily: "-apple-system, sans-serif",
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: 1,
           textTransform: "uppercase",
           color: NAVY,
-          textAlign: "center",
-          marginBottom: 14,
+          textAlign: "left",
+          marginBottom: 12,
         }}>{event.date} {event.year || 2026} · {event.time}</div>
 
         {/* Separator */}
         <div style={{
           height: 1,
           background: "#DDE0F0",
-          marginBottom: 14,
+          marginBottom: 12,
         }} />
 
         {/* Description */}
         <div style={{
           fontFamily: "Georgia, serif",
           fontStyle: "normal",
-          fontSize: 14,
+          fontSize: 13,
           color: NAVY_LIGHT,
-          textAlign: "center",
-          lineHeight: 1.7,
+          textAlign: "left",
+          lineHeight: 1.6,
         }}>{event.desc}</div>
 
         {event.link && (

@@ -13,41 +13,31 @@ const LIGHT = "#F5F5FA";
 const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
+const CAT_TO_FILTER = {
+  FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
+  SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
+  CONCERT: "music", "OPÉRA": "music", MUSICAL: "music", "JAZZ LIVE": "music",
+  "DJ SET": "music", CHANTS: "music",
+  THÉÂTRE: "culture", "CONFÉRENCE": "culture", EXPOSITION: "culture", FESTIVAL: "culture",
+  GALA: "culture", "FÊTE NATIONALE": "culture", MARCHÉ: "culture", SALON: "culture",
+  SPECTACLE: "culture", CINÉMA: "cinema",
+  ATELIER: "ateliers", DANSE: "ateliers",
+  "BIEN-ÊTRE": "bienetre",
+  BRUNCH: "foody", APÉRO: "foody", SOIRÉE: "foody", FOODY: "foody",
+  ENCHÈRES: "encheres",
+};
+
 const TIME_FILTERS = [
   { id: "today",    label: "Aujourd'hui" },
   { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
   { id: "calendar", label: "Agenda" },
 ];
-const CAT_FILTERS = [
-  { id: "ateliers", label: "🎨 Ateliers" },
-  { id: "bienetre", label: "🧘 Bien-être" },
-  { id: "cinema",   label: "🎬 Cinéma" },
-  { id: "culture",  label: "🎭 Culture" },
-  { id: "encheres", label: "🔨 Enchères" },
-  { id: "famille",  label: "👨‍👩‍👧 Famille" },
-  { id: "foody",    label: "🍽️ Foody" },
-  { id: "music",    label: "🎵 Musique" },
-  { id: "sport",    label: "⚽ Sport" },
-];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
 const MOIS_IDX = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
 const MOIS_NOM_COURT = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
-const JOURS_FULL = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
-const MOIS_FULL  = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-
-function getTodayLabel() {
-  const d = new Date();
-  return `${JOURS_FULL[d.getDay()]} ${d.getDate()} ${MOIS_FULL[d.getMonth()]} ${d.getFullYear()}`;
-}
-
-function getWeekCount() {
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
-  return ALL_EVENTS.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= sun; }).length;
-}
 
 function toFrDate(d) {
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
@@ -82,45 +72,42 @@ function filterByTime(events, filterId) {
       const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
       return events.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= sun; });
     }
-    case "gratuit": return events.filter(e => e.free === true);
     default: return events;
   }
 }
 
 function filterByCat(events, catId) {
   switch (catId) {
-    case "sport": return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
-    case "culture": return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
-    case "music": return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
-    case "cinema": return events.filter(e => e.cat === "CINÉMA");
-    case "famille": return events.filter(e => e.free === true);
+    case "sport":    return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
+    case "culture":  return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
+    case "music":    return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
+    case "cinema":   return events.filter(e => e.cat === "CINÉMA");
+    case "famille":  return events.filter(e => e.free === true);
     case "ateliers": return events.filter(e => ["ATELIER","DANSE"].includes(e.cat));
     case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
-    case "foody": return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
+    case "foody":    return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
     case "encheres": return events.filter(e => ["ENCHÈRES"].includes(e.cat));
-    case "gratuit": return events.filter(e => e.free === true);
     default: return events;
   }
 }
 
-export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang, showCats = false }) {
+export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang, catFilter, onCatFilter }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { all: "All", today: "Today", weekend: "Weekend", week: "This week", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema", famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness", foody: "🍽️ Foody", encheres: "🔨 Auctions", gratuit: "🆓 Free", agenda: "Calendar" },
+        filters: { today: "Today", weekend: "Weekend", week: "This week", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { all: "Tout", today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", sport: "⚽ Sport", culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma", famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être", foody: "🍽️ Foody", encheres: "🔨 Enchères", gratuit: "🆓 Gratuit", agenda: "Agenda" },
+        filters: { today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
-  const [catFilter, setCatFilter] = useState(null);
 
   function handleFilterChange(newFilter) {
     if (newFilter !== "calendar") {
@@ -136,7 +123,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
     if (start) setSearch("");
   }
 
-  // Determine filtered events
   let filtered;
   if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
@@ -172,39 +158,46 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Title frame — tableau double-border, full width */}
-        <div style={{ background: WHITE, padding: "0 16px 0", position: "relative" }}>
-          {/* Search row — above frame */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "5px 2px 4px" }}>
+        {/* Title frame */}
+        <div style={{ background: WHITE, padding: "0 12px 0", position: "relative" }}>
+          {/* Search button row */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "4px 2px 3px" }}>
             <button
               onClick={() => setShowSearch(s => !s)}
               style={{ background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4 }}
             >🔍</button>
           </div>
-          {/* Outer border — dark gold */}
+          {/* Outer border */}
           <div style={{ border: `1.5px solid ${DARK_GOLD}`, padding: 1 }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${DARK_GOLD}`, padding: "6px 12px 6px", textAlign: "center", background: WHITE }}>
-              {/* Flags inside frame */}
-              <div style={{ display: "flex", gap: 4, justifyContent: "center", marginBottom: 2 }}>
-                <button
-                  onClick={() => setLang?.("fr")}
-                  style={{ background: "none", border: lang === "fr" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 15, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
-                >🇫🇷</button>
-                <button
-                  onClick={() => setLang?.("en")}
-                  style={{ background: "none", border: lang === "en" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 15, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
-                >🇬🇧</button>
+            <div style={{ border: `2px solid ${DARK_GOLD}`, padding: "4px 10px 5px", background: WHITE }}>
+              {/* Flags left + logo centered row */}
+              <div style={{ display: "flex", alignItems: "center", marginBottom: 0 }}>
+                <div style={{ display: "flex", gap: 3, flexShrink: 0 }}>
+                  <button
+                    onClick={() => setLang?.("fr")}
+                    style={{ background: "none", border: lang === "fr" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
+                  >🇫🇷</button>
+                  <button
+                    onClick={() => setLang?.("en")}
+                    style={{ background: "none", border: lang === "en" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
+                  >🇬🇧</button>
+                </div>
+                <div style={{ flex: 1 }}>
+                  <MonacOutLogo width={250} />
+                </div>
+                {/* spacer to visually balance flags */}
+                <div style={{ width: 50, flexShrink: 0 }} />
               </div>
-              <MonacOutLogo width={290} />
               <div style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontStyle: "italic",
                 fontWeight: 400,
-                fontSize: 12,
+                fontSize: 11,
                 color: DARK_GOLD,
                 letterSpacing: 1,
-                marginTop: -2,
+                textAlign: "center",
+                marginTop: -4,
               }}>{t.tagline}</div>
             </div>
           </div>
@@ -213,7 +206,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search */}
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
-            {/* Time filter row */}
             <div style={{ display: "flex", gap: 6, padding: "8px 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
               {TIME_FILTERS.map(f => {
                 const active = filter === f.id;
@@ -239,34 +231,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 );
               })}
             </div>
-            {/* Category panel — visible when showCats */}
-            {showCats && (
-              <div style={{ borderTop: `1px solid ${BORDER}`, padding: "8px 10px 10px", display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none" }}>
-                {CAT_FILTERS.map(f => (
-                  <button
-                    key={f.id}
-                    onClick={() => {
-                      const next = catFilter === f.id ? null : f.id;
-                      setCatFilter(next);
-                      if (next) handleFilterChange("all");
-                    }}
-                    style={{
-                      flexShrink: 0,
-                      padding: "6px 14px",
-                      borderRadius: 20,
-                      border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
-                      background: catFilter === f.id ? NAVY : WHITE,
-                      color: catFilter === f.id ? WHITE : GREY,
-                      fontFamily: "-apple-system, sans-serif",
-                      fontSize: 11,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                    }}
-                  >{t.filters[f.id] || f.label}</button>
-                ))}
-              </div>
-            )}
           </div>
         )}
 
@@ -313,7 +277,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               onClick={onSelectEvent}
               favorites={favorites}
               onToggleFav={onToggleFav}
-              onCategoryClick={(catId) => setCatFilter(c => c === catId ? null : catId)}
+              onCategoryClick={(cat) => {
+                const filterId = CAT_TO_FILTER[cat];
+                if (filterId) onCatFilter?.(catFilter === filterId ? null : filterId);
+              }}
               lang={lang}
             />
           ))

@@ -2,10 +2,7 @@ import { useState } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import HomeScreen from "./components/screens/HomeScreen";
-import AgendaScreen from "./components/screens/AgendaScreen";
-import MapScreen from "./components/screens/MapScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
-import ProfileScreen from "./components/screens/ProfileScreen";
 import DetailScreen from "./components/screens/DetailScreen";
 
 const CAT_TO_FILTER = {
@@ -32,6 +29,7 @@ export default function App() {
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
   const [showCats, setShowCats] = useState(false);
+  const [catFilter, setCatFilter] = useState(null);
 
   function handleTabChange(newTab) {
     if (newTab === "events" && tab === "events") {
@@ -39,7 +37,13 @@ export default function App() {
       return;
     }
     setSelectedEvent(null);
+    setCatFilter(null);
     setTab(newTab);
+  }
+
+  function handleCatFilter(catId) {
+    setCatFilter(catId);
+    if (catId) setHomeFilter("all");
   }
 
   function toggleFav(id) {
@@ -51,7 +55,8 @@ export default function App() {
   }
 
   function navigateToCategory(cat) {
-    setHomeFilter(CAT_TO_FILTER[cat] || "all");
+    setCatFilter(CAT_TO_FILTER[cat] || null);
+    setHomeFilter("all");
     setSelectedEvent(null);
     setTab("events");
   }
@@ -76,7 +81,16 @@ export default function App() {
     }
     switch (tab) {
       case "events":
-        return <HomeScreen {...sharedProps} filter={homeFilter} onFilterChange={setHomeFilter} setLang={setLang} showCats={showCats} />;
+        return (
+          <HomeScreen
+            {...sharedProps}
+            filter={homeFilter}
+            onFilterChange={setHomeFilter}
+            setLang={setLang}
+            catFilter={catFilter}
+            onCatFilter={handleCatFilter}
+          />
+        );
       case "agenda":
         return <FavoritesScreen {...sharedProps} />;
       default:
@@ -85,7 +99,7 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter}>
       {renderScreen()}
     </Shell>
   );
