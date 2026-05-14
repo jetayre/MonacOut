@@ -20,16 +20,15 @@ const TIME_FILTERS = [
   { id: "gratuit",  label: "Gratuit" },
 ];
 const CAT_FILTERS = [
-  { id: "sport",    label: "⚽ Sport" },
-  { id: "culture",  label: "🎭 Culture" },
+  { id: "ateliers", label: "🎨 Ateliers" },
+  { id: "bienetre", label: "🧘 Bien-être" },
   { id: "cinema",   label: "🎬 Cinéma" },
-  { id: "music",    label: "🎵 Musique" },
+  { id: "culture",  label: "🎭 Culture" },
+  { id: "encheres", label: "🔨 Enchères" },
   { id: "famille",  label: "👨‍👩‍👧 Famille" },
   { id: "foody",    label: "🍽️ Foody" },
-  { id: "bienetre", label: "🧘 Bien-être" },
-  { id: "encheres", label: "🔨 Enchères" },
-  { id: "ateliers", label: "🎨 Ateliers" },
-  { id: "gratuit",  label: "🆓 Gratuit" },
+  { id: "music",    label: "🎵 Musique" },
+  { id: "sport",    label: "⚽ Sport" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -242,6 +241,32 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                   >{label}</button>
                 );
               })}
+            </div>
+            {/* Category filter row — alphabetical, horizontally scrollable */}
+            <div style={{ display: "flex", gap: 6, padding: "0 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
+              {CAT_FILTERS.map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => {
+                    const next = catFilter === f.id ? null : f.id;
+                    setCatFilter(next);
+                    if (next) handleFilterChange("all");
+                  }}
+                  style={{
+                    flexShrink: 0,
+                    padding: "5px 12px",
+                    borderRadius: 20,
+                    border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
+                    background: catFilter === f.id ? NAVY : WHITE,
+                    color: catFilter === f.id ? WHITE : GREY,
+                    fontFamily: "-apple-system, sans-serif",
+                    fontSize: 11,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                  }}
+                >{t.filters[f.id] || f.label}</button>
+              ))}
             </div>
           </div>
         )}
