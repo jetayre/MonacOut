@@ -214,34 +214,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search */}
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
-            {/* Time filter row */}
-            <div style={{ display: "flex", gap: 6, padding: "8px 10px 5px", overflowX: "auto", scrollbarWidth: "none" }}>
-              {TIME_FILTERS.map(f => {
-                const active = filter === f.id;
-                const label = f.id === "calendar" && rangeStart
-                  ? rangeLabel
-                  : (t.filters[f.id] || f.label);
-                return (
-                  <button
-                    key={f.id}
-                    onClick={() => handleFilterChange(f.id)}
-                    style={{
-                      flexShrink: 0,
-                      padding: "7px 14px",
-                      borderRadius: 20,
-                      border: `1.5px solid ${active ? GOLD : "rgba(184,150,110,0.4)"}`,
-                      background: active ? GOLD : WHITE,
-                      color: active ? WHITE : GREY,
-                      fontFamily: "-apple-system, sans-serif",
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                    }}
-                  >{label}</button>
-                );
-              })}
-            </div>
             {/* Category filter row — alphabetical, horizontally scrollable */}
             <div style={{ display: "flex", gap: 6, padding: "0 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
               {CAT_FILTERS.map(f => (
