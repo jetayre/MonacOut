@@ -23,7 +23,7 @@ const CAT_TO_FILTER = {
 };
 
 export default function App() {
-  const [tab, setTab] = useState("home");
+  const [tab, setTab] = useState("events");
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
@@ -48,7 +48,7 @@ export default function App() {
   function navigateToCategory(cat) {
     setHomeFilter(CAT_TO_FILTER[cat] || "all");
     setSelectedEvent(null);
-    setTab("home");
+    setTab("events");
   }
 
   const sharedProps = {
@@ -70,16 +70,10 @@ export default function App() {
       );
     }
     switch (tab) {
-      case "home":
+      case "events":
         return <HomeScreen {...sharedProps} filter={homeFilter} onFilterChange={setHomeFilter} setLang={setLang} />;
       case "agenda":
-        return <AgendaScreen {...sharedProps} />;
-      case "map":
-        return <MapScreen {...sharedProps} />;
-      case "favorites":
         return <FavoritesScreen {...sharedProps} />;
-      case "profile":
-        return <ProfileScreen lang={lang} />;
       default:
         return null;
     }

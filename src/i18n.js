@@ -2,7 +2,7 @@ export const T = {
   fr: {
     tagline: "Monaco dans votre poche",
     filters: {
-      today: "Aujourd'hui", weekend: "Week-end", sport: "⚽ Sport",
+      today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", calendar: "Calendrier", gratuit: "Gratuit", sport: "⚽ Sport",
       culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma",
       famille: "👨‍👩‍👧 Famille", ateliers: "🎨 Ateliers", bienetre: "🧘 Bien-être",
       foody: "🍽️ Foody", encheres: "🔨 Enchères", agenda: "Agenda",
@@ -13,7 +13,7 @@ export const T = {
     seeEvents: "Voir les événements →", selectDate: "Sélectionnez une date",
     fromTo: (s, e) => `Du ${s} au ${e}`,
     since: (s) => `À partir du ${s}`,
-    nav: { home: "Accueil", map: "Carte", favorites: "Favoris", profile: "Profil" },
+    nav: { events: "Événements", agenda: "Mon Agenda" },
     months: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
     days: ["L","M","M","J","V","S","D"],
     cofounder: "Co-fondatrice",
@@ -28,7 +28,7 @@ export const T = {
   en: {
     tagline: "Monaco in your pocket",
     filters: {
-      today: "Today", weekend: "Weekend", sport: "⚽ Sport",
+      today: "Today", week: "Week", weekend: "Weekend", calendar: "Calendar", gratuit: "Free", sport: "⚽ Sport",
       culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema",
       famille: "👨‍👩‍👧 Family", ateliers: "🎨 Workshops", bienetre: "🧘 Wellness",
       foody: "🍽️ Foody", encheres: "🔨 Auctions", agenda: "Calendar",
@@ -39,7 +39,7 @@ export const T = {
     seeEvents: "See events →", selectDate: "Select a date",
     fromTo: (s, e) => `From ${s} to ${e}`,
     since: (s) => `From ${s}`,
-    nav: { home: "Home", map: "Map", favorites: "Favorites", profile: "Profile" },
+    nav: { events: "Events", agenda: "My Agenda" },
     months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
     days: ["M","T","W","T","F","S","S"],
     cofounder: "Co-founder",

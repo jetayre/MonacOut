@@ -13,10 +13,11 @@ const BORDER = "#DDE0F0";
 const WHITE = "#FFFFFF";
 
 const TIME_FILTERS = [
-  { id: "all",     label: "Tout" },
-  { id: "today",   label: "Aujourd'hui" },
-  { id: "weekend", label: "Week-end" },
-  { id: "week",    label: "Semaine" },
+  { id: "today",    label: "Aujourd'hui" },
+  { id: "week",     label: "Semaine" },
+  { id: "weekend",  label: "Week-end" },
+  { id: "calendar", label: "Calendrier" },
+  { id: "gratuit",  label: "Gratuit" },
 ];
 const CAT_FILTERS = [
   { id: "sport",    label: "⚽ Sport" },
@@ -82,6 +83,7 @@ function filterByTime(events, filterId) {
       const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
       return events.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= sun; });
     }
+    case "gratuit": return events.filter(e => e.free === true);
     default: return events;
   }
 }
@@ -117,10 +119,17 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       };
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
   const [catFilter, setCatFilter] = useState(null);
+
+  function handleFilterChange(newFilter) {
+    if (newFilter !== "calendar") {
+      setRangeStart(null);
+      setRangeEnd(null);
+    }
+    setFilter(newFilter);
+  }
 
   function handleCalendarChange(start, end) {
     setRangeStart(start || null);
@@ -128,20 +137,17 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
     if (start) setSearch("");
   }
 
-  function clearRange() {
-    setRangeStart(null);
-    setRangeEnd(null);
-  }
-
   // Determine filtered events
   let filtered;
-  if (rangeStart) {
+  if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
     filtered = ALL_EVENTS.filter(e => {
       const d = parseEventDate(e);
       if (!d) return false;
       return d >= rangeStart && d <= endBound;
     });
+  } else if (filter === "calendar") {
+    filtered = ALL_EVENTS;
   } else if (search.trim()) {
     const q = search.toLowerCase();
     filtered = ALL_EVENTS.filter(e =>
@@ -210,26 +216,32 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
             {/* Time filter row */}
-            <div style={{ display: "flex", gap: 6, padding: "8px 10px 5px" }}>
-              {TIME_FILTERS.map(f => (
-                <button
-                  key={f.id}
-                  onClick={() => setFilter(f.id)}
-                  style={{
-                    flexShrink: 0,
-                    padding: "7px 16px",
-                    borderRadius: 20,
-                    border: `1.5px solid ${filter === f.id ? GOLD : "rgba(184,150,110,0.4)"}`,
-                    background: filter === f.id ? GOLD : WHITE,
-                    color: filter === f.id ? WHITE : GREY,
-                    fontFamily: "-apple-system, sans-serif",
-                    fontSize: 12,
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                  }}
-                >{t.filters[f.id] || f.label}</button>
-              ))}
+            <div style={{ display: "flex", gap: 6, padding: "8px 10px 5px", overflowX: "auto", scrollbarWidth: "none" }}>
+              {TIME_FILTERS.map(f => {
+                const active = filter === f.id;
+                const label = f.id === "calendar" && rangeStart
+                  ? rangeLabel
+                  : (t.filters[f.id] || f.label);
+                return (
+                  <button
+                    key={f.id}
+                    onClick={() => handleFilterChange(f.id)}
+                    style={{
+                      flexShrink: 0,
+                      padding: "7px 14px",
+                      borderRadius: 20,
+                      border: `1.5px solid ${active ? GOLD : "rgba(184,150,110,0.4)"}`,
+                      background: active ? GOLD : WHITE,
+                      color: active ? WHITE : GREY,
+                      fontFamily: "-apple-system, sans-serif",
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                    }}
+                  >{label}</button>
+                );
+              })}
             </div>
             {/* Category filter grid */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 3, padding: "2px 10px 6px" }}>
@@ -280,7 +292,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       </div>
 
       {/* Inline calendar panel */}
-      {showCalendar && (
+      {filter === "calendar" && (
         <CalendarPicker
           inline
           lang={lang}
