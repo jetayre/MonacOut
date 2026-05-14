@@ -135,11 +135,10 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
           <div style={{
             flexShrink: 0,
             borderBottom: "1px solid #E0E4F0",
-            padding: "8px 10px",
+            padding: "8px 10px 10px",
             display: "flex",
+            flexWrap: "wrap",
             gap: 6,
-            overflowX: "auto",
-            scrollbarWidth: "none",
             background: "#FFFFFF",
           }}>
             {CAT_FILTERS.map(f => (
