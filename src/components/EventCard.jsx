@@ -114,7 +114,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontStyle: "italic",
           fontSize: 12,
           color: GREY,
-          textAlign: "left",
+          textAlign: "center",
           marginBottom: 4,
         }}>{event.subtitle}</div>
 
@@ -126,7 +126,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           letterSpacing: 1,
           textTransform: "uppercase",
           color: NAVY,
-          textAlign: "left",
+          textAlign: "center",
           marginBottom: 10,
         }}>{event.date} {event.year || 2026} · {event.time}</div>
 
@@ -136,7 +136,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontStyle: "normal",
           fontSize: 12,
           color: NAVY_LIGHT,
-          textAlign: "left",
+          textAlign: "center",
           lineHeight: 1.6,
         }}>{event.desc}</div>
 

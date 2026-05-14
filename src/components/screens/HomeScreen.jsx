@@ -197,7 +197,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search */}
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
-            <div style={{ display: "flex", gap: 6, padding: "8px 10px", overflowX: "auto", scrollbarWidth: "none" }}>
+            <div style={{ display: "flex", gap: 6, padding: "8px 10px", overflowX: "auto", scrollbarWidth: "none", justifyContent: "center" }}>
               {TIME_FILTERS.map(f => {
                 const active = filter === f.id;
                 const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);

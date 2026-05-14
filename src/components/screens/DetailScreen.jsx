@@ -209,7 +209,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           }}
         >
           {event.free
-            ? (lang === "en" ? "Je participe →" : "Je participe →")
+            ? (lang === "en" ? "I'm joining →" : "Je participe →")
             : (lang === "en" ? "Book →" : "Réserver →")}
         </a>
         {event.phone && (
