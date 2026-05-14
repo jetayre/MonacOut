@@ -4,8 +4,19 @@ const NAVY_LIGHT = "#1A2D4A";
 const GREY = "#4A4A50";
 const WHITE = "#FFFFFF";
 
+const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
+const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+function todayFrDate() {
+  const d = new Date();
+  return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
+}
+
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
+  const isToday = event.date === todayFrDate();
+  const dateLabel = isToday
+    ? (lang === "en" ? "Today" : "Aujourd'hui")
+    : event.date;
   return (
     <div
       onClick={() => onClick(event)}
@@ -77,7 +88,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           textAlign: "center",
           paddingTop: 26,
           marginBottom: 6,
-        }}>{event.date} {event.year || 2026} · {event.time}</div>
+        }}>{dateLabel} {!isToday && (event.year || 2026)} · {event.time}</div>
 
         {/* Title */}
         <div style={{
