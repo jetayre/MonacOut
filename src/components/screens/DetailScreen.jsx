@@ -119,10 +119,10 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
         >{event.emoji} {event.cat}</button>
 
         <div style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
-          fontWeight: 700,
-          fontSize: 28,
+          fontWeight: 600,
+          fontSize: 32,
           color: WHITE,
           textTransform: "uppercase",
           lineHeight: 1.1,
@@ -292,10 +292,10 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
                 }}>{e.emoji}</div>
                 <div style={{ padding: "10px 12px", flex: 1, minWidth: 0 }}>
                   <div style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
                     fontStyle: "italic",
-                    fontWeight: 700,
-                    fontSize: 12,
+                    fontWeight: 600,
+                    fontSize: 13,
                     color: NAVY,
                     textTransform: "uppercase",
                     lineHeight: 1.2,

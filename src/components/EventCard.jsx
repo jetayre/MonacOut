@@ -73,10 +73,10 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Title */}
         <div style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
-          fontWeight: 700,
-          fontSize: 26,
+          fontWeight: 600,
+          fontSize: 30,
           letterSpacing: 0.3,
           color: NAVY,
           lineHeight: 1.15,

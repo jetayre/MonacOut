@@ -158,17 +158,15 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       }}>
         {/* Title frame */}
         <div style={{ background: WHITE, padding: "0 12px 0", position: "relative" }}>
-          {/* Search button row */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "4px 2px 3px" }}>
-            <button
-              onClick={() => setShowSearch(s => !s)}
-              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4 }}
-            >🔍</button>
-          </div>
           {/* Outer border */}
-          <div style={{ border: `1.5px solid ${GOLD}`, padding: 1 }}>
+          <div style={{ border: `1.5px solid ${GOLD}`, padding: 1, position: "relative" }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${GOLD}`, padding: "4px 10px 5px", background: WHITE }}>
+            <div style={{ border: `2px solid ${GOLD}`, padding: "4px 10px 5px", background: WHITE, position: "relative" }}>
+              {/* Search icon inside frame top-right */}
+              <button
+                onClick={() => setShowSearch(s => !s)}
+                style={{ position: "absolute", top: 4, right: 6, background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: 2, opacity: 0.5 }}
+              >🔍</button>
               {/* Flags left + logo centered row */}
               <div style={{ display: "flex", alignItems: "center", marginBottom: 0 }}>
                 <div style={{ display: "flex", gap: 3, flexShrink: 0 }}>
