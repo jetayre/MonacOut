@@ -147,9 +147,11 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Subtitle */}
         <div style={{
-          fontFamily: "'Libre Baskerville', Georgia, serif",
-          fontStyle: "italic",
-          fontSize: 14,
+          fontFamily: "'Jost', -apple-system, sans-serif",
+          fontStyle: "normal",
+          fontWeight: 700,
+          fontSize: 13,
+          letterSpacing: 0.5,
           color: GREY,
           textAlign: "center",
           marginBottom: 10,
