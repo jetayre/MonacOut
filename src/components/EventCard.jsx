@@ -105,20 +105,20 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Title */}
         <div style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "normal",
-          fontWeight: 400,
-          fontSize: 26,
-          letterSpacing: 2,
+          fontWeight: 300,
+          fontSize: 28,
+          letterSpacing: 3,
           color: NAVY,
-          lineHeight: 1.25,
+          lineHeight: 1.3,
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
           textAlign: "center",
-          marginTop: 8,
-          marginBottom: 20,
+          marginTop: 10,
+          marginBottom: 24,
           paddingRight: 26,
           paddingLeft: 4,
         }}>
