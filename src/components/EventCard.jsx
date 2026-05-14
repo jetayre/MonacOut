@@ -13,10 +13,10 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         background: WHITE,
         borderRadius: 4,
         border: `1.5px solid ${GOLD}`,
-        marginBottom: 16,
+        marginBottom: 12,
         cursor: "pointer",
         position: "relative",
-        padding: 5,
+        padding: 4,
         boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
       }}
     >
@@ -24,7 +24,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
       <div style={{
         border: `2px solid ${NAVY}`,
         borderRadius: 2,
-        padding: "18px 16px 20px",
+        padding: "12px 14px 14px",
         position: "relative",
       }}>
 
@@ -33,12 +33,12 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
           style={{
             position: "absolute",
-            top: 10,
-            right: 10,
+            top: 8,
+            right: 8,
             background: "none",
             border: "none",
             cursor: "pointer",
-            fontSize: 18,
+            fontSize: 16,
             lineHeight: 1,
           }}
         >
@@ -62,19 +62,16 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             textTransform: "uppercase",
             color: NAVY,
             padding: 0,
-            display: "flex",
-            alignItems: "center",
-            gap: 3,
             lineHeight: 1,
           }}
-        ><span style={{ fontSize: 10 }}>{event.emoji}</span>{event.cat}</button>
+        >{event.cat}</button>
 
         {/* Title */}
         <div style={{
           fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           fontWeight: 600,
-          fontSize: 30,
+          fontSize: 26,
           letterSpacing: 0.3,
           color: NAVY,
           lineHeight: 1.15,
@@ -83,40 +80,31 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
           textAlign: "center",
-          marginBottom: 12,
-          paddingRight: 28,
+          marginBottom: 8,
+          paddingRight: 24,
           paddingLeft: 4,
-          paddingTop: 2,
+          paddingTop: 18,
         }}>
           {event.title.replace(/\n/g, " ")}
         </div>
-
-        {/* Short divider */}
-        <div style={{
-          width: 36,
-          height: 1.5,
-          background: GOLD,
-          margin: "0 auto 12px",
-          borderRadius: 1,
-        }} />
 
         {/* Free badge */}
         {event.free && (
           <div style={{
             display: "flex",
             justifyContent: "center",
-            marginBottom: 10,
+            marginBottom: 8,
           }}>
             <div style={{
               border: `1px solid #2A6A3A`,
               borderRadius: 20,
-              padding: "3px 14px",
+              padding: "2px 12px",
               fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11,
+              fontSize: 10,
               fontWeight: 700,
               letterSpacing: 1,
               color: "#1A4A2A",
-            }}>{lang === "en" ? "✅ FREE ENTRY" : "✅ ENTRÉE LIBRE"}</div>
+            }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</div>
           </div>
         )}
 
@@ -124,10 +112,10 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "italic",
-          fontSize: 13,
+          fontSize: 12,
           color: GREY,
           textAlign: "left",
-          marginBottom: 6,
+          marginBottom: 4,
         }}>{event.subtitle}</div>
 
         {/* Date */}
@@ -139,28 +127,21 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           textTransform: "uppercase",
           color: NAVY,
           textAlign: "left",
-          marginBottom: 12,
+          marginBottom: 10,
         }}>{event.date} {event.year || 2026} · {event.time}</div>
-
-        {/* Separator */}
-        <div style={{
-          height: 1,
-          background: "#DDD5C8",
-          marginBottom: 12,
-        }} />
 
         {/* Description */}
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "normal",
-          fontSize: 13,
+          fontSize: 12,
           color: NAVY_LIGHT,
           textAlign: "left",
-          lineHeight: 1.7,
+          lineHeight: 1.6,
         }}>{event.desc}</div>
 
         {event.link && (
-          <div style={{ textAlign: "center", marginTop: 14 }}>
+          <div style={{ textAlign: "center", marginTop: 12 }}>
             <a
               href={event.link}
               target="_blank"
@@ -184,7 +165,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         )}
 
         {event.phone && (
-          <div style={{ textAlign: "center", marginTop: 8 }}>
+          <div style={{ textAlign: "center", marginTop: 6 }}>
             <a
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
@@ -194,11 +175,8 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
                 fontSize: 12,
                 color: GOLD,
                 textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 4,
               }}
-            >📞 {event.phone}</a>
+            >{event.phone}</a>
           </div>
         )}
 
