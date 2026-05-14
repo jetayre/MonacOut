@@ -77,18 +77,31 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           }}
         >{event.cat}</button>
 
-        {/* Date — top, under category/fav row */}
+        {/* Date + heure */}
         <div style={{
-          fontFamily: "'Jost', -apple-system, sans-serif",
-          fontSize: 15,
-          fontWeight: 700,
-          letterSpacing: 0.8,
-          textTransform: "uppercase",
-          color: NAVY,
-          textAlign: "center",
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "center",
+          gap: 8,
           paddingTop: 26,
           marginBottom: 6,
-        }}>{dateLabel} {!isToday && (event.year || 2026)} · {event.time}</div>
+        }}>
+          <span style={{
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontSize: 15,
+            fontWeight: 700,
+            letterSpacing: 0.8,
+            textTransform: "uppercase",
+            color: NAVY,
+          }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+          <span style={{
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: 0.5,
+            color: GREY,
+          }}>{event.time}</span>
+        </div>
 
         {/* Title */}
         <div style={{
