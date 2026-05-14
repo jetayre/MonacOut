@@ -69,13 +69,13 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         {/* Date — top, under category/fav row */}
         <div style={{
           fontFamily: "'Jost', -apple-system, sans-serif",
-          fontSize: 13,
+          fontSize: 15,
           fontWeight: 700,
           letterSpacing: 0.8,
           textTransform: "uppercase",
           color: NAVY,
           textAlign: "center",
-          paddingTop: 24,
+          paddingTop: 26,
           marginBottom: 6,
         }}>{event.date} {event.year || 2026} · {event.time}</div>
 
@@ -84,7 +84,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           fontWeight: 600,
-          fontSize: 28,
+          fontSize: 30,
           letterSpacing: 0.3,
           color: NAVY,
           lineHeight: 1.2,
@@ -94,7 +94,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           overflow: "hidden",
           textAlign: "center",
           marginBottom: 10,
-          paddingRight: 24,
+          paddingRight: 26,
           paddingLeft: 4,
         }}>
           {event.title.replace(/\n/g, " ")}
@@ -110,9 +110,9 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             <div style={{
               border: `1.5px solid #2A6A3A`,
               borderRadius: 20,
-              padding: "3px 14px",
+              padding: "4px 16px",
               fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11,
+              fontSize: 12,
               fontWeight: 700,
               letterSpacing: 1,
               color: "#1A4A2A",
@@ -124,7 +124,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "italic",
-          fontSize: 13,
+          fontSize: 14,
           color: GREY,
           textAlign: "center",
           marginBottom: 10,
@@ -134,14 +134,14 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "normal",
-          fontSize: 14,
+          fontSize: 15,
           color: NAVY_LIGHT,
           textAlign: "justify",
-          lineHeight: 1.75,
+          lineHeight: 1.8,
         }}>{event.desc}</div>
 
         {event.link && (
-          <div style={{ textAlign: "center", marginTop: 14 }}>
+          <div style={{ textAlign: "center", marginTop: 16 }}>
             <a
               href={event.link}
               target="_blank"
@@ -149,13 +149,13 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Jost', -apple-system, sans-serif",
-                fontSize: 13,
+                fontSize: 14,
                 fontWeight: 700,
                 letterSpacing: 1.2,
                 textTransform: "uppercase",
                 color: WHITE,
                 background: NAVY,
-                padding: "8px 22px",
+                padding: "10px 24px",
                 borderRadius: 20,
                 textDecoration: "none",
                 display: "inline-block",
@@ -165,14 +165,14 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         )}
 
         {event.phone && (
-          <div style={{ textAlign: "center", marginTop: 8 }}>
+          <div style={{ textAlign: "center", marginTop: 10 }}>
             <a
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Libre Baskerville', Georgia, serif",
                 fontStyle: "italic",
-                fontSize: 14,
+                fontSize: 15,
                 color: GOLD,
                 textDecoration: "none",
               }}
