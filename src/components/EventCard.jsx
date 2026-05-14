@@ -4,21 +4,9 @@ const NAVY_LIGHT = "#1A2D4A";
 const GREY = "#6A6860";
 const WHITE = "#FFFFFF";
 
-function getBorderColor(cat) {
-  if (["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(cat)) return "#8B1728";
-  if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS","CINÉMA"].includes(cat)) return "#0F1D3A";
-  if (["SOIRÉE","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
-  if (["ATELIER","DANSE","EXPOSITION","FESTIVAL","SPECTACLE","GALA","THÉÂTRE"].includes(cat)) return "#5A1A7A";
-  if (["BIEN-ÊTRE"].includes(cat)) return "#1A6A5A";
-  if (["CONFÉRENCE"].includes(cat)) return "#1A4A2A";
-  if (["FOODY","BRUNCH"].includes(cat)) return "#C85A1A";
-  if (["ENCHÈRES"].includes(cat)) return "#6A5010";
-  return NAVY;
-}
-
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
-  const borderColor = getBorderColor(event.cat);
+  const borderColor = GOLD;
 
   return (
     <div
@@ -74,7 +62,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             fontWeight: 700,
             letterSpacing: 1.5,
             textTransform: "uppercase",
-            color: borderColor,
+            color: NAVY,
             padding: 0,
             display: "flex",
             alignItems: "center",
