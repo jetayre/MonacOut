@@ -198,6 +198,25 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           </div>
         )}
 
+        {event.phone && (
+          <div style={{ textAlign: "center", marginTop: 8 }}>
+            <a
+              href={`tel:${event.phone}`}
+              onClick={e => e.stopPropagation()}
+              style={{
+                fontFamily: "Georgia, serif",
+                fontStyle: "italic",
+                fontSize: 12,
+                color: borderColor,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >📞 {event.phone}</a>
+          </div>
+        )}
+
       </div>
     </div>
   );
