@@ -136,7 +136,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontStyle: "normal",
           fontSize: 12,
           color: NAVY_LIGHT,
-          textAlign: "center",
+          textAlign: "justify",
           lineHeight: 1.6,
         }}>{event.desc}</div>
 
