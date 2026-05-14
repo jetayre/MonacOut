@@ -1,13 +1,12 @@
 import { ALL_EVENTS } from "../../data/events";
 
-const NAVY = "#1A2A5A";
-const GOLD = "#C4A46B";
-const GOLD2 = "#DCC898";
-const DARK = "#1A2A5A";
-const GREY = "#6A7A9A";
+const NAVY = "#0F1D3A";
+const GOLD = "#B8962E";
+const GOLD2 = "#D4AF5A";
+const GREY = "#6A6860";
 const WHITE = "#FFFFFF";
-const LIGHT = "#FAF8F5";
-const BORDER = "#DDE0F0";
+const LIGHT = "#F5F0E8";
+const BORDER = "#DDD5C8";
 
 function handleShare(event, lang) {
   if (navigator.share) {
@@ -52,7 +51,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             borderRadius: 20,
             padding: "6px 14px",
             color: WHITE,
-            fontFamily: "-apple-system, sans-serif",
+            fontFamily: "'Jost', -apple-system, sans-serif",
             fontSize: 13,
             fontWeight: 600,
             cursor: "pointer",
@@ -106,7 +105,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             border: "none",
             borderRadius: 20,
             padding: "3px 10px",
-            fontFamily: "-apple-system, sans-serif",
+            fontFamily: "'Jost', -apple-system, sans-serif",
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: 1.5,
@@ -120,45 +119,46 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
         >{event.emoji} {event.cat}</button>
 
         <div style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Playfair Display', Georgia, serif",
           fontStyle: "italic",
-          fontWeight: "bold",
+          fontWeight: 700,
           fontSize: 28,
           color: WHITE,
           textTransform: "uppercase",
           lineHeight: 1.1,
           whiteSpace: "pre-line",
           textShadow: "0 2px 8px rgba(0,0,0,0.4)",
-          letterSpacing: 0.5,
+          letterSpacing: 0.3,
         }}>{event.title}</div>
       </div>
 
       {/* Body */}
       <div style={{ padding: "20px 20px 0" }}>
         <div style={{
-          fontFamily: "-apple-system, sans-serif",
+          fontFamily: "'Libre Baskerville', Georgia, serif",
+          fontStyle: "italic",
           fontSize: 13,
-          fontWeight: 600,
           color: GREY,
           marginBottom: 4,
         }}>{event.subtitle}</div>
 
         <div style={{
-          fontFamily: "-apple-system, sans-serif",
+          fontFamily: "'Jost', -apple-system, sans-serif",
           fontSize: 14,
-          fontWeight: 700,
-          color: DARK,
+          fontWeight: 600,
+          letterSpacing: 0.5,
+          color: NAVY,
           marginBottom: 16,
         }}>{event.date} · {event.time}</div>
 
         <div style={{ height: 1, background: BORDER, marginBottom: 16 }} />
 
         <div style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "italic",
-          fontSize: 16,
-          color: DARK,
-          lineHeight: 1.8,
+          fontSize: 15,
+          color: NAVY,
+          lineHeight: 1.85,
           marginBottom: 20,
         }}>{event.desc}</div>
 
@@ -174,7 +174,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           }}>
             <span style={{ fontSize: 14 }}>✅</span>
             <span style={{
-              fontFamily: "-apple-system, sans-serif",
+              fontFamily: "'Jost', -apple-system, sans-serif",
               fontSize: 12,
               fontWeight: 700,
               color: "#2A7A3A",
@@ -183,7 +183,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
         )}
 
         <div style={{
-          fontFamily: "-apple-system, sans-serif",
+          fontFamily: "'Jost', -apple-system, sans-serif",
           fontSize: 11,
           color: GREY,
           marginBottom: 20,
@@ -195,17 +195,17 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           rel="noopener noreferrer"
           style={{
             display: "block",
-            background: `linear-gradient(135deg, ${DARK}, #2C2018)`,
+            background: `linear-gradient(135deg, ${NAVY}, #1A2D4A)`,
             borderRadius: 16,
             padding: "14px 20px",
             textAlign: "center",
             textDecoration: "none",
             color: GOLD2,
-            fontFamily: "Georgia, serif",
+            fontFamily: "'Playfair Display', Georgia, serif",
             fontStyle: "italic",
-            fontWeight: "bold",
+            fontWeight: 700,
             fontSize: 16,
-            letterSpacing: 0.5,
+            letterSpacing: 0.3,
           }}
         >
           {event.free
@@ -224,10 +224,10 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               textAlign: "center",
               textDecoration: "none",
               color: GOLD,
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontFamily: "'Libre Baskerville', Georgia, serif",
               fontStyle: "italic",
               fontSize: 15,
-              letterSpacing: 0.5,
+              letterSpacing: 0.3,
             }}
           >📞 {event.phone}</a>
         )}
@@ -244,7 +244,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             marginBottom: 12,
           }}>
             <div style={{
-              fontFamily: "-apple-system, sans-serif",
+              fontFamily: "'Jost', -apple-system, sans-serif",
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: 2,
@@ -256,7 +256,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               style={{
                 background: "none",
                 border: "none",
-                fontFamily: "-apple-system, sans-serif",
+                fontFamily: "'Jost', -apple-system, sans-serif",
                 fontSize: 11,
                 fontWeight: 600,
                 color: NAVY,
@@ -292,11 +292,11 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
                 }}>{e.emoji}</div>
                 <div style={{ padding: "10px 12px", flex: 1, minWidth: 0 }}>
                   <div style={{
-                    fontFamily: "Georgia, serif",
+                    fontFamily: "'Playfair Display', Georgia, serif",
                     fontStyle: "italic",
-                    fontWeight: "bold",
+                    fontWeight: 700,
                     fontSize: 12,
-                    color: DARK,
+                    color: NAVY,
                     textTransform: "uppercase",
                     lineHeight: 1.2,
                     marginBottom: 3,
@@ -305,7 +305,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
                     textOverflow: "ellipsis",
                   }}>{e.title.replace(/\n/g, " ")}</div>
                   <div style={{
-                    fontFamily: "-apple-system, sans-serif",
+                    fontFamily: "'Jost', -apple-system, sans-serif",
                     fontSize: 11,
                     color: GREY,
                   }}>{e.date}</div>

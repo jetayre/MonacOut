@@ -1,26 +1,26 @@
-const DARK_GOLD = "#C4A46B";
+const GOLD = "#B8962E";
 
 export default function MonacOutLogo({ width = 290 }) {
   const scale = width / 290;
   return (
     <div style={{ textAlign: "center", padding: `${6 * scale}px 0 ${4 * scale}px` }}>
       <div style={{
-        fontFamily: "'Cormorant Garamond', Georgia, serif",
+        fontFamily: "'Playfair Display', Georgia, serif",
         fontSize: Math.round(40 * scale),
-        fontWeight: 600,
+        fontWeight: 700,
         fontStyle: "italic",
-        color: DARK_GOLD,
-        letterSpacing: Math.round(3 * scale),
+        color: GOLD,
+        letterSpacing: Math.round(2 * scale),
         lineHeight: 1,
       }}>
         MonacOut
       </div>
       <div style={{
-        color: DARK_GOLD,
-        fontSize: Math.round(11 * scale),
+        color: GOLD,
+        fontSize: Math.round(10 * scale),
         letterSpacing: Math.round(6 * scale),
         marginTop: Math.round(4 * scale),
-        opacity: 0.6,
+        opacity: 0.5,
         fontFamily: "Georgia, serif",
       }}>
         ✦ ❧ ✦

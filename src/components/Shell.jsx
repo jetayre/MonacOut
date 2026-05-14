@@ -1,5 +1,5 @@
-const NAVY = "#1A2A5A";
-const GOLD = "#C4A46B";
+const NAVY = "#0F1D3A";
+const GOLD = "#B8962E";
 
 const CAT_FILTERS = [
   { id: "ateliers", label: "🎨 Ateliers",  labelEn: "🎨 Workshops" },
@@ -41,7 +41,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
   return (
     <div style={{
       minHeight: "100vh",
-      background: "#E8E2D8",
+      background: "#E8E0D6",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -50,19 +50,19 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
       <div style={{
         width: 393,
         height: 852,
-        background: "#FFFFFF",
+        background: "#F5F0E8",
         borderRadius: 54,
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
-        boxShadow: "0 24px 80px rgba(26,42,90,0.25)",
+        boxShadow: "0 24px 80px rgba(15,29,58,0.30)",
       }}>
         {/* Header: dynamic island (46px) + tab bar (44px) */}
         <div style={{
           flexShrink: 0,
           height: 90,
           background: "#FFFFFF",
-          borderBottom: "1px solid #E0E4F0",
+          borderBottom: "1px solid #DDD5C8",
           position: "relative",
           zIndex: 10,
         }}>
@@ -89,7 +89,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
           }}>
             {NAV_IDS.map(n => {
               const active = tab === n.id;
-              const color = active ? GOLD : "#8A90A0";
+              const color = active ? GOLD : "#9A9088";
               return (
                 <button
                   key={n.id}
@@ -104,11 +104,11 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
                     justifyContent: "center",
                     gap: 6,
                     position: "relative",
-                    fontFamily: "-apple-system, sans-serif",
-                    fontSize: 14,
-                    fontWeight: active ? 700 : 500,
+                    fontFamily: "'Jost', -apple-system, sans-serif",
+                    fontSize: 13,
+                    fontWeight: active ? 600 : 500,
                     color,
-                    letterSpacing: 0.2,
+                    letterSpacing: 0.3,
                   }}
                 >
                   <n.Icon color={color} active={active} />
@@ -134,7 +134,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
         {showCats && tab === "events" && (
           <div style={{
             flexShrink: 0,
-            borderBottom: "1px solid #E0E4F0",
+            borderBottom: "1px solid #DDD5C8",
             padding: "8px 10px 10px",
             display: "flex",
             flexWrap: "wrap",
@@ -149,14 +149,15 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
                   flexShrink: 0,
                   padding: "6px 14px",
                   borderRadius: 20,
-                  border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
+                  border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,46,0.35)"}`,
                   background: catFilter === f.id ? NAVY : "#FFFFFF",
-                  color: catFilter === f.id ? "#FFFFFF" : "#6A7A9A",
-                  fontFamily: "-apple-system, sans-serif",
+                  color: catFilter === f.id ? "#FFFFFF" : "#6A6860",
+                  fontFamily: "'Jost', -apple-system, sans-serif",
                   fontSize: 11,
                   fontWeight: 600,
                   cursor: "pointer",
                   whiteSpace: "nowrap",
+                  letterSpacing: 0.3,
                 }}
               >{lang === "en" ? f.labelEn : f.label}</button>
             ))}

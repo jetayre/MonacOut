@@ -1,12 +1,12 @@
-const GOLD = "#C4A46B";
-const NAVY = "#1A2A5A";
-const NAVY_LIGHT = "#2A3A6A";
-const GREY = "#6A7A8A";
+const GOLD = "#B8962E";
+const NAVY = "#0F1D3A";
+const NAVY_LIGHT = "#1A2D4A";
+const GREY = "#6A6860";
 const WHITE = "#FFFFFF";
 
 function getBorderColor(cat) {
   if (["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(cat)) return "#8B1728";
-  if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS","CINÉMA"].includes(cat)) return "#1A2A5A";
+  if (["CONCERT","OPÉRA","JAZZ LIVE","DJ SET","MUSICAL","CHANTS","CINÉMA"].includes(cat)) return "#0F1D3A";
   if (["SOIRÉE","APÉRO","QUIZ NIGHT"].includes(cat)) return "#3A1A5A";
   if (["ATELIER","DANSE","EXPOSITION","FESTIVAL","SPECTACLE","GALA","THÉÂTRE"].includes(cat)) return "#5A1A7A";
   if (["BIEN-ÊTRE"].includes(cat)) return "#1A6A5A";
@@ -21,7 +21,6 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
   const borderColor = getBorderColor(event.cat);
 
   return (
-    /* Outer frame */
     <div
       onClick={() => onClick(event)}
       style={{
@@ -70,9 +69,9 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             background: "none",
             border: "none",
             cursor: "pointer",
-            fontFamily: "-apple-system, sans-serif",
+            fontFamily: "'Jost', -apple-system, sans-serif",
             fontSize: 10,
-            fontWeight: 900,
+            fontWeight: 700,
             letterSpacing: 1.5,
             textTransform: "uppercase",
             color: borderColor,
@@ -86,11 +85,11 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Title */}
         <div style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontFamily: "'Playfair Display', Georgia, serif",
           fontStyle: "italic",
-          fontWeight: 600,
+          fontWeight: 700,
           fontSize: 26,
-          letterSpacing: 0.5,
+          letterSpacing: 0.3,
           color: NAVY,
           lineHeight: 1.15,
           display: "-webkit-box",
@@ -126,7 +125,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               border: `1px solid #2A6A3A`,
               borderRadius: 20,
               padding: "3px 14px",
-              fontFamily: "-apple-system, sans-serif",
+              fontFamily: "'Jost', -apple-system, sans-serif",
               fontSize: 11,
               fontWeight: 700,
               letterSpacing: 1,
@@ -137,7 +136,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Subtitle */}
         <div style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "italic",
           fontSize: 13,
           color: GREY,
@@ -147,9 +146,9 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
 
         {/* Date */}
         <div style={{
-          fontFamily: "-apple-system, sans-serif",
+          fontFamily: "'Jost', -apple-system, sans-serif",
           fontSize: 11,
-          fontWeight: 700,
+          fontWeight: 600,
           letterSpacing: 1,
           textTransform: "uppercase",
           color: NAVY,
@@ -160,18 +159,18 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         {/* Separator */}
         <div style={{
           height: 1,
-          background: "#DDE0F0",
+          background: "#DDD5C8",
           marginBottom: 12,
         }} />
 
         {/* Description */}
         <div style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "normal",
           fontSize: 13,
           color: NAVY_LIGHT,
           textAlign: "left",
-          lineHeight: 1.6,
+          lineHeight: 1.7,
         }}>{event.desc}</div>
 
         {event.link && (
@@ -182,7 +181,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               rel="noopener noreferrer"
               onClick={e => e.stopPropagation()}
               style={{
-                fontFamily: "-apple-system, sans-serif",
+                fontFamily: "'Jost', -apple-system, sans-serif",
                 fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: 1.5,
@@ -204,7 +203,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
               style={{
-                fontFamily: "Georgia, serif",
+                fontFamily: "'Libre Baskerville', Georgia, serif",
                 fontStyle: "italic",
                 fontSize: 12,
                 color: borderColor,

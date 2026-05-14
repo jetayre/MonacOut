@@ -4,13 +4,11 @@ import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 
-const NAVY = "#1A2A5A";
-const GOLD = "#C4A46B";
-const DARK_GOLD = "#C4A46B";
-const DARK = "#1A2A5A";
-const GREY = "#6A7A9A";
-const LIGHT = "#FAF8F5";
-const BORDER = "#DDE0F0";
+const NAVY = "#0F1D3A";
+const GOLD = "#B8962E";
+const GREY = "#6A6860";
+const LIGHT = "#F5F0E8";
+const BORDER = "#DDD5C8";
 const WHITE = "#FFFFFF";
 
 const CAT_TO_FILTER = {
@@ -168,25 +166,24 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             >🔍</button>
           </div>
           {/* Outer border */}
-          <div style={{ border: `1.5px solid ${DARK_GOLD}`, padding: 1 }}>
+          <div style={{ border: `1.5px solid ${GOLD}`, padding: 1 }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${DARK_GOLD}`, padding: "4px 10px 5px", background: WHITE }}>
+            <div style={{ border: `2px solid ${GOLD}`, padding: "4px 10px 5px", background: WHITE }}>
               {/* Flags left + logo centered row */}
               <div style={{ display: "flex", alignItems: "center", marginBottom: 0 }}>
                 <div style={{ display: "flex", gap: 3, flexShrink: 0 }}>
                   <button
                     onClick={() => setLang?.("fr")}
-                    style={{ background: "none", border: lang === "fr" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
+                    style={{ background: "none", border: lang === "fr" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
                   >🇫🇷</button>
                   <button
                     onClick={() => setLang?.("en")}
-                    style={{ background: "none", border: lang === "en" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
+                    style={{ background: "none", border: lang === "en" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
                   >🇬🇧</button>
                 </div>
                 <div style={{ flex: 1 }}>
                   <MonacOutLogo width={250} />
                 </div>
-                {/* spacer to visually balance flags */}
                 <div style={{ width: 50, flexShrink: 0 }} />
               </div>
               <div style={{
@@ -194,7 +191,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 fontStyle: "italic",
                 fontWeight: 400,
                 fontSize: 11,
-                color: DARK_GOLD,
+                color: GOLD,
                 letterSpacing: 1,
                 textAlign: "center",
                 marginTop: -4,
@@ -218,14 +215,15 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                       flexShrink: 0,
                       padding: "7px 16px",
                       borderRadius: 20,
-                      border: `1.5px solid ${active ? GOLD : "rgba(184,150,110,0.4)"}`,
+                      border: `1.5px solid ${active ? GOLD : "rgba(184,150,46,0.35)"}`,
                       background: active ? GOLD : WHITE,
                       color: active ? WHITE : GREY,
-                      fontFamily: "-apple-system, sans-serif",
+                      fontFamily: "'Jost', -apple-system, sans-serif",
                       fontSize: 12,
                       fontWeight: 600,
                       cursor: "pointer",
                       whiteSpace: "nowrap",
+                      letterSpacing: 0.3,
                     }}
                   >{label}</button>
                 );
@@ -244,10 +242,10 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 placeholder="Rechercher..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                style={{ border: "none", outline: "none", flex: 1, fontFamily: "-apple-system, sans-serif", fontSize: 13, color: DARK, background: "transparent" }}
+                style={{ border: "none", outline: "none", flex: 1, fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13, color: NAVY, background: "transparent" }}
               />
             </div>
-            <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "-apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>Annuler</button>
+            <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>Annuler</button>
           </div>
         )}
       </div>
@@ -266,7 +264,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       {/* Event list */}
       <div style={{ padding: "0 16px 20px" }}>
         {filtered.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
+          <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "'Libre Baskerville', Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
             {t.empty}
           </div>
         ) : (
