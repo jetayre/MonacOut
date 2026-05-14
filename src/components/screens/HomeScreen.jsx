@@ -5,11 +5,9 @@ import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 
 const NAVY = "#0F1D3A";
-const GOLD = "#B8962E";
-const GREY = "#6A6860";
-const LIGHT = "#F5F0E8";
-const BORDER = "#DDD5C8";
+const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
+const BORDER = "rgba(15,29,58,0.12)";
 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
@@ -108,10 +106,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   const [rangeEnd, setRangeEnd] = useState(null);
 
   function handleFilterChange(newFilter) {
-    if (newFilter !== "calendar") {
-      setRangeStart(null);
-      setRangeEnd(null);
-    }
+    if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter);
   }
 
@@ -150,33 +145,33 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
     : null;
 
   return (
-    <div style={{ background: LIGHT, minHeight: "100%" }}>
+    <div style={{ background: WHITE, minHeight: "100%" }}>
       {/* Sticky header */}
       <div style={{
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
         {/* Title frame */}
-        <div style={{ background: WHITE, padding: "0 12px 0", position: "relative" }}>
+        <div style={{ background: WHITE, padding: "0 12px", position: "relative" }}>
           {/* Outer border */}
-          <div style={{ border: `1.5px solid ${GOLD}`, padding: 1, position: "relative" }}>
+          <div style={{ border: `1.5px solid ${NAVY}`, padding: 1, position: "relative" }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${GOLD}`, padding: "4px 10px 5px", background: WHITE, position: "relative" }}>
+            <div style={{ border: `2px solid ${NAVY}`, padding: "4px 10px 5px", background: WHITE, position: "relative" }}>
               {/* Search icon inside frame top-right */}
               <button
                 onClick={() => setShowSearch(s => !s)}
-                style={{ position: "absolute", top: 4, right: 6, background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: 2, opacity: 0.5 }}
+                style={{ position: "absolute", top: 4, right: 6, background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: 2, opacity: 0.4 }}
               >🔍</button>
               {/* Flags left + logo centered row */}
-              <div style={{ display: "flex", alignItems: "center", marginBottom: 0 }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ display: "flex", gap: 3, flexShrink: 0 }}>
                   <button
                     onClick={() => setLang?.("fr")}
-                    style={{ background: "none", border: lang === "fr" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
+                    style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.35 }}
                   >🇫🇷</button>
                   <button
                     onClick={() => setLang?.("en")}
-                    style={{ background: "none", border: lang === "en" ? `1.5px solid ${GOLD}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
+                    style={{ background: "none", border: lang === "en" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.35 }}
                   >🇬🇧</button>
                 </div>
                 <div style={{ flex: 1 }}>
@@ -189,7 +184,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 fontStyle: "italic",
                 fontWeight: 400,
                 fontSize: 11,
-                color: GOLD,
+                color: NAVY,
+                opacity: 0.6,
                 letterSpacing: 1,
                 textAlign: "center",
                 marginTop: -4,
@@ -201,7 +197,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search */}
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
-            <div style={{ display: "flex", gap: 6, padding: "8px 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
+            <div style={{ display: "flex", gap: 6, padding: "8px 10px", overflowX: "auto", scrollbarWidth: "none" }}>
               {TIME_FILTERS.map(f => {
                 const active = filter === f.id;
                 const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);
@@ -213,8 +209,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                       flexShrink: 0,
                       padding: "7px 16px",
                       borderRadius: 20,
-                      border: `1.5px solid ${active ? GOLD : "rgba(184,150,46,0.35)"}`,
-                      background: active ? GOLD : WHITE,
+                      border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
+                      background: active ? NAVY : WHITE,
                       color: active ? WHITE : GREY,
                       fontFamily: "'Jost', -apple-system, sans-serif",
                       fontSize: 12,
@@ -233,7 +229,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {showSearch && (
           <div style={{ padding: "6px 16px 10px", background: WHITE, display: "flex", gap: 8, alignItems: "center" }}>
             <div style={{ display: "flex", alignItems: "center", flex: 1, border: `1.5px solid ${NAVY}`, borderRadius: 24, padding: "7px 14px", gap: 8, background: WHITE }}>
-              <span style={{ fontSize: 13, opacity: 0.5 }}>🔍</span>
+              <span style={{ fontSize: 13, opacity: 0.4 }}>🔍</span>
               <input
                 autoFocus
                 type="text"
@@ -250,13 +246,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
 
       {/* Inline calendar panel */}
       {filter === "calendar" && (
-        <CalendarPicker
-          inline
-          lang={lang}
-          initialStart={rangeStart}
-          initialEnd={rangeEnd}
-          onChange={handleCalendarChange}
-        />
+        <CalendarPicker inline lang={lang} initialStart={rangeStart} initialEnd={rangeEnd} onChange={handleCalendarChange} />
       )}
 
       {/* Event list */}

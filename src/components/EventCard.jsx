@@ -6,7 +6,7 @@ const WHITE = "#FFFFFF";
 
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
-  const borderColor = GOLD;
+  const borderColor = NAVY;
 
   return (
     <div

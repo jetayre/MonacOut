@@ -1,12 +1,12 @@
 import { ALL_EVENTS } from "../../data/events";
 
 const NAVY = "#0F1D3A";
-const GOLD = "#B8962E";
-const GOLD2 = "#D4AF5A";
+const GOLD = "#0F1D3A";
+const GOLD2 = "#FFFFFF";
 const GREY = "#6A6860";
 const WHITE = "#FFFFFF";
-const LIGHT = "#F5F0E8";
-const BORDER = "#DDD5C8";
+const LIGHT = "#FFFFFF";
+const BORDER = "rgba(15,29,58,0.12)";
 
 function handleShare(event, lang) {
   if (navigator.share) {
