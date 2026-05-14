@@ -1,7 +1,7 @@
 const GOLD = "#B8962E";
 const NAVY = "#0F1D3A";
 const NAVY_LIGHT = "#1A2D4A";
-const GREY = "#6A6860";
+const GREY = "#4A4A50";
 const WHITE = "#FFFFFF";
 
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
@@ -13,7 +13,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         background: WHITE,
         borderRadius: 4,
         border: `1.5px solid ${GOLD}`,
-        marginBottom: 12,
+        marginBottom: 14,
         cursor: "pointer",
         position: "relative",
         padding: 4,
@@ -24,7 +24,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
       <div style={{
         border: `2px solid ${NAVY}`,
         borderRadius: 2,
-        padding: "12px 14px 14px",
+        padding: "14px 16px 16px",
         position: "relative",
       }}>
 
@@ -38,7 +38,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
             background: "none",
             border: "none",
             cursor: "pointer",
-            fontSize: 16,
+            fontSize: 18,
             lineHeight: 1,
           }}
         >
@@ -50,15 +50,15 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
           style={{
             position: "absolute",
-            top: 8,
+            top: 10,
             left: 10,
             background: "none",
             border: "none",
             cursor: "pointer",
             fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 10,
+            fontSize: 11,
             fontWeight: 700,
-            letterSpacing: 1.5,
+            letterSpacing: 1.2,
             textTransform: "uppercase",
             color: NAVY,
             padding: 0,
@@ -69,13 +69,13 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         {/* Date — top, under category/fav row */}
         <div style={{
           fontFamily: "'Jost', -apple-system, sans-serif",
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: 1,
+          fontSize: 13,
+          fontWeight: 700,
+          letterSpacing: 0.8,
           textTransform: "uppercase",
-          color: GOLD,
+          color: NAVY,
           textAlign: "center",
-          paddingTop: 20,
+          paddingTop: 24,
           marginBottom: 6,
         }}>{event.date} {event.year || 2026} · {event.time}</div>
 
@@ -84,16 +84,16 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           fontWeight: 600,
-          fontSize: 26,
+          fontSize: 28,
           letterSpacing: 0.3,
           color: NAVY,
-          lineHeight: 1.15,
+          lineHeight: 1.2,
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
           textAlign: "center",
-          marginBottom: 8,
+          marginBottom: 10,
           paddingRight: 24,
           paddingLeft: 4,
         }}>
@@ -105,14 +105,14 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           <div style={{
             display: "flex",
             justifyContent: "center",
-            marginBottom: 8,
+            marginBottom: 10,
           }}>
             <div style={{
-              border: `1px solid #2A6A3A`,
+              border: `1.5px solid #2A6A3A`,
               borderRadius: 20,
-              padding: "2px 12px",
+              padding: "3px 14px",
               fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 10,
+              fontSize: 11,
               fontWeight: 700,
               letterSpacing: 1,
               color: "#1A4A2A",
@@ -124,7 +124,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "italic",
-          fontSize: 12,
+          fontSize: 13,
           color: GREY,
           textAlign: "center",
           marginBottom: 10,
@@ -134,14 +134,14 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontStyle: "normal",
-          fontSize: 12,
+          fontSize: 14,
           color: NAVY_LIGHT,
           textAlign: "justify",
-          lineHeight: 1.6,
+          lineHeight: 1.75,
         }}>{event.desc}</div>
 
         {event.link && (
-          <div style={{ textAlign: "center", marginTop: 12 }}>
+          <div style={{ textAlign: "center", marginTop: 14 }}>
             <a
               href={event.link}
               target="_blank"
@@ -149,13 +149,13 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Jost', -apple-system, sans-serif",
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: 700,
-                letterSpacing: 1.5,
+                letterSpacing: 1.2,
                 textTransform: "uppercase",
                 color: WHITE,
                 background: NAVY,
-                padding: "6px 18px",
+                padding: "8px 22px",
                 borderRadius: 20,
                 textDecoration: "none",
                 display: "inline-block",
@@ -165,14 +165,14 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         )}
 
         {event.phone && (
-          <div style={{ textAlign: "center", marginTop: 6 }}>
+          <div style={{ textAlign: "center", marginTop: 8 }}>
             <a
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Libre Baskerville', Georgia, serif",
                 fontStyle: "italic",
-                fontSize: 12,
+                fontSize: 14,
                 color: GOLD,
                 textDecoration: "none",
               }}
