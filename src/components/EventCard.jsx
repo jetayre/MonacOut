@@ -66,6 +66,19 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           }}
         >{event.cat}</button>
 
+        {/* Date — top, under category/fav row */}
+        <div style={{
+          fontFamily: "'Jost', -apple-system, sans-serif",
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: 1,
+          textTransform: "uppercase",
+          color: GOLD,
+          textAlign: "center",
+          paddingTop: 20,
+          marginBottom: 6,
+        }}>{event.date} {event.year || 2026} · {event.time}</div>
+
         {/* Title */}
         <div style={{
           fontFamily: "'Cormorant Garamond', Georgia, serif",
@@ -83,7 +96,6 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           marginBottom: 8,
           paddingRight: 24,
           paddingLeft: 4,
-          paddingTop: 18,
         }}>
           {event.title.replace(/\n/g, " ")}
         </div>
@@ -115,20 +127,8 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontSize: 12,
           color: GREY,
           textAlign: "center",
-          marginBottom: 4,
-        }}>{event.subtitle}</div>
-
-        {/* Date */}
-        <div style={{
-          fontFamily: "'Jost', -apple-system, sans-serif",
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: 1,
-          textTransform: "uppercase",
-          color: NAVY,
-          textAlign: "center",
           marginBottom: 10,
-        }}>{event.date} {event.year || 2026} · {event.time}</div>
+        }}>{event.subtitle}</div>
 
         {/* Description */}
         <div style={{
