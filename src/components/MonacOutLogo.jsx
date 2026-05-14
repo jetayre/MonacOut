@@ -1,12 +1,19 @@
-import logoSrc from "../assets/logo.png";
+const NAVY = "#1A2A5A";
 
-export default function MonacOutLogo({ width = 250 }) {
+export default function MonacOutLogo({ width = 290 }) {
+  const scale = width / 290;
   return (
-    <img
-      src={logoSrc}
-      alt="MonacOut"
-      width={width}
-      style={{ display: "block", margin: "0 auto", filter: "brightness(0) saturate(100%) invert(13%) sepia(79%) saturate(631%) hue-rotate(193deg) brightness(74%) contrast(104%) drop-shadow(0.6px 0 0px #1A2A5A) drop-shadow(-0.6px 0 0px #1A2A5A) drop-shadow(0 0.6px 0px #1A2A5A) drop-shadow(0 -0.6px 0px #1A2A5A) drop-shadow(0.6px 0.6px 0px #1A2A5A) drop-shadow(-0.6px -0.6px 0px #1A2A5A)" }}
-    />
+    <div style={{ textAlign: "center", padding: `${8 * scale}px 0 ${2 * scale}px` }}>
+      <span style={{
+        fontFamily: "Georgia, 'Times New Roman', serif",
+        fontSize: Math.round(38 * scale),
+        fontWeight: 700,
+        color: NAVY,
+        letterSpacing: Math.round(3 * scale),
+        display: "inline-block",
+      }}>
+        Monac<span style={{ fontStyle: "italic" }}>Out</span>
+      </span>
+    </div>
   );
 }
