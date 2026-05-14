@@ -194,11 +194,13 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
               style={{
-                fontFamily: "'Libre Baskerville', Georgia, serif",
-                fontStyle: "italic",
+                fontFamily: "'Jost', -apple-system, sans-serif",
+                fontStyle: "normal",
+                fontWeight: 700,
                 fontSize: 15,
                 color: GOLD,
                 textDecoration: "none",
+                letterSpacing: 0.5,
               }}
             >{event.phone}</a>
           </div>
