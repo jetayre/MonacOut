@@ -212,6 +212,25 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             ? (lang === "en" ? "Je participe →" : "Je participe →")
             : (lang === "en" ? "Book →" : "Réserver →")}
         </a>
+        {event.phone && (
+          <a
+            href={`tel:${event.phone}`}
+            style={{
+              display: "block",
+              marginTop: 10,
+              border: `1.5px solid ${GOLD}`,
+              borderRadius: 16,
+              padding: "12px 20px",
+              textAlign: "center",
+              textDecoration: "none",
+              color: GOLD,
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontStyle: "italic",
+              fontSize: 15,
+              letterSpacing: 0.5,
+            }}
+          >📞 {event.phone}</a>
+        )}
       </div>
 
       {/* Voir aussi */}
