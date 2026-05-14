@@ -179,7 +179,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
                 textDecoration: "none",
                 display: "inline-block",
               }}
-            >{event.free ? "Je participe" : "Réserver"}</a>
+            >{event.free ? (lang === "en" ? "I'm joining" : "Je participe") : (lang === "en" ? "Book" : "Réserver")}</a>
           </div>
         )}
 

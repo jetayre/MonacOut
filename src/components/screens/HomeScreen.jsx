@@ -233,13 +233,13 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               <input
                 autoFocus
                 type="text"
-                placeholder="Rechercher..."
+                placeholder={lang === "en" ? "Search..." : "Rechercher..."}
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 style={{ border: "none", outline: "none", flex: 1, fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13, color: NAVY, background: "transparent" }}
               />
             </div>
-            <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>Annuler</button>
+            <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>{lang === "en" ? "Cancel" : "Annuler"}</button>
           </div>
         )}
       </div>
