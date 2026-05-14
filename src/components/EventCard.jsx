@@ -95,7 +95,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           width: 36,
           height: 1.5,
-          background: borderColor,
+          background: GOLD,
           margin: "0 auto 12px",
           borderRadius: 1,
         }} />
@@ -173,7 +173,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
                 letterSpacing: 1.5,
                 textTransform: "uppercase",
                 color: WHITE,
-                background: borderColor,
+                background: NAVY,
                 padding: "6px 18px",
                 borderRadius: 20,
                 textDecoration: "none",
@@ -192,7 +192,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
                 fontFamily: "'Libre Baskerville', Georgia, serif",
                 fontStyle: "italic",
                 fontSize: 12,
-                color: borderColor,
+                color: GOLD,
                 textDecoration: "none",
                 display: "inline-flex",
                 alignItems: "center",
