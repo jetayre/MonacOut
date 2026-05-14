@@ -172,7 +172,6 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           lineHeight: 1.7,
         }}>{event.desc}</div>
 
-        {/* Billetterie */}
         {event.link && (
           <div style={{ textAlign: "center", marginTop: 14 }}>
             <a
@@ -193,7 +192,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
                 textDecoration: "none",
                 display: "inline-block",
               }}
-            >Billetterie</a>
+            >{event.free ? "Je participe" : "Réserver"}</a>
           </div>
         )}
 

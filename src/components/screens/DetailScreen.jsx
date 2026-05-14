@@ -208,7 +208,9 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             letterSpacing: 0.5,
           }}
         >
-          {lang === "en" ? "More information →" : "Plus d'informations →"}
+          {event.free
+            ? (lang === "en" ? "Je participe →" : "Je participe →")
+            : (lang === "en" ? "Book →" : "Réserver →")}
         </a>
       </div>
 

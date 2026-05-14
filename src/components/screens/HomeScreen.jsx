@@ -6,6 +6,7 @@ import CalendarPicker from "../CalendarPicker";
 
 const NAVY = "#1A2A5A";
 const GOLD = "#B8966E";
+const DARK_GOLD = "#9A7820";
 const DARK = "#1A2A5A";
 const GREY = "#6A7A9A";
 const LIGHT = "#F5F5FA";
@@ -173,34 +174,35 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       }}>
         {/* Title frame — tableau double-border, full width */}
         <div style={{ background: WHITE, padding: "0 16px 0", position: "relative" }}>
-          {/* Language + search row — au-dessus du cadre */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "5px 2px 4px" }}>
-            <div style={{ display: "flex", gap: 4 }}>
-              <button
-                onClick={() => setLang?.("fr")}
-                style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 16, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
-              >🇫🇷</button>
-              <button
-                onClick={() => setLang?.("en")}
-                style={{ background: "none", border: lang === "en" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 16, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
-              >🇬🇧</button>
-            </div>
+          {/* Search row — above frame */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "5px 2px 4px" }}>
             <button
               onClick={() => setShowSearch(s => !s)}
               style={{ background: "none", border: "none", cursor: "pointer", fontSize: 15, padding: 4 }}
             >🔍</button>
           </div>
-          {/* Outer border — cadre marine */}
-          <div style={{ border: `1.5px solid ${NAVY}`, padding: 1 }}>
+          {/* Outer border — dark gold */}
+          <div style={{ border: `1.5px solid ${DARK_GOLD}`, padding: 1 }}>
             {/* Inner border */}
-            <div style={{ border: `2px solid ${NAVY}`, padding: "0px 12px 4px", textAlign: "center", background: WHITE }}>
+            <div style={{ border: `2px solid ${DARK_GOLD}`, padding: "6px 12px 6px", textAlign: "center", background: WHITE }}>
+              {/* Flags inside frame */}
+              <div style={{ display: "flex", gap: 4, justifyContent: "center", marginBottom: 2 }}>
+                <button
+                  onClick={() => setLang?.("fr")}
+                  style={{ background: "none", border: lang === "fr" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 15, padding: "1px 3px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.4 }}
+                >🇫🇷</button>
+                <button
+                  onClick={() => setLang?.("en")}
+                  style={{ background: "none", border: lang === "en" ? `1.5px solid ${DARK_GOLD}` : "1.5px solid transparent", borderRadius: 6, cursor: "pointer", fontSize: 15, padding: "1px 3px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.4 }}
+                >🇬🇧</button>
+              </div>
               <MonacOutLogo width={290} />
               <div style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontStyle: "italic",
                 fontWeight: 400,
                 fontSize: 12,
-                color: NAVY,
+                color: DARK_GOLD,
                 letterSpacing: 1,
                 marginTop: -2,
               }}>{t.tagline}</div>
