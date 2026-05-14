@@ -31,8 +31,13 @@ export default function App() {
   });
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
+  const [showCats, setShowCats] = useState(false);
 
   function handleTabChange(newTab) {
+    if (newTab === "events" && tab === "events") {
+      setShowCats(prev => !prev);
+      return;
+    }
     setSelectedEvent(null);
     setTab(newTab);
   }
@@ -71,7 +76,7 @@ export default function App() {
     }
     switch (tab) {
       case "events":
-        return <HomeScreen {...sharedProps} filter={homeFilter} onFilterChange={setHomeFilter} setLang={setLang} />;
+        return <HomeScreen {...sharedProps} filter={homeFilter} onFilterChange={setHomeFilter} setLang={setLang} showCats={showCats} />;
       case "agenda":
         return <FavoritesScreen {...sharedProps} />;
       default:

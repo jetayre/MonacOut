@@ -16,8 +16,7 @@ const TIME_FILTERS = [
   { id: "today",    label: "Aujourd'hui" },
   { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
-  { id: "calendar", label: "Calendrier" },
-  { id: "gratuit",  label: "Gratuit" },
+  { id: "calendar", label: "Agenda" },
 ];
 const CAT_FILTERS = [
   { id: "ateliers", label: "🎨 Ateliers" },
@@ -103,7 +102,7 @@ function filterByCat(events, catId) {
   }
 }
 
-export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang }) {
+export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang, showCats = false }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? {
@@ -214,32 +213,60 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Filters or Search */}
         {!showSearch && (
           <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
-            {/* Category filter row — alphabetical, horizontally scrollable */}
-            <div style={{ display: "flex", gap: 6, padding: "0 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
-              {CAT_FILTERS.map(f => (
-                <button
-                  key={f.id}
-                  onClick={() => {
-                    const next = catFilter === f.id ? null : f.id;
-                    setCatFilter(next);
-                    if (next) handleFilterChange("all");
-                  }}
-                  style={{
-                    flexShrink: 0,
-                    padding: "5px 12px",
-                    borderRadius: 20,
-                    border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
-                    background: catFilter === f.id ? NAVY : WHITE,
-                    color: catFilter === f.id ? WHITE : GREY,
-                    fontFamily: "-apple-system, sans-serif",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                  }}
-                >{t.filters[f.id] || f.label}</button>
-              ))}
+            {/* Time filter row */}
+            <div style={{ display: "flex", gap: 6, padding: "8px 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
+              {TIME_FILTERS.map(f => {
+                const active = filter === f.id;
+                const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);
+                return (
+                  <button
+                    key={f.id}
+                    onClick={() => handleFilterChange(f.id)}
+                    style={{
+                      flexShrink: 0,
+                      padding: "7px 16px",
+                      borderRadius: 20,
+                      border: `1.5px solid ${active ? GOLD : "rgba(184,150,110,0.4)"}`,
+                      background: active ? GOLD : WHITE,
+                      color: active ? WHITE : GREY,
+                      fontFamily: "-apple-system, sans-serif",
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                    }}
+                  >{label}</button>
+                );
+              })}
             </div>
+            {/* Category panel — visible when showCats */}
+            {showCats && (
+              <div style={{ borderTop: `1px solid ${BORDER}`, padding: "8px 10px 10px", display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none" }}>
+                {CAT_FILTERS.map(f => (
+                  <button
+                    key={f.id}
+                    onClick={() => {
+                      const next = catFilter === f.id ? null : f.id;
+                      setCatFilter(next);
+                      if (next) handleFilterChange("all");
+                    }}
+                    style={{
+                      flexShrink: 0,
+                      padding: "6px 14px",
+                      borderRadius: 20,
+                      border: `1px solid ${catFilter === f.id ? NAVY : "rgba(184,150,110,0.4)"}`,
+                      background: catFilter === f.id ? NAVY : WHITE,
+                      color: catFilter === f.id ? WHITE : GREY,
+                      fontFamily: "-apple-system, sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                    }}
+                  >{t.filters[f.id] || f.label}</button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
