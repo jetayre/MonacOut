@@ -56,13 +56,17 @@ const SOURCE_VENUE = {
   'Culture Monaco':              'Salle Garnier · Monaco',
   'Cinémas 2 Monaco':           'Cinémas de Monaco · Monte-Carlo',
   'Ballet de Monte-Carlo':       'Salle des Princes · Monaco',
-  'Fondation Prince Albert II':  'Fondation Prince Albert II · Monaco',
-  'Fdtn Princesse Charlène':     'Fondation Princesse Charlène · Monaco',
-  'Fdtn Prince Pierre':          'Fondation Prince Pierre · Monaco',
-  'Fight Aids Monaco':           'Fight Aids Monaco · Monaco',
-  'Croix-Rouge de Monaco':       'Croix-Rouge de Monaco',
-  'Fondation Flavien':           'Fondation Flavien · Monaco',
-  'AMADE Monaco':                'AMADE · Monaco',
+  'Fondation Prince Albert II':      'Fondation Prince Albert II · Monaco',
+  'Fdtn Princesse Charlène':         'Fondation Princesse Charlène · Monaco',
+  'Fdtn Prince Pierre':              'Fondation Prince Pierre · Monaco',
+  'Fight Aids Monaco':               'Fight Aids Monaco · Monaco',
+  'Croix-Rouge de Monaco':           'Croix-Rouge de Monaco',
+  'Fondation Flavien':               'Fondation Flavien · Monaco',
+  'AMADE Monaco':                    'AMADE · Monaco',
+  'Mission Enfance Monaco':          'Mission Enfance · Monaco',
+  'Les Anges Gardiens de Monaco':    'Les Anges Gardiens · Monaco',
+  'AMAPEI Monaco':                   'AMAPEI · Monaco',
+  'Jewish Cultural Center Monaco':   'Jewish Cultural Center · Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -456,11 +460,29 @@ async function main() {
     { name: 'FPA2 news',         fn: p => scrapeGeneric(p, 'https://www.fpa2.org/en/news',                            'Fondation Prince Albert II') },
     { name: 'Charlène actus',    fn: p => scrapeGeneric(p, 'https://www.fondationprincessecharlene.mc/actualites',    'Fdtn Princesse Charlène') },
     { name: 'Croix-Rouge presse',fn: p => scrapeGeneric(p, 'https://croix-rouge.mc/presse',                           'Croix-Rouge de Monaco') },
-    // ── Associations humanitaires ────────────────────────────────────────────
-    { name: 'Fight Aids Monaco', fn: p => scrapeGeneric(p, 'https://www.fightaidsmonaco.com/evenements',              'Fight Aids Monaco') },
-    { name: 'Croix-Rouge MC',    fn: p => scrapeGeneric(p, 'https://croix-rouge.mc/agenda/',                          'Croix-Rouge de Monaco') },
-    { name: 'Fdtn Flavien',      fn: p => scrapeGeneric(p, 'https://www.fondationflavien.com/evenements/',             'Fondation Flavien') },
-    { name: 'AMADE',             fn: p => scrapeGeneric(p, 'https://www.amade.org/',                                   'AMADE Monaco') },
+    // ── Associations humanitaires (sites actifs) ─────────────────────────────
+    { name: 'Fight Aids Monaco',  fn: p => scrapeGeneric(p, 'https://www.fightaidsmonaco.com/evenements',             'Fight Aids Monaco') },
+    { name: 'Croix-Rouge MC',     fn: p => scrapeGeneric(p, 'https://croix-rouge.mc/agenda/',                         'Croix-Rouge de Monaco') },
+    { name: 'AMADE',              fn: p => scrapeGeneric(p, 'https://www.amade.org/',                                  'AMADE Monaco') },
+    { name: 'Mission Enfance',    fn: p => scrapeGeneric(p, 'https://www.missionenfance.org',                          'Mission Enfance Monaco') },
+    { name: 'Anges Gardiens',     fn: p => scrapeGeneric(p, 'https://www.anges-gardiens-monaco.com',                   'Les Anges Gardiens de Monaco') },
+    { name: 'AMAPEI',             fn: p => scrapeGeneric(p, 'https://www.amapei.org',                                  'AMAPEI Monaco') },
+    { name: 'JCC Monaco',         fn: p => scrapeGeneric(p, 'https://www.jccmonaco.com/events',                        'Jewish Cultural Center Monaco') },
+    // ── Fondations santé & recherche ────────────────────────────────────────
+    { name: 'Fdtn Flavien',       fn: p => scrapeGeneric(p, 'https://www.fondationflavien.com/evenements/',            'Fondation Flavien') },
+    // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
+    // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
+    // Société Saint-Vincent de Paul Monaco — aucun site trouvé
+    // Les Anges Gardiens Monaco    — site trouvé, pas de page événements
+    // Association Amitié Sans Frontières — aucun site trouvé
+    // Children & Future            — aucun site trouvé
+    // Caritas Monaco               — aucun site trouvé
+    // Assoc. Amis de l'Opéra MC   — aucun site trouvé
+    // Comité AIAP UNESCO Monaco    — aucun site trouvé
+    // ICDA Monaco                  — aucun site trouvé
+    // La Maison de France FGFM     — aucun site trouvé
+    // Assoc. Monégasque Myopathies — aucun site trouvé
+    // Écoute Cancer Réconfort      — aucun site trouvé
   ];
 
   for (const { name, fn } of scrapers) {

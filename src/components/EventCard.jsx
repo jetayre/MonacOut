@@ -126,7 +126,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         </div>
 
         {/* Organisation name — fondations & associations uniquement */}
-        {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance/i.test(event.source || "") && (
+        {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
           <div style={{
             fontFamily: "'Jost', -apple-system, sans-serif",
             fontWeight: 700,
