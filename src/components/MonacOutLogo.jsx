@@ -3,7 +3,7 @@ const GOLD = "#C4A241";
 export default function MonacOutLogo({ width = 290 }) {
   const scale = width / 290;
   return (
-    <div style={{ textAlign: "center", padding: `${6 * scale}px 0 ${4 * scale}px` }}>
+    <div style={{ textAlign: "center", padding: `${8 * scale}px 0 ${6 * scale}px` }}>
       <div style={{
         fontFamily: "'Playfair Display', Georgia, serif",
         fontSize: Math.round(52 * scale),
@@ -14,16 +14,6 @@ export default function MonacOutLogo({ width = 290 }) {
         lineHeight: 1,
       }}>
         MonacOut
-      </div>
-      <div style={{
-        color: GOLD,
-        fontSize: Math.round(10 * scale),
-        letterSpacing: Math.round(6 * scale),
-        marginTop: Math.round(4 * scale),
-        opacity: 0.5,
-        fontFamily: "Georgia, serif",
-      }}>
-        ✦ ❧ ✦
       </div>
     </div>
   );
