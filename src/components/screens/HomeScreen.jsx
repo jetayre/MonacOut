@@ -132,13 +132,16 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   } else if (filter === "calendar") {
     filtered = ALL_EVENTS;
   } else if (search.trim()) {
-    const q = search.toLowerCase();
-    filtered = ALL_EVENTS.filter(e =>
-      e.title.toLowerCase().includes(q) ||
-      e.subtitle?.toLowerCase().includes(q) ||
-      e.cat.toLowerCase().includes(q) ||
-      e.desc?.toLowerCase().includes(q)
-    );
+    const norm = s => s.toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/['’‘“”]/g, " ")
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ").trim();
+    const words = norm(search).split(" ").filter(w => w.length > 0);
+    filtered = ALL_EVENTS.filter(e => {
+      const text = norm([e.title, e.subtitle, e.cat, e.desc].filter(Boolean).join(" "));
+      return words.every(w => text.includes(w));
+    });
   } else {
     filtered = filterByCat(filterByTime(ALL_EVENTS, filter), catFilter);
   }
