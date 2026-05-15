@@ -207,12 +207,11 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontStyle: "italic",
                 fontWeight: 400,
-                fontSize: 14,
+                fontSize: 17,
                 color: "#B8962E",
                 letterSpacing: 1,
                 textAlign: "center",
-                marginTop: -2,
-                fontStyle: "italic",
+                marginTop: -1,
               }}>{t.tagline}</div>
             </div>
           </div>
