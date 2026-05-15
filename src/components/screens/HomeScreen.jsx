@@ -28,6 +28,7 @@ const TIME_FILTERS = [
   { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
   { id: "calendar", label: "Agenda" },
+  { id: "messe",    label: "Messe ⛪" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -117,7 +118,9 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   }
 
   let filtered;
-  if (filter === "calendar" && rangeStart) {
+  if (filter === "messe") {
+    filtered = ALL_EVENTS.filter(e => e.cat === "CHANTS");
+  } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
     filtered = ALL_EVENTS.filter(e => {
       const d = parseEventDate(e);

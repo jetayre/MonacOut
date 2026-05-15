@@ -6,7 +6,7 @@ export default function MonacOutLogo({ width = 290 }) {
     <div style={{ textAlign: "center", padding: `${6 * scale}px 0 ${4 * scale}px` }}>
       <div style={{
         fontFamily: "'Playfair Display', Georgia, serif",
-        fontSize: Math.round(40 * scale),
+        fontSize: Math.round(52 * scale),
         fontWeight: 700,
         fontStyle: "italic",
         color: GOLD,
