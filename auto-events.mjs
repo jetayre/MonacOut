@@ -51,11 +51,18 @@ const CAT_STYLE = {
 };
 
 const SOURCE_VENUE = {
-  'OPMC':                  'Opéra de Monte-Carlo · Monaco',
-  'Grimaldi Forum':        'Grimaldi Forum · Monaco',
-  'Culture Monaco':        'Salle Garnier · Monaco',
-  'Cinémas 2 Monaco':     'Cinémas de Monaco · Monte-Carlo',
-  'Ballet de Monte-Carlo': 'Salle des Princes · Monaco',
+  'OPMC':                        'Opéra de Monte-Carlo · Monaco',
+  'Grimaldi Forum':              'Grimaldi Forum · Monaco',
+  'Culture Monaco':              'Salle Garnier · Monaco',
+  'Cinémas 2 Monaco':           'Cinémas de Monaco · Monte-Carlo',
+  'Ballet de Monte-Carlo':       'Salle des Princes · Monaco',
+  'Fondation Prince Albert II':  'Fondation Prince Albert II · Monaco',
+  'Fdtn Princesse Charlène':     'Fondation Princesse Charlène · Monaco',
+  'Fdtn Prince Pierre':          'Fondation Prince Pierre · Monaco',
+  'Fight Aids Monaco':           'Fight Aids Monaco · Monaco',
+  'Croix-Rouge de Monaco':       'Croix-Rouge de Monaco',
+  'Fondation Flavien':           'Fondation Flavien · Monaco',
+  'AMADE Monaco':                'AMADE · Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -343,6 +350,53 @@ async function scrapeBallet(page) {
   } catch { return []; }
 }
 
+/**
+ * Scraper générique — fonctionne pour la plupart des sites WordPress/CMS
+ */
+async function scrapeGeneric(page, url, sourceName) {
+  try {
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+    await page.waitForTimeout(2000);
+    return await page.evaluate((src) => {
+      const results = [];
+      const seen = new Set();
+      const selectors = [
+        'article', '[class*="event"]', '[class*="Event"]',
+        '[class*="card"]', '[class*="agenda"]', '[class*="manifestation"]',
+        '[class*="post-item"]', '.item', 'li[class*="post"]',
+      ];
+      for (const sel of selectors) {
+        document.querySelectorAll(sel).forEach(el => {
+          const title = el.querySelector('h2,h3,h4,[class*="title"],[class*="name"]')?.innerText?.trim();
+          if (!title || title.length < 5 || seen.has(title)) return;
+          seen.add(title);
+          const date = el.querySelector('time,[class*="date"],[class*="quand"],[class*="when"]')?.innerText?.trim()
+                    || el.querySelector('time')?.getAttribute('datetime');
+          const link = el.querySelector('a')?.href;
+          results.push({ title, date, link, source: src });
+        });
+      }
+      // Fallback: headings in main content area
+      if (results.length === 0) {
+        const main = document.querySelector('main,#main,.main,#content,.content') || document.body;
+        main.querySelectorAll('h2,h3').forEach(h => {
+          const title = h.innerText.trim();
+          if (title.length < 5 || seen.has(title)) return;
+          seen.add(title);
+          const parent = h.closest('section,article,div,li');
+          const date = parent?.querySelector('time,[class*="date"]')?.innerText?.trim();
+          const link = parent?.querySelector('a')?.href;
+          results.push({ title, date, link, source: src });
+        });
+      }
+      return results.slice(0, 30);
+    }, sourceName);
+  } catch (e) {
+    console.log(`     ✗ ${sourceName} : ${e.message}`);
+    return [];
+  }
+}
+
 /** Visit event detail page to extract date and time */
 async function fetchEventDetails(page, url) {
   if (!url) return {};
@@ -386,11 +440,21 @@ async function main() {
   // ── Scraping ────────────────────────────────────────────────────────────────
   let allCandidates = [];
   const scrapers = [
+    // ── Sources culturelles ──────────────────────────────────────────────────
     { name: 'OPMC',              fn: scrapeOPMC },
     { name: 'Grimaldi Forum',    fn: scrapeGrimaldiForum },
     { name: 'Culture Monaco',    fn: scrapeCultureMonaco },
     { name: 'Cinémas 2 Monaco', fn: scrapeCinemas },
     { name: 'Ballet MC',         fn: scrapeBallet },
+    // ── Fondations majeures ──────────────────────────────────────────────────
+    { name: 'FPA2',              fn: p => scrapeGeneric(p, 'https://www.fpa2.org/en/events',                          'Fondation Prince Albert II') },
+    { name: 'Fdtn P. Charlène',  fn: p => scrapeGeneric(p, 'https://www.fondationprincessecharlene.mc/evenements',    'Fdtn Princesse Charlène') },
+    { name: 'Fdtn P. Pierre',    fn: p => scrapeGeneric(p, 'https://www.fondationprincepierre.mc/evenements',         'Fdtn Prince Pierre') },
+    // ── Associations humanitaires ────────────────────────────────────────────
+    { name: 'Fight Aids Monaco', fn: p => scrapeGeneric(p, 'https://www.fightaidsmonaco.com/evenements',              'Fight Aids Monaco') },
+    { name: 'Croix-Rouge MC',    fn: p => scrapeGeneric(p, 'https://croix-rouge.mc/agenda/',                          'Croix-Rouge de Monaco') },
+    { name: 'Fdtn Flavien',      fn: p => scrapeGeneric(p, 'https://www.fondationflavien.com/evenements/',             'Fondation Flavien') },
+    { name: 'AMADE',             fn: p => scrapeGeneric(p, 'https://www.amade.org/',                                   'AMADE Monaco') },
   ];
 
   for (const { name, fn } of scrapers) {
@@ -414,6 +478,9 @@ async function main() {
     const normTitle = norm(c.title);
     if (UI_NOISE.has(normTitle)) continue;
     if (GENERIC_TYPES.has(normTitle)) continue;
+    if (/^(nous contacter|contact|accueil|home|faire un don|donate)$/i.test(normTitle)) continue;
+    // Skip archive events with old years in the title
+    if (/\b(201[0-9]|202[0-4])\b/.test(c.title)) continue;
     const wordCount = normTitle.split(' ').filter(w => w.length > 0).length;
     if (wordCount <= 1 && normTitle.length < 8) continue;
 
