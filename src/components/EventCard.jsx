@@ -2,7 +2,7 @@ const GOLD = "#C4A241";
 const NAVY = "#0F1D3A";
 const NAVY_LIGHT = "#1A2D4A";
 const GREY = "#4A4A50";
-const WHITE = "#FFFFFF";
+const WHITE = "#FDFAF5";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
@@ -28,7 +28,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         cursor: "pointer",
         position: "relative",
         padding: 4,
-        boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
+        boxShadow: "0 2px 12px rgba(15,29,58,0.07)",
       }}
     >
       {/* Inner frame — navy */}
