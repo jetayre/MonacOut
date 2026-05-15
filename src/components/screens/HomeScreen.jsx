@@ -163,9 +163,17 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                 onClick={() => setShowSearch(s => !s)}
                 style={{ position: "absolute", top: 4, right: 6, background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: 2, opacity: 0.4 }}
               >🔍</button>
-              {/* Flags left + logo centered row */}
-              <div style={{ display: "flex", alignItems: "flex-end" }}>
-                <div style={{ display: "flex", gap: 1, flexShrink: 0, paddingBottom: 2 }}>
+              {/* Logo row — centré */}
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ width: 50, flexShrink: 0 }} />
+                <div style={{ flex: 1 }}>
+                  <MonacOutLogo width={250} />
+                </div>
+                <div style={{ width: 50, flexShrink: 0 }} />
+              </div>
+              {/* Bas du cadre : FR/EN gauche + tagline centrée */}
+              <div style={{ display: "flex", alignItems: "center", marginTop: 2 }}>
+                <div style={{ display: "flex", gap: 1, flexShrink: 0 }}>
                   <button
                     onClick={() => setLang?.("fr")}
                     style={{
@@ -173,8 +181,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                       border: `1.5px solid ${NAVY}`,
                       borderRadius: 6,
                       cursor: "pointer",
-                      fontSize: 13,
-                      padding: "3px 7px",
+                      fontSize: 11,
+                      padding: "2px 6px",
                       lineHeight: 1,
                       color: lang === "fr" ? "#fff" : NAVY,
                       fontFamily: "'Jost', sans-serif",
@@ -189,8 +197,8 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                       border: `1.5px solid ${NAVY}`,
                       borderRadius: 6,
                       cursor: "pointer",
-                      fontSize: 13,
-                      padding: "3px 7px",
+                      fontSize: 11,
+                      padding: "2px 6px",
                       lineHeight: 1,
                       color: lang === "en" ? "#fff" : NAVY,
                       fontFamily: "'Jost', sans-serif",
@@ -199,21 +207,18 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                     }}
                   >EN</button>
                 </div>
-                <div style={{ flex: 1 }}>
-                  <MonacOutLogo width={250} />
-                </div>
-                <div style={{ width: 50, flexShrink: 0 }} />
+                <div style={{
+                  flex: 1,
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  fontSize: 16,
+                  color: "#B8962E",
+                  letterSpacing: 1,
+                  textAlign: "center",
+                }}>{t.tagline}</div>
+                <div style={{ width: 36, flexShrink: 0 }} />
               </div>
-              <div style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                fontSize: 17,
-                color: "#B8962E",
-                letterSpacing: 1,
-                textAlign: "center",
-                marginTop: -1,
-              }}>{t.tagline}</div>
             </div>
           </div>
         </div>
