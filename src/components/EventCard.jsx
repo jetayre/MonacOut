@@ -163,8 +163,9 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           fontStyle: "normal",
           fontSize: 15,
           color: NAVY_LIGHT,
-          textAlign: "justify",
+          textAlign: "left",
           lineHeight: 1.8,
+          whiteSpace: "pre-line",
         }}>{lang === "en" ? (event.descEn || event.desc) : event.desc}</div>
 
         {event.link && !event.free && (
