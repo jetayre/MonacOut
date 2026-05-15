@@ -164,15 +164,39 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               >🔍</button>
               {/* Flags left + logo centered row */}
               <div style={{ display: "flex", alignItems: "center" }}>
-                <div style={{ display: "flex", gap: 3, flexShrink: 0 }}>
+                <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
                   <button
                     onClick={() => setLang?.("fr")}
-                    style={{ background: "none", border: lang === "fr" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "fr" ? 1 : 0.35 }}
-                  >🇫🇷</button>
+                    style={{
+                      background: lang === "fr" ? NAVY : "transparent",
+                      border: `1.5px solid ${NAVY}`,
+                      borderRadius: 6,
+                      cursor: "pointer",
+                      fontSize: 13,
+                      padding: "3px 7px",
+                      lineHeight: 1,
+                      color: lang === "fr" ? "#fff" : NAVY,
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 700,
+                      letterSpacing: 0.5,
+                    }}
+                  >FR</button>
                   <button
                     onClick={() => setLang?.("en")}
-                    style={{ background: "none", border: lang === "en" ? `1.5px solid ${NAVY}` : "1.5px solid transparent", borderRadius: 5, cursor: "pointer", fontSize: 14, padding: "1px 2px", lineHeight: 1, opacity: lang === "en" ? 1 : 0.35 }}
-                  >🇬🇧</button>
+                    style={{
+                      background: lang === "en" ? NAVY : "transparent",
+                      border: `1.5px solid ${NAVY}`,
+                      borderRadius: 6,
+                      cursor: "pointer",
+                      fontSize: 13,
+                      padding: "3px 7px",
+                      lineHeight: 1,
+                      color: lang === "en" ? "#fff" : NAVY,
+                      fontFamily: "'Jost', sans-serif",
+                      fontWeight: 700,
+                      letterSpacing: 0.5,
+                    }}
+                  >EN</button>
                 </div>
                 <div style={{ flex: 1 }}>
                   <MonacOutLogo width={250} />
