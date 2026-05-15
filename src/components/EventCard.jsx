@@ -167,7 +167,7 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           lineHeight: 1.8,
         }}>{lang === "en" ? (event.descEn || event.desc) : event.desc}</div>
 
-        {event.link && (
+        {event.link && !event.free && (
           <div style={{ textAlign: "center", marginTop: 16 }}>
             <a
               href={event.link}

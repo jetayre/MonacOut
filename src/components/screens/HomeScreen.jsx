@@ -157,7 +157,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           {/* Outer border — or */}
           <div style={{ border: `1.5px solid #B8962E`, padding: 1, position: "relative" }}>
             {/* Inner border — bleu nuit */}
-            <div style={{ border: `2px solid ${NAVY}`, padding: "4px 10px 5px", background: WHITE, position: "relative" }}>
+            <div style={{ border: `2px solid ${NAVY}`, padding: "4px 10px 5px 2px", background: WHITE, position: "relative" }}>
               {/* Search icon inside frame top-right */}
               <button
                 onClick={() => setShowSearch(s => !s)}

@@ -189,29 +189,29 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           marginBottom: 20,
         }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
-        <a
-          href={event.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "block",
-            background: `linear-gradient(135deg, ${NAVY}, #1A2D4A)`,
-            borderRadius: 16,
-            padding: "14px 20px",
-            textAlign: "center",
-            textDecoration: "none",
-            color: GOLD2,
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontStyle: "italic",
-            fontWeight: 700,
-            fontSize: 16,
-            letterSpacing: 0.3,
-          }}
-        >
-          {event.free
-            ? (lang === "en" ? "I'm joining →" : "Je participe →")
-            : (lang === "en" ? "Book →" : "Réserver →")}
-        </a>
+        {event.link && !event.free && (
+          <a
+            href={event.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "block",
+              background: `linear-gradient(135deg, ${NAVY}, #1A2D4A)`,
+              borderRadius: 16,
+              padding: "14px 20px",
+              textAlign: "center",
+              textDecoration: "none",
+              color: GOLD2,
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 700,
+              fontSize: 16,
+              letterSpacing: 0.3,
+            }}
+          >
+            {lang === "en" ? "Book →" : "Réserver →"}
+          </a>
+        )}
         {event.phone && (
           <a
             href={`tel:${event.phone}`}
