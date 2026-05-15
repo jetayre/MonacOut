@@ -28,7 +28,6 @@ const TIME_FILTERS = [
   { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
   { id: "calendar", label: "Agenda" },
-  { id: "messe",    label: "Messe ⛪" },
 ];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -84,6 +83,7 @@ function filterByCat(events, catId) {
     case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
     case "foody":    return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
     case "encheres": return events.filter(e => ["ENCHÈRES"].includes(e.cat));
+    case "messe":    return events.filter(e => e.cat === "CHANTS");
     default: return events;
   }
 }
@@ -118,9 +118,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
   }
 
   let filtered;
-  if (filter === "messe") {
-    filtered = ALL_EVENTS.filter(e => e.cat === "CHANTS");
-  } else if (filter === "calendar" && rangeStart) {
+  if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
     filtered = ALL_EVENTS.filter(e => {
       const d = parseEventDate(e);
