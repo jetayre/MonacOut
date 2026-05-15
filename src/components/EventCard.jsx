@@ -125,6 +125,21 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
           {event.title.replace(/\n/g, " ")}
         </div>
 
+        {/* Organisation name — fondations & associations uniquement */}
+        {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance/i.test(event.source || "") && (
+          <div style={{
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontWeight: 700,
+            fontSize: 11,
+            letterSpacing: 1.4,
+            textTransform: "uppercase",
+            color: GOLD,
+            textAlign: "center",
+            marginTop: -18,
+            marginBottom: 14,
+          }}>{event.source}</div>
+        )}
+
         {/* Free badge */}
         {event.free && (
           <div style={{
