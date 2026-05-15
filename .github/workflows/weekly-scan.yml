@@ -1,0 +1,22 @@
+name: MonacOut — Scan hebdomadaire
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'   # Chaque lundi à 7h Monaco (UTC+2 en été)
+  workflow_dispatch:        # Lancement manuel possible depuis GitHub
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Scan des sources & envoi email
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node scripts/weekly-scan.mjs
