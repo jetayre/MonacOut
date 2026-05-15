@@ -109,6 +109,29 @@ git push origin main
 
 ---
 
+## Agent de vérification quotidienne
+
+`verify-events.mjs` — script à la racine du projet. À lancer chaque jour à 6h.
+
+```bash
+# Lancer manuellement
+node verify-events.mjs
+
+# Ajouter au crontab (6h00 chaque jour)
+# crontab -e
+0 6 * * * cd /Users/stephanieayre/monacout && node verify-events.mjs >> verify-events.log 2>&1
+```
+
+Le script vérifie :
+- Tous les `descEn` présents
+- Jours de la semaine corrects (Lun/Mar/Mer/Jeu/Ven/Sam/Dim)
+- Événements > 30j dans le passé à supprimer
+- Trous de couverture mensuelle (APÉRO, BRUNCH, ATELIER, BIEN-ÊTRE, CONFÉRENCE)
+
+Rapport généré dans `verify-events-report.txt`.
+
+---
+
 ## Architecture rapide
 
 ```
@@ -125,4 +148,6 @@ src/
 public/
   venues.html              ← liste complète des lieux avec liens officiels
 CLAUDE.md                  ← ce fichier
+verify-events.mjs          ← agent vérification quotidienne (6h00)
+verify-events-report.txt   ← dernier rapport généré
 ```
