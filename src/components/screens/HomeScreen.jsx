@@ -78,7 +78,11 @@ function filterByCat(events, catId) {
     case "culture":  return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
     case "music":    return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
     case "cinema":   return events.filter(e => e.cat === "CINÉMA");
-    case "famille":  return events.filter(e => e.free === true);
+    case "famille":  return events.filter(e =>
+      e.free === true ||
+      ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) ||
+      /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""))
+    );
     case "ateliers": return events.filter(e => ["ATELIER","DANSE"].includes(e.cat));
     case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
     case "foody":    return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
@@ -155,7 +159,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
         {/* Title frame */}
         <div style={{ background: WHITE, padding: "0 12px", position: "relative" }}>
           {/* Outer border — or */}
-          <div style={{ border: `1.5px solid #B8962E`, padding: 1, position: "relative" }}>
+          <div style={{ border: `1.5px solid #C4A241`, padding: 1, position: "relative" }}>
             {/* Inner border — bleu nuit */}
             <div style={{ border: `2px solid ${NAVY}`, padding: "4px 10px 5px 2px", background: WHITE, position: "relative" }}>
               {/* Search icon inside frame top-right */}
@@ -213,7 +217,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
                   fontStyle: "italic",
                   fontWeight: 400,
                   fontSize: 16,
-                  color: "#B8962E",
+                  color: "#C4A241",
                   letterSpacing: 1,
                   textAlign: "center",
                 }}>{t.tagline}</div>

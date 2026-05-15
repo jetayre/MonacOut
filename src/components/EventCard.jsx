@@ -1,4 +1,4 @@
-const GOLD = "#B8962E";
+const GOLD = "#C4A241";
 const NAVY = "#0F1D3A";
 const NAVY_LIGHT = "#1A2D4A";
 const GREY = "#4A4A50";

@@ -1,4 +1,4 @@
-const GOLD = "#B8962E";
+const GOLD = "#C4A241";
 
 export default function MonacOutLogo({ width = 290 }) {
   const scale = width / 290;
