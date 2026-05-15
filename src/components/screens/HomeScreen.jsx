@@ -165,7 +165,7 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               >🔍</button>
               {/* Flags left + logo centered row */}
               <div style={{ display: "flex", alignItems: "center" }}>
-                <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
+                <div style={{ display: "flex", gap: 1, flexShrink: 0 }}>
                   <button
                     onClick={() => setLang?.("fr")}
                     style={{
