@@ -90,8 +90,10 @@ function norm(s = '') {
 function loadExistingTitles() {
   const src = readFileSync(EVENTS_FILE, 'utf8');
   const titles = new Set();
-  for (const m of src.matchAll(/title:"([^"]+)"/g)) {
-    titles.add(norm(m[1].replace(/\\n/g, ' ')));
+  // Match titles including those with escaped quotes (\")
+  for (const m of src.matchAll(/title:"((?:[^"\\]|\\.)*)"/g)) {
+    const raw = m[1].replace(/\\n/g, ' ').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+    titles.add(norm(raw));
   }
   return titles;
 }
@@ -450,6 +452,10 @@ async function main() {
     { name: 'FPA2',              fn: p => scrapeGeneric(p, 'https://www.fpa2.org/en/events',                          'Fondation Prince Albert II') },
     { name: 'Fdtn P. Charlène',  fn: p => scrapeGeneric(p, 'https://www.fondationprincessecharlene.mc/evenements',    'Fdtn Princesse Charlène') },
     { name: 'Fdtn P. Pierre',    fn: p => scrapeGeneric(p, 'https://www.fondationprincepierre.mc/evenements',         'Fdtn Prince Pierre') },
+    // ── Pages news/actualités des fondations ─────────────────────────────────
+    { name: 'FPA2 news',         fn: p => scrapeGeneric(p, 'https://www.fpa2.org/en/news',                            'Fondation Prince Albert II') },
+    { name: 'Charlène actus',    fn: p => scrapeGeneric(p, 'https://www.fondationprincessecharlene.mc/actualites',    'Fdtn Princesse Charlène') },
+    { name: 'Croix-Rouge presse',fn: p => scrapeGeneric(p, 'https://croix-rouge.mc/presse',                           'Croix-Rouge de Monaco') },
     // ── Associations humanitaires ────────────────────────────────────────────
     { name: 'Fight Aids Monaco', fn: p => scrapeGeneric(p, 'https://www.fightaidsmonaco.com/evenements',              'Fight Aids Monaco') },
     { name: 'Croix-Rouge MC',    fn: p => scrapeGeneric(p, 'https://croix-rouge.mc/agenda/',                          'Croix-Rouge de Monaco') },
@@ -528,6 +534,13 @@ async function main() {
     }
     if (dateObj < today) {
       console.log(`     ✗ Événement passé (${frDate(dateObj)}) — ignoré.`);
+      continue;
+    }
+    // Skip events clearly located outside Monaco
+    const venue = (candidate.venue || '').toLowerCase();
+    const titleLow = candidate.title.toLowerCase();
+    if (/\b(paris|strasbourg|cannes|nice|lyon|marseille|london|new york|genève|geneva|rome|madrid)\b/.test(venue + ' ' + titleLow)) {
+      console.log(`     ✗ Hors Monaco — ignoré.`);
       continue;
     }
 
