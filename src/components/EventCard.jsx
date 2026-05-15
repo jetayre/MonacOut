@@ -107,9 +107,9 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         <div style={{
           fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "normal",
-          fontWeight: 300,
+          fontWeight: 400,
           fontSize: 28,
-          letterSpacing: 3,
+          letterSpacing: 2,
           color: NAVY,
           lineHeight: 1.3,
           display: "-webkit-box",
