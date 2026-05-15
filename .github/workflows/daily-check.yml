@@ -1,0 +1,40 @@
+name: MonacOut — Nettoyage & Vérification
+
+on:
+  schedule:
+    - cron: '0 4 * * *'    # 6h00 Monaco (UTC+2 en été)
+    - cron: '0 16 * * *'   # 18h00 Monaco (UTC+2 en été)
+  workflow_dispatch:         # lancement manuel depuis GitHub
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Nettoyage événements passés
+        run: node cleanup-events.mjs
+
+      - name: Vérification complète
+        run: node verify-events.mjs
+
+      - name: Build & Push si nettoyage effectué
+        run: |
+          if ! git diff --quiet src/data/events.js; then
+            npm run build
+            git config user.name "MonacOut Bot"
+            git config user.email "noreply@github.com"
+            git add src/data/events.js
+            git commit -m "chore: nettoyage automatique événements passés ($(date +%Y-%m-%d))"
+            git push
+          fi
