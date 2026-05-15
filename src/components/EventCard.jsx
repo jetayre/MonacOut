@@ -80,11 +80,11 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
         {/* Date + heure */}
         <div style={{
           display: "flex",
-          alignItems: "baseline",
-          justifyContent: "center",
-          gap: 8,
+          flexDirection: "column",
+          alignItems: "center",
           paddingTop: 26,
           marginBottom: 6,
+          gap: 3,
         }}>
           <span style={{
             fontFamily: "'Jost', -apple-system, sans-serif",
