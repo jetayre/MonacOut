@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import HomeScreen from "./components/screens/HomeScreen";
@@ -22,8 +22,16 @@ const CAT_TO_FILTER = {
 export default function App() {
   const [tab, setTab] = useState("events");
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const scrollRef   = useRef(null);
-  const savedScroll = useRef(0);
+  const scrollRef     = useRef(null);
+  const savedScroll   = useRef(0);
+  const shouldRestore = useRef(false);
+
+  useLayoutEffect(() => {
+    if (shouldRestore.current && !selectedEvent && scrollRef.current) {
+      scrollRef.current.scrollTop = savedScroll.current;
+      shouldRestore.current = false;
+    }
+  }, [selectedEvent]);
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
     catch { return []; }
@@ -69,12 +77,8 @@ export default function App() {
   }
 
   function handleBack() {
+    shouldRestore.current = true;
     setSelectedEvent(null);
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (scrollRef.current) scrollRef.current.scrollTop = savedScroll.current;
-      });
-    });
   }
 
   const sharedProps = {
