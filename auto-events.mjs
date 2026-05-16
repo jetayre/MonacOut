@@ -227,8 +227,8 @@ function cleanTitle(raw) {
     }
   }
   if (line) lines.push(line.trim());
-  // Use literal \n (two chars), not actual newline
-  return lines.join('\\n').toUpperCase();
+  // Uppercase each line before joining so the \n separator stays lowercase
+  return lines.map(l => l.toUpperCase()).join('\\n');
 }
 
 /** Generate a complete MonacOut event object */
