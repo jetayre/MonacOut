@@ -37,7 +37,7 @@ const NAV_IDS = [
   { id: "agenda", key: "agenda", Icon: HeartIcon },
 ];
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", showCats, catFilter, onCatFilter }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", showCats, catFilter, onCatFilter, scrollRef }) {
   return (
     <div style={{
       minHeight: "100vh",
@@ -154,7 +154,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
         )}
 
         {/* Scrollable content */}
-        <div style={{
+        <div ref={scrollRef} style={{
           flex: 1,
           overflowY: "auto",
           scrollbarWidth: "none",

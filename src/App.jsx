@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import HomeScreen from "./components/screens/HomeScreen";
@@ -22,6 +22,8 @@ const CAT_TO_FILTER = {
 export default function App() {
   const [tab, setTab] = useState("events");
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const scrollRef   = useRef(null);
+  const savedScroll = useRef(0);
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
     catch { return []; }
@@ -61,8 +63,22 @@ export default function App() {
     setTab("events");
   }
 
+  function selectEvent(event) {
+    savedScroll.current = scrollRef.current?.scrollTop || 0;
+    setSelectedEvent(event);
+  }
+
+  function handleBack() {
+    setSelectedEvent(null);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (scrollRef.current) scrollRef.current.scrollTop = savedScroll.current;
+      });
+    });
+  }
+
   const sharedProps = {
-    onSelectEvent: setSelectedEvent,
+    onSelectEvent: selectEvent,
     favorites,
     onToggleFav: toggleFav,
     onCategoryClick: navigateToCategory,
@@ -75,7 +91,7 @@ export default function App() {
         <DetailScreen
           {...sharedProps}
           event={selectedEvent}
-          onBack={() => setSelectedEvent(null)}
+          onBack={handleBack}
         />
       );
     }
@@ -99,7 +115,7 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter} scrollRef={scrollRef}>
       {renderScreen()}
     </Shell>
   );
