@@ -85,6 +85,25 @@ const SOURCE_VENUE = {
   'Musée Océanographique':           'Musée Océanographique · Monaco-Ville',
   'Monaco Run':                      'Monaco',
   'Monaco Yacht Show':               'Port Hercule · Monaco',
+  // ── Bien-être & wellness ──────────────────────────────────────────────────
+  'Thermes Marins Monte-Carlo':      'Thermes Marins · Monaco',
+  'BodyFlow MC':                     'BodyFlow MC · Palais La Scala · Monaco',
+  'Yoga Monte-Carlo':                'Yoga Monte-Carlo · Monaco',
+  'Fairmont Monte Carlo':            'Fairmont Monte Carlo · Monaco',
+  'yumé Monaco':                     'yumé · Résidence Hemera · Monaco',
+  'Aritual Monaco':                  'Aritual · Quai Antoine Ier · Monaco',
+  'Odéon Spa':                       'Odéon Spa · Tour Odéon · Monaco',
+  'SPA Clarins & myBlend':           'SPA Clarins myBlend · Monte-Carlo Bay',
+  'Monaco Wellness System':          'Monaco Wellness System · Monaco',
+  'Jenna Lifestyle':                 'Jenna Lifestyle · Fontvieille · Monaco',
+  // ── Apéro & nightlife ────────────────────────────────────────────────────
+  'Equivoque Rooftop':               'Equivoque Rooftop · Monaco',
+  'La Môme Monte-Carlo':             'La Môme · Monte-Carlo',
+  'Le Rouge et le Blanc':            'Le Rouge et le Blanc · Monaco',
+  'Wine Palace YCM':                 'Wine Palace · Yacht Club de Monaco',
+  'Caffè Milano Monaco':             'Caffè Milano · Monte-Carlo',
+  'AMU Monte Carlo':                 'AMU · Monte Carlo',
+  'yumé':                            'yumé · Résidence Hemera · Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -198,6 +217,8 @@ function inferCat(title, source) {
   if (/musical/.test(t)) return 'MUSICAL';
   if (/gala/.test(t)) return 'GALA';
   if (/enchere|auction|vente/.test(t)) return 'ENCHÈRES';
+  if (/yoga|pilates|meditat|thalasso|breathwork|bien.?etre|detox|wellness|spa marin|sound.?healing|bain sonore/.test(t)) return 'BIEN-ÊTRE';
+  if (/bootcamp|fitness|running|marathon|triathlon/.test(t) && !/concert|musiq/.test(t)) return 'SPORT';
   if (/brunch/.test(t)) return 'BRUNCH';
   if (/salon|show/.test(t)) return 'SALON';
   if (/spectacle/.test(t)) return 'SPECTACLE';
@@ -513,6 +534,22 @@ async function main() {
     // ── Salon & nautisme ─────────────────────────────────────────────────────
     { name: 'Monaco Yacht Show',  fn: p => scrapeGeneric(p, 'https://www.monacoyachtshow.com',                         'Monaco Yacht Show') },
     { name: 'ACM calendrier',     fn: p => scrapeGeneric(p, 'https://www.acm.mc/fr/calendrier',                        'Automobile Club de Monaco') },
+    // ── Bien-être & wellness ──────────────────────────────────────────────────
+    { name: 'Thermes Marins',     fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/offres-speciales',        'Thermes Marins Monte-Carlo') },
+    { name: 'BodyFlow MC',        fn: p => scrapeGeneric(p, 'https://www.bodyflow.mc/',                                  'BodyFlow MC') },
+    { name: 'Yoga MC',            fn: p => scrapeGeneric(p, 'http://yogamontecarlo.com/category/events/',                'Yoga Monte-Carlo') },
+    { name: 'yumé Monaco',        fn: p => scrapeGeneric(p, 'https://yume.mc/',                                          'yumé Monaco') },
+    { name: 'Aritual',            fn: p => scrapeGeneric(p, 'https://www.aritual.fr/',                                   'Aritual Monaco') },
+    { name: 'Odéon Spa',          fn: p => scrapeGeneric(p, 'http://www.odeonspa.com/',                                  'Odéon Spa') },
+    { name: 'Clarins myBlend',    fn: p => scrapeGeneric(p, 'https://www.montecarlobay.com/wellness/',                   'SPA Clarins & myBlend') },
+    { name: 'Monaco Wellness',    fn: p => scrapeGeneric(p, 'https://www.monacowellnesssystem.com/',                     'Monaco Wellness System') },
+    { name: 'Fairmont wellness',  fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/offers/',              'Fairmont Monte Carlo') },
+    { name: 'Jenna Lifestyle',    fn: p => scrapeGeneric(p, 'http://jennalifestyle.com/',                                'Jenna Lifestyle') },
+    // ── Apéro & nightlife ────────────────────────────────────────────────────
+    { name: 'Equivoque',          fn: p => scrapeGeneric(p, 'http://www.equivoquemc.com/',                               'Equivoque Rooftop') },
+    { name: 'La Môme MC',         fn: p => scrapeGeneric(p, 'https://www.lamome-montecarlo.com/',                        'La Môme Monte-Carlo') },
+    { name: 'YCM events',         fn: p => scrapeGeneric(p, 'https://www.ycm.mc/fr/programme-de-la-semaine',             'Wine Palace YCM') },
+    { name: 'AMU MC',             fn: p => scrapeGeneric(p, 'https://www.amu-mc.com/',                                   'AMU Monte Carlo') },
     // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
     // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
     // Société Saint-Vincent de Paul Monaco — aucun site trouvé
