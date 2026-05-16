@@ -122,6 +122,11 @@ const SOURCE_VENUE = {
   'Amber Lounge Monaco':             'Amber Lounge · Monaco GP',
   'Jack Monaco':                     'Jack Monaco · Port Monaco',
   'Nobu Monte-Carlo':                'Nobu Monte-Carlo · Fairmont',
+  // ── Théâtres monaco ──────────────────────────────────────────────────────
+  'Théâtre Princesse Grace':         'Théâtre Princesse Grace · Monaco',
+  'Théâtre des Muses Monaco':        'Théâtre des Muses · Monaco',
+  'Théâtre Fort Antoine':            'Théâtre du Fort Antoine · Monaco',
+  'Théâtre des Variétés Monaco':     'Théâtre des Variétés · Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -551,6 +556,10 @@ async function main() {
     { name: 'Philomonaco',        fn: p => scrapeGeneric(p, 'https://www.philomonaco.com/evenements',                  'Philomonaco') },
     { name: 'Musée Océano',       fn: p => scrapeGeneric(p, 'https://musee.oceano.org/fr/activites',                   'Musée Océanographique') },
     { name: 'OPMC saison',        fn: p => scrapeGeneric(p, 'https://opmc.mc/en/season-25-26/',                        'OPMC') },
+    { name: 'TPG Monaco',         fn: p => scrapeGeneric(p, 'https://www.tpgmonaco.mc/fr/programme',                    'Théâtre Princesse Grace') },
+    { name: 'Théâtre des Muses',  fn: p => scrapeGeneric(p, 'https://www.letheatredesmuses.com/',                       'Théâtre des Muses Monaco') },
+    { name: 'Fort Antoine',       fn: p => scrapeGeneric(p, 'https://theatrefortantoine.com/',                          'Théâtre Fort Antoine') },
+    { name: 'Théâtre Variétés',   fn: p => scrapeGeneric(p, 'https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes', 'Théâtre des Variétés Monaco') },
     // ── Enchères ─────────────────────────────────────────────────────────────
     { name: 'RM Sotheby\'s',      fn: p => scrapeGeneric(p, 'https://rmsothebys.com/en/auctions/mc26',                 'RM Sotheby\'s Monaco') },
     { name: 'Bonhams Monaco',     fn: p => scrapeGeneric(p, 'https://www.bonhams.com/auctions/?department=monaco',     'Bonhams Monaco') },
@@ -565,7 +574,7 @@ async function main() {
     { name: 'Nikki Beach',        fn: p => scrapeGeneric(p, 'https://nikkibeach.com/monte-carlo/events/',                'Nikki Beach Monte Carlo') },
     { name: 'La Môme',            fn: p => scrapeGeneric(p, 'https://www.lamomemontecarlo.com/evenements/',              'La Môme Monte-Carlo') },
     { name: 'Robuchon café',      fn: p => scrapeGeneric(p, 'https://robuchonmonaco.com/le-petit-cafe/',                 'Le Petit Café Robuchon') },
-    { name: 'Woo Monaco',         fn: p => scrapeGeneric(p, 'https://www.instagram.com/woomonaco/',                      'Woo Monaco') },
+    { name: 'Woo Monaco',         fn: p => scrapeGeneric(p, 'https://woo.mc/',                                          'Woo Monaco') },
     { name: 'Gran Caffè',         fn: p => scrapeGeneric(p, 'https://grancaffe.mc/',                                     'Gran Caffè Monaco') },
     { name: 'Azzurra Kitchen',    fn: p => scrapeGeneric(p, 'https://www.novotelmontecarlo.com/en/restaurant-bars/azzurra-kitchen/', 'Azzurra Kitchen') },
     { name: 'Horizon Rooftop',    fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/dining/horizon-rooftop-monaco/', 'Horizon Rooftop') },
@@ -575,7 +584,7 @@ async function main() {
     { name: 'Yoga MC',            fn: p => scrapeGeneric(p, 'http://yogamontecarlo.com/category/events/',                'Yoga Monte-Carlo') },
     { name: 'yumé Monaco',        fn: p => scrapeGeneric(p, 'https://yume.mc/',                                          'yumé Monaco') },
     { name: 'Aritual',            fn: p => scrapeGeneric(p, 'https://www.aritual.fr/',                                   'Aritual Monaco') },
-    { name: 'Odéon Spa',          fn: p => scrapeGeneric(p, 'http://www.odeonspa.com/',                                  'Odéon Spa') },
+    { name: 'Odéon Spa',          fn: p => scrapeGeneric(p, 'https://odeonspa.com/',                                    'Odéon Spa') },
     { name: 'Clarins myBlend',    fn: p => scrapeGeneric(p, 'https://www.montecarlobay.com/wellness/',                   'SPA Clarins & myBlend') },
     { name: 'Monaco Wellness',    fn: p => scrapeGeneric(p, 'https://www.monacowellnesssystem.com/',                     'Monaco Wellness System') },
     { name: 'Fairmont wellness',  fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/offers/',              'Fairmont Monte Carlo') },

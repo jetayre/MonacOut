@@ -30,9 +30,15 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Bonhams Monaco | https://www.bonhams.com/ | ENCHÈRES |
 | Monaco Legend Auctions | https://www.monacolegendauctions.com/ | ENCHÈRES |
 | Artcurial Monaco | https://www.artcurial.com/en/specialties/artcurial-monaco | ENCHÈRES |
+| Théâtre Princesse Grace | https://www.tpgmonaco.mc/fr/programme | THÉÂTRE, SPECTACLE |
+| Théâtre des Muses Monaco | https://www.letheatredesmuses.com/ | THÉÂTRE, SPECTACLE, ATELIER |
+| Théâtre Fort Antoine | https://theatrefortantoine.com/ | THÉÂTRE |
+| Théâtre des Variétés Monaco | https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes | THÉÂTRE, SPECTACLE |
 | Thermes Marins Monte-Carlo | https://www.montecarlosbm.com/en/wellness/thermes-marins-monte-carlo/ | BIEN-ÊTRE |
+| Odéon Spa | https://odeonspa.com/ | BIEN-ÊTRE |
 | Monte-Carlo SBM (restos/bars) | https://www.montecarlosbm.com/ | BRUNCH, APÉRO, SOIRÉE |
 | Sass Café | https://www.sasscafe.com/ | APÉRO |
+| Woo Monaco | https://woo.mc/ | BRUNCH |
 | NMNM (Villa Paloma + Villa Sauber) | https://www.nmnm.mc/ | ATELIER, EXPOSITION |
 | Académie de Musique Prince Rainier III | https://www.academiedemusique.mc/ | ATELIER |
 | Ballet de Monte-Carlo | https://www.balletsdemontecarlo.com/ | DANSE |
