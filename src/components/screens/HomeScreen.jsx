@@ -99,7 +99,7 @@ function filterByCat(events, catId) {
   }
 }
 
-export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang, catFilter, onCatFilter }) {
+export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang, catFilter, onCatFilter }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? {
@@ -301,7 +301,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
             <EventCard
               key={e.id}
               event={e}
-              onClick={onSelectEvent}
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={(cat) => {

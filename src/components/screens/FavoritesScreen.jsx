@@ -8,7 +8,7 @@ const GREY = "#6A7A9A";
 const WHITE = "#FFFFFF";
 const LIGHT = "#F5F5FA";
 
-export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
+export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const favEvents = ALL_EVENTS.filter(e => favorites.includes(e.id));
 
   return (
@@ -68,7 +68,6 @@ export default function FavoritesScreen({ onSelectEvent, favorites, onToggleFav,
             <EventCard
               key={e.id}
               event={e}
-              onClick={onSelectEvent}
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={onCategoryClick}

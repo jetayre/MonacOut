@@ -11,7 +11,7 @@ function todayFrDate() {
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
 }
 
-export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
   const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
   const dateLabel = isToday
@@ -19,13 +19,11 @@ export default function EventCard({ event, onClick, favorites, onToggleFav, onCa
     : event.date;
   return (
     <div
-      onClick={() => onClick(event)}
       style={{
         background: WHITE,
         borderRadius: 4,
         border: `1.5px solid ${GOLD}`,
         marginBottom: 14,
-        cursor: "pointer",
         position: "relative",
         padding: 4,
         boxShadow: "0 2px 12px rgba(15,29,58,0.07)",

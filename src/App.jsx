@@ -1,9 +1,8 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
-import DetailScreen from "./components/screens/DetailScreen";
 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
@@ -21,17 +20,6 @@ const CAT_TO_FILTER = {
 
 export default function App() {
   const [tab, setTab] = useState("events");
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const scrollRef     = useRef(null);
-  const savedScroll   = useRef(0);
-  const shouldRestore = useRef(false);
-
-  useLayoutEffect(() => {
-    if (shouldRestore.current && !selectedEvent && scrollRef.current) {
-      scrollRef.current.scrollTop = savedScroll.current;
-      shouldRestore.current = false;
-    }
-  }, [selectedEvent]);
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
     catch { return []; }
@@ -46,7 +34,6 @@ export default function App() {
       setShowCats(prev => !prev);
       return;
     }
-    setSelectedEvent(null);
     setCatFilter(null);
     setShowCats(false);
     setTab(newTab);
@@ -67,22 +54,10 @@ export default function App() {
   function navigateToCategory(cat) {
     setCatFilter(CAT_TO_FILTER[cat] || null);
     setHomeFilter("all");
-    setSelectedEvent(null);
     setTab("events");
   }
 
-  function selectEvent(event) {
-    savedScroll.current = scrollRef.current?.scrollTop || 0;
-    setSelectedEvent(event);
-  }
-
-  function handleBack() {
-    shouldRestore.current = true;
-    setSelectedEvent(null);
-  }
-
   const sharedProps = {
-    onSelectEvent: selectEvent,
     favorites,
     onToggleFav: toggleFav,
     onCategoryClick: navigateToCategory,
@@ -90,15 +65,6 @@ export default function App() {
   };
 
   function renderScreen() {
-    if (selectedEvent) {
-      return (
-        <DetailScreen
-          {...sharedProps}
-          event={selectedEvent}
-          onBack={handleBack}
-        />
-      );
-    }
     switch (tab) {
       case "events":
         return (
@@ -119,7 +85,7 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter} scrollRef={scrollRef}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter}>
       {renderScreen()}
     </Shell>
   );
