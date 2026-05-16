@@ -65,8 +65,8 @@ function filterByTime(events, filterId) {
     case "weekend": return events.filter(e => weekendDates.includes(e.date));
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
-      const sun = new Date(today); sun.setDate(today.getDate() + (today.getDay() === 0 ? 0 : 7 - today.getDay()));
-      return events.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= sun; });
+      const in7 = new Date(today); in7.setDate(today.getDate() + 6);
+      return events.filter(e => { const d = parseEventDate(e); return d && d >= today && d <= in7; });
     }
     default: return events;
   }
