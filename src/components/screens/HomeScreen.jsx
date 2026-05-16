@@ -30,18 +30,6 @@ const TIME_FILTERS = [
   { id: "calendar", label: "Agenda" },
 ];
 
-const CAT_FILTERS = [
-  { id: "sport",    label: "⚽ Sport",     labelEn: "⚽ Sport" },
-  { id: "music",    label: "🎵 Musique",   labelEn: "🎵 Music" },
-  { id: "culture",  label: "🎭 Culture",   labelEn: "🎭 Culture" },
-  { id: "foody",    label: "🍽️ Foody",    labelEn: "🍽️ Foody" },
-  { id: "cinema",   label: "🎬 Cinéma",    labelEn: "🎬 Cinema" },
-  { id: "ateliers", label: "🎨 Ateliers",  labelEn: "🎨 Workshops" },
-  { id: "bienetre", label: "🧘 Bien-être", labelEn: "🧘 Wellness" },
-  { id: "famille",  label: "👨‍👩‍👧 Famille", labelEn: "👨‍👩‍👧 Family" },
-  { id: "encheres", label: "🔨 Enchères",  labelEn: "🔨 Auctions" },
-  { id: "messe",    label: "⛪ Messes",    labelEn: "⛪ Masses" },
-];
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
@@ -295,36 +283,6 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
           </div>
         )}
 
-        {/* Category filter row */}
-        {!showSearch && (
-          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
-            <div style={{ display: "flex", gap: 5, padding: "6px 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
-              {CAT_FILTERS.map(f => {
-                const active = catFilter === f.id;
-                return (
-                  <button
-                    key={f.id}
-                    onClick={() => onCatFilter?.(active ? null : f.id)}
-                    style={{
-                      flexShrink: 0,
-                      padding: "5px 11px",
-                      borderRadius: 20,
-                      border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.15)"}`,
-                      background: active ? NAVY : "rgba(15,29,58,0.03)",
-                      color: active ? WHITE : GREY,
-                      fontFamily: "'Jost', -apple-system, sans-serif",
-                      fontSize: 11,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                      letterSpacing: 0.2,
-                    }}
-                  >{lang === "en" ? f.labelEn : f.label}</button>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Inline calendar panel */}

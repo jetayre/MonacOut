@@ -28,11 +28,17 @@ export default function App() {
   });
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
+  const [showCats, setShowCats] = useState(false);
   const [catFilter, setCatFilter] = useState(null);
 
   function handleTabChange(newTab) {
+    if (newTab === "events" && tab === "events") {
+      setShowCats(prev => !prev);
+      return;
+    }
     setSelectedEvent(null);
     setCatFilter(null);
+    setShowCats(false);
     setTab(newTab);
   }
 
@@ -93,7 +99,7 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter}>
       {renderScreen()}
     </Shell>
   );
