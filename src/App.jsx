@@ -28,22 +28,16 @@ export default function App() {
   });
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
-  const [showCats, setShowCats] = useState(false);
   const [catFilter, setCatFilter] = useState(null);
 
   function handleTabChange(newTab) {
-    if (newTab === "events" && tab === "events") {
-      setShowCats(prev => !prev);
-      return;
-    }
     setSelectedEvent(null);
     setCatFilter(null);
     setTab(newTab);
   }
 
   function handleCatFilter(catId) {
-    setCatFilter(catId);
-    if (catId) setHomeFilter("all");
+    setCatFilter(catId === catFilter ? null : catId);
   }
 
   function toggleFav(id) {
@@ -99,7 +93,7 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]}>
       {renderScreen()}
     </Shell>
   );

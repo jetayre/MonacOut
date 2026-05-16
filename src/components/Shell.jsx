@@ -37,7 +37,7 @@ const NAV_IDS = [
   { id: "agenda", key: "agenda", Icon: HeartIcon },
 ];
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", showCats, catFilter, onCatFilter }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr" }) {
   return (
     <div style={{
       minHeight: "100vh",
@@ -118,40 +118,6 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
             })}
           </div>
         </div>
-
-        {/* Category panel */}
-        {showCats && tab === "events" && (
-          <div style={{
-            flexShrink: 0,
-            borderBottom: `1px solid rgba(15,29,58,0.12)`,
-            padding: "8px 10px 10px",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 6,
-            background: "#FFFFFF",
-          }}>
-            {CAT_FILTERS.map(f => (
-              <button
-                key={f.id}
-                onClick={() => onCatFilter?.(catFilter === f.id ? null : f.id)}
-                style={{
-                  flexShrink: 0,
-                  padding: "6px 14px",
-                  borderRadius: 20,
-                  border: `1px solid ${catFilter === f.id ? NAVY : "rgba(15,29,58,0.2)"}`,
-                  background: catFilter === f.id ? NAVY : "#FFFFFF",
-                  color: catFilter === f.id ? "#FFFFFF" : "#6A7080",
-                  fontFamily: "'Jost', -apple-system, sans-serif",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  whiteSpace: "nowrap",
-                  letterSpacing: 0.3,
-                }}
-              >{lang === "en" ? f.labelEn : f.label}</button>
-            ))}
-          </div>
-        )}
 
         {/* Scrollable content */}
         <div style={{

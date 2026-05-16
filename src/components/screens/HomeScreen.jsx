@@ -30,6 +30,19 @@ const TIME_FILTERS = [
   { id: "calendar", label: "Agenda" },
 ];
 
+const CAT_FILTERS = [
+  { id: "sport",    label: "⚽ Sport",     labelEn: "⚽ Sport" },
+  { id: "music",    label: "🎵 Musique",   labelEn: "🎵 Music" },
+  { id: "culture",  label: "🎭 Culture",   labelEn: "🎭 Culture" },
+  { id: "foody",    label: "🍽️ Foody",    labelEn: "🍽️ Foody" },
+  { id: "cinema",   label: "🎬 Cinéma",    labelEn: "🎬 Cinema" },
+  { id: "ateliers", label: "🎨 Ateliers",  labelEn: "🎨 Workshops" },
+  { id: "bienetre", label: "🧘 Bien-être", labelEn: "🧘 Wellness" },
+  { id: "famille",  label: "👨‍👩‍👧 Famille", labelEn: "👨‍👩‍👧 Family" },
+  { id: "encheres", label: "🔨 Enchères",  labelEn: "🔨 Auctions" },
+  { id: "messe",    label: "⛪ Messes",    labelEn: "⛪ Masses" },
+];
+
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
 const MOIS_IDX = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
@@ -135,8 +148,9 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
       if (!d) return false;
       return d >= rangeStart && d <= endBound;
     });
+    if (catFilter) filtered = filterByCat(filtered, catFilter);
   } else if (filter === "calendar") {
-    filtered = ALL_EVENTS;
+    filtered = catFilter ? filterByCat(ALL_EVENTS, catFilter) : ALL_EVENTS;
   } else if (search.trim()) {
     const norm = s => s.toLowerCase()
       .normalize("NFD").replace(/[̀-ͯ]/g, "")
@@ -278,6 +292,37 @@ export default function HomeScreen({ onSelectEvent, favorites, onToggleFav, onCa
               />
             </div>
             <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>{lang === "en" ? "Cancel" : "Annuler"}</button>
+          </div>
+        )}
+
+        {/* Category filter row */}
+        {!showSearch && (
+          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
+            <div style={{ display: "flex", gap: 5, padding: "6px 10px 8px", overflowX: "auto", scrollbarWidth: "none" }}>
+              {CAT_FILTERS.map(f => {
+                const active = catFilter === f.id;
+                return (
+                  <button
+                    key={f.id}
+                    onClick={() => onCatFilter?.(active ? null : f.id)}
+                    style={{
+                      flexShrink: 0,
+                      padding: "5px 11px",
+                      borderRadius: 20,
+                      border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.15)"}`,
+                      background: active ? NAVY : "rgba(15,29,58,0.03)",
+                      color: active ? WHITE : GREY,
+                      fontFamily: "'Jost', -apple-system, sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                      letterSpacing: 0.2,
+                    }}
+                  >{lang === "en" ? f.labelEn : f.label}</button>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
