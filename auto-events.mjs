@@ -67,6 +67,24 @@ const SOURCE_VENUE = {
   'Les Anges Gardiens de Monaco':    'Les Anges Gardiens · Monaco',
   'AMAPEI Monaco':                   'AMAPEI · Monaco',
   'Jewish Cultural Center Monaco':   'Jewish Cultural Center · Monaco',
+  'Mairie de Monaco':                'Mairie de Monaco',
+  'AS Monaco Basket':                'Salle Gaston Médecin · Monaco',
+  'AS Monaco FC':                    'Stade Louis II · Monaco',
+  'La Note Bleue':                   'La Note Bleue · Monaco',
+  'FIA Formula E':                   'Circuit de Monaco',
+  'Automobile Club de Monaco':       'Circuit de Monaco · Monaco',
+  'Herculis Monaco':                 'Stade Louis II · Monaco',
+  'TV Festival Monte-Carlo':         'Grimaldi Forum · Monaco',
+  'RM Sotheby\'s Monaco':            'Grimaldi Forum · Monaco',
+  'Bonhams Monaco':                  'Monaco',
+  'Monaco Legend Auctions':          'Monaco',
+  'Monte-Carlo SBM':                 'Monte-Carlo',
+  'Sass Café':                       'Sass Café · Monte-Carlo',
+  'NMNM Monaco':                     'NMNM · Monaco',
+  'Philomonaco':                     'Monaco',
+  'Musée Océanographique':           'Musée Océanographique · Monaco-Ville',
+  'Monaco Run':                      'Monaco',
+  'Monaco Yacht Show':               'Port Hercule · Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -470,6 +488,31 @@ async function main() {
     { name: 'JCC Monaco',         fn: p => scrapeGeneric(p, 'https://www.jccmonaco.com/events',                        'Jewish Cultural Center Monaco') },
     // ── Fondations santé & recherche ────────────────────────────────────────
     { name: 'Fdtn Flavien',       fn: p => scrapeGeneric(p, 'https://www.fondationflavien.com/evenements/',            'Fondation Flavien') },
+    // ── Sport ────────────────────────────────────────────────────────────────
+    { name: 'AS Monaco Basket',   fn: p => scrapeGeneric(p, 'https://billetterie.asmonaco.basketball/fr',              'AS Monaco Basket') },
+    { name: 'AS Monaco FC',       fn: p => scrapeGeneric(p, 'https://www.asmonaco.com',                                'AS Monaco FC') },
+    { name: 'Formula E',          fn: p => scrapeGeneric(p, 'https://www.fiaformulae.com/en/calendar',                 'FIA Formula E') },
+    { name: 'Monaco Grand Prix',  fn: p => scrapeGeneric(p, 'https://monaco-grandprix.com/en/',                        'Automobile Club de Monaco') },
+    { name: 'Herculis',           fn: p => scrapeGeneric(p, 'https://monaco.diamondleague.com/meeting/herculis/',       'Herculis Monaco') },
+    { name: 'Monaco Run',         fn: p => scrapeGeneric(p, 'https://www.monacorun.com',                               'Monaco Run') },
+    // ── Culture & divertissement ─────────────────────────────────────────────
+    { name: 'Mairie Monaco',      fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                            'Mairie de Monaco') },
+    { name: 'La Note Bleue',      fn: p => scrapeGeneric(p, 'https://lanotebleue.mc/en/',                              'La Note Bleue') },
+    { name: 'TV Festival',        fn: p => scrapeGeneric(p, 'https://www.tvfestival.com/en/programme/',                 'TV Festival Monte-Carlo') },
+    { name: 'NMNM',               fn: p => scrapeGeneric(p, 'https://www.nmnm.mc/en/events',                           'NMNM Monaco') },
+    { name: 'Philomonaco',        fn: p => scrapeGeneric(p, 'https://www.philomonaco.com/evenements',                  'Philomonaco') },
+    { name: 'Musée Océano',       fn: p => scrapeGeneric(p, 'https://musee.oceano.org/fr/activites',                   'Musée Océanographique') },
+    { name: 'OPMC saison',        fn: p => scrapeGeneric(p, 'https://opmc.mc/en/season-25-26/',                        'OPMC') },
+    // ── Enchères ─────────────────────────────────────────────────────────────
+    { name: 'RM Sotheby\'s',      fn: p => scrapeGeneric(p, 'https://rmsothebys.com/en/auctions/mc26',                 'RM Sotheby\'s Monaco') },
+    { name: 'Bonhams Monaco',     fn: p => scrapeGeneric(p, 'https://www.bonhams.com/auctions/?department=monaco',     'Bonhams Monaco') },
+    { name: 'Monaco Legend',      fn: p => scrapeGeneric(p, 'https://www.monacolegendauctions.com',                    'Monaco Legend Auctions') },
+    // ── SBM / lifestyle ──────────────────────────────────────────────────────
+    { name: 'SBM agenda',         fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/agenda',                 'Monte-Carlo SBM') },
+    { name: 'Sass Café',          fn: p => scrapeGeneric(p, 'https://www.sasscafe.com',                                'Sass Café') },
+    // ── Salon & nautisme ─────────────────────────────────────────────────────
+    { name: 'Monaco Yacht Show',  fn: p => scrapeGeneric(p, 'https://www.monacoyachtshow.com',                         'Monaco Yacht Show') },
+    { name: 'ACM calendrier',     fn: p => scrapeGeneric(p, 'https://www.acm.mc/fr/calendrier',                        'Automobile Club de Monaco') },
     // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
     // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
     // Société Saint-Vincent de Paul Monaco — aucun site trouvé
