@@ -96,6 +96,14 @@ const SOURCE_VENUE = {
   'SPA Clarins & myBlend':           'SPA Clarins myBlend · Monte-Carlo Bay',
   'Monaco Wellness System':          'Monaco Wellness System · Monaco',
   'Jenna Lifestyle':                 'Jenna Lifestyle · Fontvieille · Monaco',
+  // ── Brunch ───────────────────────────────────────────────────────────────
+  'Nikki Beach Monte Carlo':         'Nikki Beach · Fairmont Monte Carlo',
+  'La Môme Monte-Carlo':             'La Môme Monte-Carlo · Av. J.F. Kennedy',
+  'Le Petit Café Robuchon':          'Le Petit Café Robuchon · Rue du Portier · Monaco',
+  'Woo Monaco':                      'Woo Monaco · Rue Princesse Caroline',
+  'Gran Caffè Monaco':               'Gran Caffè · Rue Grimaldi · La Condamine',
+  'Azzurra Kitchen':                 'Azzurra Kitchen · Novotel Monte-Carlo',
+  'Horizon Rooftop':                 'Horizon Rooftop · Fairmont Monte Carlo',
   // ── Apéro & nightlife ────────────────────────────────────────────────────
   'Equivoque Rooftop':               'Equivoque Rooftop · Monaco',
   'La Môme Monte-Carlo':             'La Môme · Monte-Carlo',
@@ -534,6 +542,14 @@ async function main() {
     // ── Salon & nautisme ─────────────────────────────────────────────────────
     { name: 'Monaco Yacht Show',  fn: p => scrapeGeneric(p, 'https://www.monacoyachtshow.com',                         'Monaco Yacht Show') },
     { name: 'ACM calendrier',     fn: p => scrapeGeneric(p, 'https://www.acm.mc/fr/calendrier',                        'Automobile Club de Monaco') },
+    // ── Brunch ────────────────────────────────────────────────────────────────
+    { name: 'Nikki Beach',        fn: p => scrapeGeneric(p, 'https://nikkibeach.com/monte-carlo/events/',                'Nikki Beach Monte Carlo') },
+    { name: 'La Môme',            fn: p => scrapeGeneric(p, 'https://www.lamomemontecarlo.com/evenements/',              'La Môme Monte-Carlo') },
+    { name: 'Robuchon café',      fn: p => scrapeGeneric(p, 'https://robuchonmonaco.com/le-petit-cafe/',                 'Le Petit Café Robuchon') },
+    { name: 'Woo Monaco',         fn: p => scrapeGeneric(p, 'https://www.instagram.com/woomonaco/',                      'Woo Monaco') },
+    { name: 'Gran Caffè',         fn: p => scrapeGeneric(p, 'https://grancaffe.mc/',                                     'Gran Caffè Monaco') },
+    { name: 'Azzurra Kitchen',    fn: p => scrapeGeneric(p, 'https://www.novotelmontecarlo.com/en/restaurant-bars/azzurra-kitchen/', 'Azzurra Kitchen') },
+    { name: 'Horizon Rooftop',    fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/dining/horizon-rooftop-monaco/', 'Horizon Rooftop') },
     // ── Bien-être & wellness ──────────────────────────────────────────────────
     { name: 'Thermes Marins',     fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/offres-speciales',        'Thermes Marins Monte-Carlo') },
     { name: 'BodyFlow MC',        fn: p => scrapeGeneric(p, 'https://www.bodyflow.mc/',                                  'BodyFlow MC') },
