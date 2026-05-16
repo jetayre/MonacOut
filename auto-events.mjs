@@ -112,6 +112,13 @@ const SOURCE_VENUE = {
   'Caffè Milano Monaco':             'Caffè Milano · Monte-Carlo',
   'AMU Monte Carlo':                 'AMU · Monte Carlo',
   'yumé':                            'yumé · Résidence Hemera · Monaco',
+  // ── Clubs & DJ events ────────────────────────────────────────────────────
+  'New Moods Monte-Carlo':           'New Moods · Casino de Monte-Carlo · SBM',
+  'The Marlow Monaco':               'The Marlow · Mareterra · Monaco',
+  'Blue Gin Monte-Carlo Bay':        'Blue Gin · Monte-Carlo Bay Hotel',
+  'Sunset Monaco':                   'Sunset Monaco · Méridien Beach Plaza · Larvotto',
+  'Twiga Monte Carlo':               'Twiga Monte Carlo · Av. Princesse Grace',
+  'Lilly\'s Club':                   'Lilly\'s Club · Monte-Carlo',
 };
 
 const UI_NOISE = new Set([
@@ -234,6 +241,12 @@ function inferCat(title, source) {
   if (source === 'OPMC') return 'CONCERT';
   if (source === 'Ballet de Monte-Carlo') return 'DANSE';
   if (source === 'Cinémas 2 Monaco') return 'CINÉMA';
+  if (source === 'New Moods Monte-Carlo') return 'CONCERT';
+  if (source === 'Sunset Monaco') return 'DJ SET';
+  if (source === 'Twiga Monte Carlo') return 'SOIRÉE';
+  if (source === 'Lilly\'s Club') return 'SOIRÉE';
+  if (source === 'Blue Gin Monte-Carlo Bay') return 'APÉRO';
+  if (source === 'The Marlow Monaco') return 'BRUNCH';
   if (source === 'Grimaldi Forum') return 'SPECTACLE';
   return 'SPECTACLE';
 }
@@ -566,6 +579,13 @@ async function main() {
     { name: 'La Môme MC',         fn: p => scrapeGeneric(p, 'https://www.lamome-montecarlo.com/',                        'La Môme Monte-Carlo') },
     { name: 'YCM events',         fn: p => scrapeGeneric(p, 'https://www.ycm.mc/fr/programme-de-la-semaine',             'Wine Palace YCM') },
     { name: 'AMU MC',             fn: p => scrapeGeneric(p, 'https://www.amu-mc.com/',                                   'AMU Monte Carlo') },
+    { name: 'New Moods',          fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/spectacles/new-moods',     'New Moods Monte-Carlo') },
+    { name: 'The Marlow',         fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/restaurant-monaco/marlow', 'The Marlow Monaco') },
+    { name: 'Blue Gin',           fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin', 'Blue Gin Monte-Carlo Bay') },
+    { name: 'Sunset Monaco',      fn: p => scrapeGeneric(p, 'https://www.sunsetmonaco.com/',                              'Sunset Monaco') },
+    { name: 'Twiga MC',           fn: p => scrapeGeneric(p, 'https://twigaworld.com/twiga-montecarlo/',                   'Twiga Monte Carlo') },
+    { name: 'Lilly\'s Club',      fn: p => scrapeGeneric(p, 'https://lillysclub.com/future-events',                       'Lilly\'s Club') },
+    { name: 'Jimmy\'z SBM',       fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo', 'Jimmy\'z Monte-Carlo') },
     // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
     // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
     // Société Saint-Vincent de Paul Monaco — aucun site trouvé

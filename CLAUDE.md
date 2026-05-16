@@ -43,6 +43,12 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Monaco Run | https://www.monacorun.com/ | SPORT |
 | Monaco Yacht Show | https://www.monacoyachtshow.com/ | SALON |
 | Jimmy'z Monte-Carlo | https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo | SOIRÉE |
+| New Moods Monte-Carlo | https://www.montecarlosbm.com/en/spectacles/new-moods | CONCERT, DJ SET |
+| The Marlow Monaco | https://www.montecarlosbm.com/en/restaurant-monaco/marlow | BRUNCH |
+| Blue Gin Monte-Carlo Bay | https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin | APÉRO, DJ SET |
+| Sunset Monaco | https://www.sunsetmonaco.com/ | DJ SET, SOIRÉE |
+| Twiga Monte Carlo | https://twigaworld.com/twiga-montecarlo/ | SOIRÉE, DJ SET |
+| Lilly's Club | https://lillysclub.com/ | SOIRÉE, DJ SET |
 | Ironman Monaco | https://www.ironman.com/ | SPORT |
 
 ---
