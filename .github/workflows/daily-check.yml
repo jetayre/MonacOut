@@ -25,16 +25,33 @@ jobs:
       - name: Nettoyage événements passés
         run: node cleanup-events.mjs
 
-      - name: Vérification complète
-        run: node verify-events.mjs
+      - name: Auto-correction des erreurs détectables
+        run: node autofix-events.mjs
 
-      - name: Build & Push si nettoyage effectué
+      - name: Vérification complète
+        id: verify
+        run: node verify-events.mjs
+        continue-on-error: true
+
+      - name: Alerte email si problèmes détectés
+        if: steps.verify.outcome == 'failure'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node send-alert-email.mjs
+
+      - name: Build & Push si données modifiées
         run: |
           if ! git diff --quiet src/data/events.js; then
             npm run build
             git config user.name "MonacOut Bot"
             git config user.email "noreply@github.com"
             git add src/data/events.js
-            git commit -m "chore: nettoyage automatique événements passés ($(date +%Y-%m-%d))"
+            git commit -m "chore: correction automatique événements ($(date +%Y-%m-%d))"
             git push
           fi
+
+      - name: Statut final
+        if: steps.verify.outcome == 'failure'
+        run: |
+          echo "::warning::verify-events a détecté des problèmes — rapport envoyé par email."
+          exit 1
