@@ -119,6 +119,9 @@ const SOURCE_VENUE = {
   'Sunset Monaco':                   'Sunset Monaco · Méridien Beach Plaza · Larvotto',
   'Twiga Monte Carlo':               'Twiga Monte Carlo · Av. Princesse Grace',
   'Lilly\'s Club':                   'Lilly\'s Club · Monte-Carlo',
+  'Amber Lounge Monaco':             'Amber Lounge · Monaco GP',
+  'Jack Monaco':                     'Jack Monaco · Port Monaco',
+  'Nobu Monte-Carlo':                'Nobu Monte-Carlo · Fairmont',
 };
 
 const UI_NOISE = new Set([
@@ -247,6 +250,9 @@ function inferCat(title, source) {
   if (source === 'Lilly\'s Club') return 'SOIRÉE';
   if (source === 'Blue Gin Monte-Carlo Bay') return 'APÉRO';
   if (source === 'The Marlow Monaco') return 'BRUNCH';
+  if (source === 'Amber Lounge Monaco') return 'SOIRÉE';
+  if (source === 'Jack Monaco') return 'APÉRO';
+  if (source === 'Nobu Monte-Carlo') return 'SOIRÉE';
   if (source === 'Grimaldi Forum') return 'SPECTACLE';
   return 'SPECTACLE';
 }
@@ -586,6 +592,9 @@ async function main() {
     { name: 'Twiga MC',           fn: p => scrapeGeneric(p, 'https://twigaworld.com/twiga-montecarlo/',                   'Twiga Monte Carlo') },
     { name: 'Lilly\'s Club',      fn: p => scrapeGeneric(p, 'https://lillysclub.com/future-events',                       'Lilly\'s Club') },
     { name: 'Jimmy\'z SBM',       fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo', 'Jimmy\'z Monte-Carlo') },
+    { name: 'Amber Lounge',       fn: p => scrapeGeneric(p, 'https://www.amberlounge.com/events/monaco-2026/',              'Amber Lounge Monaco') },
+    { name: 'Jack Monaco',        fn: p => scrapeGeneric(p, 'https://www.jack.mc/',                                          'Jack Monaco') },
+    { name: 'Nobu Monte-Carlo',   fn: p => scrapeGeneric(p, 'https://www.fairmont-montecarlo.com/en/events/',                'Nobu Monte-Carlo') },
     // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
     // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
     // Société Saint-Vincent de Paul Monaco — aucun site trouvé

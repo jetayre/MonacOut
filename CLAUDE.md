@@ -49,6 +49,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Sunset Monaco | https://www.sunsetmonaco.com/ | DJ SET, SOIRÉE |
 | Twiga Monte Carlo | https://twigaworld.com/twiga-montecarlo/ | SOIRÉE, DJ SET |
 | Lilly's Club | https://lillysclub.com/ | SOIRÉE, DJ SET |
+| Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA |
+| Jack Monaco | https://www.jack.mc/ | APÉRO, SOIRÉE |
+| Nobu Monte-Carlo | https://www.fairmont-montecarlo.com/en/events/ | SOIRÉE |
 | Ironman Monaco | https://www.ironman.com/ | SPORT |
 
 ---
