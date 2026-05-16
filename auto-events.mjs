@@ -259,6 +259,10 @@ function inferCat(title, source) {
   if (source === 'Jack Monaco') return 'APÉRO';
   if (source === 'Nobu Monte-Carlo') return 'SOIRÉE';
   if (source === 'Grimaldi Forum') return 'SPECTACLE';
+  if (source === 'Théâtre Princesse Grace') return 'THÉÂTRE';
+  if (source === 'Théâtre des Muses Monaco') return 'THÉÂTRE';
+  if (source === 'Théâtre Fort Antoine') return 'THÉÂTRE';
+  if (source === 'Théâtre des Variétés Monaco') return 'THÉÂTRE';
   return 'SPECTACLE';
 }
 
