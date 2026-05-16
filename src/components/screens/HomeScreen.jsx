@@ -61,8 +61,14 @@ function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date());
   const weekendDates = getWeekendDates();
   switch (filterId) {
-    case "today": return events.filter(e => e.date === todayStr);
-    case "weekend": return events.filter(e => weekendDates.includes(e.date));
+    case "today": {
+      const thisYear = new Date().getFullYear();
+      return events.filter(e => e.date === todayStr && (e.year || 2026) === thisYear);
+    }
+    case "weekend": {
+      const thisYear = new Date().getFullYear();
+      return events.filter(e => weekendDates.includes(e.date) && (e.year || 2026) === thisYear);
+    }
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
       const in7 = new Date(today); in7.setDate(today.getDate() + 6);

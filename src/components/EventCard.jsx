@@ -13,7 +13,7 @@ function todayFrDate() {
 
 export default function EventCard({ event, onClick, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
-  const isToday = event.date === todayFrDate();
+  const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
     : event.date;
