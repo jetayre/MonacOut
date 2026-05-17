@@ -68,17 +68,22 @@ export default function App() {
   useEffect(() => { checkFavNotifications(favorites); }, []);
 
   function handleTabChange(newTab) {
+    const el = document.getElementById("main-scroll");
     if (newTab === "events" && tab === "events") {
       setShowCats(prev => !prev);
+      if (el) el.scrollTop = 0;
       return;
     }
     setCatFilter(null);
     setShowCats(newTab === "events");
     setTab(newTab);
+    if (el) el.scrollTop = 0;
   }
 
   function handleCatFilter(catId) {
     setCatFilter(catId === catFilter ? null : catId);
+    const el = document.getElementById("main-scroll");
+    if (el) el.scrollTop = 0;
   }
 
   function toggleFav(id) {
@@ -96,6 +101,8 @@ export default function App() {
     setCatFilter(CAT_TO_FILTER[cat] || null);
     setHomeFilter("all");
     setTab("events");
+    const el = document.getElementById("main-scroll");
+    if (el) el.scrollTop = 0;
   }
 
   const sharedProps = {

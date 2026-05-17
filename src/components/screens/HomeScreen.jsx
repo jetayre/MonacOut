@@ -137,13 +137,16 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   }, []);
 
   function handleFilterChange(newFilter) {
+    const el = document.getElementById("main-scroll");
     if (filter === newFilter && newFilter !== "calendar") {
       setFilter("all");
+      if (el) el.scrollTop = 0;
       return;
     }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter);
     setFiltersVisible(true);
+    if (el) el.scrollTop = 0;
   }
 
   function handleCalendarChange(start, end) {
@@ -285,7 +288,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
                 const active = quarterFilter === q;
                 return (
-                  <button key={q} onClick={() => setQuarterFilter(active ? null : q)} style={{
+                  <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
                     flexShrink: 0, padding: "4px 11px", borderRadius: 20,
                     border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
                     background: active ? NAVY : WHITE, color: active ? WHITE : GREY,
@@ -294,7 +297,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                   }}>{q}</button>
                 );
               })}
-              <button onClick={() => setFreeOnly(f => !f)} style={{
+              <button onClick={() => { setFreeOnly(f => !f); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
                 flexShrink: 0, padding: "4px 11px", borderRadius: 20,
                 border: `1.5px solid ${freeOnly ? "#2A6A3A" : "rgba(15,29,58,0.2)"}`,
                 background: freeOnly ? "#2A6A3A" : WHITE, color: freeOnly ? WHITE : GREY,
