@@ -41,7 +41,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Théâtre des Muses Monaco | https://www.letheatredesmuses.com/ | THÉÂTRE, SPECTACLE, ATELIER | |
 | Théâtre Fort Antoine | https://www.theatrefortantoine.com/ | THÉÂTRE | |
 | Théâtre des Variétés Monaco | https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes | THÉÂTRE, SPECTACLE | +377 9330 1861 |
-| Thermes Marins Monte-Carlo | https://www.montecarlosbm.com/en/wellness/thermes-marins-monte-carlo/ | BIEN-ÊTRE | |
+| Thermes Marins Monte-Carlo | https://www.montecarlosbm.com/en/wellness-sport-monaco/thermes-marins-monte-carlo | BIEN-ÊTRE | |
 | Odéon Spa | https://odeonspa.com/ | BIEN-ÊTRE | |
 | Monte-Carlo SBM (restos/bars) | https://www.montecarlosbm.com/ | BRUNCH, APÉRO, SOIRÉE | |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
