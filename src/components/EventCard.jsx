@@ -199,7 +199,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           marginBottom: 6,
         }}>{event.subtitle}</div>
 
-        {/* Description — 2 lignes max */}
+        {/* Description — 3 lignes justifiées */}
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
           fontSize: 13,
@@ -207,12 +207,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           textAlign: "justify",
           lineHeight: 1.55,
           display: "-webkit-box",
-          WebkitLineClamp: 2,
+          WebkitLineClamp: 3,
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
         }}>{lang === "en" ? (event.descEn || event.desc) : event.desc}</div>
 
-        {event.link && !event.free && (
+        {event.link && (
           <div style={{ textAlign: "center", marginTop: 10 }}>
             <a
               href={event.link}
@@ -233,7 +233,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 textDecoration: "none",
                 display: "inline-block",
               }}
-            >{lang === "en" ? "Book" : "Réserver"}</a>
+            >{event.free
+              ? (lang === "en" ? "More info" : "Plus d'infos")
+              : (lang === "en" ? "Book" : "Réserver")}
+            </a>
           </div>
         )}
 
@@ -253,25 +256,6 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             >{event.phone}</a>
           </div>
         )}
-
-        <div style={{ textAlign: "center", marginTop: 8 }}>
-          <button
-            onClick={e => handleAddToCalendar(event, e)}
-            style={{
-              fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 10,
-              fontWeight: 600,
-              letterSpacing: 1,
-              textTransform: "uppercase",
-              color: "#6A6860",
-              background: "none",
-              border: "1px solid rgba(15,29,58,0.18)",
-              padding: "5px 14px",
-              borderRadius: 20,
-              cursor: "pointer",
-            }}
-          >{lang === "en" ? "＋ Add to calendar" : "＋ Ajouter au calendrier"}</button>
-        </div>
 
       </div>
     </div>
