@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
@@ -25,7 +25,6 @@ const CAT_TO_FILTER = {
 
 const TIME_FILTERS = [
   { id: "today",    label: "Aujourd'hui" },
-  { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
   { id: "calendar", label: "Agenda" },
 ];
@@ -105,37 +104,18 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { today: "Today", weekend: "Weekend", week: "This week", agenda: "Calendar" },
+        filters: { today: "Today", weekend: "Weekend", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", agenda: "Agenda" },
+        filters: { today: "Aujourd'hui", weekend: "Week-end", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
-  const [freeOnly, setFreeOnly] = useState(false);
-  const [quarterFilter, setQuarterFilter] = useState(null);
-  const [filtersVisible, setFiltersVisible] = useState(true);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const el = document.getElementById("main-scroll");
-    if (!el) return;
-    let lastY = 0;
-    const handler = () => {
-      const y = el.scrollTop;
-      if (y < 10) setFiltersVisible(true);
-      else if (y > lastY + 6) setFiltersVisible(false);
-      else if (y < lastY - 6) setFiltersVisible(true);
-      lastY = y;
-    };
-    el.addEventListener("scroll", handler, { passive: true });
-    return () => el.removeEventListener("scroll", handler);
-  }, []);
 
   function handleFilterChange(newFilter) {
     if (filter === newFilter && newFilter !== "calendar") {
@@ -144,7 +124,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter);
-    setFiltersVisible(true);
   }
 
   function handleCalendarChange(start, end) {
@@ -179,9 +158,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     filtered = filterByCat(filterByTime(ALL_EVENTS, filter), catFilter);
   }
 
-  if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
-  if (freeOnly) filtered = filtered.filter(e => e.free === true);
-
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
       ? `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]} — ${rangeEnd.getDate()} ${MOIS_NOM_COURT[rangeEnd.getMonth()]}`
@@ -189,7 +165,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     : null;
 
   return (
-    <div ref={containerRef} style={{ background: WHITE, minHeight: "100%" }}>
+    <div style={{ background: WHITE, minHeight: "100%" }}>
       {/* Sticky header */}
       <div style={{
         position: "sticky", top: 0, zIndex: 50,
@@ -242,13 +218,8 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
 
         {/* Filters or Search */}
         {!showSearch && (
-          <div style={{
-            background: WHITE, borderTop: `1px solid ${BORDER}`,
-            maxHeight: filtersVisible ? "46px" : "0px",
-            overflow: "hidden",
-            transition: "max-height 0.22s ease",
-          }}>
-            <div style={{ display: "flex", gap: 6, padding: "8px 10px", overflowX: "auto", scrollbarWidth: "none", justifyContent: "center" }}>
+          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
+            <div style={{ display: "flex", gap: 6, padding: "8px 10px", justifyContent: "center" }}>
               {TIME_FILTERS.map(f => {
                 const active = filter === f.id;
                 const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);
@@ -273,39 +244,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                   >{label}</button>
                 );
               })}
-            </div>
-          </div>
-        )}
-
-        {/* Quartiers + Gratuit — masqué en scroll descendant */}
-        {!showSearch && (
-          <div style={{
-            background: WHITE,
-            borderTop: `1px solid ${BORDER}`,
-            maxHeight: filtersVisible ? "44px" : "0px",
-            overflow: "hidden",
-            transition: "max-height 0.22s ease",
-          }}>
-            <div style={{ display: "flex", gap: 5, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
-              {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
-                const active = quarterFilter === q;
-                return (
-                  <button key={q} onClick={() => setQuarterFilter(active ? null : q)} style={{
-                    flexShrink: 0, padding: "4px 11px", borderRadius: 20,
-                    border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
-                    background: active ? NAVY : WHITE, color: active ? WHITE : GREY,
-                    fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 11,
-                    fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
-                  }}>{q}</button>
-                );
-              })}
-              <button onClick={() => setFreeOnly(f => !f)} style={{
-                flexShrink: 0, padding: "4px 11px", borderRadius: 20,
-                border: `1.5px solid ${freeOnly ? "#2A6A3A" : "rgba(15,29,58,0.2)"}`,
-                background: freeOnly ? "#2A6A3A" : WHITE, color: freeOnly ? WHITE : GREY,
-                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 11,
-                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
-              }}>{lang === "en" ? "Free" : "Gratuit"}</button>
             </div>
           </div>
         )}
