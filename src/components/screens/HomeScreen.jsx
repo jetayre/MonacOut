@@ -24,7 +24,6 @@ const CAT_TO_FILTER = {
 };
 
 const TIME_FILTERS = [
-  { id: "all",      label: "Tout" },
   { id: "today",    label: "Aujourd'hui" },
   { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
@@ -105,12 +104,12 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { all: "All", today: "Today", weekend: "Weekend", week: "This week", agenda: "Calendar" },
+        filters: { today: "Today", weekend: "Weekend", week: "This week", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { all: "Tout", today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", agenda: "Agenda" },
+        filters: { today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
@@ -121,6 +120,10 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const [quarterFilter, setQuarterFilter] = useState(null);
 
   function handleFilterChange(newFilter) {
+    if (filter === newFilter && newFilter !== "calendar") {
+      setFilter("all");
+      return;
+    }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter);
   }
