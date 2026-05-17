@@ -239,13 +239,10 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
           </div>
         </div>
 
-        {/* Filtres temps — disparaissent au scroll vers le bas */}
+        {/* Filtres temps — toujours visibles */}
         {!showSearch && (
           <div style={{
             background: WHITE, borderTop: `1px solid ${BORDER}`,
-            maxHeight: filtersVisible ? "46px" : "0px",
-            overflow: "hidden",
-            transition: "max-height 0.22s ease",
           }}>
             <div style={{ display: "flex", gap: 6, padding: "8px 10px", justifyContent: "center" }}>
               {TIME_FILTERS.map(f => {
