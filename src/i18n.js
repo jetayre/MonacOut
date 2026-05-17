@@ -13,7 +13,7 @@ export const T = {
     seeEvents: "Voir les événements →", selectDate: "Sélectionnez une date",
     fromTo: (s, e) => `Du ${s} au ${e}`,
     since: (s) => `À partir du ${s}`,
-    nav: { events: "Sorties", agenda: "Mon Agenda" },
+    nav: { events: "Events", agenda: "Mon Agenda" },
     months: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
     days: ["L","M","M","J","V","S","D"],
     cofounder: "Co-fondatrice",
