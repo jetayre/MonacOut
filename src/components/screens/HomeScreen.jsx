@@ -202,7 +202,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
             <div style={{
               flex: 1, textAlign: "center",
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontStyle: "italic", fontWeight: 400, fontSize: 13,
+              fontStyle: "italic", fontWeight: 600, fontSize: 17,
               color: "#C4A241", letterSpacing: 0.8,
             }}>{t.tagline}</div>
             <button
