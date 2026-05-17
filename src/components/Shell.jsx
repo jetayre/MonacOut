@@ -1,17 +1,17 @@
 const NAVY = "#0F1D3A";
 
 const CAT_FILTERS = [
-  { id: "ateliers", label: "🎨 Ateliers",  labelEn: "🎨 Workshops" },
-  { id: "bienetre", label: "🧘 Bien-être", labelEn: "🧘 Wellness" },
-  { id: "cinema",     label: "🎬 Cinéma",      labelEn: "🎬 Cinema" },
-  { id: "conference", label: "💬 Conférences", labelEn: "💬 Talks" },
-  { id: "culture",    label: "🎭 Culture",     labelEn: "🎭 Culture" },
-  { id: "encheres", label: "🔨 Enchères",  labelEn: "🔨 Auctions" },
-  { id: "famille",  label: "👨‍👩‍👧 Famille", labelEn: "👨‍👩‍👧 Family" },
-  { id: "foody",    label: "🍽️ Foody",    labelEn: "🍽️ Foody" },
-  { id: "messe",    label: "⛪ Messes",    labelEn: "⛪ Masses" },
-  { id: "music",    label: "🎵 Musique",   labelEn: "🎵 Music" },
-  { id: "sport",    label: "⚽ Sport",     labelEn: "⚽ Sport" },
+  { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },
+  { id: "bienetre",   label: "Bien-être",   labelEn: "Wellness" },
+  { id: "cinema",     label: "Cinéma",      labelEn: "Cinema" },
+  { id: "conference", label: "Conférences", labelEn: "Talks" },
+  { id: "culture",    label: "Culture",     labelEn: "Culture" },
+  { id: "encheres",   label: "Enchères",    labelEn: "Auctions" },
+  { id: "famille",    label: "Famille",     labelEn: "Family" },
+  { id: "foody",      label: "Foody",       labelEn: "Foody" },
+  { id: "messe",      label: "Messes",      labelEn: "Masses" },
+  { id: "music",      label: "Musique",     labelEn: "Music" },
+  { id: "sport",      label: "Sport",       labelEn: "Sport" },
 ];
 
 function CalIcon({ color }) {
@@ -125,10 +125,11 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
           <div style={{
             flexShrink: 0,
             borderBottom: `1px solid rgba(15,29,58,0.12)`,
-            padding: "8px 10px 10px",
+            padding: "6px 10px 8px",
             display: "flex",
             flexWrap: "wrap",
-            gap: 6,
+            gap: 5,
+            justifyContent: "center",
             background: "#FFFFFF",
           }}>
             {CAT_FILTERS.map(f => (
@@ -136,8 +137,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
                 key={f.id}
                 onClick={() => onCatFilter?.(catFilter === f.id ? null : f.id)}
                 style={{
-                  flexShrink: 0,
-                  padding: "6px 14px",
+                  padding: "5px 11px",
                   borderRadius: 20,
                   border: `1px solid ${catFilter === f.id ? NAVY : "rgba(15,29,58,0.2)"}`,
                   background: catFilter === f.id ? NAVY : "#FFFFFF",
