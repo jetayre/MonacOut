@@ -233,7 +233,7 @@ monacout/
 | `favorites` | `number[]` | IDs favoris (localStorage) |
 | `lang` | `"fr"` \| `"en"` | langue |
 | `homeFilter` | `"all"` \| `"today"` \| `"week"` \| `"weekend"` \| `"calendar"` | filtre temps |
-| `showCats` | `boolean` | barre catégories visible (défaut: `true`) |
+| `showCats` | `boolean` | barre catégories visible (défaut: `false`, s'active au clic sur Évènements) |
 | `catFilter` | `string \| null` | filtre catégorie actif |
 
 ### Logique de filtres (HomeScreen.jsx)
@@ -259,9 +259,21 @@ monacout/
 
 ### Shell.jsx — comportement UI
 
-- **Category bar** : toujours visible sur l'onglet Évènements, se cache en scrollant vers le bas, réapparaît en remontant. Double-tap sur l'onglet Évènements pour toggle manuel.
-- **Time filters + Quartier bar** : même comportement scroll (géré dans HomeScreen via `filtersVisible`).
-- **Scroll detection** : via `document.getElementById("main-scroll")`, `lastY` comparison avec seuil ±6px.
+- **Category bar (Ateliers → Sport)** : cachée par défaut, apparaît au clic sur l'onglet Évènements, se cache en scrollant vers le bas, réapparaît en remontant. Double-tap sur Évènements pour toggle manuel.
+- **Scroll detection category bar** : via `useEffect` sur `main-scroll` dans Shell, état `catsVisible`, `maxHeight` 70px → 0px.
+
+### HomeScreen.jsx — comportement UI
+
+| Barre | Comportement au scroll |
+|-------|----------------------|
+| Logo + tagline | **Toujours fixe** — ne disparaît jamais |
+| Aujourd'hui / Semaine / Week-end / Agenda | **Toujours fixe** — ne disparaît jamais |
+| Quartiers + Gratuit | **Disparaît** en scrollant vers le bas, réapparaît en remontant |
+
+- **Scroll detection** : `useEffect` sur `document.getElementById("main-scroll")`, état `filtersVisible`, seuil ±6px sur `lastY`.
+- **Filtres temps** : `TIME_FILTERS` = today, week, weekend, calendar. Clic sur filtre actif → revient à "all".
+- **Quartiers** : Monte-Carlo, Monaco-Ville, Fontvieille, La Condamine, Larvotto.
+- **Gratuit** : toggle `freeOnly`, filtre `e.free === true`.
 
 ---
 
