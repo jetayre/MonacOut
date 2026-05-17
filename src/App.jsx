@@ -73,7 +73,7 @@ export default function App() {
       return;
     }
     setCatFilter(null);
-    setShowCats(false);
+    setShowCats(newTab === "events");
     setTab(newTab);
   }
 
