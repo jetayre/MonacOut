@@ -1,6 +1,6 @@
 export const T = {
   fr: {
-    tagline: "Monaco dans votre poche",
+    tagline: "Monaco Secret",
     filters: {
       today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", calendar: "Calendrier", gratuit: "Gratuit", sport: "⚽ Sport",
       culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma",
@@ -13,7 +13,7 @@ export const T = {
     seeEvents: "Voir les événements →", selectDate: "Sélectionnez une date",
     fromTo: (s, e) => `Du ${s} au ${e}`,
     since: (s) => `À partir du ${s}`,
-    nav: { events: "Événements", agenda: "Mon Agenda" },
+    nav: { events: "Sorties", agenda: "Mon Agenda" },
     months: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
     days: ["L","M","M","J","V","S","D"],
     cofounder: "Co-fondatrice",
@@ -26,7 +26,7 @@ export const T = {
     noEvents: "Aucun événement.", favEmpty: "Aucun favori pour l'instant.",
   },
   en: {
-    tagline: "Monaco in your pocket",
+    tagline: "Monaco Secret",
     filters: {
       today: "Today", week: "Week", weekend: "Weekend", calendar: "Calendar", gratuit: "Free", sport: "⚽ Sport",
       culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema",
