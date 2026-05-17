@@ -58,7 +58,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         background: WHITE,
         borderRadius: 4,
         border: `1.5px solid ${GOLD}`,
-        marginBottom: 14,
+        marginBottom: 10,
         position: "relative",
         padding: 4,
         boxShadow: "0 2px 12px rgba(15,29,58,0.07)",
@@ -68,7 +68,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       <div style={{
         border: `2px solid ${NAVY}`,
         borderRadius: 2,
-        padding: "14px 16px 16px",
+        padding: "10px 12px 10px",
         position: "relative",
       }}>
 
@@ -77,12 +77,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
           style={{
             position: "absolute",
-            top: 8,
-            right: 8,
+            top: 6,
+            right: 6,
             background: "none",
             border: "none",
             cursor: "pointer",
-            fontSize: 18,
+            fontSize: 16,
             lineHeight: 1,
           }}
         >
@@ -94,13 +94,13 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
           style={{
             position: "absolute",
-            top: 10,
-            left: 10,
+            top: 8,
+            left: 8,
             background: "none",
             border: "none",
             cursor: "pointer",
             fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 11,
+            fontSize: 10,
             fontWeight: 700,
             letterSpacing: 1.2,
             textTransform: "uppercase",
@@ -110,18 +110,18 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           }}
         >{event.cat}</button>
 
-        {/* Date + heure */}
+        {/* Date + heure — remontés */}
         <div style={{
           display: "flex",
           alignItems: "baseline",
           justifyContent: "center",
-          paddingTop: 26,
-          marginBottom: 6,
-          gap: 8,
+          paddingTop: 18,
+          marginBottom: 2,
+          gap: 6,
         }}>
           <span style={{
             fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 15,
+            fontSize: 13,
             fontWeight: 700,
             letterSpacing: 0.8,
             textTransform: "uppercase",
@@ -139,20 +139,19 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         {/* Title */}
         <div style={{
           fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontStyle: "normal",
           fontWeight: 600,
-          fontSize: 28,
-          letterSpacing: 1,
+          fontSize: 22,
+          letterSpacing: 0.8,
           color: NAVY,
-          lineHeight: 1.3,
+          lineHeight: 1.2,
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
           textAlign: "center",
-          marginTop: 10,
-          marginBottom: 24,
-          paddingRight: 26,
+          marginTop: 4,
+          marginBottom: 8,
+          paddingRight: 22,
           paddingLeft: 4,
         }}>
           {event.title.replace(/\n/g, " ")}
@@ -163,29 +162,25 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           <div style={{
             fontFamily: "'Jost', -apple-system, sans-serif",
             fontWeight: 700,
-            fontSize: 11,
+            fontSize: 10,
             letterSpacing: 1.4,
             textTransform: "uppercase",
             color: GOLD,
             textAlign: "center",
-            marginTop: -18,
-            marginBottom: 14,
+            marginTop: -4,
+            marginBottom: 6,
           }}>{event.source}</div>
         )}
 
         {/* Free badge */}
         {event.free && (
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: 10,
-          }}>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
             <div style={{
               border: `1.5px solid #2A6A3A`,
               borderRadius: 20,
-              padding: "4px 16px",
+              padding: "3px 12px",
               fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: 700,
               letterSpacing: 1,
               color: "#1A4A2A",
@@ -196,28 +191,29 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         {/* Subtitle */}
         <div style={{
           fontFamily: "'Jost', -apple-system, sans-serif",
-          fontStyle: "normal",
           fontWeight: 700,
-          fontSize: 13,
+          fontSize: 12,
           letterSpacing: 0.5,
           color: GREY,
           textAlign: "center",
-          marginBottom: 10,
+          marginBottom: 6,
         }}>{event.subtitle}</div>
 
-        {/* Description */}
+        {/* Description — 2 lignes max */}
         <div style={{
           fontFamily: "'Libre Baskerville', Georgia, serif",
-          fontStyle: "normal",
-          fontSize: 15,
+          fontSize: 13,
           color: NAVY_LIGHT,
           textAlign: "justify",
-          lineHeight: 1.8,
-          whiteSpace: "pre-line",
+          lineHeight: 1.55,
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
         }}>{lang === "en" ? (event.descEn || event.desc) : event.desc}</div>
 
         {event.link && !event.free && (
-          <div style={{ textAlign: "center", marginTop: 16 }}>
+          <div style={{ textAlign: "center", marginTop: 10 }}>
             <a
               href={event.link}
               target="_blank"
@@ -225,32 +221,31 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Jost', -apple-system, sans-serif",
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: 1.2,
                 textTransform: "uppercase",
                 color: NAVY,
                 background: WHITE,
                 border: `1.5px solid ${GOLD}`,
-                padding: "10px 24px",
+                padding: "7px 18px",
                 borderRadius: 20,
                 textDecoration: "none",
                 display: "inline-block",
               }}
-            >{event.free ? (lang === "en" ? "I'm joining" : "Je participe") : (lang === "en" ? "Book" : "Réserver")}</a>
+            >{lang === "en" ? "Book" : "Réserver"}</a>
           </div>
         )}
 
         {event.phone && (
-          <div style={{ textAlign: "center", marginTop: 10 }}>
+          <div style={{ textAlign: "center", marginTop: 8 }}>
             <a
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Jost', -apple-system, sans-serif",
-                fontStyle: "normal",
                 fontWeight: 700,
-                fontSize: 15,
+                fontSize: 13,
                 color: GOLD,
                 textDecoration: "none",
                 letterSpacing: 0.5,
@@ -259,19 +254,19 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           </div>
         )}
 
-        <div style={{ textAlign: "center", marginTop: 12 }}>
+        <div style={{ textAlign: "center", marginTop: 8 }}>
           <button
             onClick={e => handleAddToCalendar(event, e)}
             style={{
               fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11,
+              fontSize: 10,
               fontWeight: 600,
               letterSpacing: 1,
               textTransform: "uppercase",
               color: "#6A6860",
               background: "none",
               border: "1px solid rgba(15,29,58,0.18)",
-              padding: "7px 18px",
+              padding: "5px 14px",
               borderRadius: 20,
               cursor: "pointer",
             }}
