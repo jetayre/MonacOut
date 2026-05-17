@@ -1,0 +1,38 @@
+name: MonacOut — Ajout automatique d'événements
+
+on:
+  schedule:
+    - cron: '0 6 * * *'    # 8h00 Monaco (UTC+2 en été)
+    - cron: '0 12 * * *'   # 14h00 Monaco (UTC+2 en été)
+  workflow_dispatch:         # lancement manuel depuis GitHub
+
+jobs:
+  auto-events:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Installer Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Configurer Git
+        run: |
+          git config user.name "MonacOut Bot"
+          git config user.email "noreply@github.com"
+
+      - name: Scraper et insérer les nouveaux événements
+        run: node auto-events.mjs
+        continue-on-error: true
+
+      - name: Rapport
+        run: cat auto-events-report.txt 2>/dev/null || echo "Aucun rapport généré"
