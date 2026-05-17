@@ -119,7 +119,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const [rangeEnd, setRangeEnd] = useState(null);
   const [freeOnly, setFreeOnly] = useState(false);
   const [quarterFilter, setQuarterFilter] = useState(null);
-  const [quartiersVisible, setQuartiersVisible] = useState(true);
+  const [filtersVisible, setFiltersVisible] = useState(true);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -128,9 +128,9 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     let lastY = 0;
     const handler = () => {
       const y = el.scrollTop;
-      if (y < 10) setQuartiersVisible(true);
-      else if (y > lastY + 6) setQuartiersVisible(false);
-      else if (y < lastY - 6) setQuartiersVisible(true);
+      if (y < 10) setFiltersVisible(true);
+      else if (y > lastY + 6) setFiltersVisible(false);
+      else if (y < lastY - 6) setFiltersVisible(true);
       lastY = y;
     };
     el.addEventListener("scroll", handler, { passive: true });
@@ -144,7 +144,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter);
-    setQuartiersVisible(true);
+    setFiltersVisible(true);
   }
 
   function handleCalendarChange(start, end) {
@@ -242,7 +242,12 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
 
         {/* Filters or Search */}
         {!showSearch && (
-          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
+          <div style={{
+            background: WHITE, borderTop: `1px solid ${BORDER}`,
+            maxHeight: filtersVisible ? "46px" : "0px",
+            overflow: "hidden",
+            transition: "max-height 0.22s ease",
+          }}>
             <div style={{ display: "flex", gap: 6, padding: "8px 10px", overflowX: "auto", scrollbarWidth: "none", justifyContent: "center" }}>
               {TIME_FILTERS.map(f => {
                 const active = filter === f.id;
@@ -277,7 +282,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
           <div style={{
             background: WHITE,
             borderTop: `1px solid ${BORDER}`,
-            maxHeight: (quartiersVisible || quarterFilter || freeOnly) ? "44px" : "0px",
+            maxHeight: filtersVisible ? "44px" : "0px",
             overflow: "hidden",
             transition: "max-height 0.22s ease",
           }}>
