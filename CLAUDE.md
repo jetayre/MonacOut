@@ -69,6 +69,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Ship & Castle Monaco | https://www.instagram.com/shipandcastlemonaco/ | APÉRO (pub britannique, jeudi) | |
 | Monaco Brewery | https://www.brasserie-de-monaco.com/ | APÉRO (craft beer, samedi) | |
 | La Brasserie de Monaco | https://www.brasserie-de-monaco.com/ | BRUNCH, APÉRO (Fontvieille) | +377 9777 0990 |
+| Panino Club Monaco | https://panino-club.com/ | APÉRO (vendredi, Blvd des Moulins) | |
 | Buddha-Bar Monte-Carlo | https://www.fairmont.com/monte-carlo/dining/buddha-bar/ | APÉRO, SOIRÉE | +377 9999 8080 |
 | AMU Monte-Carlo | https://amu-montecarlo.com/ | APÉRO, SOIRÉE | +377 9315 4848 |
 | Nikki Beach Monte Carlo | https://nikkibeach.com/monte-carlo/ | BRUNCH, SOIRÉE | +377 9330 0700 |
