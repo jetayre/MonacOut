@@ -62,6 +62,10 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Blue Gin Monte-Carlo Bay | https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin | APÉRO, DJ SET | |
 | Sunset Monaco | https://www.sunsetmonaco.com/ | DJ SET, SOIRÉE | |
 | Twiga Monte Carlo | https://twigaworld.com/twiga-montecarlo/ | SOIRÉE, DJ SET | |
+| Equivoque Rooftop | http://www.equivoquemc.com/ | APÉRO, DJ SET | +33 6 07 93 47 45 |
+| Buddha-Bar Monte-Carlo | https://www.fairmont.com/monte-carlo/dining/buddha-bar/ | APÉRO, SOIRÉE | +377 9999 8080 |
+| AMU Monte-Carlo | https://amu-montecarlo.com/ | APÉRO, SOIRÉE | +377 9315 4848 |
+| Nikki Beach Monte Carlo | https://nikkibeach.com/monte-carlo/ | BRUNCH, SOIRÉE | +377 9330 0700 |
 | Lilly's Club | https://lillysclub.com/ | SOIRÉE, DJ SET | |
 | Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA | |
 | Jack Monaco | https://jackmonaco.playfun.tv/ | APÉRO, SOIRÉE | |
