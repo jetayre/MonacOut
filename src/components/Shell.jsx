@@ -155,7 +155,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
         )}
 
         {/* Scrollable content */}
-        <div style={{
+        <div id="main-scroll" style={{
           flex: 1,
           overflowY: "auto",
           scrollbarWidth: "none",

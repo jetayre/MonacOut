@@ -123,11 +123,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const containerRef = useRef(null);
 
   useEffect(() => {
-    let el = containerRef.current?.parentElement;
-    while (el) {
-      if (el.style.overflowY === "auto" || getComputedStyle(el).overflowY === "auto") break;
-      el = el.parentElement;
-    }
+    const el = document.getElementById("main-scroll");
     if (!el) return;
     let lastY = 0;
     const handler = () => {
