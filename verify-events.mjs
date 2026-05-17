@@ -21,6 +21,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { setTimeout as sleep } from 'timers/promises';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVENTS_FILE = join(__dirname, 'src/data/events.js');
@@ -60,6 +61,7 @@ function parseEvents(source) {
       descEn: get('descEn'),
       free: getBool('free'),
       hot: getBool('hot'),
+      link: get('link'),
       source: get('source'),
       quarter: get('quarter'),
       _raw: raw,
@@ -167,9 +169,136 @@ function checkMonthlyCoverage(events) {
   return issues;
 }
 
+// ── Vérification des liens ────────────────────────────────────────────────────
+
+// Mots-clés indiquant une page de réservation directe dans l'URL
+const BOOKING_PATH_KEYWORDS = [
+  'ticket', 'billet', 'booking', 'reserv', 'contact', 'programme', 'program',
+  'concert', 'visit', 'atelier', 'season', 'saison', 'agenda', 'event',
+  'billetterie', 'shop', 'schedule', 'calendar',
+];
+
+// Mots-clés de bouton réservation dans le HTML de la page
+const BOOKING_HTML_KEYWORDS = [
+  'réserver', 'reserver', 'acheter', 'billetterie', 'ticket', 'booking',
+  'réservation', 'reservation', 'buy ticket', 'book now', 'add to cart',
+  'ajouter au panier', 'commander', 'inscri',
+];
+
+function isHomepageUrl(url) {
+  try {
+    const u = new URL(url);
+    const p = u.pathname.replace(/\/$/, '');
+    return p === '' || p === '/en' || p === '/fr' || p === '/fr-fr' || p === '/en-us';
+  } catch { return false; }
+}
+
+function urlLooksDirectToBooking(url) {
+  try {
+    const u = new URL(url);
+    const path = u.pathname.toLowerCase();
+    return BOOKING_PATH_KEYWORDS.some(k => path.includes(k));
+  } catch { return false; }
+}
+
+async function fetchPage(url) {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 9000);
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; MonacOut-LinkChecker/1.0)',
+        'Accept': 'text/html',
+      },
+      redirect: 'follow',
+    });
+    clearTimeout(timer);
+    const finalUrl = res.url;
+    const html = res.ok ? await res.text() : '';
+    return { ok: res.ok, status: res.status, finalUrl, html };
+  } catch (err) {
+    return { ok: false, status: 0, finalUrl: url, html: '', error: err.message };
+  }
+}
+
+function hasBookingButton(html) {
+  const lower = html.toLowerCase();
+  return BOOKING_HTML_KEYWORDS.some(k => lower.includes(k));
+}
+
+function redirectedToOtherDomain(originalUrl, finalUrl) {
+  try {
+    return new URL(originalUrl).hostname !== new URL(finalUrl).hostname;
+  } catch { return false; }
+}
+
+async function checkLinks(events) {
+  // Dédupliquer les liens — une seule requête par URL unique
+  const linkMap = new Map();
+  for (const e of events) {
+    if (!e.link) {
+      linkMap.set(`__missing_${e.id}`, { link: null, events: [e] });
+      continue;
+    }
+    if (!linkMap.has(e.link)) linkMap.set(e.link, { link: e.link, events: [] });
+    linkMap.get(e.link).events.push(e);
+  }
+
+  const issues = [];
+  const ok = [];
+  let checked = 0;
+
+  for (const { link, events: evts } of linkMap.values()) {
+    const ids = evts.map(e => e.id);
+    const titles = evts.map(e => (e.title || '').replace(/\\n/g, ' ')).join(', ');
+
+    // Lien manquant
+    if (!link) {
+      issues.push({ level: '❌', ids, titles, link: '(vide)', issue: 'Lien manquant' });
+      continue;
+    }
+
+    checked++;
+    const { ok: httpOk, status, finalUrl, html, error } = await fetchPage(link);
+    await sleep(300); // politesse — éviter le rate-limit
+
+    // Lien mort
+    if (!httpOk) {
+      issues.push({ level: '❌', ids, titles, link, issue: error ? `Inaccessible : ${error}` : `HTTP ${status}` });
+      continue;
+    }
+
+    // Redirigé vers un autre domaine (suspect)
+    if (redirectedToOtherDomain(link, finalUrl)) {
+      issues.push({ level: '⚠️', ids, titles, link, issue: `Redirigé vers un autre domaine : ${finalUrl}` });
+      continue;
+    }
+
+    const directPath = urlLooksDirectToBooking(link);
+    const hasButton = hasBookingButton(html);
+    const isHome = isHomepageUrl(link);
+
+    if (isHome && !hasButton) {
+      // Page d'accueil sans bouton réservation visible → trop de clics
+      issues.push({ level: '⚠️', ids, titles, link, issue: 'Page d\'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.' });
+    } else if (isHome && hasButton) {
+      // Page d'accueil mais avec bouton réservation visible — acceptable mais à vérifier manuellement
+      issues.push({ level: '💡', ids, titles, link, issue: 'Page d\'accueil avec bouton réservation — vérifier manuellement que c\'est ≤ 2 clics.' });
+    } else if (!directPath && !hasButton) {
+      // URL générique sans bouton ni chemin direct
+      issues.push({ level: '⚠️', ids, titles, link, issue: 'URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.' });
+    } else {
+      ok.push({ ids, link });
+    }
+  }
+
+  return { issues, okCount: ok.length, checkedCount: checked };
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-function main() {
+async function main() {
   const now = new Date();
   const dateStr = now.toLocaleString('fr-FR', { timeZone: 'Europe/Monaco' });
 
@@ -189,7 +318,10 @@ function main() {
   const oldEvents = checkOldEvents(events);
   const coverageGaps = checkMonthlyCoverage(events);
 
-  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length;
+  console.log('Vérification des liens en cours…');
+  const { issues: linkIssues, okCount: linksOk, checkedCount: linksChecked } = await checkLinks(events);
+
+  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + linkIssues.filter(i => i.level !== '💡').length;
 
   let report = `========================================\n`;
   report += `MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE\n`;
@@ -238,6 +370,42 @@ function main() {
     report += `✓ Couverture mensuelle complète sur 12 mois.\n\n`;
   }
 
+  // ── Liens
+  report += `── VÉRIFICATION LIENS (${linksChecked} URLs testées) ──────────\n`;
+  if (linkIssues.length === 0) {
+    report += `✓ Tous les liens sont accessibles et pointent vers une page de réservation directe.\n\n`;
+  } else {
+    const errors   = linkIssues.filter(i => i.level === '❌');
+    const warnings = linkIssues.filter(i => i.level === '⚠️');
+    const infos    = linkIssues.filter(i => i.level === '💡');
+
+    if (errors.length > 0) {
+      report += `\n  ❌ LIENS MORTS / INACCESSIBLES (${errors.length})\n`;
+      for (const i of errors) {
+        report += `     [id:${i.ids.join(',')}] ${i.titles}\n`;
+        report += `     → ${i.link}\n`;
+        report += `     ⚡ ${i.issue}\n\n`;
+      }
+    }
+    if (warnings.length > 0) {
+      report += `\n  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (${warnings.length})\n`;
+      for (const i of warnings) {
+        report += `     [id:${i.ids.join(',')}] ${i.titles}\n`;
+        report += `     → ${i.link}\n`;
+        report += `     💬 ${i.issue}\n\n`;
+      }
+    }
+    if (infos.length > 0) {
+      report += `\n  💡 À VÉRIFIER MANUELLEMENT (${infos.length})\n`;
+      for (const i of infos) {
+        report += `     [id:${i.ids.join(',')}] ${i.titles}\n`;
+        report += `     → ${i.link}\n`;
+        report += `     💬 ${i.issue}\n\n`;
+      }
+    }
+    report += `  ✓ ${linksOk} liens OK (directs, page réservation détectée)\n\n`;
+  }
+
   report += `========================================\n`;
   report += `Fin du rapport\n`;
 
@@ -252,4 +420,4 @@ function main() {
   }
 }
 
-main();
+main().catch(err => { console.error(err); process.exit(1); });
