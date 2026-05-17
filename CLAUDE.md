@@ -63,6 +63,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Sunset Monaco | https://www.sunsetmonaco.com/ | DJ SET, SOIRÉE | |
 | Twiga Monte Carlo | https://twigaworld.com/twiga-montecarlo/ | SOIRÉE, DJ SET | |
 | Equivoque Rooftop | http://www.equivoquemc.com/ | APÉRO, DJ SET | +33 6 07 93 47 45 |
+| Trinity Monaco | https://www.instagram.com/trinitymonaco/ | APÉRO, SOIRÉE | |
 | Buddha-Bar Monte-Carlo | https://www.fairmont.com/monte-carlo/dining/buddha-bar/ | APÉRO, SOIRÉE | +377 9999 8080 |
 | AMU Monte-Carlo | https://amu-montecarlo.com/ | APÉRO, SOIRÉE | +377 9315 4848 |
 | Nikki Beach Monte Carlo | https://nikkibeach.com/monte-carlo/ | BRUNCH, SOIRÉE | +377 9330 0700 |
