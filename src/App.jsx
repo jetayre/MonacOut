@@ -45,7 +45,7 @@ const CAT_TO_FILTER = {
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
   CONCERT: "music", "OPÉRA": "music", MUSICAL: "music", "JAZZ LIVE": "music",
   "DJ SET": "music", CHANTS: "music",
-  THÉÂTRE: "culture", "CONFÉRENCE": "culture", EXPOSITION: "culture", FESTIVAL: "culture",
+  THÉÂTRE: "culture", "CONFÉRENCE": "conference", EXPOSITION: "culture", FESTIVAL: "culture",
   GALA: "culture", "FÊTE NATIONALE": "culture", MARCHÉ: "culture", SALON: "culture",
   SPECTACLE: "culture", CINÉMA: "cinema",
   ATELIER: "ateliers", DANSE: "ateliers",

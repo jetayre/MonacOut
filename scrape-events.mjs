@@ -11,6 +11,7 @@
  *   4. cinemas2monaco.com     — Cinémas 2 Monaco
  *   5. tvfestival.com         — TV Festival
  *   6. balletsdemontecarlo.com — Ballet de Monte-Carlo
+ *   7. principocket.com       — Agrégateur Monaco (source interne, jamais surfacée)
  */
 
 import { chromium } from 'playwright';

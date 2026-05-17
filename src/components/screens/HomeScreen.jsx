@@ -14,7 +14,7 @@ const CAT_TO_FILTER = {
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
   CONCERT: "music", "OPÉRA": "music", MUSICAL: "music", "JAZZ LIVE": "music",
   "DJ SET": "music", CHANTS: "music",
-  THÉÂTRE: "culture", "CONFÉRENCE": "culture", EXPOSITION: "culture", FESTIVAL: "culture",
+  THÉÂTRE: "culture", "CONFÉRENCE": "conference", EXPOSITION: "culture", FESTIVAL: "culture",
   GALA: "culture", "FÊTE NATIONALE": "culture", MARCHÉ: "culture", SALON: "culture",
   SPECTACLE: "culture", CINÉMA: "cinema",
   ATELIER: "ateliers", DANSE: "ateliers",
@@ -82,9 +82,10 @@ function filterByTime(events, filterId) {
 function filterByCat(events, catId) {
   switch (catId) {
     case "sport":    return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
-    case "culture":  return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","CONFÉRENCE","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
-    case "music":    return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
-    case "cinema":   return events.filter(e => e.cat === "CINÉMA");
+    case "culture":     return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
+    case "conference":  return events.filter(e => e.cat === "CONFÉRENCE");
+    case "music":       return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
+    case "cinema":      return events.filter(e => e.cat === "CINÉMA");
     case "famille":  return events.filter(e =>
       e.free === true ||
       ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) ||

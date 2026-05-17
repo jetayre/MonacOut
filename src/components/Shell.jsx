@@ -3,8 +3,9 @@ const NAVY = "#0F1D3A";
 const CAT_FILTERS = [
   { id: "ateliers", label: "🎨 Ateliers",  labelEn: "🎨 Workshops" },
   { id: "bienetre", label: "🧘 Bien-être", labelEn: "🧘 Wellness" },
-  { id: "cinema",   label: "🎬 Cinéma",    labelEn: "🎬 Cinema" },
-  { id: "culture",  label: "🎭 Culture",   labelEn: "🎭 Culture" },
+  { id: "cinema",     label: "🎬 Cinéma",      labelEn: "🎬 Cinema" },
+  { id: "conference", label: "💬 Conférences", labelEn: "💬 Talks" },
+  { id: "culture",    label: "🎭 Culture",     labelEn: "🎭 Culture" },
   { id: "encheres", label: "🔨 Enchères",  labelEn: "🔨 Auctions" },
   { id: "famille",  label: "👨‍👩‍👧 Famille", labelEn: "👨‍👩‍👧 Family" },
   { id: "foody",    label: "🍽️ Foody",    labelEn: "🍽️ Foody" },

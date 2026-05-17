@@ -189,7 +189,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           marginBottom: 20,
         }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
-        {event.link && !event.free && (
+        {event.link && (
           <a
             href={event.link}
             target="_blank"
@@ -209,7 +209,9 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               letterSpacing: 0.3,
             }}
           >
-            {lang === "en" ? "Book →" : "Réserver →"}
+            {event.free
+              ? (lang === "en" ? "More info →" : "Plus d'infos →")
+              : (lang === "en" ? "Book →" : "Réserver →")}
           </a>
         )}
         {event.phone && (

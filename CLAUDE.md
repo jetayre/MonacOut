@@ -50,6 +50,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Académie de Musique Prince Rainier III | https://academierainier3.mc/en | ATELIER | |
 | Ballet de Monte-Carlo | https://www.balletsdemontecarlo.com/ | DANSE | |
 | Philomonaco | https://philomonaco.com | CONFÉRENCE | |
+| Médiathèque de Monaco | https://www.mediatheque.mc/ | CONFÉRENCE, MUSICAL | +377 9898 8008 |
 | Cinémas 2 Monaco | https://www.cinemas2monaco.com | CINÉMA | +377 9325 3681 |
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
 | Automobile Club Monaco | https://acm.mc/ | RALLYE | |
@@ -106,6 +107,21 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 ### Catégories disponibles
 `CONCERT`, `OPÉRA`, `MUSICAL`, `THÉÂTRE`, `JAZZ LIVE`, `DJ SET`, `CHANTS`, `CINÉMA`, `FESTIVAL`, `GALA`, `SPECTACLE`, `EXPOSITION`, `CONFÉRENCE`, `FOOTBALL`, `BASKET`, `FORMULE 1`, `FORMULE E`, `TENNIS`, `RALLYE`, `SPORT`, `ATELIER`, `DANSE`, `BIEN-ÊTRE`, `BRUNCH`, `APÉRO`, `SOIRÉE`, `ENCHÈRES`, `MARCHÉ`, `SALON`, `FÊTE NATIONALE`
 
+### Filtres UI (boutons dans l'app)
+| Filtre | Catégories incluses |
+|--------|---------------------|
+| 🎭 Culture | MUSICAL, THÉÂTRE, CHANTS, EXPOSITION, OPÉRA, FESTIVAL, GALA, FÊTE NATIONALE, MARCHÉ, SALON, SPECTACLE, CINÉMA |
+| 💬 Conférences | CONFÉRENCE |
+| 🎵 Musique | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
+| 🎬 Cinéma | CINÉMA |
+| 🎨 Ateliers | ATELIER, DANSE |
+| 🧘 Bien-être | BIEN-ÊTRE |
+| 🍽️ Foody | BRUNCH, APÉRO, SOIRÉE |
+| 🔨 Enchères | ENCHÈRES |
+| ⚽ Sport | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
+| 👨‍👩‍👧 Famille | événements gratuits + ATELIER/SPECTACLE/CINÉMA/MARCHÉ/FESTIVAL/EXPOSITION/DANSE + mots-clés enfant |
+| ⛪ Messes | CHANTS |
+
 ### Jours (date field)
 `Lun`, `Mar`, `Mer`, `Jeu`, `Ven`, `Sam`, `Dim`
 
@@ -139,7 +155,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 9. **Fenêtre cible** : maintenir des événements du jour jusqu'à 12 mois plus tard. Au-delà de cette fenêtre les événements disparaissent via le filtre automatique.
 
-10. **Lien direct billetterie** : le `link` doit permettre à l'utilisateur d'acheter ou réserver en ≤ 2 clics. Éviter les pages d'accueil génériques quand un lien direct de programme ou billetterie existe. Préférer les URLs finales sans redirections.
+10. **Lien direct billetterie** : le `link` doit permettre à l'utilisateur d'acheter ou réserver en ≤ 2 clics. Éviter les pages d'accueil génériques quand un lien direct de programme ou billetterie existe. Préférer les URLs finales sans redirections. **Les événements gratuits affichent aussi leur `link`** (bouton "Plus d'infos →" au lieu de "Réserver →") — toujours renseigner le `link` même si `free: true`.
 
 ---
 
@@ -163,7 +179,9 @@ git push origin main
 Deux scripts tournent automatiquement via crontab :
 
 ### 1. `auto-events.mjs` — Ajout automatique d'événements (8h + 14h)
-Scraper Playwright qui visite les sources officielles (OPMC, Grimaldi Forum, Culture Monaco, Cinémas, Ballet), génère les objets événements complets, les insère dans `src/data/events.js`, puis build + commit + push automatiquement.
+Scraper Playwright qui visite les sources officielles (OPMC, Grimaldi Forum, Culture Monaco, Cinémas, Ballet, Principocket, etc.), génère les objets événements complets, les insère dans `src/data/events.js`, puis build + commit + push automatiquement.
+
+> **Principocket** (`principocket.com`) est une source interne de découverte : les liens et le nom du site ne sont jamais surfacés dans l'app. Les événements trouvés via principocket affichent le lieu officiel comme `source` et `link`.
 ```
 0 8 * * *  node auto-events.mjs >> auto-events.log
 0 14 * * * node auto-events.mjs >> auto-events.log

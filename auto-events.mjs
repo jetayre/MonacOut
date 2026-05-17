@@ -87,7 +87,6 @@ const SOURCE_VENUE = {
   'Monaco Yacht Show':               'Port Hercule · Monaco',
   // ── Bien-être & wellness ──────────────────────────────────────────────────
   'Thermes Marins Monte-Carlo':      'Thermes Marins · Monaco',
-  'BodyFlow MC':                     'BodyFlow MC · Palais La Scala · Monaco',
   'Yoga Monte-Carlo':                'Yoga Monte-Carlo · Monaco',
   'Fairmont Monte Carlo':            'Fairmont Monte Carlo · Monaco',
   'yumé Monaco':                     'yumé · Résidence Hemera · Monaco',
@@ -432,6 +431,45 @@ async function scrapeBallet(page) {
 }
 
 /**
+ * Principocket — agrégateur d'agenda Monaco (source interne uniquement, jamais surfacée)
+ * Les liens principocket sont supprimés ; la source affichée = lieu de l'événement.
+ */
+async function scrapePrincipocket(page) {
+  try {
+    await page.goto('https://www.principocket.com/agenda', { waitUntil: 'networkidle', timeout: 30000 });
+    await page.waitForTimeout(2000);
+    const results = await page.evaluate(() => {
+      const out = [];
+      const seen = new Set();
+      document.querySelectorAll('article,[class*="event"],[class*="agenda"],[class*="card"],li').forEach(el => {
+        const title = el.querySelector('h2,h3,h4,[class*="title"],[class*="name"]')?.innerText?.trim();
+        if (!title || title.length < 5 || seen.has(title)) return;
+        seen.add(title);
+        const date  = el.querySelector('time,[class*="date"],[class*="quand"]')?.innerText?.trim()
+                   || el.querySelector('time')?.getAttribute('datetime');
+        const venue = el.querySelector('[class*="venue"],[class*="lieu"],[class*="location"],[class*="place"]')?.innerText?.trim();
+        // Capture external link only (ignore principocket.com internal links)
+        const anchor = el.querySelector('a[href]');
+        const href = anchor?.href || '';
+        const externalLink = href && !href.includes('principocket') ? href : null;
+        // Source = venue name if found, otherwise let generateEvent use SOURCE_VENUE mapping
+        const source = venue || title;
+        out.push({ title, date, venue, link: externalLink, source });
+      });
+      return out.slice(0, 40);
+    });
+    // Strip any residual principocket.com links just in case
+    return results.map(r => ({
+      ...r,
+      link: r.link?.includes('principocket') ? null : r.link,
+    }));
+  } catch (e) {
+    console.log(`     ✗ Principocket : ${e.message}`);
+    return [];
+  }
+}
+
+/**
  * Scraper générique — fonctionne pour la plupart des sites WordPress/CMS
  */
 async function scrapeGeneric(page, url, sourceName) {
@@ -553,6 +591,7 @@ async function main() {
     { name: 'Herculis',           fn: p => scrapeGeneric(p, 'https://monaco.diamondleague.com/meeting/herculis/',       'Herculis Monaco') },
     { name: 'Monaco Run',         fn: p => scrapeGeneric(p, 'https://www.monacorun.com',                               'Monaco Run') },
     // ── Culture & divertissement ─────────────────────────────────────────────
+    { name: 'Principocket',        fn: scrapePrincipocket },
     { name: 'Mairie Monaco',      fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                            'Mairie de Monaco') },
     { name: 'La Note Bleue',      fn: p => scrapeGeneric(p, 'https://lanotebleue.mc/en/',                              'La Note Bleue') },
     { name: 'TV Festival',        fn: p => scrapeGeneric(p, 'https://www.tvfestival.com/en/programme/',                 'TV Festival Monte-Carlo') },
@@ -584,7 +623,6 @@ async function main() {
     { name: 'Horizon Rooftop',    fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/dining/horizon-rooftop-monaco/', 'Horizon Rooftop') },
     // ── Bien-être & wellness ──────────────────────────────────────────────────
     { name: 'Thermes Marins',     fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/offres-speciales',        'Thermes Marins Monte-Carlo') },
-    { name: 'BodyFlow MC',        fn: p => scrapeGeneric(p, 'https://www.bodyflow.mc/',                                  'BodyFlow MC') },
     { name: 'Yoga MC',            fn: p => scrapeGeneric(p, 'http://yogamontecarlo.com/category/events/',                'Yoga Monte-Carlo') },
     { name: 'yumé Monaco',        fn: p => scrapeGeneric(p, 'https://yume.mc/',                                          'yumé Monaco') },
     { name: 'Aritual',            fn: p => scrapeGeneric(p, 'https://www.aritual.fr/',                                   'Aritual Monaco') },
