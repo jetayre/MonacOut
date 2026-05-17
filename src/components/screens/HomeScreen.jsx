@@ -117,7 +117,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const [showSearch, setShowSearch] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
-  const [freeOnly, setFreeOnly] = useState(false);
   const [quarterFilter, setQuarterFilter] = useState(null);
   const [filtersVisible, setFiltersVisible] = useState(true);
 
@@ -182,7 +181,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   }
 
   if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
-  if (freeOnly) filtered = filtered.filter(e => e.free === true);
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
@@ -282,26 +280,19 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
             overflow: "hidden",
             transition: "max-height 0.22s ease",
           }}>
-            <div style={{ display: "flex", gap: 5, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+            <div style={{ display: "flex", gap: 4, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
               {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
                 const active = quarterFilter === q;
                 return (
                   <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
-                    flexShrink: 0, padding: "4px 11px", borderRadius: 20,
-                    border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
+                    flexShrink: 0, padding: "3px 8px", borderRadius: 20,
+                    border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
                     background: active ? NAVY : WHITE, color: active ? WHITE : GREY,
-                    fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 11,
-                    fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
+                    fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 9,
+                    fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
                   }}>{q}</button>
                 );
               })}
-              <button onClick={() => { setFreeOnly(f => !f); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
-                flexShrink: 0, padding: "4px 11px", borderRadius: 20,
-                border: `1.5px solid ${freeOnly ? "#2A6A3A" : "rgba(15,29,58,0.2)"}`,
-                background: freeOnly ? "#2A6A3A" : WHITE, color: freeOnly ? WHITE : GREY,
-                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 11,
-                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
-              }}>{lang === "en" ? "Free" : "Gratuit"}</button>
             </div>
           </div>
         )}

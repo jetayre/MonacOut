@@ -194,6 +194,38 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 ---
 
+## Récurrences générées (événements automatiques par lieu)
+
+Ces lieux ont des événements récurrents générés jusqu'à mai 2027. Ne pas dupliquer en ajoutant des événements manuels pour les mêmes dates.
+
+| Lieu | Récurrence | Jour | Catégorie |
+|------|-----------|------|-----------|
+| **Nobu Monte-Carlo** | Chaque dimanche | Dim | BRUNCH (rotation FOODY) |
+| **Nobu Monte-Carlo** | Mensuel sam | Sam | SOIRÉE dîner (juil 2026→mai 2027) |
+| **Woo Monaco** | Chaque lundi | Lun | BRUNCH (rotation FOODY) |
+| **Sass Café** | Chaque mardi | Mar | APÉRO (rotation FOODY) |
+| **Bar Américain** | Chaque mercredi | Mer | APÉRO (rotation FOODY) |
+| **AMU Monte-Carlo** | Chaque jeudi | Jeu | APÉRO (rotation FOODY) |
+| **La Note Bleue** | Chaque vendredi | Ven | APÉRO sunset (rotation FOODY) |
+| **La Note Bleue** | Chaque samedi | Sam | BRUNCH (rotation FOODY) |
+| **Panino Club** | Mensuel 3e ven | Ven | APÉRO (mai 2026→mai 2027) |
+| **U Tapu** | Mensuel 3e ven | Ven | APÉRO (mai 2026→mai 2027) |
+| **Trinity Monaco** | Mensuel dernier ven | Ven | APÉRO (mai 2026→mai 2027) |
+| **Slammers** | Mensuel 2e jeu | Jeu | APÉRO (juin 2026→mai 2027) |
+| **Ship & Castle** | Mensuel 1er jeu | Jeu | APÉRO pub night/quiz (juin 2026→mai 2027) |
+| **Monaco Brewery** | Mensuel 2e sam | Sam | APÉRO craft beer (juin 2026→mai 2027) |
+| **La Brasserie de Monaco** | Mensuel 1er sam | Sam | BRUNCH (juin 2026→mai 2027) |
+| **Nikki Beach** | Mensuel sam | Sam | BRUNCH DJ (mai→sep 2026 + 2027) |
+| **Jimmy'z** | Mensuel sam | Sam | SOIRÉE (mai 2026→mai 2027) |
+| **Lilly's Club** | Mensuel 3e sam | Sam | SOIRÉE (mai 2026→mai 2027) |
+| **Jack Monaco** | Mensuel (ven APÉRO / sam SOIRÉE) | Ven/Sam | APÉRO + SOIRÉE (mai 2026→mai 2027) |
+| **Amber Lounge** | 3 galas hors GP | Sam | GALA (sep & nov 2026, avr 2027) |
+| **Equivoque Rooftop** | Bi-mensuel ven | Ven | APÉRO + DJ SET (mai→oct 2026 + 2027) |
+| **Sunset Monaco** | Mensuel sam | Sam | DJ SET (juil→sep 2026 + 2027) |
+| **Blue Gin** | Mensuel jeu ou sam | Jeu/Sam | APÉRO (mai 2026→mai 2027) |
+
+---
+
 ## Workflow de mise à jour
 
 ```bash
@@ -290,9 +322,9 @@ monacout/
 | Musique | `"music"` | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
 | Sport | `"sport"` | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
 
-Filtres quartier et gratuit dans `HomeScreen` (barre secondaire, disparaît au scroll) :
+Filtre quartier dans `HomeScreen` (barre secondaire, disparaît au scroll) :
 - `quarterFilter` : Monte-Carlo / Monaco-Ville / Fontvieille / La Condamine / Larvotto
-- `freeOnly` : filtre `e.free === true`
+- ~~`freeOnly`~~ : **supprimé** — le bouton Gratuit a été retiré de l'interface
 
 ### Shell.jsx — comportement UI
 
@@ -305,13 +337,13 @@ Filtres quartier et gratuit dans `HomeScreen` (barre secondaire, disparaît au s
 |-------|----------------------|
 | Monaco Secret + Logo cadre | **Toujours fixe** — ne disparaît jamais |
 | Aujourd'hui / Semaine / Week-end / Agenda | **Toujours fixe** — ne disparaît jamais |
-| Quartiers + Gratuit | **Disparaît** en scrollant vers le bas, réapparaît en remontant |
+| Quartiers | **Disparaît** en scrollant vers le bas, réapparaît en remontant |
 
 - **Scroll detection** : `useEffect` sur `document.getElementById("main-scroll")`, état `filtersVisible`, seuil ±6px sur `lastY`.
-- **Scroll reset** : `main-scroll.scrollTop = 0` à chaque changement d'onglet, filtre temps, filtre catégorie, quartier ou gratuit (dans `App.jsx` et `HomeScreen.jsx`).
+- **Scroll reset** : `main-scroll.scrollTop = 0` à chaque changement d'onglet, filtre temps, filtre catégorie ou quartier (dans `App.jsx` et `HomeScreen.jsx`).
 - **Filtres temps** : `TIME_FILTERS` = today, week, weekend, calendar. Clic sur filtre actif → revient à "all".
-- **Quartiers** : Monte-Carlo, Monaco-Ville, Fontvieille, La Condamine, Larvotto.
-- **Gratuit** : toggle `freeOnly`, filtre `e.free === true`.
+- **Quartiers** : boutons plus petits (font 9px, padding 3px 8px), Monte-Carlo / Monaco-Ville / Fontvieille / La Condamine / Larvotto.
+- **Gratuit** : bouton supprimé de l'interface (le champ `free: true` reste dans les données).
 
 ---
 
