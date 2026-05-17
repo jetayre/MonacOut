@@ -201,30 +201,9 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
       }}>
         {/* Title section */}
         <div style={{ background: WHITE, padding: "4px 12px 4px" }}>
-          {/* Ligne au-dessus : FR/EN · tagline · 🔍 */}
+          {/* Tagline + 🔍 au-dessus */}
           <div style={{ display: "flex", alignItems: "center", marginBottom: 4 }}>
-            <div style={{ display: "flex", gap: 1, flexShrink: 0 }}>
-              <button
-                onClick={() => setLang?.("fr")}
-                style={{
-                  background: lang === "fr" ? NAVY : "transparent",
-                  border: `1.5px solid ${NAVY}`, borderRadius: 6,
-                  cursor: "pointer", fontSize: 10, padding: "2px 5px", lineHeight: 1,
-                  color: lang === "fr" ? "#fff" : NAVY,
-                  fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
-                }}
-              >FR</button>
-              <button
-                onClick={() => setLang?.("en")}
-                style={{
-                  background: lang === "en" ? NAVY : "transparent",
-                  border: `1.5px solid ${NAVY}`, borderRadius: 6,
-                  cursor: "pointer", fontSize: 10, padding: "2px 5px", lineHeight: 1,
-                  color: lang === "en" ? "#fff" : NAVY,
-                  fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
-                }}
-              >EN</button>
-            </div>
+            <div style={{ width: 36 }} />
             <div style={{
               flex: 1, textAlign: "center",
               fontFamily: "'Playfair Display', Georgia, serif",
@@ -233,13 +212,34 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
             }}>{t.tagline}</div>
             <button
               onClick={() => setShowSearch(s => !s)}
-              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: "2px 4px", opacity: 0.4, flexShrink: 0 }}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: "2px 4px", opacity: 0.4, flexShrink: 0, width: 36 }}
             >🔍</button>
           </div>
-          {/* Cadre double — logo seul */}
+          {/* Cadre double — logo centré + FR/EN en bas */}
           <div style={{ border: `1.5px solid #C4A241`, padding: 1 }}>
-            <div style={{ border: `2px solid ${NAVY}`, padding: "3px 8px 4px", background: WHITE, display: "flex", justifyContent: "center" }}>
-              <MonacOutLogo width={220} />
+            <div style={{
+              border: `2px solid ${NAVY}`, background: WHITE,
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "space-between",
+              padding: "8px 8px 6px",
+              minHeight: 68,
+            }}>
+              {/* Spacer haut pour centrage visuel */}
+              <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
+                <MonacOutLogo width={220} />
+              </div>
+              {/* FR/EN en bas */}
+              <div style={{ display: "flex", gap: 4, marginTop: 6 }}>
+                {["fr","en"].map(l => (
+                  <button key={l} onClick={() => setLang?.(l)} style={{
+                    background: lang === l ? NAVY : "transparent",
+                    border: `1.5px solid ${NAVY}`, borderRadius: 6,
+                    cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
+                    color: lang === l ? "#fff" : NAVY,
+                    fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
+                  }}>{l.toUpperCase()}</button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
