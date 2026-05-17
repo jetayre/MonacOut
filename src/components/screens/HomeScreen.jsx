@@ -104,12 +104,12 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? {
-        tagline: "Monaco in your pocket",
+        tagline: "Monaco Secret",
         filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
-        tagline: "Monaco dans la poche",
+        tagline: "Monaco Secret",
         filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
