@@ -116,6 +116,8 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const [showSearch, setShowSearch] = useState(false);
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
+  const [freeOnly, setFreeOnly] = useState(false);
+  const [quarterFilter, setQuarterFilter] = useState(null);
 
   function handleFilterChange(newFilter) {
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
@@ -153,6 +155,9 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   } else {
     filtered = filterByCat(filterByTime(ALL_EVENTS, filter), catFilter);
   }
+
+  if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
+  if (freeOnly) filtered = filtered.filter(e => e.free === true);
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
@@ -262,6 +267,33 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                   >{label}</button>
                 );
               })}
+            </div>
+          </div>
+        )}
+
+        {/* Quartiers + Gratuit */}
+        {!showSearch && (
+          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
+            <div style={{ display: "flex", gap: 5, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+              {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
+                const active = quarterFilter === q;
+                return (
+                  <button key={q} onClick={() => setQuarterFilter(active ? null : q)} style={{
+                    flexShrink: 0, padding: "4px 11px", borderRadius: 20,
+                    border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
+                    background: active ? NAVY : WHITE, color: active ? WHITE : GREY,
+                    fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 11,
+                    fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
+                  }}>{q}</button>
+                );
+              })}
+              <button onClick={() => setFreeOnly(f => !f)} style={{
+                flexShrink: 0, padding: "4px 11px", borderRadius: 20,
+                border: `1.5px solid ${freeOnly ? "#2A6A3A" : "rgba(15,29,58,0.2)"}`,
+                background: freeOnly ? "#2A6A3A" : WHITE, color: freeOnly ? WHITE : GREY,
+                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 11,
+                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
+              }}>{lang === "en" ? "Free" : "Gratuit"}</button>
             </div>
           </div>
         )}

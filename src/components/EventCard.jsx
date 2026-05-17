@@ -1,4 +1,39 @@
 const GOLD = "#C4A241";
+const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
+
+function generateICS(event) {
+  const parts = event.date.trim().split(" ");
+  const day = parseInt(parts[1]);
+  const month = MOIS_ICS[parts[2]];
+  const year = event.year || 2026;
+  const tm = (event.time || '').replace(/\s/g,'').match(/^(\d{1,2})h(\d{2})?/);
+  const h = tm ? parseInt(tm[1]) : 20;
+  const m = tm && tm[2] ? parseInt(tm[2]) : 0;
+  const p = n => String(n).padStart(2,'0');
+  const dt  = `${year}${p(month+1)}${p(day)}T${p(h)}${p(m)}00`;
+  const dt2 = `${year}${p(month+1)}${p(day)}T${p(Math.min(h+2,23))}${p(m)}00`;
+  return [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MonacOut//FR',
+    'BEGIN:VEVENT',
+    `DTSTART:${dt}`,`DTEND:${dt2}`,
+    `SUMMARY:${event.title.replace(/\n/g,' ')}`,
+    `LOCATION:${event.subtitle||''}`,
+    event.link ? `URL:${event.link}` : null,
+    `DESCRIPTION:${(event.desc||'').replace(/\n/g,'\\n')}`,
+    'END:VEVENT','END:VCALENDAR',
+  ].filter(Boolean).join('\r\n');
+}
+
+function handleAddToCalendar(event, e) {
+  e.stopPropagation();
+  const blob = new Blob([generateICS(event)], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = event.title.replace(/\n/g,'-').replace(/[^a-zA-Z0-9À-ÿ-]/g,'').slice(0,40) + '.ics';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 const NAVY = "#0F1D3A";
 const NAVY_LIGHT = "#1A2D4A";
 const GREY = "#4A4A50";
@@ -223,6 +258,25 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             >{event.phone}</a>
           </div>
         )}
+
+        <div style={{ textAlign: "center", marginTop: 12 }}>
+          <button
+            onClick={e => handleAddToCalendar(event, e)}
+            style={{
+              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: 1,
+              textTransform: "uppercase",
+              color: "#6A6860",
+              background: "none",
+              border: "1px solid rgba(15,29,58,0.18)",
+              padding: "7px 18px",
+              borderRadius: 20,
+              cursor: "pointer",
+            }}
+          >{lang === "en" ? "＋ Add to calendar" : "＋ Ajouter au calendrier"}</button>
+        </div>
 
       </div>
     </div>

@@ -1,8 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
+import { ALL_EVENTS } from "./data/events";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
+
+const MOIS_APP = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
+
+function parseForNotif(e) {
+  const parts = e.date.trim().split(" ");
+  const day = parseInt(parts[1]);
+  const month = MOIS_APP[parts[2]];
+  if (isNaN(day) || month === undefined) return null;
+  return new Date(e.year || 2026, month, day);
+}
+
+async function checkFavNotifications(favorites) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+  const notified = JSON.parse(localStorage.getItem('monacout_notified') || '{}');
+  let changed = false;
+  for (const id of favorites) {
+    const event = ALL_EVENTS.find(e => e.id === id);
+    if (!event) continue;
+    const d = parseForNotif(event);
+    if (!d) continue;
+    const isToday = d.toDateString() === today.toDateString();
+    const isTomorrow = d.toDateString() === tomorrow.toDateString();
+    if ((isToday || isTomorrow) && !notified[id]) {
+      new Notification(`${isToday ? "Aujourd'hui" : "Demain"} — ${event.title.replace(/\n/g,' ')}`, {
+        body: `${event.subtitle} · ${event.time}`,
+        icon: '/favicon.svg',
+        tag: `monacout-${id}`,
+      });
+      notified[id] = true; changed = true;
+    }
+  }
+  if (changed) localStorage.setItem('monacout_notified', JSON.stringify(notified));
+}
 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
@@ -29,6 +65,8 @@ export default function App() {
   const [showCats, setShowCats] = useState(false);
   const [catFilter, setCatFilter] = useState(null);
 
+  useEffect(() => { checkFavNotifications(favorites); }, []);
+
   function handleTabChange(newTab) {
     if (newTab === "events" && tab === "events") {
       setShowCats(prev => !prev);
@@ -47,6 +85,9 @@ export default function App() {
     setFavorites(prev => {
       const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
       localStorage.setItem("monacout_favs", JSON.stringify(next));
+      if (next.length === 1 && 'Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
       return next;
     });
   }
