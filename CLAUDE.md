@@ -105,7 +105,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 ```js
 {
-  id: 1374,                         // toujours incrémenter depuis le dernier ID (actuellement 1373)
+  id: 1388,                         // toujours incrémenter depuis le dernier ID (actuellement 1387)
   year: 2027,                       // seulement si 2027+, absent = 2026
   cat: "THÉÂTRE",                   // voir liste des catégories ci-dessous
   date: "Sam 30 mai",               // format: "JJJ D MMM" (JOURS_FR + MOIS)
@@ -172,7 +172,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 5. **Ne pas dupliquer** : avant d'ajouter, vérifier que l'événement n'existe pas déjà (même titre, même date).
 
-6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier. **Dernier ID utilisé : 1373.** Prochain ID : 1374.
+6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier. **Dernier ID utilisé : 1387.** Prochain ID : 1388.
 
 7. **VÉRIFIER LE JOUR DE LA SEMAINE** : le champ `date` doit commencer par le bon abrégé (Lun/Mar/Mer/Jeu/Ven/Sam/Dim). Toujours vérifier avec `new Date(year, mois, jour).getDay()` avant d'insérer. Les erreurs de jour sont invisibles à l'œil nu mais font échouer les filtres "Aujourd'hui" et "Week-end".
 
@@ -219,7 +219,7 @@ monacout/
 ├── src/
 │   ├── main.jsx                   ← point d'entrée React
 │   ├── App.jsx                    ← state global (tab, favorites, lang, catFilter, showCats)
-│   ├── i18n.js                    ← traductions FR/EN (objet T[lang])
+│   ├── i18n.js                    ← traductions FR/EN (objet T[lang]) — tagline: "Monaco Secret", nav: "MC Events" / "My Agenda"
 │   ├── App.css / index.css        ← styles globaux minimaux
 │   ├── data/
 │   │   └── events.js              ← SOURCE DE VÉRITÉ : tableau _RAW + export ALL_EVENTS
@@ -262,7 +262,7 @@ monacout/
 | `favorites` | `number[]` | IDs favoris (localStorage) |
 | `lang` | `"fr"` \| `"en"` | langue |
 | `homeFilter` | `"all"` \| `"today"` \| `"week"` \| `"weekend"` \| `"calendar"` | filtre temps |
-| `showCats` | `boolean` | barre catégories visible (défaut: `false` — s'active au clic sur onglet Évènements, se désactive sur Agenda) |
+| `showCats` | `boolean` | barre catégories visible (défaut: `false` — s'active au clic sur onglet MC Events, se désactive sur My Agenda) |
 | `catFilter` | `string \| null` | filtre catégorie actif |
 
 ### Logique de filtres (HomeScreen.jsx)
@@ -290,18 +290,19 @@ Filtres quartier et gratuit dans `HomeScreen` (barre secondaire, disparaît au s
 
 ### Shell.jsx — comportement UI
 
-- **Category bar (Ateliers → Sport)** : cachée par défaut, apparaît au clic sur l'onglet Évènements, se cache en scrollant vers le bas, réapparaît en remontant. Double-tap sur Évènements pour toggle manuel.
+- **Category bar (Ateliers → Sport)** : cachée par défaut, apparaît au clic sur l'onglet MC Events, se cache en scrollant vers le bas, réapparaît en remontant. Double-tap sur MC Events pour toggle manuel.
 - **Scroll detection category bar** : via `useEffect` sur `main-scroll` dans Shell, état `catsVisible`, `maxHeight` 70px → 0px.
 
 ### HomeScreen.jsx — comportement UI
 
 | Barre | Comportement au scroll |
 |-------|----------------------|
-| Logo + tagline | **Toujours fixe** — ne disparaît jamais |
+| Monaco Secret + Logo cadre | **Toujours fixe** — ne disparaît jamais |
 | Aujourd'hui / Semaine / Week-end / Agenda | **Toujours fixe** — ne disparaît jamais |
 | Quartiers + Gratuit | **Disparaît** en scrollant vers le bas, réapparaît en remontant |
 
 - **Scroll detection** : `useEffect` sur `document.getElementById("main-scroll")`, état `filtersVisible`, seuil ±6px sur `lastY`.
+- **Scroll reset** : `main-scroll.scrollTop = 0` à chaque changement d'onglet, filtre temps, filtre catégorie, quartier ou gratuit (dans `App.jsx` et `HomeScreen.jsx`).
 - **Filtres temps** : `TIME_FILTERS` = today, week, weekend, calendar. Clic sur filtre actif → revient à "all".
 - **Quartiers** : Monte-Carlo, Monaco-Ville, Fontvieille, La Condamine, Larvotto.
 - **Gratuit** : toggle `freeOnly`, filtre `e.free === true`.
