@@ -77,6 +77,22 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Académie Princesse Grace | https://www.balletsdemontecarlo.com/fr/academie-princesse-grace/formations | DANSE classique | +377 93 30 70 40 |
 | MC Dance Monaco | https://www.instagram.com/mc_dance_monaco/ | DANSE contemporaine | (Instagram / email) |
 | Monaco Beaux-Arts | https://www.monacobeauxarts.com | ATELIER arts plastiques | +377 97 77 16 65 |
+| **Conférences & Business** | | | |
+| One to One Monaco | https://www.onetoone-retail-ecommerce.com/ | CONFÉRENCE retail/IA/e-commerce | |
+| PCD Group Monaco Conference | https://www.pcd.group/ | CONFÉRENCE finance/family office | |
+| Monaco Blue Initiative | https://www.fpa2.org/en/events/monaco-blue-initiative | CONFÉRENCE océan/environnement | |
+| Blue Economy & Finance Forum | https://www.beffmonaco.org/ | CONFÉRENCE finance durable/ESG | |
+| Monaco Founders Summit | https://www.monacotech.mc/ | CONFÉRENCE startups/tech | |
+| Sohn Monaco Investment Conference | https://sohnconferences.org/ | CONFÉRENCE hedge funds/finance | |
+| Smart & Sustainable Marina | https://m3monaco.com/smart-events/smart-marina/ | CONFÉRENCE maritime/innovation | |
+| MonacoTech | https://www.monacotech.mc/ | CONFÉRENCE startups/IA/Web3 (événements réguliers) | +377 9999 0009 |
+| SPORTEL Monaco | https://www.sportelworld.com/ | CONFÉRENCE sport business | |
+| EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
+| Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
+| **Agendas de référence** | | | |
+| Visit Monaco — agenda | https://www.visitmonaco.com/fr/page/evenement | Tous types | |
+| Monaco Convention Bureau | https://cvb.visitmonaco.com/fr | Conférences & business events | |
+| Grimaldi Forum — agenda | https://www.grimaldiforum.com/fr/agenda-monaco | Tous les événements au Grimaldi Forum | |
 
 ---
 
@@ -84,7 +100,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 ```js
 {
-  id: 210,                          // incrémenter depuis le dernier ID
+  id: 1374,                         // toujours incrémenter depuis le dernier ID (actuellement 1373)
   year: 2027,                       // seulement si 2027+, absent = 2026
   cat: "THÉÂTRE",                   // voir liste des catégories ci-dessous
   date: "Sam 30 mai",               // format: "JJJ D MMM" (JOURS_FR + MOIS)
@@ -92,8 +108,10 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
   title: "TITRE\nSUR PLUSIEURS\nLIGNES",   // \n pour sauts de ligne
   subtitle: "Lieu · Quartier",
   desc: "Description courte.",
+  descEn: "Short description in English.",
   free: false,                      // true si entrée libre
   hot: true,                        // true si événement phare
+  conf: true,                       // OPTIONNEL — fait apparaître l'événement dans le filtre Conférences sans changer sa cat
   fallback: "linear-gradient(150deg,#5A1870,#7A3890,#400858)",
   accent: "#E0B0F8",
   emoji: "🎭",
@@ -110,17 +128,19 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 ### Filtres UI (boutons dans l'app)
 | Filtre | Catégories incluses |
 |--------|---------------------|
-| 🎭 Culture | MUSICAL, THÉÂTRE, CHANTS, EXPOSITION, OPÉRA, FESTIVAL, GALA, FÊTE NATIONALE, MARCHÉ, SALON, SPECTACLE, CINÉMA |
-| 💬 Conférences | CONFÉRENCE |
-| 🎵 Musique | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
-| 🎬 Cinéma | CINÉMA |
-| 🎨 Ateliers | ATELIER, DANSE |
-| 🧘 Bien-être | BIEN-ÊTRE |
-| 🍽️ Foody | BRUNCH, APÉRO, SOIRÉE |
-| 🔨 Enchères | ENCHÈRES |
-| ⚽ Sport | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
-| 👨‍👩‍👧 Famille | événements gratuits + ATELIER/SPECTACLE/CINÉMA/MARCHÉ/FESTIVAL/EXPOSITION/DANSE + mots-clés enfant |
-| ⛪ Messes | CHANTS |
+| Ateliers | ATELIER, DANSE |
+| Bien-être | BIEN-ÊTRE |
+| Cinéma | CINÉMA |
+| **Conférences** | **CONFÉRENCE + SALON + `conf:true`** |
+| Culture | MUSICAL, THÉÂTRE, CHANTS, EXPOSITION, OPÉRA, FESTIVAL, GALA, FÊTE NATIONALE, MARCHÉ, SALON, SPECTACLE, CINÉMA |
+| Enchères | ENCHÈRES |
+| Famille | `free:true` + ATELIER/SPECTACLE/CINÉMA/MARCHÉ/FESTIVAL/EXPOSITION/DANSE + mots-clés enfant |
+| Foody | BRUNCH, APÉRO, SOIRÉE |
+| Messes | CHANTS |
+| Musique | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
+| Sport | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
+
+> **`conf: true`** — champ optionnel qui fait apparaître un événement dans le filtre **Conférences** sans changer sa catégorie principale. À utiliser pour les événements ayant une dimension networking/conférence sans être `cat:"CONFÉRENCE"`. Exemples : Festival TV (id:45), Monaco Art Week (id:122).
 
 ### Jours (date field)
 `Lun`, `Mar`, `Mer`, `Jeu`, `Ven`, `Sam`, `Dim`
@@ -147,7 +167,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 5. **Ne pas dupliquer** : avant d'ajouter, vérifier que l'événement n'existe pas déjà (même titre, même date).
 
-6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier.
+6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier. **Dernier ID utilisé : 1373.** Prochain ID : 1374.
 
 7. **VÉRIFIER LE JOUR DE LA SEMAINE** : le champ `date` doit commencer par le bon abrégé (Lun/Mar/Mer/Jeu/Ven/Sam/Dim). Toujours vérifier avec `new Date(year, mois, jour).getDay()` avant d'insérer. Les erreurs de jour sont invisibles à l'œil nu mais font échouer les filtres "Aujourd'hui" et "Week-end".
 
@@ -156,6 +176,10 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 9. **Fenêtre cible** : maintenir des événements du jour jusqu'à 12 mois plus tard. Au-delà de cette fenêtre les événements disparaissent via le filtre automatique.
 
 10. **Lien direct billetterie** : le `link` doit permettre à l'utilisateur d'acheter ou réserver en ≤ 2 clics. Éviter les pages d'accueil génériques quand un lien direct de programme ou billetterie existe. Préférer les URLs finales sans redirections. **Les événements gratuits affichent aussi leur `link`** (bouton "Plus d'infos →" au lieu de "Réserver →") — toujours renseigner le `link` même si `free: true`.
+
+11. **`conf: true`** : ajouter ce champ aux événements avec une dimension networking/conférence dont la `cat` n'est pas `CONFÉRENCE` (ex: SALON, FESTIVAL, EXPOSITION). Cela les fait apparaître dans le filtre Conférences de l'app. Ne pas l'ajouter aux événements purement artistiques ou sportifs.
+
+12. **Principocket** (`principocket.com`) : source interne de découverte uniquement. Les liens et le nom du site ne doivent **jamais** être surfacés dans l'app. Les événements trouvés via principocket affichent le lieu officiel comme `source` et `link`.
 
 ---
 
@@ -233,29 +257,31 @@ monacout/
 | `favorites` | `number[]` | IDs favoris (localStorage) |
 | `lang` | `"fr"` \| `"en"` | langue |
 | `homeFilter` | `"all"` \| `"today"` \| `"week"` \| `"weekend"` \| `"calendar"` | filtre temps |
-| `showCats` | `boolean` | barre catégories visible (défaut: `false`, s'active au clic sur Évènements) |
+| `showCats` | `boolean` | barre catégories visible (défaut: `false` — s'active au clic sur onglet Évènements, se désactive sur Agenda) |
 | `catFilter` | `string \| null` | filtre catégorie actif |
 
 ### Logique de filtres (HomeScreen.jsx)
 
-`filterByTime` → today / week / weekend / calendar (date range)
+`filterByTime` → `today` / `week` (7 jours) / `weekend` / `calendar` (date range CalendarPicker)
 
 `filterByCat` :
-| Bouton | Catégories incluses |
-|--------|---------------------|
-| Ateliers | ATELIER, DANSE |
-| Bien-être | BIEN-ÊTRE |
-| Cinéma | CINÉMA |
-| Conférences | **CONFÉRENCE + SALON + `conf:true`** |
-| Culture | MUSICAL, THÉÂTRE, CHANTS, EXPOSITION, OPÉRA, FESTIVAL, GALA, FÊTE NATIONALE, MARCHÉ, SALON, SPECTACLE, CINÉMA |
-| Enchères | ENCHÈRES |
-| Famille | `free:true` + ATELIER/SPECTACLE/CINÉMA/MARCHÉ/FESTIVAL/EXPOSITION/DANSE + mots-clés enfant |
-| Foody | BRUNCH, APÉRO, SOIRÉE |
-| Messes | CHANTS |
-| Musique | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
-| Sport | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
+| Bouton Shell | Cas filterByCat | Logique |
+|-------------|----------------|---------|
+| Ateliers | `"ateliers"` | ATELIER, DANSE |
+| Bien-être | `"bienetre"` | BIEN-ÊTRE |
+| Cinéma | `"cinema"` | CINÉMA |
+| **Conférences** | `"conference"` | **`cat === "CONFÉRENCE"` OU `cat === "SALON"` OU `conf === true`** |
+| Culture | `"culture"` | MUSICAL, THÉÂTRE, CHANTS, EXPOSITION, OPÉRA, FESTIVAL, GALA, FÊTE NATIONALE, MARCHÉ, SALON, SPECTACLE, CINÉMA |
+| Enchères | `"encheres"` | ENCHÈRES |
+| Famille | `"famille"` | `free:true` + ATELIER/SPECTACLE/CINÉMA/MARCHÉ/FESTIVAL/EXPOSITION/DANSE + regex enfant |
+| Foody | `"foody"` | BRUNCH, APÉRO, SOIRÉE |
+| Messes | `"messe"` | CHANTS |
+| Musique | `"music"` | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
+| Sport | `"sport"` | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
 
-> **`conf: true`** — champ optionnel sur un événement pour le faire apparaître dans Conférences sans changer sa catégorie principale. Actuellement sur : Festival TV (id:45), Monaco Art Week (id:122).
+Filtres quartier et gratuit dans `HomeScreen` (barre secondaire, disparaît au scroll) :
+- `quarterFilter` : Monte-Carlo / Monaco-Ville / Fontvieille / La Condamine / Larvotto
+- `freeOnly` : filtre `e.free === true`
 
 ### Shell.jsx — comportement UI
 
