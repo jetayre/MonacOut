@@ -1457,8 +1457,8 @@ function _eventDate(e) {
 }
 const _today = new Date(); _today.setHours(0, 0, 0, 0);
 function _eventHour(e) {
-  const m = (e.time || '').replace(/\s/g,'').match(/^(\d{1,2})h/);
-  return m ? parseInt(m[1]) : 99;
+  const m = (e.time || '').replace(/\s/g,'').match(/^(\d{1,2})h(\d{2})?/);
+  return m ? parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0) : 9999;
 }
 export const ALL_EVENTS = _RAW
   .filter(e => { const d = _eventDate(e); return d && d >= _today; })
