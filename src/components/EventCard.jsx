@@ -110,30 +110,34 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           }}
         >{event.cat}</button>
 
-        {/* Date + heure — remontés */}
+        {/* Date centrée + heure à côté */}
         <div style={{
           display: "flex",
-          alignItems: "baseline",
-          justifyContent: "center",
-          paddingTop: 18,
+          alignItems: "center",
+          paddingTop: 14,
           marginBottom: 2,
-          gap: 6,
         }}>
-          <span style={{
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 13,
-            fontWeight: 700,
-            letterSpacing: 0.8,
-            textTransform: "uppercase",
-            color: NAVY,
-          }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
-          <span style={{
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: 0.5,
-            color: GREY,
-          }}>{event.time}</span>
+          <div style={{ flex: 1, textAlign: "center" }}>
+            <span style={{
+              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontSize: 13,
+              fontWeight: 700,
+              letterSpacing: 0.8,
+              textTransform: "uppercase",
+              color: NAVY,
+            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+          </div>
+          {event.time && (
+            <span style={{
+              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontSize: 10,
+              fontWeight: 500,
+              letterSpacing: 0.4,
+              color: GREY,
+              flexShrink: 0,
+              paddingRight: 2,
+            }}>{event.time}</span>
+          )}
         </div>
 
         {/* Title */}
