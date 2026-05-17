@@ -77,10 +77,10 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
         flexDirection: "column",
         boxShadow: "0 24px 80px rgba(15,29,58,0.22)",
       }}>
-        {/* Header: dynamic island (46px) + Monaco Secret (22px) + tab bar (44px) = 112px */}
+        {/* Header: dynamic island (46px) + tab bar (44px) */}
         <div style={{
           flexShrink: 0,
-          height: 112,
+          height: 90,
           background: "#FFFFFF",
           borderBottom: `1px solid rgba(15,29,58,0.12)`,
           position: "relative",
@@ -98,23 +98,6 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
             borderRadius: 20,
             zIndex: 5,
           }} />
-          {/* Monaco Secret tagline */}
-          <div style={{
-            position: "absolute",
-            top: 46,
-            left: 0,
-            right: 0,
-            height: 22,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontStyle: "italic",
-            fontWeight: 400,
-            fontSize: 15,
-            color: "#C4A241",
-            letterSpacing: 0.8,
-          }}>{t?.tagline || "Monaco Secret"}</div>
           {/* Tab bar */}
           <div style={{
             position: "absolute",

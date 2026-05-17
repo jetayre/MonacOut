@@ -197,9 +197,23 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Title section — cadre logo */}
+        {/* Title section — Monaco Secret + cadre logo */}
         <div style={{ background: WHITE, padding: "4px 12px 4px" }}>
-          {/* Cadre double — logo centré + FR/EN + 🔍 en bas */}
+          {/* Monaco Secret juste au-dessus du cadre */}
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 3 }}>
+            <div style={{ width: 36 }} />
+            <div style={{
+              flex: 1, textAlign: "center",
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontStyle: "italic", fontWeight: 400, fontSize: 17,
+              color: "#C4A241", letterSpacing: 0.8,
+            }}>{t.tagline}</div>
+            <button
+              onClick={() => setShowSearch(s => !s)}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: "2px 4px", opacity: 0.4, flexShrink: 0, width: 36 }}
+            >🔍</button>
+          </div>
+          {/* Cadre double — logo centré + FR/EN en bas */}
           <div style={{ border: `1.5px solid #C4A241`, padding: 1 }}>
             <div style={{
               border: `2px solid ${NAVY}`, background: WHITE,
@@ -211,8 +225,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
                 <MonacOutLogo width={220} />
               </div>
-              {/* FR/EN + 🔍 en bas */}
-              <div style={{ display: "flex", gap: 4, marginTop: 6, alignItems: "center" }}>
+              <div style={{ display: "flex", gap: 4, marginTop: 6 }}>
                 {["fr","en"].map(l => (
                   <button key={l} onClick={() => setLang?.(l)} style={{
                     background: lang === l ? NAVY : "transparent",
@@ -222,10 +235,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                     fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
                   }}>{l.toUpperCase()}</button>
                 ))}
-                <button
-                  onClick={() => setShowSearch(s => !s)}
-                  style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, padding: "2px 4px", opacity: 0.4 }}
-                >🔍</button>
               </div>
             </div>
           </div>
