@@ -174,71 +174,155 @@ git push origin main
 
 ---
 
-## Pipelines automatiques (crontab actif)
+## Architecture du projet
 
-Deux scripts tournent automatiquement via crontab :
+### Stack technique
+- **React 19 + Vite 8** — SPA, pas de routing côté serveur
+- **PWA** — manifest.json + sw.js (Service Worker offline)
+- **Styles inline uniquement** — pas de CSS modules, pas de Tailwind
+- **Déploiement** — Vercel, auto-deploy sur `git push origin main`
+- **Repo GitHub** — https://github.com/jetayre/MonacOut (branche `main`)
 
-### 1. `auto-events.mjs` — Ajout automatique d'événements (8h + 14h)
-Scraper Playwright qui visite les sources officielles (OPMC, Grimaldi Forum, Culture Monaco, Cinémas, Ballet, Principocket, etc.), génère les objets événements complets, les insère dans `src/data/events.js`, puis build + commit + push automatiquement.
+### Arborescence
 
-> **Principocket** (`principocket.com`) est une source interne de découverte : les liens et le nom du site ne sont jamais surfacés dans l'app. Les événements trouvés via principocket affichent le lieu officiel comme `source` et `link`.
 ```
-0 8 * * *  node auto-events.mjs >> auto-events.log
-0 14 * * * node auto-events.mjs >> auto-events.log
+monacout/
+├── src/
+│   ├── main.jsx                   ← point d'entrée React
+│   ├── App.jsx                    ← state global (tab, favorites, lang, catFilter, showCats)
+│   ├── i18n.js                    ← traductions FR/EN (objet T[lang])
+│   ├── App.css / index.css        ← styles globaux minimaux
+│   ├── data/
+│   │   └── events.js              ← SOURCE DE VÉRITÉ : tableau _RAW + export ALL_EVENTS
+│   └── components/
+│       ├── Shell.jsx              ← frame iPhone 393×852, nav bar, category bar, scroll
+│       ├── EventCard.jsx          ← carte événement (cadre or/navy, date centrée + heure)
+│       ├── MonacOutLogo.jsx       ← logo SVG inline
+│       ├── CalendarPicker.jsx     ← sélecteur de date pour filtre agenda
+│       ├── SectionTitle.jsx       ← titre de section
+│       └── screens/
+│           ├── HomeScreen.jsx     ← filtre temps + quartier + catégorie + recherche
+│           ├── FavoritesScreen.jsx← agenda des favoris
+│           ├── DetailScreen.jsx   ← vue complète + "Voir aussi"
+│           ├── AgendaScreen.jsx   ← (non actif)
+│           ├── MapScreen.jsx      ← (non actif)
+│           └── ProfileScreen.jsx  ← (non actif)
+├── public/
+│   ├── manifest.json              ← PWA manifest
+│   ├── sw.js                      ← Service Worker (offline)
+│   ├── favicon.svg
+│   ├── venues.html                ← liste publique des lieux avec liens
+│   └── venues.csv
+├── auto-events.mjs                ← scraper Playwright (GitHub Actions)
+├── verify-events.mjs              ← vérification qualité (rapport)
+├── autofix-events.mjs             ← correction automatique jours de semaine
+├── cleanup-events.mjs             ← suppression événements > 30j passés
+├── send-alert-email.mjs           ← alerte email via Resend API
+├── scrape-events.mjs              ← outil de scraping manuel
+└── .github/workflows/
+    ├── auto-events.yml            ← scraping automatique (8h + 14h Monaco)
+    ├── daily-check.yml            ← nettoyage + vérif + alerte (6h + 18h Monaco)
+    └── weekly-scan.yml            ← scan complet (lundi 7h Monaco)
 ```
-Rapport : `auto-events-report.txt`
 
-### 2. `verify-events.mjs` — Vérification qualité (6h + 18h)
+### State principal (App.jsx)
 
-Script de vérification qui ne modifie rien mais génère un rapport de qualité.
-```
-0 6 * * *  node verify-events.mjs >> verify-events.log
-0 18 * * * node verify-events.mjs >> verify-events.log
-```
+| State | Type | Rôle |
+|-------|------|------|
+| `tab` | `"events"` \| `"agenda"` | onglet actif |
+| `favorites` | `number[]` | IDs favoris (localStorage) |
+| `lang` | `"fr"` \| `"en"` | langue |
+| `homeFilter` | `"all"` \| `"today"` \| `"week"` \| `"weekend"` \| `"calendar"` | filtre temps |
+| `showCats` | `boolean` | barre catégories visible (défaut: `true`) |
+| `catFilter` | `string \| null` | filtre catégorie actif |
 
-## Agent de vérification quotidienne
+### Logique de filtres (HomeScreen.jsx)
 
-`verify-events.mjs` — script à la racine du projet. À lancer chaque jour à 6h.
+`filterByTime` → today / week / weekend / calendar (date range)
 
-```bash
-# Lancer manuellement
-node verify-events.mjs
+`filterByCat` :
+| Bouton | Catégories incluses |
+|--------|---------------------|
+| Ateliers | ATELIER, DANSE |
+| Bien-être | BIEN-ÊTRE |
+| Cinéma | CINÉMA |
+| Conférences | **CONFÉRENCE + SALON + `conf:true`** |
+| Culture | MUSICAL, THÉÂTRE, CHANTS, EXPOSITION, OPÉRA, FESTIVAL, GALA, FÊTE NATIONALE, MARCHÉ, SALON, SPECTACLE, CINÉMA |
+| Enchères | ENCHÈRES |
+| Famille | `free:true` + ATELIER/SPECTACLE/CINÉMA/MARCHÉ/FESTIVAL/EXPOSITION/DANSE + mots-clés enfant |
+| Foody | BRUNCH, APÉRO, SOIRÉE |
+| Messes | CHANTS |
+| Musique | CONCERT, CHANTS, MUSICAL, JAZZ LIVE, DJ SET, OPÉRA |
+| Sport | FOOTBALL, BASKET, FORMULE 1, FORMULE E, SPORT, RALLYE, TENNIS |
 
-# Crontab (6h00 chaque jour)
-# crontab -e
-0 6 * * * cd /Users/stephanieayre/monacout && node verify-events.mjs >> verify-events.log 2>&1
-```
+> **`conf: true`** — champ optionnel sur un événement pour le faire apparaître dans Conférences sans changer sa catégorie principale. Actuellement sur : Festival TV (id:45), Monaco Art Week (id:122).
 
-Le script vérifie :
-- Tous les `descEn` présents
-- Jours de la semaine corrects (Lun/Mar/Mer/Jeu/Ven/Sam/Dim)
-- Événements > 30j dans le passé à supprimer
-- Trous de couverture mensuelle (APÉRO, BRUNCH, ATELIER, BIEN-ÊTRE, CONFÉRENCE)
-- **Liens accessibles** : teste chaque URL, signale les liens morts (❌), trop génériques (⚠️), ou à vérifier manuellement (💡)
-  - ❌ = lien vide ou HTTP error
-  - ⚠️ = page d'accueil sans bouton réservation détecté
-  - 💡 = page avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics
+### Shell.jsx — comportement UI
 
-Rapport généré dans `verify-events-report.txt`.
+- **Category bar** : toujours visible sur l'onglet Évènements, se cache en scrollant vers le bas, réapparaît en remontant. Double-tap sur l'onglet Évènements pour toggle manuel.
+- **Time filters + Quartier bar** : même comportement scroll (géré dans HomeScreen via `filtersVisible`).
+- **Scroll detection** : via `document.getElementById("main-scroll")`, `lastY` comparison avec seuil ±6px.
 
 ---
 
-## Architecture rapide
+## Pipelines automatiques
+
+### GitHub Actions (3 workflows)
+
+**1. `auto-events.yml` — Scraping Playwright**
+- Déclenche : **8h Monaco** (0 6 UTC) + **14h Monaco** (0 12 UTC) + manuel
+- Script : `auto-events.mjs`
+- Ce qu'il fait : visite les sources officielles avec Playwright/Chromium, génère des objets événements, insère dans `src/data/events.js`, `npm run build`, `git commit`, `git push`
+- Rapport : `auto-events-report.txt`
+- Runner : GitHub Actions (ubuntu-latest, Node 20)
+
+> **Principocket** (`principocket.com`) est une source interne de découverte uniquement. Les liens et le nom du site ne sont **jamais** surfacés dans l'app — les événements trouvés via principocket affichent le lieu officiel comme `source` et `link`.
+
+**2. `daily-check.yml` — Nettoyage & Vérification**
+- Déclenche : **6h Monaco** (0 4 UTC) + **18h Monaco** (0 16 UTC) + manuel
+- Séquence :
+  1. `cleanup-events.mjs` — supprime événements > 30j passés
+  2. `autofix-events.mjs` — corrige les erreurs de jour de semaine
+  3. `verify-events.mjs` — génère rapport qualité (`verify-events-report.txt`)
+  4. `send-alert-email.mjs` — envoie un email si `verify-events` échoue (via secret `RESEND_API_KEY`)
+  5. Si `src/data/events.js` modifié → build + commit + push
+- Runner : GitHub Actions (ubuntu-latest, Node 20)
+
+**3. `weekly-scan.yml` — Scan hebdomadaire**
+- Déclenche : **lundi 7h Monaco** (0 5 UTC) + manuel
+- Script : `scripts/weekly-scan.mjs`
+- Pas de permissions `write`, pas de push
+
+### Crontab local (machine Stéphanie)
 
 ```
-src/
-  data/events.js          ← toutes les données événements
-  components/
-    EventCard.jsx          ← carte événement (couleurs par catégorie)
-    screens/
-      HomeScreen.jsx       ← filtre par temps + catégorie
-      AgendaScreen.jsx     ← calendrier mensuel
-      FavoritesScreen.jsx
-      MapScreen.jsx
-      DetailScreen.jsx
-public/
-  venues.html              ← liste complète des lieux avec liens officiels
-CLAUDE.md                  ← ce fichier
-verify-events.mjs          ← agent vérification quotidienne (6h00)
-verify-events-report.txt   ← dernier rapport généré
+0 6  * * *  /usr/local/bin/node /Users/stephanieayre/monacout/verify-events.mjs >> verify-events.log 2>&1
+0 18 * * *  /usr/local/bin/node /Users/stephanieayre/monacout/verify-events.mjs >> verify-events.log 2>&1
+```
+
+### Secret GitHub requis
+
+`RESEND_API_KEY` — clé API Resend pour les alertes email. À configurer dans Settings > Secrets > Actions du repo GitHub.
+
+---
+
+## Workflow de mise à jour manuelle
+
+```bash
+# 1. Modifier src/data/events.js
+# 2. Builder et vérifier
+npm run build
+
+# 3. Committer et pousser (Vercel redéploie automatiquement)
+git add src/data/events.js
+git commit -m "chore: mise à jour événements $(date +%Y-%m-%d)"
+git push origin main
+```
+
+### Vérification manuelle
+
+```bash
+node verify-events.mjs          # rapport qualité → verify-events-report.txt
+node cleanup-events.mjs         # supprime événements passés
+node autofix-events.mjs         # corrige jours de semaine
 ```
