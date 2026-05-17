@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
@@ -119,6 +119,27 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const [rangeEnd, setRangeEnd] = useState(null);
   const [freeOnly, setFreeOnly] = useState(false);
   const [quarterFilter, setQuarterFilter] = useState(null);
+  const [quartiersVisible, setQuartiersVisible] = useState(true);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    let el = containerRef.current?.parentElement;
+    while (el) {
+      if (el.style.overflowY === "auto" || getComputedStyle(el).overflowY === "auto") break;
+      el = el.parentElement;
+    }
+    if (!el) return;
+    let lastY = 0;
+    const handler = () => {
+      const y = el.scrollTop;
+      if (y < 10) setQuartiersVisible(true);
+      else if (y > lastY + 6) setQuartiersVisible(false);
+      else if (y < lastY - 6) setQuartiersVisible(true);
+      lastY = y;
+    };
+    el.addEventListener("scroll", handler, { passive: true });
+    return () => el.removeEventListener("scroll", handler);
+  }, []);
 
   function handleFilterChange(newFilter) {
     if (filter === newFilter && newFilter !== "calendar") {
@@ -127,6 +148,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter);
+    setQuartiersVisible(true);
   }
 
   function handleCalendarChange(start, end) {
@@ -171,7 +193,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     : null;
 
   return (
-    <div style={{ background: WHITE, minHeight: "100%" }}>
+    <div ref={containerRef} style={{ background: WHITE, minHeight: "100%" }}>
       {/* Sticky header */}
       <div style={{
         position: "sticky", top: 0, zIndex: 50,
@@ -276,9 +298,15 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
           </div>
         )}
 
-        {/* Quartiers + Gratuit */}
+        {/* Quartiers + Gratuit — masqué en scroll descendant */}
         {!showSearch && (
-          <div style={{ background: WHITE, borderTop: `1px solid ${BORDER}` }}>
+          <div style={{
+            background: WHITE,
+            borderTop: `1px solid ${BORDER}`,
+            maxHeight: (quartiersVisible || quarterFilter || freeOnly) ? "44px" : "0px",
+            overflow: "hidden",
+            transition: "max-height 0.22s ease",
+          }}>
             <div style={{ display: "flex", gap: 5, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
               {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
                 const active = quarterFilter === q;
