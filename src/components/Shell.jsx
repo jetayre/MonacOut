@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 const NAVY = "#0F1D3A";
 
 const CAT_FILTERS = [
@@ -39,6 +41,23 @@ const NAV_IDS = [
 ];
 
 export default function Shell({ tab, setTab, children, t, lang = "fr", showCats, catFilter, onCatFilter }) {
+  const [catsVisible, setCatsVisible] = useState(true);
+
+  useEffect(() => {
+    const el = document.getElementById("main-scroll");
+    if (!el) return;
+    let lastY = 0;
+    const handler = () => {
+      const y = el.scrollTop;
+      if (y < 10) setCatsVisible(true);
+      else if (y > lastY + 6) setCatsVisible(false);
+      else if (y < lastY - 6) setCatsVisible(true);
+      lastY = y;
+    };
+    el.addEventListener("scroll", handler, { passive: true });
+    return () => el.removeEventListener("scroll", handler);
+  }, []);
+
   return (
     <div style={{
       minHeight: "100vh",
@@ -120,37 +139,43 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
           </div>
         </div>
 
-        {/* Category panel — toggle via double-tap on events tab */}
+        {/* Category panel — always visible, hides on scroll down */}
         {showCats && tab === "events" && (
           <div style={{
             flexShrink: 0,
             borderBottom: `1px solid rgba(15,29,58,0.12)`,
-            padding: "6px 10px 8px",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 5,
-            justifyContent: "center",
+            maxHeight: catsVisible ? "120px" : "0px",
+            overflow: "hidden",
+            transition: "max-height 0.22s ease",
             background: "#FFFFFF",
           }}>
-            {CAT_FILTERS.map(f => (
-              <button
-                key={f.id}
-                onClick={() => onCatFilter?.(catFilter === f.id ? null : f.id)}
-                style={{
-                  padding: "5px 11px",
-                  borderRadius: 20,
-                  border: `1px solid ${catFilter === f.id ? NAVY : "rgba(15,29,58,0.2)"}`,
-                  background: catFilter === f.id ? NAVY : "#FFFFFF",
-                  color: catFilter === f.id ? "#FFFFFF" : "#6A7080",
-                  fontFamily: "'Jost', -apple-system, sans-serif",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  whiteSpace: "nowrap",
-                  letterSpacing: 0.3,
-                }}
-              >{lang === "en" ? f.labelEn : f.label}</button>
-            ))}
+            <div style={{
+              padding: "6px 10px 8px",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 5,
+              justifyContent: "center",
+            }}>
+              {CAT_FILTERS.map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => onCatFilter?.(catFilter === f.id ? null : f.id)}
+                  style={{
+                    padding: "5px 11px",
+                    borderRadius: 20,
+                    border: `1px solid ${catFilter === f.id ? NAVY : "rgba(15,29,58,0.2)"}`,
+                    background: catFilter === f.id ? NAVY : "#FFFFFF",
+                    color: catFilter === f.id ? "#FFFFFF" : "#6A7080",
+                    fontFamily: "'Jost', -apple-system, sans-serif",
+                    fontSize: 11,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    letterSpacing: 0.3,
+                  }}
+                >{lang === "en" ? f.labelEn : f.label}</button>
+              ))}
+            </div>
           </div>
         )}
 

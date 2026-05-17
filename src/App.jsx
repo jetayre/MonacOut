@@ -62,7 +62,7 @@ export default function App() {
   });
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
-  const [showCats, setShowCats] = useState(false);
+  const [showCats, setShowCats] = useState(true);
   const [catFilter, setCatFilter] = useState(null);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
