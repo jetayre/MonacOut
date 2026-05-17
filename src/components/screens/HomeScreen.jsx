@@ -24,6 +24,7 @@ const CAT_TO_FILTER = {
 };
 
 const TIME_FILTERS = [
+  { id: "all",      label: "Tout" },
   { id: "today",    label: "Aujourd'hui" },
   { id: "week",     label: "Semaine" },
   { id: "weekend",  label: "Week-end" },
@@ -104,12 +105,12 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const t = lang === "en"
     ? {
         tagline: "Monaco in your pocket",
-        filters: { today: "Today", weekend: "Weekend", week: "This week", agenda: "Calendar" },
+        filters: { all: "All", today: "Today", weekend: "Weekend", week: "This week", agenda: "Calendar" },
         empty: "No events for this period.",
       }
     : {
         tagline: "Monaco dans la poche",
-        filters: { today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", agenda: "Agenda" },
+        filters: { all: "Tout", today: "Aujourd'hui", weekend: "Week-end", week: "Semaine", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
