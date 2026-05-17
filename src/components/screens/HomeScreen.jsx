@@ -198,9 +198,9 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
         {/* Title section */}
-        <div style={{ background: WHITE, padding: "4px 12px 4px" }}>
+        <div style={{ background: WHITE, padding: "0px 12px 4px" }}>
           {/* Tagline + 🔍 au-dessus */}
-          <div style={{ display: "flex", alignItems: "center", marginBottom: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 3 }}>
             <div style={{ width: 36 }} />
             <div style={{
               flex: 1, textAlign: "center",
