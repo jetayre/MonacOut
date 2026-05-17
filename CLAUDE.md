@@ -67,6 +67,15 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Nobu Monte-Carlo | https://www.fairmont.com/en/hotels/monte-carlo/fairmont-monte-carlo/dining/nobu.restaurant.html | SOIRÉE | |
 | Ironman Monaco | https://www.ironman.com/ | SPORT | |
 | Sunshine Yoga Monte-Carlo | https://yogamontecarlo.com/contact-us/ | YOGA, BIEN-ÊTRE | +33 6 64 91 96 42 |
+| Novotel Monte-Carlo (Azzurra Bar) | https://www.novotelmontecarlo.com/en/restaurant-bars/ | APÉRO | +377 99 99 83 00 |
+| Happy Chou | https://happychou.fr | ATELIER enfants | +33 6 70 98 94 19 |
+| Belcat Events | https://belcatevents.com | ATELIER enfants | +33 6 78 63 00 83 |
+| Little Wonders Monaco | https://littlewondersmonaco.com | ATELIER enfants | +377 99 926 667 |
+| Femina Sports Monaco | https://feminasports.com/ | SPORT gym enfants | (email uniquement) |
+| Académie Monégasque de la Mer | https://www.academiemonegasquedelamer.com/ | SPORT nautique enfants | +33 6 78 63 50 52 |
+| Académie Princesse Grace | https://www.balletsdemontecarlo.com/fr/academie-princesse-grace/formations | DANSE classique | +377 93 30 70 40 |
+| MC Dance Monaco | https://www.instagram.com/mc_dance_monaco/ | DANSE contemporaine | (Instagram / email) |
+| Monaco Beaux-Arts | https://www.monacobeauxarts.com | ATELIER arts plastiques | +377 97 77 16 65 |
 
 ---
 
@@ -148,6 +157,26 @@ git push origin main
 ```
 
 ---
+
+## Pipelines automatiques (crontab actif)
+
+Deux scripts tournent automatiquement via crontab :
+
+### 1. `auto-events.mjs` — Ajout automatique d'événements (8h + 14h)
+Scraper Playwright qui visite les sources officielles (OPMC, Grimaldi Forum, Culture Monaco, Cinémas, Ballet), génère les objets événements complets, les insère dans `src/data/events.js`, puis build + commit + push automatiquement.
+```
+0 8 * * *  node auto-events.mjs >> auto-events.log
+0 14 * * * node auto-events.mjs >> auto-events.log
+```
+Rapport : `auto-events-report.txt`
+
+### 2. `verify-events.mjs` — Vérification qualité (6h + 18h)
+
+Script de vérification qui ne modifie rien mais génère un rapport de qualité.
+```
+0 6 * * *  node verify-events.mjs >> verify-events.log
+0 18 * * * node verify-events.mjs >> verify-events.log
+```
 
 ## Agent de vérification quotidienne
 
