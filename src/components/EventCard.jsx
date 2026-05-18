@@ -234,7 +234,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               }}
             >{event.free
               ? (lang === "en" ? "More info" : "Plus d'infos")
-              : "BTW"}
+              : "Let's go"}
             </a>
           </div>
         )}
