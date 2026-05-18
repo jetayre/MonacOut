@@ -215,11 +215,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                 color: "#C9A96E", letterSpacing: 1.5, lineHeight: 1, marginBottom: 2,
               }}>{t.tagline}</div>
               <MonacOutLogo width={220} />
-              <div style={{
-                fontFamily: "'Jost', sans-serif", fontWeight: 400,
-                fontSize: 8, letterSpacing: 2.5, textTransform: "uppercase",
-                color: NAVY, opacity: 0.7, marginTop: 4,
-              }}>Monaco Lifestyle &amp; Events Agenda App</div>
             </div>
           </div>
         </div>
