@@ -14,7 +14,7 @@ export default function MonacOutLogo({ width = 290 }) {
   return (
     <div style={{ textAlign: "center", padding: `${8 * scale}px 0 ${6 * scale}px` }}>
       <div style={{ ...style, display: "inline" }}>
-        <span style={{ color: NAVY }}>MonacOut</span>
+        <span style={{ color: GOLD }}>Monac</span><span style={{ color: NAVY }}>Out</span>
       </div>
     </div>
   );
