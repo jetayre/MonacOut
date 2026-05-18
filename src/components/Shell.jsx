@@ -81,7 +81,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
         <div style={{
           flexShrink: 0,
           height: 90,
-          background: "transparent",
+          background: "#FDFAF5",
           borderBottom: `1px solid rgba(15,29,58,0.12)`,
           position: "relative",
           zIndex: 10,
