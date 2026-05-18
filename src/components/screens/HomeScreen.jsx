@@ -209,12 +209,12 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               alignItems: "center",
               padding: "8px 10px 8px",
             }}>
+              <MonacOutLogo width={220} />
               <div style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
                 fontStyle: "italic", fontWeight: 400, fontSize: 14,
-                color: "#C9A96E", letterSpacing: 1.5, lineHeight: 1, marginBottom: 2,
+                color: NAVY, letterSpacing: 1.5, lineHeight: 1, marginTop: 4,
               }}>{t.tagline}</div>
-              <MonacOutLogo width={220} />
             </div>
           </div>
         </div>
