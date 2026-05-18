@@ -4,7 +4,7 @@ const NAVY = "#0F1D3A";
 export default function MonacOutLogo({ width = 290 }) {
   const scale = width / 290;
   const style = {
-    fontFamily: "'Playfair Display', Georgia, serif",
+    fontFamily: "'Great Vibes', cursive",
     fontSize: Math.round(52 * scale),
     fontWeight: 700,
     fontStyle: "normal",
