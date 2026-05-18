@@ -12,7 +12,7 @@ export default function MonacOutLogo({ width = 290 }) {
         letterSpacing: Math.round(1 * scale),
         lineHeight: 1,
         color: GOLD,
-        fontSize: Math.round(90 * scale),
+        fontSize: Math.round(106 * scale),
         verticalAlign: "baseline",
       }}>Monac</span><span style={{
         fontFamily: "'Great Vibes', cursive",
@@ -20,7 +20,7 @@ export default function MonacOutLogo({ width = 290 }) {
         fontStyle: "normal",
         lineHeight: 1,
         color: NAVY,
-        fontSize: Math.round(92 * scale),
+        fontSize: Math.round(108 * scale),
         verticalAlign: "baseline",
         letterSpacing: 0,
       }}>Out</span>

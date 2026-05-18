@@ -218,7 +218,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               <div style={{
                 fontFamily: "'Jost', sans-serif", fontWeight: 400,
                 fontSize: 8, letterSpacing: 2.5, textTransform: "uppercase",
-                color: NAVY, opacity: 0.6, marginTop: 4,
+                color: NAVY, opacity: 1, marginTop: 4,
               }}>Monaco Lifestyle &amp; Events Agenda App</div>
             </div>
           </div>
