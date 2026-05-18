@@ -197,21 +197,15 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
       }}>
         {/* Title section — Monaco Secret + cadre logo */}
         <div style={{ background: WHITE, padding: "4px 12px 4px" }}>
-          {/* Monaco Secret juste au-dessus du cadre */}
           <div style={{ display: "flex", alignItems: "center", marginBottom: 3 }}>
             <div style={{ width: 36 }} />
-            <div style={{
-              flex: 1, textAlign: "center",
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontStyle: "italic", fontWeight: 400, fontSize: 17,
-              color: "#C4A241", letterSpacing: 0.8,
-            }}>{t.tagline}</div>
+            <div style={{ flex: 1 }} />
             <button
               onClick={() => setShowSearch(s => !s)}
               style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, padding: "2px 4px", opacity: 0.4, flexShrink: 0, width: 36 }}
             >🔍</button>
           </div>
-          {/* Cadre double — logo centré + FR/EN en bas */}
+          {/* Cadre double — logo + Monaco Secret + FR/EN */}
           <div style={{ border: `1.5px solid #C4A241`, padding: 1 }}>
             <div style={{
               border: `2px solid ${NAVY}`, background: WHITE,
@@ -223,6 +217,11 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
                 <MonacOutLogo width={220} />
               </div>
+              <div style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontStyle: "italic", fontWeight: 400, fontSize: 13,
+                color: "#C4A241", letterSpacing: 0.8, marginTop: 2,
+              }}>{t.tagline}</div>
               <div style={{ display: "flex", gap: 4, marginTop: 6 }}>
                 {["fr","en"].map(l => (
                   <button key={l} onClick={() => setLang?.(l)} style={{
