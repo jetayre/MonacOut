@@ -138,8 +138,13 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             {/* Loupe + EN à droite */}
             <button onClick={() => setShowSearch?.(s => !s)} style={{
               background: "none", border: "none", cursor: "pointer",
-              fontSize: 14, padding: "2px 4px", opacity: 0.5, flexShrink: 0,
-            }}>🔍</button>
+              padding: "2px 4px", opacity: 0.6, flexShrink: 0, display: "flex", alignItems: "center",
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="7"/>
+                <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+              </svg>
+            </button>
             <button onClick={() => setLang?.("en")} style={{
               background: lang === "en" ? NAVY : "transparent",
               border: `1.5px solid ${NAVY}`, borderRadius: 6,
