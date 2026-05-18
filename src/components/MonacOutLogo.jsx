@@ -12,7 +12,7 @@ export default function MonacOutLogo({ width = 290 }) {
         letterSpacing: Math.round(4 * scale),
         lineHeight: 1,
         color: GOLD,
-        fontSize: Math.round(68 * scale),
+        fontSize: Math.round(88 * scale),
       }}>Monac</span><span style={{
         fontFamily: "'Cormorant Garamond', Georgia, serif",
         fontWeight: 300,
@@ -20,7 +20,7 @@ export default function MonacOutLogo({ width = 290 }) {
         letterSpacing: Math.round(4 * scale),
         lineHeight: 1,
         color: NAVY,
-        fontSize: Math.round(32 * scale),
+        fontSize: Math.round(44 * scale),
       }}>Out</span>
     </div>
   );
