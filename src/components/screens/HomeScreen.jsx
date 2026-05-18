@@ -242,7 +242,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                       padding: "7px 16px",
                       borderRadius: 20,
                       border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
-                      background: active ? NAVY : WHITE,
+                      background: active ? NAVY : "#FDFAF5",
                       color: active ? WHITE : GREY,
                       fontFamily: "'Jost', -apple-system, sans-serif",
                       fontSize: 12,
@@ -273,7 +273,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                   <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
                     flexShrink: 0, padding: "3px 8px", borderRadius: 20,
                     border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
-                    background: active ? NAVY : WHITE, color: active ? WHITE : GREY,
+                    background: active ? NAVY : "#FDFAF5", color: active ? WHITE : GREY,
                     fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 9,
                     fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
                   }}>{q}</button>
