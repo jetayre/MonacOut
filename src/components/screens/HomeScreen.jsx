@@ -196,43 +196,29 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Title section — cadre logo style luxe */}
+        {/* Title section — cadre bicolore or + navy */}
         <div style={{ background: WHITE, padding: "4px 10px 4px" }}>
-          {/* Cadre extérieur or */}
           <div style={{ border: `1.5px solid #C9A96E`, padding: "2px", position: "relative" }}>
             {/* Coins ornementaux */}
             {[{top:3,left:4},{top:3,right:4},{bottom:3,left:4},{bottom:3,right:4}].map((pos,i) => (
               <span key={i} style={{ position:"absolute", color:"#C9A96E", fontSize:11, lineHeight:1, ...pos }}>✦</span>
             ))}
-            {/* Cadre intérieur or fin */}
             <div style={{
-              border: `1px solid #C9A96E`, background: WHITE,
+              border: `2px solid ${NAVY}`, background: WHITE,
               display: "flex", flexDirection: "column",
               alignItems: "center",
               padding: "8px 10px 8px",
             }}>
-              {/* Monaco Secret avec tirets */}
               <div style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
                 fontStyle: "italic", fontWeight: 400, fontSize: 14,
-                color: "#C9A96E", letterSpacing: 1.5, lineHeight: 1,
-                display: "flex", alignItems: "center", gap: 6, marginBottom: 2,
-              }}>
-                <span style={{ fontSize: 10, opacity: 0.7 }}>—</span>
-                {t.tagline}
-                <span style={{ fontSize: 10, opacity: 0.7 }}>—</span>
-              </div>
-              {/* Logo */}
+                color: "#C9A96E", letterSpacing: 1.5, lineHeight: 1, marginBottom: 2,
+              }}>{t.tagline}</div>
               <MonacOutLogo width={220} />
-              {/* Séparateur ⚜ */}
-              <div style={{ color: "#C9A96E", fontSize: 11, letterSpacing: 6, marginTop: 2, opacity: 0.9 }}>
-                — ⚜ —
-              </div>
-              {/* Tagline bas */}
               <div style={{
                 fontFamily: "'Jost', sans-serif", fontWeight: 400,
                 fontSize: 8, letterSpacing: 2.5, textTransform: "uppercase",
-                color: NAVY, opacity: 0.7, marginTop: 3,
+                color: NAVY, opacity: 0.7, marginTop: 4,
               }}>Monaco Lifestyle &amp; Events Agenda App</div>
             </div>
           </div>
