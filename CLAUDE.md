@@ -256,15 +256,15 @@ git push origin main
 monacout/
 ├── src/
 │   ├── main.jsx                   ← point d'entrée React
-│   ├── App.jsx                    ← state global (tab, favorites, lang, catFilter, showCats)
+│   ├── App.jsx                    ← state global (tab, favorites, lang, catFilter, showCats, showSearch)
 │   ├── i18n.js                    ← traductions FR/EN (objet T[lang]) — tagline: "Monaco Secret", nav: "MC Events" / "My Agenda"
 │   ├── App.css / index.css        ← styles globaux minimaux
 │   ├── data/
 │   │   └── events.js              ← SOURCE DE VÉRITÉ : tableau _RAW + export ALL_EVENTS
 │   └── components/
-│       ├── Shell.jsx              ← frame iPhone 393×852, nav bar, category bar, scroll
-│       ├── EventCard.jsx          ← carte événement (cadre or/navy, date centrée + heure)
-│       ├── MonacOutLogo.jsx       ← logo SVG inline
+│       ├── Shell.jsx              ← frame iPhone 393×852, nav bar (FR gauche + EN/loupe droite), category bar, scroll
+│       ├── EventCard.jsx          ← carte événement (cadre or/navy, date centrée + heure, bouton "Let's go")
+│       ├── MonacOutLogo.jsx       ← logo bicolore : "Monac" Cormorant Garamond or #C9A96E + "Out" Great Vibes navy #0F1D3A
 │       ├── CalendarPicker.jsx     ← sélecteur de date pour filtre agenda
 │       ├── SectionTitle.jsx       ← titre de section
 │       └── screens/
@@ -302,6 +302,7 @@ monacout/
 | `homeFilter` | `"all"` \| `"today"` \| `"week"` \| `"weekend"` \| `"calendar"` | filtre temps |
 | `showCats` | `boolean` | barre catégories visible (défaut: `false` — s'active au clic sur onglet MC Events, se désactive sur My Agenda) |
 | `catFilter` | `string \| null` | filtre catégorie actif |
+| `showSearch` | `boolean` | barre recherche visible — state levé à App, passé à Shell + HomeScreen |
 
 ### Logique de filtres (HomeScreen.jsx)
 
@@ -344,6 +345,29 @@ Filtre quartier dans `HomeScreen` (barre secondaire, disparaît au scroll) :
 - **Filtres temps** : `TIME_FILTERS` = today, week, weekend, calendar. Clic sur filtre actif → revient à "all".
 - **Quartiers** : boutons plus petits (font 9px, padding 3px 8px), Monte-Carlo / Monaco-Ville / Fontvieille / La Condamine / Larvotto.
 - **Gratuit** : bouton supprimé de l'interface (le champ `free: true` reste dans les données).
+- **Boutons filtres inactifs** : fond ivoire `#FDFAF5` (même couleur que les cartes événements).
+- **Bouton billetterie** : "Let's go" (payant) / "Plus d'infos" (gratuit) / "More info" / "Book" (EN).
+
+### Shell.jsx — nav bar
+
+- **FR** : bouton à gauche de l'onglet MC Events — `setLang("fr")`, toujours transparent (pas de fond coloré actif).
+- **EN** : bouton à droite de l'onglet My Agenda.
+- **Loupe 🔍** : entre My Agenda et EN — toggle `showSearch` (state dans App.jsx).
+- **Header** : fond ivoire `#FDFAF5` (pas blanc).
+
+### MonacOutLogo.jsx — design
+
+- **"Monac"** : Cormorant Garamond, weight 300, or doux `#C9A96E`, 106px (scale 190/290).
+- **"Out"** : Great Vibes (script cursive), weight 400, navy `#0F1D3A`, 108px.
+- Police Great Vibes chargée dans `index.css` via Google Fonts.
+
+### HomeScreen.jsx — cadre logo
+
+Cadre double bicolore : extérieur `1.5px solid #C9A96E` (or) + intérieur `2px solid #0F1D3A` (navy).
+Coins ornementaux ✦ en or aux 4 angles. Contenu (haut → bas) :
+1. **MONACO SECRET** — Cormorant Garamond 12px bold, navy, petites majuscules, marginTop 8px
+2. **MonacOutLogo** width=190
+3. **MONACO LIFESTYLE & EVENTS AGENDA** — même style, marginTop 3px
 
 ---
 
