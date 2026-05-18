@@ -211,14 +211,14 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
             }}>
               <div style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "normal", fontWeight: 400, fontSize: 11,
+                fontStyle: "normal", fontWeight: 600, fontSize: 12,
                 color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 8, marginBottom: 0,
                 textTransform: "uppercase",
               }}>{t.tagline}</div>
               <MonacOutLogo width={190} />
               <div style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "normal", fontWeight: 400, fontSize: 11,
+                fontStyle: "normal", fontWeight: 600, fontSize: 12,
                 color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 8,
                 textTransform: "uppercase",
               }}>Monaco Lifestyle &amp; Events Agenda</div>
