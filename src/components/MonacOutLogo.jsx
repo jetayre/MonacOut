@@ -8,7 +8,8 @@ export default function MonacOutLogo({ width = 290 }) {
     fontSize: Math.round(72 * scale),
     fontWeight: 700,
     fontStyle: "normal",
-    letterSpacing: Math.round(2 * scale),
+    letterSpacing: Math.round(4 * scale),
+    textTransform: "uppercase",
     lineHeight: 1,
   };
   return (
