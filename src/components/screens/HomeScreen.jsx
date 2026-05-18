@@ -100,7 +100,7 @@ function filterByCat(events, catId) {
   }
 }
 
-export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", setLang, catFilter, onCatFilter }) {
+export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilter, onCatFilter, showSearch: showSearchProp, setShowSearch: setShowSearchProp }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? {
@@ -114,7 +114,8 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         empty: "Aucun événement pour cette période.",
       };
   const [search, setSearch] = useState("");
-  const [showSearch, setShowSearch] = useState(false);
+  const showSearch = showSearchProp ?? false;
+  const setShowSearch = setShowSearchProp ?? (() => {});
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
   const [quarterFilter, setQuarterFilter] = useState(null);
@@ -213,21 +214,6 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               }}>{t.tagline}</div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <MonacOutLogo width={220} />
-              </div>
-              <div style={{ display: "flex", gap: 4, marginTop: 6, alignItems: "center" }}>
-                {["fr","en"].map(l => (
-                  <button key={l} onClick={() => setLang?.(l)} style={{
-                    background: lang === l ? NAVY : "transparent",
-                    border: `1.5px solid ${NAVY}`, borderRadius: 6,
-                    cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
-                    color: lang === l ? "#fff" : NAVY,
-                    fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
-                  }}>{l.toUpperCase()}</button>
-                ))}
-                <button
-                  onClick={() => setShowSearch(s => !s)}
-                  style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, padding: "2px 4px", opacity: 0.5, lineHeight: 1 }}
-                >🔍</button>
               </div>
             </div>
           </div>

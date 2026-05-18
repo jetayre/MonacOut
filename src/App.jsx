@@ -64,6 +64,7 @@ export default function App() {
   const [lang, setLang] = useState("fr");
   const [showCats, setShowCats] = useState(false);
   const [catFilter, setCatFilter] = useState(null);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
 
@@ -120,9 +121,10 @@ export default function App() {
             {...sharedProps}
             filter={homeFilter}
             onFilterChange={setHomeFilter}
-            setLang={setLang}
             catFilter={catFilter}
             onCatFilter={handleCatFilter}
+            showSearch={showSearch}
+            setShowSearch={setShowSearch}
           />
         );
       case "agenda":
@@ -133,7 +135,7 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter}>
+    <Shell tab={tab} setTab={handleTabChange} lang={lang} setLang={setLang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter} showSearch={showSearch} setShowSearch={setShowSearch}>
       {renderScreen()}
     </Shell>
   );

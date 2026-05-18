@@ -40,7 +40,7 @@ const NAV_IDS = [
   { id: "agenda", key: "agenda", Icon: HeartIcon },
 ];
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", showCats, catFilter, onCatFilter }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, showCats, catFilter, onCatFilter, showSearch, setShowSearch }) {
   const [catsVisible, setCatsVisible] = useState(true);
 
   useEffect(() => {
@@ -106,36 +106,48 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", showCats,
             right: 0,
             height: 44,
             display: "flex",
+            alignItems: "center",
           }}>
-            {NAV_IDS.map(n => {
-              const active = tab === n.id;
-              const color = active ? NAVY : "#9AA0B0";
-              return (
-                <button
-                  key={n.id}
-                  onClick={() => setTab(n.id)}
-                  style={{
-                    flex: 1,
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 6,
-                    position: "relative",
-                    fontFamily: "'Jost', -apple-system, sans-serif",
-                    fontSize: 13,
-                    fontWeight: active ? 600 : 500,
-                    color,
-                    letterSpacing: 0.3,
-                  }}
-                >
-                  <n.Icon color={color} active={active} />
-                  {t?.nav[n.key] || n.key}
-                </button>
-              );
-            })}
+            {/* FR à gauche */}
+            <button onClick={() => setLang?.("fr")} style={{
+              background: lang === "fr" ? NAVY : "transparent",
+              border: `1.5px solid ${NAVY}`, borderRadius: 6,
+              cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
+              color: lang === "fr" ? "#fff" : NAVY,
+              fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
+              marginLeft: 10, flexShrink: 0,
+            }}>FR</button>
+            {/* MC Events */}
+            {(() => { const n = NAV_IDS[0]; const active = tab === n.id; const color = active ? NAVY : "#9AA0B0"; return (
+              <button key={n.id} onClick={() => setTab(n.id)} style={{
+                flex: 1, background: "none", border: "none", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13,
+                fontWeight: active ? 600 : 500, color, letterSpacing: 0.3,
+              }}><n.Icon color={color} active={active} />{t?.nav[n.key] || n.key}</button>
+            ); })()}
+            {/* My Agenda */}
+            {(() => { const n = NAV_IDS[1]; const active = tab === n.id; const color = active ? NAVY : "#9AA0B0"; return (
+              <button key={n.id} onClick={() => setTab(n.id)} style={{
+                flex: 1, background: "none", border: "none", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13,
+                fontWeight: active ? 600 : 500, color, letterSpacing: 0.3,
+              }}><n.Icon color={color} active={active} />{t?.nav[n.key] || n.key}</button>
+            ); })()}
+            {/* Loupe + EN à droite */}
+            <button onClick={() => setShowSearch?.(s => !s)} style={{
+              background: "none", border: "none", cursor: "pointer",
+              fontSize: 14, padding: "2px 4px", opacity: 0.5, flexShrink: 0,
+            }}>🔍</button>
+            <button onClick={() => setLang?.("en")} style={{
+              background: lang === "en" ? NAVY : "transparent",
+              border: `1.5px solid ${NAVY}`, borderRadius: 6,
+              cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
+              color: lang === "en" ? "#fff" : NAVY,
+              fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
+              marginRight: 10, flexShrink: 0,
+            }}>EN</button>
           </div>
         </div>
 
