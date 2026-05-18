@@ -110,11 +110,11 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
           }}>
             {/* FR à gauche */}
             <button onClick={() => setLang?.("fr")} style={{
-              background: lang === "fr" ? NAVY : "transparent",
+              background: "transparent",
               border: `1.5px solid ${NAVY}`, borderRadius: 6,
               cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
-              color: lang === "fr" ? "#fff" : NAVY,
-              fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
+              color: NAVY,
+              fontFamily: "'Jost', sans-serif", fontWeight: lang === "fr" ? 700 : 400, letterSpacing: 0.5,
               marginLeft: 10, flexShrink: 0,
             }}>FR</button>
             {/* MC Events */}

@@ -212,14 +212,14 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               <div style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
                 fontStyle: "italic", fontWeight: 400, fontSize: 14,
-                color: NAVY, letterSpacing: 1.5, lineHeight: 1, marginTop: 6, marginBottom: 2,
+                color: NAVY, letterSpacing: 1.5, lineHeight: 1, marginTop: 10, marginBottom: 2,
               }}>{t.tagline}</div>
               <MonacOutLogo width={220} />
               <div style={{
                 fontFamily: "'Jost', sans-serif", fontWeight: 400,
                 fontSize: 8, letterSpacing: 2.5, textTransform: "uppercase",
-                color: NAVY, opacity: 1, marginTop: 4,
-              }}>Monaco Lifestyle &amp; Events Agenda App</div>
+                color: NAVY, opacity: 1, marginTop: 1,
+              }}>Monaco Lifestyle &amp; Events Agenda</div>
             </div>
           </div>
         </div>
