@@ -12,9 +12,9 @@ export default function MonacOutLogo({ width = 290 }) {
     lineHeight: 1,
   };
   return (
-    <div style={{ textAlign: "center", padding: `${8 * scale}px 0 ${6 * scale}px` }}>
-      <div style={{ ...style, display: "inline" }}>
-        <span style={{ color: GOLD }}>Monac</span><span style={{ color: NAVY }}>Out</span>
+    <div style={{ textAlign: "center", padding: `${4 * scale}px 0 ${4 * scale}px` }}>
+      <div style={{ ...style, display: "inline", alignItems: "baseline" }}>
+        <span style={{ color: GOLD, fontSize: Math.round(72 * scale) }}>Monac</span><span style={{ color: NAVY, fontSize: Math.round(48 * scale) }}>Out</span>
       </div>
     </div>
   );
