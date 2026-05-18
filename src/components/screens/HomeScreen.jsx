@@ -203,7 +203,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               border: `2px solid ${NAVY}`, background: WHITE,
               display: "flex", flexDirection: "column",
               alignItems: "center",
-              padding: "8px 8px 6px",
+              padding: "4px 8px 6px",
               minHeight: 68,
             }}>
               <div style={{
