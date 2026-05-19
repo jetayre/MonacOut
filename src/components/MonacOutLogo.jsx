@@ -20,7 +20,7 @@ export default function MonacOutLogo({ width = 290 }) {
         fontStyle: "normal",
         lineHeight: 1,
         color: NAVY,
-        fontSize: Math.round(108 * scale),
+        fontSize: Math.round(80 * scale),
         verticalAlign: "baseline",
         letterSpacing: 0,
       }}>Out</span>
