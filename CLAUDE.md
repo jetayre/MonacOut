@@ -414,6 +414,29 @@ Coins ornementaux ✦ en or aux 4 angles. Contenu (haut → bas) :
 
 ---
 
+## Monitoring & Observabilité
+
+### PostHog — Analytics utilisateur
+- **Dashboard** : https://eu.posthog.com
+- **Projet** : MonacOut
+- **Ce qui est tracké automatiquement** : pages vues, clics, sessions, pays, appareil
+- **Initialisation** : `src/main.jsx` — clé `phc_qfThmficvfkSEgsMLbKiJcgiHRYyAJ5GU2i8pavYYzNU`
+- **Serveur** : EU (`eu.i.posthog.com`)
+
+### Sentry — Error tracking
+- **Dashboard** : https://sentry.io → projet MonacOut
+- **Ce qui est tracké** : toutes les erreurs JS runtime, stack traces, navigateur/OS
+- **Initialisation** : `src/main.jsx` — DSN `https://ad492b22...ingest.de.sentry.io/4511417016516688`
+- **Serveur** : EU (`.ingest.de.sentry.io`)
+- **Taux de capture** : 100% (`tracesSampleRate: 1.0`)
+
+### Vercel — Déploiement continu
+- Chaque `git push origin main` déclenche automatiquement un déploiement production
+- URL production : https://monacout.vercel.app
+- Logs de build : dashboard Vercel → projet monacout → Deployments
+
+---
+
 ## Workflow de mise à jour manuelle
 
 ```bash
