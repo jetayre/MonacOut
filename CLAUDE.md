@@ -249,13 +249,15 @@ git push origin main
 - **Styles inline uniquement** — pas de CSS modules, pas de Tailwind
 - **Déploiement** — Vercel, auto-deploy sur `git push origin main`
 - **Repo GitHub** — https://github.com/jetayre/MonacOut (branche `main`)
+- **Analytics** — PostHog (EU) initialisé dans `main.jsx` — dashboard : eu.posthog.com
+- **Error tracking** — Sentry (EU) initialisé dans `main.jsx` — dashboard : sentry.io
 
 ### Arborescence
 
 ```
 monacout/
 ├── src/
-│   ├── main.jsx                   ← point d'entrée React
+│   ├── main.jsx                   ← point d'entrée React + init PostHog + init Sentry
 │   ├── App.jsx                    ← state global (tab, favorites, lang, catFilter, showCats, showSearch)
 │   ├── i18n.js                    ← traductions FR/EN (objet T[lang]) — tagline: "Monaco Secret", nav: "MC Events" / "My Agenda"
 │   ├── App.css / index.css        ← styles globaux minimaux
