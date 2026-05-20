@@ -201,16 +201,19 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         <div style={{ padding: "14px 16px 16px", textAlign: "center", background: WHITE }}>
 
           {/* Date + heure */}
-          <div style={{ marginBottom: 4 }}>
+          <div style={{
+            marginBottom: 6,
+            display: "flex", alignItems: "baseline", justifyContent: "center", gap: 8,
+          }}>
             <span style={{
-              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontFamily: "'Jost', sans-serif",
               fontSize: 16, fontWeight: 700, letterSpacing: 0.8,
               textTransform: "uppercase", color: NAVY,
             }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
             {event.time && (
               <span style={{
-                fontFamily: "'Jost', -apple-system, sans-serif",
-                fontSize: 13, color: GREY, marginLeft: 6,
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 11, fontWeight: 400, color: GREY, letterSpacing: 0.2,
               }}>{event.time}</span>
             )}
           </div>
