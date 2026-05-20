@@ -3,37 +3,105 @@ const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
 const VENUE_PHOTOS = {
-  grimaldi:     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg/800px-Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
-  opera:        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg/800px-Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg",
-  stade:        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg/800px-Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg",
-  ocean:        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Monaco_BW_2011-06-07_17-50-43.jpg/800px-Monaco_BW_2011-06-07_17-50-43.jpg",
-  palais:       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Princely_Palace_of_Monaco.jpg/800px-Princely_Palace_of_Monaco.jpg",
-  cathedrale:   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Monaco_BW_2011-06-07_16-07-20.jpg/800px-Monaco_BW_2011-06-07_16-07-20.jpg",
-  tpg:          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg/800px-Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg",
-  casino:       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Le_casino_de_Monte-Carlo.JPG/800px-Le_casino_de_Monte-Carlo.JPG",
-  fontvieille:  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fontvieille_and_yachts.jpg/800px-Fontvieille_and_yachts.jpg",
-  port:         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/MonacoView.jpg/800px-MonacoView.jpg",
-  rocher:       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/View_on_Monacoville.JPG/800px-View_on_Monacoville.JPG",
-  aerial:       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Aerial_view_of_Monaco_%2801%29.jpg/800px-Aerial_view_of_Monaco_%2801%29.jpg",
+  // Grandes salles
+  grimaldi:        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg/800px-Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
+  opera:           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg/800px-Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg",
+  stade:           "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg/800px-Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg",
+  ocean:           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Monaco_BW_2011-06-07_17-50-43.jpg/800px-Monaco_BW_2011-06-07_17-50-43.jpg",
+  palais:          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Princely_Palace_of_Monaco.jpg/800px-Princely_Palace_of_Monaco.jpg",
+  cathedrale:      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Monaco_BW_2011-06-07_16-07-20.jpg/800px-Monaco_BW_2011-06-07_16-07-20.jpg",
+  tpg:             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg/800px-Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg",
+  fort_antoine:    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Fort_Antoine_-_panoramio.jpg/800px-Fort_Antoine_-_panoramio.jpg",
+  sporting:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Monte_Carlo_Sporting_Club_in_2023.jpg/800px-Monte_Carlo_Sporting_Club_in_2023.jpg",
+  collection:      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/La_Collection_de_Voitures_de_S.A.S._le_Prince_de_Monaco_%2851430786795%29.jpg/800px-La_Collection_de_Voitures_de_S.A.S._le_Prince_de_Monaco_%2851430786795%29.jpg",
+  // Hôtels
+  hotel_paris:     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/H%C3%B4tel_de_Paris_Monte-Carlo_006.jpg/800px-H%C3%B4tel_de_Paris_Monte-Carlo_006.jpg",
+  hermitage:       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Driveway_to_the_H%C3%B4tel_Hermitage_Monte-Carlo%2C_Monaco_%2853969469800%29.jpg/800px-Driveway_to_the_H%C3%B4tel_Hermitage_Monte-Carlo%2C_Monaco_%2853969469800%29.jpg",
+  fairmont:        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Fairmont_Hotel_Monaco_IMG_1016.jpg/800px-Fairmont_Hotel_Monaco_IMG_1016.jpg",
+  mcbay:           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Monte-Carlo_Bay_Casino_Monaco_IMG_1139.jpg/800px-Monte-Carlo_Bay_Casino_Monaco_IMG_1139.jpg",
+  // Monaco-Ville / Rocher
+  rocher:          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/View_on_Monacoville.JPG/800px-View_on_Monacoville.JPG",
+  villa_sauber:    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Villa_Sauber_-_panoramio.jpg/800px-Villa_Sauber_-_panoramio.jpg",
+  jardins_stmartin:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Jardins_Saint-Martin%2C_Monaco_-_panoramio_%281%29.jpg/800px-Jardins_Saint-Martin%2C_Monaco_-_panoramio_%281%29.jpg",
+  roseraie:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Roseraie_Princesse_Grace_-_panoramio.jpg/800px-Roseraie_Princesse_Grace_-_panoramio.jpg",
+  // Monte-Carlo place / casino
+  casino:          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Le_casino_de_Monte-Carlo.JPG/800px-Le_casino_de_Monte-Carlo.JPG",
+  place_casino:    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Monaco_Place_du_Casino_1.jpg/800px-Monaco_Place_du_Casino_1.jpg",
+  // Port & bord de mer
+  yacht_club:      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yacht_Club_de_Monaco_%2851429816991%29.jpg/800px-Yacht_Club_de_Monaco_%2851429816991%29.jpg",
+  port:            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/MonacoView.jpg/800px-MonacoView.jpg",
+  larvotto_beach:  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Plage_du_Larvotto_MONACO_-_panoramio.jpg/800px-Plage_du_Larvotto_MONACO_-_panoramio.jpg",
+  country_club:    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Rosa_Monte_Carlo_Country_Club_2022-07-05_4950.jpg/800px-Rosa_Monte_Carlo_Country_Club_2022-07-05_4950.jpg",
+  // Fontvieille
+  fontvieille:     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fontvieille_and_yachts.jpg/800px-Fontvieille_and_yachts.jpg",
+  parc_antoinette: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Princess_Antoinette_Park.jpg/800px-Princess_Antoinette_Park.jpg",
+  // La Condamine
+  condamine:       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/March%C3%A9_de_la_Condamine_depuis_la_Place_d%27Armes_%28Monaco%29.jpg/800px-March%C3%A9_de_la_Condamine_depuis_la_Place_d%27Armes_%28Monaco%29.jpg",
+  // Jardins & parcs
+  jardin_exotique: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Monaco_Boulevard_du_Jardin_Exotique_06_2021.jpg/800px-Monaco_Boulevard_du_Jardin_Exotique_06_2021.jpg",
+  jardin_japonais: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Jardin_Japonais_de_Monaco_-_panoramio.jpg/800px-Jardin_Japonais_de_Monaco_-_panoramio.jpg",
+  // Divers
+  odeon:           "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tour_Od%C3%A9on_Monaco_2022_%28cropped%29.jpg/800px-Tour_Od%C3%A9on_Monaco_2022_%28cropped%29.jpg",
+  aerial:          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Aerial_view_of_Monaco_%2801%29.jpg/800px-Aerial_view_of_Monaco_%2801%29.jpg",
 };
 
 function getVenuePhoto(event) {
   const s = (event.subtitle || "").toLowerCase();
   const t = (event.title || "").toLowerCase();
-  const combined = s + " " + t;
-  if (combined.includes("grimaldi forum")) return VENUE_PHOTOS.grimaldi;
-  if (combined.includes("salle garnier") || combined.includes("opéra") || combined.includes("opera de")) return VENUE_PHOTOS.opera;
-  if (combined.includes("stade louis") || combined.includes("gaston médecin") || combined.includes("gaston medecin")) return VENUE_PHOTOS.stade;
-  if (combined.includes("océanographique") || combined.includes("oceanographique")) return VENUE_PHOTOS.ocean;
-  if (combined.includes("palais princier") || combined.includes("cour d'honneur")) return VENUE_PHOTOS.palais;
-  if (combined.includes("cathédrale") || combined.includes("cathedrale") || combined.includes("saint-nicolas") || combined.includes("saint nicolas")) return VENUE_PHOTOS.cathedrale;
-  if (combined.includes("princesse grace") || combined.includes("beaux-arts") || combined.includes("beaux arts")) return VENUE_PHOTOS.tpg;
-  if (combined.includes("casino") && !combined.includes("casino café")) return VENUE_PHOTOS.casino;
-  if (combined.includes("fontvieille") || combined.includes("léo ferré") || combined.includes("leo ferre") || combined.includes("espace léo")) return VENUE_PHOTOS.fontvieille;
-  if (combined.includes("monaco-ville") || combined.includes("fort antoine") || combined.includes("rocher")) return VENUE_PHOTOS.rocher;
-  if (combined.includes("port hercule") || combined.includes("yacht club") || combined.includes("larvotto") || combined.includes("note bleue") || combined.includes("nikki beach") || combined.includes("port de monaco")) return VENUE_PHOTOS.port;
-  if (combined.includes("circuit") || combined.includes("formule")) return VENUE_PHOTOS.aerial;
-  return null;
+  const c = s + " " + t;
+
+  // Grandes salles — du plus spécifique au plus général
+  if (c.includes("grimaldi forum") || c.includes("salle des princes") || c.includes("ravel hall") || c.includes("espace indigo") || c.includes("one monte-carlo") || c.includes("one monte carlo")) return VENUE_PHOTOS.grimaldi;
+  if (c.includes("salle garnier") || c.includes("opéra de monte") || c.includes("opera de monte")) return VENUE_PHOTOS.opera;
+  if (c.includes("stade louis") || c.includes("gaston médecin") || c.includes("gaston medecin")) return VENUE_PHOTOS.stade;
+  if (c.includes("océanographique") || c.includes("oceanographique")) return VENUE_PHOTOS.ocean;
+  if (c.includes("palais princier") || c.includes("cour d") || c.includes("place du palais")) return VENUE_PHOTOS.palais;
+  if (c.includes("fort antoine")) return VENUE_PHOTOS.fort_antoine;
+  if (c.includes("cathédrale") || c.includes("cathedrale") || c.includes("saint-nicolas") || c.includes("sacré-cœur") || c.includes("sacre-coeur") || c.includes("chapelle") || c.includes("paroisse") || c.includes("église") || c.includes("eglise") || c.includes("paroisses") || c.includes("églises")) return VENUE_PHOTOS.cathedrale;
+  if (c.includes("collection de voitures")) return VENUE_PHOTOS.collection;
+  if (c.includes("parc princesse antoinette")) return VENUE_PHOTOS.parc_antoinette;
+  // Théâtre Princesse Grace / Cinéma des Beaux-Arts (même bâtiment) — avant le check "princesse" générique
+  if (c.includes("théâtre princesse grace") || c.includes("theatre princesse grace") || c.includes("salle princesse grace") || c.includes("beaux-arts") || c.includes("cinéma des beaux") || c.includes("cinema des beaux")) return VENUE_PHOTOS.tpg;
+  // Sporting Monte-Carlo + académies associées (Jimmy'z, Étoiles, Lilly's)
+  if (c.includes("sporting monte") || c.includes("salle des étoiles") || c.includes("salle des etoiles") || c.includes("salle du sporting") || c.includes("jimmy") || c.includes("lilly") || c.includes("académie princesse grace") || c.includes("academie princesse grace") || c.includes("académie de danse") || c.includes("academie de danse") || c.includes("mc dance") || c.includes("ballet de monte")) return VENUE_PHOTOS.sporting;
+  // Hôtels de luxe
+  if (c.includes("hôtel de paris") || c.includes("hotel de paris") || c.includes("bar américain") || c.includes("bar americain") || c.includes("cave du louis") || c.includes("café llorca") || c.includes("cafe llorca") || c.includes("robuchon")) return VENUE_PHOTOS.hotel_paris;
+  if (c.includes("hermitage") || c.includes("thermes marins") || c.includes("vistamar")) return VENUE_PHOTOS.hermitage;
+  if (c.includes("fairmont") || c.includes("nobu") || c.includes("buddha-bar") || c.includes("buddha bar") || c.includes("horizon rooftop")) return VENUE_PHOTOS.fairmont;
+  if (c.includes("monte-carlo bay") || c.includes("monte carlo bay") || c.includes("blue gin") || c.includes("azzurra") || c.includes("clarins") || c.includes("novotel")) return VENUE_PHOTOS.mcbay;
+  // Casino et Place du Casino
+  if (c.includes("casino de monte") || c.includes("new moods") || c.includes("new mood") || c.includes("bar du casino")) return VENUE_PHOTOS.casino;
+  if (c.includes("place du casino") || c.includes("café de paris") || c.includes("cafe de paris") || c.includes("hôtel des ventes") || c.includes("hotel des ventes") || c.includes("sass café") || c.includes("sass cafe") || c.includes("panino club") || c.includes("trinity monaco") || c.includes("amu monte") || c.includes("equivoque") || c.includes("twiga")) return VENUE_PHOTOS.place_casino;
+  // Yacht Club avant Port Hercule (plus spécifique)
+  if (c.includes("yacht club") || c.includes("wine palace")) return VENUE_PHOTOS.yacht_club;
+  // Tour Odéon / Odéon Spa
+  if (c.includes("odéon") || c.includes("odeon")) return VENUE_PHOTOS.odeon;
+  // Villa Sauber / NMNM
+  if (c.includes("villa sauber") || (c.includes("nmnm") && !c.includes("paloma"))) return VENUE_PHOTOS.villa_sauber;
+  // Monte-Carlo Country Club
+  if (c.includes("country club")) return VENUE_PHOTOS.country_club;
+  // Jardins Saint-Martin (spécifique avant Monaco-Ville générique)
+  if (c.includes("jardins saint-martin") || c.includes("jardins saint martin")) return VENUE_PHOTOS.jardins_stmartin;
+  // Roseraie
+  if (c.includes("roseraie")) return VENUE_PHOTOS.roseraie;
+  // Jardin Exotique
+  if (c.includes("jardin exotique")) return VENUE_PHOTOS.jardin_exotique;
+  // Jardin Japonais
+  if (c.includes("jardin japonais")) return VENUE_PHOTOS.jardin_japonais;
+  // Monaco-Ville / Rocher (générique)
+  if (c.includes("monaco-ville") || c.includes("rocher") || c.includes("place de la visitation") || c.includes("jardins de la petite") || c.includes("pavillon bosio") || c.includes("le petit bar") || c.includes("monaco tours") || c.includes("villa paloma") || c.includes("fondation prince pierre")) return VENUE_PHOTOS.rocher;
+  // Port Hercule et bord de mer (avant check larvotto)
+  if (c.includes("port hercule") || c.includes("quai des artistes") || c.includes("digue du port") || c.includes("au marius") || c.includes("caffè milano") || c.includes("caffe milano") || c.includes("jack monaco") || c.includes("monaco brewery") || c.includes("rascasse") || c.includes("ship & castle") || c.includes("ship and castle") || c.includes("slammers") || c.includes("marlow") || c.includes("mareterra") || c.includes("quai albert") || c.includes("port de monaco") || c.includes("amber lounge") || c.includes("aritual")) return VENUE_PHOTOS.port;
+  // Larvotto / plages (Note Bleue, Méridien, Nikki Beach, clubs de sport)
+  if (c.includes("larvotto") || c.includes("note bleue") || c.includes("nikki beach") || c.includes("méridien beach") || c.includes("meridien beach") || c.includes("sea club") || c.includes("yoga monte") || c.includes("monaco wellness") || c.includes("plage du") || c.includes("la môme") || c.includes("la mome")) return VENUE_PHOTOS.larvotto_beach;
+  // Fontvieille (générique — après les plus spécifiques)
+  if (c.includes("fontvieille") || c.includes("léo ferré") || c.includes("leo ferre") || c.includes("espace léo") || c.includes("salle léo") || c.includes("chapiteau") || c.includes("terrasses de") || c.includes("jenna lifestyle") || c.includes("brasserie de monaco") || c.includes("cercle bouliste")) return VENUE_PHOTOS.fontvieille;
+  // La Condamine / Marché
+  if (c.includes("condamine") || c.includes("woo monaco") || c.includes("gran caffè") || c.includes("gran caffe") || c.includes("limùn") || c.includes("limun") || c.includes("mairie de monaco") || c.includes("médiathèque") || c.includes("mediatheque") || c.includes("théâtre des muses") || c.includes("theatre des muses") || c.includes("u tapu") || c.includes("auditorium rainier") || c.includes("académie de musique") || c.includes("academie de musique")) return VENUE_PHOTOS.condamine;
+  // Circuit F1 / Formule
+  if (c.includes("circuit") || c.includes("formule")) return VENUE_PHOTOS.aerial;
+  // Fallback : vue aérienne Monaco
+  return VENUE_PHOTOS.aerial;
 }
 
 function generateICS(event) {
@@ -100,20 +168,18 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             background: event.fallback || DEFAULT_FALLBACK,
           }} />
           {/* Photo du lieu */}
-          {getVenuePhoto(event) && (
-            <img
-              src={getVenuePhoto(event)}
-              alt=""
-              loading="lazy"
-              style={{
-                position: "absolute", inset: 0,
-                width: "100%", height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-              onError={e => { e.currentTarget.style.opacity = "0"; }}
-            />
-          )}
+          <img
+            src={getVenuePhoto(event)}
+            alt=""
+            loading="lazy"
+            style={{
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+            onError={e => { e.currentTarget.style.opacity = "0"; }}
+          />
           {/* Overlay sombre pour lisibilité */}
           <div style={{
             position: "absolute", inset: 0,
