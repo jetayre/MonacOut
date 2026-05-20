@@ -63,7 +63,7 @@ export default function App() {
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
   const [catFilters, setCatFilters] = useState([]);
-  const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
 
@@ -77,12 +77,9 @@ export default function App() {
   }
 
   function handleCatFilter(catId) {
-    setCatFilters(prev => {
-      const next = prev.includes(catId)
-        ? prev.filter(f => f !== catId)
-        : [...prev, catId];
-      return next;
-    });
+    setCatFilters(prev =>
+      prev.includes(catId) ? prev.filter(f => f !== catId) : [...prev, catId]
+    );
     const el = document.getElementById("main-scroll");
     if (el) el.scrollTop = 0;
   }
@@ -111,33 +108,7 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = {
-    favorites,
-    onToggleFav: toggleFav,
-    onCategoryClick: navigateToCategory,
-    lang,
-  };
-
-  function renderScreen() {
-    switch (tab) {
-      case "events":
-        return (
-          <HomeScreen
-            {...sharedProps}
-            filter={homeFilter}
-            onFilterChange={setHomeFilter}
-            catFilters={catFilters}
-            onCatFilter={handleCatFilter}
-            showSearch={showSearch}
-            setShowSearch={setShowSearch}
-          />
-        );
-      case "agenda":
-        return <FavoritesScreen {...sharedProps} />;
-      default:
-        return null;
-    }
-  }
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang };
 
   return (
     <Shell
@@ -149,10 +120,25 @@ export default function App() {
       catFilters={catFilters}
       onCatFilter={handleCatFilter}
       onClearFilters={() => setCatFilters([])}
-      showSearch={showSearch}
-      setShowSearch={setShowSearch}
+      showMenu={showMenu}
+      setShowMenu={setShowMenu}
     >
-      {renderScreen()}
+      {tab === "events" ? (
+        <HomeScreen
+          {...sharedProps}
+          filter={homeFilter}
+          onFilterChange={setHomeFilter}
+          catFilters={catFilters}
+          onCatFilter={handleCatFilter}
+          onOpenMenu={() => setShowMenu(true)}
+          onNavAgenda={() => handleTabChange("agenda")}
+        />
+      ) : (
+        <FavoritesScreen
+          {...sharedProps}
+          onNavEvents={() => handleTabChange("events")}
+        />
+      )}
     </Shell>
   );
 }

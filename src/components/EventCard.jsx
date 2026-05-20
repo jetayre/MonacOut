@@ -25,17 +25,6 @@ function generateICS(event) {
   ].filter(Boolean).join('\r\n');
 }
 
-function handleAddToCalendar(event, e) {
-  e.stopPropagation();
-  const blob = new Blob([generateICS(event)], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = event.title.replace(/\n/g,'-').replace(/[^a-zA-Z0-9À-ÿ-]/g,'').slice(0,40) + '.ics';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
 const NAVY = "#0F1D3A";
 const GREY = "#6A7080";
 const WHITE = "#FDFAF5";
@@ -56,7 +45,6 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
     : event.date;
-  const bg = event.fallback || DEFAULT_FALLBACK;
 
   return (
     <div style={{
@@ -64,52 +52,65 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       borderRadius: 4,
       padding: 4,
       marginBottom: 14,
-      boxShadow: "0 4px 18px rgba(15,29,58,0.13)",
+      boxShadow: "0 6px 24px rgba(15,29,58,0.15)",
       background: WHITE,
     }}>
       {/* Inner navy frame */}
-      <div style={{
-        border: `2px solid ${NAVY}`,
-        borderRadius: 2,
-        overflow: "hidden",
-      }}>
+      <div style={{ border: `2px solid ${NAVY}`, borderRadius: 2, overflow: "hidden" }}>
 
-        {/* Gradient header — photo/lieu simulé */}
-        <div style={{
-          background: bg,
-          height: 80,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          gap: 4,
-        }}>
-          <span style={{
-            fontSize: 34,
-            filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.35))",
-            lineHeight: 1,
-          }}>{event.emoji || "✦"}</span>
-          <span style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: 9, fontWeight: 700, letterSpacing: 1.6,
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.75)",
-          }}>{event.cat}</span>
-
-          {/* Fav */}
+        {/* Photo du lieu */}
+        <div style={{ position: "relative", height: 140, overflow: "hidden" }}>
+          {/* Gradient de base (toujours visible en arrière-plan) */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: event.fallback || DEFAULT_FALLBACK,
+          }} />
+          {/* Photo réelle (picsum — photo unique par événement) */}
+          <img
+            src={`https://picsum.photos/seed/${event.id}/393/140`}
+            alt=""
+            loading="lazy"
+            style={{
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+            onError={e => { e.currentTarget.style.opacity = "0"; }}
+          />
+          {/* Overlay sombre pour lisibilité */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.52) 100%)",
+          }} />
+          {/* Emoji + catégorie centrés */}
+          <div style={{
+            position: "absolute", inset: 0,
+            display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center", gap: 4,
+          }}>
+            <span style={{ fontSize: 36, filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.4))", lineHeight: 1 }}>
+              {event.emoji || "✦"}
+            </span>
+            <span style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 9, fontWeight: 700, letterSpacing: 1.8,
+              textTransform: "uppercase", color: "rgba(255,255,255,0.8)",
+            }}>{event.cat}</span>
+          </div>
+          {/* Bouton favori */}
           <button
             onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
             style={{
               position: "absolute", top: 8, right: 8,
-              background: "rgba(0,0,0,0.22)", border: "none",
-              borderRadius: 20, padding: "3px 7px",
+              background: "rgba(0,0,0,0.28)", border: "none",
+              borderRadius: 20, padding: "4px 8px",
               cursor: "pointer", fontSize: 14, lineHeight: 1,
             }}
           >{isFav ? "❤️" : "🤍"}</button>
         </div>
 
-        {/* Card body — tout centré */}
+        {/* Corps de la carte — tout centré */}
         <div style={{ padding: "14px 16px 16px", textAlign: "center", background: WHITE }}>
 
           {/* Date + heure */}
@@ -134,13 +135,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             color: NAVY, lineHeight: 1.2, marginBottom: 5,
           }}>{event.title.replace(/\n/g, " ")}</div>
 
-          {/* Organisation (fondations/associations) */}
+          {/* Organisation (fondations) */}
           {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
             <div style={{
-              fontFamily: "'Jost', sans-serif",
-              fontWeight: 700, fontSize: 9, letterSpacing: 1.4,
-              textTransform: "uppercase", color: GOLD,
-              marginBottom: 4,
+              fontFamily: "'Jost', sans-serif", fontWeight: 700,
+              fontSize: 9, letterSpacing: 1.4, textTransform: "uppercase",
+              color: GOLD, marginBottom: 4,
             }}>{event.source}</div>
           )}
 
@@ -148,8 +148,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {event.subtitle && (
             <div style={{
               fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 12, fontWeight: 500, color: GREY,
-              marginBottom: 12,
+              fontSize: 12, fontWeight: 500, color: GREY, marginBottom: 12,
             }}>{event.subtitle}</div>
           )}
 
@@ -157,8 +156,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {event.free && (
             <div style={{ marginBottom: 10 }}>
               <span style={{
-                border: "1px solid #2A6A3A", borderRadius: 20,
-                padding: "2px 12px",
+                border: "1px solid #2A6A3A", borderRadius: 20, padding: "2px 12px",
                 fontFamily: "'Jost', sans-serif",
                 fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "#1A4A2A",
               }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
@@ -193,8 +191,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontWeight: 600, fontSize: 12,
-                color: GOLD, textDecoration: "none", letterSpacing: 0.3,
-                display: "block",
+                color: GOLD, textDecoration: "none", letterSpacing: 0.3, display: "block",
               }}
             >{event.phone}</a>
           )}

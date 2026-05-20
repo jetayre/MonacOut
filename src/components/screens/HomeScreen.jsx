@@ -36,13 +36,10 @@ const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep"
 const MOIS_IDX = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
 const MOIS_NOM_COURT = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
 
-function toFrDate(d) {
-  return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
-}
+function toFrDate(d) { return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`; }
 
 function getWeekendDates() {
-  const today = new Date();
-  const day = today.getDay();
+  const today = new Date(); const day = today.getDay();
   const daysToSat = day === 0 ? 6 : day === 6 ? 0 : 6 - day;
   const daysToSun = day === 0 ? 0 : 7 - day;
   const sat = new Date(today); sat.setDate(today.getDate() + daysToSat);
@@ -52,24 +49,16 @@ function getWeekendDates() {
 
 function parseEventDate(e) {
   const parts = e.date.trim().split(" ");
-  const day = parseInt(parts[1]);
-  const month = MOIS_IDX[parts[2]];
+  const day = parseInt(parts[1]); const month = MOIS_IDX[parts[2]];
   if (isNaN(day) || month === undefined) return null;
   return new Date(e.year || 2026, month, day);
 }
 
 function filterByTime(events, filterId) {
-  const todayStr = toFrDate(new Date());
-  const weekendDates = getWeekendDates();
+  const todayStr = toFrDate(new Date()); const weekendDates = getWeekendDates();
   switch (filterId) {
-    case "today": {
-      const thisYear = new Date().getFullYear();
-      return events.filter(e => e.date === todayStr && (e.year || 2026) === thisYear);
-    }
-    case "weekend": {
-      const thisYear = new Date().getFullYear();
-      return events.filter(e => weekendDates.includes(e.date) && (e.year || 2026) === thisYear);
-    }
+    case "today": { const y = new Date().getFullYear(); return events.filter(e => e.date === todayStr && (e.year || 2026) === y); }
+    case "weekend": { const y = new Date().getFullYear(); return events.filter(e => weekendDates.includes(e.date) && (e.year || 2026) === y); }
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
       const in7 = new Date(today); in7.setDate(today.getDate() + 6);
@@ -86,11 +75,7 @@ function matchesCatFilter(e, catId) {
     case "conference": return e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true;
     case "music":      return ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat);
     case "cinema":     return e.cat === "CINÉMA";
-    case "famille":    return (
-      e.free === true ||
-      ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) ||
-      /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""))
-    );
+    case "famille":    return e.free === true || ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) || /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""));
     case "ateliers":   return ["ATELIER","DANSE"].includes(e.cat);
     case "bienetre":   return ["BIEN-ÊTRE"].includes(e.cat);
     case "foody":      return ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat);
@@ -102,26 +87,36 @@ function matchesCatFilter(e, catId) {
 
 function filterByCats(events, catFilters) {
   if (!catFilters || catFilters.length === 0) return events;
-  return events.filter(e => catFilters.some(catId => matchesCatFilter(e, catId)));
+  return events.filter(e => catFilters.some(id => matchesCatFilter(e, id)));
 }
 
-export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, showSearch: showSearchProp, setShowSearch: setShowSearchProp }) {
+function HamburgerIcon() {
+  return (
+    <svg width="18" height="13" viewBox="0 0 18 13" fill="none">
+      <rect y="0" width="18" height="1.8" rx="0.9" fill="#0F1D3A"/>
+      <rect y="5.6" width="18" height="1.8" rx="0.9" fill="#0F1D3A"/>
+      <rect y="11.2" width="18" height="1.8" rx="0.9" fill="#0F1D3A"/>
+    </svg>
+  );
+}
+
+function HeartIcon({ active, hasFavs }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24"
+      fill={hasFavs ? "#C4A241" : "none"}
+      stroke={hasFavs ? "#C4A241" : "#0F1D3A"}
+      strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+  );
+}
+
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
-    ? {
-        tagline: "Monaco Secret",
-        filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" },
-        empty: "No events for this period.",
-      }
-    : {
-        tagline: "Monaco Secret",
-        filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" },
-        empty: "Aucun événement pour cette période.",
-      };
+    ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
+    : { tagline: "Monaco Secret", filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" }, empty: "Aucun événement pour cette période." };
 
-  const [search, setSearch] = useState("");
-  const showSearch = showSearchProp ?? false;
-  const setShowSearch = setShowSearchProp ?? (() => {});
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
   const [quarterFilter, setQuarterFilter] = useState(null);
@@ -146,49 +141,21 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
 
   function handleFilterChange(newFilter) {
     const el = document.getElementById("main-scroll");
-    if (filter === newFilter && newFilter !== "calendar") {
-      setFilter("all");
-      if (el) el.scrollTop = 0;
-      return;
-    }
+    if (filter === newFilter && newFilter !== "calendar") { setFilter("all"); if (el) el.scrollTop = 0; return; }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
-    setFilter(newFilter);
-    setFiltersVisible(true);
+    setFilter(newFilter); setFiltersVisible(true);
     if (el) el.scrollTop = 0;
-  }
-
-  function handleCalendarChange(start, end) {
-    setRangeStart(start || null);
-    setRangeEnd(end || null);
-    if (start) setSearch("");
   }
 
   let filtered;
   if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
-    filtered = ALL_EVENTS.filter(e => {
-      const d = parseEventDate(e);
-      if (!d) return false;
-      return d >= rangeStart && d <= endBound;
-    });
-    filtered = filterByCats(filtered, catFilters);
+    filtered = filterByCats(ALL_EVENTS.filter(e => { const d = parseEventDate(e); return d && d >= rangeStart && d <= endBound; }), catFilters);
   } else if (filter === "calendar") {
     filtered = filterByCats(ALL_EVENTS, catFilters);
-  } else if (search.trim()) {
-    const norm = s => s.toLowerCase()
-      .normalize("NFD").replace(/[̀-ͯ]/g, "")
-      .replace(/['''""]/g, " ")
-      .replace(/[^a-z0-9\s]/g, " ")
-      .replace(/\s+/g, " ").trim();
-    const words = norm(search).split(" ").filter(w => w.length > 0);
-    filtered = ALL_EVENTS.filter(e => {
-      const text = norm([e.title, e.subtitle, e.cat, e.desc].filter(Boolean).join(" "));
-      return words.every(w => text.includes(w));
-    });
   } else {
     filtered = filterByCats(filterByTime(ALL_EVENTS, filter), catFilters);
   }
-
   if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
 
   const rangeLabel = rangeStart
@@ -197,151 +164,124 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
       : `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
     : null;
 
+  const hasFavs = favorites.length > 0;
+
   return (
     <div style={{ background: WHITE, minHeight: "100%" }}>
-      {/* Sticky header — z-index élevé pour rester au-dessus des cartes */}
-      <div style={{
-        position: "sticky", top: 0, zIndex: 300,
-        background: WHITE, borderBottom: `1px solid ${BORDER}`,
-      }}>
-        {/* Logo complet — disparaît au scroll */}
-        <div style={{
-          maxHeight: logoCollapsed ? 0 : 112,
-          overflow: "hidden",
-          transition: "max-height 0.3s ease",
-        }}>
-          <div style={{ background: WHITE, padding: "4px 10px 4px" }}>
+      {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
+      <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
+
+        {/* Logo complet avec ☰ et ❤️ DANS le cadre */}
+        <div style={{ maxHeight: logoCollapsed ? 0 : 120, overflow: "hidden", transition: "max-height 0.3s ease" }}>
+          <div style={{ background: WHITE, padding: "4px 10px" }}>
             <div style={{ border: `1.5px solid #C9A96E`, padding: "2px", position: "relative" }}>
-              {[{top:3,left:4},{top:3,right:4},{bottom:3,left:4},{bottom:3,right:4}].map((pos,i) => (
+
+              {/* ☰ — coin supérieur gauche du cadre or */}
+              <button
+                onClick={onOpenMenu}
+                style={{
+                  position: "absolute", top: 7, left: 8, zIndex: 2,
+                  background: "none", border: "none", cursor: "pointer", padding: 4,
+                }}
+              >
+                <HamburgerIcon />
+              </button>
+
+              {/* ❤️ — coin supérieur droit du cadre or */}
+              <button
+                onClick={onNavAgenda}
+                style={{
+                  position: "absolute", top: 7, right: 8, zIndex: 2,
+                  background: "none", border: "none", cursor: "pointer", padding: 4,
+                }}
+              >
+                <HeartIcon hasFavs={hasFavs} />
+              </button>
+
+              {/* Coins ornementaux — bas seulement */}
+              {[{bottom:3,left:4},{bottom:3,right:4}].map((pos,i) => (
                 <span key={i} style={{ position:"absolute", color:"#C9A96E", fontSize:11, lineHeight:1, ...pos }}>✦</span>
               ))}
+
               <div style={{
                 border: `2px solid ${NAVY}`, background: WHITE,
-                display: "flex", flexDirection: "column",
-                alignItems: "center",
+                display: "flex", flexDirection: "column", alignItems: "center",
                 padding: "4px 10px 4px",
               }}>
-                <div style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontWeight: 600, fontSize: 12,
-                  color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3,
-                  textTransform: "uppercase",
-                }}>{t.tagline}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600, fontSize: 12, color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3, textTransform: "uppercase" }}>{t.tagline}</div>
                 <MonacOutLogo width={190} />
-                <div style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontWeight: 600, fontSize: 12,
-                  color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: -8,
-                  textTransform: "uppercase",
-                }}>Monaco Lifestyle &amp; Events Agenda</div>
+                <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600, fontSize: 12, color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: -8, textTransform: "uppercase" }}>Monaco Lifestyle &amp; Events Agenda</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mini logo — apparaît au scroll */}
-        <div style={{
-          maxHeight: logoCollapsed ? 28 : 0,
-          overflow: "hidden",
-          transition: "max-height 0.3s ease",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: logoCollapsed ? "4px 0" : 0,
-        }}>
-          <span style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontWeight: 300, fontSize: 15, color: GOLD, letterSpacing: 2,
-          }}>Monac</span>
-          <span style={{
-            fontFamily: "'Great Vibes', cursive",
-            fontWeight: 400, fontSize: 20, color: NAVY, lineHeight: 1,
-          }}>Out</span>
+        {/* Mini logo avec ☰ et ❤️ — apparaît au scroll */}
+        <div style={{ maxHeight: logoCollapsed ? 38 : 0, overflow: "hidden", transition: "max-height 0.3s ease" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 14px" }}>
+            <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
+              <HamburgerIcon />
+            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 15, color: GOLD, letterSpacing: 2 }}>Monac</span>
+              <span style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 400, fontSize: 20, color: NAVY, lineHeight: 1 }}>Out</span>
+            </div>
+            <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
+              <HeartIcon hasFavs={hasFavs} />
+            </button>
+          </div>
         </div>
 
         {/* Filtres temps — disparaissent au scroll */}
-        {!showSearch && (
-          <div style={{
-            background: WHITE, borderTop: `1px solid ${BORDER}`,
-            maxHeight: filtersVisible ? "52px" : "0px",
-            overflow: "hidden",
-            transition: "max-height 0.22s ease",
-          }}>
-            <div style={{ display: "flex", gap: 6, padding: "8px 10px", justifyContent: "center" }}>
-              {TIME_FILTERS.map(f => {
-                const active = filter === f.id;
-                const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);
-                return (
-                  <button
-                    key={f.id}
-                    onClick={() => handleFilterChange(f.id)}
-                    style={{
-                      flexShrink: 0,
-                      padding: "7px 16px",
-                      borderRadius: 20,
-                      border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
-                      background: active ? NAVY : "#FDFAF5",
-                      color: active ? WHITE : GREY,
-                      fontFamily: "'Jost', -apple-system, sans-serif",
-                      fontSize: 12, fontWeight: 600,
-                      cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
-                    }}
-                  >{label}</button>
-                );
-              })}
-            </div>
+        <div style={{
+          background: WHITE, borderTop: `1px solid ${BORDER}`,
+          maxHeight: filtersVisible ? "52px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
+        }}>
+          <div style={{ display: "flex", gap: 6, padding: "8px 10px", justifyContent: "center" }}>
+            {TIME_FILTERS.map(f => {
+              const active = filter === f.id;
+              const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);
+              return (
+                <button key={f.id} onClick={() => handleFilterChange(f.id)} style={{
+                  flexShrink: 0, padding: "7px 16px", borderRadius: 20,
+                  border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
+                  background: active ? NAVY : "#FDFAF5", color: active ? WHITE : GREY,
+                  fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600,
+                  cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
+                }}>{label}</button>
+              );
+            })}
           </div>
-        )}
+        </div>
 
         {/* Quartiers — disparaissent au scroll */}
-        {!showSearch && (
-          <div style={{
-            background: WHITE, borderTop: `1px solid ${BORDER}`,
-            maxHeight: filtersVisible ? "44px" : "0px",
-            overflow: "hidden",
-            transition: "max-height 0.22s ease",
-          }}>
-            <div style={{ display: "flex", gap: 4, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
-              {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
-                const active = quarterFilter === q;
-                return (
-                  <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
-                    flexShrink: 0, padding: "3px 8px", borderRadius: 20,
-                    border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
-                    background: active ? NAVY : "#FDFAF5", color: active ? WHITE : GREY,
-                    fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 9,
-                    fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
-                  }}>{q}</button>
-                );
-              })}
-            </div>
+        <div style={{
+          background: WHITE, borderTop: `1px solid ${BORDER}`,
+          maxHeight: filtersVisible ? "44px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
+        }}>
+          <div style={{ display: "flex", gap: 4, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none" }}>
+            {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
+              const active = quarterFilter === q;
+              return (
+                <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
+                  flexShrink: 0, padding: "3px 8px", borderRadius: 20,
+                  border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
+                  background: active ? NAVY : "#FDFAF5", color: active ? WHITE : GREY,
+                  fontFamily: "'Jost', sans-serif", fontSize: 9, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
+                }}>{q}</button>
+              );
+            })}
           </div>
-        )}
-
-        {showSearch && (
-          <div style={{ padding: "6px 16px 10px", background: WHITE, display: "flex", gap: 8, alignItems: "center" }}>
-            <div style={{ display: "flex", alignItems: "center", flex: 1, border: `1.5px solid ${NAVY}`, borderRadius: 24, padding: "7px 14px", gap: 8, background: WHITE }}>
-              <span style={{ fontSize: 13, opacity: 0.4 }}>🔍</span>
-              <input
-                autoFocus
-                type="text"
-                placeholder={lang === "en" ? "Search..." : "Rechercher..."}
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                style={{ border: "none", outline: "none", flex: 1, fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13, color: NAVY, background: "transparent" }}
-              />
-            </div>
-            <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>{lang === "en" ? "Cancel" : "Annuler"}</button>
-          </div>
-        )}
+        </div>
       </div>
 
       {/* Calendrier inline */}
       {filter === "calendar" && (
-        <CalendarPicker inline lang={lang} initialStart={rangeStart} initialEnd={rangeEnd} onChange={handleCalendarChange} />
+        <CalendarPicker inline lang={lang} initialStart={rangeStart} initialEnd={rangeEnd}
+          onChange={(s, e) => { setRangeStart(s || null); setRangeEnd(e || null); }} />
       )}
 
-      {/* Liste — cartes qui s'empilent au scroll */}
+      {/* Liste — cartes qui s'empilent */}
       <div style={{ padding: "0 16px 20px" }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "'Libre Baskerville', Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
@@ -349,22 +289,12 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
           </div>
         ) : (
           filtered.map((e, i) => (
-            <div
-              key={e.id}
-              style={{
-                position: "sticky",
-                top: 0,
-                zIndex: i + 1,
-              }}
-            >
+            <div key={e.id} style={{ position: "sticky", top: 0, zIndex: i + 1 }}>
               <EventCard
                 event={e}
                 favorites={favorites}
                 onToggleFav={onToggleFav}
-                onCategoryClick={(cat) => {
-                  const filterId = CAT_TO_FILTER[cat];
-                  if (filterId) onCatFilter?.(filterId);
-                }}
+                onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
                 lang={lang}
               />
             </div>
