@@ -158,65 +158,67 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       background: WHITE,
     }}>
       {/* Inner navy frame */}
-      <div style={{ border: `2px solid ${NAVY}`, borderRadius: 2, overflow: "hidden" }}>
+      <div style={{ border: `2px solid ${NAVY}`, borderRadius: 2, background: WHITE }}>
 
-        {/* Photo du lieu */}
-        <div style={{ position: "relative", height: 140, overflow: "hidden" }}>
-          {/* Gradient de base (toujours visible en arrière-plan) */}
+        {/* Date + heure — au-dessus de la photo */}
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
+          padding: "10px 16px 8px",
+        }}>
           <div style={{
-            position: "absolute", inset: 0,
-            background: event.fallback || DEFAULT_FALLBACK,
-          }} />
-          {/* Photo du lieu */}
-          <img
-            src={getVenuePhoto(event)}
-            alt=""
-            loading="lazy"
-            style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 15, fontWeight: 700, letterSpacing: 0.9,
+            textTransform: "uppercase", color: NAVY,
+          }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</div>
+          {event.time && (
+            <>
+              <div style={{ width: 1, height: 14, background: `${GOLD_FRAME}`, flexShrink: 0 }} />
+              <div style={{
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 12, fontWeight: 500, color: GREY, letterSpacing: 0.3,
+              }}>{event.time}</div>
+            </>
+          )}
+        </div>
+
+        {/* Photo du lieu — avec marges pour laisser apparaître le blanc crème */}
+        <div style={{ padding: "0 8px 0 8px" }}>
+          <div style={{ position: "relative", height: 130, overflow: "hidden", borderRadius: 2 }}>
+            <div style={{
               position: "absolute", inset: 0,
-              width: "100%", height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-            onError={e => { e.currentTarget.style.opacity = "0"; }}
-          />
-          {/* Overlay léger en bas pour lisibilité du texte */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.38) 100%)",
-          }} />
-          {/* Bouton favori */}
-          <button
-            onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-            style={{
-              position: "absolute", top: 8, right: 8,
-              background: "rgba(0,0,0,0.28)", border: "none",
-              borderRadius: 20, padding: "4px 8px",
-              cursor: "pointer", fontSize: 14, lineHeight: 1,
-            }}
-          >{isFav ? "❤️" : "🤍"}</button>
+              background: event.fallback || DEFAULT_FALLBACK,
+            }} />
+            <img
+              src={getVenuePhoto(event)}
+              alt=""
+              loading="lazy"
+              style={{
+                position: "absolute", inset: 0,
+                width: "100%", height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+              onError={e => { e.currentTarget.style.opacity = "0"; }}
+            />
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%)",
+            }} />
+            {/* Bouton favori */}
+            <button
+              onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
+              style={{
+                position: "absolute", top: 8, right: 8,
+                background: "rgba(0,0,0,0.28)", border: "none",
+                borderRadius: 20, padding: "4px 8px",
+                cursor: "pointer", fontSize: 14, lineHeight: 1,
+              }}
+            >{isFav ? "❤️" : "🤍"}</button>
+          </div>
         </div>
 
         {/* Corps de la carte — tout centré */}
-        <div style={{ padding: "14px 16px 16px", textAlign: "center", background: WHITE }}>
-
-          {/* Date + heure */}
-          <div style={{
-            marginBottom: 6,
-            display: "flex", alignItems: "baseline", justifyContent: "center", gap: 8,
-          }}>
-            <span style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: 16, fontWeight: 700, letterSpacing: 0.8,
-              textTransform: "uppercase", color: NAVY,
-            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
-            {event.time && (
-              <span style={{
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 11, fontWeight: 400, color: GREY, letterSpacing: 0.2,
-              }}>{event.time}</span>
-            )}
-          </div>
+        <div style={{ padding: "12px 16px 16px", textAlign: "center", background: WHITE }}>
 
           {/* Titre */}
           <div style={{
