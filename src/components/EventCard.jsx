@@ -131,7 +131,7 @@ const NAVY = "#0F1D3A";
 const GREY = "#6A7080";
 const WHITE = "#FDFAF5";
 
-const DEFAULT_FALLBACK = "linear-gradient(150deg, #0F1D3A 0%, #1A3A6A 100%)";
+const DEFAULT_FALLBACK = "linear-gradient(180deg, #7EC8E3 0%, #3A9BD5 50%, #1A6FAF 100%)";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
@@ -180,26 +180,11 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             }}
             onError={e => { e.currentTarget.style.opacity = "0"; }}
           />
-          {/* Overlay sombre pour lisibilité */}
+          {/* Overlay léger en bas pour lisibilité du texte */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.52) 100%)",
+            background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.38) 100%)",
           }} />
-          {/* Emoji + catégorie centrés */}
-          <div style={{
-            position: "absolute", inset: 0,
-            display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", gap: 4,
-          }}>
-            <span style={{ fontSize: 36, filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.4))", lineHeight: 1 }}>
-              {event.emoji || "✦"}
-            </span>
-            <span style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: 9, fontWeight: 700, letterSpacing: 1.8,
-              textTransform: "uppercase", color: "rgba(255,255,255,0.8)",
-            }}>{event.cat}</span>
-          </div>
           {/* Bouton favori */}
           <button
             onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
