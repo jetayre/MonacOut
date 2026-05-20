@@ -199,14 +199,14 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
 
   return (
     <div style={{ background: WHITE, minHeight: "100%" }}>
-      {/* Sticky header */}
+      {/* Sticky header — z-index élevé pour rester au-dessus des cartes */}
       <div style={{
-        position: "sticky", top: 0, zIndex: 50,
+        position: "sticky", top: 0, zIndex: 300,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Logo — full frame, collapses on scroll */}
+        {/* Logo complet — disparaît au scroll */}
         <div style={{
-          maxHeight: logoCollapsed ? 0 : 110,
+          maxHeight: logoCollapsed ? 0 : 112,
           overflow: "hidden",
           transition: "max-height 0.3s ease",
         }}>
@@ -224,7 +224,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                 <div style={{
                   fontFamily: "'Cormorant Garamond', Georgia, serif",
                   fontWeight: 600, fontSize: 12,
-                  color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3, marginBottom: 0,
+                  color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3,
                   textTransform: "uppercase",
                 }}>{t.tagline}</div>
                 <MonacOutLogo width={190} />
@@ -239,7 +239,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
           </div>
         </div>
 
-        {/* Compact logo — appears on scroll */}
+        {/* Mini logo — apparaît au scroll */}
         <div style={{
           maxHeight: logoCollapsed ? 28 : 0,
           overflow: "hidden",
@@ -251,20 +251,21 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         }}>
           <span style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontWeight: 300, fontSize: 15,
-            color: GOLD, letterSpacing: 2,
+            fontWeight: 300, fontSize: 15, color: GOLD, letterSpacing: 2,
           }}>Monac</span>
           <span style={{
             fontFamily: "'Great Vibes', cursive",
-            fontWeight: 400, fontSize: 20,
-            color: NAVY, lineHeight: 1,
+            fontWeight: 400, fontSize: 20, color: NAVY, lineHeight: 1,
           }}>Out</span>
         </div>
 
-        {/* Filtres temps — toujours visibles */}
+        {/* Filtres temps — disparaissent au scroll */}
         {!showSearch && (
           <div style={{
             background: WHITE, borderTop: `1px solid ${BORDER}`,
+            maxHeight: filtersVisible ? "52px" : "0px",
+            overflow: "hidden",
+            transition: "max-height 0.22s ease",
           }}>
             <div style={{ display: "flex", gap: 6, padding: "8px 10px", justifyContent: "center" }}>
               {TIME_FILTERS.map(f => {
@@ -340,25 +341,33 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         <CalendarPicker inline lang={lang} initialStart={rangeStart} initialEnd={rangeEnd} onChange={handleCalendarChange} />
       )}
 
-      {/* Liste événements */}
+      {/* Liste — cartes qui s'empilent au scroll */}
       <div style={{ padding: "0 16px 20px" }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "'Libre Baskerville', Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
             {t.empty}
           </div>
         ) : (
-          filtered.map(e => (
-            <EventCard
+          filtered.map((e, i) => (
+            <div
               key={e.id}
-              event={e}
-              favorites={favorites}
-              onToggleFav={onToggleFav}
-              onCategoryClick={(cat) => {
-                const filterId = CAT_TO_FILTER[cat];
-                if (filterId) onCatFilter?.(filterId);
+              style={{
+                position: "sticky",
+                top: 0,
+                zIndex: i + 1,
               }}
-              lang={lang}
-            />
+            >
+              <EventCard
+                event={e}
+                favorites={favorites}
+                onToggleFav={onToggleFav}
+                onCategoryClick={(cat) => {
+                  const filterId = CAT_TO_FILTER[cat];
+                  if (filterId) onCatFilter?.(filterId);
+                }}
+                lang={lang}
+              />
+            </div>
           ))
         )}
       </div>

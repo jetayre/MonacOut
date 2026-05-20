@@ -1,4 +1,5 @@
 const GOLD = "#C4A241";
+const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
 function generateICS(event) {
@@ -39,6 +40,8 @@ const NAVY = "#0F1D3A";
 const GREY = "#6A7080";
 const WHITE = "#FDFAF5";
 
+const DEFAULT_FALLBACK = "linear-gradient(150deg, #0F1D3A 0%, #1A3A6A 100%)";
+
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
 
@@ -53,114 +56,150 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
     : event.date;
+  const bg = event.fallback || DEFAULT_FALLBACK;
 
   return (
     <div style={{
+      border: `1.5px solid ${GOLD_FRAME}`,
+      borderRadius: 4,
+      padding: 4,
+      marginBottom: 14,
+      boxShadow: "0 4px 18px rgba(15,29,58,0.13)",
       background: WHITE,
-      borderRadius: 3,
-      borderTop: "1px solid rgba(196,162,65,0.25)",
-      borderRight: "1px solid rgba(196,162,65,0.25)",
-      borderBottom: "1px solid rgba(196,162,65,0.25)",
-      borderLeft: `3px solid ${GOLD}`,
-      marginBottom: 10,
-      padding: "12px 14px 14px",
-      boxShadow: "0 1px 6px rgba(15,29,58,0.05)",
     }}>
-
-      {/* Top row: category + fav */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-        <button
-          onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
-          style={{
-            background: "none", border: "none", cursor: "pointer",
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 10, fontWeight: 700, letterSpacing: 1.4,
-            textTransform: "uppercase", color: GREY, padding: 0,
-          }}
-        >{event.cat}</button>
-        <button
-          onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-          style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, lineHeight: 1, padding: 0 }}
-        >{isFav ? "❤️" : "🤍"}</button>
-      </div>
-
-      {/* Date + time */}
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 5 }}>
-        <span style={{
-          fontFamily: "'Jost', -apple-system, sans-serif",
-          fontSize: 18, fontWeight: 700, letterSpacing: 0.8,
-          textTransform: "uppercase", color: NAVY,
-        }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
-        {event.time && (
-          <span style={{
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 13, fontWeight: 400, color: GREY,
-          }}>{event.time}</span>
-        )}
-      </div>
-
-      {/* Title */}
+      {/* Inner navy frame */}
       <div style={{
-        fontFamily: "'Cormorant Garamond', Georgia, serif",
-        fontWeight: 600, fontSize: 22, letterSpacing: 0.6,
-        color: NAVY, lineHeight: 1.2,
-        marginBottom: event.subtitle ? 5 : 10,
-      }}>{event.title.replace(/\n/g, " ")}</div>
+        border: `2px solid ${NAVY}`,
+        borderRadius: 2,
+        overflow: "hidden",
+      }}>
 
-      {/* Venue */}
-      {event.subtitle && (
+        {/* Gradient header — photo/lieu simulé */}
         <div style={{
-          fontFamily: "'Jost', -apple-system, sans-serif",
-          fontSize: 12, fontWeight: 500, color: GREY,
-          marginBottom: 10,
-        }}>{event.subtitle}</div>
-      )}
-
-      {/* Free badge */}
-      {event.free && (
-        <div style={{ marginBottom: 8 }}>
+          background: bg,
+          height: 80,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          gap: 4,
+        }}>
           <span style={{
-            border: "1px solid #2A6A3A", borderRadius: 20,
-            padding: "2px 10px",
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "#1A4A2A",
-          }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
-        </div>
-      )}
+            fontSize: 34,
+            filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.35))",
+            lineHeight: 1,
+          }}>{event.emoji || "✦"}</span>
+          <span style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 9, fontWeight: 700, letterSpacing: 1.6,
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.75)",
+          }}>{event.cat}</span>
 
-      {/* Link */}
-      {event.link && (
-        <div style={{ marginBottom: event.phone ? 6 : 0 }}>
-          <a
-            href={event.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={e => e.stopPropagation()}
+          {/* Fav */}
+          <button
+            onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
             style={{
-              fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11, fontWeight: 700, letterSpacing: 1,
-              textTransform: "uppercase", color: NAVY,
-              border: `1px solid ${GOLD}`,
-              padding: "5px 14px", borderRadius: 20,
-              textDecoration: "none", display: "inline-block",
+              position: "absolute", top: 8, right: 8,
+              background: "rgba(0,0,0,0.22)", border: "none",
+              borderRadius: 20, padding: "3px 7px",
+              cursor: "pointer", fontSize: 14, lineHeight: 1,
             }}
-          >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : "Let's go"}</a>
+          >{isFav ? "❤️" : "🤍"}</button>
         </div>
-      )}
 
-      {/* Phone */}
-      {event.phone && (
-        <a
-          href={`tel:${event.phone}`}
-          onClick={e => e.stopPropagation()}
-          style={{
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontWeight: 600, fontSize: 12,
-            color: GOLD, textDecoration: "none", letterSpacing: 0.3,
-            display: "block",
-          }}
-        >{event.phone}</a>
-      )}
+        {/* Card body — tout centré */}
+        <div style={{ padding: "14px 16px 16px", textAlign: "center", background: WHITE }}>
+
+          {/* Date + heure */}
+          <div style={{ marginBottom: 4 }}>
+            <span style={{
+              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontSize: 16, fontWeight: 700, letterSpacing: 0.8,
+              textTransform: "uppercase", color: NAVY,
+            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+            {event.time && (
+              <span style={{
+                fontFamily: "'Jost', -apple-system, sans-serif",
+                fontSize: 13, color: GREY, marginLeft: 6,
+              }}>{event.time}</span>
+            )}
+          </div>
+
+          {/* Titre */}
+          <div style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontWeight: 600, fontSize: 22, letterSpacing: 0.6,
+            color: NAVY, lineHeight: 1.2, marginBottom: 5,
+          }}>{event.title.replace(/\n/g, " ")}</div>
+
+          {/* Organisation (fondations/associations) */}
+          {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
+            <div style={{
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 700, fontSize: 9, letterSpacing: 1.4,
+              textTransform: "uppercase", color: GOLD,
+              marginBottom: 4,
+            }}>{event.source}</div>
+          )}
+
+          {/* Lieu */}
+          {event.subtitle && (
+            <div style={{
+              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontSize: 12, fontWeight: 500, color: GREY,
+              marginBottom: 12,
+            }}>{event.subtitle}</div>
+          )}
+
+          {/* Entrée libre */}
+          {event.free && (
+            <div style={{ marginBottom: 10 }}>
+              <span style={{
+                border: "1px solid #2A6A3A", borderRadius: 20,
+                padding: "2px 12px",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "#1A4A2A",
+              }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
+            </div>
+          )}
+
+          {/* Lien */}
+          {event.link && (
+            <div style={{ marginBottom: event.phone ? 8 : 0 }}>
+              <a
+                href={event.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 11, fontWeight: 700, letterSpacing: 1.1,
+                  textTransform: "uppercase", color: NAVY,
+                  border: `1px solid ${GOLD}`,
+                  padding: "6px 18px", borderRadius: 20,
+                  textDecoration: "none", display: "inline-block",
+                }}
+              >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : "Let's go"}</a>
+            </div>
+          )}
+
+          {/* Téléphone */}
+          {event.phone && (
+            <a
+              href={`tel:${event.phone}`}
+              onClick={e => e.stopPropagation()}
+              style={{
+                fontFamily: "'Jost', sans-serif",
+                fontWeight: 600, fontSize: 12,
+                color: GOLD, textDecoration: "none", letterSpacing: 0.3,
+                display: "block",
+              }}
+            >{event.phone}</a>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

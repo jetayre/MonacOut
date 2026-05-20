@@ -21,7 +21,7 @@ const CAT_FILTERS = [
 
 function CalIcon({ color }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2"/>
       <line x1="16" y1="2" x2="16" y2="6"/>
       <line x1="8" y1="2" x2="8" y2="6"/>
@@ -32,7 +32,7 @@ function CalIcon({ color }) {
 
 function HeartIcon({ color, active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill={active ? color : "none"} stroke={color} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={active ? color : "none"} stroke={color} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
   );
@@ -40,21 +40,19 @@ function HeartIcon({ color, active }) {
 
 function HamburgerIcon({ color }) {
   return (
-    <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-      <rect y="0" width="18" height="1.5" rx="1" fill={color}/>
-      <rect y="6" width="18" height="1.5" rx="1" fill={color}/>
-      <rect y="12" width="18" height="1.5" rx="1" fill={color}/>
+    <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+      <rect y="0" width="20" height="1.8" rx="1" fill={color}/>
+      <rect y="6" width="20" height="1.8" rx="1" fill={color}/>
+      <rect y="12" width="20" height="1.8" rx="1" fill={color}/>
     </svg>
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showSearch, setShowSearch }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters }) {
   const [showMenu, setShowMenu] = useState(false);
 
-  const activeEventsTab = tab === "events";
-  const activeAgendaTab = tab === "agenda";
-  const eventsColor = activeEventsTab ? NAVY : "#9AA0B0";
-  const agendaColor = activeAgendaTab ? NAVY : "#9AA0B0";
+  const eventsActive = tab === "events";
+  const agendaActive = tab === "agenda";
 
   return (
     <div style={{
@@ -96,65 +94,51 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             zIndex: 5,
           }} />
 
-          {/* Tab bar */}
+          {/* Tab bar — ☰ · CalIcon · HeartIcon */}
           <div style={{
             position: "absolute",
             bottom: 0, left: 0, right: 0,
             height: 44,
             display: "flex",
             alignItems: "center",
-            padding: "0 10px",
-            gap: 0,
+            justifyContent: "space-around",
+            padding: "0 20px",
           }}>
-            {/* Hamburger — left */}
+            {/* Hamburger */}
             <button
               onClick={() => setShowMenu(true)}
               style={{
                 background: "none", border: "none", cursor: "pointer",
-                padding: "6px 8px", flexShrink: 0,
-                display: "flex", alignItems: "center",
+                padding: "6px 10px", display: "flex", alignItems: "center",
               }}
             >
               <HamburgerIcon color={NAVY} />
             </button>
 
-            {/* Events tab (icon only) */}
+            {/* Events — icône seule */}
             <button
               onClick={() => setTab("events")}
               style={{
-                flex: 1, background: "none", border: "none", cursor: "pointer",
+                background: "none", border: "none", cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
+                padding: "6px 16px",
+                opacity: eventsActive ? 1 : 0.45,
               }}
             >
-              <CalIcon color={eventsColor} />
+              <CalIcon color={NAVY} />
             </button>
 
-            {/* Agenda tab */}
+            {/* Agenda — icône seule */}
             <button
               onClick={() => setTab("agenda")}
               style={{
-                flex: 1, background: "none", border: "none", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13,
-                fontWeight: activeAgendaTab ? 600 : 500, color: agendaColor, letterSpacing: 0.3,
-              }}
-            >
-              <HeartIcon color={agendaColor} active={activeAgendaTab} />
-              {t?.nav?.agenda || "My Agenda"}
-            </button>
-
-            {/* Search icon — right */}
-            <button
-              onClick={() => setShowSearch?.(s => !s)}
-              style={{
                 background: "none", border: "none", cursor: "pointer",
-                padding: "6px 8px", flexShrink: 0, display: "flex", alignItems: "center", opacity: 0.6,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                padding: "6px 16px",
+                opacity: agendaActive ? 1 : 0.45,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="7"/>
-                <line x1="16.5" y1="16.5" x2="22" y2="22"/>
-              </svg>
+              <HeartIcon color={NAVY} active={agendaActive} />
             </button>
           </div>
         </div>
@@ -169,12 +153,12 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
           {children}
         </div>
 
-        {/* Menu overlay */}
+        {/* Overlay sombre */}
         <div
           onClick={() => setShowMenu(false)}
           style={{
             position: "absolute", inset: 0,
-            background: "rgba(0,0,0,0.35)",
+            background: "rgba(0,0,0,0.38)",
             zIndex: 200,
             opacity: showMenu ? 1 : 0,
             pointerEvents: showMenu ? "auto" : "none",
@@ -182,37 +166,37 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
           }}
         />
 
-        {/* Slide-in menu panel */}
+        {/* Menu panneau glissant */}
         <div
           onClick={e => e.stopPropagation()}
           style={{
             position: "absolute",
             top: 0, right: 0,
-            width: 240,
+            width: 250,
             height: "100%",
             background: WHITE,
             zIndex: 201,
             transform: showMenu ? "translateX(0)" : "translateX(100%)",
             transition: "transform 0.25s ease",
             overflowY: "auto",
-            paddingTop: 90,
+            paddingTop: 96,
             paddingBottom: 40,
+            borderLeft: "1px solid rgba(196,162,65,0.3)",
           }}
         >
-          {/* Close button */}
+          {/* Fermer */}
           <button
             onClick={() => setShowMenu(false)}
             style={{
               position: "absolute", top: 100, right: 16,
               background: "none", border: "none", cursor: "pointer",
-              fontFamily: "'Jost', sans-serif", fontSize: 20,
-              color: GREY, lineHeight: 1, padding: 4,
+              fontSize: 20, color: GREY, padding: 4, lineHeight: 1,
             }}
           >✕</button>
 
-          {/* Language — Français */}
+          {/* Français */}
           <button
-            onClick={() => { setLang?.("fr"); }}
+            onClick={() => setLang?.("fr")}
             style={{
               width: "100%", textAlign: "left",
               background: "none", border: "none", cursor: "pointer",
@@ -220,7 +204,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
               fontFamily: "'Jost', sans-serif",
               fontSize: 15, fontWeight: lang === "fr" ? 700 : 400,
               color: NAVY, letterSpacing: 0.3,
-              display: "flex", alignItems: "center", gap: 10,
+              display: "flex", alignItems: "center", gap: 12,
             }}
           >
             <span style={{
@@ -228,13 +212,13 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
               background: lang === "fr" ? GOLD : "transparent",
               border: `1.5px solid ${lang === "fr" ? GOLD : GREY}`,
               flexShrink: 0,
-            }}/>
+            }} />
             Français
           </button>
 
-          {/* Language — English */}
+          {/* English */}
           <button
-            onClick={() => { setLang?.("en"); }}
+            onClick={() => setLang?.("en")}
             style={{
               width: "100%", textAlign: "left",
               background: "none", border: "none", cursor: "pointer",
@@ -242,7 +226,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
               fontFamily: "'Jost', sans-serif",
               fontSize: 15, fontWeight: lang === "en" ? 700 : 400,
               color: NAVY, letterSpacing: 0.3,
-              display: "flex", alignItems: "center", gap: 10,
+              display: "flex", alignItems: "center", gap: 12,
             }}
           >
             <span style={{
@@ -250,14 +234,34 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
               background: lang === "en" ? GOLD : "transparent",
               border: `1.5px solid ${lang === "en" ? GOLD : GREY}`,
               flexShrink: 0,
-            }}/>
+            }} />
             English
           </button>
 
-          {/* Divider */}
+          {/* Séparateur */}
           <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "8px 24px 12px" }} />
 
-          {/* Categories — multi-select */}
+          {/* My Agenda */}
+          <button
+            onClick={() => { setTab("agenda"); setShowMenu(false); }}
+            style={{
+              width: "100%", textAlign: "left",
+              background: "none", border: "none", cursor: "pointer",
+              padding: "14px 24px",
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 15, fontWeight: tab === "agenda" ? 700 : 400,
+              color: NAVY, letterSpacing: 0.3,
+              display: "flex", alignItems: "center", gap: 12,
+            }}
+          >
+            <HeartIcon color={tab === "agenda" ? GOLD : GREY} active={tab === "agenda"} />
+            {lang === "en" ? "My Agenda" : "Mon Agenda"}
+          </button>
+
+          {/* Séparateur */}
+          <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "8px 24px 12px" }} />
+
+          {/* Catégories multi-select */}
           {CAT_FILTERS.map(f => {
             const active = catFilters.includes(f.id);
             return (
@@ -274,7 +278,6 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                   display: "flex", alignItems: "center", gap: 12,
                 }}
               >
-                {/* Checkbox */}
                 <span style={{
                   width: 16, height: 16, borderRadius: 3,
                   border: `1.5px solid ${active ? GOLD : "rgba(15,29,58,0.3)"}`,
@@ -293,7 +296,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             );
           })}
 
-          {/* Clear all */}
+          {/* Tout effacer */}
           {catFilters.length > 0 && (
             <button
               onClick={() => onClearFilters?.()}
