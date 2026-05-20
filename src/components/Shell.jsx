@@ -31,7 +31,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
   return (
     <div style={{
       minHeight: "100vh",
-      background: "#E8E4DC",
+      background: "#FFFFFF",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
