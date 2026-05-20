@@ -154,7 +154,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       borderRadius: 4,
       padding: 4,
       marginBottom: 14,
-      boxShadow: "0 6px 24px rgba(15,29,58,0.15)",
+      boxShadow: "none",
       background: WHITE,
     }}>
       {/* Inner navy frame */}
