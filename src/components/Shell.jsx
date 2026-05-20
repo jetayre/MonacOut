@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
 const NAVY = "#0F1D3A";
+const GOLD = "#C4A241";
+const GREY = "#6A7080";
+const WHITE = "#FDFAF5";
 
 const CAT_FILTERS = [
   { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },
@@ -35,28 +38,23 @@ function HeartIcon({ color, active }) {
   );
 }
 
-const NAV_IDS = [
-  { id: "events", key: "events", Icon: CalIcon },
-  { id: "agenda", key: "agenda", Icon: HeartIcon },
-];
+function HamburgerIcon({ color }) {
+  return (
+    <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+      <rect y="0" width="18" height="1.5" rx="1" fill={color}/>
+      <rect y="6" width="18" height="1.5" rx="1" fill={color}/>
+      <rect y="12" width="18" height="1.5" rx="1" fill={color}/>
+    </svg>
+  );
+}
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, showCats, catFilter, onCatFilter, showSearch, setShowSearch }) {
-  const [catsVisible, setCatsVisible] = useState(true);
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showSearch, setShowSearch }) {
+  const [showMenu, setShowMenu] = useState(false);
 
-  useEffect(() => {
-    const el = document.getElementById("main-scroll");
-    if (!el) return;
-    let lastY = 0;
-    const handler = () => {
-      const y = el.scrollTop;
-      if (y < 10) setCatsVisible(true);
-      else if (y > lastY + 6) setCatsVisible(false);
-      else if (y < lastY - 6) setCatsVisible(true);
-      lastY = y;
-    };
-    el.addEventListener("scroll", handler, { passive: true });
-    return () => el.removeEventListener("scroll", handler);
-  }, []);
+  const activeEventsTab = tab === "events";
+  const activeAgendaTab = tab === "agenda";
+  const eventsColor = activeEventsTab ? NAVY : "#9AA0B0";
+  const agendaColor = activeAgendaTab ? NAVY : "#9AA0B0";
 
   return (
     <div style={{
@@ -70,18 +68,19 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
       <div style={{
         width: 393,
         height: 852,
-        background: "#FFFFFF",
+        background: WHITE,
         borderRadius: 54,
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         boxShadow: "0 24px 80px rgba(15,29,58,0.22)",
+        position: "relative",
       }}>
-        {/* Header: dynamic island (46px) + tab bar (44px) */}
+        {/* Header: dynamic island + tab bar */}
         <div style={{
           flexShrink: 0,
           height: 90,
-          background: "#FDFAF5",
+          background: WHITE,
           borderBottom: `1px solid rgba(15,29,58,0.12)`,
           position: "relative",
           zIndex: 10,
@@ -89,112 +88,76 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
           {/* Dynamic island */}
           <div style={{
             position: "absolute",
-            top: 12,
-            left: "50%",
+            top: 12, left: "50%",
             transform: "translateX(-50%)",
-            width: 120,
-            height: 34,
+            width: 120, height: 34,
             background: "#000",
             borderRadius: 20,
             zIndex: 5,
           }} />
+
           {/* Tab bar */}
           <div style={{
             position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
+            bottom: 0, left: 0, right: 0,
             height: 44,
             display: "flex",
             alignItems: "center",
+            padding: "0 10px",
+            gap: 0,
           }}>
-            {/* FR à gauche */}
-            <button onClick={() => setLang?.("fr")} style={{
-              background: "transparent",
-              border: `1.5px solid ${NAVY}`, borderRadius: 6,
-              cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
-              color: NAVY,
-              fontFamily: "'Jost', sans-serif", fontWeight: lang === "fr" ? 700 : 400, letterSpacing: 0.5,
-              marginLeft: 10, flexShrink: 0,
-            }}>FR</button>
-            {/* MC Events */}
-            {(() => { const n = NAV_IDS[0]; const active = tab === n.id; const color = active ? NAVY : "#9AA0B0"; return (
-              <button key={n.id} onClick={() => setTab(n.id)} style={{
+            {/* Hamburger — left */}
+            <button
+              onClick={() => setShowMenu(true)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                padding: "6px 8px", flexShrink: 0,
+                display: "flex", alignItems: "center",
+              }}
+            >
+              <HamburgerIcon color={NAVY} />
+            </button>
+
+            {/* Events tab (icon only) */}
+            <button
+              onClick={() => setTab("events")}
+              style={{
+                flex: 1, background: "none", border: "none", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}
+            >
+              <CalIcon color={eventsColor} />
+            </button>
+
+            {/* Agenda tab */}
+            <button
+              onClick={() => setTab("agenda")}
+              style={{
                 flex: 1, background: "none", border: "none", cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                 fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13,
-                fontWeight: active ? 600 : 500, color, letterSpacing: 0.3,
-              }}><n.Icon color={color} active={active} />{t?.nav[n.key] || n.key}</button>
-            ); })()}
-            {/* My Agenda */}
-            {(() => { const n = NAV_IDS[1]; const active = tab === n.id; const color = active ? NAVY : "#9AA0B0"; return (
-              <button key={n.id} onClick={() => setTab(n.id)} style={{
-                flex: 1, background: "none", border: "none", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 13,
-                fontWeight: active ? 600 : 500, color, letterSpacing: 0.3,
-              }}><n.Icon color={color} active={active} />{t?.nav[n.key] || n.key}</button>
-            ); })()}
-            {/* Loupe + EN à droite */}
-            <button onClick={() => setShowSearch?.(s => !s)} style={{
-              background: "none", border: "none", cursor: "pointer",
-              padding: "2px 4px", opacity: 0.6, flexShrink: 0, display: "flex", alignItems: "center",
-            }}>
+                fontWeight: activeAgendaTab ? 600 : 500, color: agendaColor, letterSpacing: 0.3,
+              }}
+            >
+              <HeartIcon color={agendaColor} active={activeAgendaTab} />
+              {t?.nav?.agenda || "My Agenda"}
+            </button>
+
+            {/* Search icon — right */}
+            <button
+              onClick={() => setShowSearch?.(s => !s)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                padding: "6px 8px", flexShrink: 0, display: "flex", alignItems: "center", opacity: 0.6,
+              }}
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="7"/>
                 <line x1="16.5" y1="16.5" x2="22" y2="22"/>
               </svg>
             </button>
-            <button onClick={() => setLang?.("en")} style={{
-              background: lang === "en" ? NAVY : "transparent",
-              border: `1.5px solid ${NAVY}`, borderRadius: 6,
-              cursor: "pointer", fontSize: 10, padding: "2px 6px", lineHeight: 1,
-              color: lang === "en" ? "#fff" : NAVY,
-              fontFamily: "'Jost', sans-serif", fontWeight: 700, letterSpacing: 0.5,
-              marginRight: 10, flexShrink: 0,
-            }}>EN</button>
           </div>
         </div>
-
-        {/* Category panel — always visible, hides on scroll down */}
-        {showCats && tab === "events" && (
-          <div style={{
-            flexShrink: 0,
-            borderBottom: `1px solid rgba(15,29,58,0.12)`,
-            maxHeight: catsVisible ? "70px" : "0px",
-            overflow: "hidden",
-            transition: "max-height 0.22s ease",
-            background: "#FFFFFF",
-          }}>
-            <div style={{
-              padding: "6px 10px 8px",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 5,
-              justifyContent: "center",
-            }}>
-              {CAT_FILTERS.map(f => (
-                <button
-                  key={f.id}
-                  onClick={() => onCatFilter?.(catFilter === f.id ? null : f.id)}
-                  style={{
-                    padding: "3px 8px",
-                    borderRadius: 20,
-                    border: `1px solid ${catFilter === f.id ? NAVY : "rgba(15,29,58,0.2)"}`,
-                    background: catFilter === f.id ? NAVY : "#FFFFFF",
-                    color: catFilter === f.id ? "#FFFFFF" : "#6A7080",
-                    fontFamily: "'Jost', -apple-system, sans-serif",
-                    fontSize: 10,
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                    letterSpacing: 0.3,
-                  }}
-                >{lang === "en" ? f.labelEn : f.label}</button>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Scrollable content */}
         <div id="main-scroll" style={{
@@ -204,6 +167,148 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
           msOverflowStyle: "none",
         }} className="hide-scrollbar">
           {children}
+        </div>
+
+        {/* Menu overlay */}
+        <div
+          onClick={() => setShowMenu(false)}
+          style={{
+            position: "absolute", inset: 0,
+            background: "rgba(0,0,0,0.35)",
+            zIndex: 200,
+            opacity: showMenu ? 1 : 0,
+            pointerEvents: showMenu ? "auto" : "none",
+            transition: "opacity 0.2s ease",
+          }}
+        />
+
+        {/* Slide-in menu panel */}
+        <div
+          onClick={e => e.stopPropagation()}
+          style={{
+            position: "absolute",
+            top: 0, right: 0,
+            width: 240,
+            height: "100%",
+            background: WHITE,
+            zIndex: 201,
+            transform: showMenu ? "translateX(0)" : "translateX(100%)",
+            transition: "transform 0.25s ease",
+            overflowY: "auto",
+            paddingTop: 90,
+            paddingBottom: 40,
+          }}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => setShowMenu(false)}
+            style={{
+              position: "absolute", top: 100, right: 16,
+              background: "none", border: "none", cursor: "pointer",
+              fontFamily: "'Jost', sans-serif", fontSize: 20,
+              color: GREY, lineHeight: 1, padding: 4,
+            }}
+          >✕</button>
+
+          {/* Language — Français */}
+          <button
+            onClick={() => { setLang?.("fr"); }}
+            style={{
+              width: "100%", textAlign: "left",
+              background: "none", border: "none", cursor: "pointer",
+              padding: "14px 24px",
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 15, fontWeight: lang === "fr" ? 700 : 400,
+              color: NAVY, letterSpacing: 0.3,
+              display: "flex", alignItems: "center", gap: 10,
+            }}
+          >
+            <span style={{
+              width: 8, height: 8, borderRadius: "50%",
+              background: lang === "fr" ? GOLD : "transparent",
+              border: `1.5px solid ${lang === "fr" ? GOLD : GREY}`,
+              flexShrink: 0,
+            }}/>
+            Français
+          </button>
+
+          {/* Language — English */}
+          <button
+            onClick={() => { setLang?.("en"); }}
+            style={{
+              width: "100%", textAlign: "left",
+              background: "none", border: "none", cursor: "pointer",
+              padding: "14px 24px",
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 15, fontWeight: lang === "en" ? 700 : 400,
+              color: NAVY, letterSpacing: 0.3,
+              display: "flex", alignItems: "center", gap: 10,
+            }}
+          >
+            <span style={{
+              width: 8, height: 8, borderRadius: "50%",
+              background: lang === "en" ? GOLD : "transparent",
+              border: `1.5px solid ${lang === "en" ? GOLD : GREY}`,
+              flexShrink: 0,
+            }}/>
+            English
+          </button>
+
+          {/* Divider */}
+          <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "8px 24px 12px" }} />
+
+          {/* Categories — multi-select */}
+          {CAT_FILTERS.map(f => {
+            const active = catFilters.includes(f.id);
+            return (
+              <button
+                key={f.id}
+                onClick={() => onCatFilter?.(f.id)}
+                style={{
+                  width: "100%", textAlign: "left",
+                  background: "none", border: "none", cursor: "pointer",
+                  padding: "11px 24px",
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 14, fontWeight: active ? 600 : 400,
+                  color: active ? NAVY : GREY, letterSpacing: 0.2,
+                  display: "flex", alignItems: "center", gap: 12,
+                }}
+              >
+                {/* Checkbox */}
+                <span style={{
+                  width: 16, height: 16, borderRadius: 3,
+                  border: `1.5px solid ${active ? GOLD : "rgba(15,29,58,0.3)"}`,
+                  background: active ? GOLD : "transparent",
+                  flexShrink: 0,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  {active && (
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </span>
+                {lang === "en" ? f.labelEn : f.label}
+              </button>
+            );
+          })}
+
+          {/* Clear all */}
+          {catFilters.length > 0 && (
+            <button
+              onClick={() => onClearFilters?.()}
+              style={{
+                width: "100%", textAlign: "center",
+                background: "none", border: "none", cursor: "pointer",
+                padding: "14px 24px",
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 11, fontWeight: 700,
+                color: GOLD, letterSpacing: 1.2,
+                textTransform: "uppercase",
+                marginTop: 8,
+              }}
+            >{lang === "en" ? "Clear all" : "Tout effacer"}</button>
+          )}
         </div>
       </div>
     </div>

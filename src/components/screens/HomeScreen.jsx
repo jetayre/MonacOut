@@ -5,6 +5,7 @@ import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 
 const NAVY = "#0F1D3A";
+const GOLD = "#C9A96E";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
 const BORDER = "rgba(15,29,58,0.12)";
@@ -29,7 +30,6 @@ const TIME_FILTERS = [
   { id: "weekend",  label: "Week-end" },
   { id: "calendar", label: "Agenda" },
 ];
-
 
 const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
@@ -79,28 +79,33 @@ function filterByTime(events, filterId) {
   }
 }
 
-function filterByCat(events, catId) {
+function matchesCatFilter(e, catId) {
   switch (catId) {
-    case "sport":    return events.filter(e => ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat));
-    case "culture":     return events.filter(e => ["MUSICAL","THÉÂTRE","CHANTS","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat));
-    case "conference":  return events.filter(e => e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true);
-    case "music":       return events.filter(e => ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat));
-    case "cinema":      return events.filter(e => e.cat === "CINÉMA");
-    case "famille":  return events.filter(e =>
+    case "sport":      return ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat);
+    case "culture":    return ["MUSICAL","THÉÂTRE","CHANTS","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat);
+    case "conference": return e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true;
+    case "music":      return ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat);
+    case "cinema":     return e.cat === "CINÉMA";
+    case "famille":    return (
       e.free === true ||
       ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) ||
       /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""))
     );
-    case "ateliers": return events.filter(e => ["ATELIER","DANSE"].includes(e.cat));
-    case "bienetre": return events.filter(e => ["BIEN-ÊTRE"].includes(e.cat));
-    case "foody":    return events.filter(e => ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat));
-    case "encheres": return events.filter(e => ["ENCHÈRES"].includes(e.cat));
-    case "messe":    return events.filter(e => e.cat === "CHANTS");
-    default: return events;
+    case "ateliers":   return ["ATELIER","DANSE"].includes(e.cat);
+    case "bienetre":   return ["BIEN-ÊTRE"].includes(e.cat);
+    case "foody":      return ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat);
+    case "encheres":   return ["ENCHÈRES"].includes(e.cat);
+    case "messe":      return e.cat === "CHANTS";
+    default: return false;
   }
 }
 
-export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilter, onCatFilter, showSearch: showSearchProp, setShowSearch: setShowSearchProp }) {
+function filterByCats(events, catFilters) {
+  if (!catFilters || catFilters.length === 0) return events;
+  return events.filter(e => catFilters.some(catId => matchesCatFilter(e, catId)));
+}
+
+export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, showSearch: showSearchProp, setShowSearch: setShowSearchProp }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? {
@@ -113,6 +118,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" },
         empty: "Aucun événement pour cette période.",
       };
+
   const [search, setSearch] = useState("");
   const showSearch = showSearchProp ?? false;
   const setShowSearch = setShowSearchProp ?? (() => {});
@@ -120,6 +126,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
   const [rangeEnd, setRangeEnd] = useState(null);
   const [quarterFilter, setQuarterFilter] = useState(null);
   const [filtersVisible, setFiltersVisible] = useState(true);
+  const [logoCollapsed, setLogoCollapsed] = useState(false);
 
   useEffect(() => {
     const el = document.getElementById("main-scroll");
@@ -127,6 +134,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
     let lastY = 0;
     const handler = () => {
       const y = el.scrollTop;
+      setLogoCollapsed(y > 60);
       if (y < 10) setFiltersVisible(true);
       else if (y > lastY + 6) setFiltersVisible(false);
       else if (y < lastY - 6) setFiltersVisible(true);
@@ -163,13 +171,13 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
       if (!d) return false;
       return d >= rangeStart && d <= endBound;
     });
-    if (catFilter) filtered = filterByCat(filtered, catFilter);
+    filtered = filterByCats(filtered, catFilters);
   } else if (filter === "calendar") {
-    filtered = catFilter ? filterByCat(ALL_EVENTS, catFilter) : ALL_EVENTS;
+    filtered = filterByCats(ALL_EVENTS, catFilters);
   } else if (search.trim()) {
     const norm = s => s.toLowerCase()
       .normalize("NFD").replace(/[̀-ͯ]/g, "")
-      .replace(/['’‘“”]/g, " ")
+      .replace(/['''""]/g, " ")
       .replace(/[^a-z0-9\s]/g, " ")
       .replace(/\s+/g, " ").trim();
     const words = norm(search).split(" ").filter(w => w.length > 0);
@@ -178,7 +186,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
       return words.every(w => text.includes(w));
     });
   } else {
-    filtered = filterByCat(filterByTime(ALL_EVENTS, filter), catFilter);
+    filtered = filterByCats(filterByTime(ALL_EVENTS, filter), catFilters);
   }
 
   if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
@@ -196,34 +204,61 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
         position: "sticky", top: 0, zIndex: 50,
         background: WHITE, borderBottom: `1px solid ${BORDER}`,
       }}>
-        {/* Title section — cadre bicolore or + navy */}
-        <div style={{ background: WHITE, padding: "4px 10px 4px" }}>
-          <div style={{ border: `1.5px solid #C9A96E`, padding: "2px", position: "relative" }}>
-            {/* Coins ornementaux */}
-            {[{top:3,left:4},{top:3,right:4},{bottom:3,left:4},{bottom:3,right:4}].map((pos,i) => (
-              <span key={i} style={{ position:"absolute", color:"#C9A96E", fontSize:11, lineHeight:1, ...pos }}>✦</span>
-            ))}
-            <div style={{
-              border: `2px solid ${NAVY}`, background: WHITE,
-              display: "flex", flexDirection: "column",
-              alignItems: "center",
-              padding: "4px 10px 4px",
-            }}>
+        {/* Logo — full frame, collapses on scroll */}
+        <div style={{
+          maxHeight: logoCollapsed ? 0 : 110,
+          overflow: "hidden",
+          transition: "max-height 0.3s ease",
+        }}>
+          <div style={{ background: WHITE, padding: "4px 10px 4px" }}>
+            <div style={{ border: `1.5px solid #C9A96E`, padding: "2px", position: "relative" }}>
+              {[{top:3,left:4},{top:3,right:4},{bottom:3,left:4},{bottom:3,right:4}].map((pos,i) => (
+                <span key={i} style={{ position:"absolute", color:"#C9A96E", fontSize:11, lineHeight:1, ...pos }}>✦</span>
+              ))}
               <div style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "normal", fontWeight: 600, fontSize: 12,
-                color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3, marginBottom: 0,
-                textTransform: "uppercase",
-              }}>{t.tagline}</div>
-              <MonacOutLogo width={190} />
-              <div style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "normal", fontWeight: 600, fontSize: 12,
-                color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: -8,
-                textTransform: "uppercase",
-              }}>Monaco Lifestyle &amp; Events Agenda</div>
+                border: `2px solid ${NAVY}`, background: WHITE,
+                display: "flex", flexDirection: "column",
+                alignItems: "center",
+                padding: "4px 10px 4px",
+              }}>
+                <div style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontWeight: 600, fontSize: 12,
+                  color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3, marginBottom: 0,
+                  textTransform: "uppercase",
+                }}>{t.tagline}</div>
+                <MonacOutLogo width={190} />
+                <div style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontWeight: 600, fontSize: 12,
+                  color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: -8,
+                  textTransform: "uppercase",
+                }}>Monaco Lifestyle &amp; Events Agenda</div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Compact logo — appears on scroll */}
+        <div style={{
+          maxHeight: logoCollapsed ? 28 : 0,
+          overflow: "hidden",
+          transition: "max-height 0.3s ease",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: logoCollapsed ? "4px 0" : 0,
+        }}>
+          <span style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontWeight: 300, fontSize: 15,
+            color: GOLD, letterSpacing: 2,
+          }}>Monac</span>
+          <span style={{
+            fontFamily: "'Great Vibes', cursive",
+            fontWeight: 400, fontSize: 20,
+            color: NAVY, lineHeight: 1,
+          }}>Out</span>
         </div>
 
         {/* Filtres temps — toujours visibles */}
@@ -247,11 +282,8 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
                       background: active ? NAVY : "#FDFAF5",
                       color: active ? WHITE : GREY,
                       fontFamily: "'Jost', -apple-system, sans-serif",
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                      letterSpacing: 0.3,
+                      fontSize: 12, fontWeight: 600,
+                      cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
                     }}
                   >{label}</button>
                 );
@@ -260,7 +292,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
           </div>
         )}
 
-        {/* Quartiers + Gratuit — disparaissent au scroll vers le bas */}
+        {/* Quartiers — disparaissent au scroll */}
         {!showSearch && (
           <div style={{
             background: WHITE, borderTop: `1px solid ${BORDER}`,
@@ -301,15 +333,14 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
             <button onClick={() => { setShowSearch(false); setSearch(""); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, color: GREY }}>{lang === "en" ? "Cancel" : "Annuler"}</button>
           </div>
         )}
-
       </div>
 
-      {/* Inline calendar panel */}
+      {/* Calendrier inline */}
       {filter === "calendar" && (
         <CalendarPicker inline lang={lang} initialStart={rangeStart} initialEnd={rangeEnd} onChange={handleCalendarChange} />
       )}
 
-      {/* Event list */}
+      {/* Liste événements */}
       <div style={{ padding: "0 16px 20px" }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 20px", fontFamily: "'Libre Baskerville', Georgia, serif", fontStyle: "italic", color: GREY, fontSize: 15 }}>
@@ -324,7 +355,7 @@ export default function HomeScreen({ favorites, onToggleFav, onCategoryClick, fi
               onToggleFav={onToggleFav}
               onCategoryClick={(cat) => {
                 const filterId = CAT_TO_FILTER[cat];
-                if (filterId) onCatFilter?.(catFilter === filterId ? null : filterId);
+                if (filterId) onCatFilter?.(filterId);
               }}
               lang={lang}
             />

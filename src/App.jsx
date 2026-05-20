@@ -62,27 +62,27 @@ export default function App() {
   });
   const [homeFilter, setHomeFilter] = useState("all");
   const [lang, setLang] = useState("fr");
-  const [showCats, setShowCats] = useState(false);
-  const [catFilter, setCatFilter] = useState(null);
+  const [catFilters, setCatFilters] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
 
   function handleTabChange(newTab) {
     const el = document.getElementById("main-scroll");
-    if (newTab === "events" && tab === "events") {
-      setShowCats(prev => !prev);
+    if (newTab !== tab) {
+      setCatFilters([]);
+      setTab(newTab);
       if (el) el.scrollTop = 0;
-      return;
     }
-    setCatFilter(null);
-    setShowCats(newTab === "events");
-    setTab(newTab);
-    if (el) el.scrollTop = 0;
   }
 
   function handleCatFilter(catId) {
-    setCatFilter(catId === catFilter ? null : catId);
+    setCatFilters(prev => {
+      const next = prev.includes(catId)
+        ? prev.filter(f => f !== catId)
+        : [...prev, catId];
+      return next;
+    });
     const el = document.getElementById("main-scroll");
     if (el) el.scrollTop = 0;
   }
@@ -99,7 +99,12 @@ export default function App() {
   }
 
   function navigateToCategory(cat) {
-    setCatFilter(CAT_TO_FILTER[cat] || null);
+    const filterId = CAT_TO_FILTER[cat];
+    if (filterId) {
+      setCatFilters(prev =>
+        prev.includes(filterId) ? prev.filter(f => f !== filterId) : [...prev, filterId]
+      );
+    }
     setHomeFilter("all");
     setTab("events");
     const el = document.getElementById("main-scroll");
@@ -121,7 +126,7 @@ export default function App() {
             {...sharedProps}
             filter={homeFilter}
             onFilterChange={setHomeFilter}
-            catFilter={catFilter}
+            catFilters={catFilters}
             onCatFilter={handleCatFilter}
             showSearch={showSearch}
             setShowSearch={setShowSearch}
@@ -135,7 +140,18 @@ export default function App() {
   }
 
   return (
-    <Shell tab={tab} setTab={handleTabChange} lang={lang} setLang={setLang} t={T[lang]} showCats={showCats} catFilter={catFilter} onCatFilter={handleCatFilter} showSearch={showSearch} setShowSearch={setShowSearch}>
+    <Shell
+      tab={tab}
+      setTab={handleTabChange}
+      lang={lang}
+      setLang={setLang}
+      t={T[lang]}
+      catFilters={catFilters}
+      onCatFilter={handleCatFilter}
+      onClearFilters={() => setCatFilters([])}
+      showSearch={showSearch}
+      setShowSearch={setShowSearch}
+    >
       {renderScreen()}
     </Shell>
   );

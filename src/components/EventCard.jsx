@@ -34,13 +34,14 @@ function handleAddToCalendar(event, e) {
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
 const NAVY = "#0F1D3A";
-const NAVY_LIGHT = "#1A2D4A";
-const GREY = "#4A4A50";
+const GREY = "#6A7080";
 const WHITE = "#FDFAF5";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+
 function todayFrDate() {
   const d = new Date();
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
@@ -52,211 +53,114 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
     : event.date;
+
   return (
-    <div
-      style={{
-        background: WHITE,
-        borderRadius: 4,
-        border: `1.5px solid ${GOLD}`,
-        marginBottom: 10,
-        position: "relative",
-        padding: 4,
-        boxShadow: "0 2px 12px rgba(15,29,58,0.07)",
-      }}
-    >
-      {/* Inner frame — navy */}
-      <div style={{
-        border: `2px solid ${NAVY}`,
-        borderRadius: 2,
-        padding: "10px 12px 10px",
-        position: "relative",
-      }}>
+    <div style={{
+      background: WHITE,
+      borderRadius: 3,
+      borderTop: "1px solid rgba(196,162,65,0.25)",
+      borderRight: "1px solid rgba(196,162,65,0.25)",
+      borderBottom: "1px solid rgba(196,162,65,0.25)",
+      borderLeft: `3px solid ${GOLD}`,
+      marginBottom: 10,
+      padding: "12px 14px 14px",
+      boxShadow: "0 1px 6px rgba(15,29,58,0.05)",
+    }}>
 
-        {/* Fav button */}
-        <button
-          onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-          style={{
-            position: "absolute",
-            top: 6,
-            right: 6,
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: 16,
-            lineHeight: 1,
-          }}
-        >
-          {isFav ? "❤️" : "🤍"}
-        </button>
-
-        {/* Category — top left */}
+      {/* Top row: category + fav */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
         <button
           onClick={e => { e.stopPropagation(); onCategoryClick?.(event.cat); }}
           style={{
-            position: "absolute",
-            top: 8,
-            left: 8,
-            background: "none",
-            border: "none",
-            cursor: "pointer",
+            background: "none", border: "none", cursor: "pointer",
             fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 10,
-            fontWeight: 700,
-            letterSpacing: 1.2,
-            textTransform: "uppercase",
-            color: NAVY,
-            padding: 0,
-            lineHeight: 1,
+            fontSize: 10, fontWeight: 700, letterSpacing: 1.4,
+            textTransform: "uppercase", color: GREY, padding: 0,
           }}
         >{event.cat}</button>
+        <button
+          onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
+          style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, lineHeight: 1, padding: 0 }}
+        >{isFav ? "❤️" : "🤍"}</button>
+      </div>
 
-        {/* Date centrée + heure à droite (spacer fantôme pour équilibre) */}
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          paddingTop: 14, marginBottom: 2, gap: 0,
-        }}>
-          {event.time && (
-            <span style={{
-              fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11, visibility: "hidden", flexShrink: 0,
-            }}>{event.time}</span>
-          )}
+      {/* Date + time */}
+      <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 5 }}>
+        <span style={{
+          fontFamily: "'Jost', -apple-system, sans-serif",
+          fontSize: 18, fontWeight: 700, letterSpacing: 0.8,
+          textTransform: "uppercase", color: NAVY,
+        }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+        {event.time && (
           <span style={{
             fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 13, fontWeight: 700, letterSpacing: 0.8,
-            textTransform: "uppercase", color: NAVY,
-          }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
-          {event.time && (
-            <span style={{
-              fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11, fontWeight: 400, color: GREY,
-              marginLeft: 6, flexShrink: 0,
-            }}>{event.time}</span>
-          )}
-        </div>
-
-        {/* Title */}
-        <div style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontWeight: 600,
-          fontSize: 22,
-          letterSpacing: 0.8,
-          color: NAVY,
-          lineHeight: 1.2,
-          display: "-webkit-box",
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden",
-          textAlign: "center",
-          marginTop: 4,
-          marginBottom: 8,
-          paddingRight: 22,
-          paddingLeft: 4,
-        }}>
-          {event.title.replace(/\n/g, " ")}
-        </div>
-
-        {/* Organisation name — fondations & associations uniquement */}
-        {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
-          <div style={{
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontWeight: 700,
-            fontSize: 10,
-            letterSpacing: 1.4,
-            textTransform: "uppercase",
-            color: GOLD,
-            textAlign: "center",
-            marginTop: -4,
-            marginBottom: 6,
-          }}>{event.source}</div>
+            fontSize: 13, fontWeight: 400, color: GREY,
+          }}>{event.time}</span>
         )}
+      </div>
 
-        {/* Free badge */}
-        {event.free && (
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
-            <div style={{
-              border: `1.5px solid #2A6A3A`,
-              borderRadius: 20,
-              padding: "3px 12px",
-              fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: 1,
-              color: "#1A4A2A",
-            }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</div>
-          </div>
-        )}
+      {/* Title */}
+      <div style={{
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
+        fontWeight: 600, fontSize: 22, letterSpacing: 0.6,
+        color: NAVY, lineHeight: 1.2,
+        marginBottom: event.subtitle ? 5 : 10,
+      }}>{event.title.replace(/\n/g, " ")}</div>
 
-        {/* Subtitle */}
+      {/* Venue */}
+      {event.subtitle && (
         <div style={{
           fontFamily: "'Jost', -apple-system, sans-serif",
-          fontWeight: 700,
-          fontSize: 12,
-          letterSpacing: 0.5,
-          color: GREY,
-          textAlign: "center",
-          marginBottom: 6,
+          fontSize: 12, fontWeight: 500, color: GREY,
+          marginBottom: 10,
         }}>{event.subtitle}</div>
+      )}
 
-        {/* Description — 3 lignes justifiées */}
-        <div style={{
-          fontFamily: "'Libre Baskerville', Georgia, serif",
-          fontSize: 13,
-          color: NAVY_LIGHT,
-          textAlign: "justify",
-          lineHeight: 1.55,
-          display: "-webkit-box",
-          WebkitLineClamp: 3,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden",
-        }}>{lang === "en" ? (event.descEn || event.desc) : event.desc}</div>
+      {/* Free badge */}
+      {event.free && (
+        <div style={{ marginBottom: 8 }}>
+          <span style={{
+            border: "1px solid #2A6A3A", borderRadius: 20,
+            padding: "2px 10px",
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "#1A4A2A",
+          }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
+        </div>
+      )}
 
-        {event.link && (
-          <div style={{ textAlign: "center", marginTop: 10 }}>
-            <a
-              href={event.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              style={{
-                fontFamily: "'Jost', -apple-system, sans-serif",
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: 1.2,
-                textTransform: "uppercase",
-                color: NAVY,
-                background: WHITE,
-                border: `1.5px solid ${GOLD}`,
-                padding: "7px 18px",
-                borderRadius: 20,
-                textDecoration: "none",
-                display: "inline-block",
-              }}
-            >{event.free
-              ? (lang === "en" ? "More info" : "Plus d'infos")
-              : "Let's go"}
-            </a>
-          </div>
-        )}
+      {/* Link */}
+      {event.link && (
+        <div style={{ marginBottom: event.phone ? 6 : 0 }}>
+          <a
+            href={event.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            style={{
+              fontFamily: "'Jost', -apple-system, sans-serif",
+              fontSize: 11, fontWeight: 700, letterSpacing: 1,
+              textTransform: "uppercase", color: NAVY,
+              border: `1px solid ${GOLD}`,
+              padding: "5px 14px", borderRadius: 20,
+              textDecoration: "none", display: "inline-block",
+            }}
+          >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : "Let's go"}</a>
+        </div>
+      )}
 
-        {event.phone && (
-          <div style={{ textAlign: "center", marginTop: 8 }}>
-            <a
-              href={`tel:${event.phone}`}
-              onClick={e => e.stopPropagation()}
-              style={{
-                fontFamily: "'Jost', -apple-system, sans-serif",
-                fontWeight: 700,
-                fontSize: 13,
-                color: GOLD,
-                textDecoration: "none",
-                letterSpacing: 0.5,
-              }}
-            >{event.phone}</a>
-          </div>
-        )}
-
-      </div>
+      {/* Phone */}
+      {event.phone && (
+        <a
+          href={`tel:${event.phone}`}
+          onClick={e => e.stopPropagation()}
+          style={{
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontWeight: 600, fontSize: 12,
+            color: GOLD, textDecoration: "none", letterSpacing: 0.3,
+            display: "block",
+          }}
+        >{event.phone}</a>
+      )}
     </div>
   );
 }
