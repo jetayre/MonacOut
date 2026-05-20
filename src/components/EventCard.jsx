@@ -2,6 +2,40 @@ const GOLD = "#C4A241";
 const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
+const VENUE_PHOTOS = {
+  grimaldi:     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg/800px-Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
+  opera:        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg/800px-Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg",
+  stade:        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg/800px-Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg",
+  ocean:        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Monaco_BW_2011-06-07_17-50-43.jpg/800px-Monaco_BW_2011-06-07_17-50-43.jpg",
+  palais:       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Princely_Palace_of_Monaco.jpg/800px-Princely_Palace_of_Monaco.jpg",
+  cathedrale:   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Monaco_BW_2011-06-07_16-07-20.jpg/800px-Monaco_BW_2011-06-07_16-07-20.jpg",
+  tpg:          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg/800px-Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg",
+  casino:       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Le_casino_de_Monte-Carlo.JPG/800px-Le_casino_de_Monte-Carlo.JPG",
+  fontvieille:  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fontvieille_and_yachts.jpg/800px-Fontvieille_and_yachts.jpg",
+  port:         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/MonacoView.jpg/800px-MonacoView.jpg",
+  rocher:       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/View_on_Monacoville.JPG/800px-View_on_Monacoville.JPG",
+  aerial:       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Aerial_view_of_Monaco_%2801%29.jpg/800px-Aerial_view_of_Monaco_%2801%29.jpg",
+};
+
+function getVenuePhoto(event) {
+  const s = (event.subtitle || "").toLowerCase();
+  const t = (event.title || "").toLowerCase();
+  const combined = s + " " + t;
+  if (combined.includes("grimaldi forum")) return VENUE_PHOTOS.grimaldi;
+  if (combined.includes("salle garnier") || combined.includes("opéra") || combined.includes("opera de")) return VENUE_PHOTOS.opera;
+  if (combined.includes("stade louis") || combined.includes("gaston médecin") || combined.includes("gaston medecin")) return VENUE_PHOTOS.stade;
+  if (combined.includes("océanographique") || combined.includes("oceanographique")) return VENUE_PHOTOS.ocean;
+  if (combined.includes("palais princier") || combined.includes("cour d'honneur")) return VENUE_PHOTOS.palais;
+  if (combined.includes("cathédrale") || combined.includes("cathedrale") || combined.includes("saint-nicolas") || combined.includes("saint nicolas")) return VENUE_PHOTOS.cathedrale;
+  if (combined.includes("princesse grace") || combined.includes("beaux-arts") || combined.includes("beaux arts")) return VENUE_PHOTOS.tpg;
+  if (combined.includes("casino") && !combined.includes("casino café")) return VENUE_PHOTOS.casino;
+  if (combined.includes("fontvieille") || combined.includes("léo ferré") || combined.includes("leo ferre") || combined.includes("espace léo")) return VENUE_PHOTOS.fontvieille;
+  if (combined.includes("monaco-ville") || combined.includes("fort antoine") || combined.includes("rocher")) return VENUE_PHOTOS.rocher;
+  if (combined.includes("port hercule") || combined.includes("yacht club") || combined.includes("larvotto") || combined.includes("note bleue") || combined.includes("nikki beach") || combined.includes("port de monaco")) return VENUE_PHOTOS.port;
+  if (combined.includes("circuit") || combined.includes("formule")) return VENUE_PHOTOS.aerial;
+  return null;
+}
+
 function generateICS(event) {
   const parts = event.date.trim().split(" ");
   const day = parseInt(parts[1]);
@@ -65,19 +99,21 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             position: "absolute", inset: 0,
             background: event.fallback || DEFAULT_FALLBACK,
           }} />
-          {/* Photo réelle (picsum — photo unique par événement) */}
-          <img
-            src={`https://picsum.photos/seed/${event.id}/393/140`}
-            alt=""
-            loading="lazy"
-            style={{
-              position: "absolute", inset: 0,
-              width: "100%", height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-            onError={e => { e.currentTarget.style.opacity = "0"; }}
-          />
+          {/* Photo du lieu */}
+          {getVenuePhoto(event) && (
+            <img
+              src={getVenuePhoto(event)}
+              alt=""
+              loading="lazy"
+              style={{
+                position: "absolute", inset: 0,
+                width: "100%", height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+              onError={e => { e.currentTarget.style.opacity = "0"; }}
+            />
+          )}
           {/* Overlay sombre pour lisibilité */}
           <div style={{
             position: "absolute", inset: 0,
