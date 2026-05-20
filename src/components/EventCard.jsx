@@ -4,45 +4,45 @@ const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oc
 
 const VENUE_PHOTOS = {
   // Grandes salles
-  grimaldi:        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg/800px-Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
-  opera:           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg/800px-Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg",
-  stade:           "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg/800px-Panoramio_-_V%26A_Dudush_-_stade_Louis_II.jpg",
-  ocean:           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Monaco_BW_2011-06-07_17-50-43.jpg/800px-Monaco_BW_2011-06-07_17-50-43.jpg",
-  palais:          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Princely_Palace_of_Monaco.jpg/800px-Princely_Palace_of_Monaco.jpg",
-  cathedrale:      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Monaco_BW_2011-06-07_16-07-20.jpg/800px-Monaco_BW_2011-06-07_16-07-20.jpg",
-  tpg:             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg/800px-Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg",
-  fort_antoine:    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Fort_Antoine_-_panoramio.jpg/800px-Fort_Antoine_-_panoramio.jpg",
-  sporting:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Monte_Carlo_Sporting_Club_in_2023.jpg/800px-Monte_Carlo_Sporting_Club_in_2023.jpg",
-  collection:      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/La_Collection_de_Voitures_de_S.A.S._le_Prince_de_Monaco_%2851430786795%29.jpg/800px-La_Collection_de_Voitures_de_S.A.S._le_Prince_de_Monaco_%2851430786795%29.jpg",
+  grimaldi:        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg/960px-Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
+  opera:           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg/960px-Casino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg",
+  stade:           "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Stade_Louis-II_1.jpg/960px-Monaco_Stade_Louis-II_1.jpg",
+  ocean:           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Monaco_BW_2011-06-07_17-50-43.jpg/960px-Monaco_BW_2011-06-07_17-50-43.jpg",
+  palais:          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Princely_Palace_of_Monaco.jpg/960px-Princely_Palace_of_Monaco.jpg",
+  cathedrale:      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Monaco_BW_2011-06-07_16-07-20.jpg/960px-Monaco_BW_2011-06-07_16-07-20.jpg",
+  tpg:             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg/960px-Entr%C3%A9e_du_th%C3%A9%C3%A2tre_Princesse_Grace_et_du_cin%C3%A9ma_des_Beaux-Arts_%28Monaco%29.jpg",
+  fort_antoine:    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fort_Antoine_Monaco.JPG/960px-Fort_Antoine_Monaco.JPG",
+  sporting:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Monte_Carlo_Sporting_Club_in_2023.jpg/960px-Monte_Carlo_Sporting_Club_in_2023.jpg",
+  collection:      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/La_Collection_de_Voitures_de_S.A.S._le_Prince_de_Monaco_%2851430786795%29.jpg/960px-La_Collection_de_Voitures_de_S.A.S._le_Prince_de_Monaco_%2851430786795%29.jpg",
   // Hôtels
-  hotel_paris:     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/H%C3%B4tel_de_Paris_Monte-Carlo_006.jpg/800px-H%C3%B4tel_de_Paris_Monte-Carlo_006.jpg",
-  hermitage:       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Driveway_to_the_H%C3%B4tel_Hermitage_Monte-Carlo%2C_Monaco_%2853969469800%29.jpg/800px-Driveway_to_the_H%C3%B4tel_Hermitage_Monte-Carlo%2C_Monaco_%2853969469800%29.jpg",
-  fairmont:        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Fairmont_Hotel_Monaco_IMG_1016.jpg/800px-Fairmont_Hotel_Monaco_IMG_1016.jpg",
-  mcbay:           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Monte-Carlo_Bay_Casino_Monaco_IMG_1139.jpg/800px-Monte-Carlo_Bay_Casino_Monaco_IMG_1139.jpg",
+  hotel_paris:     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/H%C3%B4tel_de_Paris_-_panoramio.jpg/960px-H%C3%B4tel_de_Paris_-_panoramio.jpg",
+  hermitage:       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/H%C3%B4tel_Hermitage_Monte_Carlo_%2860029384%29.jpeg/960px-H%C3%B4tel_Hermitage_Monte_Carlo_%2860029384%29.jpeg",
+  fairmont:        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/MONACO_LE_FAIRMONT_HOTEL_5_-_panoramio.jpg/960px-MONACO_LE_FAIRMONT_HOTEL_5_-_panoramio.jpg",
+  mcbay:           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Monte-Carlo_Bay_Hotel_-_panoramio.jpg/960px-Monte-Carlo_Bay_Hotel_-_panoramio.jpg",
   // Monaco-Ville / Rocher
-  rocher:          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/View_on_Monacoville.JPG/800px-View_on_Monacoville.JPG",
-  villa_sauber:    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Villa_Sauber_-_panoramio.jpg/800px-Villa_Sauber_-_panoramio.jpg",
-  jardins_stmartin:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Jardins_Saint-Martin%2C_Monaco_-_panoramio_%281%29.jpg/800px-Jardins_Saint-Martin%2C_Monaco_-_panoramio_%281%29.jpg",
-  roseraie:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Roseraie_Princesse_Grace_-_panoramio.jpg/800px-Roseraie_Princesse_Grace_-_panoramio.jpg",
+  rocher:          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/View_on_Monacoville.JPG/960px-View_on_Monacoville.JPG",
+  villa_sauber:    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Villa_Sauber_-_panoramio.jpg/960px-Villa_Sauber_-_panoramio.jpg",
+  jardins_stmartin:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jardins_Saint-Martin%2C_Monaco_-_panoramio.jpg/960px-Jardins_Saint-Martin%2C_Monaco_-_panoramio.jpg",
+  roseraie:        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Roseraie_Princesse_Grace_-_panoramio.jpg/960px-Roseraie_Princesse_Grace_-_panoramio.jpg",
   // Monte-Carlo place / casino
-  casino:          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Le_casino_de_Monte-Carlo.JPG/800px-Le_casino_de_Monte-Carlo.JPG",
-  place_casino:    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Monaco_Place_du_Casino_1.jpg/800px-Monaco_Place_du_Casino_1.jpg",
+  casino:          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Le_casino_de_Monte-Carlo.JPG/960px-Le_casino_de_Monte-Carlo.JPG",
+  place_casino:    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Monaco_Place_du_Casino_1.jpg/960px-Monaco_Place_du_Casino_1.jpg",
   // Port & bord de mer
-  yacht_club:      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yacht_Club_de_Monaco_%2851429816991%29.jpg/800px-Yacht_Club_de_Monaco_%2851429816991%29.jpg",
-  port:            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/MonacoView.jpg/800px-MonacoView.jpg",
-  larvotto_beach:  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Plage_du_Larvotto_MONACO_-_panoramio.jpg/800px-Plage_du_Larvotto_MONACO_-_panoramio.jpg",
-  country_club:    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Rosa_Monte_Carlo_Country_Club_2022-07-05_4950.jpg/800px-Rosa_Monte_Carlo_Country_Club_2022-07-05_4950.jpg",
+  yacht_club:      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yacht_Club_de_Monaco_%2851429816991%29.jpg/960px-Yacht_Club_de_Monaco_%2851429816991%29.jpg",
+  port:            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/MonacoView.jpg/960px-MonacoView.jpg",
+  larvotto_beach:  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Plage_du_Larvotto_MONACO_-_panoramio.jpg/960px-Plage_du_Larvotto_MONACO_-_panoramio.jpg",
+  country_club:    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Halte_de_Monte-Carlo-Country-Club.JPG/960px-Halte_de_Monte-Carlo-Country-Club.JPG",
   // Fontvieille
-  fontvieille:     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fontvieille_and_yachts.jpg/800px-Fontvieille_and_yachts.jpg",
-  parc_antoinette: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Princess_Antoinette_Park.jpg/800px-Princess_Antoinette_Park.jpg",
+  fontvieille:     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fontvieille_and_yachts.jpg/960px-Fontvieille_and_yachts.jpg",
+  parc_antoinette: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Princess_Antoinette_Park.jpg/960px-Princess_Antoinette_Park.jpg",
   // La Condamine
-  condamine:       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/March%C3%A9_de_la_Condamine_depuis_la_Place_d%27Armes_%28Monaco%29.jpg/800px-March%C3%A9_de_la_Condamine_depuis_la_Place_d%27Armes_%28Monaco%29.jpg",
+  condamine:       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/March%C3%A9_de_la_Condamine_depuis_la_Place_d%27Armes_%28Monaco%29.jpg/960px-March%C3%A9_de_la_Condamine_depuis_la_Place_d%27Armes_%28Monaco%29.jpg",
   // Jardins & parcs
-  jardin_exotique: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Monaco_Boulevard_du_Jardin_Exotique_06_2021.jpg/800px-Monaco_Boulevard_du_Jardin_Exotique_06_2021.jpg",
-  jardin_japonais: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Jardin_Japonais_de_Monaco_-_panoramio.jpg/800px-Jardin_Japonais_de_Monaco_-_panoramio.jpg",
+  jardin_exotique: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Jardin_exotique_de_Monaco_D190408_a.jpg/960px-Jardin_exotique_de_Monaco_D190408_a.jpg",
+  jardin_japonais: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Jardin_Japonais_de_Monaco_-_panoramio.jpg/960px-Jardin_Japonais_de_Monaco_-_panoramio.jpg",
   // Divers
-  odeon:           "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tour_Od%C3%A9on_Monaco_2022_%28cropped%29.jpg/800px-Tour_Od%C3%A9on_Monaco_2022_%28cropped%29.jpg",
-  aerial:          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Aerial_view_of_Monaco_%2801%29.jpg/800px-Aerial_view_of_Monaco_%2801%29.jpg",
+  odeon:           "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tour_Od%C3%A9on_Monaco_2022_%28cropped%29.jpg/960px-Tour_Od%C3%A9on_Monaco_2022_%28cropped%29.jpg",
+  aerial:          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Aerial_view_of_Monaco_%2801%29.jpg/960px-Aerial_view_of_Monaco_%2801%29.jpg",
 };
 
 function getVenuePhoto(event) {
