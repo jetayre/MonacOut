@@ -128,6 +128,7 @@ function generateICS(event) {
 }
 
 const NAVY = "#0F1D3A";
+const BLUE = "#9FC3DC";
 const GREY = "#4f4b4b";
 const WHITE = "#FFFFFF";
 const CREAM = "#FDFAF5";
@@ -155,8 +156,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       marginBottom: 14,
       background: WHITE,
     }}>
-      {/* Inner navy frame */}
-      <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 1, background: CREAM }}>
+      {/* Inner blue frame */}
+      <div style={{ border: `1.5px solid ${BLUE}`, borderRadius: 1, background: CREAM }}>
 
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
 
