@@ -26,14 +26,25 @@ export default function MonacOutLogo({ width = 220 }) {
           marginBottom: 6,
           letterSpacing: -2,
         }}>M</div>
-        <div style={{
-          fontFamily: "'Josefin Sans', sans-serif",
-          fontWeight: 400,
-          fontSize: 11,
-          letterSpacing: 7,
-          color: NAVY,
-          textTransform: "uppercase",
-        }}>MONACOUT</div>
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: 0 }}>
+          <span style={{
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontWeight: 400,
+            fontSize: 13,
+            letterSpacing: 7,
+            color: NAVY,
+            textTransform: "uppercase",
+          }}>MONAC</span>
+          <span style={{
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontWeight: 300,
+            fontSize: 9,
+            letterSpacing: 4,
+            color: GOLD,
+            textTransform: "uppercase",
+            fontStyle: "italic",
+          }}>OUT</span>
+        </div>
       </div>
     </div>
   );
