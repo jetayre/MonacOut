@@ -37,12 +37,11 @@ export default function MonacOutLogo({ width = 220 }) {
           }}>MONAC</span>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontWeight: 300,
-            fontSize: 9,
+            fontWeight: 600,
+            fontSize: 13,
             letterSpacing: 4,
             color: GOLD,
             textTransform: "uppercase",
-            fontStyle: "italic",
           }}>OUT</span>
         </div>
       </div>
