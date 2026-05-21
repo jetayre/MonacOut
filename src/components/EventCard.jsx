@@ -165,19 +165,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             fontFamily: "'Josefin Sans', sans-serif",
             fontSize: 11, fontWeight: 600, letterSpacing: 3,
             textTransform: "uppercase", color: GOLD,
-            marginBottom: 12,
+            marginBottom: 10,
           }}>{event.cat}</div>
-
-          {/* Titre */}
-          <div style={{
-            fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
-            color: "#000000", lineHeight: 1.25, marginBottom: 16,
-          }}>{event.title.replace(/\n/g, " ")}</div>
 
           {/* Date + heure */}
           <div style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 8,
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 14,
           }}>
             <span style={{
               fontFamily: "'Lato', sans-serif",
@@ -195,11 +188,18 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             )}
           </div>
 
+          {/* Titre */}
+          <div style={{
+            fontFamily: "'Josefin Sans', Georgia, sans-serif",
+            fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
+            color: "#000000", lineHeight: 1.25, marginBottom: 14,
+          }}>{event.title.replace(/\n/g, " ")}</div>
+
           {/* Lieu */}
           {event.subtitle && (
             <div style={{
               fontFamily: "'Lato', sans-serif",
-              fontSize: 13, fontWeight: 400, fontStyle: "italic",
+              fontSize: 16, fontWeight: 400, fontStyle: "italic",
               color: NAVY, marginBottom: 18, letterSpacing: 0.2,
             }}>{event.subtitle}</div>
           )}
