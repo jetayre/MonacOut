@@ -75,7 +75,7 @@ function matchesCatFilter(e, catId) {
     case "sport":      return ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat);
     case "culture":    return ["MUSICAL","THÉÂTRE","CHANTS","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat);
     case "conference": return e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true;
-    case "music":      return ["CONCERT","CHANTS","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat);
+    case "music":      return ["CONCERT","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat);
     case "cinema":     return e.cat === "CINÉMA";
     case "famille":    return e.free === true || ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) || /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""));
     case "ateliers":   return ["ATELIER","DANSE"].includes(e.cat);

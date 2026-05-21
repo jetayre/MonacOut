@@ -14,8 +14,8 @@ const CAT_FILTERS = [
   { id: "encheres",   label: "Enchères",    labelEn: "Auctions" },
   { id: "famille",    label: "Famille",     labelEn: "Family" },
   { id: "foody",      label: "Foody",       labelEn: "Foody" },
-  { id: "messe",      label: "Messes",      labelEn: "Masses" },
   { id: "music",      label: "Musique",     labelEn: "Music" },
+  { id: "messe",      label: "Messe",       labelEn: "Mass" },
   { id: "sport",      label: "Sport",       labelEn: "Sport" },
 ];
 
