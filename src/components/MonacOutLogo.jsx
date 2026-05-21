@@ -1,25 +1,40 @@
 const GOLD = "#C9A96E";
 const NAVY = "#0F1D3A";
+const CREAM = "#F5EDD8";
 
-export default function MonacOutLogo({ width = 290 }) {
-  const scale = width / 290;
+export default function MonacOutLogo({ width = 220 }) {
   return (
-    <div style={{ textAlign: "center", lineHeight: 1, padding: `0 0 ${2 * scale}px` }}>
-      <span style={{
-        fontFamily: "'Josefin Sans', sans-serif",
-        fontWeight: 300,
-        letterSpacing: Math.round(4 * scale),
-        color: GOLD,
-        fontSize: Math.round(54 * scale),
-        verticalAlign: "baseline",
-      }}>Monac</span><span style={{
-        fontFamily: "'Josefin Sans', sans-serif",
-        fontWeight: 300,
-        letterSpacing: Math.round(4 * scale),
-        color: NAVY,
-        fontSize: Math.round(36 * scale),
-        verticalAlign: "baseline",
-      }}>Out</span>
+    <div style={{
+      width,
+      border: `2px solid ${GOLD}`,
+      padding: 3,
+      display: "inline-block",
+      boxSizing: "border-box",
+    }}>
+      <div style={{
+        border: `2px solid ${NAVY}`,
+        background: CREAM,
+        padding: "14px 20px 12px",
+        textAlign: "center",
+      }}>
+        <div style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontWeight: 700,
+          fontSize: 72,
+          color: NAVY,
+          lineHeight: 1,
+          marginBottom: 6,
+          letterSpacing: -2,
+        }}>M</div>
+        <div style={{
+          fontFamily: "'Josefin Sans', sans-serif",
+          fontWeight: 400,
+          fontSize: 11,
+          letterSpacing: 7,
+          color: NAVY,
+          textTransform: "uppercase",
+        }}>MONACOUT</div>
+      </div>
     </div>
   );
 }

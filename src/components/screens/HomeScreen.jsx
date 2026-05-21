@@ -8,7 +8,9 @@ const NAVY = "#0F1D3A";
 const GOLD = "#C9A96E";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
+const CREAM = "#F5EDD8";
 const BORDER = "rgba(15,29,58,0.12)";
+const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 24px, #F5EDD8 24px, #F5EDD8 48px)";
 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
@@ -171,9 +173,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
       <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
 
-        {/* Logo complet — sans cadre */}
-        <div style={{ maxHeight: logoCollapsed ? 0 : 120, overflow: "hidden", transition: "max-height 0.3s ease" }}>
-          <div style={{ background: WHITE, padding: "6px 14px 4px", position: "relative", display: "flex", alignItems: "center" }}>
+        {/* Logo complet — fond rayures */}
+        <div style={{ maxHeight: logoCollapsed ? 0 : 160, overflow: "hidden", transition: "max-height 0.3s ease" }}>
+          <div style={{ background: STRIPE_BG, padding: "10px 14px", position: "relative", display: "flex", alignItems: "center" }}>
 
             {/* ☰ gauche */}
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
@@ -181,9 +183,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             </button>
 
             {/* Logo centré */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 9, color: NAVY, letterSpacing: 3, textTransform: "uppercase", marginBottom: 2 }}>{t.tagline}</div>
-              <MonacOutLogo width={290} />
+            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <MonacOutLogo width={220} />
             </div>
 
             {/* ❤️ droite */}
@@ -194,14 +195,14 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         </div>
 
         {/* Mini logo avec ☰ et ❤️ — apparaît au scroll */}
-        <div style={{ maxHeight: logoCollapsed ? 38 : 0, overflow: "hidden", transition: "max-height 0.3s ease" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 14px" }}>
+        <div style={{ maxHeight: logoCollapsed ? 44 : 0, overflow: "hidden", transition: "max-height 0.3s ease" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 14px", background: STRIPE_BG }}>
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HamburgerIcon />
             </button>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 0 }}>
-              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 22, color: GOLD, letterSpacing: 3 }}>Monac</span>
-              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 15, color: NAVY, letterSpacing: 3 }}>Out</span>
+            <div style={{ background: CREAM, border: `1.5px solid ${GOLD}`, padding: "2px 12px 4px", display: "inline-flex", alignItems: "baseline", gap: 3 }}>
+              <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 20, color: NAVY }}>M</span>
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: 4, color: NAVY, textTransform: "uppercase" }}>ONACOUT</span>
             </div>
             <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HeartIcon hasFavs={hasFavs} />

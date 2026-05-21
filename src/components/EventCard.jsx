@@ -130,6 +130,8 @@ function generateICS(event) {
 const NAVY = "#0F1D3A";
 const GREY = "#4f4b4b";
 const WHITE = "#FFFFFF";
+const CREAM = "#F5EDD8";
+const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 24px, #F5EDD8 24px, #F5EDD8 48px)";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
@@ -150,12 +152,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
     <div style={{
       border: `1.5px solid ${GOLD_FRAME}`,
       borderRadius: 2,
-      padding: 4,
+      padding: 8,
       marginBottom: 14,
-      background: WHITE,
+      background: STRIPE_BG,
     }}>
       {/* Inner navy frame */}
-      <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 1, background: WHITE }}>
+      <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 1, background: CREAM }}>
         <div style={{ padding: "20px 22px 22px", textAlign: "center" }}>
 
           {/* Catégorie */}
