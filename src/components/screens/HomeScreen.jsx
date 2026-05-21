@@ -171,48 +171,25 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
       <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
 
-        {/* Logo complet avec ☰ et ❤️ DANS le cadre */}
+        {/* Logo complet — sans cadre */}
         <div style={{ maxHeight: logoCollapsed ? 0 : 120, overflow: "hidden", transition: "max-height 0.3s ease" }}>
-          <div style={{ background: WHITE, padding: "4px 10px" }}>
-            <div style={{ border: `1.5px solid #C9A96E`, padding: "2px", position: "relative" }}>
+          <div style={{ background: WHITE, padding: "6px 14px 4px", position: "relative", display: "flex", alignItems: "center" }}>
 
-              {/* ☰ — coin supérieur gauche du cadre or */}
-              <button
-                onClick={onOpenMenu}
-                style={{
-                  position: "absolute", top: 7, left: 8, zIndex: 2,
-                  background: "none", border: "none", cursor: "pointer", padding: 4,
-                }}
-              >
-                <HamburgerIcon />
-              </button>
+            {/* ☰ gauche */}
+            <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
+              <HamburgerIcon />
+            </button>
 
-              {/* ❤️ — coin supérieur droit du cadre or */}
-              <button
-                onClick={onNavAgenda}
-                style={{
-                  position: "absolute", top: 7, right: 8, zIndex: 2,
-                  background: "none", border: "none", cursor: "pointer", padding: 4,
-                }}
-              >
-                <HeartIcon hasFavs={hasFavs} />
-              </button>
-
-              {/* Coins ornementaux — bas seulement */}
-              {[{bottom:3,left:4},{bottom:3,right:4}].map((pos,i) => (
-                <span key={i} style={{ position:"absolute", color:"#C9A96E", fontSize:11, lineHeight:1, ...pos }}>✦</span>
-              ))}
-
-              <div style={{
-                border: `2px solid ${NAVY}`, background: WHITE,
-                display: "flex", flexDirection: "column", alignItems: "center",
-                padding: "4px 10px 4px",
-              }}>
-                <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600, fontSize: 12, color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: 3, textTransform: "uppercase" }}>{t.tagline}</div>
-                <MonacOutLogo width={190} />
-                <div style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600, fontSize: 12, color: NAVY, letterSpacing: 2, lineHeight: 1, marginTop: -8, textTransform: "uppercase" }}>Monaco Lifestyle &amp; Events Agenda</div>
-              </div>
+            {/* Logo centré */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 9, color: NAVY, letterSpacing: 3, textTransform: "uppercase", marginBottom: 2 }}>{t.tagline}</div>
+              <MonacOutLogo width={240} />
             </div>
+
+            {/* ❤️ droite */}
+            <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
+              <HeartIcon hasFavs={hasFavs} />
+            </button>
           </div>
         </div>
 
