@@ -129,7 +129,7 @@ function generateICS(event) {
 
 const NAVY = "#0F1D3A";
 const GREY = "#4f4b4b";
-const WHITE = "#ffffff";
+const WHITE = "#FDFAF5";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
@@ -156,7 +156,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
     }}>
       {/* Inner navy frame */}
       <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 1, background: WHITE }}>
-        <div style={{ padding: "16px 20px 18px" }}>
+        <div style={{ padding: "16px 20px 18px", textAlign: "center" }}>
 
           {/* Catégorie */}
           <div style={{
@@ -173,12 +173,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             color: "#000000", lineHeight: 1.25, marginBottom: 12,
           }}>{event.title.replace(/\n/g, " ")}</div>
 
-          {/* Séparateur fin */}
-          <div style={{ height: 1, background: `${GOLD_FRAME}55`, marginBottom: 12 }} />
-
           {/* Date + heure */}
           <div style={{
-            display: "flex", alignItems: "center", gap: 10, marginBottom: 6,
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: 6,
           }}>
             <span style={{
               fontFamily: "'Lato', sans-serif",
