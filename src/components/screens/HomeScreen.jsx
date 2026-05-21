@@ -10,7 +10,7 @@ const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
 const CREAM = "#F5EDD8";
 const BORDER = "rgba(15,29,58,0.12)";
-const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #F5EDD8 40px, #F5EDD8 80px)";
+const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)";
 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
