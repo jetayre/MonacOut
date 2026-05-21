@@ -14,7 +14,7 @@ export default function MonacOutLogo({ width = 220 }) {
       <div style={{
         border: `2px solid ${NAVY}`,
         background: CREAM,
-        padding: "14px 20px 12px",
+        padding: "10px 16px 8px",
         textAlign: "center",
       }}>
         <div style={{
