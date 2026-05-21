@@ -199,9 +199,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HamburgerIcon />
             </button>
-            <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 15, color: GOLD, letterSpacing: 2 }}>Monac</span>
-              <span style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 400, fontSize: 20, color: NAVY, lineHeight: 1 }}>Out</span>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 0 }}>
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 22, color: GOLD, letterSpacing: 3 }}>Monac</span>
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 15, color: NAVY, letterSpacing: 3 }}>Out</span>
             </div>
             <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HeartIcon hasFavs={hasFavs} />
@@ -265,16 +265,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             {t.empty}
           </div>
         ) : (
-          filtered.map((e, i) => (
-            <div key={e.id} style={{ position: "sticky", top: 0, zIndex: i + 1 }}>
-              <EventCard
-                event={e}
-                favorites={favorites}
-                onToggleFav={onToggleFav}
-                onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
-                lang={lang}
-              />
-            </div>
+          filtered.map((e) => (
+            <EventCard
+              key={e.id}
+              event={e}
+              favorites={favorites}
+              onToggleFav={onToggleFav}
+              onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
+              lang={lang}
+            />
           ))
         )}
       </div>

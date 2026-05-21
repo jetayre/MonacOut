@@ -197,8 +197,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {event.subtitle && (
             <div style={{
               fontFamily: "'Lato', sans-serif",
-              fontSize: 13, fontWeight: 300, fontStyle: "italic",
-              color: GREY, marginBottom: 18, letterSpacing: 0.2,
+              fontSize: 13, fontWeight: 400, fontStyle: "italic",
+              color: NAVY, marginBottom: 18, letterSpacing: 0.2,
             }}>{event.subtitle}</div>
           )}
 
@@ -247,7 +247,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   onClick={e => e.stopPropagation()}
                   style={{
                     fontFamily: "'Lato', sans-serif",
-                    fontSize: 13, color: GOLD,
+                    fontSize: 16, color: GOLD,
                     textDecoration: "none", letterSpacing: 0.3,
                   }}
                 >{event.phone}</a>
@@ -269,7 +269,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               onClick={e => e.stopPropagation()}
               style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: 10, color: GOLD,
+                fontSize: 13, color: GOLD,
                 textDecoration: "none", letterSpacing: 0.3,
                 display: "block", marginTop: 6,
               }}
