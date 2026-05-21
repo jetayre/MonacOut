@@ -156,38 +156,38 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
     }}>
       {/* Inner navy frame */}
       <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 1, background: WHITE }}>
-        <div style={{ padding: "16px 20px 18px", textAlign: "center" }}>
+        <div style={{ padding: "20px 22px 22px", textAlign: "center" }}>
 
           {/* Catégorie */}
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 9, fontWeight: 600, letterSpacing: 2.5,
+            fontSize: 11, fontWeight: 600, letterSpacing: 3,
             textTransform: "uppercase", color: GOLD,
-            marginBottom: 10,
+            marginBottom: 12,
           }}>{event.cat}</div>
 
           {/* Titre */}
           <div style={{
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
-            color: "#000000", lineHeight: 1.25, marginBottom: 12,
+            fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
+            color: "#000000", lineHeight: 1.25, marginBottom: 16,
           }}>{event.title.replace(/\n/g, " ")}</div>
 
           {/* Date + heure */}
           <div style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: 6,
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 8,
           }}>
             <span style={{
               fontFamily: "'Lato', sans-serif",
-              fontSize: 11, fontWeight: 700, letterSpacing: 1.2,
+              fontSize: 13, fontWeight: 700, letterSpacing: 1.2,
               textTransform: "uppercase", color: GREY,
             }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
             {event.time && (
               <>
-                <span style={{ color: GOLD_FRAME, fontSize: 10 }}>·</span>
+                <span style={{ color: GOLD_FRAME, fontSize: 13 }}>·</span>
                 <span style={{
                   fontFamily: "'Lato', sans-serif",
-                  fontSize: 11, fontWeight: 400, color: GREY,
+                  fontSize: 13, fontWeight: 400, color: GREY,
                 }}>{event.time}</span>
               </>
             )}
@@ -197,8 +197,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {event.subtitle && (
             <div style={{
               fontFamily: "'Lato', sans-serif",
-              fontSize: 11, fontWeight: 300, fontStyle: "italic",
-              color: GREY, marginBottom: 14, letterSpacing: 0.2,
+              fontSize: 13, fontWeight: 300, fontStyle: "italic",
+              color: GREY, marginBottom: 18, letterSpacing: 0.2,
             }}>{event.subtitle}</div>
           )}
 
@@ -206,25 +206,25 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
             <div style={{
               fontFamily: "'Josefin Sans', sans-serif", fontWeight: 600,
-              fontSize: 8, letterSpacing: 2, textTransform: "uppercase",
-              color: GOLD, marginBottom: 10,
+              fontSize: 10, letterSpacing: 2, textTransform: "uppercase",
+              color: GOLD, marginBottom: 12,
             }}>{event.source}</div>
           )}
 
           {/* Entrée libre */}
           {event.free && (
-            <div style={{ marginBottom: 12 }}>
+            <div style={{ marginBottom: 14 }}>
               <span style={{
-                border: "1px solid #2A6A3A", padding: "2px 10px",
+                border: "1px solid #2A6A3A", padding: "3px 14px",
                 fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 8, fontWeight: 600, letterSpacing: 1.5,
+                fontSize: 10, fontWeight: 600, letterSpacing: 2,
                 textTransform: "uppercase", color: "#1A4A2A",
               }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
             </div>
           )}
 
           {/* Bas de carte : lien + favori */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 6 }}>
             {event.link ? (
               <a
                 href={event.link}
@@ -233,7 +233,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 onClick={e => e.stopPropagation()}
                 style={{
                   fontFamily: "'Josefin Sans', sans-serif",
-                  fontSize: 9, fontWeight: 600, letterSpacing: 2,
+                  fontSize: 11, fontWeight: 600, letterSpacing: 2,
                   textTransform: "uppercase", color: "#000000",
                   borderBottom: `1px solid ${GOLD}`,
                   paddingBottom: 1,
@@ -247,7 +247,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   onClick={e => e.stopPropagation()}
                   style={{
                     fontFamily: "'Lato', sans-serif",
-                    fontSize: 11, color: GOLD,
+                    fontSize: 13, color: GOLD,
                     textDecoration: "none", letterSpacing: 0.3,
                   }}
                 >{event.phone}</a>
@@ -257,7 +257,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
               style={{
                 background: "none", border: "none",
-                cursor: "pointer", fontSize: 16, lineHeight: 1, padding: 0,
+                cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0,
               }}
             >{isFav ? "❤️" : "🤍"}</button>
           </div>

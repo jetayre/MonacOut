@@ -183,7 +183,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             {/* Logo centré */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 300, fontSize: 9, color: NAVY, letterSpacing: 3, textTransform: "uppercase", marginBottom: 2 }}>{t.tagline}</div>
-              <MonacOutLogo width={240} />
+              <MonacOutLogo width={290} />
             </div>
 
             {/* ❤️ droite */}
