@@ -1,4 +1,4 @@
-const GOLD = "#C4A241";
+const GOLD = "#a88421";
 const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
@@ -128,10 +128,8 @@ function generateICS(event) {
 }
 
 const NAVY = "#0F1D3A";
-const GREY = "#6A7080";
-const WHITE = "#FDFAF5";
-
-const DEFAULT_FALLBACK = "linear-gradient(180deg, #7EC8E3 0%, #3A9BD5 50%, #1A6FAF 100%)";
+const GREY = "#4f4b4b";
+const WHITE = "#ffffff";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
@@ -151,139 +149,132 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   return (
     <div style={{
       border: `1.5px solid ${GOLD_FRAME}`,
-      borderRadius: 4,
+      borderRadius: 2,
       padding: 4,
       marginBottom: 14,
-      boxShadow: "none",
       background: WHITE,
     }}>
       {/* Inner navy frame */}
-      <div style={{ border: `2px solid ${NAVY}`, borderRadius: 2, background: WHITE }}>
+      <div style={{ border: `1.5px solid ${NAVY}`, borderRadius: 1, background: WHITE }}>
+        <div style={{ padding: "16px 20px 18px" }}>
 
-        {/* Date + heure — au-dessus de la photo */}
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
-          padding: "10px 16px 8px",
-        }}>
+          {/* Catégorie */}
           <div style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: 15, fontWeight: 700, letterSpacing: 0.9,
-            textTransform: "uppercase", color: NAVY,
-          }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</div>
-          {event.time && (
-            <>
-              <div style={{ width: 1, height: 14, background: `${GOLD_FRAME}`, flexShrink: 0 }} />
-              <div style={{
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 12, fontWeight: 500, color: GREY, letterSpacing: 0.3,
-              }}>{event.time}</div>
-            </>
-          )}
-        </div>
-
-        {/* Photo du lieu — avec marges pour laisser apparaître le blanc crème */}
-        <div style={{ padding: "0 8px 0 8px" }}>
-          <div style={{ position: "relative", height: 130, overflow: "hidden", borderRadius: 2 }}>
-            <div style={{
-              position: "absolute", inset: 0,
-              background: event.fallback || DEFAULT_FALLBACK,
-            }} />
-            <img
-              src={getVenuePhoto(event)}
-              alt=""
-              loading="lazy"
-              style={{
-                position: "absolute", inset: 0,
-                width: "100%", height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-              onError={e => { e.currentTarget.style.opacity = "0"; }}
-            />
-            <div style={{
-              position: "absolute", inset: 0,
-              background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%)",
-            }} />
-            {/* Bouton favori */}
-            <button
-              onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-              style={{
-                position: "absolute", top: 8, right: 8,
-                background: "rgba(0,0,0,0.28)", border: "none",
-                borderRadius: 20, padding: "4px 8px",
-                cursor: "pointer", fontSize: 14, lineHeight: 1,
-              }}
-            >{isFav ? "❤️" : "🤍"}</button>
-          </div>
-        </div>
-
-        {/* Corps de la carte — tout centré */}
-        <div style={{ padding: "12px 16px 16px", textAlign: "center", background: WHITE }}>
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontSize: 9, fontWeight: 600, letterSpacing: 2.5,
+            textTransform: "uppercase", color: GOLD,
+            marginBottom: 10,
+          }}>{event.cat}</div>
 
           {/* Titre */}
           <div style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontWeight: 600, fontSize: 22, letterSpacing: 0.6,
-            color: NAVY, lineHeight: 1.2, marginBottom: 5,
+            fontFamily: "'Josefin Sans', Georgia, sans-serif",
+            fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
+            color: "#000000", lineHeight: 1.25, marginBottom: 12,
           }}>{event.title.replace(/\n/g, " ")}</div>
 
-          {/* Organisation (fondations) */}
-          {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
-            <div style={{
-              fontFamily: "'Jost', sans-serif", fontWeight: 700,
-              fontSize: 9, letterSpacing: 1.4, textTransform: "uppercase",
-              color: GOLD, marginBottom: 4,
-            }}>{event.source}</div>
-          )}
+          {/* Séparateur fin */}
+          <div style={{ height: 1, background: `${GOLD_FRAME}55`, marginBottom: 12 }} />
+
+          {/* Date + heure */}
+          <div style={{
+            display: "flex", alignItems: "center", gap: 10, marginBottom: 6,
+          }}>
+            <span style={{
+              fontFamily: "'Lato', sans-serif",
+              fontSize: 11, fontWeight: 700, letterSpacing: 1.2,
+              textTransform: "uppercase", color: GREY,
+            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+            {event.time && (
+              <>
+                <span style={{ color: GOLD_FRAME, fontSize: 10 }}>·</span>
+                <span style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: 11, fontWeight: 400, color: GREY,
+                }}>{event.time}</span>
+              </>
+            )}
+          </div>
 
           {/* Lieu */}
           {event.subtitle && (
             <div style={{
-              fontFamily: "'Jost', -apple-system, sans-serif",
-              fontSize: 12, fontWeight: 500, color: GREY, marginBottom: 12,
+              fontFamily: "'Lato', sans-serif",
+              fontSize: 11, fontWeight: 300, fontStyle: "italic",
+              color: GREY, marginBottom: 14, letterSpacing: 0.2,
             }}>{event.subtitle}</div>
+          )}
+
+          {/* Organisation (fondations) */}
+          {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
+            <div style={{
+              fontFamily: "'Josefin Sans', sans-serif", fontWeight: 600,
+              fontSize: 8, letterSpacing: 2, textTransform: "uppercase",
+              color: GOLD, marginBottom: 10,
+            }}>{event.source}</div>
           )}
 
           {/* Entrée libre */}
           {event.free && (
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 12 }}>
               <span style={{
-                border: "1px solid #2A6A3A", borderRadius: 20, padding: "2px 12px",
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "#1A4A2A",
+                border: "1px solid #2A6A3A", padding: "2px 10px",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 8, fontWeight: 600, letterSpacing: 1.5,
+                textTransform: "uppercase", color: "#1A4A2A",
               }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
             </div>
           )}
 
-          {/* Lien */}
-          {event.link && (
-            <div style={{ marginBottom: event.phone ? 8 : 0 }}>
+          {/* Bas de carte : lien + favori */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 4 }}>
+            {event.link ? (
               <a
                 href={event.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={e => e.stopPropagation()}
                 style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: 11, fontWeight: 700, letterSpacing: 1.1,
-                  textTransform: "uppercase", color: NAVY,
-                  border: `1px solid ${GOLD}`,
-                  padding: "6px 18px", borderRadius: 20,
-                  textDecoration: "none", display: "inline-block",
+                  fontFamily: "'Josefin Sans', sans-serif",
+                  fontSize: 9, fontWeight: 600, letterSpacing: 2,
+                  textTransform: "uppercase", color: "#000000",
+                  borderBottom: `1px solid ${GOLD}`,
+                  paddingBottom: 1,
+                  textDecoration: "none",
                 }}
-              >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : "Let's go"}</a>
-            </div>
-          )}
+              >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book →" : "Réserver →")}</a>
+            ) : (
+              event.phone ? (
+                <a
+                  href={`tel:${event.phone}`}
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    fontFamily: "'Lato', sans-serif",
+                    fontSize: 11, color: GOLD,
+                    textDecoration: "none", letterSpacing: 0.3,
+                  }}
+                >{event.phone}</a>
+              ) : <span />
+            )}
+            <button
+              onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
+              style={{
+                background: "none", border: "none",
+                cursor: "pointer", fontSize: 16, lineHeight: 1, padding: 0,
+              }}
+            >{isFav ? "❤️" : "🤍"}</button>
+          </div>
 
-          {/* Téléphone */}
-          {event.phone && (
+          {/* Téléphone (si lien ET téléphone) */}
+          {event.phone && event.link && (
             <a
               href={`tel:${event.phone}`}
               onClick={e => e.stopPropagation()}
               style={{
-                fontFamily: "'Jost', sans-serif",
-                fontWeight: 600, fontSize: 12,
-                color: GOLD, textDecoration: "none", letterSpacing: 0.3, display: "block",
+                fontFamily: "'Lato', sans-serif",
+                fontSize: 10, color: GOLD,
+                textDecoration: "none", letterSpacing: 0.3,
+                display: "block", marginTop: 6,
               }}
             >{event.phone}</a>
           )}
