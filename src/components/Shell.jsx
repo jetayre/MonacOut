@@ -3,7 +3,7 @@ import { useState } from "react";
 const NAVY = "#0F1D3A";
 const GOLD = "#C4A241";
 const GREY = "#6A7080";
-const WHITE = "#FDFAF5";
+const WHITE = "#FFFFFF";
 
 const CAT_FILTERS = [
   { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },

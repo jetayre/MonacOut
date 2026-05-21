@@ -129,7 +129,7 @@ function generateICS(event) {
 
 const NAVY = "#0F1D3A";
 const GREY = "#4f4b4b";
-const WHITE = "#FDFAF5";
+const WHITE = "#FFFFFF";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
