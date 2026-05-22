@@ -204,7 +204,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {event.subtitle && (
             <div style={{
               fontFamily: "'Lato', sans-serif",
-              fontSize: 16, fontWeight: 400, fontStyle: "italic",
+              fontSize: 16, fontWeight: 400,
               color: NAVY, marginBottom: 18, letterSpacing: 0.2,
             }}>{event.subtitle}</div>
           )}
