@@ -141,7 +141,7 @@ function todayFrDate() {
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, lang = "fr" }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
   const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
   const dateLabel = isToday
@@ -149,13 +149,17 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
     : event.date;
 
   return (
-    <div style={{
-      border: `1.5px solid ${GOLD_FRAME}`,
-      borderRadius: 2,
-      padding: 4,
-      marginBottom: 14,
-      background: WHITE,
-    }}>
+    <div
+      onClick={() => onCardClick?.(event)}
+      style={{
+        border: `1.5px solid ${GOLD_FRAME}`,
+        borderRadius: 2,
+        padding: 4,
+        marginBottom: 14,
+        background: WHITE,
+        cursor: "pointer",
+      }}
+    >
       {/* Inner blue frame */}
       <div style={{ border: `1.5px solid ${BLUE}`, borderRadius: 1, background: CREAM }}>
 
@@ -233,7 +237,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 href={event.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={e => e.stopPropagation()}
+                onClick={e => { e.stopPropagation(); }}
                 style={{
                   fontFamily: "'Josefin Sans', sans-serif",
                   fontSize: 11, fontWeight: 600, letterSpacing: 2,

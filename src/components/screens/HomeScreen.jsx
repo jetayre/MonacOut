@@ -113,7 +113,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -202,7 +202,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             </button>
             <div style={{ background: CREAM, border: `1.5px solid ${GOLD}`, padding: "2px 12px 4px", display: "inline-flex", alignItems: "baseline", gap: 3 }}>
               <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 20, color: NAVY }}>M</span>
-              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: 4, color: NAVY, textTransform: "uppercase" }}>ONACOUT</span>
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: 4, color: NAVY, textTransform: "uppercase" }}>ONAC'OUT</span>
             </div>
             <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HeartIcon hasFavs={hasFavs} />
@@ -273,6 +273,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
+              onCardClick={onCardClick}
               lang={lang}
             />
           ))

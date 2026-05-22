@@ -64,6 +64,7 @@ export default function App() {
   const [lang, setLang] = useState("fr");
   const [catFilters, setCatFilters] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
 
@@ -108,7 +109,7 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: setSelectedEvent };
 
   return (
     <Shell
@@ -122,6 +123,10 @@ export default function App() {
       onClearFilters={() => setCatFilters([])}
       showMenu={showMenu}
       setShowMenu={setShowMenu}
+      selectedEvent={selectedEvent}
+      onClosePopup={() => setSelectedEvent(null)}
+      onToggleFav={toggleFav}
+      favorites={favorites}
     >
       {tab === "events" ? (
         <HomeScreen

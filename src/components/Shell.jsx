@@ -2,8 +2,11 @@ import { useState } from "react";
 
 const NAVY = "#0F1D3A";
 const GOLD = "#C4A241";
+const GOLD_FRAME = "#C9A96E";
+const BLUE = "#9FC3DC";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
+const CREAM = "#FDFAF5";
 
 const CAT_FILTERS = [
   { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },
@@ -27,7 +30,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [] }) {
   return (
     <div style={{
       minHeight: "100vh",
@@ -89,6 +92,99 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             transition: "opacity 0.2s ease",
           }}
         />
+
+        {/* Popup événement */}
+        {selectedEvent && (
+          <>
+            <div onClick={onClosePopup} style={{
+              position: "absolute", inset: 0,
+              background: "rgba(0,0,0,0.55)",
+              zIndex: 600,
+            }} />
+            <div style={{
+              position: "absolute",
+              top: "50%", left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 300,
+              zIndex: 601,
+              border: `1.5px solid ${GOLD_FRAME}`,
+              borderRadius: 2,
+              padding: 4,
+              background: WHITE,
+            }}>
+              <div style={{
+                position: "relative",
+                border: `1.5px solid ${BLUE}`,
+                borderRadius: 1,
+                background: CREAM,
+                padding: "22px 20px 20px",
+              }}>
+                {/* Fermer */}
+                <button onClick={onClosePopup} style={{
+                  position: "absolute", top: 10, right: 12,
+                  background: "none", border: "none", cursor: "pointer",
+                  fontSize: 16, color: GREY, lineHeight: 1, padding: 0,
+                }}>✕</button>
+
+                {/* Catégorie */}
+                <div style={{
+                  fontFamily: "'Josefin Sans', sans-serif",
+                  fontSize: 10, fontWeight: 600, letterSpacing: 3,
+                  textTransform: "uppercase", color: GOLD,
+                  marginBottom: 6, textAlign: "center",
+                }}>{selectedEvent.cat}</div>
+
+                {/* Titre */}
+                <div style={{
+                  fontFamily: "'Josefin Sans', sans-serif",
+                  fontWeight: 400, fontSize: 16, color: NAVY,
+                  textAlign: "center", lineHeight: 1.3, marginBottom: 14,
+                }}>{selectedEvent.title.replace(/\n/g, " ")}</div>
+
+                {/* Description */}
+                <div style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: 13, color: "#333", lineHeight: 1.65,
+                  marginBottom: 18, textAlign: "left",
+                }}>{lang === "en" ? (selectedEvent.descEn || selectedEvent.desc) : selectedEvent.desc}</div>
+
+                {/* Coeur */}
+                <div style={{ textAlign: "center", marginBottom: 14 }}>
+                  <button
+                    onClick={() => onToggleFav?.(selectedEvent.id)}
+                    style={{ background: "none", border: "none", cursor: "pointer", fontSize: 26, lineHeight: 1 }}
+                  >{favorites.includes(selectedEvent.id) ? "❤️" : "🤍"}</button>
+                </div>
+
+                {/* Je réserve */}
+                {(selectedEvent.link || selectedEvent.phone) && (
+                  <div style={{ textAlign: "center" }}>
+                    {selectedEvent.link ? (
+                      <a
+                        href={selectedEvent.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-block",
+                          fontFamily: "'Josefin Sans', sans-serif",
+                          fontSize: 11, fontWeight: 600, letterSpacing: 2,
+                          textTransform: "uppercase", color: WHITE,
+                          background: NAVY, padding: "11px 28px",
+                          textDecoration: "none", borderRadius: 1,
+                        }}
+                      >{selectedEvent.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book" : "Je réserve")}</a>
+                    ) : (
+                      <a href={`tel:${selectedEvent.phone}`} style={{
+                        fontFamily: "'Lato', sans-serif",
+                        fontSize: 15, color: GOLD, textDecoration: "none",
+                      }}>{selectedEvent.phone}</a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Menu panneau */}
         <div

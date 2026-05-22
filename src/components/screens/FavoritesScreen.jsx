@@ -24,7 +24,7 @@ function ArrowLeft() {
   );
 }
 
-export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents }) {
+export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick }) {
   const favEvents = ALL_EVENTS.filter(e => favorites.includes(e.id));
 
   return (
@@ -80,6 +80,7 @@ export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClic
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={onCategoryClick}
+              onCardClick={onCardClick}
               lang={lang}
             />
           ))
