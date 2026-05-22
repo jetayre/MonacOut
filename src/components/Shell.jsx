@@ -6,7 +6,7 @@ const GOLD_FRAME = "#C9A96E";
 const BLUE = "#9FC3DC";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
-const CREAM = "#FDFAF5";
+const CREAM = "#FFFFFF";
 
 const CAT_FILTERS = [
   { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },

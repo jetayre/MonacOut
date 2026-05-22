@@ -131,7 +131,7 @@ const NAVY = "#0F1D3A";
 const BLUE = "#9FC3DC";
 const GREY = "#4f4b4b";
 const WHITE = "#FFFFFF";
-const CREAM = "#FDFAF5";
+const CREAM = "#FFFFFF";
 
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];

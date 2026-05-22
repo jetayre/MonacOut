@@ -1,6 +1,6 @@
 const GOLD = "#C9A96E";
 const NAVY = "#0F1D3A";
-const CREAM = "#F5EDD8";
+const CREAM = "#FFFFFF";
 
 export default function MonacOutLogo({ width = 220 }) {
   return (

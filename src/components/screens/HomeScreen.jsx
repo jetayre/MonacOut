@@ -8,7 +8,7 @@ const NAVY = "#0F1D3A";
 const GOLD = "#C9A96E";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
-const CREAM = "#F5EDD8";
+const CREAM = "#FFFFFF";
 const BORDER = "rgba(15,29,58,0.12)";
 const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)";
 
@@ -223,7 +223,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 <button key={f.id} onClick={() => handleFilterChange(f.id)} style={{
                   flexShrink: 0, padding: "7px 16px", borderRadius: 20,
                   border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
-                  background: active ? NAVY : "#FDFAF5", color: active ? WHITE : GREY,
+                  background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
                   fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600,
                   cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
                 }}>{label}</button>
@@ -244,7 +244,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
                   flexShrink: 0, padding: "3px 8px", borderRadius: 20,
                   border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
-                  background: active ? NAVY : "#FDFAF5", color: active ? WHITE : GREY,
+                  background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
                   fontFamily: "'Jost', sans-serif", fontSize: 9, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
                 }}>{q}</button>
               );
