@@ -22,6 +22,14 @@ const CAT_FILTERS = [
   { id: "sport",      label: "Sport",       labelEn: "Sport" },
 ];
 
+function PhoneIcon() {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
+    </svg>
+  );
+}
+
 function HeartIcon({ color, active }) {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill={active ? color : "none"} stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -156,28 +164,36 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                   >{favorites.includes(selectedEvent.id) ? "❤️" : "🤍"}</button>
                 </div>
 
-                {/* Je réserve */}
+                {/* Je réserve + téléphone */}
                 {(selectedEvent.link || selectedEvent.phone) && (
-                  <div style={{ textAlign: "center" }}>
-                    {selectedEvent.link ? (
+                  <div style={{ display: "flex", gap: 8, alignItems: "stretch", justifyContent: "center" }}>
+                    {selectedEvent.link && (
                       <a
                         href={selectedEvent.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
-                          display: "inline-block",
+                          flex: selectedEvent.phone ? 1 : "0 0 auto",
+                          display: "flex", alignItems: "center", justifyContent: "center",
                           fontFamily: "'Josefin Sans', sans-serif",
                           fontSize: 11, fontWeight: 600, letterSpacing: 2,
                           textTransform: "uppercase", color: WHITE,
-                          background: NAVY, padding: "11px 28px",
+                          background: NAVY, padding: "11px 24px",
                           textDecoration: "none", borderRadius: 1,
                         }}
                       >{selectedEvent.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book" : "Je réserve")}</a>
-                    ) : (
-                      <a href={`tel:${selectedEvent.phone}`} style={{
-                        fontFamily: "'Lato', sans-serif",
-                        fontSize: 15, color: GOLD, textDecoration: "none",
-                      }}>{selectedEvent.phone}</a>
+                    )}
+                    {selectedEvent.phone && (
+                      <a
+                        href={`tel:${selectedEvent.phone}`}
+                        style={{
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          width: 44, flexShrink: 0,
+                          border: `1.5px solid ${GOLD}`,
+                          borderRadius: 1,
+                          textDecoration: "none", color: GOLD,
+                        }}
+                      ><PhoneIcon /></a>
                     )}
                   </div>
                 )}
