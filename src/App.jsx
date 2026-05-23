@@ -4,6 +4,7 @@ import Shell from "./components/Shell";
 import { ALL_EVENTS } from "./data/events";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
+import AdminScreen from "./components/screens/AdminScreen";
 
 const MOIS_APP = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
@@ -65,6 +66,7 @@ export default function App() {
   const [catFilters, setCatFilters] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showAdmin, setShowAdmin] = useState(false);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
 
@@ -127,6 +129,7 @@ export default function App() {
       onClosePopup={() => setSelectedEvent(null)}
       onToggleFav={toggleFav}
       favorites={favorites}
+      adminOverlay={showAdmin ? <AdminScreen onClose={() => setShowAdmin(false)} /> : null}
     >
       {tab === "events" ? (
         <HomeScreen
@@ -137,6 +140,7 @@ export default function App() {
           onCatFilter={handleCatFilter}
           onOpenMenu={() => setShowMenu(true)}
           onNavAgenda={() => handleTabChange("agenda")}
+          onAdminOpen={() => setShowAdmin(true)}
         />
       ) : (
         <FavoritesScreen

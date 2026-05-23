@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
@@ -113,7 +113,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -123,6 +123,21 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const [rangeEnd, setRangeEnd] = useState(null);
   const [quarterFilter, setQuarterFilter] = useState(null);
   const [filtersVisible, setFiltersVisible] = useState(true);
+  const [logoTaps, setLogoTaps] = useState(0);
+  const tapTimer = useRef(null);
+
+  function handleLogoTap() {
+    const next = logoTaps + 1;
+    if (next >= 5) {
+      setLogoTaps(0);
+      clearTimeout(tapTimer.current);
+      onAdminOpen?.();
+      return;
+    }
+    setLogoTaps(next);
+    clearTimeout(tapTimer.current);
+    tapTimer.current = setTimeout(() => setLogoTaps(0), 2000);
+  }
 
   useEffect(() => {
     const el = document.getElementById("main-scroll");
@@ -176,7 +191,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
             <HamburgerIcon />
           </button>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleLogoTap}>
             <MonacOutLogo width={220} />
           </div>
           <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>

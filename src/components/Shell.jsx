@@ -38,7 +38,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [] }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -101,6 +101,9 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             transition: "opacity 0.2s ease",
           }}
         />
+
+        {/* Overlay admin */}
+        {adminOverlay}
 
         {/* Popup événement */}
         {selectedEvent && (
