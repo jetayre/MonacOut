@@ -172,6 +172,8 @@ const SOURCE_VENUE = {
   'Smart Marina Monaco':             'Monaco',
   'SPORTEL Monaco':                  'Grimaldi Forum · Monaco',
   'EVER Monaco':                     'Grimaldi Forum · Monaco',
+  'Monaco Energy Boat Challenge':    'Port Hercule · Monaco',
+  'Monaco Convention Bureau':        'Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -329,7 +331,8 @@ function inferCat(title, source) {
   if (source === 'Femina Sports Monaco') return 'SPORT';
   if (source === 'Académie Mer Monaco') return 'SPORT';
   if (source === 'Académie Princesse Grace') return 'DANSE';
-  if (['One to One Monaco','PCD Group Monaco','Monaco Blue Initiative','Blue Economy Forum','MonacoTech','Sohn Monaco','Smart Marina Monaco','SPORTEL Monaco','EVER Monaco'].includes(source)) return 'CONFÉRENCE';
+  if (source === 'Monaco Energy Boat Challenge') return 'SPORT';
+  if (['One to One Monaco','PCD Group Monaco','Monaco Blue Initiative','Blue Economy Forum','MonacoTech','Sohn Monaco','Smart Marina Monaco','SPORTEL Monaco','EVER Monaco','Monaco Convention Bureau'].includes(source)) return 'CONFÉRENCE';
   if (source === 'Théâtre Princesse Grace') return 'THÉÂTRE';
   if (source === 'Théâtre des Muses Monaco') return 'THÉÂTRE';
   if (source === 'Théâtre Fort Antoine') return 'THÉÂTRE';
@@ -734,6 +737,7 @@ async function main() {
     { name: 'Tennis Masters',      fn: p => scrapeGeneric(p, 'https://www.montecarlomasters.com/',                       'Monte-Carlo Masters') },
     { name: 'Club Bouliste',       fn: p => scrapeGeneric(p, 'https://cbmonaco.org',                                        'Club Bouliste Monaco') },
     { name: 'Ironman Monaco',      fn: p => scrapeGeneric(p, 'https://www.ironman.com/mc-triathlon',                        'Ironman Monaco') },
+    { name: 'Energy Boat',         fn: p => scrapeGeneric(p, 'https://energyboatchallenge.com/',                            'Monaco Energy Boat Challenge') },
     { name: 'YCM calendar',        fn: p => scrapeGeneric(p, 'https://www.yacht-club-monaco.mc/en/event/calendar/',         'YCM Monaco') },
     { name: 'YCM events',         fn: p => scrapeGeneric(p, 'https://www.ycm.mc/fr/programme-de-la-semaine',             'Wine Palace YCM') },
     { name: 'AMU MC',             fn: p => scrapeGeneric(p, 'https://www.amu-mc.com/',                                   'AMU Monte Carlo') },
@@ -757,6 +761,13 @@ async function main() {
     { name: 'Smart Marina',        fn: p => scrapeGeneric(p, 'https://m3monaco.com/smart-events/smart-marina/',            'Smart Marina Monaco') },
     { name: 'SPORTEL MC',          fn: p => scrapeGeneric(p, 'https://www.sportelworld.com/',                              'SPORTEL Monaco') },
     { name: 'EVER Monaco',         fn: p => scrapeGeneric(p, 'https://www.ever-monaco.com/',                               'EVER Monaco') },
+    { name: 'Convention Bureau',   fn: p => scrapeGeneric(p, 'https://cvb.visitmonaco.com/fr',                              'Monaco Convention Bureau') },
+    // ── Sources Instagram uniquement — non scrapables automatiquement ────────
+    // Trinity Monaco        — https://www.instagram.com/trinitymonaco/       (APÉRO/SOIRÉE)
+    // Slammers Monaco       — https://www.instagram.com/slammers_monaco/     (APÉRO sports bar)
+    // Ship & Castle Monaco  — https://www.instagram.com/shipandcastlemonaco/ (APÉRO pub britannique)
+    // MC Dance Monaco       — https://www.instagram.com/mc_dance_monaco/     (DANSE)
+    // U Tapu                — Google Maps uniquement                          (APÉRO tapas)
     // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
     // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
     // Société Saint-Vincent de Paul Monaco — aucun site trouvé
