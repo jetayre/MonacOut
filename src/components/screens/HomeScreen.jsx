@@ -200,9 +200,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HamburgerIcon />
             </button>
-            <div style={{ background: CREAM, border: `1.5px solid ${GOLD}`, padding: "2px 12px 4px", display: "inline-flex", alignItems: "baseline", gap: 3 }}>
-              <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 20, color: NAVY }}>M</span>
-              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: 4, color: NAVY, textTransform: "uppercase" }}>ONAC'OUT</span>
+            <div style={{ background: CREAM, border: `1.5px solid ${GOLD}`, padding: "4px 14px", display: "inline-flex", alignItems: "baseline", gap: 0 }}>
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: 4, color: NAVY, textTransform: "uppercase" }}>MONAC'</span>
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: 3, color: GOLD, textTransform: "uppercase" }}>OUT</span>
             </div>
             <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HeartIcon hasFavs={hasFavs} />
