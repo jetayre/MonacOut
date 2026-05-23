@@ -230,7 +230,10 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           )}
           {event.phone && (
             <button
-              onClick={() => setShowPhone(v => !v)}
+              onClick={() => {
+                if (showPhone) window.location.href = `tel:${event.phone}`;
+                else setShowPhone(true);
+              }}
               style={{
                 display: "flex",
                 alignItems: "center",

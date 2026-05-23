@@ -267,7 +267,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   >{event.free ? (lang === "en" ? "MORE INFO" : "PLUS D'INFOS") : (lang === "en" ? "BOOK" : "RÉSERVER")}</a>
                 ) : (
                   <button
-                    onClick={e => { e.stopPropagation(); setShowPhone(v => !v); }}
+                    onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center",
                       padding: showPhone ? "0 10px" : "0 16px",
@@ -280,7 +280,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   <>
                     <div style={{ width: 1, background: GOLD_FRAME, flexShrink: 0 }} />
                     <button
-                      onClick={e => { e.stopPropagation(); setShowPhone(v => !v); }}
+                      onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "center",
                         width: showPhone ? "auto" : 36, padding: showPhone ? "0 10px" : 0,
