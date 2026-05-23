@@ -55,6 +55,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
 | Automobile Club Monaco | https://acm.mc/ | RALLYE | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
+| Monaco Classic Week (YCM) | https://monacoclassicweek.com/ | SPORT voile classique — biennale années impaires (2027, 2029…) | +377 9310 6300 |
+| CREM Monaco | https://www.crem.mc/ | APÉRO, GALA — Club des Résidents Étrangers de Monaco | |
+| Monaco Energy Boat Challenge | https://energyboatchallenge.com/ | SPORT nautique — énergie alternative | +377 9315 2600 |
 | Monaco Yacht Show | https://www.monacoyachtshow.com/ | SALON | |
 | Jimmy'z Monte-Carlo | https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo | SOIRÉE | |
 | New Moods Monte-Carlo | https://www.montecarlosbm.com/en/spectacles/new-moods | CONCERT, DJ SET | |
@@ -102,6 +105,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
 | **Agendas de référence** | | | |
 | Visit Monaco — agenda | https://www.visitmonaco.com/fr/page/evenement | Tous types | |
+| Your Monaco — app officielle | https://yourmonaco.mc/en/latest-features/events-calendar | Tous types — app civique officielle de Monaco | |
 | Monaco Convention Bureau | https://cvb.visitmonaco.com/fr | Conférences & business events | |
 | Grimaldi Forum — agenda | https://www.grimaldiforum.com/fr/agenda-monaco | Tous les événements au Grimaldi Forum | |
 
