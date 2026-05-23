@@ -238,16 +238,15 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           )}
 
-          {/* Bas de carte : bouton ghost centré + favori */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 10 }}>
+          {/* Bas de carte : bouton ghost compact centré + favori */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 10 }}>
             {(event.link || event.phone) ? (
               <div style={{
-                flex: 1,
-                display: "flex",
+                display: "inline-flex",
                 alignItems: "stretch",
                 border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 1,
-                height: 44,
+                height: 34,
                 overflow: "hidden",
               }}>
                 {event.link ? (
@@ -257,10 +256,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     rel="noopener noreferrer"
                     onClick={e => e.stopPropagation()}
                     style={{
-                      flex: 1,
                       display: "flex", alignItems: "center", justifyContent: "center",
+                      padding: "0 16px",
                       fontFamily: "'Josefin Sans', sans-serif",
-                      fontSize: 11, fontWeight: 600, letterSpacing: 2,
+                      fontSize: 10, fontWeight: 600, letterSpacing: 2,
                       textTransform: "uppercase", color: "#000000",
                       textDecoration: "none",
                     }}
@@ -270,8 +269,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     href={`tel:${event.phone}`}
                     onClick={e => e.stopPropagation()}
                     style={{
-                      flex: 1,
                       display: "flex", alignItems: "center", justifyContent: "center",
+                      padding: "0 16px",
                       textDecoration: "none", color: GOLD,
                     }}
                   ><PhoneIcon /></a>
@@ -284,7 +283,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                       onClick={e => e.stopPropagation()}
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        width: 44, flexShrink: 0,
+                        width: 36, flexShrink: 0,
                         textDecoration: "none", color: GOLD,
                       }}
                     ><PhoneIcon /></a>
@@ -292,7 +291,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 )}
               </div>
             ) : (
-              <span style={{ flex: 1 }} />
+              <span />
             )}
             <button
               onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
