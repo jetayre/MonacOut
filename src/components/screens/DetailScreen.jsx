@@ -1,5 +1,13 @@
 import { ALL_EVENTS } from "../../data/events";
 
+function PhoneIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
+    </svg>
+  );
+}
+
 const NAVY = "#0F1D3A";
 const GOLD = "#C4A241";
 const GOLD2 = "#FFFFFF";
@@ -189,50 +197,54 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           marginBottom: 20,
         }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
-        {event.link && (
-          <a
-            href={event.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "block",
-              background: `linear-gradient(135deg, ${NAVY}, #1A2D4A)`,
-              borderRadius: 16,
-              padding: "14px 20px",
-              textAlign: "center",
-              textDecoration: "none",
-              color: GOLD2,
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontStyle: "italic",
-              fontWeight: 700,
-              fontSize: 16,
-              letterSpacing: 0.3,
-            }}
-          >
-            {event.free
-              ? (lang === "en" ? "More info →" : "Plus d'infos →")
-              : (lang === "en" ? "Book →" : "Réserver →")}
-          </a>
-        )}
-        {event.phone && (
-          <a
-            href={`tel:${event.phone}`}
-            style={{
-              display: "block",
-              marginTop: 10,
-              border: `1.5px solid ${GOLD}`,
-              borderRadius: 16,
-              padding: "12px 20px",
-              textAlign: "center",
-              textDecoration: "none",
-              color: GOLD,
-              fontFamily: "'Libre Baskerville', Georgia, serif",
-              fontStyle: "italic",
-              fontSize: 15,
-              letterSpacing: 0.3,
-            }}
-          >📞 {event.phone}</a>
-        )}
+        <div style={{ display: "flex", gap: 10, alignItems: "stretch" }}>
+          {event.link && (
+            <a
+              href={event.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: `linear-gradient(135deg, ${NAVY}, #1A2D4A)`,
+                borderRadius: 16,
+                padding: "14px 20px",
+                textAlign: "center",
+                textDecoration: "none",
+                color: GOLD2,
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 700,
+                fontSize: 16,
+                letterSpacing: 0.3,
+              }}
+            >
+              {event.free
+                ? (lang === "en" ? "More info →" : "Plus d'infos →")
+                : (lang === "en" ? "Book →" : "Réserver →")}
+            </a>
+          )}
+          {event.phone && (
+            <a
+              href={`tel:${event.phone}`}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 52,
+                flexShrink: 0,
+                border: `1.5px solid ${GOLD}`,
+                borderRadius: 16,
+                textDecoration: "none",
+                color: GOLD,
+              }}
+            >
+              <PhoneIcon />
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Voir aussi */}
