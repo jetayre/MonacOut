@@ -238,45 +238,67 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           )}
 
-          {/* Bas de carte : lien + icône tel + favori */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 6 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {event.link && (
-                <a
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  style={{
-                    fontFamily: "'Josefin Sans', sans-serif",
-                    fontSize: 11, fontWeight: 600, letterSpacing: 2,
-                    textTransform: "uppercase", color: "#000000",
-                    borderBottom: `1px solid ${GOLD}`,
-                    paddingBottom: 1,
-                    textDecoration: "none",
-                  }}
-                >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book →" : "Réserver →")}</a>
-              )}
-              {event.phone && (
-                <a
-                  href={`tel:${event.phone}`}
-                  onClick={e => e.stopPropagation()}
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    width: 30, height: 30, flexShrink: 0,
-                    border: `1.5px solid ${GOLD}`,
-                    borderRadius: 1,
-                    textDecoration: "none", color: GOLD,
-                  }}
-                ><PhoneIcon /></a>
-              )}
-              {!event.link && !event.phone && <span />}
-            </div>
+          {/* Bas de carte : bouton ghost centré + favori */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 10 }}>
+            {(event.link || event.phone) ? (
+              <div style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "stretch",
+                border: `1px solid ${GOLD_FRAME}`,
+                borderRadius: 1,
+                height: 44,
+                overflow: "hidden",
+              }}>
+                {event.link ? (
+                  <a
+                    href={event.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      flex: 1,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontFamily: "'Josefin Sans', sans-serif",
+                      fontSize: 11, fontWeight: 600, letterSpacing: 2,
+                      textTransform: "uppercase", color: "#000000",
+                      textDecoration: "none",
+                    }}
+                  >{event.free ? (lang === "en" ? "MORE INFO" : "PLUS D'INFOS") : (lang === "en" ? "BOOK" : "RÉSERVER")}</a>
+                ) : (
+                  <a
+                    href={`tel:${event.phone}`}
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      flex: 1,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      textDecoration: "none", color: GOLD,
+                    }}
+                  ><PhoneIcon /></a>
+                )}
+                {event.link && event.phone && (
+                  <>
+                    <div style={{ width: 1, background: GOLD_FRAME, flexShrink: 0 }} />
+                    <a
+                      href={`tel:${event.phone}`}
+                      onClick={e => e.stopPropagation()}
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        width: 44, flexShrink: 0,
+                        textDecoration: "none", color: GOLD,
+                      }}
+                    ><PhoneIcon /></a>
+                  </>
+                )}
+              </div>
+            ) : (
+              <span style={{ flex: 1 }} />
+            )}
             <button
               onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
               style={{
                 background: "none", border: "none",
-                cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0,
+                cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
               }}
             >{isFav ? "❤️" : "🤍"}</button>
           </div>
