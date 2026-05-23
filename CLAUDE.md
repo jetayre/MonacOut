@@ -215,6 +215,12 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
     **Exception autorisée** : `mairie.mc` peut être utilisé comme `link` uniquement pour les événements en plein air ou dans des espaces publics qui n'ont pas de page de billetterie ou de lieu propre (feux d'artifice, fête nationale, yoga sur la plage, marchés…). Dans ce cas, `mairie.mc/agenda` est acceptable.
     Ces sites ne servent sinon qu'à la découverte (`source`). Le `link` doit pointer vers **le site du lieu ou de la billetterie officielle**. Si aucun lien direct n'existe, ne pas mettre de `link` plutôt que de mettre un lien inutile.
 
+16. **Vérification obligatoire des dates avant publication** : ne jamais inventer ou extrapoler une date. Avant d'ajouter un événement, **vérifier la date sur la source officielle** (site du lieu, billetterie, ou source indiquée dans la table des sources). En particulier :
+    - Vérifier le **jour de la semaine** avec `new Date(année, mois-1, jour).getDay()` (règle 7)
+    - Vérifier que le **mois et l'année** correspondent bien à l'édition annoncée (ex : un salon annuel peut changer de date d'une année à l'autre)
+    - Si la date n'est pas encore publiée par l'organisateur, **ne pas créer l'événement** — attendre la confirmation officielle
+    - Un événement avec une date incorrecte est pire qu'un événement absent : il trompe l'utilisateur
+
 ---
 
 ## Récurrences générées (événements automatiques par lieu)
