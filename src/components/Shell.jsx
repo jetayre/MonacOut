@@ -186,7 +186,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                     )}
                     {selectedEvent.phone && (
                       <button
-                        onClick={() => setShowPhone(v => !v)}
+                        onClick={() => { if (showPhone) window.location.href = `tel:${selectedEvent.phone}`; else setShowPhone(true); }}
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center",
                           width: showPhone ? "auto" : 44, padding: showPhone ? "0 10px" : 0,
