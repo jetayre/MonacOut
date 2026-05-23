@@ -126,6 +126,12 @@ const SOURCE_VENUE = {
   'Théâtre des Muses Monaco':        'Théâtre des Muses · Monaco',
   'Théâtre Fort Antoine':            'Théâtre du Fort Antoine · Monaco',
   'Théâtre des Variétés Monaco':     'Théâtre des Variétés · Monaco',
+  // ── Institutionnel & tourisme ────────────────────────────────────────────
+  'Your Monaco':                     'Monaco',
+  'Visit Monaco':                    'Monaco',
+  'CREM Monaco':                     'Club des Résidents Étrangers · Monaco',
+  'YCM Monaco':                      'Yacht Club de Monaco · Port Hercule',
+  'Monaco Info':                     'Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -258,6 +264,8 @@ function inferCat(title, source) {
   if (source === 'Jack Monaco') return 'APÉRO';
   if (source === 'Nobu Monte-Carlo') return 'SOIRÉE';
   if (source === 'Grimaldi Forum') return 'SPECTACLE';
+  if (source === 'YCM Monaco') return 'SPORT';
+  if (source === 'CREM Monaco') return 'APÉRO';
   if (source === 'Théâtre Princesse Grace') return 'THÉÂTRE';
   if (source === 'Théâtre des Muses Monaco') return 'THÉÂTRE';
   if (source === 'Théâtre Fort Antoine') return 'THÉÂTRE';
@@ -592,7 +600,10 @@ async function main() {
     { name: 'Monaco Run',         fn: p => scrapeGeneric(p, 'https://www.monacorun.com',                               'Monaco Run') },
     // ── Culture & divertissement ─────────────────────────────────────────────
     { name: 'Principocket',        fn: scrapePrincipocket },
-    { name: 'Mairie Monaco',      fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                            'Mairie de Monaco') },
+    { name: 'Your Monaco',        fn: p => scrapeGeneric(p, 'https://yourmonaco.mc/en/latest-features/events-calendar', 'Your Monaco') },
+    { name: 'Visit Monaco',       fn: p => scrapeGeneric(p, 'https://www.visitmonaco.com/fr/page/evenements/168',        'Visit Monaco') },
+    { name: 'Mairie Monaco',      fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                              'Mairie de Monaco') },
+    { name: 'CREM Monaco',        fn: p => scrapeGeneric(p, 'https://www.crem.mc/agenda',                                'CREM Monaco') },
     { name: 'La Note Bleue',      fn: p => scrapeGeneric(p, 'https://lanotebleue.mc/en/',                              'La Note Bleue') },
     { name: 'TV Festival',        fn: p => scrapeGeneric(p, 'https://www.tvfestival.com/en/programme/',                 'TV Festival Monte-Carlo') },
     { name: 'NMNM',               fn: p => scrapeGeneric(p, 'https://www.nmnm.mc/en/events',                           'NMNM Monaco') },
@@ -634,6 +645,7 @@ async function main() {
     // ── Apéro & nightlife ────────────────────────────────────────────────────
     { name: 'Equivoque',          fn: p => scrapeGeneric(p, 'http://www.equivoquemc.com/',                               'Equivoque Rooftop') },
     { name: 'La Môme MC',         fn: p => scrapeGeneric(p, 'https://www.lamome-montecarlo.com/',                        'La Môme Monte-Carlo') },
+    { name: 'YCM calendar',       fn: p => scrapeGeneric(p, 'https://www.yacht-club-monaco.mc/en/event/calendar/',    'YCM Monaco') },
     { name: 'YCM events',         fn: p => scrapeGeneric(p, 'https://www.ycm.mc/fr/programme-de-la-semaine',             'Wine Palace YCM') },
     { name: 'AMU MC',             fn: p => scrapeGeneric(p, 'https://www.amu-mc.com/',                                   'AMU Monte Carlo') },
     { name: 'New Moods',          fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/spectacles/new-moods',     'New Moods Monte-Carlo') },
