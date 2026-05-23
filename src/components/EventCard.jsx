@@ -133,6 +133,14 @@ const GREY = "#4f4b4b";
 const WHITE = "#FFFFFF";
 const CREAM = "#FFFFFF";
 
+function PhoneIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
+    </svg>
+  );
+}
+
 const JOURS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
 const MOIS = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
 
@@ -230,36 +238,40 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           )}
 
-          {/* Bas de carte : lien + favori */}
+          {/* Bas de carte : lien + icône tel + favori */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 6 }}>
-            {event.link ? (
-              <a
-                href={event.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={e => { e.stopPropagation(); }}
-                style={{
-                  fontFamily: "'Josefin Sans', sans-serif",
-                  fontSize: 11, fontWeight: 600, letterSpacing: 2,
-                  textTransform: "uppercase", color: "#000000",
-                  borderBottom: `1px solid ${GOLD}`,
-                  paddingBottom: 1,
-                  textDecoration: "none",
-                }}
-              >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book →" : "Réserver →")}</a>
-            ) : (
-              event.phone ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {event.link && (
+                <a
+                  href={event.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    fontFamily: "'Josefin Sans', sans-serif",
+                    fontSize: 11, fontWeight: 600, letterSpacing: 2,
+                    textTransform: "uppercase", color: "#000000",
+                    borderBottom: `1px solid ${GOLD}`,
+                    paddingBottom: 1,
+                    textDecoration: "none",
+                  }}
+                >{event.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book →" : "Réserver →")}</a>
+              )}
+              {event.phone && (
                 <a
                   href={`tel:${event.phone}`}
                   onClick={e => e.stopPropagation()}
                   style={{
-                    fontFamily: "'Lato', sans-serif",
-                    fontSize: 16, color: GOLD,
-                    textDecoration: "none", letterSpacing: 0.3,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    width: 30, height: 30, flexShrink: 0,
+                    border: `1.5px solid ${GOLD}`,
+                    borderRadius: 1,
+                    textDecoration: "none", color: GOLD,
                   }}
-                >{event.phone}</a>
-              ) : <span />
-            )}
+                ><PhoneIcon /></a>
+              )}
+              {!event.link && !event.phone && <span />}
+            </div>
             <button
               onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
               style={{
@@ -268,20 +280,6 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               }}
             >{isFav ? "❤️" : "🤍"}</button>
           </div>
-
-          {/* Téléphone (si lien ET téléphone) */}
-          {event.phone && event.link && (
-            <a
-              href={`tel:${event.phone}`}
-              onClick={e => e.stopPropagation()}
-              style={{
-                fontFamily: "'Lato', sans-serif",
-                fontSize: 13, color: GOLD,
-                textDecoration: "none", letterSpacing: 0.3,
-                display: "block", marginTop: 6,
-              }}
-            >{event.phone}</a>
-          )}
         </div>
       </div>
     </div>
