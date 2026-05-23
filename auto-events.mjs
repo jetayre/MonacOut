@@ -634,6 +634,12 @@ async function main() {
   // ── Scraping ────────────────────────────────────────────────────────────────
   let allCandidates = [];
   const scrapers = [
+    // ── Sources officielles générales (agrégateurs Monaco — scrapées en premier) ──
+    { name: 'Principocket',      fn: scrapePrincipocket },
+    { name: 'Your Monaco',       fn: p => scrapeGeneric(p, 'https://yourmonaco.mc/en/latest-features/events-calendar',     'Your Monaco') },
+    { name: 'Mairie Monaco',     fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                                 'Mairie de Monaco') },
+    { name: 'Visit Monaco',      fn: p => scrapeGeneric(p, 'https://www.visitmonaco.com/fr/page/evenements/168',           'Visit Monaco') },
+    { name: 'Musée Océano',      fn: p => scrapeGeneric(p, 'https://musee.oceano.org/fr/activites',                       'Musée Océanographique') },
     // ── Sources culturelles ──────────────────────────────────────────────────
     { name: 'OPMC',              fn: scrapeOPMC },
     { name: 'Grimaldi Forum',    fn: scrapeGrimaldiForum },
@@ -666,10 +672,6 @@ async function main() {
     { name: 'Herculis',           fn: p => scrapeGeneric(p, 'https://monaco.diamondleague.com/meeting/herculis/',       'Herculis Monaco') },
     { name: 'Monaco Run',         fn: p => scrapeGeneric(p, 'https://www.monacorun.com',                               'Monaco Run') },
     // ── Culture & divertissement ─────────────────────────────────────────────
-    { name: 'Principocket',        fn: scrapePrincipocket },
-    { name: 'Your Monaco',        fn: p => scrapeGeneric(p, 'https://yourmonaco.mc/en/latest-features/events-calendar',          'Your Monaco') },
-    { name: 'Visit Monaco',       fn: p => scrapeGeneric(p, 'https://www.visitmonaco.com/fr/page/evenements/168',                'Visit Monaco') },
-    { name: 'Mairie Monaco',      fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                                      'Mairie de Monaco') },
     { name: 'CREM Monaco',        fn: p => scrapeGeneric(p, 'https://www.crem.mc/agenda',                                        'CREM Monaco') },
     { name: 'Médiathèque',        fn: p => scrapeGeneric(p, 'https://www.mediatheque.mc/search.aspx?SC=CALENDAR_PLANNER_1',      'Médiathèque Monaco') },
     { name: 'Léo Ferré',           fn: p => scrapeGeneric(p, 'https://www.espaceleoferre.mc/',                         'Espace Léo Ferré') },
@@ -682,7 +684,6 @@ async function main() {
     { name: 'TV Festival',        fn: p => scrapeGeneric(p, 'https://www.tvfestival.com/en/programme/',                 'TV Festival Monte-Carlo') },
     { name: 'NMNM',               fn: p => scrapeGeneric(p, 'https://www.nmnm.mc/en/events',                           'NMNM Monaco') },
     { name: 'Philomonaco',        fn: p => scrapeGeneric(p, 'https://www.philomonaco.com/evenements',                  'Philomonaco') },
-    { name: 'Musée Océano',       fn: p => scrapeGeneric(p, 'https://musee.oceano.org/fr/activites',                   'Musée Océanographique') },
     { name: 'OPMC saison',        fn: p => scrapeGeneric(p, 'https://opmc.mc/en/season-25-26/',                        'OPMC') },
     { name: 'TPG Monaco',         fn: p => scrapeGeneric(p, 'https://www.tpgmonaco.mc/fr/programme',                    'Théâtre Princesse Grace') },
     { name: 'Théâtre des Muses',  fn: p => scrapeGeneric(p, 'https://www.letheatredesmuses.com/',                       'Théâtre des Muses Monaco') },
