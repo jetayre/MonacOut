@@ -196,6 +196,25 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 12. **Principocket** (`principocket.com`) : source interne de découverte uniquement. Les liens et le nom du site ne doivent **jamais** être surfacés dans l'app. Les événements trouvés via principocket affichent le lieu officiel comme `source` et `link`.
 
+13. **Lieu précis obligatoire** : le champ `subtitle` doit toujours contenir le nom exact de la salle ou du lieu (pas seulement la ville). Exemples corrects :
+    - `subtitle: "Salle Garnier · Monte-Carlo"` ✅
+    - `subtitle: "Médiathèque Caroline · Monaco"` ✅
+    - `subtitle: "Espace Léo Ferré · Fontvieille"` ✅
+    - `subtitle: "Monaco"` ❌ (trop vague)
+    - `subtitle: "Monte-Carlo"` ❌ (trop vague)
+    Le format cible est `"Salle / Lieu · Quartier"`. Toujours renseigner le quartier dans `quarter` également.
+
+14. **Téléphone obligatoire** : le champ `phone` doit toujours être renseigné quand un numéro de téléphone existe pour le lieu. Consulter la table des sources ci-dessus — elle contient les téléphones de tous les lieux récurrents. Ne jamais laisser `phone: ""` (champ vide) : soit renseigner le numéro, soit ne pas inclure le champ `phone` du tout.
+
+15. **Interdiction des liens généralistes** : les sites agrégateurs ou d'agenda générique ne doivent **jamais** apparaître dans le champ `link`. Sont interdits comme `link` :
+    - `visitmonaco.com` / `yourmonaco.mc` — interdits même pour les pages de lieu
+    - `principocket.com` — interdit (source interne uniquement, règle 12)
+    - `monte-carlo.mc` — interdit (portail SBM généraliste, même pour les pages "Théâtre des Variétés")
+    - `culture.mc/en/what-s-on` ou toute page d'agenda de culture.mc — interdit
+    - tout autre site d'office du tourisme ou d'agenda générique
+    **Exception autorisée** : `mairie.mc` peut être utilisé comme `link` uniquement pour les événements en plein air ou dans des espaces publics qui n'ont pas de page de billetterie ou de lieu propre (feux d'artifice, fête nationale, yoga sur la plage, marchés…). Dans ce cas, `mairie.mc/agenda` est acceptable.
+    Ces sites ne servent sinon qu'à la découverte (`source`). Le `link` doit pointer vers **le site du lieu ou de la billetterie officielle**. Si aucun lien direct n'existe, ne pas mettre de `link` plutôt que de mettre un lien inutile.
+
 ---
 
 ## Récurrences générées (événements automatiques par lieu)
@@ -270,7 +289,7 @@ monacout/
 │   └── components/
 │       ├── Shell.jsx              ← frame iPhone 393×852, nav bar (FR gauche + EN/loupe droite), category bar, scroll
 │       ├── EventCard.jsx          ← carte événement (cadre or/navy, date centrée + heure, bouton "Let's go")
-│       ├── MonacOutLogo.jsx       ← logo bicolore : "Monac" Cormorant Garamond or #C9A96E + "Out" Great Vibes navy #0F1D3A
+│       ├── MonacOutLogo.jsx       ← logo nautique : grand M Playfair Display navy + MONAC'OUT Josefin Sans, cadre double or/navy
 │       ├── CalendarPicker.jsx     ← sélecteur de date pour filtre agenda
 │       ├── SectionTitle.jsx       ← titre de section
 │       └── screens/
@@ -354,26 +373,28 @@ Filtre quartier dans `HomeScreen` (barre secondaire, disparaît au scroll) :
 - **Boutons filtres inactifs** : fond ivoire `#FDFAF5` (même couleur que les cartes événements).
 - **Bouton billetterie** : "Let's go" (payant) / "Plus d'infos" (gratuit) / "More info" / "Book" (EN).
 
-### Shell.jsx — nav bar
+### Shell.jsx — navigation
 
-- **FR** : bouton à gauche de l'onglet MC Events — `setLang("fr")`, toujours transparent (pas de fond coloré actif).
-- **EN** : bouton à droite de l'onglet My Agenda.
-- **Loupe 🔍** : entre My Agenda et EN — toggle `showSearch` (state dans App.jsx).
-- **Header** : fond ivoire `#FDFAF5` (pas blanc).
+- **Pas de nav bar en bas** : navigation gérée via panneau coulissant (menu hamburger) + cœur favoris.
+- **Panneau menu** : slide depuis la droite (width 250px), boutons FR / EN avec indicateur point or, lien Agenda.
+- **Overlay sombre** `rgba(0,0,0,0.4)` quand menu ouvert, fermeture au clic overlay.
+- **Popup événement** : centré dans la frame, cadre extérieur `1.5px solid #C9A96E` (or) + intérieur `1.5px solid #9FC3DC` (bleu nautique).
+- **Couleurs Shell** : `GOLD = "#C4A241"` (icônes/catégories) · `GOLD_FRAME = "#C9A96E"` (cadres popup) · `BLUE = "#9FC3DC"` (popup intérieur, rayures).
 
-### MonacOutLogo.jsx — design
+### MonacOutLogo.jsx — design (style nautique Monaco, validé 2026-05-21)
 
-- **"Monac"** : Cormorant Garamond, weight 300, or doux `#C9A96E`, 106px (scale 190/290).
-- **"Out"** : Great Vibes (script cursive), weight 400, navy `#0F1D3A`, 108px.
-- Police Great Vibes chargée dans `index.css` via Google Fonts.
+Logo cadre double bicolore sur fond blanc :
+- Cadre extérieur : `2px solid #C9A96E` (or)
+- Cadre intérieur : `2px solid #0F1D3A` (navy)
+- **Grand M** : Playfair Display Bold, 72px, navy `#0F1D3A`, lettre signature
+- **MONAC'** : Josefin Sans 400, 13px, navy, letterSpacing 7, uppercase
+- **OUT** : Josefin Sans 600, 13px, or `#C9A96E`, letterSpacing 4, uppercase
 
-### HomeScreen.jsx — cadre logo
+### HomeScreen.jsx — header logo (style rayures nautiques)
 
-Cadre double bicolore : extérieur `1.5px solid #C9A96E` (or) + intérieur `2px solid #0F1D3A` (navy).
-Coins ornementaux ✦ en or aux 4 angles. Contenu (haut → bas) :
-1. **MONACO SECRET** — Cormorant Garamond 12px bold, navy, petites majuscules, marginTop 8px
-2. **MonacOutLogo** width=190
-3. **MONACO LIFESTYLE & EVENTS AGENDA** — même style, marginTop 3px
+Fond rayures diagonales nautiques (`STRIPE_BG`) : `repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)`.
+Layout horizontal : **hamburger** (gauche) + **MonacOutLogo width=220** (centré) + **cœur favoris** (droite).
+Le bloc "MONACO SECRET" + "MONACO LIFESTYLE & EVENTS AGENDA" et les coins ✦ ont été supprimés.
 
 ---
 
