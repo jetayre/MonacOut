@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const GOLD = "#a88421";
 const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
@@ -151,6 +153,7 @@ function todayFrDate() {
 
 export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr" }) {
   const isFav = favorites?.includes(event.id);
+  const [showPhone, setShowPhone] = useState(false);
   const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
@@ -182,22 +185,19 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           }}>{event.cat}</div>
 
           {/* Date + heure */}
-          <div style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 14,
-          }}>
-            <span style={{
+          <div style={{ marginBottom: 14 }}>
+            <div style={{
               fontFamily: "'Lato', sans-serif",
               fontSize: 13, fontWeight: 700, letterSpacing: 1.2,
               textTransform: "uppercase", color: GREY,
-            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+              textAlign: "center",
+            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</div>
             {event.time && (
-              <>
-                <span style={{ color: GOLD_FRAME, fontSize: 13 }}>·</span>
-                <span style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: 13, fontWeight: 400, color: GREY,
-                }}>{event.time}</span>
-              </>
+              <div style={{
+                fontFamily: "'Lato', sans-serif",
+                fontSize: 12, fontWeight: 400, color: GREY,
+                textAlign: "left", marginTop: 4,
+              }}>{event.time}</div>
             )}
           </div>
 
@@ -265,28 +265,29 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     }}
                   >{event.free ? (lang === "en" ? "MORE INFO" : "PLUS D'INFOS") : (lang === "en" ? "BOOK" : "RÉSERVER")}</a>
                 ) : (
-                  <a
-                    href={`tel:${event.phone}`}
-                    onClick={e => e.stopPropagation()}
+                  <button
+                    onClick={e => { e.stopPropagation(); setShowPhone(v => !v); }}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      padding: "0 16px",
-                      textDecoration: "none", color: GOLD,
+                      padding: showPhone ? "0 10px" : "0 16px",
+                      background: "none", border: "none", cursor: "pointer",
+                      color: GOLD, fontFamily: "'Lato', sans-serif", fontSize: 11,
                     }}
-                  ><PhoneIcon /></a>
+                  >{showPhone ? event.phone : <PhoneIcon />}</button>
                 )}
                 {event.link && event.phone && (
                   <>
                     <div style={{ width: 1, background: GOLD_FRAME, flexShrink: 0 }} />
-                    <a
-                      href={`tel:${event.phone}`}
-                      onClick={e => e.stopPropagation()}
+                    <button
+                      onClick={e => { e.stopPropagation(); setShowPhone(v => !v); }}
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        width: 36, flexShrink: 0,
-                        textDecoration: "none", color: GOLD,
+                        width: showPhone ? "auto" : 36, padding: showPhone ? "0 10px" : 0,
+                        flexShrink: 0, background: "none", border: "none",
+                        cursor: "pointer", color: GOLD,
+                        fontFamily: "'Lato', sans-serif", fontSize: 11,
                       }}
-                    ><PhoneIcon /></a>
+                    >{showPhone ? event.phone : <PhoneIcon />}</button>
                   </>
                 )}
               </div>

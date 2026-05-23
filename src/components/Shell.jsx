@@ -39,6 +39,7 @@ function HeartIcon({ color, active }) {
 }
 
 export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [] }) {
+  const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
       minHeight: "100vh",
@@ -184,16 +185,18 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                       >{selectedEvent.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book" : "Je réserve")}</a>
                     )}
                     {selectedEvent.phone && (
-                      <a
-                        href={`tel:${selectedEvent.phone}`}
+                      <button
+                        onClick={() => setShowPhone(v => !v)}
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          width: 44, flexShrink: 0,
+                          width: showPhone ? "auto" : 44, padding: showPhone ? "0 10px" : 0,
+                          flexShrink: 0,
                           border: `1.5px solid ${GOLD}`,
                           borderRadius: 1,
-                          textDecoration: "none", color: GOLD,
+                          background: "none", cursor: "pointer", color: GOLD,
+                          fontFamily: "'Lato', sans-serif", fontSize: 11,
                         }}
-                      ><PhoneIcon /></a>
+                      >{showPhone ? selectedEvent.phone : <PhoneIcon />}</button>
                     )}
                   </div>
                 )}

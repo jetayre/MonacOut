@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 
 function PhoneIcon() {
@@ -29,6 +30,7 @@ function handleShare(event, lang) {
 }
 
 export default function DetailScreen({ event, onBack, favorites, onToggleFav, onSelectEvent, onCategoryClick, lang = "fr" }) {
+  const [showPhone, setShowPhone] = useState(false);
   if (!event) return null;
   const isFav = favorites?.includes(event.id);
 
@@ -227,22 +229,26 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             </a>
           )}
           {event.phone && (
-            <a
-              href={`tel:${event.phone}`}
+            <button
+              onClick={() => setShowPhone(v => !v)}
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: 52,
+                width: showPhone ? "auto" : 52,
+                padding: showPhone ? "0 14px" : 0,
                 flexShrink: 0,
                 border: `1.5px solid ${GOLD}`,
                 borderRadius: 16,
-                textDecoration: "none",
+                background: "none",
+                cursor: "pointer",
                 color: GOLD,
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 12,
               }}
             >
-              <PhoneIcon />
-            </a>
+              {showPhone ? event.phone : <PhoneIcon />}
+            </button>
           )}
         </div>
       </div>
