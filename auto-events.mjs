@@ -139,6 +139,39 @@ const SOURCE_VENUE = {
   'Café de Paris SBM':               'Café de Paris · Place du Casino · Monaco',
   'Café Repossi SBM':                'Café Repossi · Hôtel Hermitage · Monaco',
   'Panino Club Monaco':              'Panino Club · Bd des Moulins · Monaco',
+  'Brasserie de Monaco':             'La Brasserie de Monaco · Fontvieille',
+  'Buddha-Bar Monte-Carlo':          'Buddha-Bar · Fairmont Monte Carlo',
+  // ── Lieux culturels supplémentaires ─────────────────────────────────────
+  'Espace Léo Ferré':                'Espace Léo Ferré · Fontvieille · Monaco',
+  'Cathédrale Saint-Nicolas':        'Cathédrale de Monaco · Monaco-Ville',
+  'Paroisse Sacré-Cœur Monaco':      'Église du Sacré-Cœur · Monaco',
+  'Sporting Monte-Carlo':            'Salle du Sporting · Monte-Carlo',
+  'Académie Musique Monaco':         'Académie de Musique Prince Rainier III · Monaco',
+  'Monaco Beaux-Arts':               'Monaco Beaux-Arts · Monaco',
+  // ── Sport supplémentaire ────────────────────────────────────────────────
+  'Monte-Carlo Masters':             'Monte-Carlo Country Club · Roquebrune-Cap-Martin',
+  'Club Bouliste Monaco':            'Cercle Bouliste · Monaco',
+  'Ironman Monaco':                  'Monaco',
+  // ── Enchères supplémentaires ────────────────────────────────────────────
+  'HVMC Enchères':                   'HVMC · Monaco',
+  'Artcurial Monaco':                'Artcurial · Monaco',
+  // ── Ateliers enfants ────────────────────────────────────────────────────
+  'Happy Chou':                      'Happy Chou · Monaco',
+  'Belcat Events':                   'Belcat Events · Monaco',
+  'Little Wonders Monaco':           'Little Wonders Monaco',
+  'Femina Sports Monaco':            'Femina Sports Monaco',
+  'Académie Mer Monaco':             'Académie Monégasque de la Mer · Monaco',
+  'Académie Princesse Grace':        'Académie Princesse Grace · Monaco',
+  // ── Conférences ─────────────────────────────────────────────────────────
+  'One to One Monaco':               'Grimaldi Forum · Monaco',
+  'PCD Group Monaco':                'Monaco',
+  'Monaco Blue Initiative':          'Monaco',
+  'Blue Economy Forum':              'Monaco',
+  'MonacoTech':                      'MonacoTech · Monaco',
+  'Sohn Monaco':                     'Monaco',
+  'Smart Marina Monaco':             'Monaco',
+  'SPORTEL Monaco':                  'Grimaldi Forum · Monaco',
+  'EVER Monaco':                     'Grimaldi Forum · Monaco',
 };
 
 const UI_NOISE = new Set([
@@ -277,6 +310,26 @@ function inferCat(title, source) {
   if (source === 'Marius Monaco') return 'APÉRO';
   if (source === 'Café de Paris SBM') return 'SOIRÉE';
   if (source === 'Café Repossi SBM') return 'APÉRO';
+  if (source === 'Brasserie de Monaco') return 'BRUNCH';
+  if (source === 'Buddha-Bar Monte-Carlo') return 'SOIRÉE';
+  if (source === 'Espace Léo Ferré') return 'CONCERT';
+  if (source === 'Cathédrale Saint-Nicolas') return 'CHANTS';
+  if (source === 'Paroisse Sacré-Cœur Monaco') return 'CHANTS';
+  if (source === 'Sporting Monte-Carlo') return 'DANSE';
+  if (source === 'Académie Musique Monaco') return 'ATELIER';
+  if (source === 'Monaco Beaux-Arts') return 'ATELIER';
+  if (source === 'Monte-Carlo Masters') return 'TENNIS';
+  if (source === 'Club Bouliste Monaco') return 'SPORT';
+  if (source === 'Ironman Monaco') return 'SPORT';
+  if (source === 'HVMC Enchères') return 'ENCHÈRES';
+  if (source === 'Artcurial Monaco') return 'ENCHÈRES';
+  if (source === 'Happy Chou') return 'ATELIER';
+  if (source === 'Belcat Events') return 'ATELIER';
+  if (source === 'Little Wonders Monaco') return 'ATELIER';
+  if (source === 'Femina Sports Monaco') return 'SPORT';
+  if (source === 'Académie Mer Monaco') return 'SPORT';
+  if (source === 'Académie Princesse Grace') return 'DANSE';
+  if (['One to One Monaco','PCD Group Monaco','Monaco Blue Initiative','Blue Economy Forum','MonacoTech','Sohn Monaco','Smart Marina Monaco','SPORTEL Monaco','EVER Monaco'].includes(source)) return 'CONFÉRENCE';
   if (source === 'Théâtre Princesse Grace') return 'THÉÂTRE';
   if (source === 'Théâtre des Muses Monaco') return 'THÉÂTRE';
   if (source === 'Théâtre Fort Antoine') return 'THÉÂTRE';
@@ -616,7 +669,13 @@ async function main() {
     { name: 'Mairie Monaco',      fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                                      'Mairie de Monaco') },
     { name: 'CREM Monaco',        fn: p => scrapeGeneric(p, 'https://www.crem.mc/agenda',                                        'CREM Monaco') },
     { name: 'Médiathèque',        fn: p => scrapeGeneric(p, 'https://www.mediatheque.mc/search.aspx?SC=CALENDAR_PLANNER_1',      'Médiathèque Monaco') },
-    { name: 'La Note Bleue',      fn: p => scrapeGeneric(p, 'https://lanotebleue.mc/en/',                              'La Note Bleue') },
+    { name: 'Léo Ferré',           fn: p => scrapeGeneric(p, 'https://www.espaceleoferre.mc/',                         'Espace Léo Ferré') },
+    { name: 'Cathédrale MC',       fn: p => scrapeGeneric(p, 'https://www.maitrisecathedrale.mc/fr/prochaines-dates',    'Cathédrale Saint-Nicolas') },
+    { name: 'Sacré-Cœur',          fn: p => scrapeGeneric(p, 'https://saintmartin.diocese.mc',                            'Paroisse Sacré-Cœur Monaco') },
+    { name: 'Sporting MC',         fn: p => scrapeGeneric(p, 'https://meetings.montecarlosbm.com/en/sporting-monte-carlo','Sporting Monte-Carlo') },
+    { name: 'Académie Musique',    fn: p => scrapeGeneric(p, 'https://academierainier3.mc/en',                            'Académie Musique Monaco') },
+    { name: 'Beaux-Arts MC',       fn: p => scrapeGeneric(p, 'https://www.monacobeauxarts.com',                           'Monaco Beaux-Arts') },
+    { name: 'La Note Bleue',       fn: p => scrapeGeneric(p, 'https://lanotebleue.mc/en/',                                'La Note Bleue') },
     { name: 'TV Festival',        fn: p => scrapeGeneric(p, 'https://www.tvfestival.com/en/programme/',                 'TV Festival Monte-Carlo') },
     { name: 'NMNM',               fn: p => scrapeGeneric(p, 'https://www.nmnm.mc/en/events',                           'NMNM Monaco') },
     { name: 'Philomonaco',        fn: p => scrapeGeneric(p, 'https://www.philomonaco.com/evenements',                  'Philomonaco') },
@@ -627,13 +686,17 @@ async function main() {
     { name: 'Fort Antoine',       fn: p => scrapeGeneric(p, 'https://theatrefortantoine.com/',                          'Théâtre Fort Antoine') },
     { name: 'Théâtre Variétés',   fn: p => scrapeGeneric(p, 'https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes', 'Théâtre des Variétés Monaco') },
     // ── Enchères ─────────────────────────────────────────────────────────────
-    { name: 'RM Sotheby\'s',      fn: p => scrapeGeneric(p, 'https://rmsothebys.com/en/auctions/mc26',                 'RM Sotheby\'s Monaco') },
-    { name: 'Bonhams Monaco',     fn: p => scrapeGeneric(p, 'https://www.bonhams.com/auctions/?department=monaco',     'Bonhams Monaco') },
-    { name: 'Monaco Legend',      fn: p => scrapeGeneric(p, 'https://www.monacolegendauctions.com',                    'Monaco Legend Auctions') },
+    { name: 'RM Sotheby\'s',       fn: p => scrapeGeneric(p, 'https://rmsothebys.com/en/auctions/mc26',                  'RM Sotheby\'s Monaco') },
+    { name: 'Bonhams Monaco',      fn: p => scrapeGeneric(p, 'https://www.bonhams.com/auctions/?department=monaco',      'Bonhams Monaco') },
+    { name: 'Monaco Legend',       fn: p => scrapeGeneric(p, 'https://www.monacolegendauctions.com',                     'Monaco Legend Auctions') },
+    { name: 'HVMC',                fn: p => scrapeGeneric(p, 'https://hvmc.com/ventes-a-venir/',                          'HVMC Enchères') },
+    { name: 'Artcurial',           fn: p => scrapeGeneric(p, 'https://www.artcurial.com/en/specialties/artcurial-monaco', 'Artcurial Monaco') },
     // ── SBM / lifestyle ──────────────────────────────────────────────────────
     { name: 'SBM agenda',         fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/agenda',                 'Monte-Carlo SBM') },
     { name: 'Sass Café',          fn: p => scrapeGeneric(p, 'https://www.sasscafe.com',                                      'Sass Café') },
-    { name: 'Marius Monaco',      fn: p => scrapeGeneric(p, 'https://www.mariusmonaco.com/en/',                                  'Marius Monaco') },
+    { name: 'Marius Monaco',       fn: p => scrapeGeneric(p, 'https://www.mariusmonaco.com/en/',                                   'Marius Monaco') },
+    { name: 'Brasserie Monaco',    fn: p => scrapeGeneric(p, 'https://www.brasserie-de-monaco.com/',                               'Brasserie de Monaco') },
+    { name: 'Buddha-Bar MC',       fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/dining/buddha-bar/',            'Buddha-Bar Monte-Carlo') },
     { name: 'Café de Paris',      fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/restaurant-monaco/le-cafe-de-paris-monte-carlo', 'Café de Paris SBM') },
     { name: 'Café Repossi',       fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/fr/agenda/le-cafe-repossi',          'Café Repossi SBM') },
     { name: 'Panino Club',        fn: p => scrapeGeneric(p, 'https://panino-club.com/',                                          'Panino Club Monaco') },
@@ -657,11 +720,21 @@ async function main() {
     { name: 'Clarins myBlend',    fn: p => scrapeGeneric(p, 'https://www.montecarlobay.com/wellness/',                   'SPA Clarins & myBlend') },
     { name: 'Monaco Wellness',    fn: p => scrapeGeneric(p, 'https://www.monacowellnesssystem.com/',                     'Monaco Wellness System') },
     { name: 'Fairmont wellness',  fn: p => scrapeGeneric(p, 'https://www.fairmont.com/monte-carlo/offers/',              'Fairmont Monte Carlo') },
-    { name: 'Jenna Lifestyle',    fn: p => scrapeGeneric(p, 'http://jennalifestyle.com/',                                'Jenna Lifestyle') },
+    { name: 'Jenna Lifestyle',     fn: p => scrapeGeneric(p, 'http://jennalifestyle.com/',                                 'Jenna Lifestyle') },
+    // ── Ateliers enfants ─────────────────────────────────────────────────
+    { name: 'Happy Chou',          fn: p => scrapeGeneric(p, 'https://happychou.fr',                                       'Happy Chou') },
+    { name: 'Belcat Events',       fn: p => scrapeGeneric(p, 'https://belcatevents.com',                                   'Belcat Events') },
+    { name: 'Little Wonders',      fn: p => scrapeGeneric(p, 'https://littlewondersmonaco.com',                            'Little Wonders Monaco') },
+    { name: 'Femina Sports',       fn: p => scrapeGeneric(p, 'https://feminasports.com/',                                  'Femina Sports Monaco') },
+    { name: 'Académie Mer',        fn: p => scrapeGeneric(p, 'https://www.academiemonegasquedelamer.com/',                 'Académie Mer Monaco') },
+    { name: 'Académie PG',         fn: p => scrapeGeneric(p, 'https://www.balletsdemontecarlo.com/fr/academie-princesse-grace/formations', 'Académie Princesse Grace') },
     // ── Apéro & nightlife ────────────────────────────────────────────────────
     { name: 'Equivoque',          fn: p => scrapeGeneric(p, 'http://www.equivoquemc.com/',                               'Equivoque Rooftop') },
     { name: 'La Môme MC',         fn: p => scrapeGeneric(p, 'https://www.lamome-montecarlo.com/',                        'La Môme Monte-Carlo') },
-    { name: 'YCM calendar',       fn: p => scrapeGeneric(p, 'https://www.yacht-club-monaco.mc/en/event/calendar/',    'YCM Monaco') },
+    { name: 'Tennis Masters',      fn: p => scrapeGeneric(p, 'https://www.montecarlomasters.com/',                       'Monte-Carlo Masters') },
+    { name: 'Club Bouliste',       fn: p => scrapeGeneric(p, 'https://cbmonaco.org',                                        'Club Bouliste Monaco') },
+    { name: 'Ironman Monaco',      fn: p => scrapeGeneric(p, 'https://www.ironman.com/mc-triathlon',                        'Ironman Monaco') },
+    { name: 'YCM calendar',        fn: p => scrapeGeneric(p, 'https://www.yacht-club-monaco.mc/en/event/calendar/',         'YCM Monaco') },
     { name: 'YCM events',         fn: p => scrapeGeneric(p, 'https://www.ycm.mc/fr/programme-de-la-semaine',             'Wine Palace YCM') },
     { name: 'AMU MC',             fn: p => scrapeGeneric(p, 'https://www.amu-mc.com/',                                   'AMU Monte Carlo') },
     { name: 'New Moods',          fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/spectacles/new-moods',     'New Moods Monte-Carlo') },
@@ -674,6 +747,16 @@ async function main() {
     { name: 'Amber Lounge',       fn: p => scrapeGeneric(p, 'https://www.amberlounge.com/events/monaco-2026/',              'Amber Lounge Monaco') },
     { name: 'Jack Monaco',        fn: p => scrapeGeneric(p, 'https://www.jack.mc/',                                          'Jack Monaco') },
     { name: 'Nobu Monte-Carlo',   fn: p => scrapeGeneric(p, 'https://www.fairmont-montecarlo.com/en/events/',                'Nobu Monte-Carlo') },
+    // ── Conférences ──────────────────────────────────────────────────────────
+    { name: 'One to One MC',       fn: p => scrapeGeneric(p, 'https://www.onetoone-retail-ecommerce.com/',                 'One to One Monaco') },
+    { name: 'PCD Monaco',          fn: p => scrapeGeneric(p, 'https://www.pcd.group/',                                     'PCD Group Monaco') },
+    { name: 'Blue Initiative',     fn: p => scrapeGeneric(p, 'https://www.fpa2.org/en/events/monaco-blue-initiative',      'Monaco Blue Initiative') },
+    { name: 'BEFF Monaco',         fn: p => scrapeGeneric(p, 'https://www.beffmonaco.org/',                                'Blue Economy Forum') },
+    { name: 'MonacoTech',          fn: p => scrapeGeneric(p, 'https://www.monacotech.mc/',                                 'MonacoTech') },
+    { name: 'Sohn Monaco',         fn: p => scrapeGeneric(p, 'https://sohnconferences.org/',                               'Sohn Monaco') },
+    { name: 'Smart Marina',        fn: p => scrapeGeneric(p, 'https://m3monaco.com/smart-events/smart-marina/',            'Smart Marina Monaco') },
+    { name: 'SPORTEL MC',          fn: p => scrapeGeneric(p, 'https://www.sportelworld.com/',                              'SPORTEL Monaco') },
+    { name: 'EVER Monaco',         fn: p => scrapeGeneric(p, 'https://www.ever-monaco.com/',                               'EVER Monaco') },
     // ── Associations sans site web détecté (vérifiées, à réessayer) ──────────
     // Monaco Aide et Présence      — aucun site trouvé (vérifié 15/05/2026)
     // Société Saint-Vincent de Paul Monaco — aucun site trouvé
