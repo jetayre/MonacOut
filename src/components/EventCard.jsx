@@ -185,19 +185,20 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           }}>{event.cat}</div>
 
           {/* Date + heure */}
-          <div style={{ marginBottom: 14 }}>
-            <div style={{
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            marginBottom: 14,
+          }}>
+            <span style={{
               fontFamily: "'Lato', sans-serif",
               fontSize: 13, fontWeight: 700, letterSpacing: 1.2,
               textTransform: "uppercase", color: GREY,
-              textAlign: "center",
-            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</div>
+            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
             {event.time && (
-              <div style={{
+              <span style={{
                 fontFamily: "'Lato', sans-serif",
                 fontSize: 12, fontWeight: 400, color: GREY,
-                textAlign: "left", marginTop: 4,
-              }}>{event.time}</div>
+              }}>{event.time}</span>
             )}
           </div>
 
