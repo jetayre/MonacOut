@@ -123,7 +123,6 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const [rangeEnd, setRangeEnd] = useState(null);
   const [quarterFilter, setQuarterFilter] = useState(null);
   const [filtersVisible, setFiltersVisible] = useState(true);
-  const [logoCollapsed, setLogoCollapsed] = useState(false);
 
   useEffect(() => {
     const el = document.getElementById("main-scroll");
@@ -131,7 +130,6 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     let lastY = 0;
     const handler = () => {
       const y = el.scrollTop;
-      setLogoCollapsed(y > 60);
       if (y < 10) setFiltersVisible(true);
       else if (y > lastY + 6) setFiltersVisible(false);
       else if (y < lastY - 6) setFiltersVisible(true);
@@ -173,41 +171,17 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
       <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
 
-        {/* Logo complet — fond rayures */}
-        <div style={{ maxHeight: logoCollapsed ? 0 : 160, overflow: "hidden", transition: "max-height 0.3s ease" }}>
-          <div style={{ background: STRIPE_BG, padding: "10px 14px", position: "relative", display: "flex", alignItems: "center" }}>
-
-            {/* ☰ gauche */}
-            <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
-              <HamburgerIcon />
-            </button>
-
-            {/* Logo centré */}
-            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <MonacOutLogo width={220} />
-            </div>
-
-            {/* ❤️ droite */}
-            <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
-              <HeartIcon hasFavs={hasFavs} />
-            </button>
+        {/* Logo — toujours visible */}
+        <div style={{ background: STRIPE_BG, padding: "10px 14px", display: "flex", alignItems: "center" }}>
+          <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
+            <HamburgerIcon />
+          </button>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <MonacOutLogo width={220} />
           </div>
-        </div>
-
-        {/* Mini logo avec ☰ et ❤️ — apparaît au scroll */}
-        <div style={{ maxHeight: logoCollapsed ? 44 : 0, overflow: "hidden", transition: "max-height 0.3s ease" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 14px", background: STRIPE_BG }}>
-            <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
-              <HamburgerIcon />
-            </button>
-            <div style={{ background: CREAM, border: `1.5px solid ${GOLD}`, padding: "4px 14px", display: "inline-flex", alignItems: "baseline", gap: 0 }}>
-              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: 4, color: NAVY, textTransform: "uppercase" }}>MONAC'</span>
-              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: 3, color: GOLD, textTransform: "uppercase" }}>OUT</span>
-            </div>
-            <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
-              <HeartIcon hasFavs={hasFavs} />
-            </button>
-          </div>
+          <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
+            <HeartIcon hasFavs={hasFavs} />
+          </button>
         </div>
 
         {/* Filtres temps — disparaissent au scroll */}
