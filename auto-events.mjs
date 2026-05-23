@@ -637,6 +637,7 @@ async function main() {
     // ── Sources officielles générales (agrégateurs Monaco — scrapées en premier) ──
     { name: 'Principocket',      fn: scrapePrincipocket },
     { name: 'Your Monaco',       fn: p => scrapeGeneric(p, 'https://yourmonaco.mc/en/latest-features/events-calendar',     'Your Monaco') },
+    { name: 'Your Monaco home',  fn: p => scrapeGeneric(p, 'https://yourmonaco.mc',                                        'Your Monaco') },
     { name: 'Mairie Monaco',     fn: p => scrapeGeneric(p, 'https://www.mairie.mc/agenda',                                 'Mairie de Monaco') },
     { name: 'Visit Monaco',      fn: p => scrapeGeneric(p, 'https://www.visitmonaco.com/fr/page/evenements/168',           'Visit Monaco') },
     { name: 'Musée Océano',      fn: p => scrapeGeneric(p, 'https://musee.oceano.org/fr/activites',                       'Musée Océanographique') },
