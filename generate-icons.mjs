@@ -14,7 +14,7 @@ const SIZES = [192, 512, 1024];
 const GOLD  = '#C9A96E';
 const NAVY  = '#0F1D3A';
 const BLUE  = '#9FC3DC';
-const CREAM = '#FDFAF5';
+const CREAM = '#FFFFFF';
 
 const browser = await chromium.launch();
 const page    = await browser.newPage();
