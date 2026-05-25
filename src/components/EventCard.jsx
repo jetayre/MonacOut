@@ -120,7 +120,7 @@ function getVenuePhoto(event) {
   // Jardin Japonais
   if (c.includes("jardin japonais")) return VENUE_PHOTOS.jardin_japonais;
   // Monaco-Ville / Rocher (générique)
-  if (c.includes("monaco-ville") || c.includes("rocher") || c.includes("place de la visitation") || c.includes("jardins de la petite") || c.includes("pavillon bosio") || c.includes("le petit bar") || c.includes("monaco tours") || c.includes("villa paloma") || c.includes("fondation prince pierre")) return VENUE_PHOTOS.rocher;
+  if (c.includes("monaco-ville") || c.includes("rocher") || c.includes("place de la visitation") || c.includes("jardins de la petite") || c.includes("pavillon bosio") || c.includes("le petit bar") || c.includes("monaco tours") || c.includes("villa paloma") || c.includes("fondation prince pierre") || c.includes("castelroc")) return VENUE_PHOTOS.rocher;
   // Port Hercule et bord de mer (avant check larvotto)
   if (c.includes("port hercule") || c.includes("quai des artistes") || c.includes("digue du port") || c.includes("au marius") || c.includes("caffè milano") || c.includes("caffe milano") || c.includes("jack monaco") || c.includes("monaco brewery") || c.includes("rascasse") || c.includes("ship & castle") || c.includes("ship and castle") || c.includes("slammers") || c.includes("marlow") || c.includes("mareterra") || c.includes("quai albert") || c.includes("port de monaco") || c.includes("amber lounge") || c.includes("aritual")) return VENUE_PHOTOS.port;
   // Larvotto / plages (Note Bleue, Méridien, Nikki Beach, clubs de sport)

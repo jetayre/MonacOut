@@ -81,6 +81,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA | |
 | Jack Monaco | https://jackmonaco.playfun.tv/ | APÉRO, SOIRÉE | |
 | Nobu Monte-Carlo | https://www.fairmont.com/en/hotels/monte-carlo/fairmont-monte-carlo/dining/nobu.restaurant.html | SOIRÉE | |
+| Castelroc Monaco | https://www.castelrocmonaco.com/ | BRUNCH, APÉRO (Place du Palais, Monaco-Ville) | +377 93 30 36 68 |
 | Ironman Monaco | https://www.ironman.com/ | SPORT | |
 | Sunshine Yoga Monte-Carlo | https://yogamontecarlo.com/contact-us/ | YOGA, BIEN-ÊTRE | +33 6 64 91 96 42 |
 | Novotel Monte-Carlo (Azzurra Bar) | https://www.novotelmontecarlo.com/en/restaurant-bars/ | APÉRO | +377 99 99 83 00 |
