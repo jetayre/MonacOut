@@ -113,7 +113,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen, onLangChange }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -197,6 +197,21 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
             <HeartIcon hasFavs={hasFavs} />
           </button>
+        </div>
+
+        {/* FR / EN switcher */}
+        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 2, padding: "3px 14px", background: STRIPE_BG }}>
+          {["fr","en"].map(l => (
+            <button key={l} onClick={() => onLangChange?.(l)} style={{
+              background: "none", border: "none", cursor: "pointer",
+              fontFamily: "'Josefin Sans', sans-serif",
+              fontSize: 9, fontWeight: lang === l ? 700 : 400,
+              letterSpacing: 1.5, textTransform: "uppercase",
+              color: lang === l ? "#0F1D3A" : "#6A7080",
+              padding: "2px 5px",
+              borderBottom: lang === l ? "1.5px solid #C9A96E" : "1.5px solid transparent",
+            }}>{l}</button>
+          ))}
         </div>
 
         {/* Filtres temps — disparaissent au scroll */}

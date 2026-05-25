@@ -141,6 +141,7 @@ export default function App() {
           onOpenMenu={() => setShowMenu(true)}
           onNavAgenda={() => handleTabChange("agenda")}
           onAdminOpen={() => setShowAdmin(true)}
+          onLangChange={setLang}
         />
       ) : (
         <FavoritesScreen

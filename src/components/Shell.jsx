@@ -287,36 +287,6 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             >✕</button>
           </div>
 
-          {/* Français */}
-          <button onClick={() => setLang?.("fr")} style={{
-            width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
-            padding: "14px 24px", fontFamily: "'Jost', sans-serif",
-            fontSize: 15, fontWeight: lang === "fr" ? 700 : 400, color: NAVY, letterSpacing: 0.3,
-            display: "flex", alignItems: "center", gap: 12,
-          }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", flexShrink: 0,
-              background: lang === "fr" ? GOLD : "transparent",
-              border: `1.5px solid ${lang === "fr" ? GOLD : GREY}`,
-            }} />
-            Français
-          </button>
-
-          {/* English */}
-          <button onClick={() => setLang?.("en")} style={{
-            width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
-            padding: "14px 24px", fontFamily: "'Jost', sans-serif",
-            fontSize: 15, fontWeight: lang === "en" ? 700 : 400, color: NAVY, letterSpacing: 0.3,
-            display: "flex", alignItems: "center", gap: 12,
-          }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", flexShrink: 0,
-              background: lang === "en" ? GOLD : "transparent",
-              border: `1.5px solid ${lang === "en" ? GOLD : GREY}`,
-            }} />
-            English
-          </button>
-
-          <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "8px 24px 12px" }} />
-
           {/* My Agenda */}
           <button onClick={() => { setTab?.("agenda"); setShowMenu?.(false); }} style={{
             width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
