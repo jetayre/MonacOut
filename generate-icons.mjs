@@ -16,7 +16,7 @@ const NAVY  = '#0F1D3A';
 const BLUE  = '#9FC3DC';
 const CREAM = '#FFFFFF';
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ args: ['--force-color-profile=srgb', '--disable-lcd-text'] });
 const page    = await browser.newPage();
 
 for (const size of SIZES) {
