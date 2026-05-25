@@ -333,16 +333,16 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             >{isFav ? "❤️" : "🤍"}</button>
           </div>
 
-          {/* Bouton calendrier pleine largeur */}
+          {/* Bouton calendrier compact à gauche */}
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
-              display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-              width: "100%", marginTop: 10, padding: "9px 0",
-              border: `1.5px solid ${GOLD_FRAME}`,
+              display: "inline-flex", alignItems: "center", gap: 5,
+              marginTop: 8, padding: "6px 12px",
+              border: `1px solid ${GOLD_FRAME}`,
               borderRadius: 1, background: "none", cursor: "pointer",
               fontFamily: "'Josefin Sans', sans-serif",
-              fontSize: 10, fontWeight: 600, letterSpacing: 2,
+              fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
               textTransform: "uppercase", color: "#0F1D3A",
             }}
           >
