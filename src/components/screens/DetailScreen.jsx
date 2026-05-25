@@ -198,6 +198,28 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           marginBottom: 16,
         }}>{event.date} · {event.time}</div>
 
+        <button
+          onClick={() => addToCalendar(event)}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "7px 14px",
+            marginBottom: 16,
+            border: `1.5px solid ${GOLD}`,
+            borderRadius: 20,
+            background: "none",
+            cursor: "pointer",
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontSize: 12,
+            fontWeight: 600,
+            color: NAVY,
+          }}
+        >
+          <span>📅</span>
+          <span>{lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}</span>
+        </button>
+
         <div style={{ height: 1, background: BORDER, marginBottom: 16 }} />
 
         <div style={{
@@ -236,7 +258,6 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           marginBottom: 20,
         }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <div style={{ display: "flex", gap: 10, alignItems: "stretch" }}>
           {event.link && (
             <a
@@ -293,31 +314,6 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           )}
         </div>
 
-        <button
-          onClick={() => addToCalendar(event)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            width: "100%",
-            padding: "13px 20px",
-            border: `1.5px solid ${BORDER}`,
-            borderRadius: 16,
-            background: "none",
-            cursor: "pointer",
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 13,
-            fontWeight: 600,
-            color: NAVY,
-            letterSpacing: 0.3,
-          }}
-        >
-          <span>📅</span>
-          <span>{lang === "en" ? "Add to calendar" : "Ajouter à mon calendrier"}</span>
-        </button>
-
-        </div>
       </div>
 
       {/* Voir aussi */}
