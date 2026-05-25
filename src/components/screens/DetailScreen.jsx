@@ -17,6 +17,43 @@ const WHITE = "#FFFFFF";
 const LIGHT = "#FFFFFF";
 const BORDER = "rgba(15,29,58,0.12)";
 
+function addToCalendar(event) {
+  const MONTHS = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
+  const parts = event.date.split(' ');
+  const day   = parseInt(parts[1]);
+  const month = MONTHS[parts[2]];
+  const year  = event.year || 2026;
+  const t     = event.time.match(/(\d{1,2})h(\d{2})/);
+  const h     = t ? parseInt(t[1]) : 12;
+  const m     = t ? parseInt(t[2]) : 0;
+  const pad   = n => String(n).padStart(2, '0');
+  const fmt   = (y, mo, d, hh, mm) => `${y}${pad(mo+1)}${pad(d)}T${pad(hh)}${pad(mm)}00`;
+  const start = fmt(year, month, day, h, m);
+  const end   = fmt(year, month, day, h + 2, m);
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//MonacOut//FR',
+    'BEGIN:VEVENT',
+    `DTSTART:${start}`,
+    `DTEND:${end}`,
+    `SUMMARY:${event.title.replace(/\n/g, ' ')}`,
+    `DESCRIPTION:${event.desc.replace(/\n/g, '\\n')}`,
+    `LOCATION:${event.subtitle}`,
+    event.link ? `URL:${event.link}` : '',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].filter(Boolean).join('\r\n');
+
+  const url = 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'event.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 function handleShare(event, lang) {
   if (navigator.share) {
     navigator.share({
@@ -199,6 +236,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
           marginBottom: 20,
         }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <div style={{ display: "flex", gap: 10, alignItems: "stretch" }}>
           {event.link && (
             <a
@@ -253,6 +291,32 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               {showPhone ? event.phone : <PhoneIcon />}
             </button>
           )}
+        </div>
+
+        <button
+          onClick={() => addToCalendar(event)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+            width: "100%",
+            padding: "13px 20px",
+            border: `1.5px solid ${BORDER}`,
+            borderRadius: 16,
+            background: "none",
+            cursor: "pointer",
+            fontFamily: "'Jost', -apple-system, sans-serif",
+            fontSize: 13,
+            fontWeight: 600,
+            color: NAVY,
+            letterSpacing: 0.3,
+          }}
+        >
+          <span>📅</span>
+          <span>{lang === "en" ? "Add to calendar" : "Ajouter à mon calendrier"}</span>
+        </button>
+
         </div>
       </div>
 
