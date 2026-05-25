@@ -347,8 +347,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               textTransform: "uppercase", color: "#0F1D3A",
             }}
           >
-            <span>📅</span>
-            <span>Ajouter au calendrier</span>
+            Ajouter au calendrier
           </button>
           </div>
         </div>

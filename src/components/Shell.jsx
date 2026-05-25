@@ -247,8 +247,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                     textTransform: "uppercase", color: NAVY,
                   }}
                 >
-                  <span>📅</span>
-                  <span>{lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}</span>
+                  {lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}
                 </button>
               </div>
             </div>
