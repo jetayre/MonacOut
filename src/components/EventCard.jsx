@@ -235,7 +235,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           <div style={{
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
             fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
-            color: "#000000", lineHeight: 1.25, marginTop: 10, marginBottom: 14,
+            color: "#000000", lineHeight: 1.25, marginTop: 22, marginBottom: 14,
           }}>{event.title.replace(/\n/g, " ")}</div>
 
           {/* Lieu */}
