@@ -24,7 +24,7 @@ for (const size of SIZES) {
   const borderW    = Math.round(size * 0.006);
   const gapW       = Math.round(size * 0.008);
   const innerBorder= Math.round(size * 0.004);
-  const mSize      = Math.round(frameSize * 0.75);
+  const mSize      = Math.round(size * 0.72);
   const textSize   = Math.round(frameSize * 0.068);
   const stripe     = Math.round(size * 0.12);
 
@@ -44,21 +44,6 @@ body {
     ${CREAM} ${stripe}px, ${CREAM} ${stripe * 2}px
   );
   display:flex; align-items:center; justify-content:center;
-}
-.outer {
-  width:${frameSize}px; height:${frameSize}px;
-  background:${CREAM};
-  border:${borderW}px solid ${GOLD};
-  padding:${gapW}px;
-  display:flex; align-items:center; justify-content:center;
-}
-.inner {
-  width:100%; height:100%;
-  border:${innerBorder}px solid ${NAVY};
-  background:${CREAM};
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:0;
 }
 .M {
   font-family:'Playfair Display', Georgia, serif;
@@ -81,11 +66,7 @@ body {
 </style>
 </head>
 <body>
-  <div class="outer">
-    <div class="inner">
-      <div class="M">M</div>
-    </div>
-  </div>
+  <div class="M">M</div>
 </body>
 </html>`;
 
