@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
@@ -92,6 +92,16 @@ function filterByCats(events, catFilters) {
   return events.filter(e => catFilters.some(id => matchesCatFilter(e, id)));
 }
 
+function SearchIcon({ active }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+      stroke={active ? "#C9A96E" : "#0F1D3A"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="7"/>
+      <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+    </svg>
+  );
+}
+
 function HamburgerIcon() {
   return (
     <svg width="18" height="13" viewBox="0 0 18 13" fill="none">
@@ -124,6 +134,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const [quarterFilter, setQuarterFilter] = useState(null);
   const [filtersVisible, setFiltersVisible] = useState(true);
   const [logoTaps, setLogoTaps] = useState(0);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef(null);
   const tapTimer = useRef(null);
 
   function handleLogoTap() {
@@ -172,6 +185,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     filtered = filterByCats(filterByTime(ALL_EVENTS, filter), catFilters);
   }
   if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(e =>
+      e.title.toLowerCase().includes(q) ||
+      (e.subtitle || "").toLowerCase().includes(q) ||
+      e.cat.toLowerCase().includes(q) ||
+      (e.desc || "").toLowerCase().includes(q)
+    );
+  }
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
@@ -205,6 +227,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 }}>{l}</button>
               ))}
             </div>
+            <button onClick={() => {
+              setShowSearch(v => {
+                if (v) setSearchQuery("");
+                else setTimeout(() => searchInputRef.current?.focus(), 50);
+                return !v;
+              });
+            }} style={{ background: "none", border: "none", cursor: "pointer", padding: "2px 0", marginTop: 2 }}>
+              <SearchIcon active={showSearch} />
+            </button>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleLogoTap}>
             <MonacOutLogo width={220} />
@@ -212,6 +243,33 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
             <HeartIcon hasFavs={hasFavs} />
           </button>
+        </div>
+
+        {/* Barre de recherche */}
+        <div style={{
+          background: WHITE, borderTop: `1px solid ${BORDER}`,
+          maxHeight: showSearch ? "52px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
+        }}>
+          <div style={{ padding: "8px 14px", display: "flex", alignItems: "center", gap: 8 }}>
+            <SearchIcon active />
+            <input
+              ref={searchInputRef}
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              placeholder={lang === "en" ? "Search events…" : "Rechercher…"}
+              style={{
+                flex: 1, border: "none", outline: "none", background: "transparent",
+                fontFamily: "'Jost', sans-serif", fontSize: 13, color: NAVY,
+                letterSpacing: 0.2,
+              }}
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery("")} style={{
+                background: "none", border: "none", cursor: "pointer",
+                fontSize: 14, color: GREY, padding: 0, lineHeight: 1,
+              }}>✕</button>
+            )}
+          </div>
         </div>
 
         {/* Filtres temps — disparaissent au scroll */}
