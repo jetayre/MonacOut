@@ -52,7 +52,7 @@ body {
   color:${NAVY};
   line-height:1;
   letter-spacing:-${Math.round(mSize * 0.02)}px;
-  transform: translateY(6%);
+  transform: translateY(2%);
 }
 .tagline {
   margin-top:${Math.round(frameSize * 0.04)}px;
