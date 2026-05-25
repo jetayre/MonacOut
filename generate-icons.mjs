@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Génère les icônes PNG pour la PWA depuis le logo MonacOut
- * Style : fond ivoire #FDFAF5, cadre or+navy, grand M Playfair, MONAC'OUT
+ * Style : rayures diagonales bleues/ivoire, cadre double or+navy, grand M Playfair, MONACOUT
  * Tailles : 192×192, 512×512, 1024×1024
  */
 import { chromium } from 'playwright';
@@ -13,16 +13,20 @@ const SIZES = [192, 512, 1024];
 
 const GOLD  = '#C9A96E';
 const NAVY  = '#0F1D3A';
+const BLUE  = '#9FC3DC';
 const CREAM = '#FDFAF5';
 
 const browser = await chromium.launch();
 const page    = await browser.newPage();
 
 for (const size of SIZES) {
-  const mSize    = Math.round(size * 0.68);
-  const textSize = Math.round(size * 0.075);
-  // stripe width scales with icon size
-  const stripe   = Math.round(size * 0.078);
+  const frameSize  = Math.round(size * 0.74);
+  const borderW    = Math.round(size * 0.006);
+  const gapW       = Math.round(size * 0.008);
+  const innerBorder= Math.round(size * 0.004);
+  const mSize      = Math.round(frameSize * 0.60);
+  const textSize   = Math.round(frameSize * 0.068);
+  const stripe     = Math.round(size * 0.12);
 
   const html = `<!DOCTYPE html>
 <html>
@@ -34,7 +38,24 @@ for (const size of SIZES) {
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   width:${size}px; height:${size}px;
-  background: ${CREAM};
+  background: repeating-linear-gradient(
+    -45deg,
+    ${BLUE}  0px, ${BLUE}  ${stripe}px,
+    ${CREAM} ${stripe}px, ${CREAM} ${stripe * 2}px
+  );
+  display:flex; align-items:center; justify-content:center;
+}
+.outer {
+  width:${frameSize}px; height:${frameSize}px;
+  background:${CREAM};
+  border:${borderW}px solid ${GOLD};
+  padding:${gapW}px;
+  display:flex; align-items:center; justify-content:center;
+}
+.inner {
+  width:100%; height:100%;
+  border:${innerBorder}px solid ${NAVY};
+  background:${CREAM};
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
   gap:0;
@@ -44,36 +65,27 @@ body {
   font-weight:700;
   font-size:${mSize}px;
   color:${NAVY};
-  line-height:0.88;
+  line-height:0.85;
   letter-spacing:-${Math.round(mSize * 0.02)}px;
-  text-shadow: 1px 2px 0 rgba(255,255,255,0.4);
 }
 .tagline {
-  display:flex; align-items:baseline; justify-content:center;
-  margin-top:${Math.round(size * 0.02)}px;
-}
-.monac {
+  margin-top:${Math.round(frameSize * 0.04)}px;
   font-family:'Josefin Sans', sans-serif;
   font-weight:400;
   font-size:${textSize}px;
-  letter-spacing:${Math.round(textSize * 0.38)}px;
+  letter-spacing:${Math.round(textSize * 0.55)}px;
   color:${NAVY};
   text-transform:uppercase;
-}
-.out {
-  font-family:'Josefin Sans', sans-serif;
-  font-weight:600;
-  font-size:${textSize}px;
-  letter-spacing:${Math.round(textSize * 0.22)}px;
-  color:${GOLD};
-  text-transform:uppercase;
+  padding-right:${Math.round(textSize * 0.55)}px;
 }
 </style>
 </head>
 <body>
-  <div class="M">M</div>
-  <div class="tagline">
-    <span class="monac">MONAC'</span><span class="out">OUT</span>
+  <div class="outer">
+    <div class="inner">
+      <div class="M">M</div>
+      <div class="tagline">MONACOUT</div>
+    </div>
   </div>
 </body>
 </html>`;
