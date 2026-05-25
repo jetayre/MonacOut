@@ -4,11 +4,11 @@
  *
  * Corrections appliquées :
  *  1. Abrégés de jour de semaine incorrects (ex: "Ven 23 mai" alors que le 23 mai est un Sam)
+ *  2. Événements récurrents placés sur le mauvais jour (ex: Nikki Beach brunch un Lundi au lieu du Samedi)
+ *     → Skip si la date cible a déjà un événement du même venue+cat (évite les doublons)
  *
  * Exécution : node autofix-events.mjs
  * Intégré dans GitHub Actions (daily-check.yml) avant verify-events.mjs
- *
- * Toujours exit 0 — c'est un outil de correction, pas de vérification.
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -18,14 +18,61 @@ import { dirname, join } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVENTS_FILE = join(__dirname, 'src/data/events.js');
 
-const MOIS = { jan:0, 'fév':1, mar:2, avr:3, mai:4, juin:5, juil:6, 'août':7, sep:8, oct:9, nov:10, 'déc':11 };
-const JOURS = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+const MOIS     = { jan:0, 'fév':1, mar:2, avr:3, mai:4, juin:5, juil:6, 'août':7, sep:8, oct:9, nov:10, 'déc':11 };
+const MOIS_ARR = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
+const JOURS    = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+
+// ─── Règles venue → jour attendu (tirées du tableau CLAUDE.md) ──────────────
+const VENUE_DAY_RULES = [
+  { venue: 'Nobu Monte-Carlo',        day: 0, cat: 'BRUNCH'  },
+  { venue: 'Woo Monaco',              day: 1, cat: 'BRUNCH'  },
+  { venue: 'Sass Café',               day: 2, cat: 'APÉRO'   },
+  { venue: 'Bar Américain',           day: 3, cat: 'APÉRO'   },
+  { venue: 'AMU Monte-Carlo',         day: 4, cat: 'APÉRO'   },
+  { venue: 'La Note Bleue',           day: 5, cat: 'APÉRO'   },
+  { venue: 'La Note Bleue',           day: 6, cat: 'BRUNCH'  },
+  { venue: 'Nikki Beach',             day: 6, cat: 'BRUNCH'  },
+  { venue: 'La Brasserie de Monaco',  day: 6, cat: 'BRUNCH'  },
+  { venue: "Jimmy'z",                 day: 6, cat: 'SOIRÉE'  },
+  { venue: "Lilly's Club",            day: 6, cat: 'SOIRÉE'  },
+  { venue: 'Monaco Brewery',          day: 6, cat: 'APÉRO'   },
+  { venue: 'Amber Lounge',            day: 6, cat: 'GALA'    },
+  { venue: 'Sunset Monaco',           day: 6, cat: 'DJ SET'  },
+  { venue: 'Panino Club',             day: 5, cat: 'APÉRO'   },
+  { venue: 'U Tapu',                  day: 5, cat: 'APÉRO'   },
+  { venue: 'Trinity Monaco',          day: 5, cat: 'APÉRO'   },
+  { venue: 'Slammers',                day: 4, cat: 'APÉRO'   },
+  { venue: 'Ship & Castle',           day: 4, cat: 'APÉRO'   },
+  { venue: 'Equivoque',               day: 5, cat: 'APÉRO'   },
+  { venue: 'Jack Monaco',             day: 5, cat: 'APÉRO'   },
+  { venue: 'Jack Monaco',             day: 6, cat: 'SOIRÉE'  },
+];
+
+function nearestCorrectDay(year, month, day, targetDayIdx) {
+  for (const offset of [-1, 1, -2, 2, -3, 3]) {
+    const candidate = new Date(year, month, day + offset);
+    if (candidate.getDay() === targetDayIdx) return candidate;
+  }
+  return null;
+}
 
 const content = readFileSync(EVENTS_FILE, 'utf8');
 const lines   = content.split('\n');
 
+// ─── Index existant : "venue|cat|date" → true (pour détecter les collisions) ─
+const existingIndex = new Set();
+for (const line of lines) {
+  if (!line.trim().startsWith('{id:')) continue;
+  const sm = line.match(/subtitle:"([^"]+)"/);
+  const cm = line.match(/cat:"([^"]+)"/);
+  const dm = line.match(/date:"([^"]+)"/);
+  if (sm && cm && dm) existingIndex.add(`${sm[1]}|${cm[1]}|${dm[1]}`);
+}
+
 let fixed = 0;
-const fixes = [];
+let skipped = 0;
+const fixes   = [];
+const skips   = [];
 
 const result = lines.map(line => {
   if (!line.trim().startsWith('{id:')) return line;
@@ -33,7 +80,7 @@ const result = lines.map(line => {
   const dm = line.match(/date:"([^"]+)"/);
   if (!dm) return line;
   const dateStr = dm[1];
-  if (dateStr.includes('—')) return line; // plage de dates, pas de correction
+  if (dateStr.includes('—')) return line;
 
   const parts = dateStr.trim().split(' ');
   if (parts.length < 3) return line;
@@ -45,23 +92,70 @@ const result = lines.map(line => {
 
   const ym   = line.match(/year:(\d+)/);
   const year = ym ? parseInt(ym[1]) : 2026;
+  const idM  = line.match(/id:(\d+)/);
+  const id   = idM?.[1];
 
+  // ── Correction 1 : abrégé de jour incorrect ─────────────────────────────
   const expectedDay = JOURS[new Date(year, monthIdx, dayNum).getDay()];
-
   if (declaredDay !== expectedDay) {
-    const idM = line.match(/id:(\d+)/);
-    fixes.push(`  [id:${idM?.[1]}] "${declaredDay} ${parts[1]} ${parts[2]}" → "${expectedDay} ${parts[1]} ${parts[2]}"`);
+    fixes.push(`  [id:${id}] label "${declaredDay}" → "${expectedDay}" pour le ${dayNum} ${parts[2]} ${year}`);
     fixed++;
-    return line.replace(`date:"${dateStr}"`, `date:"${expectedDay} ${parts[1]} ${parts[2]}"`);
+    line = line.replace(`date:"${dateStr}"`, `date:"${expectedDay} ${parts[1]} ${parts[2]}"`);
+  }
+
+  // ── Correction 2 : mauvais jour pour une venue récurrente ────────────────
+  const subtitleM = line.match(/subtitle:"([^"]+)"/);
+  const catM      = line.match(/cat:"([^"]+)"/);
+  if (!subtitleM || !catM) return line;
+
+  const subtitle  = subtitleM[1];
+  const cat       = catM[1];
+  const actualDay = new Date(year, monthIdx, dayNum).getDay();
+
+  for (const rule of VENUE_DAY_RULES) {
+    if (!subtitle.includes(rule.venue) || cat !== rule.cat || actualDay === rule.day) continue;
+
+    const correct = nearestCorrectDay(year, monthIdx, dayNum, rule.day);
+    if (!correct) continue;
+
+    // Sécurité : écart ≤ 3 jours
+    const diffDays = Math.abs(
+      correct.getDate() - dayNum + (correct.getMonth() - monthIdx) * 30
+    );
+    if (diffDays > 3) continue;
+
+    const newDay  = JOURS[correct.getDay()];
+    const newNum  = correct.getDate();
+    const newMois = MOIS_ARR[correct.getMonth()];
+    const newDate = `${newDay} ${newNum} ${newMois}`;
+
+    // Anti-collision : si la date cible a déjà un event du même venue+cat → skip
+    const collisionKey = `${subtitle}|${cat}|${newDate}`;
+    if (existingIndex.has(collisionKey)) {
+      skips.push(`  [id:${id}] "${rule.venue}" (${cat}) : "${declaredDay} ${dayNum} ${parts[2]}" → "${newDate}" SKIPPED (doublon existant)`);
+      skipped++;
+      break;
+    }
+
+    fixes.push(`  [id:${id}] venue "${rule.venue}" (${cat}) : "${declaredDay} ${dayNum} ${parts[2]}" → "${newDate}"`);
+    fixed++;
+    line = line.replace(`date:"${dateStr}"`, `date:"${newDate}"`);
+    break;
   }
 
   return line;
 });
 
-if (fixed > 0) {
-  writeFileSync(EVENTS_FILE, result.join('\n'));
-  console.log(`AutoFix — ${fixed} abrégé(s) de jour corrigé(s) :`);
-  fixes.forEach(f => console.log(f));
+if (fixed > 0 || skipped > 0) {
+  if (fixed > 0) {
+    writeFileSync(EVENTS_FILE, result.join('\n'));
+    console.log(`AutoFix — ${fixed} correction(s) appliquée(s) :`);
+    fixes.forEach(f => console.log(f));
+  }
+  if (skipped > 0) {
+    console.log(`AutoFix — ${skipped} correction(s) ignorée(s) (doublon déjà présent) :`);
+    skips.forEach(s => console.log(s));
+  }
 } else {
   console.log('AutoFix — Aucune correction nécessaire.');
 }
