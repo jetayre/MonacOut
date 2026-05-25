@@ -176,7 +176,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   }
 
   let filtered;
-  if (filter === "calendar" && rangeStart) {
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    filtered = filterByCats(ALL_EVENTS, catFilters).filter(e =>
+      e.title.toLowerCase().includes(q) ||
+      (e.subtitle || "").toLowerCase().includes(q) ||
+      e.cat.toLowerCase().includes(q) ||
+      (e.desc || "").toLowerCase().includes(q)
+    );
+  } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
     filtered = filterByCats(ALL_EVENTS.filter(e => { const d = parseEventDate(e); return d && d >= rangeStart && d <= endBound; }), catFilters);
   } else if (filter === "calendar") {
@@ -184,16 +192,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   } else {
     filtered = filterByCats(filterByTime(ALL_EVENTS, filter), catFilters);
   }
-  if (quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
-  if (searchQuery.trim()) {
-    const q = searchQuery.toLowerCase();
-    filtered = filtered.filter(e =>
-      e.title.toLowerCase().includes(q) ||
-      (e.subtitle || "").toLowerCase().includes(q) ||
-      e.cat.toLowerCase().includes(q) ||
-      (e.desc || "").toLowerCase().includes(q)
-    );
-  }
+  if (!searchQuery.trim() && quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
