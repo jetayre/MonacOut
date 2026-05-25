@@ -1,6 +1,6 @@
 {
-  "name": "MonacOut",
-  "short_name": "MonacOut",
+  "name": "Monac'Out",
+  "short_name": "Monac'Out",
   "description": "Tous les événements de Monaco dans votre poche",
   "start_url": "/",
   "display": "standalone",
