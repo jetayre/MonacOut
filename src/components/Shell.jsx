@@ -267,19 +267,26 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             transform: showMenu ? "translateX(0)" : "translateX(100%)",
             transition: "transform 0.25s ease",
             overflowY: "auto",
-            paddingTop: 56,
+            paddingTop: 0,
             paddingBottom: 40,
             borderLeft: "1px solid rgba(196,162,65,0.3)",
           }}
         >
-          <button
-            onClick={() => setShowMenu?.(false)}
-            style={{
-              position: "absolute", top: 60, right: 16,
-              background: "none", border: "none", cursor: "pointer",
-              fontSize: 20, color: GREY, padding: 4, lineHeight: 1,
-            }}
-          >✕</button>
+          {/* Header menu */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "flex-end",
+            padding: "14px 16px 10px",
+            borderBottom: "1px solid rgba(196,162,65,0.2)",
+            marginBottom: 8,
+          }}>
+            <button
+              onClick={() => setShowMenu?.(false)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                fontSize: 20, color: GREY, padding: 4, lineHeight: 1,
+              }}
+            >✕</button>
+          </div>
 
           {/* Français */}
           <button onClick={() => setLang?.("fr")} style={{

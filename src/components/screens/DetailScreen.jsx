@@ -201,19 +201,13 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
         <button
           onClick={() => addToCalendar(event)}
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            padding: "7px 14px",
-            marginBottom: 16,
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+            width: "100%", padding: "11px 0", marginBottom: 16,
             border: `1.5px solid ${GOLD}`,
-            borderRadius: 20,
-            background: "none",
-            cursor: "pointer",
-            fontFamily: "'Jost', -apple-system, sans-serif",
-            fontSize: 12,
-            fontWeight: 600,
-            color: NAVY,
+            borderRadius: 16, background: "none", cursor: "pointer",
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontSize: 11, fontWeight: 600, letterSpacing: 1.5,
+            textTransform: "uppercase", color: NAVY,
           }}
         >
           <span>📅</span>
