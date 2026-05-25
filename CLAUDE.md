@@ -287,21 +287,21 @@ git push origin main
 monacout/
 ├── src/
 │   ├── main.jsx                   ← point d'entrée React + init PostHog + init Sentry
-│   ├── App.jsx                    ← state global (tab, favorites, lang, catFilter, showCats, showSearch)
+│   ├── App.jsx                    ← state global (tab, favorites, lang, homeFilter, catFilters, showMenu, selectedEvent, showAdmin)
 │   ├── i18n.js                    ← traductions FR/EN (objet T[lang]) — tagline: "Monaco Secret", nav: "MC Events" / "My Agenda"
 │   ├── App.css / index.css        ← styles globaux minimaux
 │   ├── data/
 │   │   └── events.js              ← SOURCE DE VÉRITÉ : tableau _RAW + export ALL_EVENTS
 │   └── components/
-│       ├── Shell.jsx              ← frame iPhone 393×852, nav bar (FR gauche + EN/loupe droite), category bar, scroll
-│       ├── EventCard.jsx          ← carte événement (cadre or/navy, date centrée + heure, bouton "Let's go")
+│       ├── Shell.jsx              ← frame iPhone 393×852, conteneur scroll, panneau menu (slide droite), popup événement, overlay sombre
+│       ├── EventCard.jsx          ← carte événement (cadre double or/bleu, date + heure, RÉSERVER/BOOK, "Ajouter au calendrier"/"Add to calendar", favori)
 │       ├── MonacOutLogo.jsx       ← logo nautique : grand M Playfair Display navy + MONAC'OUT Josefin Sans, cadre double or/navy
 │       ├── CalendarPicker.jsx     ← sélecteur de date pour filtre agenda
 │       ├── SectionTitle.jsx       ← titre de section
 │       └── screens/
 │           ├── HomeScreen.jsx     ← filtre temps + quartier + catégorie + recherche
 │           ├── FavoritesScreen.jsx← agenda des favoris
-│           ├── DetailScreen.jsx   ← vue complète + "Voir aussi"
+│           ├── DetailScreen.jsx   ← (non actif — vue complète jamais importée dans App.jsx)
 │           ├── AgendaScreen.jsx   ← (non actif)
 │           ├── MapScreen.jsx      ← (non actif)
 │           └── ProfileScreen.jsx  ← (non actif)
@@ -329,11 +329,12 @@ monacout/
 |-------|------|------|
 | `tab` | `"events"` \| `"agenda"` | onglet actif |
 | `favorites` | `number[]` | IDs favoris (localStorage) |
-| `lang` | `"fr"` \| `"en"` | langue |
+| `lang` | `"fr"` \| `"en"` | langue — switché par les boutons fr/en sous le hamburger dans HomeScreen |
 | `homeFilter` | `"all"` \| `"today"` \| `"week"` \| `"weekend"` \| `"calendar"` | filtre temps |
-| `showCats` | `boolean` | barre catégories visible (défaut: `false` — s'active au clic sur onglet MC Events, se désactive sur My Agenda) |
-| `catFilter` | `string \| null` | filtre catégorie actif |
-| `showSearch` | `boolean` | barre recherche visible — state levé à App, passé à Shell + HomeScreen |
+| `catFilters` | `string[]` | filtres catégories actifs (multi-sélection via menu panneau) |
+| `showMenu` | `boolean` | panneau menu latéral ouvert/fermé |
+| `selectedEvent` | `object \| null` | événement sélectionné → affiche la popup dans Shell |
+| `showAdmin` | `boolean` | overlay admin (5 taps sur le logo) |
 
 ### Logique de filtres (HomeScreen.jsx)
 
@@ -360,8 +361,8 @@ Filtre quartier dans `HomeScreen` (barre secondaire, disparaît au scroll) :
 
 ### Shell.jsx — comportement UI
 
-- **Category bar (Ateliers → Sport)** : cachée par défaut, apparaît au clic sur l'onglet MC Events, se cache en scrollant vers le bas, réapparaît en remontant. Double-tap sur MC Events pour toggle manuel.
-- **Scroll detection category bar** : via `useEffect` sur `main-scroll` dans Shell, état `catsVisible`, `maxHeight` 70px → 0px.
+- **Catégories (Ateliers → Sport)** : checkboxes dans le panneau menu latéral (pas de barre séparée). Multi-sélection, état `catFilters[]` géré dans App.jsx. Bouton "Tout effacer" affiché si au moins un filtre actif.
+- **Popup événement** : s'affiche quand `selectedEvent` est non-null, centré dans la frame iPhone.
 
 ### HomeScreen.jsx — comportement UI
 
@@ -376,15 +377,15 @@ Filtre quartier dans `HomeScreen` (barre secondaire, disparaît au scroll) :
 - **Filtres temps** : `TIME_FILTERS` = today, week, weekend, calendar. Clic sur filtre actif → revient à "all".
 - **Quartiers** : boutons plus petits (font 9px, padding 3px 8px), Monte-Carlo / Monaco-Ville / Fontvieille / La Condamine / Larvotto.
 - **Gratuit** : bouton supprimé de l'interface (le champ `free: true` reste dans les données).
-- **Boutons filtres inactifs** : fond ivoire `#FDFAF5` (même couleur que les cartes événements).
-- **Bouton billetterie** : "Let's go" (payant) / "Plus d'infos" (gratuit) / "More info" / "Book" (EN).
+- **Boutons filtres inactifs** : fond blanc `#FFFFFF`, bordure `rgba(15,29,58,0.2)`.
+- **Bouton billetterie** : "RÉSERVER" (payant FR) / "PLUS D'INFOS" (gratuit FR) / "BOOK" / "MORE INFO" (EN).
 
 ### Shell.jsx — navigation
 
 - **Pas de nav bar en bas** : navigation gérée via panneau coulissant (menu hamburger) + cœur favoris.
-- **Panneau menu** : slide depuis la droite (width 250px), boutons FR / EN avec indicateur point or, lien Agenda.
+- **Panneau menu** : slide depuis la droite (width 250px, `zIndex: 1001`), lien Mon Agenda + checkboxes catégories + "Tout effacer". **FR/EN absent du menu** — switché sous le hamburger dans HomeScreen.
 - **Overlay sombre** `rgba(0,0,0,0.4)` quand menu ouvert, fermeture au clic overlay.
-- **Popup événement** : centré dans la frame, cadre extérieur `1.5px solid #C9A96E` (or) + intérieur `1.5px solid #9FC3DC` (bleu nautique).
+- **Popup événement** : centré dans la frame, cadre extérieur `1.5px solid #C9A96E` (or) + intérieur `1.5px solid #9FC3DC` (bleu nautique). Contient : catégorie, titre, description, ❤️, lien/téléphone, "Ajouter au calendrier"/"Add to calendar".
 - **Couleurs Shell** : `GOLD = "#C4A241"` (icônes/catégories) · `GOLD_FRAME = "#C9A96E"` (cadres popup) · `BLUE = "#9FC3DC"` (popup intérieur, rayures).
 
 ### MonacOutLogo.jsx — design (style nautique Monaco, validé 2026-05-21)
@@ -399,8 +400,9 @@ Logo cadre double bicolore sur fond blanc :
 ### HomeScreen.jsx — header logo (style rayures nautiques)
 
 Fond rayures diagonales nautiques (`STRIPE_BG`) : `repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)`.
-Layout horizontal : **hamburger** (gauche) + **MonacOutLogo width=220** (centré) + **cœur favoris** (droite).
-Le bloc "MONACO SECRET" + "MONACO LIFESTYLE & EVENTS AGENDA" et les coins ✦ ont été supprimés.
+Layout horizontal : **bloc gauche** (hamburger + switcher fr/en en dessous) + **MonacOutLogo width=220** (centré) + **cœur favoris** (droite).
+- **Switcher fr/en** : sous le hamburger, Josefin Sans 9px, soulignement or `#C9A96E` sur la langue active, couleur navy actif / gris inactif.
+- Header sticky (`zIndex: 999`) — toujours visible, ne disparaît pas au scroll.
 
 ---
 
