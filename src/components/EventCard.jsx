@@ -268,6 +268,23 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           )}
 
+          {/* Bouton calendrier pleine largeur */}
+          <button
+            onClick={e => { e.stopPropagation(); addToCalendar(event); }}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+              width: "100%", marginTop: 10, padding: "9px 0",
+              border: `1.5px solid ${GOLD_FRAME}`,
+              borderRadius: 1, background: "none", cursor: "pointer",
+              fontFamily: "'Josefin Sans', sans-serif",
+              fontSize: 10, fontWeight: 600, letterSpacing: 2,
+              textTransform: "uppercase", color: "#0F1D3A",
+            }}
+          >
+            <span>📅</span>
+            <span>Ajouter au calendrier</span>
+          </button>
+
           {/* Bas de carte : bouton ghost compact centré + favori */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 10 }}>
             {(event.link || event.phone) ? (
@@ -324,22 +341,13 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             ) : (
               <span />
             )}
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <button
-                onClick={e => { e.stopPropagation(); addToCalendar(event); }}
-                style={{
-                  background: "none", border: "none",
-                  cursor: "pointer", fontSize: 18, lineHeight: 1, padding: 0, flexShrink: 0,
-                }}
-              >📅</button>
-              <button
-                onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-                style={{
-                  background: "none", border: "none",
-                  cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
-                }}
-              >{isFav ? "❤️" : "🤍"}</button>
-            </div>
+            <button
+              onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
+              style={{
+                background: "none", border: "none",
+                cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
+              }}
+            >{isFav ? "❤️" : "🤍"}</button>
           </div>
         </div>
       </div>
