@@ -76,6 +76,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Buddha-Bar Monte-Carlo | https://www.fairmont.com/monte-carlo/dining/buddha-bar/ | APÉRO, SOIRÉE | +377 9999 8080 |
 | AMU Monte-Carlo | https://amu-montecarlo.com/ | APÉRO, SOIRÉE | +377 9315 4848 |
 | Nikki Beach Monte Carlo | https://nikkibeach.com/monte-carlo/ | BRUNCH, SOIRÉE | +377 9330 0700 |
+| Le Méridien Beach Plaza | https://www.marriott.com/en-us/hotels/mcmmd-le-meridien-beach-plaza/overview/ | BRUNCH, SOIRÉE, BIEN-ÊTRE (Larvotto) | +377 93 30 98 80 |
 | Lilly's Club | https://lillysclub.com/ | SOIRÉE, DJ SET | |
 | Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA | |
 | Jack Monaco | https://jackmonaco.playfun.tv/ | APÉRO, SOIRÉE | |
