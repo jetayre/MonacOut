@@ -188,30 +188,30 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
 
         {/* Logo — toujours visible */}
         <div style={{ background: STRIPE_BG, padding: "10px 14px", display: "flex", alignItems: "center" }}>
-          <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
-            <HamburgerIcon />
-          </button>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, flexShrink: 0 }}>
+            <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
+              <HamburgerIcon />
+            </button>
+            <div style={{ display: "flex", gap: 4 }}>
+              {["fr","en"].map(l => (
+                <button key={l} onClick={() => onLangChange?.(l)} style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  fontFamily: "'Josefin Sans', sans-serif",
+                  fontSize: 9, fontWeight: lang === l ? 700 : 400,
+                  letterSpacing: 1, textTransform: "uppercase",
+                  color: lang === l ? "#0F1D3A" : "#6A7080",
+                  padding: "1px 3px",
+                  borderBottom: lang === l ? "1.5px solid #C9A96E" : "1.5px solid transparent",
+                }}>{l}</button>
+              ))}
+            </div>
+          </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleLogoTap}>
             <MonacOutLogo width={220} />
           </div>
           <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
             <HeartIcon hasFavs={hasFavs} />
           </button>
-        </div>
-
-        {/* FR / EN switcher */}
-        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 2, padding: "3px 14px", background: STRIPE_BG }}>
-          {["fr","en"].map(l => (
-            <button key={l} onClick={() => onLangChange?.(l)} style={{
-              background: "none", border: "none", cursor: "pointer",
-              fontFamily: "'Josefin Sans', sans-serif",
-              fontSize: 9, fontWeight: lang === l ? 700 : 400,
-              letterSpacing: 1.5, textTransform: "uppercase",
-              color: lang === l ? "#0F1D3A" : "#6A7080",
-              padding: "2px 5px",
-              borderBottom: lang === l ? "1.5px solid #C9A96E" : "1.5px solid transparent",
-            }}>{l}</button>
-          ))}
         </div>
 
         {/* Filtres temps — disparaissent au scroll */}
