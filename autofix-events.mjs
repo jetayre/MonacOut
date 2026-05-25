@@ -71,8 +71,10 @@ for (const line of lines) {
 
 let fixed = 0;
 let skipped = 0;
-const fixes   = [];
-const skips   = [];
+let deleted = 0;
+const fixes     = [];
+const skips     = [];
+const deletions = [];
 
 const result = lines.map(line => {
   if (!line.trim().startsWith('{id:')) return line;
@@ -129,11 +131,19 @@ const result = lines.map(line => {
     const newMois = MOIS_ARR[correct.getMonth()];
     const newDate = `${newDay} ${newNum} ${newMois}`;
 
-    // Anti-collision : si la date cible a déjà un event du même venue+cat → skip
+    // Anti-collision : si la date cible a déjà un event du même venue+cat
     const collisionKey = `${subtitle}|${cat}|${newDate}`;
     if (existingIndex.has(collisionKey)) {
-      skips.push(`  [id:${id}] "${rule.venue}" (${cat}) : "${declaredDay} ${dayNum} ${parts[2]}" → "${newDate}" SKIPPED (doublon existant)`);
-      skipped++;
+      if (diffDays <= 1) {
+        // Écart de 1 jour = erreur de calcul systématique → supprimer le doublon
+        deletions.push(`  [id:${id}] "${rule.venue}" (${cat}) : "${declaredDay} ${dayNum} ${parts[2]}" supprimé (doublon de "${newDate}")`);
+        deleted++;
+        return null; // supprime la ligne
+      } else {
+        // Écart de 2-3 jours = possiblement un événement spécial → conserver
+        skips.push(`  [id:${id}] "${rule.venue}" (${cat}) : "${declaredDay} ${dayNum} ${parts[2]}" → "${newDate}" conservé (écart ${diffDays}j, vérifier manuellement)`);
+        skipped++;
+      }
       break;
     }
 
@@ -146,14 +156,21 @@ const result = lines.map(line => {
   return line;
 });
 
-if (fixed > 0 || skipped > 0) {
+const hasChanges = fixed > 0 || deleted > 0;
+if (hasChanges || skipped > 0) {
+  if (hasChanges) {
+    writeFileSync(EVENTS_FILE, result.filter(l => l !== null).join('\n'));
+  }
   if (fixed > 0) {
-    writeFileSync(EVENTS_FILE, result.join('\n'));
-    console.log(`AutoFix — ${fixed} correction(s) appliquée(s) :`);
+    console.log(`AutoFix — ${fixed} correction(s) de jour appliquée(s) :`);
     fixes.forEach(f => console.log(f));
   }
+  if (deleted > 0) {
+    console.log(`AutoFix — ${deleted} doublon(s) supprimé(s) (±1 jour, correct déjà présent) :`);
+    deletions.forEach(d => console.log(d));
+  }
   if (skipped > 0) {
-    console.log(`AutoFix — ${skipped} correction(s) ignorée(s) (doublon déjà présent) :`);
+    console.log(`AutoFix — ${skipped} événement(s) à vérifier manuellement (écart 2-3j) :`);
     skips.forEach(s => console.log(s));
   }
 } else {

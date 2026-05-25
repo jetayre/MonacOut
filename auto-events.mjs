@@ -894,6 +894,15 @@ async function main() {
   writeFileSync(EVENTS_FILE, src, 'utf8');
   console.log(`  ✓ events.js mis à jour.`);
 
+  // ── AutoFix — corriger les jours avant de commiter ──────────────────────────
+  console.log('\n  AutoFix des jours...');
+  try {
+    execSync('node autofix-events.mjs', { cwd: __dirname, stdio: 'pipe' });
+    console.log('  ✓ AutoFix appliqué.');
+  } catch (e) {
+    console.log(`  ⚠ AutoFix warning : ${e.message}`);
+  }
+
   // ── Build ───────────────────────────────────────────────────────────────────
   console.log('\n  Build...');
   try {
