@@ -269,7 +269,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           )}
 
           {/* Bas de carte */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 28 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 40 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             {(event.link || event.phone) ? (
               <div style={{
