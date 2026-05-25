@@ -50,8 +50,9 @@ body {
   font-weight:700;
   font-size:${mSize}px;
   color:${NAVY};
-  line-height:0.78;
+  line-height:1;
   letter-spacing:-${Math.round(mSize * 0.02)}px;
+  transform: translateY(6%);
 }
 .tagline {
   margin-top:${Math.round(frameSize * 0.04)}px;
