@@ -4,6 +4,35 @@ const GOLD = "#a88421";
 const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
+function addToCalendar(event) {
+  const parts = event.date.split(' ');
+  const day   = parseInt(parts[1]);
+  const month = MOIS_ICS[parts[2]];
+  const year  = event.year || 2026;
+  const t     = event.time.match(/(\d{1,2})h(\d{2})/);
+  const h     = t ? parseInt(t[1]) : 12;
+  const m     = t ? parseInt(t[2]) : 0;
+  const pad   = n => String(n).padStart(2, '0');
+  const fmt   = (y, mo, d, hh, mm) => `${y}${pad(mo+1)}${pad(d)}T${pad(hh)}${pad(mm)}00`;
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MonacOut//FR',
+    'BEGIN:VEVENT',
+    `DTSTART:${fmt(year, month, day, h, m)}`,
+    `DTEND:${fmt(year, month, day, h + 2, m)}`,
+    `SUMMARY:${event.title.replace(/\n/g, ' ')}`,
+    `DESCRIPTION:${event.desc.replace(/\n/g, '\\n')}`,
+    `LOCATION:${event.subtitle}`,
+    event.link ? `URL:${event.link}` : '',
+    'END:VEVENT','END:VCALENDAR',
+  ].filter(Boolean).join('\r\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
+  a.download = 'event.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 const VENUE_PHOTOS = {
   // Grandes salles
   grimaldi:        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg/960px-Grimaldi_Forum_Monaco_-_photographe_Olivia_Marocco.jpg",
@@ -295,13 +324,22 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             ) : (
               <span />
             )}
-            <button
-              onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
-              style={{
-                background: "none", border: "none",
-                cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
-              }}
-            >{isFav ? "❤️" : "🤍"}</button>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <button
+                onClick={e => { e.stopPropagation(); addToCalendar(event); }}
+                style={{
+                  background: "none", border: "none",
+                  cursor: "pointer", fontSize: 18, lineHeight: 1, padding: 0, flexShrink: 0,
+                }}
+              >📅</button>
+              <button
+                onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
+                style={{
+                  background: "none", border: "none",
+                  cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
+                }}
+              >{isFav ? "❤️" : "🤍"}</button>
+            </div>
           </div>
         </div>
       </div>
