@@ -260,22 +260,22 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
           onClick={e => e.stopPropagation()}
           style={{
             position: "absolute",
-            top: 0, right: 0,
-            width: 250, height: "100%",
+            top: 46, right: 0,
+            width: 250, height: "calc(100% - 46px)",
             background: WHITE,
             zIndex: 401,
             transform: showMenu ? "translateX(0)" : "translateX(100%)",
             transition: "transform 0.25s ease",
             overflowY: "auto",
-            paddingTop: 0,
             paddingBottom: 40,
             borderLeft: "1px solid rgba(196,162,65,0.3)",
+            borderTop: "1px solid rgba(196,162,65,0.3)",
           }}
         >
           {/* Header menu */}
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "flex-end",
-            padding: "14px 16px 10px",
+            padding: "12px 16px 10px",
             borderBottom: "1px solid rgba(196,162,65,0.2)",
             marginBottom: 8,
           }}>
