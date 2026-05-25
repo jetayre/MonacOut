@@ -299,9 +299,10 @@ monacout/
 │       ├── CalendarPicker.jsx     ← sélecteur de date pour filtre agenda
 │       ├── SectionTitle.jsx       ← titre de section
 │       └── screens/
-│           ├── HomeScreen.jsx     ← filtre temps + quartier + catégorie + recherche
+│           ├── HomeScreen.jsx     ← filtre temps + quartier + catégories + liste événements
 │           ├── FavoritesScreen.jsx← agenda des favoris
-│           ├── DetailScreen.jsx   ← (non actif — vue complète jamais importée dans App.jsx)
+│           ├── AdminScreen.jsx    ← overlay admin (5 taps logo, jamais routé)
+│           ├── DetailScreen.jsx   ← (non actif — jamais importé dans App.jsx)
 │           ├── AgendaScreen.jsx   ← (non actif)
 │           ├── MapScreen.jsx      ← (non actif)
 │           └── ProfileScreen.jsx  ← (non actif)
@@ -317,6 +318,7 @@ monacout/
 ├── cleanup-events.mjs             ← suppression événements > 30j passés
 ├── send-alert-email.mjs           ← alerte email via Resend API
 ├── scrape-events.mjs              ← outil de scraping manuel
+├── generate-icons.mjs             ← génération icônes PWA (Playwright → PNG)
 └── .github/workflows/
     ├── auto-events.yml            ← scraping automatique (8h + 14h Monaco)
     ├── daily-check.yml            ← nettoyage + vérif + alerte (6h + 18h Monaco)
@@ -340,9 +342,9 @@ monacout/
 
 `filterByTime` → `today` / `week` (7 jours) / `weekend` / `calendar` (date range CalendarPicker)
 
-`filterByCat` :
-| Bouton Shell | Cas filterByCat | Logique |
-|-------------|----------------|---------|
+`filterByCats` (multi-sélection, `catFilters[]`) :
+| Bouton menu | Cas filterByCats | Logique |
+|------------|----------------|---------|
 | Ateliers | `"ateliers"` | ATELIER, DANSE |
 | Bien-être | `"bienetre"` | BIEN-ÊTRE |
 | Cinéma | `"cinema"` | CINÉMA |
@@ -368,8 +370,8 @@ Filtre quartier dans `HomeScreen` (barre secondaire, disparaît au scroll) :
 
 | Barre | Comportement au scroll |
 |-------|----------------------|
-| Monaco Secret + Logo cadre | **Toujours fixe** — ne disparaît jamais |
-| Aujourd'hui / Semaine / Week-end / Agenda | **Toujours fixe** — ne disparaît jamais |
+| Logo (rayures + hamburger + fr/en + cœur) | **Toujours fixe** — ne disparaît jamais |
+| Aujourd'hui / Semaine / Week-end / Agenda | **Disparaît** en scrollant vers le bas, réapparaît en remontant |
 | Quartiers | **Disparaît** en scrollant vers le bas, réapparaît en remontant |
 
 - **Scroll detection** : `useEffect` sur `document.getElementById("main-scroll")`, état `filtersVisible`, seuil ±6px sur `lastY`.
