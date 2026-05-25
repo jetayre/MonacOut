@@ -268,8 +268,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           )}
 
-          {/* Bas de carte : bouton ghost compact centré + favori */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 10 }}>
+          {/* Bas de carte */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             {(event.link || event.phone) ? (
               <div style={{
                 display: "inline-flex",
@@ -333,12 +334,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             >{isFav ? "❤️" : "🤍"}</button>
           </div>
 
-          {/* Bouton calendrier compact à gauche */}
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
+              alignSelf: "flex-start",
               display: "inline-flex", alignItems: "center", gap: 5,
-              marginTop: 8, padding: "6px 12px",
+              padding: "6px 12px",
               border: `1px solid ${GOLD_FRAME}`,
               borderRadius: 1, background: "none", cursor: "pointer",
               fontFamily: "'Josefin Sans', sans-serif",
@@ -349,6 +350,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             <span>📅</span>
             <span>Ajouter au calendrier</span>
           </button>
+          </div>
         </div>
       </div>
     </div>
