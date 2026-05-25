@@ -24,7 +24,7 @@ for (const size of SIZES) {
   const borderW    = Math.round(size * 0.006);
   const gapW       = Math.round(size * 0.008);
   const innerBorder= Math.round(size * 0.004);
-  const mSize      = Math.round(frameSize * 0.60);
+  const mSize      = Math.round(frameSize * 0.78);
   const textSize   = Math.round(frameSize * 0.068);
   const stripe     = Math.round(size * 0.12);
 
@@ -84,7 +84,6 @@ body {
   <div class="outer">
     <div class="inner">
       <div class="M">M</div>
-      <div class="tagline">MONACOUT</div>
     </div>
   </div>
 </body>
