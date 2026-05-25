@@ -24,7 +24,7 @@ for (const size of SIZES) {
   const borderW    = Math.round(size * 0.006);
   const gapW       = Math.round(size * 0.008);
   const innerBorder= Math.round(size * 0.004);
-  const mSize      = Math.round(size * 0.72);
+  const mSize      = Math.round(size * 0.85);
   const textSize   = Math.round(frameSize * 0.068);
   const stripe     = Math.round(size * 0.12);
 
