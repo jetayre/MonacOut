@@ -34,11 +34,7 @@ for (const size of SIZES) {
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   width:${size}px; height:${size}px;
-  background: repeating-linear-gradient(
-    -45deg,
-    #9FC3DC 0px, #9FC3DC ${stripe}px,
-    ${CREAM} ${stripe}px, ${CREAM} ${stripe * 2}px
-  );
+  background: ${CREAM};
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
   gap:0;
