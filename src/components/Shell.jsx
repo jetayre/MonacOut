@@ -22,6 +22,36 @@ const CAT_FILTERS = [
   { id: "sport",      label: "Sport",       labelEn: "Sport" },
 ];
 
+function addToCalendar(event) {
+  const MONTHS = { jan:0, fév:1, mar:2, avr:3, mai:4, juin:5, juil:6, août:7, sep:8, oct:9, nov:10, déc:11 };
+  const parts = event.date.split(' ');
+  const day   = parseInt(parts[1]);
+  const month = MONTHS[parts[2]];
+  const year  = event.year || 2026;
+  const t     = event.time.match(/(\d{1,2})h(\d{2})/);
+  const h     = t ? parseInt(t[1]) : 12;
+  const m     = t ? parseInt(t[2]) : 0;
+  const pad   = n => String(n).padStart(2, '0');
+  const fmt   = (y, mo, d, hh, mm) => `${y}${pad(mo+1)}${pad(d)}T${pad(hh)}${pad(mm)}00`;
+  const ics = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MonacOut//FR',
+    'BEGIN:VEVENT',
+    `DTSTART:${fmt(year, month, day, h, m)}`,
+    `DTEND:${fmt(year, month, day, h + 2, m)}`,
+    `SUMMARY:${event.title.replace(/\n/g, ' ')}`,
+    `DESCRIPTION:${event.desc.replace(/\n/g, '\\n')}`,
+    `LOCATION:${event.subtitle}`,
+    event.link ? `URL:${event.link}` : '',
+    'END:VEVENT', 'END:VCALENDAR',
+  ].filter(Boolean).join('\r\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
+  a.download = 'event.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 function PhoneIcon() {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -203,6 +233,23 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                     )}
                   </div>
                 )}
+
+                {/* Ajouter au calendrier */}
+                <button
+                  onClick={() => addToCalendar(selectedEvent)}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                    width: "100%", marginTop: 10, padding: "10px 0",
+                    border: `1.5px solid ${GOLD_FRAME}`,
+                    borderRadius: 1, background: "none", cursor: "pointer",
+                    fontFamily: "'Josefin Sans', sans-serif",
+                    fontSize: 11, fontWeight: 600, letterSpacing: 1.5,
+                    textTransform: "uppercase", color: NAVY,
+                  }}
+                >
+                  <span>📅</span>
+                  <span>{lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}</span>
+                </button>
               </div>
             </div>
           </>
