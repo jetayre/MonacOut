@@ -24,7 +24,7 @@ for (const size of SIZES) {
   const borderW    = Math.round(size * 0.006);
   const gapW       = Math.round(size * 0.008);
   const innerBorder= Math.round(size * 0.004);
-  const mSize      = Math.round(frameSize * 0.90);
+  const mSize      = Math.round(frameSize * 0.75);
   const textSize   = Math.round(frameSize * 0.068);
   const stripe     = Math.round(size * 0.12);
 
@@ -65,7 +65,7 @@ body {
   font-weight:700;
   font-size:${mSize}px;
   color:${NAVY};
-  line-height:1;
+  line-height:0.78;
   letter-spacing:-${Math.round(mSize * 0.02)}px;
 }
 .tagline {
