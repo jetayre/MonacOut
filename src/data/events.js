@@ -102,7 +102,6 @@ const _RAW = [
   // ── MARS ──────────────────────────────────────────────────────
 
   // ── AVRIL ─────────────────────────────────────────────────────
-  {id:122,cat:"EXPOSITION",conf:true,date:"Lun 27 avr",time:"27 avr — 1 mai 2026",title:"MONACO\nART\nWEEK",subtitle:"Grimaldi Forum & galeries · Monaco",desc:"Monaco Art Week 2026 : foires, expositions et vernissages dans les meilleures galeries de la Principauté. Evénement incontournable.",descEn:"Monaco Art Week 2026: fairs, exhibitions and openings in the Principality's finest galleries. A must-attend event.",free:false,hot:true,fallback:"linear-gradient(150deg,#5A3848,#7A5868,#3A1828)",accent:"#E0B8C8",emoji:"🖼️",link:"https://www.monaco-artweek.com/en/",source:"Grimaldi Forum",phone:"+377 9999 3000",quarter:"Monte-Carlo"},
 
   // ── ATELIERS — saison ──────────────────────────────────────────
   {id:123,cat:"ATELIER",date:"Sam 9 mai",time:"10h00 — 12h30",title:"ATELIER\nILLUSTRATION\nBOTANIQUE",subtitle:"Villa Paloma · Monaco",desc:"Atelier de dessin scientifique et illustration botanique. Initiez-vous à l'observation et au dessin de plantes méditerranéennes.",descEn:"A scientific drawing and botanical illustration workshop. Learn to observe and sketch Mediterranean plants.",free:false,hot:false,fallback:"linear-gradient(150deg,#4A7040,#6A9060,#2A4820)",accent:"#C0E8B0",emoji:"🌿",link:"https://www.nmnm.mc/en/visit/visites-et-ateliers/",source:"NMNM Villa Paloma",phone:"+377 9898 1826",quarter:"Monaco-Ville"},
