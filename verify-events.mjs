@@ -255,7 +255,7 @@ async function checkLinks(events) {
 
     // Lien manquant
     if (!link) {
-      issues.push({ level: '❌', ids, titles, link: '(vide)', issue: 'Lien manquant' });
+      issues.push({ level: '⚠️', ids, titles, link: '(vide)', issue: 'Lien manquant' });
       continue;
     }
 
@@ -263,9 +263,12 @@ async function checkLinks(events) {
     const { ok: httpOk, status, finalUrl, html, error } = await fetchPage(link);
     await sleep(300); // politesse — éviter le rate-limit
 
-    // Lien mort
+    // Lien mort — distinguer vrai 404/410 des faux positifs (403 = bloque bots, réseau = CI firewall)
     if (!httpOk) {
-      issues.push({ level: '❌', ids, titles, link, issue: error ? `Inaccessible : ${error}` : `HTTP ${status}` });
+      const isTrulyDead = !error && (status === 404 || status === 410 || status === 0);
+      const level = isTrulyDead ? '❌' : '⚠️';
+      const msg = error ? `Inaccessible (réseau) : ${error}` : `HTTP ${status}`;
+      issues.push({ level, ids, titles, link, issue: msg });
       continue;
     }
 
@@ -321,7 +324,7 @@ async function main() {
   console.log('Vérification des liens en cours…');
   const { issues: linkIssues, okCount: linksOk, checkedCount: linksChecked } = await checkLinks(events);
 
-  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + linkIssues.filter(i => i.level !== '💡').length;
+  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + linkIssues.filter(i => i.level === '❌').length;
 
   let report = `========================================\n`;
   report += `MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE\n`;
