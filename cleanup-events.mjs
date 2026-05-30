@@ -19,7 +19,7 @@ function parseEventDate(line) {
   const dateStr = dateMatch[1];
   if (dateStr.includes('—')) return null;
   const yearMatch = line.match(/year:(\d+)/);
-  const year = yearMatch ? parseInt(yearMatch[1]) : 2026;
+  const year = yearMatch ? parseInt(yearMatch[1]) : new Date().getFullYear();
   const parts = dateStr.trim().split(' ');
   if (parts.length < 3) return null;
   const day = parseInt(parts[1]);

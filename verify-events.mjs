@@ -52,7 +52,7 @@ function parseEvents(source) {
     };
     events.push({
       id: getNum('id'),
-      year: getNum('year') || 2026,
+      year: getNum('year') || new Date().getFullYear(),
       cat: get('cat'),
       date: get('date'),
       time: get('time'),

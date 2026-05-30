@@ -93,7 +93,7 @@ const result = lines.map(line => {
   if (monthIdx === undefined || isNaN(dayNum)) return line;
 
   const ym   = line.match(/year:(\d+)/);
-  const year = ym ? parseInt(ym[1]) : 2026;
+  const year = ym ? parseInt(ym[1]) : new Date().getFullYear();
   const idM  = line.match(/id:(\d+)/);
   const id   = idM?.[1];
 

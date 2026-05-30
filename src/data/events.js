@@ -1788,7 +1788,7 @@ const _MOIS = {jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,
 function _eventDate(e) {
   const p = e.date.trim().split(' ');
   const m = _MOIS[p[2]];
-  return m !== undefined ? new Date(e.year || 2026, m, parseInt(p[1])) : null;
+  return m !== undefined ? new Date(e.year || new Date().getFullYear(), m, parseInt(p[1])) : null;
 }
 const _today = new Date(); _today.setHours(0, 0, 0, 0);
 function _eventHour(e) {
