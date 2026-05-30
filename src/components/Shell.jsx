@@ -19,6 +19,7 @@ const CAT_FILTERS = [
   { id: "foody",      label: "Foody",       labelEn: "Foody" },
   { id: "music",      label: "Musique",     labelEn: "Music" },
   { id: "messe",      label: "Messe",       labelEn: "Mass" },
+  { id: "soiree",     label: "Soirée",      labelEn: "Nightlife" },
   { id: "sport",      label: "Sport",       labelEn: "Sport" },
 ];
 
@@ -27,7 +28,7 @@ function addToCalendar(event) {
   const parts = event.date.split(' ');
   const day   = parseInt(parts[1]);
   const month = MONTHS[parts[2]];
-  const year  = event.year || 2026;
+  const year  = event.year || new Date().getFullYear();
   const t     = event.time.match(/(\d{1,2})h(\d{2})/);
   const h     = t ? parseInt(t[1]) : 12;
   const m     = t ? parseInt(t[2]) : 0;

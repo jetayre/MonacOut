@@ -16,13 +16,13 @@ const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
   CONCERT: "music", "OPÉRA": "music", MUSICAL: "music", "JAZZ LIVE": "music",
-  "DJ SET": "music", CHANTS: "music",
+  "DJ SET": "soiree", CHANTS: "music",
   THÉÂTRE: "culture", "CONFÉRENCE": "conference", EXPOSITION: "culture", FESTIVAL: "culture",
   GALA: "culture", "FÊTE NATIONALE": "culture", MARCHÉ: "culture", SALON: "culture",
   SPECTACLE: "culture", CINÉMA: "cinema",
   ATELIER: "ateliers", DANSE: "ateliers",
   "BIEN-ÊTRE": "bienetre",
-  BRUNCH: "foody", APÉRO: "foody", SOIRÉE: "foody", FOODY: "foody",
+  BRUNCH: "foody", APÉRO: "foody", SOIRÉE: "soiree", FOODY: "foody",
   ENCHÈRES: "encheres",
 };
 
@@ -52,15 +52,18 @@ function getWeekendDates() {
 function parseEventDate(e) {
   const parts = e.date.trim().split(" ");
   const day = parseInt(parts[1]); const month = MOIS_IDX[parts[2]];
-  if (isNaN(day) || month === undefined) return null;
-  return new Date(e.year || 2026, month, day);
+  if (isNaN(day) || month === undefined) {
+    if (import.meta.env.DEV) console.warn("[MonacOut] malformed date:", e.id, e.date);
+    return null;
+  }
+  return new Date(e.year || new Date().getFullYear(), month, day);
 }
 
 function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date()); const weekendDates = getWeekendDates();
   switch (filterId) {
-    case "today": { const y = new Date().getFullYear(); return events.filter(e => e.date === todayStr && (e.year || 2026) === y); }
-    case "weekend": { const y = new Date().getFullYear(); return events.filter(e => weekendDates.includes(e.date) && (e.year || 2026) === y); }
+    case "today": { const y = new Date().getFullYear(); return events.filter(e => e.date === todayStr && (e.year || y) === y); }
+    case "weekend": { const y = new Date().getFullYear(); return events.filter(e => weekendDates.includes(e.date) && (e.year || y) === y); }
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
       const in7 = new Date(today); in7.setDate(today.getDate() + 6);
@@ -80,7 +83,8 @@ function matchesCatFilter(e, catId) {
     case "famille":    return e.free === true || ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) || /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""));
     case "ateliers":   return ["ATELIER","DANSE"].includes(e.cat);
     case "bienetre":   return ["BIEN-ÊTRE"].includes(e.cat);
-    case "foody":      return ["FOODY","BRUNCH","APÉRO","SOIRÉE"].includes(e.cat);
+    case "foody":      return ["FOODY","BRUNCH","APÉRO"].includes(e.cat);
+    case "soiree":     return ["SOIRÉE","DJ SET"].includes(e.cat);
     case "encheres":   return ["ENCHÈRES"].includes(e.cat);
     case "messe":      return e.cat === "CHANTS";
     default: return false;
