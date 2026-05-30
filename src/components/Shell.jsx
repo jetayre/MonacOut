@@ -16,7 +16,7 @@ const CAT_FILTERS = [
   { id: "culture",    label: "Culture",     labelEn: "Culture" },
   { id: "encheres",   label: "Enchères",    labelEn: "Auctions" },
   { id: "famille",    label: "Famille",     labelEn: "Family" },
-  { id: "foody",      label: "Foody",       labelEn: "Foody" },
+  { id: "foody",      label: "Brunch · Apéro", labelEn: "Happy Hour" },
   { id: "music",      label: "Musique",     labelEn: "Music" },
   { id: "messe",      label: "Messe",       labelEn: "Mass" },
   { id: "soiree",     label: "Soirée",      labelEn: "Nightlife" },
