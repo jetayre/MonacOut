@@ -12,15 +12,16 @@ const CAT_FILTERS = [
   { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },
   { id: "bienetre",   label: "Bien-être",   labelEn: "Wellness" },
   { id: "cinema",     label: "Cinéma",      labelEn: "Cinema" },
+  { id: "concert",    label: "Concert",     labelEn: "Concert" },
   { id: "conference", label: "Conférences", labelEn: "Talks" },
-  { id: "culture",    label: "Culture",     labelEn: "Culture" },
   { id: "encheres",   label: "Enchères",    labelEn: "Auctions" },
   { id: "famille",    label: "Famille",     labelEn: "Family" },
   { id: "foody",      label: "Brunch · Apéro", labelEn: "Brunch · Apéro" },
-  { id: "music",      label: "Musique",     labelEn: "Music" },
   { id: "messe",      label: "Messe",       labelEn: "Mass" },
+  { id: "musee",      label: "Musée",       labelEn: "Museum" },
   { id: "soiree",     label: "Soirée",      labelEn: "Nightlife" },
   { id: "sport",      label: "Sport",       labelEn: "Sport" },
+  { id: "theatre",    label: "Théâtre",     labelEn: "Theatre" },
 ];
 
 function addToCalendar(event) {

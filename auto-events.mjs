@@ -176,6 +176,102 @@ const SOURCE_VENUE = {
   'Monaco Convention Bureau':        'Monaco',
 };
 
+// Quartier par source — utilisé pour le champ quarter de chaque événement auto-généré
+const SOURCE_QUARTER = {
+  'OPMC':                        'Monte-Carlo',
+  'Grimaldi Forum':              'Monaco',
+  'Culture Monaco':              'Monaco',
+  'Cinémas 2 Monaco':           'Monte-Carlo',
+  'Ballet de Monte-Carlo':       'Monaco',
+  'Fondation Prince Albert II':  'Monaco',
+  'Fdtn Princesse Charlène':     'Monaco',
+  'Fdtn Prince Pierre':          'Monaco',
+  'Fight Aids Monaco':           'Monaco',
+  'Croix-Rouge de Monaco':       'Monaco',
+  'Mairie de Monaco':            'Monaco',
+  'AS Monaco Basket':            'Monaco',
+  'AS Monaco FC':                'Monaco',
+  'La Note Bleue':               'Larvotto',
+  'FIA Formula E':               'Monaco',
+  'Automobile Club de Monaco':   'Monaco',
+  'Herculis Monaco':             'Monaco',
+  'TV Festival Monte-Carlo':     'Monaco',
+  'RM Sotheby\'s Monaco':        'Monaco',
+  'Monaco Legend Auctions':      'Monaco',
+  'Monte-Carlo SBM':             'Monte-Carlo',
+  'Sass Café':                   'Monte-Carlo',
+  'NMNM Monaco':                 'Monaco',
+  'Philomonaco':                 'Monaco',
+  'Musée Océanographique':       'Monaco-Ville',
+  'Monaco Run':                  'Monaco',
+  'Monaco Yacht Show':           'Monaco',
+  'Thermes Marins Monte-Carlo':  'Monte-Carlo',
+  'Yoga Monte-Carlo':            'Monte-Carlo',
+  'Fairmont Monte Carlo':        'Monte-Carlo',
+  'yumé Monaco':                 'Monte-Carlo',
+  'Aritual Monaco':              'La Condamine',
+  'Odéon Spa':                   'Monte-Carlo',
+  'Nikki Beach Monte Carlo':     'Monte-Carlo',
+  'La Môme Monte-Carlo':         'Monte-Carlo',
+  'Woo Monaco':                  'La Condamine',
+  'Equivoque Rooftop':           'Monaco',
+  'New Moods Monte-Carlo':       'Monte-Carlo',
+  'Blue Gin Monte-Carlo Bay':    'Larvotto',
+  'Sunset Monaco':               'Larvotto',
+  'Twiga Monte Carlo':           'Larvotto',
+  'Lilly\'s Club':               'Monte-Carlo',
+  'Jack Monaco':                 'Monaco',
+  'Nobu Monte-Carlo':            'Monte-Carlo',
+  'Théâtre Princesse Grace':     'Monaco',
+  'Théâtre des Muses Monaco':    'Monaco',
+  'Théâtre Fort Antoine':        'Monaco-Ville',
+  'Théâtre des Variétés Monaco': 'Monaco',
+  'Espace Léo Ferré':            'Fontvieille',
+  'Cathédrale Saint-Nicolas':    'Monaco-Ville',
+  'Paroisse Sacré-Cœur Monaco':  'Monaco',
+  'Sporting Monte-Carlo':        'Monte-Carlo',
+  'Académie Musique Monaco':     'Monaco',
+  'Monaco Beaux-Arts':           'Monaco',
+  'Médiathèque Monaco':          'Monaco',
+  'Brasserie de Monaco':         'Fontvieille',
+  'La Brasserie de Monaco':      'Fontvieille',
+  'Panino Club Monaco':          'Monte-Carlo',
+  'AMU Monte Carlo':             'Monte-Carlo',
+  'Buddha-Bar Monte-Carlo':      'Monte-Carlo',
+  'Amber Lounge Monaco':         'Monte-Carlo',
+  'Jimmy\'z Monte Carlo':        'Monte-Carlo',
+  'YCM Monaco':                  'Monaco',
+  'Marius Monaco':               'La Condamine',
+  'CREM Monaco':                 'Monaco',
+  'MonacoTech':                  'Monaco',
+  'SPORTEL Monaco':              'Monaco',
+  'EVER Monaco':                 'Monaco',
+  'Monaco Energy Boat Challenge':'Monaco',
+  'Club Bouliste Monaco':        'Monaco',
+  'Ironman Monaco':              'Monaco',
+  'HVMC Enchères':               'Monaco',
+  'Artcurial Monaco':            'Monaco',
+  'Happy Chou':                  'Monaco',
+  'Belcat Events':               'Monaco',
+  'Little Wonders Monaco':       'Monaco',
+  'Femina Sports Monaco':        'Monaco',
+  'Académie Mer Monaco':         'Monaco',
+  'Académie Princesse Grace':    'Monaco',
+};
+
+// Districts valides pour validation géographique avant push
+const MONACO_DISTRICTS = new Set([
+  'Monte-Carlo', 'Monaco-Ville', 'Monaco', 'Fontvieille',
+  'La Condamine', 'Larvotto', 'Moneghetti', 'Jardin Exotique',
+  'Saint-Roman', 'La Rousse',
+]);
+
+// Domaines agrégateurs interdits dans le champ link
+const FORBIDDEN_LINK_DOMAINS = [
+  'visitmonaco.com', 'yourmonaco.mc', 'principocket.com',
+  'monte-carlo.mc', 'culture.mc',
+];
+
 const UI_NOISE = new Set([
   'events','upcoming events','navigation','online boutique','alerts agenda',
   'boutique','agenda','programme','planning','season','saison',
@@ -369,6 +465,7 @@ function generateEvent(candidate, dateObj, time, id) {
   const dateFr = frDate(dateObj);
   const year = dateObj.getFullYear();
   const venue = SOURCE_VENUE[candidate.source] || candidate.venue || candidate.source;
+  const quarter = SOURCE_QUARTER[candidate.source] || 'Monaco';
   const rawTitle = candidate.title.replace(/^(Exhibition|Exposition|Concert|Spectacle|Festival|Show|Gala)\s*[-–:]\s*/i, '').trim();
   const title = cleanTitle(rawTitle);
   const titlePlain = rawTitle.replace(/\n/g, ' ');
@@ -391,6 +488,7 @@ function generateEvent(candidate, dateObj, time, id) {
   obj += `,emoji:"${style.emoji}"`;
   if (candidate.link) obj += `,link:"${candidate.link}"`;
   obj += `,source:"${esc(candidate.source)}"`;
+  obj += `,quarter:"${quarter}"`;
   obj += `},`;
   return obj;
 }
@@ -858,11 +956,25 @@ async function main() {
       console.log(`     ✗ Événement passé (${frDate(dateObj)}) — ignoré.`);
       continue;
     }
-    // Skip events clearly located outside Monaco
+    // Skip events clearly located outside Monaco (géographie textuelle)
     const venue = (candidate.venue || '').toLowerCase();
     const titleLow = candidate.title.toLowerCase();
-    if (/\b(paris|strasbourg|cannes|nice|lyon|marseille|london|new york|genève|geneva|rome|madrid)\b/.test(venue + ' ' + titleLow)) {
+    if (/\b(paris|strasbourg|cannes|nice|lyon|marseille|london|new york|gen[eè]ve|rome|madrid|lugano|milan|zurich|london|berlin)\b/.test(venue + ' ' + titleLow)) {
       console.log(`     ✗ Hors Monaco — ignoré.`);
+      continue;
+    }
+
+    // Validation : lien agrégateur interdit
+    const linkUrl = candidate.link || '';
+    if (FORBIDDEN_LINK_DOMAINS.some(d => linkUrl.includes(d))) {
+      console.log(`     ✗ Lien agrégateur interdit (${linkUrl}) — ignoré.`);
+      continue;
+    }
+
+    // Validation : quartier dans Monaco
+    const candidateQuarter = SOURCE_QUARTER[candidate.source] || 'Monaco';
+    if (!MONACO_DISTRICTS.has(candidateQuarter)) {
+      console.log(`     ✗ Quartier hors Monaco ("${candidateQuarter}") — ignoré.`);
       continue;
     }
 

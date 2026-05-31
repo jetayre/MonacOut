@@ -15,11 +15,11 @@ const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
-  CONCERT: "music", "OPÉRA": "music", MUSICAL: "music", "JAZZ LIVE": "music",
-  "DJ SET": "soiree", CHANTS: "music",
-  THÉÂTRE: "culture", "CONFÉRENCE": "conference", EXPOSITION: "culture", FESTIVAL: "culture",
-  GALA: "culture", "FÊTE NATIONALE": "culture", MARCHÉ: "culture", SALON: "culture",
-  SPECTACLE: "culture", CINÉMA: "cinema",
+  CONCERT: "concert", "OPÉRA": "concert", MUSICAL: "theatre", "JAZZ LIVE": "concert",
+  "DJ SET": "soiree", CHANTS: "messe",
+  THÉÂTRE: "theatre", "CONFÉRENCE": "conference", EXPOSITION: "musee", FESTIVAL: "theatre",
+  GALA: "theatre", "FÊTE NATIONALE": "theatre", MARCHÉ: "musee", SALON: "conference",
+  SPECTACLE: "theatre", CINÉMA: "cinema",
   ATELIER: "ateliers", DANSE: "ateliers",
   "BIEN-ÊTRE": "bienetre",
   BRUNCH: "foody", APÉRO: "foody", SOIRÉE: "soiree", FOODY: "foody",
@@ -76,9 +76,10 @@ function filterByTime(events, filterId) {
 function matchesCatFilter(e, catId) {
   switch (catId) {
     case "sport":      return ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat);
-    case "culture":    return ["MUSICAL","THÉÂTRE","CHANTS","EXPOSITION","OPÉRA","FESTIVAL","GALA","FÊTE NATIONALE","MARCHÉ","SALON","SPECTACLE","CINÉMA"].includes(e.cat);
+    case "theatre":    return ["THÉÂTRE","SPECTACLE","DANSE","FESTIVAL","GALA","FÊTE NATIONALE","MUSICAL"].includes(e.cat);
+    case "concert":    return ["CONCERT","JAZZ LIVE","OPÉRA"].includes(e.cat);
+    case "musee":      return ["EXPOSITION","MARCHÉ","SALON"].includes(e.cat);
     case "conference": return e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true;
-    case "music":      return ["CONCERT","MUSICAL","JAZZ LIVE","DJ SET","OPÉRA"].includes(e.cat);
     case "cinema":     return e.cat === "CINÉMA";
     case "famille":    return e.free === true || ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) || /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""));
     case "ateliers":   return ["ATELIER","DANSE"].includes(e.cat);

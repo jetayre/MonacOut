@@ -354,6 +354,42 @@ async function checkLinks(events) {
   return { issues, okCount: ok.length, checkedCount: checked };
 }
 
+// ── Vérification géographique ─────────────────────────────────────────────────
+
+const MONACO_DISTRICTS = new Set([
+  'Monte-Carlo', 'Monaco-Ville', 'Monaco', 'Fontvieille',
+  'La Condamine', 'Larvotto', 'Moneghetti', 'Jardin Exotique',
+  'Saint-Roman', 'La Rousse',
+]);
+
+function checkGeography(events) {
+  return events.filter(e => e.quarter && !MONACO_DISTRICTS.has(e.quarter)).map(e => ({
+    id: e.id,
+    date: e.date,
+    title: e.title?.replace(/\n/g, ' ') || '?',
+    issue: `Quartier hors Monaco : "${e.quarter}"`,
+  }));
+}
+
+// ── Vérification domaines de liens interdits ──────────────────────────────────
+
+const FORBIDDEN_DOMAINS = [
+  'visitmonaco.com', 'yourmonaco.mc', 'principocket.com',
+  'monte-carlo.mc', 'culture.mc',
+];
+
+function checkForbiddenLinks(events) {
+  return events.filter(e => {
+    if (!e.link) return false;
+    return FORBIDDEN_DOMAINS.some(d => e.link.includes(d));
+  }).map(e => ({
+    id: e.id,
+    date: e.date,
+    title: e.title?.replace(/\n/g, ' ') || '?',
+    issue: `Lien agrégateur interdit : ${e.link}`,
+  }));
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -376,11 +412,13 @@ async function main() {
   const oldEvents = checkOldEvents(events);
   const coverageGaps = checkMonthlyCoverage(events);
   const holidayErrors = checkHolidayDates(events);
+  const geoIssues = checkGeography(events);
+  const forbiddenLinkIssues = checkForbiddenLinks(events);
 
   console.log('Vérification des liens en cours…');
   const { issues: linkIssues, okCount: linksOk, checkedCount: linksChecked } = await checkLinks(events);
 
-  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + holidayErrors.length + linkIssues.filter(i => i.level === '❌').length;
+  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + holidayErrors.length + geoIssues.length + forbiddenLinkIssues.length + linkIssues.filter(i => i.level === '❌').length;
 
   let report = `========================================\n`;
   report += `MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE\n`;
@@ -437,6 +475,30 @@ async function main() {
     }
   } else {
     report += `✓ Toutes les fêtes (Pâques, Pentecôte, Toussaint, Noël…) correctement datées.\n\n`;
+  }
+
+  // ── Géographie (critique App Store)
+  if (geoIssues.length > 0) {
+    report += `── 🚨 ÉVÉNEMENTS HORS MONACO — CRITIQUE (${geoIssues.length}) ────\n`;
+    for (const i of geoIssues) {
+      report += `  [id:${i.id}] ${i.date} — ${i.title}\n`;
+      report += `  ⛔ ${i.issue}\n`;
+    }
+    report += '\n';
+  } else {
+    report += `✓ Tous les événements sont bien dans la Principauté de Monaco.\n\n`;
+  }
+
+  // ── Liens interdits (agrégateurs)
+  if (forbiddenLinkIssues.length > 0) {
+    report += `── 🚨 LIENS AGRÉGATEURS INTERDITS — CRITIQUE (${forbiddenLinkIssues.length}) ──\n`;
+    for (const i of forbiddenLinkIssues) {
+      report += `  [id:${i.id}] ${i.date} — ${i.title}\n`;
+      report += `  ⛔ ${i.issue}\n`;
+    }
+    report += '\n';
+  } else {
+    report += `✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).\n\n`;
   }
 
   // ── Liens
