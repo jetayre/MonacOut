@@ -169,6 +169,61 @@ function checkMonthlyCoverage(events) {
   return issues;
 }
 
+// ── Vérification dates fêtes ──────────────────────────────────────────────────
+
+function easterDate(year) {
+  const a = year % 19, b = Math.floor(year / 100), c = year % 100;
+  const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4), k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month, day);
+}
+
+function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+
+function holidayWindows(year) {
+  const easter = easterDate(year);
+  return [
+    { key: /p[âa]ques/i,            label: 'Pâques',     center: easter,                  margin: 10 },
+    { key: /ascension/i,             label: 'Ascension',  center: addDays(easter, 39),     margin: 4  },
+    { key: /pentec[oô]te/i,           label: 'Pentecôte',  center: addDays(easter, 50),     margin: 7  },
+    { key: /toussaint/i,             label: 'Toussaint',  center: new Date(year, 10, 1),   margin: 8  },
+    { key: /no[eë]l/i,               label: 'Noël',       center: new Date(year, 11, 25),  margin: 10 },
+  ];
+}
+
+function checkHolidayDates(events) {
+  const issues = [];
+  const yearsSeen = new Set(events.map(e => e.year));
+  for (const year of yearsSeen) {
+    const windows = holidayWindows(year);
+    for (const e of events.filter(ev => ev.year === year)) {
+      const d = eventDate(e);
+      if (!d) continue;
+      const text = ((e.title || '') + ' ' + (e.desc || '')).toLowerCase();
+      for (const { key, label, center, margin } of windows) {
+        if (!key.test(text)) continue;
+        const diff = Math.abs((d - center) / 86400000);
+        if (diff > margin) {
+          issues.push({
+            id: e.id,
+            date: e.date,
+            title: e.title ? e.title.replace(/\n/g, ' ') : '?',
+            issue: `"${label}" ${year} attendu autour du ${center.getDate()}/${center.getMonth()+1} (±${margin}j) — event daté le ${d.getDate()}/${d.getMonth()+1} (écart ${Math.round(diff)}j)`,
+          });
+          break;
+        }
+      }
+    }
+  }
+  return issues;
+}
+
 // ── Vérification des liens ────────────────────────────────────────────────────
 
 // Mots-clés indiquant une page de réservation directe dans l'URL
@@ -320,11 +375,12 @@ async function main() {
   const wrongDays = checkWrongDayOfWeek(events);
   const oldEvents = checkOldEvents(events);
   const coverageGaps = checkMonthlyCoverage(events);
+  const holidayErrors = checkHolidayDates(events);
 
   console.log('Vérification des liens en cours…');
   const { issues: linkIssues, okCount: linksOk, checkedCount: linksChecked } = await checkLinks(events);
 
-  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + linkIssues.filter(i => i.level === '❌').length;
+  const totalIssues = missingDescEn.length + wrongDays.length + oldEvents.length + coverageGaps.length + holidayErrors.length + linkIssues.filter(i => i.level === '❌').length;
 
   let report = `========================================\n`;
   report += `MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE\n`;
@@ -371,6 +427,16 @@ async function main() {
     report += '\n';
   } else {
     report += `✓ Couverture mensuelle complète sur 12 mois.\n\n`;
+  }
+
+  if (holidayErrors.length > 0) {
+    report += `── EVENTS MAL DATÉS PAR RAPPORT AUX FÊTES (${holidayErrors.length}) ──\n`;
+    for (const i of holidayErrors) {
+      report += `  [id:${i.id}] ${i.date} — ${i.title}\n`;
+      report += `  ⚠️  ${i.issue}\n\n`;
+    }
+  } else {
+    report += `✓ Toutes les fêtes (Pâques, Pentecôte, Toussaint, Noël…) correctement datées.\n\n`;
   }
 
   // ── Liens
