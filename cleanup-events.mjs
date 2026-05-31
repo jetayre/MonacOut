@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * MonacOut — Suppression automatique des événements > 30j dans le passé.
- * Utilisé par GitHub Actions. Exit 0 toujours.
+ * MonacOut — Suppression automatique des événements passés (J-1).
+ * Utilisé par GitHub Actions et le hook pre-commit. Exit 0 toujours.
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -31,7 +31,7 @@ function parseEventDate(line) {
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 const cutoff = new Date(today);
-cutoff.setDate(cutoff.getDate() - 30);
+cutoff.setDate(cutoff.getDate() - 1);
 
 const content = readFileSync(EVENTS_FILE, 'utf8');
 const lines = content.split('\n');
