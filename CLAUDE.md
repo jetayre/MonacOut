@@ -100,6 +100,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Monaco Blue Initiative | https://www.fpa2.org/en/events/monaco-blue-initiative | CONFÉRENCE océan/environnement | |
 | Blue Economy & Finance Forum | https://www.beffmonaco.org/ | CONFÉRENCE finance durable/ESG | |
 | Monaco Founders Summit | https://www.monacotech.mc/ | CONFÉRENCE startups/tech | |
+| WAIB Summit Monaco | https://www.waibsummit.com/ | CONFÉRENCE Web3/IA/crypto (post-GP, One Monte-Carlo) | |
+| Hoolon Wellness Monaco | https://hoolonwellness.com/ | BIEN-ÊTRE, ATELIER (yoga, breathwork, massage) | +377 9992 5510 |
 | Sohn Monaco Investment Conference | https://sohnconferences.org/ | CONFÉRENCE hedge funds/finance | |
 | Smart & Sustainable Marina | https://m3monaco.com/smart-events/smart-marina/ | CONFÉRENCE maritime/innovation | |
 | MonacoTech | https://www.monacotech.mc/ | CONFÉRENCE startups/IA/Web3 (événements réguliers) | +377 9999 0009 |
@@ -217,13 +219,13 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
     - `monte-carlo.mc` — interdit (portail SBM généraliste, même pour les pages "Théâtre des Variétés")
     - `culture.mc/en/what-s-on` ou toute page d'agenda de culture.mc — interdit
     - tout autre site d'office du tourisme ou d'agenda générique
-    **Exception autorisée** : `mairie.mc` peut être utilisé comme `link` uniquement pour les événements en plein air ou dans des espaces publics qui n'ont pas de page de billetterie ou de lieu propre (feux d'artifice, fête nationale, yoga sur la plage, marchés…). Dans ce cas, `mairie.mc/agenda` est acceptable.
+    **Exception autorisée** : `mairie.mc` peut être utilisé comme `link` uniquement pour les événements en plein air ou dans des espaces publics qui n'ont pas de page de billetterie ou de lieu propre (feux d'artifice, fête nationale, yoga sur la plage, marchés…). Préférer les pages spécifiques quand elles existent : `/la-fete-de-la-musique`, `/les-soirees-feux-dartifice-au-quai-albert-1er`, `/le-village-de-noel`, `/la-fete-nationale`, `/journee-de-la-petite-enfance`, `/lespace-lamartine` (yoga/pilates). Pour les milongas/tango sur la Digue — aucune page spécifique n'existe sur mairie.mc, `mairie.mc/agenda` est le seul lien disponible.
     Ces sites ne servent sinon qu'à la découverte (`source`). Le `link` doit pointer vers **le site du lieu ou de la billetterie officielle**. Si aucun lien direct n'existe, ne pas mettre de `link` plutôt que de mettre un lien inutile.
 
 17. **Vérification obligatoire des dates avant publication** : ne jamais inventer ou extrapoler une date. Avant d'ajouter un événement, **vérifier la date sur la source officielle** (site du lieu, billetterie, ou source indiquée dans la table des sources). En particulier :
     - Vérifier le **jour de la semaine** avec `new Date(année, mois-1, jour).getDay()` (règle 7)
     - Vérifier que **le lieu de l'événement est bien à Monaco** (règle 15) — un organisateur monégasque peut organiser un événement hors Monaco
-    - Vérifier que le **mois et l'année** correspondent bien à l'édition annoncée (ex : un salon annuel peut changer de date d'une année à l'autre)
+    - Vérifier que le **mois et l'année** correspondent bien à l'édition annoncée (ex : un salon annuel peut changer de date d'une année à l'autre — ex : Green Shift Festival 2026 était en **avril** au Yacht Club de Monaco, pas en octobre au Grimaldi Forum)
     - Si la date n'est pas encore publiée par l'organisateur, **ne pas créer l'événement** — attendre la confirmation officielle
     - Un événement avec une date incorrecte est pire qu'un événement absent : il trompe l'utilisateur
 
