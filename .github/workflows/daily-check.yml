@@ -25,6 +25,10 @@ jobs:
       - name: Nettoyage événements passés
         run: node cleanup-events.mjs
 
+      - name: Vérification croisée des dates (PrinciPocket)
+        run: node cross-check-dates.mjs
+        continue-on-error: true
+
       - name: Auto-correction des erreurs détectables
         run: node autofix-events.mjs
 
