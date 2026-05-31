@@ -22,6 +22,32 @@ const MOIS     = { jan:0, 'fév':1, mar:2, avr:3, mai:4, juin:5, juil:6, 'août'
 const MOIS_ARR = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
 const JOURS    = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
 
+// ─── Calcul des fêtes mobiles ────────────────────────────────────────────────
+function easterDate(year) {
+  const a = year % 19, b = Math.floor(year / 100), c = year % 100;
+  const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4), k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+  const day   = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month, day);
+}
+function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+
+// Fêtes MOBILES avec date unique exacte (Lundi férié)
+// Noël/Toussaint exclus : ce sont des saisons, pas un jour précis — trop d'events légitimes ont ces mots
+function holidayRules(year) {
+  const easter = easterDate(year);
+  return [
+    { key: /p[âa]ques/i,       label: 'Lundi de Pâques',    exact: addDays(easter, 1),  margin: 10 },
+    { key: /ascension/i,       label: 'Jeudi de l\'Ascension', exact: addDays(easter, 39), margin: 4  },
+    { key: /pentec[oô]te/i,    label: 'Lundi de Pentecôte',  exact: addDays(easter, 50), margin: 7  },
+  ];
+}
+
 // ─── Règles venue → jour attendu (tirées du tableau CLAUDE.md) ──────────────
 const VENUE_DAY_RULES = [
   { venue: 'Nobu Monte-Carlo',        day: 0, cat: 'BRUNCH'  },
@@ -97,12 +123,39 @@ const result = lines.map(line => {
   const idM  = line.match(/id:(\d+)/);
   const id   = idM?.[1];
 
+  // ── Correction 3 : date hors fenêtre d'une fête mobile ─────────────────
+  const titleM = line.match(/title:"([^"]*)"/);
+  const descM  = line.match(/desc:"([^"]*)"/);
+  const eventText = ((titleM?.[1] || '') + ' ' + (descM?.[1] || '')).toLowerCase();
+  for (const { key, label, exact, margin } of holidayRules(year)) {
+    if (!key.test(eventText)) continue;
+    const eventD = new Date(year, monthIdx, dayNum);
+    const diff   = Math.abs((eventD - exact) / 86400000);
+    if (diff > margin) {
+      const newDay  = JOURS[exact.getDay()];
+      const newNum  = exact.getDate();
+      const newMois = MOIS_ARR[exact.getMonth()];
+      const newDate = `${newDay} ${newNum} ${newMois}`;
+      fixes.push(`  [id:${id}] "${label}" ${year} : "${dateStr}" → "${newDate}" (écart ${Math.round(diff)}j — corrigé automatiquement)`);
+      fixed++;
+      line = line.replace(`date:"${dateStr}"`, `date:"${newDate}"`);
+      // Mettre à jour dateStr pour la suite
+      parts[0] = newDay; parts[1] = String(newNum); parts[2] = newMois;
+    }
+    break;
+  }
+
   // ── Correction 1 : abrégé de jour incorrect ─────────────────────────────
-  const expectedDay = JOURS[new Date(year, monthIdx, dayNum).getDay()];
-  if (declaredDay !== expectedDay) {
-    fixes.push(`  [id:${id}] label "${declaredDay}" → "${expectedDay}" pour le ${dayNum} ${parts[2]} ${year}`);
+  const currentDateStr = line.match(/date:"([^"]+)"/)?.[1] || dateStr;
+  const currentParts   = currentDateStr.split(' ');
+  const currentDay     = currentParts[0];
+  const currentNum     = parseInt(currentParts[1]);
+  const currentMonth   = MOIS[currentParts[2]];
+  const expectedDay = currentMonth !== undefined ? JOURS[new Date(year, currentMonth, currentNum).getDay()] : null;
+  if (expectedDay && currentDay !== expectedDay) {
+    fixes.push(`  [id:${id}] label "${currentDay}" → "${expectedDay}" pour le ${currentNum} ${currentParts[2]} ${year}`);
     fixed++;
-    line = line.replace(`date:"${dateStr}"`, `date:"${expectedDay} ${parts[1]} ${parts[2]}"`);
+    line = line.replace(`date:"${currentDateStr}"`, `date:"${expectedDay} ${currentParts[1]} ${currentParts[2]}"`);
   }
 
   // ── Correction 2 : mauvais jour pour une venue récurrente ────────────────

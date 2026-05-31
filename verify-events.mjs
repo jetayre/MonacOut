@@ -189,11 +189,11 @@ function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); retu
 function holidayWindows(year) {
   const easter = easterDate(year);
   return [
-    { key: /p[âa]ques/i,            label: 'Pâques',     center: easter,                  margin: 10 },
+    { key: /p[âa]ques/i,         label: 'Lundi de Pâques',    center: addDays(easter, 1),   margin: 10 },
     { key: /ascension/i,             label: 'Ascension',  center: addDays(easter, 39),     margin: 4  },
     { key: /pentec[oô]te/i,           label: 'Pentecôte',  center: addDays(easter, 50),     margin: 7  },
-    { key: /toussaint/i,             label: 'Toussaint',  center: new Date(year, 10, 1),   margin: 8  },
-    { key: /no[eë]l/i,               label: 'Noël',       center: new Date(year, 11, 25),  margin: 10 },
+    { key: /toussaint/i,        label: 'Toussaint',           center: new Date(year, 10, 1), margin: 30 },
+    { key: /no[eë]l/i,          label: 'Noël',                center: new Date(year, 11, 25), margin: 30 },
   ];
 }
 
