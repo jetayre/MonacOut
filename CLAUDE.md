@@ -316,8 +316,9 @@ monacout/
 │   └── venues.csv
 ├── auto-events.mjs                ← scraper Playwright (GitHub Actions)
 ├── verify-events.mjs              ← vérification qualité (rapport)
-├── autofix-events.mjs             ← correction automatique jours de semaine
+├── autofix-events.mjs             ← correction automatique jours de semaine + fêtes mobiles
 ├── cleanup-events.mjs             ← suppression événements > 30j passés
+├── cross-check-dates.mjs          ← vérification croisée dates vs PrinciPocket (source interne)
 ├── send-alert-email.mjs           ← alerte email via Resend API
 ├── scrape-events.mjs              ← outil de scraping manuel
 ├── generate-icons.mjs             ← génération icônes PWA (Playwright → PNG)
@@ -427,10 +428,11 @@ Layout horizontal : **bloc gauche** (hamburger + switcher fr/en en dessous) + **
 - Déclenche : **6h Monaco** (0 4 UTC) + **18h Monaco** (0 16 UTC) + manuel
 - Séquence :
   1. `cleanup-events.mjs` — supprime événements > 30j passés
-  2. `autofix-events.mjs` — corrige les erreurs de jour de semaine
-  3. `verify-events.mjs` — génère rapport qualité (`verify-events-report.txt`)
-  4. `send-alert-email.mjs` — envoie un email si `verify-events` échoue (via secret `RESEND_API_KEY`)
-  5. Si `src/data/events.js` modifié → build + commit + push
+  2. `cross-check-dates.mjs` — vérifie les dates vs PrinciPocket (130+ events, pagination) — `continue-on-error: true`
+  3. `autofix-events.mjs` — corrige jours de semaine + fêtes mobiles (Pâques, Pentecôte, Ascension)
+  4. `verify-events.mjs` — génère rapport qualité (`verify-events-report.txt`)
+  5. `send-alert-email.mjs` — envoie un email si `verify-events` échoue (via secret `RESEND_API_KEY`)
+  6. Si `src/data/events.js` modifié → build + commit + push
 - Runner : GitHub Actions (ubuntu-latest, Node 20)
 
 **3. `weekly-scan.yml` — Scan hebdomadaire**
