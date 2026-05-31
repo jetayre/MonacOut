@@ -225,6 +225,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 17. **Vérification obligatoire des dates avant publication** : ne jamais inventer ou extrapoler une date. Avant d'ajouter un événement, **vérifier la date sur la source officielle** (site du lieu, billetterie, ou source indiquée dans la table des sources). En particulier :
     - Vérifier le **jour de la semaine** avec `new Date(année, mois-1, jour).getDay()` (règle 7)
     - Vérifier que **le lieu de l'événement est bien à Monaco** (règle 15) — un organisateur monégasque peut organiser un événement hors Monaco
+    - **Calendrier scolaire Monaco** : pas de "vacances de Pentecôte" en Principauté. Le seul congé lié à Pentecôte est le **Lundi de Pentecôte** (jour férié unique). Les congés scolaires autour du GP sont le **break Grand Prix** (~4 jours, mercredi soir → lundi matin). Ne jamais créer d'ateliers enfants étiquetés "vacances de Pentecôte" sur plusieurs jours — les enfants sont en classe.
     - Vérifier que le **mois et l'année** correspondent bien à l'édition annoncée (ex : un salon annuel peut changer de date d'une année à l'autre — ex : Green Shift Festival 2026 était en **avril** au Yacht Club de Monaco, pas en octobre au Grimaldi Forum)
     - Si la date n'est pas encore publiée par l'organisateur, **ne pas créer l'événement** — attendre la confirmation officielle
     - Un événement avec une date incorrecte est pire qu'un événement absent : il trompe l'utilisateur
