@@ -73,7 +73,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Monaco Brewery | https://www.brasserie-de-monaco.com/ | APÉRO (craft beer, samedi) | |
 | La Brasserie de Monaco | https://www.brasserie-de-monaco.com/ | BRUNCH, APÉRO (Fontvieille) | +377 9777 0990 |
 | Panino Club Monaco | https://panino-club.com/ | APÉRO (vendredi, Blvd des Moulins) | |
-| Buddha-Bar Monte-Carlo | https://www.fairmont.com/monte-carlo/dining/buddha-bar/ | APÉRO, SOIRÉE | +377 9999 8080 |
+| Buddha-Bar Monte-Carlo | https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/ | APÉRO, SOIRÉE | +377 9999 8080 |
+| Turbo Monaco | https://www.turbomonaco.com/ | SOIRÉE (GP week + saison) | +377 9999 2000 |
 | AMU Monte-Carlo | https://amu-montecarlo.com/ | APÉRO, SOIRÉE | +377 9315 4848 |
 | Nikki Beach Monte Carlo | https://nikkibeach.com/monte-carlo/ | BRUNCH, SOIRÉE | +377 9330 0700 |
 | Le Méridien Beach Plaza | https://www.marriott.com/en-us/hotels/mcmmd-le-meridien-beach-plaza/overview/ | BRUNCH, SOIRÉE, BIEN-ÊTRE (Larvotto) | +377 93 30 98 80 |
@@ -184,7 +185,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 5. **Ne pas dupliquer** : avant d'ajouter, vérifier que l'événement n'existe pas déjà (même titre, même date).
 
-6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier. **Dernier ID utilisé : 1941.** Prochain ID : 1942.
+6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier. **Dernier ID utilisé : 1947.** Prochain ID : 1948.
 
 7. **VÉRIFIER LE JOUR DE LA SEMAINE** : le champ `date` doit commencer par le bon abrégé (Lun/Mar/Mer/Jeu/Ven/Sam/Dim). Toujours vérifier avec `new Date(year, mois, jour).getDay()` avant d'insérer. Les erreurs de jour sont invisibles à l'œil nu mais font échouer les filtres "Aujourd'hui" et "Week-end".
 
@@ -208,7 +209,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 14. **Téléphone obligatoire** : le champ `phone` doit toujours être renseigné quand un numéro de téléphone existe pour le lieu. Consulter la table des sources ci-dessus — elle contient les téléphones de tous les lieux récurrents. Ne jamais laisser `phone: ""` (champ vide) : soit renseigner le numéro, soit ne pas inclure le champ `phone` du tout.
 
-15. **Interdiction des liens généralistes** : les sites agrégateurs ou d'agenda générique ne doivent **jamais** apparaître dans le champ `link`. Sont interdits comme `link` :
+15. **Portée géographique stricte : Monaco uniquement** : MonacOut ne référence que des événements ayant lieu **sur le territoire de la Principauté de Monaco**. Ne jamais créer une fiche pour un événement se déroulant à Nice, Menton, Cannes, Lugano, Paris ou ailleurs, même si l'organisateur est monégasque (ex : Monaco Legend Auctions Exclusive Timepieces → se tient à Lugano → à exclure). Vérifier systématiquement le lieu de l'événement, pas seulement le nom de l'organisateur.
+
+16. **Interdiction des liens généralistes** : les sites agrégateurs ou d'agenda générique ne doivent **jamais** apparaître dans le champ `link`. Sont interdits comme `link` :
     - `visitmonaco.com` / `yourmonaco.mc` — interdits même pour les pages de lieu
     - `principocket.com` — interdit (source interne uniquement, règle 12)
     - `monte-carlo.mc` — interdit (portail SBM généraliste, même pour les pages "Théâtre des Variétés")
@@ -217,8 +220,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
     **Exception autorisée** : `mairie.mc` peut être utilisé comme `link` uniquement pour les événements en plein air ou dans des espaces publics qui n'ont pas de page de billetterie ou de lieu propre (feux d'artifice, fête nationale, yoga sur la plage, marchés…). Dans ce cas, `mairie.mc/agenda` est acceptable.
     Ces sites ne servent sinon qu'à la découverte (`source`). Le `link` doit pointer vers **le site du lieu ou de la billetterie officielle**. Si aucun lien direct n'existe, ne pas mettre de `link` plutôt que de mettre un lien inutile.
 
-16. **Vérification obligatoire des dates avant publication** : ne jamais inventer ou extrapoler une date. Avant d'ajouter un événement, **vérifier la date sur la source officielle** (site du lieu, billetterie, ou source indiquée dans la table des sources). En particulier :
+17. **Vérification obligatoire des dates avant publication** : ne jamais inventer ou extrapoler une date. Avant d'ajouter un événement, **vérifier la date sur la source officielle** (site du lieu, billetterie, ou source indiquée dans la table des sources). En particulier :
     - Vérifier le **jour de la semaine** avec `new Date(année, mois-1, jour).getDay()` (règle 7)
+    - Vérifier que **le lieu de l'événement est bien à Monaco** (règle 15) — un organisateur monégasque peut organiser un événement hors Monaco
     - Vérifier que le **mois et l'année** correspondent bien à l'édition annoncée (ex : un salon annuel peut changer de date d'une année à l'autre)
     - Si la date n'est pas encore publiée par l'organisateur, **ne pas créer l'événement** — attendre la confirmation officielle
     - Un événement avec une date incorrecte est pire qu'un événement absent : il trompe l'utilisateur
