@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-06-06T21:47:30.344Z",
+  "events": [
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "07h00 — 08h30",
+      "title": "SUNRISE SESSION PLAGE",
+      "venue": "Plage du Larvotto",
+      "quarter": "Larvotto",
+      "emoji": "🌅"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "10h30 — 12h00",
+      "title": "ATELIER DESSIN MÉDIATHÈQUE ENFANTS",
+      "venue": "Médiathèque de Monaco",
+      "quarter": "Monaco",
+      "emoji": "✏️"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "11h00 — 15h30",
+      "title": "BRUNCH BRASSERIE DE MONACO",
+      "venue": "La Brasserie de Monaco",
+      "quarter": "Fontvieille",
+      "emoji": "🍻"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "11h30 — 15h00",
+      "title": "BRUNCH WEEK-END NOTE BLEUE",
+      "venue": "La Note Bleue",
+      "quarter": "Larvotto",
+      "emoji": "🌊"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "12h00 — 00h00",
+      "title": "SUNSET MONACO GP DAY 2",
+      "venue": "Le Méridien Beach Plaza",
+      "quarter": "Larvotto",
+      "emoji": "🌅"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "12h30 — 17h00",
+      "title": "DJ SUMMER BRUNCH NIKKI BEACH",
+      "venue": "Nikki Beach",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏖️"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "14h00 — 16h30",
+      "title": "ATELIER FAMILLE NMNM",
+      "venue": "NMNM Villa Sauber",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎨"
+    },
+    {
+      "date": "Sam 6 juin",
+      "iso": "2026-06-06",
+      "time": "14h30 · 20h30",
+      "title": "SCARY MOVIE",
+      "venue": "Cinéma des Beaux-Arts",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    }
+  ]
+}
