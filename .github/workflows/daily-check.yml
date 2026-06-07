@@ -1,4 +1,4 @@
-name: MonacOut — Nettoyage & Vérification
+name: MonacOut — Nettoyage & Police
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:         # lancement manuel depuis GitHub
 
 jobs:
-  cleanup:
+  police:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -27,60 +27,40 @@ jobs:
           git config user.name "MonacOut Bot"
           git config user.email "noreply@github.com"
 
-      - name: Nettoyage événements passés
+      - name: Nettoyage des événements passés
         run: node cleanup-events.mjs
 
-      - name: Vérification croisée des dates (PrinciPocket)
+      - name: Auto-correction des dates vs PrinciPocket
         run: node cross-check-dates.mjs
-        continue-on-error: true
+        continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
 
-      - name: Auto-correction des erreurs détectables
-        run: node autofix-events.mjs
+      - name: 🚓 LE POLICIER — autofix + contrôle (dates, géo, liens, noms, traduction)
+        id: police
+        run: node police-events.mjs
+        continue-on-error: true   # on capture le verdict, on pousse les corrections, puis on alerte
 
-      - name: Build & push nettoyage (toujours, sans attendre la vérification)
+      - name: Build & push des corrections automatiques
         run: |
           if ! git diff --quiet src/data/events.js; then
             npm run build
             git add src/data/events.js
-            git commit -m "chore: nettoyage automatique ($(date +%Y-%m-%d))"
+            git commit -m "chore: police — corrections automatiques ($(date +%Y-%m-%d))"
             git push
           fi
 
-      - name: Vérification géographie — événements hors Monaco (bloquant)
-        run: |
-          VALID="Monte-Carlo|Monaco-Ville|Monaco|Fontvieille|La Condamine|Larvotto|Moneghetti|Jardin Exotique|Saint-Roman|La Rousse"
-          INVALID=$(grep -oP 'quarter:"\K[^"]+' src/data/events.js | grep -vP "^($VALID)$" || true)
-          if [ -n "$INVALID" ]; then
-            echo "::error::Quartiers hors Monaco détectés — App Store rejet immédiat !"
-            echo "$INVALID"
-            exit 1
-          fi
-          echo "✓ Tous les quartiers sont dans la Principauté."
-
-      - name: Vérification liens agrégateurs interdits (bloquant)
-        run: |
-          FORBIDDEN="visitmonaco\.com|yourmonaco\.mc|principocket\.com|monte-carlo\.mc/|culture\.mc"
-          FOUND=$(grep -oP 'link:"\K[^"]+' src/data/events.js | grep -P "$FORBIDDEN" || true)
-          if [ -n "$FOUND" ]; then
-            echo "::error::Liens agrégateurs interdits détectés — doit pointer vers le lieu officiel !"
-            echo "$FOUND"
-            exit 1
-          fi
-          echo "✓ Aucun lien agrégateur interdit."
-
-      - name: Vérification complète (qualité — non bloquante, alerte email)
+      - name: Vérification réseau des liens (santé des billetteries)
         id: verify
         run: node verify-events.mjs
         continue-on-error: true
 
-      - name: Alerte email si problèmes détectés
-        if: steps.verify.outcome == 'failure'
+      - name: Alerte email si le policier ou la vérif ont signalé un problème
+        if: steps.police.outcome == 'failure' || steps.verify.outcome == 'failure'
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node send-alert-email.mjs
 
-      - name: Statut final
-        if: steps.verify.outcome == 'failure'
+      - name: Statut final (échec visible si le policier a vu rouge)
+        if: steps.police.outcome == 'failure'
         run: |
-          echo "::warning::verify-events a détecté des problèmes — rapport envoyé par email."
+          echo "::error::Le policier a détecté des fautes critiques non corrigeables automatiquement — rapport envoyé par email."
           exit 1

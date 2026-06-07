@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "validate": "node verify-events.mjs",
-    "cleanup": "node cleanup-events.mjs"
+    "cleanup": "node cleanup-events.mjs",
+    "police": "node police-events.mjs",
+    "source-check": "node source-check.mjs",
+    "prepare": "sh scripts/install-hooks.sh"
   },
   "dependencies": {
     "@capacitor/cli": "^8.4.0",

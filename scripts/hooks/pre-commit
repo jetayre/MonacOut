@@ -1,0 +1,31 @@
+#!/bin/sh
+# MonacOut — hook pre-commit : LE POLICIER 🚓
+# Tourne avant chaque commit (source : édition manuelle).
+#   1. Nettoie les événements passés
+#   2. Police : autofix + contrôle bloquant (dates, noms, géo, liens, traduction)
+# Si le policier détecte une faute critique → le commit est REFUSÉ.
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT" || exit 1
+
+# 1. Nettoyage des événements passés
+echo "🧹 Nettoyage des événements passés..."
+node cleanup-events.mjs
+
+# 2. Le policier (autofix + contrôle). Bloque si exit != 0.
+node police-events.mjs
+POLICE=$?
+
+# Re-stage events.js si autofix/cleanup l'ont modifié
+if git diff --name-only | grep -q "src/data/events.js"; then
+  git add "$REPO_ROOT/src/data/events.js"
+  echo "✓ events.js corrigé et re-stagé."
+fi
+
+if [ "$POLICE" -ne 0 ]; then
+  echo ""
+  echo "🛑 COMMIT REFUSÉ par le policier — corrige les fautes ci-dessus."
+  exit 1
+fi
+
+exit 0

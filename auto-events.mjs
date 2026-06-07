@@ -1006,13 +1006,22 @@ async function main() {
   writeFileSync(EVENTS_FILE, src, 'utf8');
   console.log(`  ✓ events.js mis à jour.`);
 
-  // ── AutoFix — corriger les jours avant de commiter ──────────────────────────
-  console.log('\n  AutoFix des jours...');
+  // ── LE POLICIER — autofix + contrôle bloquant avant publication ─────────────
+  // (autofix : jours/fêtes · contrôle : jour de semaine, géo Monaco, liens,
+  //  noms, traduction). Si une faute critique subsiste → on n'ajoute RIEN
+  //  (rollback complet), plutôt que de publier des données fausses.
+  console.log('\n  🚓 Contrôle du policier...');
   try {
-    execSync('node autofix-events.mjs', { cwd: __dirname, stdio: 'pipe' });
-    console.log('  ✓ AutoFix appliqué.');
+    const out = execSync('node police-events.mjs', { cwd: __dirname, stdio: 'pipe' }).toString();
+    console.log(out.split('\n').map(l => '  ' + l).join('\n'));
+    console.log('  ✓ Policier : feu vert.');
   } catch (e) {
-    console.log(`  ⚠ AutoFix warning : ${e.message}`);
+    console.log('  🛑 Policier : feu rouge — publication annulée.');
+    console.log((e.stdout?.toString() || '').split('\n').map(l => '  ' + l).join('\n'));
+    // Rollback complet : on ne publie aucun des nouveaux événements.
+    execSync(`git checkout -- ${EVENTS_FILE}`, { cwd: __dirname });
+    writeFileSync(LOG_FILE, `[${dateStr}] Policier a bloqué la publication (faute critique). Aucun ajout.\n`, 'utf8');
+    return;
   }
 
   // ── Build ───────────────────────────────────────────────────────────────────
