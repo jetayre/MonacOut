@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Capacitor } from "@capacitor/core";
+import { Share } from "@capacitor/share";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
 const GOLD = "#a88421";
 const GOLD_FRAME = "#C9A96E";
@@ -334,6 +337,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             >{isFav ? "❤️" : "🤍"}</button>
           </div>
 
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
@@ -349,6 +353,33 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           >
             {lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}
           </button>
+          {Capacitor.isNativePlatform() && (
+            <button
+              onClick={async e => {
+                e.stopPropagation();
+                Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+                await Share.share({
+                  title: event.title.replace(/\n/g, ' '),
+                  text: `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}`,
+                  url: event.link || 'https://monacout.vercel.app',
+                  dialogTitle: lang === 'en' ? 'Share event' : 'Partager',
+                }).catch(() => {});
+              }}
+              style={{
+                alignSelf: "flex-start",
+                display: "inline-flex", alignItems: "center", gap: 5,
+                padding: "6px 12px",
+                border: `1px solid ${GOLD_FRAME}`,
+                borderRadius: 1, background: "none", cursor: "pointer",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+                textTransform: "uppercase", color: "#0F1D3A",
+              }}
+            >
+              {lang === "en" ? "Share" : "Partager"}
+            </button>
+          )}
+          </div>
           </div>
         </div>
       </div>

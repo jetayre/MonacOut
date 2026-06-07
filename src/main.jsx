@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import posthog from 'posthog-js'
 import * as Sentry from '@sentry/react'
+import { Capacitor } from '@capacitor/core'
 
 class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -32,7 +33,8 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
-if ('serviceWorker' in navigator) {
+// Service Worker uniquement en mode web (pas dans l'app native Capacitor)
+if (!Capacitor.isNativePlatform() && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });

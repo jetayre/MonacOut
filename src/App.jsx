@@ -5,6 +5,9 @@ import { ALL_EVENTS } from "./data/events";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
 import AdminScreen from "./components/screens/AdminScreen";
+import { Capacitor } from "@capacitor/core";
+import { LocalNotifications } from "@capacitor/local-notifications";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
 const MOIS_APP = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
@@ -17,11 +20,12 @@ function parseForNotif(e) {
 }
 
 async function checkFavNotifications(favorites) {
-  if (!('Notification' in window) || Notification.permission !== 'granted') return;
   const today = new Date(); today.setHours(0,0,0,0);
   const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
   const notified = JSON.parse(localStorage.getItem('monacout_notified') || '{}');
   let changed = false;
+  const pending = [];
+
   for (const id of favorites) {
     const event = ALL_EVENTS.find(e => e.id === id);
     if (!event) continue;
@@ -30,14 +34,37 @@ async function checkFavNotifications(favorites) {
     const isToday = d.toDateString() === today.toDateString();
     const isTomorrow = d.toDateString() === tomorrow.toDateString();
     if ((isToday || isTomorrow) && !notified[id]) {
+      pending.push({ id, event, isToday });
+      notified[id] = true; changed = true;
+    }
+  }
+
+  if (pending.length === 0) return;
+
+  if (Capacitor.isNativePlatform()) {
+    // Notifications natives iOS via Capacitor
+    const { display } = await LocalNotifications.requestPermissions();
+    if (display === 'granted') {
+      await LocalNotifications.schedule({
+        notifications: pending.map(({ id, event, isToday }) => ({
+          id,
+          title: `${isToday ? "Aujourd'hui" : "Demain"} — ${event.title.replace(/\n/g,' ')}`,
+          body: `${event.subtitle}${event.time ? ' · ' + event.time : ''}`,
+          schedule: { at: new Date(Date.now() + 2000) },
+        })),
+      });
+    }
+  } else if ('Notification' in window && Notification.permission === 'granted') {
+    // Fallback web
+    pending.forEach(({ id, event, isToday }) => {
       new Notification(`${isToday ? "Aujourd'hui" : "Demain"} — ${event.title.replace(/\n/g,' ')}`, {
         body: `${event.subtitle} · ${event.time}`,
         icon: '/favicon.svg',
         tag: `monacout-${id}`,
       });
-      notified[id] = true; changed = true;
-    }
+    });
   }
+
   if (changed) localStorage.setItem('monacout_notified', JSON.stringify(notified));
 }
 
@@ -88,11 +115,19 @@ export default function App() {
   }
 
   function toggleFav(id) {
+    // Haptic feedback natif iOS
+    if (Capacitor.isNativePlatform()) {
+      Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
+    }
     setFavorites(prev => {
       const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
       localStorage.setItem("monacout_favs", JSON.stringify(next));
-      if (next.length === 1 && 'Notification' in window && Notification.permission === 'default') {
-        Notification.requestPermission();
+      if (next.length === 1) {
+        if (Capacitor.isNativePlatform()) {
+          LocalNotifications.requestPermissions().catch(() => {});
+        } else if ('Notification' in window && Notification.permission === 'default') {
+          Notification.requestPermission();
+        }
       }
       return next;
     });
