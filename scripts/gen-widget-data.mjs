@@ -30,7 +30,14 @@ function isoDate(e) {
 
 const { ALL_EVENTS } = await import('../src/data/events.js');
 
-const items = ALL_EVENTS.slice(0, 8).map(e => ({
+// Priorité aux événements phares (hot) — ils remontent en tête du widget,
+// puis on complète avec les prochains événements. Chaque groupe reste trié
+// par date (ALL_EVENTS est déjà chronologique).
+const hot = ALL_EVENTS.filter(e => e.hot);
+const rest = ALL_EVENTS.filter(e => !e.hot);
+const selected = [...hot, ...rest].slice(0, 8);
+
+const items = selected.map(e => ({
   date: e.date,                                   // "Sam 30 mai"
   iso: isoDate(e),                                // "2026-05-30"
   time: e.time || '',
