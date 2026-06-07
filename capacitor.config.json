@@ -1,0 +1,20 @@
+{
+  "appId": "com.monacout",
+  "appName": "Monac'Out",
+  "webDir": "dist",
+  "ios": {
+    "contentInset": "always",
+    "allowsLinkPreview": false,
+    "scrollEnabled": false
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#C4A241"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 1000,
+      "backgroundColor": "#FFFFFF"
+    }
+  }
+}
