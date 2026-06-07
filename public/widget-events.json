@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-06-07T09:29:46.422Z",
+  "generatedAt": "2026-06-07T09:38:34.441Z",
   "events": [
+    {
+      "date": "Dim 7 juin",
+      "iso": "2026-06-07",
+      "time": "15h00",
+      "title": "GRAND PRIX DE MONACO 2026",
+      "venue": "Circuit de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Dim 7 juin",
+      "iso": "2026-06-07",
+      "time": "20h00",
+      "title": "NEW MOODS COLDPLAY TRIBUTE GP",
+      "venue": "New Moods",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎤"
+    },
     {
       "date": "Dim 7 juin",
       "iso": "2026-06-07",
@@ -22,15 +40,6 @@
     {
       "date": "Dim 7 juin",
       "iso": "2026-06-07",
-      "time": "15h00",
-      "title": "GRAND PRIX DE MONACO 2026",
-      "venue": "Circuit de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Dim 7 juin",
-      "iso": "2026-06-07",
       "time": "20h00",
       "title": "NOBU GP RACE DAY DINNER",
       "venue": "Nobu Monte-Carlo",
@@ -45,15 +54,6 @@
       "venue": "Twiga Monte Carlo",
       "quarter": "Monte-Carlo",
       "emoji": "🎧"
-    },
-    {
-      "date": "Dim 7 juin",
-      "iso": "2026-06-07",
-      "time": "20h00",
-      "title": "NEW MOODS COLDPLAY TRIBUTE GP",
-      "venue": "New Moods",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎤"
     },
     {
       "date": "Dim 7 juin",

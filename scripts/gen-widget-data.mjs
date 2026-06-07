@@ -30,12 +30,33 @@ function isoDate(e) {
 
 const { ALL_EVENTS } = await import('../src/data/events.js');
 
-// Priorité aux événements phares (hot) — ils remontent en tête du widget,
-// puis on complète avec les prochains événements. Chaque groupe reste trié
-// par date (ALL_EVENTS est déjà chronologique).
-const hot = ALL_EVENTS.filter(e => e.hot);
-const rest = ALL_EVENTS.filter(e => !e.hot);
-const selected = [...hot, ...rest].slice(0, 8);
+// Importance par catégorie : les événements majeurs (F1, sport, galas, opéra…)
+// passent avant les soirées/brunchs/apéros récurrents. Plus le poids est bas,
+// plus l'événement est prioritaire dans le widget.
+const CAT_RANK = {
+  'FORMULE 1': 0, 'FORMULE E': 0, 'TENNIS': 0, 'FOOTBALL': 0, 'BASKET': 0,
+  'RALLYE': 0, 'SPORT': 1, 'GALA': 1, 'OPÉRA': 1, 'FESTIVAL': 1, 'ENCHÈRES': 1,
+  'CONCERT': 2, 'THÉÂTRE': 2, 'MUSICAL': 2, 'DANSE': 2, 'SPECTACLE': 2,
+  'EXPOSITION': 2, 'SALON': 2, 'CONFÉRENCE': 2, 'CHANTS': 2, 'JAZZ LIVE': 2,
+  'CINÉMA': 3, 'ATELIER': 3, 'MARCHÉ': 3, 'BIEN-ÊTRE': 3, 'FÊTE NATIONALE': 1,
+  'BRUNCH': 4, 'APÉRO': 4, 'SOIRÉE': 4, 'DJ SET': 4,
+};
+const rank = e => CAT_RANK[e.cat] ?? 3;
+
+// On ne re-priorise que les prochains événements (fenêtre courte), pour ne pas
+// faire remonter un match de foot lointain devant les sorties du jour.
+// ALL_EVENTS est déjà trié par date : on prend les 14 plus proches comme vivier,
+// on les classe par (hot, importance, date), puis on garde les 8 premiers.
+const pool = ALL_EVENTS.slice(0, 14);
+const selected = pool
+  .map((e, i) => ({ e, i })) // i = rang chronologique d'origine (tri stable)
+  .sort((a, b) =>
+    (a.e.hot === b.e.hot ? 0 : a.e.hot ? -1 : 1) ||
+    rank(a.e) - rank(b.e) ||
+    a.i - b.i
+  )
+  .slice(0, 8)
+  .map(x => x.e);
 
 const items = selected.map(e => ({
   date: e.date,                                   // "Sam 30 mai"
