@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Capacitor } from "@capacitor/core";
+
+const IS_NATIVE = Capacitor.isNativePlatform();
 
 const NAVY = "#0F1D3A";
 const GOLD = "#C4A241";
@@ -74,14 +77,24 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
-      minHeight: "100vh",
+      minHeight: "100dvh",
       background: "#FFFFFF",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "20px 0",
+      ...(IS_NATIVE ? {} : {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px 0",
+      }),
     }}>
-      <div style={{
+      <div style={IS_NATIVE ? {
+        width: "100%",
+        height: "100dvh",
+        background: WHITE,
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+      } : {
         width: 393,
         height: 852,
         background: WHITE,
@@ -92,23 +105,25 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
         boxShadow: "0 24px 80px rgba(15,29,58,0.22)",
         position: "relative",
       }}>
-        {/* Dynamic island seul */}
+        {/* Barre haute : zone sûre sous l'encoche réelle (natif) ou fausse encoche (aperçu web) */}
         <div style={{
           flexShrink: 0,
-          height: 46,
+          height: IS_NATIVE ? "env(safe-area-inset-top, 44px)" : 46,
           background: WHITE,
           position: "relative",
           zIndex: 10,
         }}>
-          <div style={{
-            position: "absolute",
-            top: 10, left: "50%",
-            transform: "translateX(-50%)",
-            width: 120, height: 34,
-            background: "#000",
-            borderRadius: 20,
-            zIndex: 5,
-          }} />
+          {!IS_NATIVE && (
+            <div style={{
+              position: "absolute",
+              top: 10, left: "50%",
+              transform: "translateX(-50%)",
+              width: 120, height: 34,
+              background: "#000",
+              borderRadius: 20,
+              zIndex: 5,
+            }} />
+          )}
         </div>
 
         {/* Contenu scrollable */}
