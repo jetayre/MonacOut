@@ -119,7 +119,7 @@ struct MonacOutWidgetEntryView: View {
     var maxRows: Int { family == .systemLarge ? 6 : 3 }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        let content = VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 6) {
                 Text("M")
                     .font(.system(size: 18, weight: .bold, design: .serif))
@@ -138,7 +138,13 @@ struct MonacOutWidgetEntryView: View {
             Spacer(minLength: 0)
         }
         .padding(14)
-        .containerBackground(for: .widget) { Color.monacIvory }
+
+        // containerBackground n'existe qu'à partir d'iOS 17 → fond classique avant.
+        if #available(iOS 17.0, *) {
+            content.containerBackground(for: .widget) { Color.monacIvory }
+        } else {
+            content.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.monacIvory)
+        }
     }
 }
 
