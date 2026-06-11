@@ -212,8 +212,14 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
       <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
 
-        {/* Header compact — une seule ligne : menu + loupe · MONAC'OUT · fr/en + cœur */}
-        <div style={{ background: STRIPE_BG, padding: "8px 12px", display: "flex", alignItems: "center", gap: 8 }}>
+        {/* Header — le logo rétrécit au scroll vers le bas, s'agrandit au scroll vers le haut.
+            Les boutons (menu, loupe, fr/en, cœur) restent toujours visibles. */}
+        <div style={{
+          background: STRIPE_BG,
+          padding: (filtersVisible || showSearch) ? "8px 12px" : "3px 12px",
+          display: "flex", alignItems: "center", gap: 8,
+          transition: "padding 0.22s ease",
+        }}>
           {/* Gauche : menu + loupe */}
           <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
@@ -230,9 +236,18 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             </button>
           </div>
 
-          {/* Centre : logo compact */}
-          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleLogoTap}>
-            <MonacOutLogo compact />
+          {/* Centre : logo — grand en haut, petit au scroll vers le bas */}
+          <div style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            maxHeight: (filtersVisible || showSearch) ? "46px" : "24px",
+            overflow: "hidden", transition: "max-height 0.22s ease",
+          }} onClick={handleLogoTap}>
+            <div style={{
+              transform: (filtersVisible || showSearch) ? "scale(1)" : "scale(0.6)",
+              transformOrigin: "center", transition: "transform 0.22s ease",
+            }}>
+              <MonacOutLogo compact />
+            </div>
           </div>
 
           {/* Droite : fr/en + cœur */}
