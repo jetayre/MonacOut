@@ -212,18 +212,37 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
       <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
 
-        {/* Logo — toujours visible */}
-        <div style={{ background: STRIPE_BG, padding: "10px 14px", display: "flex", alignItems: "center" }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, flexShrink: 0 }}>
+        {/* Header compact — une seule ligne : menu + loupe · MONAC'OUT · fr/en + cœur */}
+        <div style={{ background: STRIPE_BG, padding: "8px 12px", display: "flex", alignItems: "center", gap: 8 }}>
+          {/* Gauche : menu + loupe */}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HamburgerIcon />
             </button>
+            <button onClick={() => {
+              setShowSearch(v => {
+                if (v) setSearchQuery("");
+                else setTimeout(() => searchInputRef.current?.focus(), 50);
+                return !v;
+              });
+            }} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
+              <SearchIcon active={showSearch} />
+            </button>
+          </div>
+
+          {/* Centre : logo compact */}
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleLogoTap}>
+            <MonacOutLogo compact />
+          </div>
+
+          {/* Droite : fr/en + cœur */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
             <div style={{ display: "flex", gap: 4 }}>
               {["fr","en"].map(l => (
                 <button key={l} onClick={() => onLangChange?.(l)} style={{
                   background: "none", border: "none", cursor: "pointer",
                   fontFamily: "'Josefin Sans', sans-serif",
-                  fontSize: 9, fontWeight: lang === l ? 700 : 400,
+                  fontSize: 10, fontWeight: lang === l ? 700 : 400,
                   letterSpacing: 1, textTransform: "uppercase",
                   color: lang === l ? "#0F1D3A" : "#6A7080",
                   padding: "1px 3px",
@@ -231,22 +250,10 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 }}>{l}</button>
               ))}
             </div>
-            <button onClick={() => {
-              setShowSearch(v => {
-                if (v) setSearchQuery("");
-                else setTimeout(() => searchInputRef.current?.focus(), 50);
-                return !v;
-              });
-            }} style={{ background: "none", border: "none", cursor: "pointer", padding: "2px 0", marginTop: 2 }}>
-              <SearchIcon active={showSearch} />
+            <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
+              <HeartIcon hasFavs={hasFavs} />
             </button>
           </div>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }} onClick={handleLogoTap}>
-            <MonacOutLogo width={220} />
-          </div>
-          <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, flexShrink: 0 }}>
-            <HeartIcon hasFavs={hasFavs} />
-          </button>
         </div>
 
         {/* Barre de recherche */}

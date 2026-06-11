@@ -25,7 +25,13 @@ class ErrorBoundary extends Component {
 posthog.init('phc_qfThmficvfkSEgsMLbKiJcgiHRYyAJ5GU2i8pavYYzNU', {
   api_host: 'https://eu.i.posthog.com',
   person_profiles: 'identified_only',
+  capture_pageview: true,        // compte chaque vue de page
+  capture_pageleave: true,       // mesure le temps passé
 })
+
+// Compteur fiable en natif : un événement à chaque ouverture de l'app.
+// → tableau de bord : eu.posthog.com (utilisateurs uniques, sessions, ouvertures)
+posthog.capture('app_opened', { platform: Capacitor.getPlatform() })
 
 Sentry.init({
   dsn: 'https://ad492b22c77c633af4e8a1fae43a3e11@o4511416999608320.ingest.de.sentry.io/4511417016516688',

@@ -2,7 +2,39 @@ const GOLD = "#C9A96E";
 const NAVY = "#0F1D3A";
 const CREAM = "#FFFFFF";
 
-export default function MonacOutLogo({ width = 220 }) {
+export default function MonacOutLogo({ width = 220, compact = false }) {
+  // Version compacte : juste le mot « MONAC'OUT » dans le cadre, sans le grand M.
+  if (compact) {
+    return (
+      <div style={{
+        border: `2px solid ${GOLD}`,
+        padding: 2,
+        display: "inline-block",
+        boxSizing: "border-box",
+      }}>
+        <div style={{
+          border: `1.5px solid ${NAVY}`,
+          background: CREAM,
+          padding: "5px 14px",
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "center",
+        }}>
+          <span style={{
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontWeight: 400, fontSize: 16, letterSpacing: 4,
+            color: NAVY, textTransform: "uppercase",
+          }}>MONAC'</span>
+          <span style={{
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontWeight: 600, fontSize: 16, letterSpacing: 3,
+            color: GOLD, textTransform: "uppercase",
+          }}>OUT</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{
       width,
