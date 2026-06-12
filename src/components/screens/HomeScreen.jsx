@@ -186,6 +186,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     filtered = filterByCats(ALL_EVENTS, catFilters).filter(e =>
       e.title.toLowerCase().includes(q) ||
       (e.subtitle || "").toLowerCase().includes(q) ||
+      (e.quarter || "").toLowerCase().includes(q) ||
       e.cat.toLowerCase().includes(q) ||
       (e.desc || "").toLowerCase().includes(q)
     );
@@ -285,7 +286,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               placeholder={lang === "en" ? "Search events…" : "Rechercher…"}
               style={{
                 flex: 1, border: "none", outline: "none", background: "transparent",
-                fontFamily: "'Jost', sans-serif", fontSize: 13, color: NAVY,
+                fontFamily: "'Jost', sans-serif", fontSize: 16, color: NAVY,
                 letterSpacing: 0.2,
               }}
             />

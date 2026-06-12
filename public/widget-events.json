@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-11T18:29:03.446Z",
+  "generatedAt": "2026-06-12T09:56:38.192Z",
   "events": [
     {
       "date": "Ven 12 juin",
@@ -9,15 +9,6 @@
       "venue": "Grimaldi Forum",
       "quarter": "Monte-Carlo",
       "emoji": "📺"
-    },
-    {
-      "date": "Jeu 11 juin",
-      "iso": "2026-06-11",
-      "time": "11 — 13 juin 2026",
-      "title": "THE UNIQUE SHOW MONACO",
-      "venue": "Le Méridien Beach Plaza",
-      "quarter": "Larvotto",
-      "emoji": "💬"
     },
     {
       "date": "Ven 12 juin",
@@ -47,15 +38,6 @@
       "emoji": "⛵"
     },
     {
-      "date": "Jeu 11 juin",
-      "iso": "2026-06-11",
-      "time": "10h00 — 18h00",
-      "title": "RAINIER III & GRACE KELLY 70 ANS",
-      "venue": "Palais Princier",
-      "quarter": "Monaco-Ville",
-      "emoji": "👑"
-    },
-    {
       "date": "Ven 12 juin",
       "iso": "2026-06-12",
       "time": "10h00 — 19h00",
@@ -72,6 +54,24 @@
       "venue": "Fondation Prince Pierre",
       "quarter": "",
       "emoji": "🎤"
+    },
+    {
+      "date": "Ven 12 juin",
+      "iso": "2026-06-12",
+      "time": "",
+      "title": "ARIGATO MISSION JAPON",
+      "venue": "Mairie de Monaco",
+      "quarter": "Monaco",
+      "emoji": "✨"
+    },
+    {
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉE NAVAL DE MONACO",
+      "venue": "Terrasses de Fontvieille",
+      "quarter": "Fontvieille",
+      "emoji": "⚓"
     }
   ]
 }
