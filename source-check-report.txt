@@ -1,0 +1,21 @@
+========================================
+MONACOUT — CONTRÔLE-SOURCE (exactitude vs sites officiels)
+Généré le : 07/06/2026 11:52:56  ·  Mode : DRY-RUN
+Confirmés : 4  ·  Non confirmés : 3  ·  Ignorés (réseau) : 5
+========================================
+
+── DATES NON CONFIRMÉES SUR LA SOURCE (seraient retirés) ──
+[id:124] Sam 20 juin — ATELIERS\nFLAMENCO\nMONACO
+  https://meetings.montecarlosbm.com/en/sporting-monte-carlo
+[id:138] Jeu 25 juin — HVMC\nBANDES\nDESSINÉES
+  https://hvmc.com/ventes-a-venir/
+[id:225] Sam 27 juin — GALA DES\nÉCOLES DE\nDANSE MONACO
+  https://www.espaceleoferre.mc/programmation
+
+── IGNORÉS (erreur réseau, non touchés par sécurité) ──
+[id:45] Ven 12 juin — MONTE-CARLO\nTV\nFESTIVAL (lien = page d'accueil, date invérifiable — non touché)
+[id:1365] Jeu 11 juin — THE UNIQUE\nSHOW\nMONACO (lien = page d'accueil, date invérifiable — non touché)
+[id:1369] Jeu 18 juin — MONACO\nFOUNDERS\nSUMMIT (lien = page d'accueil, date invérifiable — non touché)
+[id:244] Lun 15 juin — RENCONTRES\nPHILOSOPHIQUES\nJUIN (page injoignable (réseau) — non touché)
+[id:218] Sam 27 juin — COMÉDIE\nFRANÇAISE\nLES MUSES (page injoignable (réseau) — non touché)
+

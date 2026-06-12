@@ -1,0 +1,48 @@
+========================================
+MONACOUT — RAPPORT DE SCRAPING
+Généré le : 15/05/2026 23:14:38
+Candidats totaux : 36
+Nouveaux potentiels : 12
+========================================
+
+── NOUVEAUX ÉVÉNEMENTS POTENTIELS ────────────────
+
+  📌 Exhibition - Magies d'ailleurs (Magic from Elsewhere)
+     Source : Culture Monaco
+
+  📌 Exhibition - Le Sentiment de la Nature. Contemporary Art in the mirror of Poussin
+     Source : Culture Monaco
+
+  📌 Flore Saunois, "Le Temps d'un ciel bleu"
+     Source : Culture Monaco
+
+  📌 Exhibition - From Toumaï to Sapiens
+     Source : Culture Monaco
+
+  📌 Exposition - Patrimoine en danger
+     Source : Culture Monaco
+
+  📌 Picnic Music - Un concert sur grand écran pour accompagner votre pause déjeuner
+     Source : Culture Monaco
+
+  📌 Sieste Musicale - Instant détente pendant la pause déjeuner
+     Source : Culture Monaco
+
+  📌 Ciné-club - "Uniformes et jupons courts" de Billy Wilder (1942) présenté par Yves Gasiglia
+     Source : Culture Monaco
+
+  📌 Andersen !
+     Source : Culture Monaco
+
+  📌 "Plein air" : projection/rencontre avec Helga Fanderl
+     Source : Culture Monaco
+
+  📌 L'art d'être mon père
+     Source : Culture Monaco
+
+  📌 Concert symphonique - E. Grandy – J.-Y. Thibaudet
+     Source : Culture Monaco
+
+
+► Pour ajouter ces événements, lancer Claude Code.
+========================================

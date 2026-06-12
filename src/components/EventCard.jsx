@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
 
 const GOLD = "#a88421";
 const GOLD_FRAME = "#C9A96E";
@@ -189,7 +190,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
-    : event.date;
+    : localizeDate(event.date, lang);
 
   return (
     <div
@@ -214,7 +215,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             fontSize: 11, fontWeight: 600, letterSpacing: 3,
             textTransform: "uppercase", color: GOLD,
             marginBottom: 10,
-          }}>{event.cat}</div>
+          }}>{localizeCat(event.cat, lang)}</div>
 
           {/* Date + heure */}
           <div style={{
@@ -230,7 +231,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               <span style={{
                 fontFamily: "'Lato', sans-serif",
                 fontSize: 12, fontWeight: 400, color: GREY,
-              }}>{event.time}</span>
+              }}>{localizeTime(event.time, lang)}</span>
             )}
           </div>
 
@@ -239,7 +240,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
             fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
             color: "#000000", lineHeight: 1.25, marginTop: 22, marginBottom: 14,
-          }}>{event.title.replace(/\n/g, " ")}</div>
+          }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
 
           {/* Lieu */}
           {event.subtitle && (

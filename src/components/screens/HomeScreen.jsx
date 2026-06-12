@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ALL_EVENTS } from "../../data/events";
+import { localizeTitle, localizeCat } from "../../i18n";
 import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
@@ -183,13 +184,16 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   let filtered;
   if (searchQuery.trim()) {
     const q = searchQuery.toLowerCase();
-    filtered = filterByCats(ALL_EVENTS, catFilters).filter(e =>
-      e.title.toLowerCase().includes(q) ||
-      (e.subtitle || "").toLowerCase().includes(q) ||
-      (e.quarter || "").toLowerCase().includes(q) ||
-      e.cat.toLowerCase().includes(q) ||
-      (e.desc || "").toLowerCase().includes(q)
-    );
+    filtered = filterByCats(ALL_EVENTS, catFilters).filter(e => {
+      // Recherche dans TOUS les champs, en français ET en anglais
+      const hay = [
+        e.title, localizeTitle((e.title || "").replace(/\n/g, " "), "en"),
+        e.subtitle, e.quarter,
+        e.cat, localizeCat(e.cat, "en"),
+        e.desc, e.descEn, e.source, e.time,
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
   } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
     filtered = filterByCats(ALL_EVENTS.filter(e => { const d = parseEventDate(e); return d && d >= rangeStart && d <= endBound; }), catFilters);

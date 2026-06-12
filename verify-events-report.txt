@@ -1,0 +1,530 @@
+========================================
+MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
+Généré le : 12/06/2026 06:00:01
+Événements analysés : 1229
+Problèmes détectés : 4
+========================================
+
+✓ Tous les événements ont un champ descEn.
+
+✓ Tous les jours de la semaine sont corrects.
+
+✓ Aucun événement trop ancien détecté.
+
+── TROUS DE COUVERTURE MENSUELLE (4) ──
+  Trou couverture : aucun événement "ATELIER" en mar 2027
+  Trou couverture : aucun événement "ATELIER" en mai 2027
+  Trou couverture : aucun événement "BIEN-ÊTRE" en mai 2027
+  Trou couverture : aucun événement "CONFÉRENCE" en mai 2027
+
+✓ Toutes les fêtes (Pâques, Pentecôte, Toussaint, Noël…) correctement datées.
+
+✓ Tous les événements sont bien dans la Principauté de Monaco.
+
+✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).
+
+── VÉRIFICATION LIENS (157 URLs testées) ──────────
+
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (76)
+     [id:91] ARTCURIAL MONACO AUCTION WEEK
+     → https://www.artcurial.com/en/specialties/artcurial-monaco
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:49] CONCERT AU PALAIS PHILIPPE JORDAN
+     → https://opmc.mc/en/concert/philippe-jordan/
+     💬 HTTP 503
+
+     [id:53,66,248,448] CONCERT DE L'ASSOMPTION, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE
+     → https://www.maitrisecathedrale.mc/fr/prochaines-dates
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:56] IRONMAN MONACO 2026
+     → https://www.ironman.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:57,236,237,238,701] OUVERTURE SAISON OPÉRA, LES CONTES D'HOFFMANN OFFENBACH, LA BOHÈME PUCCINI SAISON, DON GIOVANNI MOZART, SOIRÉE OPÉRA DE MONACO
+     → https://opmc.mc/en/season-25-26/
+     💬 HTTP 503
+
+     [id:1361] MONACO BUSINESS 2026
+     → https://www.monacoeconomicboard.com/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1369] MONACO FOUNDERS SUMMIT
+     → https://monacotech.mc/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1370] SOHN MONACO INVESTMENT CONFERENCE
+     → https://www.sohnconference.org/monaco
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:60,63,68,711] CONCERT PHILHARMONIQUE OCTOBRE, CONCERT PHILHARMONIQUE NOVEMBRE, GALA DE NOËL PHILHARMONIQUE, CONCERT DE NOËL OPMC
+     → https://opmc.mc/en/concert/
+     💬 HTTP 503
+
+     [id:62,307] FÊTE NATIONALE DE MONACO, COLLECTION VOITURES PRINCIÈRES
+     → https://www.palais.mc/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:144,127,705,1061,1062] INTENSIF BALLET ÉTÉ, ATELIER DANSE CONTEMPORAINE, BALLET DE MONTE-CARLO AUTOMNE, STAGE BALLET INTENSIF ÉTÉ I, STAGE BALLET INTENSIF ÉTÉ II
+     → https://www.balletsdemontecarlo.com/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:138,139,696,750,753] HVMC BANDES DESSINÉES, HVMC AUTOMNE MOBILIER, VENTE AUX ENCHÈRES HVMC, HVMC VENTE JUIN 2026, HVMC VENTE DÉCEMBRE 2026
+     → https://hvmc.com/ventes-a-venir/
+     💬 HTTP 403
+
+     [id:164,1324,1325,1326,1327,1328,1329,1330,1331,1332] HAPPY HOUR BUDDHA-BAR MONTE-CARLO, BUDDHA-BAR JUILLET DJ LOUNGE, BUDDHA-BAR AOÛT HAPPY HOUR, BUDDHA-BAR RENTRÉE DJ LOUNGE, BUDDHA-BAR HALLOWEEN DJ LOUNGE, BUDDHA-BAR NOËL DJ LOUNGE, BUDDHA-BAR JANVIER DJ LOUNGE, BUDDHA-BAR FÉVRIER DJ LOUNGE, BUDDHA-BAR PRINTEMPS DJ LOUNGE, BUDDHA-BAR AVRIL DJ LOUNGE
+     → https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:168,189,1313,1314,1315,1316,1317,1318,1319,1320,1321,1424,1431,1438,1445,1452,1459,1466,1473,1480,1487,1494,1501,1508,1515,1522,1529,1536,1543,1550,1557,1564,1571,1578,1585,1592,1599,1606,1613,1620,1627,1634,1641,1648,1655,1662,1669,1676,1683,1690,1697,1704,1711,1718,1725,1732,1739,1746,1753] HAPPY HOUR SASS CAFÉ AUTOMNE, APÉRO SASS CAFÉ FÉVRIER, SASS CAFÉ APÉRO ÉTÉ, SASS CAFÉ JUILLET COCKTAILS, SASS CAFÉ FIN D'ÉTÉ APÉRO, SASS CAFÉ RENTRÉE APÉRO, SASS CAFÉ APÉRO NOVEMBRE, SASS CAFÉ NOËL APÉRO, SASS CAFÉ JANVIER APÉRO, SASS CAFÉ PRINTEMPS APÉRO, SASS CAFÉ APÉRO AVRIL, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI, COCKTAILS SASS CAFÉ MARDI
+     → https://www.sasscafe.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:173] ATELIER SWING ROCK'N'ROLL
+     → (vide)
+     💬 Lien manquant
+
+     [id:179] ATELIER LINDY HOP MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:203] CYRANO DE BERGERAC ROSTAND
+     → (vide)
+     💬 Lien manquant
+
+     [id:207] OUVERTURE SAISON VARIÉTÉS
+     → (vide)
+     💬 Lien manquant
+
+     [id:208] PIÈCE D'AUTOMNE VARIÉTÉS
+     → (vide)
+     💬 Lien manquant
+
+     [id:209] SPECTACLE DE NOËL FAMILLE
+     → (vide)
+     💬 Lien manquant
+
+     [id:273] MUSICAL HAPPY HOUR JUIN
+     → https://opmc.mc/en/concert/chamber-music-10-june-2026/
+     💬 HTTP 503
+
+     [id:274] TCHAÏKOVSKI & BEETHOVEN
+     → https://opmc.mc/en/concert/k-yamada-g-shaham/
+     💬 HTTP 503
+
+     [id:275] ARCADI VOLODOS RÉCITAL
+     → https://opmc.mc/en/concert/recital-arcadi-volodos-2026/
+     💬 HTTP 503
+
+     [id:277] SIRBA OCTET SALLE GARNIER
+     → https://opmc.mc/en/concert/sirba-octet/
+     💬 HTTP 503
+
+     [id:278] CONCERT AU PALAIS MENDELSSOHN
+     → https://opmc.mc/en/concert/simone-young-pablo-ferrandez/
+     💬 HTTP 503
+
+     [id:279] LA DAME AUX CAMÉLIAS BALLET PARIS
+     → https://opmc.mc/en/concert/la-dame-aux-camelias-ballet-de-lopera-national-de-paris/
+     💬 HTTP 503
+
+     [id:280] MARTHA ARGERICH AU PALAIS
+     → https://opmc.mc/en/concert/charles-dutoit-martha-argerich/
+     💬 HTTP 503
+
+     [id:281] CONCERT AU PALAIS BERNSTEIN
+     → https://opmc.mc/en/concert/juraj-valcuha-sayaka-shoji/
+     💬 HTTP 503
+
+     [id:282] CONCERT AU PALAIS BEETHOVEN
+     → https://opmc.mc/en/concert/martin-rajna-zoltan-fejervari/
+     💬 HTTP 503
+
+     [id:283] CONCERT AU PALAIS KAZUKI YAMADA
+     → https://opmc.mc/en/concert/kazuki-yamada-alexandre-kantorow/
+     💬 HTTP 503
+
+     [id:291,982,983,984,985,986] MAGIES D'AILLEURS ANTHROPO, ATELIER PRÉHISTOIRE, ATELIER PRÉHISTOIRE, ATELIER PRÉHISTOIRE, ATELIER PRÉHISTOIRE, ATELIER PRÉHISTOIRE
+     → https://map.gouv.mc/en
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:355] MUSÉE NAVAL DE MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:356] MUSÉE NAVAL DE MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:357] MUSÉE NAVAL DE MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:365] CHAPELLE DE LA VISITATION
+     → (vide)
+     💬 Lien manquant
+
+     [id:366] CHAPELLE DE LA VISITATION
+     → (vide)
+     💬 Lien manquant
+
+     [id:367] CHAPELLE DE LA VISITATION
+     → (vide)
+     💬 Lien manquant
+
+     [id:377,378,379,380,381,382,383,384,385,386,387,388,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,444] HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HAPPY HOUR AU MARIUS PORT HERCULE, HALLOWEEN APÉRO AU MARIUS
+     → https://www.mariusmonaco.com/en/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:440,441,442] FÊTE NATIONALE DE MONACO, FEU D'ARTIFICE FÊTE NATIONALE, CONCERT VEILLE FÊTE NATIONALE
+     → https://www.mairie.mc/la-fete-nationale
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:466,467,1922,1923] ENERGY BOAT CHALLENGE MONACO, ENERGY BOAT CHALLENGE MONACO, ENERGY BOAT CHALLENGE DAY 3, ENERGY BOAT CHALLENGE FINALE
+     → https://energyboatchallenge.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:751,752] MONACO LEGEND AUCTIONS, MONACO LEGEND AUTUMN SALE
+     → https://www.monacolegendauctions.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:849,850,851] STAGE ARTS PLASTIQUES, STAGE ARTS PLASTIQUES, STAGE ARTS PLASTIQUES
+     → https://pavillonbosio.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:941,942,943,944] COURS DE DANSE, COURS DE DANSE, COURS DE DANSE, COURS DE DANSE
+     → https://www.balletsdemontecarlo.com/fr/academie-princesse-grace/formations
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:951,952,953,954] ATELIER NATURE & FAMILLE, ATELIER NATURE & FAMILLE, ATELIER NATURE & FAMILLE, ATELIER NATURE & FAMILLE
+     → https://roseraie.mc/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:957] PLEIN AIR BIEN-ÊTRE
+     → (vide)
+     💬 Lien manquant
+
+     [id:958] PLEIN AIR BIEN-ÊTRE
+     → (vide)
+     💬 Lien manquant
+
+     [id:959] PLEIN AIR BIEN-ÊTRE
+     → (vide)
+     💬 Lien manquant
+
+     [id:960] PLEIN AIR BIEN-ÊTRE
+     → (vide)
+     💬 Lien manquant
+
+     [id:961] ATELIER ARTISTIQUE
+     → (vide)
+     💬 Lien manquant
+
+     [id:962] ATELIER ARTISTIQUE
+     → (vide)
+     💬 Lien manquant
+
+     [id:963] ATELIER ARTISTIQUE
+     → (vide)
+     💬 Lien manquant
+
+     [id:964] ATELIER ARTISTIQUE
+     → (vide)
+     💬 Lien manquant
+
+     [id:1017] GALA FIGHT AIDS MONACO
+     → https://fightaidsmonaco.org/
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:1019,1020] MONACO TROTT'N'ROLL, DÎNER DES ÉTOILES FLAVIEN
+     → https://www.fondationflavien.com
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1023] 8ÈME FORUM DES ARTISTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:1024] SOULEYMANE BACHIR DIAGNE
+     → https://www.fondationprincepierre.mc/evenements/details/souleymane-bachir-diagne-universalisme-universel-et-traduction
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:1068] ATELIERS CRÉATIFS ÉTÉ
+     → https://belcatevents.com
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1072,1073,1075,1089,1163,1173] ATELIER ÉCO-LUDIQUE ENFANTS, ATELIER ÉCO-LUDIQUE ENFANTS, ATELIER RECYCLAGE CRÉATIF, ATELIERS JEUNES ÉTÉ, MÉDITATION GUIDÉE ÉTÉ, MÉDITATION DE RENTRÉE
+     → https://www.mairie.mc/
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:1101,1102,1938,1940] CONTES D'ÉTÉ MÉDIATHÈQUE, HEURE DU CONTE RENTRÉE MÉDIATHÈQUE, CONFÉRENCE MÉDIATHÈQUE JANVIER, CONFÉRENCE MÉDIATHÈQUE MARS
+     → https://www.mediatheque.mc/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1105] ATELIER PRÉHISTOIRE ÉTÉ
+     → https://map.gouv.mc/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1114] PROMENADE JARDIN JAPONAIS
+     → (vide)
+     💬 Lien manquant
+
+     [id:1116] BALADE JARDINS SAINT-MARTIN
+     → (vide)
+     💬 Lien manquant
+
+     [id:1135,1136] SUNSET APERITIVO CAFFÈ MILANO, APERITIVO D'ÉTÉ CAFFÈ MILANO
+     → https://www.caffemilano.mc/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1138,1139] TAPAS & VINS LE PETIT BAR, SOIRÉE LOCALE LE PETIT BAR
+     → https://www.lepetitbar.mc/
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:1141,1142,1760,1761,1762,1763,1764,1765,1766,1767,1768,1769] APÉRO CORSE U TAPU CONDAMINE, VINS & PLANCHES U TAPU, TAPAS CORSES U TAPU AOÛT, APÉRO CORSE U TAPU SEPTEMBRE, VINS & PLANCHES U TAPU, TAPAS CORSES U TAPU NOVEMBRE, APÉRO HIVERNAL U TAPU CONDAMINE, CHARCUTERIES CORSES U TAPU, APÉRO CORSE U TAPU FÉVRIER, VINS DE CORSE U TAPU MARS, TAPAS CORSES U TAPU PRINTEMPS, APÉRO CORSE U TAPU MAI 2027
+     → https://www.google.com/maps/search/U+Tapu+Marche+Condamine+Monaco
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:1175,1185] FÉMININ SACRÉ & ÉNERGIE, ATELIER CORPS & ESPRIT
+     → https://www.holisticrelaxing.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1177] RECOVERY WEEKEND ODÉON SPA
+     → https://odeonspa.com/
+     💬 HTTP 403
+
+     [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
+     → https://jennalifestyle.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1297,1298,1299,1300,1301,1302,1303,1868,1869,1870,1871,1872] JACK MONACO FRIDAY LIVE MUSIC, JACK MONACO SATURDAY NIGHT, JACK MONACO SUMMER FRIDAY, JACK MONACO RENTRÉE NIGHT, JACK MONACO FRIDAY AUTOMNE, JACK MONACO SATURDAY NIGHT, JACK MONACO NOËL NIGHT, JACK MONACO FRIDAY JANVIER, JACK MONACO SATURDAY FÉVRIER, JACK MONACO FRIDAY MARS, JACK MONACO SATURDAY AVRIL, JACK MONACO FRIDAY MAI 2027
+     → https://jackmonaco.playfun.tv/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1956] EXPOSITION PEEK! PEEK! PEEK!
+     → (vide)
+     💬 Lien manquant
+
+     [id:1960] JOURNÉE MONDIALE DE\ L’ENVIRONNEMENT
+     → (vide)
+     💬 Lien manquant
+
+     [id:1962] MUNEGU REPAIR CAFÉ
+     → (vide)
+     💬 Lien manquant
+
+     [id:1963] FÊTE DE LA MUSIQUE\ 2026 - PETIT BISCUIT
+     → (vide)
+     💬 Lien manquant
+
+     [id:1966] BOOM DES ENFANTS
+     → (vide)
+     💬 Lien manquant
+
+     [id:1972] BOUM DES ENFANTS
+     → (vide)
+     💬 Lien manquant
+
+     [id:1884,1885,1886,1887,1888,1889,1890] SUNSET MONACO JUILLET, SUNSET MONACO AOÛT, SUNSET MONACO SEPTEMBRE, SUNSET MONACO JUIN 2027, SUNSET MONACO JUILLET 2027, SUNSET MONACO AOÛT 2027, CLOSING SUNSET MONACO 2027
+     → https://www.sunsetmonaco.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+
+  💡 À VÉRIFIER MANUELLEMENT (48)
+     [id:80,47,51,166,200,410,1420,1421,1427,1428,1434,1435,1441,1442,1448,1449,1455,1456,1462,1463,1469,1470,1476,1477,1483,1484,1490,1491,1497,1498,1504,1505,1511,1512,1518,1519,1525,1526,1532,1533,1539,1540,1546,1547,1553,1554,1560,1561,1567,1568,1574,1575,1581,1582,1588,1589,1595,1596,1602,1603,1609,1610,1616,1617,1623,1624,1630,1631,1637,1638,1644,1645,1651,1652,1658,1659,1665,1666,1672,1673,1679,1680,1686,1687,1693,1694,1700,1701,1707,1708,1714,1715,1721,1722,1728,1729,1735,1736,1742,1743,1749,1750,1756,1757] FERMETURE SAISON NOTE BLEUE, JAZZ D'ÉTÉ LARVOTTO, JAZZ FESTIVAL LARVOTTO, SUNSET APÉRO LARVOTTO, SUNSET APÉRO NOTE BLEUE, DÉGUSTATION ROSÉS DE PROVENCE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE, SUNSET APÉRO NOTE BLEUE, BRUNCH WEEK-END NOTE BLEUE
+     → https://lanotebleue.mc/en/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:45] MONTE-CARLO TV FESTIVAL
+     → https://www.tvfestival.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:478,145,392,1931] MÉDITERRANÉE & BIODIVERSITÉ MARINE, ATELIER ARTS MARINS, ATELIER ILLUSTRATION MARINE, ATELIER OCÉAN DES MERVEILLES
+     → https://musee.oceano.org/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:479,480,244,245,246,247,1939,1941] CONFÉRENCE ÉTÉ PHILOMONACO, CONFÉRENCE DE FIN D'ANNÉE, RENCONTRES PHILOSOPHIQUES JUIN, RENCONTRES PHILOSOPHIQUES SEPTEMBRE, RENCONTRES PHILOSOPHIQUES OCTOBRE, RENCONTRES PHILOSOPHIQUES NOVEMBRE, CONFÉRENCE PHILOMONACO FÉVRIER, CONFÉRENCE PHILOMONACO AVRIL
+     → https://philomonaco.com
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1362] LUXE PACK MONACO 2026
+     → https://www.luxepackmonaco.com/en
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1363] EVER MONACO 2026
+     → https://ever-monaco.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1365] THE UNIQUE SHOW MONACO
+     → https://www.theuniqueshow.com
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1366] SPORTEL MONACO 2026
+     → https://sportelmonaco.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:58] MONACO RUN 2026
+     → https://www.monacorun.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:59] GALA DE LA CROIX- ROUGE
+     → https://croix-rouge.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:143] ATELIER MUSIQUE DE CHAMBRE
+     → https://academierainier3.mc/en
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:167,192] APÉRO DE RENTRÉE QUAI DES ARTISTES, APÉRO TERRASSE QUAI DES ARTISTES
+     → https://quaidesartistes.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:178,180] TANGO ARGENTIN AUTOMNE, MILONGA DE NOËL MONACO
+     → https://www.tpgmonaco.mc
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:242,303,306,310,314,318,322,326,330,334,338,341,345,349] EXPOSITION NMNM AUTOMNE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE, LUMIÈRES DE MÉDITERRANÉE
+     → https://www.nmnm.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:249,497,498,501,502,505,506,509,510,513,514,517,518,521,522,525,526,529,530,533,534,537,538,541,542,545,546,549,550,553,554,557,558,561,562,565,566,569,570,573,574,577,578,581,582,585,586,589,590,593,594,597,598,601,602,605,606,609,610,613,614,617,618,621,622,625,626,629,630,633,634,637,638,641,642,645,646,649,650,653,654,657,658,661,662,665,666,669,670,673,674,677,678,681,682,685,686,689] CONCERT CHORAL SACRÉ-CŒUR, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI
+     → https://saintmartin.diocese.mc
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:218,219,220,221,865,866,867,868,1096] COMÉDIE FRANÇAISE LES MUSES, RENTRÉE LES MUSES 2026, SEULE EN SCÈNE LES MUSES, REVUE DE FIN D'ANNÉE LES MUSES, ATELIER THÉÂTRE, ATELIER THÉÂTRE, ATELIER THÉÂTRE, ATELIER THÉÂTRE, SPECTACLE JEUNE PUBLIC
+     → https://www.letheatredesmuses.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:204,205,206,932,933,934,935,936,937,938,939,940] FORT ANTOINE OUVERTURE ÉTÉ 2026, SHAKESPEARE FORT ANTOINE ÉTÉ, COMÉDIE FORT ANTOINE AOÛT, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE, THÉÂTRE FORT ANTOINE
+     → https://www.theatrefortantoine.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:289,302,304,308,313,317,321,325,329,333,336,340,344,348] MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO, MÉDITERRANÉE 2050 MUSÉE OCÉANO
+     → https://musee.oceano.org/en/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:301,305,309,312,316,320,324,328,331,335,342,346] RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS, RAINIER III & GRACE KELLY 70 ANS
+     → https://www.visitepalaisdemonaco.com/en/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:362,363] MUSÉE TIMBRES & MONNAIES, MUSÉE TIMBRES & MONNAIES
+     → https://www.mtm-monaco.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:423,424,451,452,453,454] DISCLOSURE DAY, FILS DE PERSONNE, CINÉMA SAISON AUTOMNE, CINÉMA SAISON AUTOMNE, CINÉMA SAISON HIVER, CINÉMA NOËL MONTE-CARLO
+     → https://www.cinemas2monaco.com
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:463,464,465,1083,1084,1132,1133,1924,1925,1926,1927,1928] LES VOILES DE MONACO, LES VOILES DE MONACO, LES VOILES DE MONACO, STAGE VOILE OPTIMIST ÉTÉ I, STAGE VOILE OPTIMIST ÉTÉ II, SOIRÉE VINS WINE PALACE, BULLES D'ÉTÉ WINE PALACE, PALERMO MONTE-CARLO ARRIVÉE, TROPHÉE VIRGINIE HERIOT, TROPHÉE GRIMALDI YCM, SPORTSBOAT WINTER SERIES ACTE I, SPORTSBOAT WINTER SERIES ACTE II
+     → https://yacht-club-monaco.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:472,473] SALON DU LIVRE MONACO, SALON DU LIVRE MONACO
+     → https://salondulivredemonaco.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:695,697,699,702,704,707,710] AS MONACO BASKET EUROLEAGUE, AS MONACO BASKET EUROLEAGUE, AS MONACO BASKET EUROLEAGUE, AS MONACO BASKET EUROLEAGUE, AS MONACO BASKET EUROLEAGUE, AS MONACO BASKET EUROLEAGUE, AS MONACO BASKET EUROLEAGUE
+     → https://billetterie.asmonaco.basketball/fr
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:698,700,703,706,709,712] AS MONACO FC LIGUE 1, AS MONACO FC LIGUE 1, AS MONACO FC LIGUE 1, AS MONACO FC LIGUE 1, AS MONACO FC LIGUE 1, AS MONACO FC LIGUE 1
+     → https://billetterie.asmonaco.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:761,762,763,764,765,766,772,773,774,775,776,777,778,786,787,788] HOLON WELLNESS ATELIER, HOLON WELLNESS ATELIER, HOLON WELLNESS ATELIER, HOLON WELLNESS ATELIER, HOLON WELLNESS ATELIER, HOLON WELLNESS ATELIER, BREATHWORK RESPIRATION CONSCIENTE, BREATHWORK RESPIRATION CONSCIENTE, BREATHWORK RESPIRATION CONSCIENTE, BREATHWORK RESPIRATION CONSCIENTE, BREATHWORK RESPIRATION CONSCIENTE, BREATHWORK RESPIRATION CONSCIENTE, BREATHWORK RESPIRATION CONSCIENTE, SUNRISE SESSION PLAGE, SUNRISE SESSION PLAGE, SUNRISE SESSION PLAGE
+     → https://hoolonwellness.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:837,838,839,840,841,842] PEINTURE & DESSIN, PEINTURE & DESSIN, PEINTURE & DESSIN, PEINTURE & DESSIN, PEINTURE & DESSIN, PEINTURE & DESSIN
+     → https://www.lesateliersdesarts.fr/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:902,903,904,905,906,907] ATELIER FAMILLE, ATELIER FAMILLE, ATELIER FAMILLE, ATELIER FAMILLE, ATELIER FAMILLE, ATELIER FAMILLE
+     → https://littlewondersmonaco.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:997,998,999,1000,1001,1002,1003,1004] MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE, MONDIAL DU THÉÂTRE
+     → https://www.mondialdutheatre.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1021] BAL DE NOËL PRINCESSE CHARLÈNE
+     → https://www.fondationprincessecharlene.mc
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1064,1065,1066] ATELIER PARENT-ENFANT HAPPY CHOU, ATELIER PARENT-ENFANT HAPPY CHOU, ATELIER PARENT-ENFANT HAPPY CHOU
+     → https://happychou.fr
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1069] COURS ARTISTIQUES ENFANTS
+     → https://www.monacobeauxarts.com
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1077,1078] STAGE PLONGÉE ENFANTS ÉTÉ, STAGE DÉCOUVERTE MER ENFANTS
+     → https://www.academiemonegasquedelamer.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1080,1081] GYM ENFANTS FEMINA, REPRISE GYM ENFANTS
+     → https://feminasports.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1086,1087] STAGE TENNIS JUNIOR ÉTÉ I, STAGE TENNIS JUNIOR ÉTÉ II
+     → https://www.mccc.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1091] ANIMATION ÉTÉ LITTLE WONDERS
+     → https://littlewondersmonaco.com
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1107,1108] ATELIER PLANTES FAMILLE, EXPLORATION JARDIN EXOTIQUE
+     → https://www.jardin-exotique.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1119,1120,1121,1122,1876,1877,1878,1879,1880,1881,1882,1883] DJ SUNSET EQUIVOQUE ROOFTOP, SUNSET COCKTAILS EQUIVOQUE, NUIT D'ÉTÉ EQUIVOQUE ROOFTOP, CLÔTURE SAISON EQUIVOQUE, NUIT D'ÉTÉ EQUIVOQUE JUILLET, SUNSET ROOFTOP AOÛT, CLÔTURE EQUIVOQUE ROOFTOP, OUVERTURE EQUIVOQUE 2027, DJ SUNSET EQUIVOQUE JUIN 2027, NUIT D'ÉTÉ EQUIVOQUE JUILLET 2027, PEAK SUMMER EQUIVOQUE AOÛT 2027, CLÔTURE EQUIVOQUE SEPT 2027
+     → https://www.equivoquemc.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1124,1125,1126,1213,1225,1230,1236] SUNSET VUE YACHTS LA MÔME, RIVIERA LOUNGE LA MÔME, FIN D'ÉTÉ LA MÔME MONTE-CARLO, BRUNCH GLAMOUR LA MÔME, BRUNCH AUTOMNAL LA MÔME, BRUNCH FÊTES LA MÔME, BRUNCH PRINTANIER LA MÔME
+     → https://www.lamomemontecarlo.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1128,1129,1130] ROSÉS D'ÉTÉ LE ROUGE ET LE BLANC, NUIT DE VINS LE ROUGE ET LE BLANC, RENTRÉE DES VINS ROUGE ET BLANC
+     → https://www.lerougeetleblanc.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1160,1178,1184,1936] WOMEN'S CIRCLE YUMÉ, PILATES COMMUNITY DAY YUMÉ, PILATES COMMUNITY NOVEMBRE, PILATES COMMUNITY MARCH
+     → https://yume.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1161,1166,1181,1189,1935] SOUND HEALING ÉTÉ ARITUAL, CACAO CEREMONY & BREATHWORK, SOUND HEALING AUTOMNE, SOUND HEALING SOLSTICE, SOUND HEALING HIVER ARITUAL
+     → https://aritual.fr/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1168,1172] BOOTCAMP SUMMER MONACO, RENTRÉE FITNESS MONACO
+     → https://www.monacowellnesssystem.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1209,1218,1222,1226,1234] BRUNCH ITALIEN GRAN CAFFÈ, BRUNCH DERNIER WEEK-END ÉTÉ, BRUNCH ITALIEN AUTOMNE, BRUNCH NOVEMBRE GRAN CAFFÈ, BRUNCH SAINT-VALENTIN GRAN CAFFÈ
+     → https://grancaffe.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1223,1231,1235,1423,1430,1437,1444,1451,1458,1465,1472,1479,1486,1493,1500,1507,1514,1521,1528,1535,1542,1549,1556,1563,1570,1577,1584,1591,1598,1605,1612,1619,1626,1633,1640,1647,1654,1661,1668,1675,1682,1689,1696,1703,1710,1717,1724,1731,1738,1745,1752,1759] AUTUMN HEALTHY BRUNCH WOO, BETWEEN YEARS BRUNCH WOO, HEALTHY BRUNCH HIVER WOO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO
+     → https://woo.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1344,1345,1346,1347,1348,1349,1350,1351,1352,1353,1354,1826] APÉRO PANINO CLUB ÉTÉ, APÉRO PANINO CLUB JUILLET, APÉRO PANINO CLUB AOÛT, APÉRO PANINO CLUB RENTRÉE, APÉRO PANINO CLUB OCTOBRE, APÉRO PANINO CLUB NOVEMBRE, APÉRO PANINO CLUB NOËL, APÉRO PANINO CLUB JANVIER, APÉRO PANINO CLUB FÉVRIER, APÉRO PANINO CLUB MARS, APÉRO PANINO CLUB AVRIL, APÉRO PANINO CLUB MAI 2027
+     → https://panino-club.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1419,1426,1433,1440,1447,1454,1461,1468,1475,1482,1489,1496,1503,1510,1517,1524,1531,1538,1545,1552,1559,1566,1573,1580,1587,1594,1601,1608,1615,1622,1629,1636,1643,1650,1657,1664,1671,1678,1685,1692,1699,1706,1713,1720,1727,1734,1741,1748,1755] COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR, COCKTAILS AMU JEUDI SOIR
+     → https://amu-montecarlo.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1856,1857,1858,1859,1860,1861,1862,1863,1864,1865,1866,1867] SOIRÉE LILLY'S CLUB JUILLET, SOIRÉE LILLY'S CLUB AOÛT, SOIRÉE LILLY'S CLUB SEPTEMBRE, SOIRÉE LILLY'S CLUB OCTOBRE, SOIRÉE LILLY'S CLUB NOVEMBRE, SOIRÉE LILLY'S CLUB DÉCEMBRE, SOIRÉE LILLY'S CLUB JANVIER, SOIRÉE LILLY'S CLUB FÉVRIER, SOIRÉE LILLY'S CLUB MARS, SOIRÉE LILLY'S CLUB AVRIL, SOIRÉE LILLY'S CLUB MAI 2027, SOIRÉE LILLY'S CLUB MAI 2027
+     → https://lillysclub.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+  ✓ 62 liens OK (directs, page réservation détectée)
+
+========================================
+Fin du rapport

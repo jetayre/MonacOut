@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
+import { localizeCat, localizeTitle } from "../i18n";
 
 const IS_NATIVE = Capacitor.isNativePlatform();
 
@@ -191,14 +192,14 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                   fontSize: 10, fontWeight: 600, letterSpacing: 3,
                   textTransform: "uppercase", color: GOLD,
                   marginBottom: 6, textAlign: "center",
-                }}>{selectedEvent.cat}</div>
+                }}>{localizeCat(selectedEvent.cat, lang)}</div>
 
                 {/* Titre */}
                 <div style={{
                   fontFamily: "'Josefin Sans', sans-serif",
                   fontWeight: 400, fontSize: 16, color: NAVY,
                   textAlign: "center", lineHeight: 1.3, marginBottom: 14,
-                }}>{selectedEvent.title.replace(/\n/g, " ")}</div>
+                }}>{localizeTitle(selectedEvent.title.replace(/\n/g, " "), lang)}</div>
 
                 {/* Description */}
                 <div style={{

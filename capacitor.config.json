@@ -3,11 +3,14 @@
   "appName": "Monac'Out",
   "webDir": "dist",
   "ios": {
-    "contentInset": "always",
+    "contentInset": "never",
     "allowsLinkPreview": false,
     "scrollEnabled": false
   },
   "plugins": {
+    "Keyboard": {
+      "resize": "none"
+    },
     "LocalNotifications": {
       "smallIcon": "ic_stat_icon_config_sample",
       "iconColor": "#C4A241"
