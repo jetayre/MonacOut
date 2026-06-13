@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Android secrets — NE JAMAIS committer
+android/keystore.properties
+android/monacout-release.keystore
+android/local.properties
