@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T13:16:19.806Z",
+  "generatedAt": "2026-06-13T13:32:46.779Z",
   "events": [
     {
       "date": "Sam 13 juin",
@@ -9,6 +9,24 @@
       "venue": "Place du Palais",
       "quarter": "Monaco-Ville",
       "emoji": "🏰"
+    },
+    {
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
+      "time": "09h00 — 19h00",
+      "title": "WEEKEND WELLNESS MARIN",
+      "venue": "Thermes Marins",
+      "quarter": "Monte-Carlo",
+      "emoji": "🌊"
+    },
+    {
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
+      "time": "11h30 — 14h30",
+      "title": "BRUNCH DOMINICAL ROBUCHON",
+      "venue": "Le Petit Café Robuchon",
+      "quarter": "Monte-Carlo",
+      "emoji": "☕"
     },
     {
       "date": "Sam 13 juin",
@@ -54,24 +72,6 @@
       "venue": "Théâtre des Variétés",
       "quarter": "Monte-Carlo",
       "emoji": "🎸"
-    },
-    {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
-      "time": "10h00 — 12h00",
-      "title": "BREATHWORK RESPIRATION CONSCIENTE",
-      "venue": "Monaco",
-      "quarter": "Larvotto",
-      "emoji": "🌬️"
     }
   ]
 }
