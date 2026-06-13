@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Monac\'Out</string>
+    <string name="title_activity_main">Monac\'Out</string>
+    <string name="package_name">com.monacout</string>
+    <string name="custom_url_scheme">com.monacout</string>
+</resources>
