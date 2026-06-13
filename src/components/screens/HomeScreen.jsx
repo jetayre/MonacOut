@@ -129,7 +129,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen, onLangChange }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -184,7 +184,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   let filtered;
   if (searchQuery.trim()) {
     const q = searchQuery.toLowerCase();
-    filtered = filterByCats(ALL_EVENTS, catFilters).filter(e => {
+    filtered = filterByCats(events, catFilters).filter(e => {
       // Recherche dans TOUS les champs, en français ET en anglais
       const hay = [
         e.title, localizeTitle((e.title || "").replace(/\n/g, " "), "en"),
@@ -196,11 +196,11 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     });
   } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
-    filtered = filterByCats(ALL_EVENTS.filter(e => { const d = parseEventDate(e); return d && d >= rangeStart && d <= endBound; }), catFilters);
+    filtered = filterByCats(events.filter(e => { const d = parseEventDate(e); return d && d >= rangeStart && d <= endBound; }), catFilters);
   } else if (filter === "calendar") {
-    filtered = filterByCats(ALL_EVENTS, catFilters);
+    filtered = filterByCats(events, catFilters);
   } else {
-    filtered = filterByCats(filterByTime(ALL_EVENTS, filter), catFilters);
+    filtered = filterByCats(filterByTime(events, filter), catFilters);
   }
   if (!searchQuery.trim() && quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
 

@@ -24,8 +24,8 @@ function ArrowLeft() {
   );
 }
 
-export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick }) {
-  const favEvents = ALL_EVENTS.filter(e => favorites.includes(e.id));
+export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick, events = ALL_EVENTS }) {
+  const favEvents = events.filter(e => favorites.includes(e.id));
 
   return (
     <div style={{ background: WHITE, minHeight: "100%" }}>

@@ -1,32 +1,14 @@
 {
-  "generatedAt": "2026-06-12T10:56:48.039Z",
+  "generatedAt": "2026-06-13T13:16:19.806Z",
   "events": [
     {
-      "date": "Ven 12 juin",
-      "iso": "2026-06-12",
-      "time": "13 — 17 juin 2026",
-      "title": "MONTE-CARLO TV FESTIVAL",
-      "venue": "Grimaldi Forum",
-      "quarter": "Monte-Carlo",
-      "emoji": "📺"
-    },
-    {
-      "date": "Ven 12 juin",
-      "iso": "2026-06-12",
-      "time": "19h00 — 02h00",
-      "title": "DJ SUNSET EQUIVOQUE ROOFTOP",
-      "venue": "Equivoque Rooftop",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎧"
-    },
-    {
-      "date": "Ven 12 juin",
-      "iso": "2026-06-12",
-      "time": "18h00",
-      "title": "GREEN SHIFT FESTIVAL PRÉ-PROGRAMME",
-      "venue": "Grimaldi Forum",
-      "quarter": "Monte-Carlo",
-      "emoji": "🌿"
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
+      "time": "Toute la journée",
+      "title": "RENCONTRE SITES HISTORIQUES GRIMALDI",
+      "venue": "Place du Palais",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏰"
     },
     {
       "date": "Sam 13 juin",
@@ -38,28 +20,10 @@
       "emoji": "⛵"
     },
     {
-      "date": "Ven 12 juin",
-      "iso": "2026-06-12",
-      "time": "10h00 — 19h00",
-      "title": "MÉDITERRANÉE 2050 MUSÉE OCÉANO",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🌊"
-    },
-    {
-      "date": "Ven 12 juin",
-      "iso": "2026-06-12",
-      "time": "19h00",
-      "title": "SOULEYMANE BACHIR DIAGNE",
-      "venue": "Fondation Prince Pierre",
-      "quarter": "",
-      "emoji": "🎤"
-    },
-    {
-      "date": "Ven 12 juin",
-      "iso": "2026-06-12",
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
       "time": "",
-      "title": "ARIGATO MISSION JAPON",
+      "title": "JOURNÉE MONDIALE DE\\nL’ENVIRONNEMENT",
       "venue": "Mairie de Monaco",
       "quarter": "Monaco",
       "emoji": "✨"
@@ -72,6 +36,42 @@
       "venue": "Terrasses de Fontvieille",
       "quarter": "Fontvieille",
       "emoji": "⚓"
+    },
+    {
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
+      "time": "10h00",
+      "title": "8ÈME FORUM DES ARTISTES",
+      "venue": "Salle Garnier",
+      "quarter": "",
+      "emoji": "✨"
+    },
+    {
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
+      "time": "15h00 — 18h00",
+      "title": "ATELIER SWING ROCK'N'ROLL",
+      "venue": "Théâtre des Variétés",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎸"
+    },
+    {
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Sam 13 juin",
+      "iso": "2026-06-13",
+      "time": "10h00 — 12h00",
+      "title": "BREATHWORK RESPIRATION CONSCIENTE",
+      "venue": "Monaco",
+      "quarter": "Larvotto",
+      "emoji": "🌬️"
     }
   ]
 }

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/gen-widget-data.mjs && vite build",
+    "build": "node scripts/gen-widget-data.mjs && node scripts/gen-events-json.mjs && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "validate": "node verify-events.mjs",

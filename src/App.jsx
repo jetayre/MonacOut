@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import { ALL_EVENTS } from "./data/events";
+import { fetchLiveEvents, BUNDLED_EVENTS } from "./data/liveEvents";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
 import AdminScreen from "./components/screens/AdminScreen";
@@ -94,8 +95,14 @@ export default function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [events, setEvents] = useState(BUNDLED_EVENTS);
 
   useEffect(() => { checkFavNotifications(favorites); }, []);
+
+  // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
+  useEffect(() => {
+    fetchLiveEvents().then(live => { if (live && live.length) setEvents(live); });
+  }, []);
 
   function handleTabChange(newTab) {
     const el = document.getElementById("main-scroll");
@@ -146,7 +153,7 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: setSelectedEvent };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: setSelectedEvent, events };
 
   return (
     <Shell
