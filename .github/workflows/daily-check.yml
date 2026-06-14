@@ -39,6 +39,9 @@ jobs:
         run: node police-events.mjs
         continue-on-error: true   # on capture le verdict, on pousse les corrections, puis on alerte
 
+      - name: 🎬 Rafraîchir la carte cinéma (date du jour)
+        run: node scripts/refresh-cinema.mjs
+
       - name: Build & push des corrections automatiques
         run: |
           if ! git diff --quiet src/data/events.js; then

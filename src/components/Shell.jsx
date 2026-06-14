@@ -15,6 +15,7 @@ const CREAM = "#FFFFFF";
 const CAT_FILTERS = [
   { id: "ateliers",   label: "Ateliers",    labelEn: "Workshops" },
   { id: "bienetre",   label: "Bien-être",   labelEn: "Wellness" },
+  { id: "cinema",     label: "Cinéma",      labelEn: "Cinema" },
   { id: "concert",    label: "Concert",     labelEn: "Concert" },
   { id: "conference", label: "Conférences", labelEn: "Talks" },
   { id: "encheres",   label: "Enchères",    labelEn: "Auctions" },
