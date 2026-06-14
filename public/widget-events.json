@@ -1,14 +1,23 @@
 {
-  "generatedAt": "2026-06-13T14:52:28.582Z",
+  "generatedAt": "2026-06-14T17:28:58.284Z",
   "events": [
     {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
       "time": "Toute la journée",
       "title": "RENCONTRE SITES HISTORIQUES GRIMALDI",
       "venue": "Place du Palais",
       "quarter": "Monaco-Ville",
       "emoji": "🏰"
+    },
+    {
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
+      "time": "18h00",
+      "title": "TCHAÏKOVSKI & BEETHOVEN",
+      "venue": "Auditorium Rainier III",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎻"
     },
     {
       "date": "Dim 14 juin",
@@ -29,49 +38,40 @@
       "emoji": "☕"
     },
     {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
-      "time": "9h00 — 12h00",
-      "title": "INITIATION VOILE JUNIOR YCM",
-      "venue": "Yacht Club de Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "⛵"
-    },
-    {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
       "time": "",
-      "title": "JOURNÉE MONDIALE DE L’ENVIRONNEMENT",
-      "venue": "Mairie de Monaco",
+      "title": "PRO SERIES",
+      "venue": "Monaco",
       "quarter": "Monaco",
       "emoji": "✨"
     },
     {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉE NAVAL DE MONACO",
-      "venue": "Terrasses de Fontvieille",
-      "quarter": "Fontvieille",
-      "emoji": "⚓"
-    },
-    {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
-      "time": "10h00",
-      "title": "8ÈME FORUM DES ARTISTES",
-      "venue": "Salle Garnier",
-      "quarter": "",
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
+      "time": "",
+      "title": "FEATURED EVENT",
+      "venue": "Monaco",
+      "quarter": "Monaco",
       "emoji": "✨"
     },
     {
-      "date": "Sam 13 juin",
-      "iso": "2026-06-13",
-      "time": "15h00 — 18h00",
-      "title": "ATELIER SWING ROCK'N'ROLL",
-      "venue": "Théâtre des Variétés",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎸"
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 14 juin",
+      "iso": "2026-06-14",
+      "time": "16h00",
+      "title": "SPECTACLE JEUNE PUBLIC",
+      "venue": "Théâtre des Muses",
+      "quarter": "Monaco",
+      "emoji": "🎭"
     }
   ]
 }
