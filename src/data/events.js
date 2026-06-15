@@ -686,6 +686,7 @@ const _RAW = [
   {id:2011,cat:"SPORT",date:"Dim 14 juin",title:"PRO SERIES",subtitle:"Monaco",desc:"Pro Series",descEn:"Pro Series",free:false,hot:false,fallback:"linear-gradient(150deg,#0A1A2A,#2A4A6A,#0A1A2A)",accent:"#A8C8E8",emoji:"✨",link:"https://www.ironman.com/proseries",source:"Ironman Monaco",quarter:"Monaco"},
     {id:2012,cat:"ATELIER",date:"Sam 20 juin",title:"ATELIER DJ",subtitle:"Mairie de Monaco",desc:"ATELIER DJ",descEn:"ATELIER DJ",free:false,hot:false,fallback:"linear-gradient(150deg,#201808,#504018,#201808)",accent:"#D8C880",emoji:"✏️",source:"Mairie de Monaco",quarter:"Monaco"},
     {id:2051,cat:"ATELIER",date:"Sam 20 juin",title:"ATELIER DJ",subtitle:"Mairie de Monaco",desc:"ATELIER DJ",descEn:"ATELIER DJ",free:false,hot:false,fallback:"linear-gradient(150deg,#201808,#504018,#201808)",accent:"#D8C880",emoji:"✏️",source:"Mairie de Monaco",quarter:"Monaco"},
+    {id:2052,cat:"ATELIER",date:"Sam 20 juin",title:"ATELIER DJ",subtitle:"Mairie de Monaco",desc:"ATELIER DJ",descEn:"ATELIER DJ",free:false,hot:false,fallback:"linear-gradient(150deg,#201808,#504018,#201808)",accent:"#D8C880",emoji:"✏️",source:"Mairie de Monaco",quarter:"Monaco"},
   // ── MESSES — WEEK-END ────────────────────────────────────────────────────
 
   // ── FOODY — UN ÉVÉNEMENT PAR JOUR DE L'ANNÉE ──────────────────────────────
