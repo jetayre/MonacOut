@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-17T06:48:48.126Z",
+  "generatedAt": "2026-06-17T06:50:16.408Z",
   "events": [
     {
       "date": "Mer 17 juin",
@@ -65,13 +65,13 @@
       "emoji": "🎷"
     },
     {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
+      "date": "Mer 17 juin",
+      "iso": "2026-06-17",
       "time": "",
-      "title": "SPECTACLE DE MAGIE",
-      "venue": "Mairie de Monaco",
-      "quarter": "Monaco",
-      "emoji": "✨"
+      "title": "CINÉMA À L'AFFICHE MONACO",
+      "venue": "Cinéma des Beaux-Arts",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
     }
   ]
 }
