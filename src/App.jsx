@@ -19,13 +19,14 @@ function parseForNotif(e) {
   return new Date(e.year || 2026, month, day);
 }
 
-// ── Pop-up matinal automatique : les 3 sorties importantes du jour ───────────
-// On programme 14 jours de notifications À L'AVANCE (calculées par jour), pour
-// qu'iOS les envoie chaque matin à 8h MÊME app fermée. Les favoris passent en
-// priorité ; sinon on prend les événements "phares" (hot) non récurrents.
-const NOTIF_HOUR = 8;        // envoi le matin
-const DIGEST_DAYS = 14;      // fenêtre programmée à l'avance
+// ── Pop-up HEBDOMADAIRE automatique : les sorties phares de la semaine ────────
+// Chaque LUNDI matin (8h), iOS envoie un résumé des 4 plus gros événements de la
+// semaine (favoris en priorité), MÊME app fermée. Programmé 8 semaines à l'avance.
+const NOTIF_HOUR = 8;        // lundi matin
+const DIGEST_WEEKS = 8;      // nb de semaines programmées à l'avance
+const DIGEST_TOP = 4;        // 3-4 plus gros événements / favoris
 const DIGEST_ID_BASE = 90000;
+const JOURS_FR = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
 function digestScore(e, favorites) {
   return (favorites.includes(e.id) ? 1000 : 0)
@@ -33,34 +34,43 @@ function digestScore(e, favorites) {
        + (e.recurring ? 0 : 20);   // déprioritise les récurrences (apéro/brunch quotidiens)
 }
 
-async function scheduleMorningDigest(events, favorites) {
+async function scheduleWeeklyDigest(events, favorites) {
   if (!Capacitor.isNativePlatform()) return;
   const perm = await LocalNotifications.requestPermissions();
   if (perm.display !== 'granted') return;
 
-  // Annule les anciens pop-up programmés pour les remplacer par la liste à jour
-  const old = Array.from({ length: DIGEST_DAYS }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
+  // Annule les anciens pop-up (plage large, couvre aussi l'ancienne version quotidienne)
+  const old = Array.from({ length: 20 }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
   try { await LocalNotifications.cancel({ notifications: old }); } catch { /* rien à annuler */ }
 
   const now = new Date();
+  // Lundi de la semaine en cours (les semaines passées seront ignorées plus bas)
+  const monday = new Date(); monday.setHours(0, 0, 0, 0);
+  const dow = (monday.getDay() + 6) % 7;          // 0 = lundi
+  monday.setDate(monday.getDate() - dow);
+
   const toSchedule = [];
-  for (let off = 0; off < DIGEST_DAYS; off++) {
-    const day = new Date(); day.setHours(0, 0, 0, 0); day.setDate(day.getDate() + off);
-    const at = new Date(day); at.setHours(NOTIF_HOUR, 0, 0, 0);
+  for (let w = 0; w < DIGEST_WEEKS; w++) {
+    const weekStart = new Date(monday); weekStart.setDate(monday.getDate() + 7 * w);
+    const at = new Date(weekStart); at.setHours(NOTIF_HOUR, 0, 0, 0);
     if (at <= now) continue;                       // ne jamais programmer dans le passé
-    const dayEvents = events.filter(e => {
+    const weekEnd = new Date(weekStart); weekEnd.setDate(weekStart.getDate() + 6); weekEnd.setHours(23, 59, 59, 999);
+    const weekEvents = events.filter(e => {
       const d = parseForNotif(e);
-      return d && d.toDateString() === day.toDateString();
+      return d && d >= weekStart && d <= weekEnd;
     });
-    if (dayEvents.length === 0) continue;
-    const top = [...dayEvents]
+    if (weekEvents.length === 0) continue;
+    const top = [...weekEvents]
       .sort((a, b) => digestScore(b, favorites) - digestScore(a, favorites))
-      .slice(0, 3);
+      .slice(0, DIGEST_TOP);
     const hasFav = top.some(e => favorites.includes(e.id));
-    const body = top.map(e => `• ${e.title.replace(/\n/g, ' ')}${e.time ? ' · ' + e.time : ''}`).join('\n');
+    const body = top.map(e => {
+      const d = parseForNotif(e);
+      return `• ${JOURS_FR[d.getDay()]} — ${e.title.replace(/\n/g, ' ')}`;
+    }).join('\n');
     toSchedule.push({
-      id: DIGEST_ID_BASE + off,
-      title: (hasFav ? '⭐ ' : '') + 'Vos sorties du jour à Monaco',
+      id: DIGEST_ID_BASE + w,
+      title: (hasFav ? '⭐ ' : '') + 'Vos sorties de la semaine à Monaco',
       body,
       schedule: { at },
     });
@@ -96,7 +106,7 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
 
-  useEffect(() => { scheduleMorningDigest(events, favorites); }, [events, favorites]);
+  useEffect(() => { scheduleWeeklyDigest(events, favorites); }, [events, favorites]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
   useEffect(() => {
