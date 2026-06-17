@@ -19,12 +19,13 @@ function parseForNotif(e) {
   return new Date(e.year || 2026, month, day);
 }
 
-// ── Pop-up HEBDOMADAIRE automatique : les sorties phares de la semaine ────────
-// Chaque LUNDI matin (8h), iOS envoie un résumé des 4 plus gros événements de la
-// semaine (favoris en priorité), MÊME app fermée. Programmé 8 semaines à l'avance.
-const NOTIF_HOUR = 8;        // lundi matin
-const DIGEST_WEEKS = 8;      // nb de semaines programmées à l'avance
-const DIGEST_TOP = 4;        // 3-4 plus gros événements / favoris
+// ── Pop-up automatique 2×/SEMAINE : les sorties phares à venir ────────────────
+// LUNDI et JEUDI matin (8h), iOS envoie un résumé des 4 plus gros événements des
+// 7 jours à venir (favoris en priorité), MÊME app fermée. 8 semaines à l'avance.
+const NOTIF_HOUR = 8;            // matin
+const DIGEST_WEEKS = 8;          // nb de semaines programmées à l'avance
+const DIGEST_TOP = 4;            // 3-4 plus gros événements / favoris
+const SEND_OFFSETS = [0, 3];     // jours d'envoi depuis lundi : 0 = lundi, 3 = jeudi
 const DIGEST_ID_BASE = 90000;
 const JOURS_FR = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
@@ -34,46 +35,49 @@ function digestScore(e, favorites) {
        + (e.recurring ? 0 : 20);   // déprioritise les récurrences (apéro/brunch quotidiens)
 }
 
-async function scheduleWeeklyDigest(events, favorites) {
+async function scheduleDigest(events, favorites) {
   if (!Capacitor.isNativePlatform()) return;
   const perm = await LocalNotifications.requestPermissions();
   if (perm.display !== 'granted') return;
 
-  // Annule les anciens pop-up (plage large, couvre aussi l'ancienne version quotidienne)
-  const old = Array.from({ length: 20 }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
+  // Annule les anciens pop-up (plage large, couvre aussi les versions précédentes)
+  const old = Array.from({ length: 30 }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
   try { await LocalNotifications.cancel({ notifications: old }); } catch { /* rien à annuler */ }
 
   const now = new Date();
-  // Lundi de la semaine en cours (les semaines passées seront ignorées plus bas)
+  // Lundi de la semaine en cours (les envois passés seront ignorés plus bas)
   const monday = new Date(); monday.setHours(0, 0, 0, 0);
   const dow = (monday.getDay() + 6) % 7;          // 0 = lundi
   monday.setDate(monday.getDate() - dow);
 
   const toSchedule = [];
   for (let w = 0; w < DIGEST_WEEKS; w++) {
-    const weekStart = new Date(monday); weekStart.setDate(monday.getDate() + 7 * w);
-    const at = new Date(weekStart); at.setHours(NOTIF_HOUR, 0, 0, 0);
-    if (at <= now) continue;                       // ne jamais programmer dans le passé
-    const weekEnd = new Date(weekStart); weekEnd.setDate(weekStart.getDate() + 6); weekEnd.setHours(23, 59, 59, 999);
-    const weekEvents = events.filter(e => {
-      const d = parseForNotif(e);
-      return d && d >= weekStart && d <= weekEnd;
-    });
-    if (weekEvents.length === 0) continue;
-    const top = [...weekEvents]
-      .sort((a, b) => digestScore(b, favorites) - digestScore(a, favorites))
-      .slice(0, DIGEST_TOP);
-    const hasFav = top.some(e => favorites.includes(e.id));
-    const body = top.map(e => {
-      const d = parseForNotif(e);
-      return `• ${JOURS_FR[d.getDay()]} — ${e.title.replace(/\n/g, ' ')}`;
-    }).join('\n');
-    toSchedule.push({
-      id: DIGEST_ID_BASE + w,
-      title: (hasFav ? '⭐ ' : '') + 'Vos sorties de la semaine à Monaco',
-      body,
-      schedule: { at },
-    });
+    for (let s = 0; s < SEND_OFFSETS.length; s++) {
+      const sendDay = new Date(monday); sendDay.setDate(monday.getDate() + 7 * w + SEND_OFFSETS[s]);
+      const at = new Date(sendDay); at.setHours(NOTIF_HOUR, 0, 0, 0);
+      if (at <= now) continue;                     // ne jamais programmer dans le passé
+      const winStart = new Date(sendDay); winStart.setHours(0, 0, 0, 0);
+      const winEnd = new Date(sendDay); winEnd.setDate(sendDay.getDate() + 6); winEnd.setHours(23, 59, 59, 999);
+      const winEvents = events.filter(e => {
+        const d = parseForNotif(e);
+        return d && d >= winStart && d <= winEnd;
+      });
+      if (winEvents.length === 0) continue;
+      const top = [...winEvents]
+        .sort((a, b) => digestScore(b, favorites) - digestScore(a, favorites))
+        .slice(0, DIGEST_TOP);
+      const hasFav = top.some(e => favorites.includes(e.id));
+      const body = top.map(e => {
+        const d = parseForNotif(e);
+        return `• ${JOURS_FR[d.getDay()]} — ${e.title.replace(/\n/g, ' ')}`;
+      }).join('\n');
+      toSchedule.push({
+        id: DIGEST_ID_BASE + w * SEND_OFFSETS.length + s,
+        title: (hasFav ? '⭐ ' : '') + 'Vos sorties à venir à Monaco',
+        body,
+        schedule: { at },
+      });
+    }
   }
   if (toSchedule.length) await LocalNotifications.schedule({ notifications: toSchedule });
 }
@@ -106,7 +110,7 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
 
-  useEffect(() => { scheduleWeeklyDigest(events, favorites); }, [events, favorites]);
+  useEffect(() => { scheduleDigest(events, favorites); }, [events, favorites]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
   useEffect(() => {
