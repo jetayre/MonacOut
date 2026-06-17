@@ -635,6 +635,7 @@ const _RAW = [
     {id:2070,cat:"ATELIER",date:"Sam 20 juin",title:"ATELIER DJ",subtitle:"Mairie de Monaco",desc:"ATELIER DJ",descEn:"ATELIER DJ",free:false,hot:false,fallback:"linear-gradient(150deg,#201808,#504018,#201808)",accent:"#D8C880",emoji:"✏️",source:"Mairie de Monaco",quarter:"Monaco"},
   {id:2071,cat:"SPECTACLE",date:"Mer 24 juin",title:"FESTIVITÉS DE LA SAINT-JEAN",subtitle:"Mairie de Monaco",desc:"FESTIVITÉS DE LA SAINT-JEAN",descEn:"FESTIVITÉS DE LA SAINT-JEAN",free:false,hot:false,fallback:"linear-gradient(150deg,#0A1A2A,#2A4A6A,#0A1A2A)",accent:"#A8C8E8",emoji:"✨",source:"Mairie de Monaco",quarter:"Monaco"},
   {id:2072,year:2027,cat:"CINÉMA",date:"Mer 30 juin",time:"2h10",title:"DES MINIONS ET DES MONSTRES",subtitle:"Cinémas de Monaco · Monte-Carlo",desc:"Des Minions et des monstres",descEn:"Des Minions et des monstres",free:false,hot:false,fallback:"linear-gradient(150deg,#0A1A3A,#1A3A6A,#0A1A3A)",accent:"#A0C0F8",emoji:"🎬",link:"https://www.youtube.com/watch?time_continue=1&v=JsyQ9esoT2s",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"},
+    {id:2073,cat:"ATELIER",date:"Sam 20 juin",title:"ATELIER DJ",subtitle:"Mairie de Monaco",desc:"ATELIER DJ",descEn:"ATELIER DJ",free:false,hot:false,fallback:"linear-gradient(150deg,#201808,#504018,#201808)",accent:"#D8C880",emoji:"✏️",source:"Mairie de Monaco",quarter:"Monaco"},
   // ── MESSES — WEEK-END ────────────────────────────────────────────────────
 
   // ── FOODY — UN ÉVÉNEMENT PAR JOUR DE L'ANNÉE ──────────────────────────────
