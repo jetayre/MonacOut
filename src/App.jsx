@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
-import { ALL_EVENTS } from "./data/events";
 import { fetchLiveEvents, BUNDLED_EVENTS } from "./data/liveEvents";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
@@ -20,53 +19,53 @@ function parseForNotif(e) {
   return new Date(e.year || 2026, month, day);
 }
 
-async function checkFavNotifications(favorites) {
-  const today = new Date(); today.setHours(0,0,0,0);
-  const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
-  const notified = JSON.parse(localStorage.getItem('monacout_notified') || '{}');
-  let changed = false;
-  const pending = [];
+// ── Pop-up matinal automatique : les 3 sorties importantes du jour ───────────
+// On programme 14 jours de notifications À L'AVANCE (calculées par jour), pour
+// qu'iOS les envoie chaque matin à 8h MÊME app fermée. Les favoris passent en
+// priorité ; sinon on prend les événements "phares" (hot) non récurrents.
+const NOTIF_HOUR = 8;        // envoi le matin
+const DIGEST_DAYS = 14;      // fenêtre programmée à l'avance
+const DIGEST_ID_BASE = 90000;
 
-  for (const id of favorites) {
-    const event = ALL_EVENTS.find(e => e.id === id);
-    if (!event) continue;
-    const d = parseForNotif(event);
-    if (!d) continue;
-    const isToday = d.toDateString() === today.toDateString();
-    const isTomorrow = d.toDateString() === tomorrow.toDateString();
-    if ((isToday || isTomorrow) && !notified[id]) {
-      pending.push({ id, event, isToday });
-      notified[id] = true; changed = true;
-    }
-  }
+function digestScore(e, favorites) {
+  return (favorites.includes(e.id) ? 1000 : 0)
+       + (e.hot ? 100 : 0)
+       + (e.recurring ? 0 : 20);   // déprioritise les récurrences (apéro/brunch quotidiens)
+}
 
-  if (pending.length === 0) return;
+async function scheduleMorningDigest(events, favorites) {
+  if (!Capacitor.isNativePlatform()) return;
+  const perm = await LocalNotifications.requestPermissions();
+  if (perm.display !== 'granted') return;
 
-  if (Capacitor.isNativePlatform()) {
-    // Notifications natives iOS via Capacitor
-    const { display } = await LocalNotifications.requestPermissions();
-    if (display === 'granted') {
-      await LocalNotifications.schedule({
-        notifications: pending.map(({ id, event, isToday }) => ({
-          id,
-          title: `${isToday ? "Aujourd'hui" : "Demain"} — ${event.title.replace(/\n/g,' ')}`,
-          body: `${event.subtitle}${event.time ? ' · ' + event.time : ''}`,
-          schedule: { at: new Date(Date.now() + 2000) },
-        })),
-      });
-    }
-  } else if ('Notification' in window && Notification.permission === 'granted') {
-    // Fallback web
-    pending.forEach(({ id, event, isToday }) => {
-      new Notification(`${isToday ? "Aujourd'hui" : "Demain"} — ${event.title.replace(/\n/g,' ')}`, {
-        body: `${event.subtitle} · ${event.time}`,
-        icon: '/favicon.svg',
-        tag: `monacout-${id}`,
-      });
+  // Annule les anciens pop-up programmés pour les remplacer par la liste à jour
+  const old = Array.from({ length: DIGEST_DAYS }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
+  try { await LocalNotifications.cancel({ notifications: old }); } catch { /* rien à annuler */ }
+
+  const now = new Date();
+  const toSchedule = [];
+  for (let off = 0; off < DIGEST_DAYS; off++) {
+    const day = new Date(); day.setHours(0, 0, 0, 0); day.setDate(day.getDate() + off);
+    const at = new Date(day); at.setHours(NOTIF_HOUR, 0, 0, 0);
+    if (at <= now) continue;                       // ne jamais programmer dans le passé
+    const dayEvents = events.filter(e => {
+      const d = parseForNotif(e);
+      return d && d.toDateString() === day.toDateString();
+    });
+    if (dayEvents.length === 0) continue;
+    const top = [...dayEvents]
+      .sort((a, b) => digestScore(b, favorites) - digestScore(a, favorites))
+      .slice(0, 3);
+    const hasFav = top.some(e => favorites.includes(e.id));
+    const body = top.map(e => `• ${e.title.replace(/\n/g, ' ')}${e.time ? ' · ' + e.time : ''}`).join('\n');
+    toSchedule.push({
+      id: DIGEST_ID_BASE + off,
+      title: (hasFav ? '⭐ ' : '') + 'Vos sorties du jour à Monaco',
+      body,
+      schedule: { at },
     });
   }
-
-  if (changed) localStorage.setItem('monacout_notified', JSON.stringify(notified));
+  if (toSchedule.length) await LocalNotifications.schedule({ notifications: toSchedule });
 }
 
 const CAT_TO_FILTER = {
@@ -97,7 +96,7 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
 
-  useEffect(() => { checkFavNotifications(favorites); }, []);
+  useEffect(() => { scheduleMorningDigest(events, favorites); }, [events, favorites]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
   useEffect(() => {

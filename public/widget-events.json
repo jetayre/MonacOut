@@ -1,75 +1,75 @@
 {
-  "generatedAt": "2026-06-14T18:51:31.581Z",
+  "generatedAt": "2026-06-17T06:43:56.022Z",
   "events": [
     {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "Toute la journée",
-      "title": "RENCONTRE SITES HISTORIQUES GRIMALDI",
-      "venue": "Place du Palais",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏰"
-    },
-    {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "18h00",
-      "title": "TCHAÏKOVSKI & BEETHOVEN",
+      "date": "Mer 17 juin",
+      "iso": "2026-06-17",
+      "time": "19h30",
+      "title": "ARCADI VOLODOS RÉCITAL",
       "venue": "Auditorium Rainier III",
       "quarter": "Monte-Carlo",
-      "emoji": "🎻"
+      "emoji": "🎹"
     },
     {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "09h00 — 19h00",
-      "title": "WEEKEND WELLNESS MARIN",
-      "venue": "Thermes Marins",
+      "date": "Jeu 18 juin",
+      "iso": "2026-06-18",
+      "time": "18h30",
+      "title": "THURSDAY LIVE SESSIONS BANDE À PART",
+      "venue": "Espace Indigo",
       "quarter": "Monte-Carlo",
+      "emoji": "🎵"
+    },
+    {
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "10h00 — 18h00",
+      "title": "LES VOILES DE MONACO",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⛵"
+    },
+    {
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "21h30",
+      "title": "THÉÂTRE FORT ANTOINE",
+      "venue": "Théâtre Fort Antoine",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎭"
+    },
+    {
+      "date": "Jeu 18 juin",
+      "iso": "2026-06-18",
+      "time": "18 — 20 juin 2026",
+      "title": "MONACO FOUNDERS SUMMIT",
+      "venue": "Monaco",
+      "quarter": "Monaco",
+      "emoji": "💬"
+    },
+    {
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "10h00 — 19h00",
+      "title": "MÉDITERRANÉE 2050 MUSÉE OCÉANO",
+      "venue": "Musée Océanographique",
+      "quarter": "Monaco-Ville",
       "emoji": "🌊"
     },
     {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "11h30 — 14h30",
-      "title": "BRUNCH DOMINICAL ROBUCHON",
-      "venue": "Le Petit Café Robuchon",
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "20h30",
+      "title": "NEW MOODS JAZZ SUMMER NIGHT",
+      "venue": "New Moods",
       "quarter": "Monte-Carlo",
-      "emoji": "☕"
+      "emoji": "🎷"
     },
     {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
       "time": "",
-      "title": "PRO SERIES",
-      "venue": "Monaco",
-      "quarter": "Monaco",
-      "emoji": "✨"
-    },
-    {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "",
-      "title": "FEATURED EVENT",
-      "venue": "Monaco",
-      "quarter": "Monaco",
-      "emoji": "✨"
-    },
-    {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "",
-      "title": "IRONMAN 70.3\\nPENNSYLVANIA HAPPY\\nVALLEY NORTH AMERICAN\\nCHAMPIONSHIP",
-      "venue": "Monaco",
-      "quarter": "Monaco",
-      "emoji": "✨"
-    },
-    {
-      "date": "Dim 14 juin",
-      "iso": "2026-06-14",
-      "time": "",
-      "title": "PRO SERIES",
-      "venue": "Monaco",
+      "title": "SPECTACLE DE MAGIE",
+      "venue": "Mairie de Monaco",
       "quarter": "Monaco",
       "emoji": "✨"
     }
