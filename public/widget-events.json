@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-06-17T06:50:16.408Z",
+  "generatedAt": "2026-06-17T06:58:39.625Z",
   "events": [
+    {
+      "date": "Mer 17 juin",
+      "iso": "2026-06-17",
+      "time": "10h00 — 20h00",
+      "title": "MONACO & L'AUTOMOBILE 1893 — AUJOURD'HUI",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Mer 17 juin",
+      "iso": "2026-06-17",
+      "time": "10h00 — 19h00",
+      "title": "MÉDITERRANÉE 2050 MUSÉE OCÉANO",
+      "venue": "Musée Océanographique",
+      "quarter": "Monaco-Ville",
+      "emoji": "🌊"
+    },
     {
       "date": "Mer 17 juin",
       "iso": "2026-06-17",
@@ -29,49 +47,31 @@
       "emoji": "⛵"
     },
     {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "21h30",
-      "title": "THÉÂTRE FORT ANTOINE",
-      "venue": "Théâtre Fort Antoine",
+      "date": "Mer 17 juin",
+      "iso": "2026-06-17",
+      "time": "10h00 — 18h00",
+      "title": "RAINIER III & GRACE KELLY 70 ANS",
+      "venue": "Palais Princier",
       "quarter": "Monaco-Ville",
-      "emoji": "🎭"
-    },
-    {
-      "date": "Jeu 18 juin",
-      "iso": "2026-06-18",
-      "time": "18 — 20 juin 2026",
-      "title": "MONACO FOUNDERS SUMMIT",
-      "venue": "Monaco",
-      "quarter": "Monaco",
-      "emoji": "💬"
-    },
-    {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "10h00 — 19h00",
-      "title": "MÉDITERRANÉE 2050 MUSÉE OCÉANO",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🌊"
-    },
-    {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "20h30",
-      "title": "NEW MOODS JAZZ SUMMER NIGHT",
-      "venue": "New Moods",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎷"
+      "emoji": "👑"
     },
     {
       "date": "Mer 17 juin",
       "iso": "2026-06-17",
-      "time": "",
-      "title": "CINÉMA À L'AFFICHE MONACO",
-      "venue": "Cinéma des Beaux-Arts",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "time": "11h00 — 19h00",
+      "title": "LUMIÈRES DE MÉDITERRANÉE",
+      "venue": "Villa Sauber",
+      "quarter": "Monaco-Ville",
+      "emoji": "🖼️"
+    },
+    {
+      "date": "Mer 17 juin",
+      "iso": "2026-06-17",
+      "time": "jusqu'au 16 oct 2026",
+      "title": "DE TOUMAÏ À SAPIENS ANTHROPO",
+      "venue": "Musée d'Anthropologie Préhistorique",
+      "quarter": "Monaco-Ville",
+      "emoji": "🦴"
     }
   ]
 }
