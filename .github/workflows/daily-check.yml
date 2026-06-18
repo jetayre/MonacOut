@@ -39,6 +39,9 @@ jobs:
         run: node police-events.mjs
         continue-on-error: true   # on capture le verdict, on pousse les corrections, puis on alerte
 
+      - name: 🧹 Dédupliquer les événements (anti-doublons du scan auto)
+        run: node scripts/dedup-events.mjs
+
       - name: 🎬 Rafraîchir la carte cinéma (date du jour)
         run: node scripts/refresh-cinema.mjs
 

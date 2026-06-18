@@ -1,32 +1,14 @@
 {
-  "generatedAt": "2026-06-17T07:23:48.327Z",
+  "generatedAt": "2026-06-18T06:53:22.328Z",
   "events": [
     {
-      "date": "Mer 17 juin",
-      "iso": "2026-06-17",
-      "time": "10h00 — 20h00",
-      "title": "MONACO & L'AUTOMOBILE 1893 — AUJOURD'HUI",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Mer 17 juin",
-      "iso": "2026-06-17",
-      "time": "10h00 — 19h00",
-      "title": "MÉDITERRANÉE 2050 MUSÉE OCÉANO",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🌊"
-    },
-    {
-      "date": "Mer 17 juin",
-      "iso": "2026-06-17",
-      "time": "19h30",
-      "title": "ARCADI VOLODOS RÉCITAL",
-      "venue": "Auditorium Rainier III",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎹"
+      "date": "Sam 20 juin",
+      "iso": "2026-06-20",
+      "time": "09h00 — 18h00",
+      "title": "LES VOILES DE MONACO",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⛵"
     },
     {
       "date": "Jeu 18 juin",
@@ -47,31 +29,49 @@
       "emoji": "⛵"
     },
     {
-      "date": "Mer 17 juin",
-      "iso": "2026-06-17",
-      "time": "10h00 — 18h00",
-      "title": "RAINIER III & GRACE KELLY 70 ANS",
-      "venue": "Palais Princier",
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "21h30",
+      "title": "THÉÂTRE FORT ANTOINE",
+      "venue": "Théâtre Fort Antoine",
       "quarter": "Monaco-Ville",
-      "emoji": "👑"
+      "emoji": "🎭"
     },
     {
-      "date": "Mer 17 juin",
-      "iso": "2026-06-17",
-      "time": "11h00 — 19h00",
-      "title": "LUMIÈRES DE MÉDITERRANÉE",
-      "venue": "Villa Sauber",
-      "quarter": "Monaco-Ville",
-      "emoji": "🖼️"
+      "date": "Jeu 18 juin",
+      "iso": "2026-06-18",
+      "time": "18 — 20 juin 2026",
+      "title": "MONACO FOUNDERS SUMMIT",
+      "venue": "Monaco",
+      "quarter": "Monaco",
+      "emoji": "💬"
     },
     {
-      "date": "Mer 17 juin",
-      "iso": "2026-06-17",
-      "time": "jusqu'au 16 oct 2026",
-      "title": "DE TOUMAÏ À SAPIENS ANTHROPO",
-      "venue": "Musée d'Anthropologie Préhistorique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🦴"
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "20h30",
+      "title": "NEW MOODS JAZZ SUMMER NIGHT",
+      "venue": "New Moods",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎷"
+    },
+    {
+      "date": "Ven 19 juin",
+      "iso": "2026-06-19",
+      "time": "",
+      "title": "SPECTACLE DE MAGIE",
+      "venue": "Mairie de Monaco",
+      "quarter": "Monaco",
+      "emoji": "✨"
+    },
+    {
+      "date": "Sam 20 juin",
+      "iso": "2026-06-20",
+      "time": "10h00 — 12h00",
+      "title": "ATELIERS FLAMENCO MONACO",
+      "venue": "Salle du Sporting",
+      "quarter": "Monte-Carlo",
+      "emoji": "💃"
     }
   ]
 }
