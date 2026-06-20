@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:41:54.862Z",
+  "generatedAt": "2026-06-20T06:43:09.550Z",
   "events": [
     {
       "date": "Sam 20 juin",
@@ -27,6 +27,15 @@
       "venue": "Aritual",
       "quarter": "Monte-Carlo",
       "emoji": "🔔"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "10h00 — 12h30",
+      "title": "WOMEN'S CIRCLE YUMÉ",
+      "venue": "yumé",
+      "quarter": "Monte-Carlo",
+      "emoji": "💫"
     },
     {
       "date": "Sam 20 juin",
@@ -63,15 +72,6 @@
       "venue": "Mairie de Monaco",
       "quarter": "Monaco",
       "emoji": "✨"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "09h00 — 17h00",
-      "title": "LES VOILES DE MONACO",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⛵"
     }
   ]
 }
