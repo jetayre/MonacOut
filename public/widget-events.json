@@ -1,15 +1,6 @@
 {
-  "generatedAt": "2026-06-20T06:56:43.742Z",
+  "generatedAt": "2026-06-20T07:01:00.105Z",
   "events": [
-    {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
-      "time": "09h00 — 18h00",
-      "title": "LES VOILES DE MONACO",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⛵"
-    },
     {
       "date": "Dim 21 juin",
       "iso": "2026-06-21",
@@ -49,15 +40,6 @@
     {
       "date": "Dim 21 juin",
       "iso": "2026-06-21",
-      "time": "09h00 — 17h00",
-      "title": "LES VOILES DE MONACO",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⛵"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
       "time": "9h30 → 18h30",
       "title": "MESSE DIMANCHE",
       "venue": "9 paroisses",
@@ -72,6 +54,24 @@
       "venue": "Place de la Visitation",
       "quarter": "Monaco-Ville",
       "emoji": "⛪"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "10h00 — 12h00",
+      "title": "PIANO BAR LUCI D'ALBA",
+      "venue": "Centre Commercial de Fontvieille",
+      "quarter": "Fontvieille",
+      "emoji": "🎶"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "10h00 — 12h00",
+      "title": "ERIC LEROUGE",
+      "venue": "Marché de la Condamine",
+      "quarter": "La Condamine",
+      "emoji": "🎶"
     }
   ]
 }
