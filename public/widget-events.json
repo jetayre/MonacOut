@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:54:05.670Z",
+  "generatedAt": "2026-06-20T06:56:01.514Z",
   "events": [
     {
       "date": "Sam 20 juin",
@@ -18,24 +18,6 @@
       "venue": "Place du Palais & partout en ville",
       "quarter": "Monaco-Ville",
       "emoji": "🎶"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "20h30",
-      "title": "PETIT BISCUIT FÊTE DE LA MUSIQUE",
-      "venue": "Esplanade des Pêcheurs",
-      "quarter": "La Condamine",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "21h00",
-      "title": "LA LA LAND CINÉ-CONCERT GRIMALDI",
-      "venue": "Grimaldi Forum",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
     },
     {
       "date": "Sam 20 juin",
@@ -70,6 +52,24 @@
       "time": "18h00",
       "title": "MESSE SAMEDI",
       "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "09h00 — 17h00",
+      "title": "LES VOILES DE MONACO",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⛵"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
       "quarter": "Monaco",
       "emoji": "⛪"
     }
