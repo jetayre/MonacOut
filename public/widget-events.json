@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T07:01:19.812Z",
+  "generatedAt": "2026-06-20T06:41:54.862Z",
   "events": [
     {
       "date": "Sam 20 juin",
@@ -11,31 +11,22 @@
       "emoji": "⛵"
     },
     {
-      "date": "Jeu 18 juin",
-      "iso": "2026-06-18",
-      "time": "18h30",
-      "title": "THURSDAY LIVE SESSIONS BANDE À PART",
-      "venue": "Espace Indigo",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "10h00 — 18h00",
-      "title": "LES VOILES DE MONACO",
-      "venue": "Port Hercule",
+      "date": "Sam 20 juin",
+      "iso": "2026-06-20",
+      "time": "20h30",
+      "title": "CYRANO DE BERGERAC ROSTAND",
+      "venue": "Théâtre des Variétés",
       "quarter": "Monaco",
-      "emoji": "⛵"
+      "emoji": "🎭"
     },
     {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "21h30",
-      "title": "THÉÂTRE FORT ANTOINE",
-      "venue": "Théâtre Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎭"
+      "date": "Sam 20 juin",
+      "iso": "2026-06-20",
+      "time": "19h30 — 21h30",
+      "title": "SOUND HEALING ÉTÉ ARITUAL",
+      "venue": "Aritual",
+      "quarter": "Monte-Carlo",
+      "emoji": "🔔"
     },
     {
       "date": "Sam 20 juin",
@@ -47,24 +38,6 @@
       "emoji": "🏖️"
     },
     {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "20h30",
-      "title": "NEW MOODS JAZZ SUMMER NIGHT",
-      "venue": "New Moods",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎷"
-    },
-    {
-      "date": "Ven 19 juin",
-      "iso": "2026-06-19",
-      "time": "",
-      "title": "SPECTACLE DE MAGIE",
-      "venue": "Mairie de Monaco",
-      "quarter": "Monaco",
-      "emoji": "✨"
-    },
-    {
       "date": "Sam 20 juin",
       "iso": "2026-06-20",
       "time": "10h00 — 12h00",
@@ -72,6 +45,33 @@
       "venue": "Salle du Sporting",
       "quarter": "Monte-Carlo",
       "emoji": "💃"
+    },
+    {
+      "date": "Sam 20 juin",
+      "iso": "2026-06-20",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Sam 20 juin",
+      "iso": "2026-06-20",
+      "time": "",
+      "title": "MUNEGU REPAIR CAFÉ",
+      "venue": "Mairie de Monaco",
+      "quarter": "Monaco",
+      "emoji": "✨"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "09h00 — 17h00",
+      "title": "LES VOILES DE MONACO",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⛵"
     }
   ]
 }
