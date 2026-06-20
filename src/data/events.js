@@ -457,7 +457,6 @@ const _RAW = [
   {id:2110,cat:"SPECTACLE",date:"Mer 24 juin",title:"FESTIVITÉS DE LA SAINT-JEAN",subtitle:"Mairie de Monaco",desc:"FESTIVITÉS DE LA SAINT-JEAN",descEn:"FESTIVITÉS DE LA SAINT-JEAN",free:false,hot:false,fallback:"linear-gradient(150deg,#0A1A2A,#2A4A6A,#0A1A2A)",accent:"#A8C8E8",emoji:"✨",source:"Mairie de Monaco",quarter:"Monaco"},
   {id:2111,cat:"CONCERT",date:"Sam 27 juin",title:"CONCERT À DOLCEACQUA",subtitle:"Mairie de Monaco",desc:"CONCERT À DOLCEACQUA",descEn:"CONCERT À DOLCEACQUA",free:false,hot:false,fallback:"linear-gradient(150deg,#1A1240,#2D1F6E,#1A1240)",accent:"#C4A8F8",emoji:"🎵",source:"Mairie de Monaco",quarter:"Monaco"},
   {id:2112,cat:"SPECTACLE",date:"Sam 27 juin",title:"ANIMATION LOTO & BINGO",subtitle:"Mairie de Monaco",desc:"ANIMATION LOTO & BINGO",descEn:"ANIMATION LOTO & BINGO",free:false,hot:false,fallback:"linear-gradient(150deg,#0A1A2A,#2A4A6A,#0A1A2A)",accent:"#A8C8E8",emoji:"✨",source:"Mairie de Monaco",quarter:"Monaco"},
-    {id:2113,cat:"ATELIER",date:"Sam 20 juin",title:"ATELIER DJ",subtitle:"Mairie de Monaco",desc:"ATELIER DJ",descEn:"ATELIER DJ",free:false,hot:false,fallback:"linear-gradient(150deg,#201808,#504018,#201808)",accent:"#D8C880",emoji:"✏️",source:"Mairie de Monaco",quarter:"Monaco"},
   // ── MESSES — WEEK-END ────────────────────────────────────────────────────
 
   // ── FOODY — UN ÉVÉNEMENT PAR JOUR DE L'ANNÉE ──────────────────────────────
