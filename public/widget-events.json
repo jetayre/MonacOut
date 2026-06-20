@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:43:09.550Z",
+  "generatedAt": "2026-06-20T06:46:34.483Z",
   "events": [
     {
       "date": "Sam 20 juin",
@@ -9,15 +9,6 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⛵"
-    },
-    {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
-      "time": "20h30",
-      "title": "CYRANO DE BERGERAC ROSTAND",
-      "venue": "Théâtre des Variétés",
-      "quarter": "Monaco",
-      "emoji": "🎭"
     },
     {
       "date": "Sam 20 juin",
@@ -65,13 +56,22 @@
       "emoji": "⛪"
     },
     {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
-      "time": "",
-      "title": "MUNEGU REPAIR CAFÉ",
-      "venue": "Mairie de Monaco",
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "09h00 — 17h00",
+      "title": "LES VOILES DE MONACO",
+      "venue": "Port Hercule",
       "quarter": "Monaco",
-      "emoji": "✨"
+      "emoji": "⛵"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
     }
   ]
 }
