@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:56:01.514Z",
+  "generatedAt": "2026-06-20T06:56:43.742Z",
   "events": [
     {
       "date": "Sam 20 juin",
@@ -40,15 +40,6 @@
     {
       "date": "Sam 20 juin",
       "iso": "2026-06-20",
-      "time": "10h00 — 12h00",
-      "title": "ATELIERS FLAMENCO MONACO",
-      "venue": "Salle du Sporting",
-      "quarter": "Monte-Carlo",
-      "emoji": "💃"
-    },
-    {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
       "time": "18h00",
       "title": "MESSE SAMEDI",
       "venue": "5 paroisses",
@@ -71,6 +62,15 @@
       "title": "MESSE DIMANCHE",
       "venue": "9 paroisses",
       "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "10h00 — 16h00",
+      "title": "CHAPELLE DE LA VISITATION",
+      "venue": "Place de la Visitation",
+      "quarter": "Monaco-Ville",
       "emoji": "⛪"
     }
   ]
