@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:46:34.483Z",
+  "generatedAt": "2026-06-20T06:49:42.322Z",
   "events": [
     {
       "date": "Sam 20 juin",
@@ -9,6 +9,24 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⛵"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "17h00",
+      "title": "FÊTE DE LA MUSIQUE MONACO",
+      "venue": "Place du Palais & partout en ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎶"
+    },
+    {
+      "date": "Dim 21 juin",
+      "iso": "2026-06-21",
+      "time": "21h00",
+      "title": "LA LA LAND CINÉ-CONCERT GRIMALDI",
+      "venue": "Grimaldi Forum",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
     },
     {
       "date": "Sam 20 juin",
@@ -27,15 +45,6 @@
       "venue": "yumé",
       "quarter": "Monte-Carlo",
       "emoji": "💫"
-    },
-    {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
-      "time": "12h30 — 17h00",
-      "title": "SUMMER BRUNCH NIKKI BEACH",
-      "venue": "Nikki Beach",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏖️"
     },
     {
       "date": "Sam 20 juin",
@@ -63,15 +72,6 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⛵"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
     }
   ]
 }
