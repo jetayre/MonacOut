@@ -1,0 +1,9 @@
+{
+  "_aide": "Réglages des notifications, pilotables SANS repasser par Apple. Modifie les valeurs ci-dessous puis : npm run build + git push. L'app lira les nouveaux réglages au prochain lancement.",
+  "_jours_possibles": "lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche",
+  "_heure": "0 à 23 (ex: 18 = 18h)",
+  "jours": ["mardi", "jeudi", "samedi"],
+  "heure": 18,
+  "parRappel": 4,
+  "semaines": 8
+}

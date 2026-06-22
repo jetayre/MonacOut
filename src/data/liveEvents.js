@@ -44,5 +44,30 @@ export async function fetchLiveEvents() {
   }
 }
 
+// ── Réglages de notifications pilotables depuis le site (sans repasser par Apple) ──
+// L'app lit public/notif-config.json (servi sur monacout.vercel.app) au lancement.
+// Repli sur les valeurs par défaut codées dans App.jsx si absent/hors-ligne.
+const NOTIF_CONFIG_URL = "https://monacout.vercel.app/notif-config.json";
+const JOUR_OFFSET = { lundi: 0, mardi: 1, mercredi: 2, jeudi: 3, vendredi: 4, samedi: 5, dimanche: 6 };
+
+export async function fetchNotifConfig() {
+  try {
+    const res = await fetch(`${NOTIF_CONFIG_URL}?t=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) return null;
+    const c = await res.json();
+    const offsets = Array.isArray(c.jours)
+      ? [...new Set(c.jours.map(j => JOUR_OFFSET[String(j).toLowerCase().trim()]).filter(n => n !== undefined))].sort((a, b) => a - b)
+      : null;
+    return {
+      offsets: offsets && offsets.length ? offsets : null,
+      hour: Number.isInteger(c.heure) && c.heure >= 0 && c.heure <= 23 ? c.heure : null,
+      perDigest: Number.isInteger(c.parRappel) && c.parRappel >= 1 && c.parRappel <= 6 ? c.parRappel : null,
+      weeks: Number.isInteger(c.semaines) && c.semaines >= 1 && c.semaines <= 12 ? c.semaines : null,
+    };
+  } catch {
+    return null; // hors-ligne → l'app garde les réglages par défaut
+  }
+}
+
 // Données embarquées (repli immédiat au démarrage)
 export const BUNDLED_EVENTS = ALL_EVENTS;

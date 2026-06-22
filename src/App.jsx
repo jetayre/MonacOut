@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
-import { fetchLiveEvents, BUNDLED_EVENTS } from "./data/liveEvents";
+import { fetchLiveEvents, fetchNotifConfig, BUNDLED_EVENTS } from "./data/liveEvents";
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
 import AdminScreen from "./components/screens/AdminScreen";
@@ -19,29 +19,50 @@ function parseForNotif(e) {
   return new Date(e.year || 2026, month, day);
 }
 
-// ── Pop-up automatique 2×/SEMAINE : les sorties phares à venir ────────────────
-// LUNDI et JEUDI matin (8h), iOS envoie un résumé des 4 plus gros événements des
-// 7 jours à venir (favoris en priorité), MÊME app fermée. 8 semaines à l'avance.
-const NOTIF_HOUR = 8;            // matin
-const DIGEST_WEEKS = 8;          // nb de semaines programmées à l'avance
-const DIGEST_TOP = 4;            // 3-4 plus gros événements / favoris
-const SEND_OFFSETS = [0, 3];     // jours d'envoi depuis lundi : 0 = lundi, 3 = jeudi
+// ── Pop-up automatique : les sorties phares à venir ───────────────────────────
+// Par défaut MARDI, JEUDI et SAMEDI en fin de journée (18h) : iOS envoie un résumé
+// des 4 plus gros événements des 7 jours à venir, en priorisant les FAVORIS et les
+// événements les PLUS PROCHES en date, MÊME app fermée. 8 semaines à l'avance.
+// Ces réglages (jours/heure/nombre/semaines) sont PILOTABLES depuis le site via
+// public/notif-config.json — les valeurs ci-dessous ne servent que de repli.
+const NOTIF_HOUR = 18;           // repli : fin de journée (moment « je cherche une sortie »)
+const DIGEST_WEEKS = 8;          // repli : nb de semaines programmées à l'avance
+const DIGEST_TOP = 4;            // repli : 3-4 plus gros événements / favoris
+const SEND_OFFSETS = [1, 3, 5];  // repli : jours d'envoi depuis lundi (1=mardi, 3=jeudi, 5=samedi)
+const MAX_DIGEST_IDS = 120;      // plage d'annulation (couvre toutes les configs possibles)
 const DIGEST_ID_BASE = 90000;
 const JOURS_FR = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
-function digestScore(e, favorites) {
-  return (favorites.includes(e.id) ? 1000 : 0)
-       + (e.hot ? 100 : 0)
+function digestScore(e, favorites, refDate) {
+  // Bonus « proche en date » : plus l'événement arrive tôt dans la fenêtre de
+  // 7 jours, plus il monte (84 pts le jour même → 12 pts au 6e jour).
+  let proximity = 0;
+  if (refDate) {
+    const d = parseForNotif(e);
+    if (d) {
+      const dayOffset = Math.min(6, Math.max(0, Math.round((d - refDate) / 86400000)));
+      proximity = (7 - dayOffset) * 12;
+    }
+  }
+  return (favorites.includes(e.id) ? 1000 : 0)   // favoris d'abord
+       + (e.hot ? 100 : 0)                         // puis événements phares
+       + proximity                                 // puis les plus proches en date
        + (e.recurring ? 0 : 20);   // déprioritise les récurrences (apéro/brunch quotidiens)
 }
 
-async function scheduleDigest(events, favorites) {
+async function scheduleDigest(events, favorites, config) {
   if (!Capacitor.isNativePlatform()) return;
   const perm = await LocalNotifications.requestPermissions();
   if (perm.display !== 'granted') return;
 
-  // Annule les anciens pop-up (plage large, couvre aussi les versions précédentes)
-  const old = Array.from({ length: 30 }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
+  // Réglages pilotés par le site (notif-config.json), avec repli sur les valeurs codées.
+  const sendOffsets = config?.offsets?.length ? config.offsets : SEND_OFFSETS;
+  const notifHour   = config?.hour != null ? config.hour : NOTIF_HOUR;
+  const weeks       = config?.weeks || DIGEST_WEEKS;
+  const perDigest   = config?.perDigest || DIGEST_TOP;
+
+  // Annule les anciens pop-up (plage large : couvre toutes les configs et versions précédentes)
+  const old = Array.from({ length: MAX_DIGEST_IDS }, (_, i) => ({ id: DIGEST_ID_BASE + i }));
   try { await LocalNotifications.cancel({ notifications: old }); } catch { /* rien à annuler */ }
 
   const now = new Date();
@@ -51,10 +72,10 @@ async function scheduleDigest(events, favorites) {
   monday.setDate(monday.getDate() - dow);
 
   const toSchedule = [];
-  for (let w = 0; w < DIGEST_WEEKS; w++) {
-    for (let s = 0; s < SEND_OFFSETS.length; s++) {
-      const sendDay = new Date(monday); sendDay.setDate(monday.getDate() + 7 * w + SEND_OFFSETS[s]);
-      const at = new Date(sendDay); at.setHours(NOTIF_HOUR, 0, 0, 0);
+  for (let w = 0; w < weeks; w++) {
+    for (let s = 0; s < sendOffsets.length; s++) {
+      const sendDay = new Date(monday); sendDay.setDate(monday.getDate() + 7 * w + sendOffsets[s]);
+      const at = new Date(sendDay); at.setHours(notifHour, 0, 0, 0);
       if (at <= now) continue;                     // ne jamais programmer dans le passé
       const winStart = new Date(sendDay); winStart.setHours(0, 0, 0, 0);
       const winEnd = new Date(sendDay); winEnd.setDate(sendDay.getDate() + 6); winEnd.setHours(23, 59, 59, 999);
@@ -64,15 +85,16 @@ async function scheduleDigest(events, favorites) {
       });
       if (winEvents.length === 0) continue;
       const top = [...winEvents]
-        .sort((a, b) => digestScore(b, favorites) - digestScore(a, favorites))
-        .slice(0, DIGEST_TOP);
+        .sort((a, b) => digestScore(b, favorites, winStart) - digestScore(a, favorites, winStart))
+        .slice(0, perDigest);
       const hasFav = top.some(e => favorites.includes(e.id));
       const body = top.map(e => {
         const d = parseForNotif(e);
         return `• ${JOURS_FR[d.getDay()]} — ${e.title.replace(/\n/g, ' ')}`;
       }).join('\n');
+      const id = DIGEST_ID_BASE + w * sendOffsets.length + s;
       toSchedule.push({
-        id: DIGEST_ID_BASE + w * SEND_OFFSETS.length + s,
+        id: id < DIGEST_ID_BASE + MAX_DIGEST_IDS ? id : DIGEST_ID_BASE + MAX_DIGEST_IDS - 1,
         title: (hasFav ? '⭐ ' : '') + 'Vos sorties à venir à Monaco',
         body,
         schedule: { at },
@@ -109,12 +131,18 @@ export default function App() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
+  const [notifConfig, setNotifConfig] = useState(null);
 
-  useEffect(() => { scheduleDigest(events, favorites); }, [events, favorites]);
+  useEffect(() => { scheduleDigest(events, favorites, notifConfig); }, [events, favorites, notifConfig]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
   useEffect(() => {
     fetchLiveEvents().then(live => { if (live && live.length) setEvents(live); });
+  }, []);
+
+  // Récupère les réglages de notifications EN DIRECT (jours/heure/fréquence sans passer par Apple)
+  useEffect(() => {
+    fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); });
   }, []);
 
   function handleTabChange(newTab) {
