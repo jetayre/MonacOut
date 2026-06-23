@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T08:10:31.863Z",
+  "generatedAt": "2026-06-23T09:10:10.914Z",
   "events": [
     {
       "date": "Jeu 25 juin",
@@ -49,6 +49,15 @@
     {
       "date": "Mer 24 juin",
       "iso": "2026-06-24",
+      "time": "20h00",
+      "title": "FEU DE LA SAINT-JEAN MONACO",
+      "venue": "Place des Moulins",
+      "quarter": "Monaco",
+      "emoji": "🔥"
+    },
+    {
+      "date": "Mer 24 juin",
+      "iso": "2026-06-24",
       "time": "24 juin 2026",
       "title": "SOHN MONACO INVESTMENT CONFERENCE",
       "venue": "Yacht Club de Monaco",
@@ -63,15 +72,6 @@
       "venue": "Philomonaco",
       "quarter": "Monaco",
       "emoji": "💭"
-    },
-    {
-      "date": "Mer 24 juin",
-      "iso": "2026-06-24",
-      "time": "",
-      "title": "STREET ART CHALLENGE JUNIOR",
-      "venue": "Mairie de Monaco",
-      "quarter": "Monaco",
-      "emoji": "✨"
     }
   ]
 }
