@@ -1,77 +1,77 @@
 {
-  "generatedAt": "2026-06-20T07:39:13.727Z",
+  "generatedAt": "2026-06-23T07:39:29.795Z",
   "events": [
     {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "17h00",
-      "title": "FÊTE DE LA MUSIQUE MONACO",
-      "venue": "Place du Palais & partout en ville",
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉE OCÉANOGRAPHIQUE DE MONACO",
+      "venue": "Musée Océanographique",
       "quarter": "Monaco-Ville",
-      "emoji": "🎶"
+      "emoji": "🐠"
     },
     {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
-      "time": "19h30 — 21h30",
-      "title": "SOUND HEALING ÉTÉ ARITUAL",
-      "venue": "Aritual",
-      "quarter": "Monte-Carlo",
-      "emoji": "🔔"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "10h00 — 12h30",
-      "title": "WOMEN'S CIRCLE YUMÉ",
-      "venue": "yumé",
-      "quarter": "Monte-Carlo",
-      "emoji": "💫"
-    },
-    {
-      "date": "Sam 20 juin",
-      "iso": "2026-06-20",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "10h00 — 16h00",
-      "title": "CHAPELLE DE LA VISITATION",
-      "venue": "Place de la Visitation",
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "10h00 — 18h00",
+      "title": "GRANDS APPARTEMENTS DU PALAIS",
+      "venue": "Palais Princier",
       "quarter": "Monaco-Ville",
-      "emoji": "⛪"
+      "emoji": "👑"
     },
     {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "10h00 — 12h00",
-      "title": "PIANO BAR LUCI D'ALBA",
-      "venue": "Centre Commercial de Fontvieille",
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "21h30",
+      "title": "CINÉMA EN PLEIN AIR D'ÉTÉ",
+      "venue": "Monaco Open Air Cinema",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "09h00 — 18h00",
+      "title": "MUSÉE D'ANTHROPOLOGIE PRÉHISTORIQUE",
+      "venue": "Musée d'Anthropologie Préhistorique",
+      "quarter": "Monaco",
+      "emoji": "🦴"
+    },
+    {
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "09h30 — 17h00",
+      "title": "MUSÉE TIMBRES & MONNAIES",
+      "venue": "Terrasses de Fontvieille",
       "quarter": "Fontvieille",
-      "emoji": "🎶"
+      "emoji": "📮"
     },
     {
-      "date": "Dim 21 juin",
-      "iso": "2026-06-21",
-      "time": "10h00 — 12h00",
-      "title": "ERIC LEROUGE",
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "10h00 — 18h00",
+      "title": "COLLECTION DE VOITURES DU PRINCE",
+      "venue": "Collection de Voitures",
+      "quarter": "Fontvieille",
+      "emoji": "🚗"
+    },
+    {
+      "date": "Mar 23 juin",
+      "iso": "2026-06-23",
+      "time": "10h00 — 18h00",
+      "title": "NOUVEAU MUSÉE NATIONAL DE MONACO",
+      "venue": "Villa Paloma & Villa Sauber",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎨"
+    },
+    {
+      "date": "Mer 24 juin",
+      "iso": "2026-06-24",
+      "time": "10h00",
+      "title": "MATINALE ENVIE DÉSIR BESOIN",
       "venue": "Marché de la Condamine",
       "quarter": "La Condamine",
-      "emoji": "🎶"
+      "emoji": "💭"
     }
   ]
 }
