@@ -13,6 +13,15 @@ const CREAM = "#FFFFFF";
 const BORDER = "rgba(15,29,58,0.12)";
 const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)";
 
+// Boutons de catégories groupées (barre sous les filtres temps, à la place des quartiers)
+const EVENT_GROUPS = [
+  { id: "culture",   label: "Culture",      labelEn: "Culture",      cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE"] },
+  { id: "foodnight", label: "Food & Night", labelEn: "Food & Night", cats: ["APÉRO","BRUNCH","SOIRÉE","DJ SET"] },
+  { id: "musique",   label: "Musique",      labelEn: "Music",        cats: ["CONCERT","JAZZ LIVE","CHANTS","MUSICAL","OPÉRA"] },
+  { id: "ateliers",  label: "Ateliers",     labelEn: "Workshops",    cats: ["ATELIER","DANSE"] },
+  { id: "sport",     label: "Sport",        labelEn: "Sport",        cats: ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","TENNIS","RALLYE","SPORT"] },
+];
+
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
@@ -137,7 +146,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
 
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
-  const [quarterFilter, setQuarterFilter] = useState(null);
+  const [groupFilter, setGroupFilter] = useState(null);
   const [filtersVisible, setFiltersVisible] = useState(true);
   const [logoTaps, setLogoTaps] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
@@ -202,7 +211,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   } else {
     filtered = filterByCats(filterByTime(events, filter), catFilters);
   }
-  if (!searchQuery.trim() && quarterFilter) filtered = filtered.filter(e => e.quarter === quarterFilter);
+  if (groupFilter) { const g = EVENT_GROUPS.find(x => x.id === groupFilter); if (g) filtered = filtered.filter(e => g.cats.includes(e.cat)); }
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
@@ -325,21 +334,21 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           </div>
         </div>
 
-        {/* Quartiers — disparaissent au scroll */}
+        {/* Catégories groupées — disparaissent au scroll */}
         <div style={{
           background: WHITE, borderTop: `1px solid ${BORDER}`,
           maxHeight: filtersVisible ? "44px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
         }}>
-          <div style={{ display: "flex", gap: 4, padding: "5px 10px 7px", overflowX: "auto", scrollbarWidth: "none" }}>
-            {["Monte-Carlo","Monaco-Ville","Fontvieille","La Condamine","Larvotto"].map(q => {
-              const active = quarterFilter === q;
+          <div style={{ display: "flex", gap: 6, padding: "5px 12px 7px", overflowX: "auto", scrollbarWidth: "none" }}>
+            {EVENT_GROUPS.map(g => {
+              const active = groupFilter === g.id;
               return (
-                <button key={q} onClick={() => { setQuarterFilter(active ? null : q); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
-                  flexShrink: 0, padding: "3px 8px", borderRadius: 20,
+                <button key={g.id} onClick={() => { setGroupFilter(active ? null : g.id); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
+                  flexShrink: 0, padding: "4px 13px", borderRadius: 20,
                   border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
                   background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
-                  fontFamily: "'Jost', sans-serif", fontSize: 9, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
-                }}>{q}</button>
+                  fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
+                }}>{lang === "en" ? g.labelEn : g.label}</button>
               );
             })}
           </div>
