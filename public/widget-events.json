@@ -1,68 +1,32 @@
 {
-  "generatedAt": "2026-06-23T07:58:38.838Z",
+  "generatedAt": "2026-06-23T08:10:31.863Z",
   "events": [
     {
-      "date": "Mar 23 juin",
-      "iso": "2026-06-23",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉE OCÉANOGRAPHIQUE DE MONACO",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🐠"
-    },
-    {
-      "date": "Mar 23 juin",
-      "iso": "2026-06-23",
-      "time": "10h00 — 18h00",
-      "title": "GRANDS APPARTEMENTS DU PALAIS",
-      "venue": "Palais Princier",
-      "quarter": "Monaco-Ville",
-      "emoji": "👑"
-    },
-    {
-      "date": "Mar 23 juin",
-      "iso": "2026-06-23",
-      "time": "21h30",
-      "title": "CINÉMA EN PLEIN AIR D'ÉTÉ",
-      "venue": "Monaco Open Air Cinema",
+      "date": "Jeu 25 juin",
+      "iso": "2026-06-25",
+      "time": "14h30",
+      "title": "HVMC BANDES DESSINÉES",
+      "venue": "Hôtel des Ventes de Monte-Carlo",
       "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "emoji": "💬"
     },
     {
       "date": "Mar 23 juin",
       "iso": "2026-06-23",
-      "time": "09h00 — 18h00",
-      "title": "MUSÉE D'ANTHROPOLOGIE PRÉHISTORIQUE",
-      "venue": "Musée d'Anthropologie Préhistorique",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
       "quarter": "Monaco",
-      "emoji": "🦴"
+      "emoji": "🏛️"
     },
     {
-      "date": "Mar 23 juin",
-      "iso": "2026-06-23",
-      "time": "09h30 — 17h00",
-      "title": "MUSÉE TIMBRES & MONNAIES",
-      "venue": "Terrasses de Fontvieille",
-      "quarter": "Fontvieille",
-      "emoji": "📮"
-    },
-    {
-      "date": "Mar 23 juin",
-      "iso": "2026-06-23",
-      "time": "10h00 — 18h00",
-      "title": "COLLECTION DE VOITURES DU PRINCE",
-      "venue": "Collection de Voitures",
-      "quarter": "Fontvieille",
-      "emoji": "🚗"
-    },
-    {
-      "date": "Mar 23 juin",
-      "iso": "2026-06-23",
-      "time": "10h00 — 18h00",
-      "title": "NOUVEAU MUSÉE NATIONAL DE MONACO",
-      "venue": "Villa Paloma & Villa Sauber",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎨"
+      "date": "Jeu 25 juin",
+      "iso": "2026-06-25",
+      "time": "19h00",
+      "title": "10 ANS DU PRIX PHILO",
+      "venue": "Théâtre Princesse Grace",
+      "quarter": "Monaco",
+      "emoji": "🏆"
     },
     {
       "date": "Mer 24 juin",
@@ -72,6 +36,42 @@
       "venue": "Marché de la Condamine",
       "quarter": "La Condamine",
       "emoji": "💭"
+    },
+    {
+      "date": "Mer 24 juin",
+      "iso": "2026-06-24",
+      "time": "19h00",
+      "title": "NAISSANCE DU DÉSIR",
+      "venue": "Théâtre Princesse Grace",
+      "quarter": "Monaco",
+      "emoji": "💭"
+    },
+    {
+      "date": "Mer 24 juin",
+      "iso": "2026-06-24",
+      "time": "24 juin 2026",
+      "title": "SOHN MONACO INVESTMENT CONFERENCE",
+      "venue": "Yacht Club de Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "💬"
+    },
+    {
+      "date": "Mer 24 juin",
+      "iso": "2026-06-24",
+      "time": "24 — 28 juin 2026",
+      "title": "SEMAINE PHILOMONACO 2026",
+      "venue": "Philomonaco",
+      "quarter": "Monaco",
+      "emoji": "💭"
+    },
+    {
+      "date": "Mer 24 juin",
+      "iso": "2026-06-24",
+      "time": "",
+      "title": "STREET ART CHALLENGE JUNIOR",
+      "venue": "Mairie de Monaco",
+      "quarter": "Monaco",
+      "emoji": "✨"
     }
   ]
 }

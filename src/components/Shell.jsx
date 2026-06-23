@@ -201,6 +201,24 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                   textAlign: "center", lineHeight: 1.3, marginBottom: 14,
                 }}>{localizeTitle(selectedEvent.title.replace(/\n/g, " "), lang)}</div>
 
+                {selectedEvent.directory ? (
+                  <div style={{ marginBottom: 4 }}>
+                    {selectedEvent.directory.map((d, i) => (
+                      <a key={i} href={d.link} target="_blank" rel="noopener noreferrer" style={{
+                        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+                        padding: "11px 2px", textDecoration: "none",
+                        borderBottom: i < selectedEvent.directory.length - 1 ? "1px solid rgba(15,29,58,0.08)" : "none",
+                      }}>
+                        <span style={{ textAlign: "left" }}>
+                          <span style={{ display: "block", fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{d.name}</span>
+                          {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
+                        </span>
+                        <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>{lang === "en" ? "Visit →" : "Voir →"}</span>
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                <>
                 {/* Description */}
                 <div style={{
                   fontFamily: "'Lato', sans-serif",
@@ -267,6 +285,8 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                 >
                   {lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}
                 </button>
+                </>
+                )}
               </div>
             </div>
           </>
