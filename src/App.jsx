@@ -213,6 +213,7 @@ export default function App() {
       onToggleFav={toggleFav}
       favorites={favorites}
       adminOverlay={showAdmin ? <AdminScreen onClose={() => setShowAdmin(false)} /> : null}
+      contactEmail={notifConfig?.contactEmail || "eventsmonacout@gmail.com"}
     >
       {tab === "events" ? (
         <HomeScreen

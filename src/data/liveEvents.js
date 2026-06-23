@@ -63,6 +63,7 @@ export async function fetchNotifConfig() {
       hour: Number.isInteger(c.heure) && c.heure >= 0 && c.heure <= 23 ? c.heure : null,
       perDigest: Number.isInteger(c.parRappel) && c.parRappel >= 1 && c.parRappel <= 6 ? c.parRappel : null,
       weeks: Number.isInteger(c.semaines) && c.semaines >= 1 && c.semaines <= 12 ? c.semaines : null,
+      contactEmail: typeof c.contactEmail === "string" && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c.contactEmail) ? c.contactEmail : null,
     };
   } catch {
     return null; // hors-ligne → l'app garde les réglages par défaut

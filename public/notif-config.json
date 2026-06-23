@@ -5,5 +5,7 @@
   "jours": ["mardi", "jeudi", "samedi"],
   "heure": 18,
   "parRappel": 4,
-  "semaines": 8
+  "semaines": 8,
+  "_contactEmail": "Adresse qui reçoit les propositions d'événements (bouton « Proposer un événement »). Modifiable ici sans repasser par Apple.",
+  "contactEmail": "eventsmonacout@gmail.com"
 }

@@ -74,7 +74,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "eventsmonacout@gmail.com" }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -353,6 +353,28 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
               marginTop: 8,
             }}>{lang === "en" ? "Clear all" : "Tout effacer"}</button>
           )}
+
+          <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "12px 24px" }} />
+
+          {/* Proposer un événement (contact organisateurs) */}
+          <button onClick={() => {
+            const subject = lang === "en" ? "Event submission — Monac'Out" : "Proposition d'événement — Monac'Out";
+            const body = lang === "en"
+              ? "Hello,\n\nI'd like to submit an event for Monac'Out:\n\n• Event name:\n• Date & time:\n• Venue (hall + district):\n• Short description:\n• Ticket / info link:\n• Venue phone:\n\nThank you!"
+              : "Bonjour,\n\nJe souhaite proposer un événement pour Monac'Out :\n\n• Nom de l'événement :\n• Date & heure :\n• Lieu (salle + quartier) :\n• Courte description :\n• Lien billetterie / infos :\n• Téléphone du lieu :\n\nMerci !";
+            window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          }} style={{
+            width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
+            padding: "14px 24px", fontFamily: "'Jost', sans-serif",
+            fontSize: 15, fontWeight: 400, color: NAVY, letterSpacing: 0.3,
+            display: "flex", alignItems: "center", gap: 12,
+          }}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
+              <rect x="1.5" y="3.5" width="15" height="11" rx="2" stroke={GOLD} strokeWidth="1.4"/>
+              <path d="M2.5 5L9 9.5L15.5 5" stroke={GOLD} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            {lang === "en" ? "Submit an event" : "Proposer un événement"}
+          </button>
         </div>
       </div>
     </div>
