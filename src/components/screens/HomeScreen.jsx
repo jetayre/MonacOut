@@ -15,7 +15,7 @@ const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, 
 
 // Boutons de catégories groupées (barre sous les filtres temps, à la place des quartiers)
 const EVENT_GROUPS = [
-  { id: "culture",   label: "Culture",   labelEn: "Culture",   cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","CHANTS","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE","ATELIER","DANSE","BIEN-ÊTRE"] },
+  { id: "culture",   label: "Culture/Ateliers", labelEn: "Culture/Workshops", cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","CHANTS","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE","ATELIER","DANSE","BIEN-ÊTRE"] },
   { id: "food",      label: "Food",      labelEn: "Food",      cats: ["BRUNCH","APÉRO","FOODY"] },
   { id: "musique",   label: "Musique",   labelEn: "Music",     cats: ["CONCERT","JAZZ LIVE","CHANTS","MUSICAL","OPÉRA"] },
   { id: "nightlife", label: "Nightlife", labelEn: "Nightlife", cats: ["SOIRÉE","DJ SET","GALA"] },
