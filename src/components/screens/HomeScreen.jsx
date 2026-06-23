@@ -15,10 +15,10 @@ const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, 
 
 // Boutons de catégories groupées (barre sous les filtres temps, à la place des quartiers)
 const EVENT_GROUPS = [
-  { id: "culture",   label: "Culture",      labelEn: "Culture",      cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE"] },
-  { id: "foodnight", label: "Food & Night", labelEn: "Food & Night", cats: ["APÉRO","BRUNCH","SOIRÉE","DJ SET"] },
+  { id: "culture",   label: "Culture",      labelEn: "Culture",      cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","CHANTS","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","GALA","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE"] },
+  { id: "foodnight", label: "Food & Night", labelEn: "Food & Night", cats: ["APÉRO","BRUNCH","SOIRÉE","DJ SET","FOODY"] },
   { id: "musique",   label: "Musique",      labelEn: "Music",        cats: ["CONCERT","JAZZ LIVE","CHANTS","MUSICAL","OPÉRA"] },
-  { id: "ateliers",  label: "Ateliers",     labelEn: "Workshops",    cats: ["ATELIER","DANSE"] },
+  { id: "ateliers",  label: "Ateliers",     labelEn: "Workshops",    cats: ["ATELIER","DANSE","BIEN-ÊTRE"] },
   { id: "sport",     label: "Sport",        labelEn: "Sport",        cats: ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","TENNIS","RALLYE","SPORT"] },
 ];
 
@@ -339,12 +339,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           background: WHITE, borderTop: `1px solid ${BORDER}`,
           maxHeight: filtersVisible ? "44px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
         }}>
-          <div style={{ display: "flex", gap: 6, padding: "5px 12px 7px", overflowX: "auto", scrollbarWidth: "none" }}>
+          <div style={{ display: "flex", gap: 5, justifyContent: "center", padding: "5px 8px 7px", overflowX: "auto", scrollbarWidth: "none" }}>
             {EVENT_GROUPS.map(g => {
               const active = groupFilter === g.id;
               return (
                 <button key={g.id} onClick={() => { setGroupFilter(active ? null : g.id); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
-                  flexShrink: 0, padding: "4px 13px", borderRadius: 20,
+                  flexShrink: 0, padding: "4px 10px", borderRadius: 20,
                   border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
                   background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
                   fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
