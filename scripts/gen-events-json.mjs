@@ -16,10 +16,14 @@ const ROOT = join(__dirname, '..');
 
 const { ALL_EVENTS } = await import('../src/data/events.js');
 
+// Garde l'indice « ⓘ » au bout du titre servi (donnée → visible sur iPhone sans v1.7).
+const HINT = " ⓘ";
+const events = ALL_EVENTS.map(e => ({ ...e, title: e.title.endsWith(HINT) ? e.title : e.title + HINT }));
+
 const payload = {
   generatedAt: new Date().toISOString(),
-  count: ALL_EVENTS.length,
-  events: ALL_EVENTS,
+  count: events.length,
+  events,
 };
 
 const out = join(ROOT, 'public', 'events.json');
