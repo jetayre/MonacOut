@@ -19,7 +19,12 @@ const { ALL_EVENTS } = await import('../src/data/events.js');
 // Ajoute l'indice « plus d'infos » au titre servi (donnée → visible sur l'app
 // installée SANS repasser par Apple). Les données source (events.js) restent propres.
 const HINT = " ⓘ";
-const events = ALL_EVENTS.map(e => ({ ...e, title: e.title.endsWith(HINT) ? e.title : e.title + HINT }));
+const events = ALL_EVENTS.map(e => {
+  let t = e.title;
+  if (e.emoji && !t.startsWith(e.emoji)) t = e.emoji + " " + t;   // icône au début (donnée → visible sans v1.7)
+  if (!t.endsWith(HINT)) t = t + HINT;                            // indice « plus d'infos » à la fin
+  return { ...e, title: t };
+});
 
 const payload = {
   generatedAt: new Date().toISOString(),
