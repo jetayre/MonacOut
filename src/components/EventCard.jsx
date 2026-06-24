@@ -205,14 +205,6 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         position: "relative",
       }}
     >
-      {/* Indice « plus d'infos » : la carte s'ouvre au toucher */}
-      <div style={{ position: "absolute", top: 13, right: 15, zIndex: 2, pointerEvents: "none" }} title={lang === "en" ? "Tap for more info" : "Touchez pour plus d'infos"}>
-        <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
-          <circle cx="10" cy="10" r="8.4" stroke={GOLD_FRAME} strokeWidth="1.2"/>
-          <circle cx="10" cy="6.6" r="0.95" fill={GOLD_FRAME}/>
-          <path d="M10 9.2v4.4" stroke={GOLD_FRAME} strokeWidth="1.5" strokeLinecap="round"/>
-        </svg>
-      </div>
       {/* Inner blue frame */}
       <div style={{ border: `1.5px solid ${BLUE}`, borderRadius: 1, background: CREAM }}>
 
@@ -250,6 +242,21 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
             color: "#000000", lineHeight: 1.25, marginTop: 22, marginBottom: 14,
           }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
+
+          {/* Indice : touchez la carte pour plus d'infos */}
+          <div style={{
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600,
+            letterSpacing: 2, textTransform: "uppercase", color: GOLD,
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+            marginTop: -4, marginBottom: 16,
+          }}>
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="8.4" stroke={GOLD} strokeWidth="1.5"/>
+              <circle cx="10" cy="6.6" r="1.1" fill={GOLD}/>
+              <path d="M10 9.3v4.3" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+            </svg>
+            {lang === "en" ? "More info" : "Plus d'infos"}
+          </div>
 
           {/* Lieu */}
           {event.subtitle && (
