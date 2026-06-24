@@ -299,7 +299,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                       textTransform: "uppercase", color: "#000000",
                       textDecoration: "none",
                     }}
-                  >{event.free ? (lang === "en" ? "MORE INFO" : "PLUS D'INFOS") : (lang === "en" ? "BOOK" : "RÉSERVER")}</a>
+                  >{event.free ? "WEBSITE" : (lang === "en" ? "BOOK" : "RÉSERVER")}</a>
                 ) : (
                   <button
                     onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}

@@ -251,7 +251,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                           background: NAVY, padding: "11px 24px",
                           textDecoration: "none", borderRadius: 1,
                         }}
-                      >{selectedEvent.free ? (lang === "en" ? "More info" : "Plus d'infos") : (lang === "en" ? "Book" : "Je réserve")}</a>
+                      >{selectedEvent.free ? "Website" : (lang === "en" ? "Book" : "Réserver")}</a>
                     )}
                     {selectedEvent.phone && (
                       <button
