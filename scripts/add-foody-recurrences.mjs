@@ -38,7 +38,6 @@ for (let d = 0; d < WEEKS * 7; d++) {
   const day = new Date(start); day.setDate(start.getDate() + d);
   const dateStr = `${JOURS[day.getDay()]} ${day.getDate()} ${MOIS[day.getMonth()]}`;
   lines.push(card(ROT[day.getDay()], dateStr));
-  if (day.getDay() === 6) lines.push(card(STARS, dateStr));   // samedi : + Stars'N'Bars
 }
 
 const idx = s.lastIndexOf("\n];");
