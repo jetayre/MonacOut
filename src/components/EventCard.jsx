@@ -243,21 +243,6 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             color: "#000000", lineHeight: 1.25, marginTop: 22, marginBottom: 14,
           }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
 
-          {/* Indice : touchez la carte pour plus d'infos */}
-          <div style={{
-            fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600,
-            letterSpacing: 2, textTransform: "uppercase", color: GOLD,
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
-            marginTop: -4, marginBottom: 16,
-          }}>
-            <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="8.4" stroke={GOLD} strokeWidth="1.5"/>
-              <circle cx="10" cy="6.6" r="1.1" fill={GOLD}/>
-              <path d="M10 9.3v4.3" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
-            </svg>
-            {lang === "en" ? "More info" : "Plus d'infos"}
-          </div>
-
           {/* Lieu */}
           {event.subtitle && (
             <div style={{
