@@ -202,8 +202,17 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         marginBottom: 14,
         background: WHITE,
         cursor: "pointer",
+        position: "relative",
       }}
     >
+      {/* Indice « plus d'infos » : la carte s'ouvre au toucher */}
+      <div style={{ position: "absolute", top: 13, right: 15, zIndex: 2, pointerEvents: "none" }} title={lang === "en" ? "Tap for more info" : "Touchez pour plus d'infos"}>
+        <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8.4" stroke={GOLD_FRAME} strokeWidth="1.2"/>
+          <circle cx="10" cy="6.6" r="0.95" fill={GOLD_FRAME}/>
+          <path d="M10 9.2v4.4" stroke={GOLD_FRAME} strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </div>
       {/* Inner blue frame */}
       <div style={{ border: `1.5px solid ${BLUE}`, borderRadius: 1, background: CREAM }}>
 
