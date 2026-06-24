@@ -18,7 +18,7 @@ const { ALL_EVENTS } = await import('../src/data/events.js');
 
 // Ajoute l'indice « plus d'infos » au titre servi (donnée → visible sur l'app
 // installée SANS repasser par Apple). Les données source (events.js) restent propres.
-const HINT = "\nⓘ plus d'infos";
+const HINT = " ⓘ";
 const events = ALL_EVENTS.map(e => ({ ...e, title: e.title.endsWith(HINT) ? e.title : e.title + HINT }));
 
 const payload = {
