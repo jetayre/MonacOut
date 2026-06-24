@@ -327,7 +327,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
                   fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600,
                   cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
-                }}>{label}</button>
+                }}>{f.id === "calendar" ? (
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={active ? "#FFFFFF" : GREY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    {rangeStart && rangeLabel}
+                  </span>
+                ) : label}</button>
               );
             })}
           </div>
