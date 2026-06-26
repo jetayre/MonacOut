@@ -80,6 +80,7 @@ async function scheduleDigest(events, favorites, config) {
       const winStart = new Date(sendDay); winStart.setHours(0, 0, 0, 0);
       const winEnd = new Date(sendDay); winEnd.setDate(sendDay.getDate() + 6); winEnd.setHours(23, 59, 59, 999);
       const winEvents = events.filter(e => {
+        if (e.directory) return false;   // pas les annuaires Musées/Cinéma dans les notifs (seulement de vrais événements)
         const d = parseForNotif(e);
         return d && d >= winStart && d <= winEnd;
       });
@@ -90,7 +91,9 @@ async function scheduleDigest(events, favorites, config) {
       const hasFav = top.some(e => favorites.includes(e.id));
       const body = top.map(e => {
         const d = parseForNotif(e);
-        return `• ${JOURS_FR[d.getDay()]} — ${e.title.replace(/\n/g, ' ')}`;
+        const titre = e.title.replace(/\n/g, ' ');
+        const lieu = e.subtitle ? e.subtitle.split(' · ')[0] : '';
+        return `• ${JOURS_FR[d.getDay()]} ${d.getDate()} — ${titre}${lieu ? ' · ' + lieu : ''}`;
       }).join('\n');
       const id = DIGEST_ID_BASE + w * sendOffsets.length + s;
       toSchedule.push({
