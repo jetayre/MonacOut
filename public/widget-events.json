@@ -1,32 +1,14 @@
 {
-  "generatedAt": "2026-06-26T06:55:35.909Z",
+  "generatedAt": "2026-06-27T06:39:24.397Z",
   "events": [
     {
-      "date": "Ven 26 juin",
-      "iso": "2026-06-26",
-      "time": "20h00 — 23h00",
-      "title": "MILONGA DIGUE DU PORT II",
-      "venue": "Digue du Port Hercule",
-      "quarter": "Monte-Carlo",
-      "emoji": "🌙"
-    },
-    {
-      "date": "Ven 26 juin",
-      "iso": "2026-06-26",
-      "time": "21h30",
-      "title": "THÉÂTRE FORT ANTOINE",
-      "venue": "Théâtre Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎭"
-    },
-    {
-      "date": "Ven 26 juin",
-      "iso": "2026-06-26",
-      "time": "18h30 — 00h00",
-      "title": "SOIRÉE DE LANCEMENT STARS OF MONACO",
-      "venue": "Stars of Monaco",
-      "quarter": "La Condamine",
-      "emoji": "🎉"
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
+      "time": "19h00",
+      "title": "GALA DES ÉCOLES DE DANSE MONACO",
+      "venue": "Salle Léo Ferré",
+      "quarter": "Fontvieille",
+      "emoji": "🩰"
     },
     {
       "date": "Sam 27 juin",
@@ -47,31 +29,49 @@
       "emoji": "🔨"
     },
     {
-      "date": "Ven 26 juin",
-      "iso": "2026-06-26",
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
       "time": "10h00",
-      "title": "MATINALE DÉSIR ET DÉCEPTION",
+      "title": "MATINALE DÉSIR ET INFINI",
       "venue": "Marché de la Condamine",
       "quarter": "La Condamine",
       "emoji": "💭"
     },
     {
-      "date": "Ven 26 juin",
-      "iso": "2026-06-26",
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
       "time": "19h00",
-      "title": "NE PAS CÉDER SUR SON DÉSIR",
+      "title": "ENTRE DÉSIRS ET ADDICTIONS",
       "venue": "Théâtre Princesse Grace",
       "quarter": "Monaco",
       "emoji": "💭"
     },
     {
-      "date": "Ven 26 juin",
-      "iso": "2026-06-26",
-      "time": "20h00",
-      "title": "SIRBA OCTET SALLE GARNIER",
-      "venue": "Salle Garnier",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎶"
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
+      "time": "20h30",
+      "title": "JAZZ D'ÉTÉ LARVOTTO",
+      "venue": "La Note Bleue",
+      "quarter": "Larvotto",
+      "emoji": "🎷"
+    },
+    {
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
+      "time": "20h30",
+      "title": "COMÉDIE FRANÇAISE LES MUSES",
+      "venue": "Théâtre des Muses",
+      "quarter": "Monaco",
+      "emoji": "🎭"
     }
   ]
 }
