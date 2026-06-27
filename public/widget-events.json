@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-06-27T06:39:24.397Z",
+  "generatedAt": "2026-06-27T10:21:04.160Z",
   "events": [
+    {
+      "date": "Sam 27 juin",
+      "iso": "2026-06-27",
+      "time": "15h00 — 16h30",
+      "title": "ÉCRIRE LE DÉSIR PHILOMONACO",
+      "venue": "Hôtel Hermitage",
+      "quarter": "Monte-Carlo",
+      "emoji": "💭"
+    },
     {
       "date": "Sam 27 juin",
       "iso": "2026-06-27",
@@ -63,15 +72,6 @@
       "venue": "La Note Bleue",
       "quarter": "Larvotto",
       "emoji": "🎷"
-    },
-    {
-      "date": "Sam 27 juin",
-      "iso": "2026-06-27",
-      "time": "20h30",
-      "title": "COMÉDIE FRANÇAISE LES MUSES",
-      "venue": "Théâtre des Muses",
-      "quarter": "Monaco",
-      "emoji": "🎭"
     }
   ]
 }
