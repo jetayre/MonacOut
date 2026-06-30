@@ -81,6 +81,7 @@ async function scheduleDigest(events, favorites, config) {
       const winEnd = new Date(sendDay); winEnd.setDate(sendDay.getDate() + 6); winEnd.setHours(23, 59, 59, 999);
       const winEvents = events.filter(e => {
         if (e.directory) return false;   // pas les annuaires Musées/Cinéma dans les notifs (seulement de vrais événements)
+        if (e.noNotif) return false;     // fiches quotidiennes d'expo : visibles dans l'app, exclues des notifs
         const d = parseForNotif(e);
         return d && d >= winStart && d <= winEnd;
       });
