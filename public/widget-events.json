@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T11:57:31.157Z",
+  "generatedAt": "2026-06-30T12:02:52.580Z",
   "events": [
     {
       "date": "Jeu 2 juil",
@@ -38,13 +38,13 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "14h00 — 23h00",
-      "title": "JUMPING MONACO 2E JOURNÉE",
-      "venue": "Port Hercule",
-      "quarter": "La Condamine",
-      "emoji": "🐴"
+      "date": "Jeu 2 juil",
+      "iso": "2026-07-02",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
     },
     {
       "date": "Ven 3 juil",
@@ -56,6 +56,15 @@
       "emoji": "📮"
     },
     {
+      "date": "Ven 3 juil",
+      "iso": "2026-07-03",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
       "date": "Mar 30 juin",
       "iso": "2026-06-30",
       "time": "Tous les jours",
@@ -63,15 +72,6 @@
       "venue": "Salles & plein air",
       "quarter": "Monte-Carlo",
       "emoji": "🎬"
-    },
-    {
-      "date": "Mer 1 juil",
-      "iso": "2026-07-01",
-      "time": "10h00 — 12h30",
-      "title": "ATELIER MUSIQUE DE CHAMBRE",
-      "venue": "Académie de Musique Prince Rainier III",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎼"
     }
   ]
 }
