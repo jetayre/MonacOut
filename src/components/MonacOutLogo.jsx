@@ -21,12 +21,12 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
         }}>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontWeight: 400, fontSize: 16, letterSpacing: 4,
+            fontWeight: 400, fontSize: 13, letterSpacing: 3,
             color: NAVY, textTransform: "uppercase",
           }}>MONA'</span>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontWeight: 600, fontSize: 16, letterSpacing: 3,
+            fontWeight: 600, fontSize: 13, letterSpacing: 2,
             color: GOLD, textTransform: "uppercase",
           }}>CERCLE</span>
         </div>
