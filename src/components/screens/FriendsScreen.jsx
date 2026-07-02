@@ -116,7 +116,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
         fontSize: 13, fontWeight: 600, letterSpacing: 3,
         textTransform: 'uppercase', color: GOLD, marginBottom: 16,
       }}>
-        {lang === 'en' ? "Friends" : "Mes amis"}
+        {lang === 'en' ? "My Circle" : "Mon Cercle"}
         {social.pending.length > 0 && (
           <span style={{
             marginLeft: 8, background: '#c00', color: '#fff',

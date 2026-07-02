@@ -243,6 +243,8 @@ export default function App() {
           onCatFilter={handleCatFilter}
           onOpenMenu={() => setShowMenu(true)}
           onNavAgenda={() => handleTabChange("agenda")}
+          onNavFriends={() => handleTabChange("friends")}
+          pendingFriends={social.pending?.length || 0}
           onAdminOpen={() => setShowAdmin(true)}
           onLangChange={setLang}
         />
