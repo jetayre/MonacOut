@@ -74,16 +74,19 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
 
   const inviteCode  = auth.profile?.invite_code || '…'
   const inviteLink  = `https://monacout.vercel.app?invite=${inviteCode}`
+  const inviteText  = lang === 'en'
+    ? `Join my circle on Mon Cercle! Use code ${inviteCode} or tap: ${inviteLink}`
+    : `Rejoins mon cercle sur Mon Cercle ! Code : ${inviteCode} ou clique : ${inviteLink}`
 
   async function shareInvite() {
     if (Capacitor.isNativePlatform()) {
       await Share.share({
-        title: lang === 'en' ? "Join my circle on Mon Cercle" : "Rejoins mon cercle sur Mon Cercle",
-        text: lang === 'en'
-          ? `Use my code ${inviteCode} to add me as a friend on Mon Cercle!`
-          : `Utilise mon code ${inviteCode} pour m'ajouter en ami sur Mon Cercle !`,
+        title: lang === 'en' ? "Join my circle" : "Rejoins mon cercle",
+        text: inviteText,
         url: inviteLink,
       }).catch(() => {})
+    } else if (navigator.share) {
+      await navigator.share({ title: "Mon Cercle", text: inviteText, url: inviteLink }).catch(() => {})
     } else {
       navigator.clipboard?.writeText(inviteLink)
       setCodeMsg(lang === 'en' ? 'Link copied!' : 'Lien copié !')
@@ -199,7 +202,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
             <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: GOLD, marginBottom: 8 }}>
               {lang === 'en' ? "My invite code" : "Mon code d'invitation"}
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
               <div style={{
                 fontFamily: "'Josefin Sans', sans-serif", fontSize: 18, fontWeight: 600,
                 color: NAVY, letterSpacing: 4, flex: 1,
@@ -209,8 +212,31 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
                 borderRadius: 2, cursor: 'pointer', fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 10, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', flexShrink: 0,
               }}>
-                {Capacitor.isNativePlatform() ? (lang === 'en' ? "Share" : "Partager") : (lang === 'en' ? "Copy link" : "Copier")}
+                {(Capacitor.isNativePlatform() || navigator.share) ? (lang === 'en' ? "Share" : "Partager") : (lang === 'en' ? "Copy link" : "Copier")}
               </button>
+            </div>
+            {/* Envoyer par SMS ou WhatsApp */}
+            <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+              <a href={`sms:?&body=${encodeURIComponent(inviteText)}`} style={{
+                flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                padding: '9px 0', border: `1px solid ${GOLD_FRAME}`, borderRadius: 2,
+                textDecoration: 'none', color: NAVY,
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600,
+                letterSpacing: 1.5, textTransform: 'uppercase',
+              }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 15.09 16l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                SMS
+              </a>
+              <a href={`https://wa.me/?text=${encodeURIComponent(inviteText)}`} target="_blank" rel="noopener noreferrer" style={{
+                flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                padding: '9px 0', border: `1px solid #25D366`, borderRadius: 2,
+                textDecoration: 'none', color: '#128C7E',
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600,
+                letterSpacing: 1.5, textTransform: 'uppercase',
+              }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                WhatsApp
+              </a>
             </div>
             {codeMsg && <div style={{ fontSize: 11, color: GOLD, fontFamily: "'Lato', sans-serif" }}>{codeMsg}</div>}
           </div>
