@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T08:05:32.942Z",
+  "generatedAt": "2026-07-02T08:07:25.654Z",
   "events": [
     {
       "date": "Jeu 2 juil",
@@ -11,13 +11,13 @@
       "emoji": "🐴"
     },
     {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "20h30",
-      "title": "SÉBASTIEN TELLIER",
-      "venue": "Opéra Garnier",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎵"
+      "date": "Jeu 2 juil",
+      "iso": "2026-07-02",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
     },
     {
       "date": "Ven 3 juil",
@@ -56,15 +56,6 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "21h30",
-      "title": "THÉÂTRE FORT ANTOINE",
-      "venue": "Théâtre Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎭"
-    },
-    {
       "date": "Jeu 2 juil",
       "iso": "2026-07-02",
       "time": "19h00 — 21h00",
@@ -72,6 +63,15 @@
       "venue": "Café de Paris",
       "quarter": "Monte-Carlo",
       "emoji": "🥂"
+    },
+    {
+      "date": "Jeu 2 juil",
+      "iso": "2026-07-02",
+      "time": "Tous les jours",
+      "title": "CINÉMA À MONACO",
+      "venue": "Salles & plein air",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
     }
   ]
 }
