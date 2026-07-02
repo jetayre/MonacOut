@@ -78,10 +78,10 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   async function shareInvite() {
     if (Capacitor.isNativePlatform()) {
       await Share.share({
-        title: lang === 'en' ? "Join me on Monac'Out" : "Rejoins-moi sur Monac'Out",
+        title: lang === 'en' ? "Join my circle on Mon Cercle" : "Rejoins mon cercle sur Mon Cercle",
         text: lang === 'en'
-          ? `Use my code ${inviteCode} to add me as a friend on Monac'Out!`
-          : `Utilise mon code ${inviteCode} pour m'ajouter en ami sur Monac'Out !`,
+          ? `Use my code ${inviteCode} to add me as a friend on Mon Cercle!`
+          : `Utilise mon code ${inviteCode} pour m'ajouter en ami sur Mon Cercle !`,
         url: inviteLink,
       }).catch(() => {})
     } else {
