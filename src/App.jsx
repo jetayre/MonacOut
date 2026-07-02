@@ -5,6 +5,10 @@ import { fetchLiveEvents, fetchNotifConfig, BUNDLED_EVENTS } from "./data/liveEv
 import HomeScreen from "./components/screens/HomeScreen";
 import FavoritesScreen from "./components/screens/FavoritesScreen";
 import AdminScreen from "./components/screens/AdminScreen";
+import FriendsScreen from "./components/screens/FriendsScreen";
+import AuthScreen from "./components/screens/AuthScreen";
+import { useAuth } from "./hooks/useAuth";
+import { useSocial } from "./hooks/useSocial";
 import { Capacitor } from "@capacitor/core";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
@@ -123,6 +127,8 @@ const CAT_TO_FILTER = {
 };
 
 export default function App() {
+  const auth = useAuth();
+  const social = useSocial(auth.user?.id);
   const [tab, setTab] = useState("events");
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
@@ -134,6 +140,7 @@ export default function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
 
@@ -185,6 +192,11 @@ export default function App() {
     });
   }
 
+  function handleGoingClick(eventId) {
+    if (!auth.user) { setShowAuth(true); return; }
+    social.toggleParticipation(eventId);
+  }
+
   function navigateToCategory(cat) {
     const filterId = CAT_TO_FILTER[cat];
     if (filterId) {
@@ -198,7 +210,7 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: setSelectedEvent, events };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: setSelectedEvent, events, social, onGoingClick: handleGoingClick };
 
   return (
     <Shell
@@ -218,6 +230,9 @@ export default function App() {
       favorites={favorites}
       adminOverlay={showAdmin ? <AdminScreen onClose={() => setShowAdmin(false)} /> : null}
       contactEmail={notifConfig?.contactEmail || "eventsmonacout@gmail.com"}
+      auth={auth}
+      onShowAuth={() => setShowAuth(true)}
+      pendingCount={social.pending?.length || 0}
     >
       {tab === "events" ? (
         <HomeScreen
@@ -231,10 +246,25 @@ export default function App() {
           onAdminOpen={() => setShowAdmin(true)}
           onLangChange={setLang}
         />
+      ) : tab === "friends" ? (
+        <FriendsScreen
+          auth={auth}
+          social={social}
+          lang={lang}
+          onShowAuth={() => setShowAuth(true)}
+          onNavEvents={() => handleTabChange("events")}
+        />
       ) : (
         <FavoritesScreen
           {...sharedProps}
           onNavEvents={() => handleTabChange("events")}
+        />
+      )}
+      {showAuth && (
+        <AuthScreen
+          onClose={() => setShowAuth(false)}
+          auth={auth}
+          lang={lang}
         />
       )}
     </Shell>

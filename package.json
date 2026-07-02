@@ -25,6 +25,7 @@
     "@capacitor/local-notifications": "^8.2.0",
     "@capacitor/share": "^8.0.1",
     "@sentry/react": "^10.53.1",
+    "@supabase/supabase-js": "^2.110.0",
     "posthog-js": "^1.374.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"

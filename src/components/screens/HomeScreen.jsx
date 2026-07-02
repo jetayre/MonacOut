@@ -137,7 +137,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -381,6 +381,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
               onCardClick={onCardClick}
               lang={lang}
+              onGoingClick={onGoingClick}
+              isGoing={social?.myParticipations?.includes(e.id) ?? false}
+              friendsGoing={social ? social.friendsGoingTo(e.id) : []}
             />
           ))
         )}
