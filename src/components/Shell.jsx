@@ -74,7 +74,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "eventsmonacout@gmail.com" }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "eventsmonacout@gmail.com", auth, onShowAuth, pendingCount = 0 }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -339,6 +339,29 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             {lang === "en" ? "My Agenda" : "Mon Agenda"}
           </button>
 
+          {/* Mon Cercle */}
+          <button onClick={() => { setTab?.("friends"); setShowMenu?.(false); }} style={{
+            width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
+            padding: "14px 24px", fontFamily: "'Jost', sans-serif",
+            fontSize: 15, fontWeight: tab === "friends" ? 700 : 400, color: NAVY, letterSpacing: 0.3,
+            display: "flex", alignItems: "center", gap: 12,
+          }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={tab === "friends" ? GOLD : GREY} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            {lang === "en" ? "My Circle" : "Mon Cercle"}
+            {pendingCount > 0 && (
+              <span style={{
+                marginLeft: "auto", background: GOLD, color: WHITE,
+                borderRadius: 10, padding: "1px 7px",
+                fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 700,
+              }}>{pendingCount}</span>
+            )}
+          </button>
+
           <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "8px 24px 12px" }} />
 
           {/* Catégories */}
@@ -398,6 +421,40 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             </svg>
             {lang === "en" ? "Submit an event" : "Proposer un événement"}
           </button>
+
+          {/* Section connexion */}
+          <div style={{ height: 1, background: "rgba(15,29,58,0.1)", margin: "12px 24px" }} />
+          {auth?.user ? (
+            <div style={{ padding: "4px 24px 16px" }}>
+              <div style={{
+                fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY,
+                marginBottom: 10, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              }}>
+                {auth.profile?.display_name
+                  ? `${auth.profile.display_name} · ${auth.user.email}`
+                  : auth.user.email}
+              </div>
+              <button onClick={() => { auth.signOut(); setShowMenu?.(false); }} style={{
+                width: "100%", padding: "10px 0", background: "none",
+                border: `1px solid rgba(15,29,58,0.2)`, borderRadius: 1, cursor: "pointer",
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600,
+                letterSpacing: 2, textTransform: "uppercase", color: GREY,
+              }}>{lang === "en" ? "Sign out" : "Se déconnecter"}</button>
+            </div>
+          ) : (
+            <button onClick={() => { onShowAuth?.(); setShowMenu?.(false); }} style={{
+              width: "100%", textAlign: "left", background: "none", border: "none", cursor: "pointer",
+              padding: "14px 24px 20px", fontFamily: "'Jost', sans-serif",
+              fontSize: 15, fontWeight: 400, color: NAVY, letterSpacing: 0.3,
+              display: "flex", alignItems: "center", gap: 12,
+            }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              {lang === "en" ? "Sign in" : "Se connecter"}
+            </button>
+          )}
         </div>
       </div>
     </div>

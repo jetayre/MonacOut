@@ -184,7 +184,29 @@ function todayFrDate() {
   return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr" }) {
+const AVATAR_COLORS = ['#0F1D3A','#882830','#1A4A5A','#3A1870','#1A4A2A','#4A2010','#1A2A4A']
+function avatarColor(id=''){let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))&0xFFFFFF;return AVATAR_COLORS[Math.abs(h)%AVATAR_COLORS.length]}
+
+function FriendAvatars({ friends = [] }) {
+  if (!friends.length) return null
+  const shown = friends.slice(0, 3)
+  const extra = friends.length - 3
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:2, marginLeft:4 }}>
+      {shown.map(f => (
+        <div key={f.id} title={f.display_name} style={{
+          width:20, height:20, borderRadius:'50%', background:avatarColor(f.id),
+          color:'#fff', display:'flex', alignItems:'center', justifyContent:'center',
+          fontFamily:"'Josefin Sans',sans-serif", fontSize:8, fontWeight:600,
+          border:'1.5px solid #fff', flexShrink:0,
+        }}>{(f.display_name?.[0]||'?').toUpperCase()}</div>
+      ))}
+      {extra > 0 && <span style={{ fontSize:9, color:GREY, fontFamily:"'Lato',sans-serif" }}>+{extra}</span>}
+    </div>
+  )
+}
+
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [] }) {
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
   const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
@@ -343,6 +365,26 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           </div>
 
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {/* J'y vais */}
+          {onGoingClick && (
+            <button
+              onClick={e => { e.stopPropagation(); onGoingClick(event.id); }}
+              style={{
+                alignSelf: "flex-start",
+                display: "inline-flex", alignItems: "center", gap: 5,
+                padding: "6px 12px",
+                border: `1px solid ${isGoing ? GOLD_FRAME : "rgba(15,29,58,0.2)"}`,
+                borderRadius: 1, cursor: "pointer",
+                background: isGoing ? "#FFF8EC" : "none",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+                textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#888",
+              }}
+            >
+              {isGoing ? "✓ " : ""}{lang === "en" ? "I'm going" : "J'y vais"}
+            </button>
+          )}
+          {friendsGoing.length > 0 && <FriendAvatars friends={friendsGoing} />}
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
