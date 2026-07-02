@@ -107,24 +107,33 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
 
   const jours = lang === 'en' ? JOURS_EN : JOURS_FR
 
+  const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)"
+
   return (
     <div style={{ paddingBottom: 40 }}>
-      {/* Header */}
+      {/* Header rayures nautiques */}
       <div style={{
-        padding: '20px 24px 0',
-        fontFamily: "'Josefin Sans', sans-serif",
-        fontSize: 13, fontWeight: 600, letterSpacing: 3,
-        textTransform: 'uppercase', color: GOLD, marginBottom: 16,
+        position: 'sticky', top: 0, zIndex: 999,
+        background: STRIPE_BG,
+        padding: '10px 16px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        borderBottom: '1px solid rgba(15,29,58,0.12)',
       }}>
-        {lang === 'en' ? "My Circle" : "Mon Cercle"}
-        {social.pending.length > 0 && (
-          <span style={{
-            marginLeft: 8, background: '#c00', color: '#fff',
-            borderRadius: '50%', width: 18, height: 18,
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 10, fontWeight: 700,
-          }}>{social.pending.length}</span>
-        )}
+        <div style={{
+          fontFamily: "'Josefin Sans', sans-serif",
+          fontSize: 15, fontWeight: 600, letterSpacing: 5,
+          textTransform: 'uppercase', color: NAVY,
+          display: 'flex', alignItems: 'center', gap: 8,
+        }}>
+          {lang === 'en' ? "MY CIRCLE" : "MON CERCLE"}
+          {social.pending.length > 0 && (
+            <span style={{
+              background: GOLD, color: '#fff',
+              borderRadius: 10, padding: '1px 7px',
+              fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 700,
+            }}>{social.pending.length}</span>
+          )}
+        </div>
       </div>
 
       {/* Tabs */}
