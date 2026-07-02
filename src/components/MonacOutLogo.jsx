@@ -23,7 +23,7 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 400, fontSize: 16, letterSpacing: 4,
             color: NAVY, textTransform: "uppercase",
-          }}>MON </span>
+          }}>MONA'</span>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 600, fontSize: 16, letterSpacing: 3,
@@ -65,7 +65,7 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
             letterSpacing: 7,
             color: NAVY,
             textTransform: "uppercase",
-          }}>MON </span>
+          }}>MONA'</span>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 600,
