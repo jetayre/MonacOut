@@ -233,7 +233,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           display: "flex", alignItems: "center", gap: 8,
           transition: "padding 0.22s ease",
         }}>
-          {/* Gauche : menu + loupe */}
+          {/* Gauche : menu + loupe + amis */}
           <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
             <button onClick={onOpenMenu} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HamburgerIcon />
@@ -246,6 +246,21 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               });
             }} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <SearchIcon active={showSearch} />
+            </button>
+            <button onClick={onNavFriends} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, position: "relative" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1D3A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              {pendingFriends > 0 && (
+                <span style={{
+                  position: "absolute", top: 0, right: 0,
+                  width: 8, height: 8, borderRadius: "50%",
+                  background: "#C4A241", border: "1.5px solid #fff",
+                }} />
+              )}
             </button>
           </div>
 
@@ -263,7 +278,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             </div>
           </div>
 
-          {/* Droite : fr/en + amis + cœur */}
+          {/* Droite : fr/en + cœur */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
             <div style={{ display: "flex", gap: 4 }}>
               {["fr","en"].map(l => (
@@ -278,21 +293,6 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 }}>{l}</button>
               ))}
             </div>
-            <button onClick={onNavFriends} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, position: "relative" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1D3A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-              {pendingFriends > 0 && (
-                <span style={{
-                  position: "absolute", top: 0, right: 0,
-                  width: 8, height: 8, borderRadius: "50%",
-                  background: "#C4A241", border: "1.5px solid #fff",
-                }} />
-              )}
-            </button>
             <button onClick={onNavAgenda} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
               <HeartIcon hasFavs={hasFavs} />
             </button>
