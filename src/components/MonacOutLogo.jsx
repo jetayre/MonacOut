@@ -23,12 +23,12 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 400, fontSize: 13, letterSpacing: 3,
             color: NAVY, textTransform: "uppercase",
-          }}>MONA'</span>
+          }}>MONAC'</span>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 600, fontSize: 13, letterSpacing: 2,
             color: GOLD, textTransform: "uppercase",
-          }}>CERCLE</span>
+          }}>OUT</span>
         </div>
       </div>
     );
@@ -65,7 +65,7 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
             letterSpacing: 7,
             color: NAVY,
             textTransform: "uppercase",
-          }}>MONA'</span>
+          }}>MONAC'</span>
           <span style={{
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 600,
@@ -73,7 +73,7 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
             letterSpacing: 4,
             color: GOLD,
             textTransform: "uppercase",
-          }}>CERCLE</span>
+          }}>OUT</span>
         </div>
       </div>
     </div>

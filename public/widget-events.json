@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-07-03T13:39:49.964Z",
+  "generatedAt": "2026-07-03T18:06:25.079Z",
   "events": [
+    {
+      "date": "Ven 3 juil",
+      "iso": "2026-07-03",
+      "time": "19h30",
+      "title": "BALLETS DE MONTE-CARLO GALA 40 ANS",
+      "venue": "Salle des Princes",
+      "quarter": "Monte-Carlo",
+      "emoji": "🩰"
+    },
     {
       "date": "Ven 3 juil",
       "iso": "2026-07-03",
@@ -63,15 +72,6 @@
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
-    },
-    {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "Tous les jours",
-      "title": "CINÉMA À MONACO",
-      "venue": "Salles & plein air",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
     }
   ]
 }
