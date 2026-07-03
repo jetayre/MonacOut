@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T13:39:25.661Z",
+  "generatedAt": "2026-07-03T13:39:49.964Z",
   "events": [
     {
       "date": "Ven 3 juil",
@@ -9,6 +9,15 @@
       "venue": "Opéra Garnier",
       "quarter": "Monte-Carlo",
       "emoji": "🎵"
+    },
+    {
+      "date": "Ven 3 juil",
+      "iso": "2026-07-03",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
     },
     {
       "date": "Ven 3 juil",
@@ -56,22 +65,13 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "10h30 — 11h30",
-      "title": "CONTES D'ÉTÉ MÉDIATHÈQUE",
-      "venue": "Médiathèque de Monaco",
-      "quarter": "Monaco",
-      "emoji": "📖"
-    },
-    {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "9h00 — 12h00",
-      "title": "PROMENADE JARDIN JAPONAIS",
-      "venue": "Jardin Japonais Princesse Grace",
+      "date": "Ven 3 juil",
+      "iso": "2026-07-03",
+      "time": "Tous les jours",
+      "title": "CINÉMA À MONACO",
+      "venue": "Salles & plein air",
       "quarter": "Monte-Carlo",
-      "emoji": "🌸"
+      "emoji": "🎬"
     }
   ]
 }
