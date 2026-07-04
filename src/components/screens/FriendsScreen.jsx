@@ -44,8 +44,6 @@ function eventDate(e) {
 }
 
 export default function FriendsScreen({ auth, social, events = [], lang = "fr", onNavEvents }) {
-  const [tab, setTab]           = useState('sorties') // sorties | amis
-  const [code, setCode]         = useState('')
   const [codeMsg, setCodeMsg]   = useState('')
   const [showAuth, setShowAuth] = useState(false)
 
@@ -73,10 +71,10 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   }
 
   const inviteCode  = auth.profile?.invite_code || '…'
-  const inviteLink  = `https://monacout.vercel.app?invite=${inviteCode}`
+  const inviteLink  = `https://monac-out.vercel.app?invite=${inviteCode}`
   const inviteText  = lang === 'en'
-    ? `Join my circle on Mon Cercle! Use code ${inviteCode} or tap: ${inviteLink}`
-    : `Rejoins mon cercle sur Mon Cercle ! Code : ${inviteCode} ou clique : ${inviteLink}`
+    ? `Join me on Monac'Out! Just tap this link and we're connected: ${inviteLink}`
+    : `Rejoins-moi sur Monac'Out ! Clique simplement sur ce lien et on est connectés : ${inviteLink}`
 
   async function shareInvite() {
     if (Capacitor.isNativePlatform()) {
@@ -122,6 +120,17 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         borderBottom: '1px solid rgba(15,29,58,0.12)',
       }}>
+        {/* Retour vers Monac'Out */}
+        <button onClick={onNavEvents} aria-label={lang === 'en' ? 'Back to Monac\'Out' : "Retour à Monac'Out"} style={{
+          position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
+          background: '#fff', border: `1px solid ${GOLD_FRAME}`, borderRadius: 20,
+          cursor: 'pointer', padding: '4px 12px 4px 8px',
+          display: 'flex', alignItems: 'center', gap: 3,
+          color: NAVY,
+        }}>
+          <span style={{ fontSize: 17, lineHeight: 1, marginTop: -1 }}>‹</span>
+          <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 20, lineHeight: 1, color: NAVY }}>M</span>
+        </button>
         <div style={{
           fontFamily: "'Josefin Sans', sans-serif",
           fontSize: 15, fontWeight: 600, letterSpacing: 5,
@@ -139,82 +148,28 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
         </div>
       </div>
 
-      {/* Tabs */}
-      <div style={{ display: 'flex', padding: '0 24px', gap: 0, marginBottom: 20, borderBottom: `1px solid rgba(196,162,65,0.25)` }}>
-        {[
-          { id: 'sorties', fr: 'Sorties', en: 'Events' },
-          { id: 'amis',    fr: 'Amis',    en: 'Friends' },
-        ].map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            padding: '8px 16px 10px', marginRight: 4,
-            fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 12, fontWeight: 600, letterSpacing: 1.5,
-            textTransform: 'uppercase',
-            color: tab === t.id ? NAVY : GREY,
-            borderBottom: `2px solid ${tab === t.id ? GOLD : 'transparent'}`,
-            transition: 'all 0.15s',
-          }}>{lang === 'en' ? t.en : t.fr}</button>
-        ))}
-      </div>
+      <div style={{ padding: '0 24px' }}>
 
-      {/* ── TAB SORTIES ─────────────────────────────────────────── */}
-      {tab === 'sorties' && (
-        <div style={{ padding: '0 24px' }}>
-          {friendsEvents.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '32px 0', color: GREY, fontFamily: "'Lato', sans-serif", fontSize: 13 }}>
-              {social.friends.length === 0
-                ? (lang === 'en' ? "Add friends to see their plans." : "Ajoute des amis pour voir leurs sorties.")
-                : (lang === 'en' ? "None of your friends have marked events yet." : "Aucun ami n'a encore marqué de sortie.")}
-            </div>
-          ) : friendsEvents.map(({ event: ev, friend, date }, i) => (
-            <div key={`${ev.id}-${friend.id}-${i}`} style={{
-              display: 'flex', alignItems: 'center', gap: 12,
-              padding: '12px 0',
-              borderBottom: i < friendsEvents.length - 1 ? `1px solid rgba(15,29,58,0.07)` : 'none',
-            }}>
-              <Avatar name={friend.display_name} id={friend.id} size={34} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, color: NAVY, fontWeight: 600, marginBottom: 2 }}>
-                  {friend.display_name}
-                </div>
-                <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: '#333', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {ev.title.replace(/\n/g, ' ')}
-                </div>
-                <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 1 }}>
-                  {jours[date.getDay()]} {date.getDate()} {MOIS_FR[date.getMonth()]} · {ev.subtitle?.split(' · ')[0]}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* ── TAB AMIS ────────────────────────────────────────────── */}
-      {tab === 'amis' && (
-        <div style={{ padding: '0 24px' }}>
-
-          {/* Mon code invite */}
+          {/* Inviter un ami (par lien) */}
           <div style={{
             border: `1px solid ${GOLD_FRAME}`, borderRadius: 2,
             padding: '16px 18px', marginBottom: 20,
           }}>
-            <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: GOLD, marginBottom: 8 }}>
-              {lang === 'en' ? "My invite code" : "Mon code d'invitation"}
+            <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: GOLD, marginBottom: 4 }}>
+              {lang === 'en' ? "Invite a friend" : "Inviter un ami"}
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-              <div style={{
-                fontFamily: "'Josefin Sans', sans-serif", fontSize: 18, fontWeight: 600,
-                color: NAVY, letterSpacing: 4, flex: 1,
-              }}>{inviteCode.toUpperCase()}</div>
-              <button onClick={shareInvite} style={{
-                padding: '8px 14px', background: NAVY, color: '#fff', border: 'none',
-                borderRadius: 2, cursor: 'pointer', fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 10, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', flexShrink: 0,
-              }}>
-                {(Capacitor.isNativePlatform() || navigator.share) ? (lang === 'en' ? "Share" : "Partager") : (lang === 'en' ? "Copy link" : "Copier")}
-              </button>
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: GREY, lineHeight: 1.5, marginBottom: 12 }}>
+              {lang === 'en'
+                ? "Send the link — your friend just taps it and you're connected. No code to type."
+                : "Envoie le lien — ton ami clique dessus et vous êtes connectés. Aucun code à taper."}
             </div>
+            <button onClick={shareInvite} style={{
+              width: '100%', padding: '12px', background: NAVY, color: '#fff', border: 'none',
+              borderRadius: 2, cursor: 'pointer', fontFamily: "'Josefin Sans', sans-serif",
+              fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 10,
+            }}>
+              {(Capacitor.isNativePlatform() || navigator.share) ? (lang === 'en' ? "Share my link" : "Partager mon lien") : (lang === 'en' ? "Copy my link" : "Copier mon lien")}
+            </button>
             {/* Envoyer par SMS ou WhatsApp */}
             <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
               <a href={`sms:?&body=${encodeURIComponent(inviteText)}`} style={{
@@ -241,38 +196,6 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
             {codeMsg && <div style={{ fontSize: 11, color: GOLD, fontFamily: "'Lato', sans-serif" }}>{codeMsg}</div>}
           </div>
 
-          {/* Ajouter un ami */}
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: GREY, marginBottom: 8 }}>
-              {lang === 'en' ? "Add a friend" : "Ajouter un ami"}
-            </div>
-            <div style={{ display: 'flex', gap: 8 }}>
-              <input
-                value={code}
-                onChange={e => { setCode(e.target.value); setCodeMsg('') }}
-                placeholder={lang === 'en' ? "Friend's code" : "Code de ton ami"}
-                style={{
-                  flex: 1, padding: '9px 12px',
-                  border: `1px solid ${GOLD_FRAME}`, borderRadius: 2,
-                  fontFamily: "'Josefin Sans', sans-serif", fontSize: 13,
-                  color: NAVY, outline: 'none', letterSpacing: 2, textTransform: 'uppercase',
-                  background: '#fafafa',
-                }}
-              />
-              <button onClick={async () => {
-                if (!code.trim()) return
-                const r = await social.addFriendByCode(code)
-                if (r.error) setCodeMsg('❌ ' + r.error)
-                else { setCodeMsg(lang === 'en' ? `✓ Request sent to ${r.name}` : `✓ Demande envoyée à ${r.name}`); setCode('') }
-              }} style={{
-                padding: '9px 16px', background: GOLD, color: '#fff', border: 'none',
-                borderRadius: 2, cursor: 'pointer', fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 11, fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', flexShrink: 0,
-              }}>{lang === 'en' ? "Add" : "Ajouter"}</button>
-            </div>
-            {codeMsg && <div style={{ fontSize: 12, color: codeMsg.startsWith('❌') ? '#c00' : '#2a6', fontFamily: "'Lato', sans-serif", marginTop: 6 }}>{codeMsg}</div>}
-          </div>
-
           {/* Demandes en attente */}
           {social.pending.length > 0 && (
             <div style={{ marginBottom: 20 }}>
@@ -297,10 +220,42 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
             </div>
           )}
 
+          {/* Les sorties de mes amis */}
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: GOLD, marginBottom: 10 }}>
+            {lang === 'en' ? "My friends' outings" : "Les sorties de mes amis"}
+          </div>
+          {friendsEvents.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '4px 0 8px', color: GREY, fontFamily: "'Lato', sans-serif", fontSize: 13 }}>
+              {social.friends.length === 0
+                ? (lang === 'en' ? "Add friends to see their plans." : "Ajoute des amis pour voir leurs sorties.")
+                : (lang === 'en' ? "None of your friends have marked events yet." : "Aucun ami n'a encore marqué de sortie.")}
+            </div>
+          ) : friendsEvents.map(({ event: ev, friend, date }, i) => (
+            <div key={`${ev.id}-${friend.id}-${i}`} style={{
+              display: 'flex', alignItems: 'center', gap: 12,
+              padding: '12px 0',
+              borderBottom: i < friendsEvents.length - 1 ? `1px solid rgba(15,29,58,0.07)` : 'none',
+            }}>
+              <Avatar name={friend.display_name} id={friend.id} size={34} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, color: NAVY, fontWeight: 600, marginBottom: 2 }}>
+                  {friend.display_name}
+                </div>
+                <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: '#333', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {ev.title.replace(/\n/g, ' ')}
+                </div>
+                <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 1 }}>
+                  {jours[date.getDay()]} {date.getDate()} {MOIS_FR[date.getMonth()]} · {ev.subtitle?.split(' · ')[0]}
+                </div>
+              </div>
+            </div>
+          ))}
+          <div style={{ height: 1, background: 'rgba(15,29,58,0.08)', margin: '18px 0' }} />
+
           {/* Liste des amis avec toggle visibilité */}
           {social.friends.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '20px 0', color: GREY, fontFamily: "'Lato', sans-serif", fontSize: 13 }}>
-              {lang === 'en' ? "No friends yet. Share your code!" : "Pas encore d'amis. Partage ton code !"}
+              {lang === 'en' ? "No friends yet. Share your link!" : "Pas encore d'amis. Partage ton lien !"}
             </div>
           ) : (
             <>
@@ -345,7 +300,6 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
             }}>{lang === 'en' ? "Sign out" : "Déconnexion"}</button>
           </div>
         </div>
-      )}
     </div>
   )
 }

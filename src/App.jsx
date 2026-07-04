@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import { fetchLiveEvents, fetchNotifConfig, BUNDLED_EVENTS } from "./data/liveEvents";
@@ -56,7 +56,9 @@ function digestScore(e, favorites, refDate) {
 
 async function scheduleDigest(events, favorites, config) {
   if (!Capacitor.isNativePlatform()) return;
-  const perm = await LocalNotifications.requestPermissions();
+  // On NE demande PLUS l'autorisation ici (à l'ouverture) : on vérifie seulement.
+  // La demande se fait au bon moment (1er favori) via le petit message dans App.
+  const perm = await LocalNotifications.checkPermissions();
   if (perm.display !== 'granted') return;
 
   // Réglages pilotés par le site (notif-config.json), avec repli sur les valeurs codées.
@@ -143,6 +145,10 @@ export default function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
+  const [showNotifPrompt, setShowNotifPrompt] = useState(false);
+  const [inviteToast, setInviteToast] = useState(null);
+  const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
+  const engageRef = useRef(0);
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig); }, [events, favorites, notifConfig]);
 
@@ -155,6 +161,37 @@ export default function App() {
   useEffect(() => {
     fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); });
   }, []);
+
+  // Après connexion, si la personne n'a pas encore de profil (prénom) → on ouvre l'étape "prénom" automatiquement
+  useEffect(() => {
+    if (!auth.loading && auth.user && !auth.profile) setShowAuth(true);
+  }, [auth.loading, auth.user, auth.profile]);
+
+  // Lien d'invitation partagé (?invite=xxx) : on mémorise le code pour l'appliquer après connexion
+  useEffect(() => {
+    const inv = new URLSearchParams(window.location.search).get("invite");
+    if (inv) {
+      localStorage.setItem("monacout_pending_invite", inv.trim().toLowerCase());
+      window.history.replaceState({}, "", window.location.pathname + window.location.hash);
+    }
+  }, []);
+
+  // Dès que la personne est connectée (avec un profil), on applique l'invitation en attente — SANS code à taper
+  useEffect(() => {
+    const inv = localStorage.getItem("monacout_pending_invite");
+    if (!inv || !auth.user || !auth.profile) return;
+    social.addFriendByCode(inv).then(r => {
+      localStorage.removeItem("monacout_pending_invite");
+      if (r?.name) {
+        setInviteToast(lang === "en" ? `✅ Friend request sent to ${r.name}!` : `✅ Invitation envoyée à ${r.name} !`);
+        setTab("friends");
+      } else if (r?.error && r.error !== "Demande déjà envoyée") {
+        setInviteToast(`ℹ️ ${r.error}`);
+      }
+      setTimeout(() => setInviteToast(null), 4500);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.user, auth.profile]);
 
   function handleTabChange(newTab) {
     const el = document.getElementById("main-scroll");
@@ -181,15 +218,52 @@ export default function App() {
     setFavorites(prev => {
       const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
       localStorage.setItem("monacout_favs", JSON.stringify(next));
-      if (next.length === 1) {
-        if (Capacitor.isNativePlatform()) {
-          LocalNotifications.requestPermissions().catch(() => {});
-        } else if ('Notification' in window && Notification.permission === 'default') {
-          Notification.requestPermission();
-        }
-      }
+      if (!prev.includes(id)) maybeAskNotif();   // ajout d'un favori = intérêt fort → on propose (au bon moment)
       return next;
     });
+  }
+
+  // Compte les signes d'intérêt (ouverture d'un événement). Au 2e → on propose les notifs.
+  function bumpNotifEngagement() {
+    engageRef.current += 1;
+    if (engageRef.current >= 2) maybeAskNotif();
+  }
+
+  function handleCardClick(e) {
+    setSelectedEvent(e);
+    bumpNotifEngagement();
+  }
+
+  // Affiche notre petit message maison AVANT la demande iOS — une seule fois, si pas déjà répondu.
+  async function maybeAskNotif() {
+    if (askedNotifRef.current) return;
+    if (Capacitor.isNativePlatform()) {
+      try {
+        const p = await LocalNotifications.checkPermissions();
+        if (p.display === "prompt" || p.display === "prompt-with-rationale") {
+          askedNotifRef.current = true;
+          localStorage.setItem("monacout_notif_asked", "1");
+          setShowNotifPrompt(true);
+        }
+      } catch { /* ignore */ }
+    } else if ("Notification" in window && Notification.permission === "default") {
+      askedNotifRef.current = true;
+      localStorage.setItem("monacout_notif_asked", "1");
+      setShowNotifPrompt(true);
+    }
+  }
+
+  // La personne a dit OUI à notre message → on déclenche la vraie demande iOS puis on programme.
+  async function acceptNotif() {
+    setShowNotifPrompt(false);
+    if (Capacitor.isNativePlatform()) {
+      try {
+        const perm = await LocalNotifications.requestPermissions();
+        if (perm.display === "granted") scheduleDigest(events, favorites, notifConfig);
+      } catch { /* ignore */ }
+    } else if ("Notification" in window) {
+      try { await Notification.requestPermission(); } catch { /* ignore */ }
+    }
   }
 
   function handleGoingClick(eventId) {
@@ -210,9 +284,10 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: setSelectedEvent, events, social, onGoingClick: handleGoingClick };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events, social, onGoingClick: handleGoingClick };
 
   return (
+    <>
     <Shell
       tab={tab}
       setTab={handleTabChange}
@@ -270,5 +345,36 @@ export default function App() {
         />
       )}
     </Shell>
+
+    {/* Petit message maison AVANT la demande iOS de notifications (meilleure acceptation) */}
+    {showNotifPrompt && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
+        <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <div style={{ fontSize: 34, marginBottom: 10 }}>✨</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
+            {lang === "en" ? "Get notified of outings?" : "Être prévenue des sorties ?"}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
+            {lang === "en"
+              ? "Get a little reminder of the best outings in Monaco (2-3× a week). You can stop anytime."
+              : "Reçois un petit rappel des plus belles sorties à Monaco (2-3× par semaine). Tu pourras arrêter quand tu veux."}
+          </div>
+          <button onClick={acceptNotif} style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8 }}>
+            {lang === "en" ? "Yes, notify me" : "Oui, préviens-moi"}
+          </button>
+          <button onClick={() => setShowNotifPrompt(false)} style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+            {lang === "en" ? "Later" : "Plus tard"}
+          </button>
+        </div>
+      </div>
+    )}
+
+    {/* Confirmation d'ajout d'ami via lien */}
+    {inviteToast && (
+      <div style={{ position: "fixed", bottom: 30, left: "50%", transform: "translateX(-50%)", zIndex: 3000, background: "#0F1D3A", color: "#fff", padding: "12px 20px", borderRadius: 6, fontFamily: "'Lato', sans-serif", fontSize: 13, boxShadow: "0 6px 24px rgba(0,0,0,0.3)", maxWidth: "85%", textAlign: "center" }}>
+        {inviteToast}
+      </div>
+    )}
+    </>
   );
 }
