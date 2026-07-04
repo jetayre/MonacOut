@@ -37,7 +37,18 @@ const MAX_DIGEST_IDS = 120;      // plage d'annulation (couvre toutes les config
 const DIGEST_ID_BASE = 90000;
 const JOURS_FR = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
-function digestScore(e, favorites, refDate) {
+// Catégories par groupe (mêmes que les filtres de l'app) — pour les sujets préférés
+const GROUP_CATS = {
+  culture: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE","ATELIER","DANSE","BIEN-ÊTRE"],
+  foodnight: ["BRUNCH","APÉRO","FOODY","SOIRÉE","DJ SET","GALA"],
+  musique: ["CONCERT","JAZZ LIVE","CHANTS","MUSICAL","OPÉRA"],
+  sport: ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","TENNIS","RALLYE","SPORT"],
+};
+function inPreferred(e, topics) {
+  return topics && topics.length ? topics.some(t => GROUP_CATS[t]?.includes(e.cat)) : false;
+}
+
+function digestScore(e, favorites, refDate, topics) {
   // Bonus « proche en date » : plus l'événement arrive tôt dans la fenêtre de
   // 7 jours, plus il monte (84 pts le jour même → 12 pts au 6e jour).
   let proximity = 0;
@@ -51,10 +62,11 @@ function digestScore(e, favorites, refDate) {
   return (favorites.includes(e.id) ? 1000 : 0)   // favoris d'abord
        + (e.hot ? 100 : 0)                         // puis événements phares
        + proximity                                 // puis les plus proches en date
+       + (inPreferred(e, topics) ? 60 : 0)         // puis les sujets préférés choisis au login
        + (e.recurring ? 0 : 20);   // déprioritise les récurrences (apéro/brunch quotidiens)
 }
 
-async function scheduleDigest(events, favorites, config) {
+async function scheduleDigest(events, favorites, config, topics) {
   if (!Capacitor.isNativePlatform()) return;
   // On NE demande PLUS l'autorisation ici (à l'ouverture) : on vérifie seulement.
   // La demande se fait au bon moment (1er favori) via le petit message dans App.
@@ -93,7 +105,7 @@ async function scheduleDigest(events, favorites, config) {
       });
       if (winEvents.length === 0) continue;
       const top = [...winEvents]
-        .sort((a, b) => digestScore(b, favorites, winStart) - digestScore(a, favorites, winStart))
+        .sort((a, b) => digestScore(b, favorites, winStart, topics) - digestScore(a, favorites, winStart, topics))
         .slice(0, perDigest);
       const hasFav = top.some(e => favorites.includes(e.id));
       const body = top.map(e => {
@@ -150,7 +162,7 @@ export default function App() {
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
   const engageRef = useRef(0);
 
-  useEffect(() => { scheduleDigest(events, favorites, notifConfig); }, [events, favorites, notifConfig]);
+  useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); }, [events, favorites, notifConfig, auth.profile]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
   useEffect(() => {
@@ -259,7 +271,7 @@ export default function App() {
     if (Capacitor.isNativePlatform()) {
       try {
         const perm = await LocalNotifications.requestPermissions();
-        if (perm.display === "granted") scheduleDigest(events, favorites, notifConfig);
+        if (perm.display === "granted") scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics);
       } catch { /* ignore */ }
     } else if ("Notification" in window) {
       try { await Notification.requestPermission(); } catch { /* ignore */ }

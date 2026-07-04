@@ -9,10 +9,18 @@ export default function AuthScreen({ onClose, auth, lang = "fr" }) {
   const [step, setStep]         = useState('email') // email | sent | name
   const [email, setEmail]       = useState('')
   const [name, setName]         = useState('')
+  const [topics, setTopics]     = useState([])
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
 
-  // Si connecté mais sans profil → étape nom
+  const TOPICS = [
+    { id: 'culture',   fr: 'Culture / Ateliers', en: 'Culture / Workshops' },
+    { id: 'foodnight', fr: 'Food / Nightlife',   en: 'Food / Nightlife' },
+    { id: 'musique',   fr: 'Musique',            en: 'Music' },
+    { id: 'sport',     fr: 'Sport',              en: 'Sport' },
+  ]
+
+  // Si connecté mais sans profil → étape nom + sujets préférés (optionnel)
   if (auth.user && !auth.profile) {
     return (
       <div style={overlay}>
@@ -28,12 +36,28 @@ export default function AuthScreen({ onClose, auth, lang = "fr" }) {
               style={input}
               autoFocus
             />
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: '#888', marginBottom: 8 }}>
+              {lang === 'en' ? "What interests you? (optional)" : "Ce qui t'intéresse ? (optionnel)"}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', marginBottom: 16 }}>
+              {TOPICS.map(t => {
+                const on = topics.includes(t.id)
+                return (
+                  <button key={t.id} type="button" onClick={() => setTopics(p => on ? p.filter(x => x !== t.id) : [...p, t.id])} style={{
+                    padding: '6px 12px', borderRadius: 16, cursor: 'pointer',
+                    border: `1.5px solid ${on ? GOLD : 'rgba(15,29,58,0.2)'}`,
+                    background: on ? GOLD : '#fff', color: on ? '#fff' : NAVY,
+                    fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+                  }}>{lang === 'en' ? t.en : t.fr}</button>
+                )
+              })}
+            </div>
             {error && <div style={err}>{error}</div>}
             <button
               onClick={async () => {
                 if (!name.trim()) return setError(lang === 'en' ? 'Required' : 'Requis')
                 setLoading(true)
-                await auth.saveProfile(name.trim())
+                await auth.saveProfile(name.trim(), topics)
                 setLoading(false)
                 onClose()
               }}
