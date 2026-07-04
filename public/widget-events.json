@@ -1,9 +1,18 @@
 {
-  "generatedAt": "2026-07-03T18:06:25.079Z",
+  "generatedAt": "2026-07-04T10:17:55.541Z",
   "events": [
     {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
+      "time": "15h00 — 23h00",
+      "title": "JUMPING MONACO GRAND PRIX LONGINES GCT",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🐴"
+    },
+    {
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
       "time": "19h30",
       "title": "BALLETS DE MONTE-CARLO GALA 40 ANS",
       "venue": "Salle des Princes",
@@ -11,58 +20,13 @@
       "emoji": "🩰"
     },
     {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "20h30",
-      "title": "SÉBASTIEN TELLIER",
-      "venue": "Opéra Garnier",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "Tous les jours",
-      "title": "MUSÉES DE MONACO",
-      "venue": "Les incontournables",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "14h00 — 23h00",
-      "title": "JUMPING MONACO 2E JOURNÉE",
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
+      "time": "22h00",
+      "title": "FEUX D'ARTIFICE MONACO I",
       "venue": "Port Hercule",
-      "quarter": "La Condamine",
-      "emoji": "🐴"
-    },
-    {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "09h30 — 17h00",
-      "title": "MUSÉE TIMBRES & MONNAIES",
-      "venue": "Terrasses de Fontvieille",
-      "quarter": "Fontvieille",
-      "emoji": "📮"
-    },
-    {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Ven 3 juil",
-      "iso": "2026-07-03",
-      "time": "21h30",
-      "title": "THÉÂTRE FORT ANTOINE",
-      "venue": "Théâtre Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎭"
+      "emoji": "🎆"
     },
     {
       "date": "Sam 4 juil",
@@ -72,6 +36,42 @@
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
+    },
+    {
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
+      "time": "10h30 — 11h30",
+      "title": "CONTES D'ÉTÉ MÉDIATHÈQUE",
+      "venue": "Médiathèque de Monaco",
+      "quarter": "Monaco",
+      "emoji": "📖"
+    },
+    {
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
+      "time": "9h00 — 12h00",
+      "title": "PROMENADE JARDIN JAPONAIS",
+      "venue": "Jardin Japonais Princesse Grace",
+      "quarter": "Monte-Carlo",
+      "emoji": "🌸"
+    },
+    {
+      "date": "Sam 4 juil",
+      "iso": "2026-07-04",
+      "time": "10h00 — 13h00",
+      "title": "ANIMATION ÉTÉ LITTLE WONDERS",
+      "venue": "Little Wonders Monaco",
+      "quarter": "Monaco",
+      "emoji": "🎈"
     }
   ]
 }
