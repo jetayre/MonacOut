@@ -171,9 +171,6 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
             }}>
               {(Capacitor.isNativePlatform() || navigator.share) ? (lang === 'en' ? "Share my link" : "Partager mon lien") : (lang === 'en' ? "Copy my link" : "Copier mon lien")}
             </button>
-            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, textAlign: 'center', marginBottom: 4 }}>
-              {lang === 'en' ? "→ then choose SMS, WhatsApp or Mail" : "→ choisis ensuite SMS, WhatsApp ou Mail"}
-            </div>
             {codeMsg && <div style={{ fontSize: 11, color: GOLD, fontFamily: "'Lato', sans-serif" }}>{codeMsg}</div>}
           </div>
 
