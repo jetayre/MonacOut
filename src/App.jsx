@@ -156,7 +156,12 @@ export default function App() {
     catch { return []; }
   });
   const [homeFilter, setHomeFilter] = useState("all");
-  const [lang, setLang] = useState("fr");
+  const [lang, setLang] = useState(() => {
+    // 1) choix manuel mémorisé, sinon 2) langue du téléphone (anglais → en, sinon fr)
+    const saved = localStorage.getItem("monacout_lang");
+    if (saved === "fr" || saved === "en") return saved;
+    return (navigator.language || "fr").toLowerCase().startsWith("en") ? "en" : "fr";
+  });
   const [catFilters, setCatFilters] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -172,6 +177,7 @@ export default function App() {
   const engageRef = useRef(0);
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); }, [events, favorites, notifConfig, auth.profile]);
+  useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
   useEffect(() => {
