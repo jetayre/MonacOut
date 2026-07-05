@@ -1,4 +1,4 @@
-const CACHE = 'monacout-v5';
+const CACHE = 'monacout-v7';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
