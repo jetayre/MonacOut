@@ -59,5 +59,11 @@ export function useAuth() {
     await supabase.auth.signOut()
   }
 
-  return { user, profile, loading, sendMagicLink, saveProfile, signOut }
+  async function deleteAccount() {
+    if (!supabase) return
+    await supabase.rpc('delete_own_account')
+    await supabase.auth.signOut()
+  }
+
+  return { user, profile, loading, sendMagicLink, saveProfile, signOut, deleteAccount }
 }

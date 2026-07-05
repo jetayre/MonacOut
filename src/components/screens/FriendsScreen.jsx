@@ -276,6 +276,17 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               letterSpacing: 1, textTransform: 'uppercase',
             }}>{lang === 'en' ? "Sign out" : "Déconnexion"}</button>
           </div>
+          <div style={{ textAlign: 'center', marginTop: 14 }}>
+            <button onClick={async () => {
+              const ok = window.confirm(lang === 'en'
+                ? 'Delete your account and all your data? This cannot be undone.'
+                : 'Supprimer ton compte et toutes tes données ? Cette action est définitive.')
+              if (ok) await auth.deleteAccount()
+            }} style={{
+              background: 'none', border: 'none', cursor: 'pointer', color: '#c00',
+              fontFamily: "'Lato', sans-serif", fontSize: 11, textDecoration: 'underline',
+            }}>{lang === 'en' ? "Delete my account" : "Supprimer mon compte"}</button>
+          </div>
         </div>
     </div>
   )
