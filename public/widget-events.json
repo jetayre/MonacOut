@@ -1,36 +1,63 @@
 {
-  "generatedAt": "2026-07-04T10:17:55.541Z",
+  "generatedAt": "2026-07-05T20:29:12.651Z",
   "events": [
     {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "15h00 — 23h00",
-      "title": "JUMPING MONACO GRAND PRIX LONGINES GCT",
-      "venue": "Port Hercule",
-      "quarter": "La Condamine",
-      "emoji": "🐴"
+      "date": "Lun 6 juil",
+      "iso": "2026-07-06",
+      "time": "9h00 — 17h00",
+      "title": "STAGE PLONGÉE ENFANTS ÉTÉ",
+      "venue": "Académie Monégasque de la Mer",
+      "quarter": "Monaco",
+      "emoji": "🤿"
     },
     {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "19h30",
-      "title": "BALLETS DE MONTE-CARLO GALA 40 ANS",
-      "venue": "Salle des Princes",
+      "date": "Lun 6 juil",
+      "iso": "2026-07-06",
+      "time": "9h00 — 17h00",
+      "title": "STAGE VOILE OPTIMIST ÉTÉ I",
+      "venue": "Yacht Club de Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "⛵"
+    },
+    {
+      "date": "Lun 6 juil",
+      "iso": "2026-07-06",
+      "time": "9h00 — 12h00",
+      "title": "STAGE TENNIS JUNIOR ÉTÉ I",
+      "venue": "Monte-Carlo Country Club",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎾"
+    },
+    {
+      "date": "Dim 5 juil",
+      "iso": "2026-07-05",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Lun 6 juil",
+      "iso": "2026-07-06",
+      "time": "9h00 — 12h00",
+      "title": "STAGE BALLET INTENSIF ÉTÉ I",
+      "venue": "Académie Princesse Grace",
       "quarter": "Monte-Carlo",
       "emoji": "🩰"
     },
     {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "22h00",
-      "title": "FEUX D'ARTIFICE MONACO I",
-      "venue": "Port Hercule",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎆"
+      "date": "Dim 5 juil",
+      "iso": "2026-07-05",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
     },
     {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
+      "date": "Dim 5 juil",
+      "iso": "2026-07-05",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -38,40 +65,13 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "10h30 — 11h30",
-      "title": "CONTES D'ÉTÉ MÉDIATHÈQUE",
-      "venue": "Médiathèque de Monaco",
-      "quarter": "Monaco",
-      "emoji": "📖"
-    },
-    {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "9h00 — 12h00",
-      "title": "PROMENADE JARDIN JAPONAIS",
-      "venue": "Jardin Japonais Princesse Grace",
-      "quarter": "Monte-Carlo",
-      "emoji": "🌸"
-    },
-    {
-      "date": "Sam 4 juil",
-      "iso": "2026-07-04",
-      "time": "10h00 — 13h00",
-      "title": "ANIMATION ÉTÉ LITTLE WONDERS",
-      "venue": "Little Wonders Monaco",
-      "quarter": "Monaco",
-      "emoji": "🎈"
+      "date": "Dim 5 juil",
+      "iso": "2026-07-05",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉE NAVAL DE MONACO",
+      "venue": "Terrasses de Fontvieille",
+      "quarter": "Fontvieille",
+      "emoji": "⚓"
     }
   ]
 }
