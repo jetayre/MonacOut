@@ -9,6 +9,7 @@ import FriendsScreen from "./components/screens/FriendsScreen";
 import AuthScreen from "./components/screens/AuthScreen";
 import { useAuth } from "./hooks/useAuth";
 import { useSocial } from "./hooks/useSocial";
+import { supabase } from "./lib/supabase";
 import { Capacitor } from "@capacitor/core";
 import { App as CapApp } from "@capacitor/app";
 import { LocalNotifications } from "@capacitor/local-notifications";
@@ -160,6 +161,7 @@ export default function App() {
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
   const [inviteToast, setInviteToast] = useState(null);
+  const [inviterName, setInviterName] = useState(null);
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
   const engageRef = useRef(0);
@@ -221,6 +223,20 @@ export default function App() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.user, auth.profile, deepLinkTick]);
+
+  // Invitation en attente + personne pas encore connectée → on propose l'inscription
+  // et on affiche le prénom de l'ami qui invite (lu via le code, lecture publique autorisée).
+  useEffect(() => {
+    if (auth.loading || auth.user) return;
+    const inv = localStorage.getItem("monacout_pending_invite");
+    if (!inv) return;
+    setShowAuth(true);
+    if (supabase) {
+      supabase.from("profiles").select("display_name").eq("invite_code", inv).single()
+        .then(({ data }) => { if (data?.display_name) setInviterName(data.display_name); });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.loading, auth.user, deepLinkTick]);
 
   function handleTabChange(newTab) {
     const el = document.getElementById("main-scroll");
@@ -371,6 +387,7 @@ export default function App() {
           onClose={() => setShowAuth(false)}
           auth={auth}
           lang={lang}
+          inviterName={inviterName}
         />
       )}
     </Shell>

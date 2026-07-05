@@ -5,7 +5,7 @@ const GOLD = "#C4A241"
 const GOLD_FRAME = "#C9A96E"
 const BLUE = "#9FC3DC"
 
-export default function AuthScreen({ onClose, auth, lang = "fr" }) {
+export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = null }) {
   const [step, setStep]         = useState('email') // email | sent | name
   const [email, setEmail]       = useState('')
   const [name, setName]         = useState('')
@@ -94,12 +94,20 @@ export default function AuthScreen({ onClose, auth, lang = "fr" }) {
       <div style={card}>
         <div style={inner}>
           <button onClick={onClose} style={closeBtn}>✕</button>
-          <div style={{ fontSize: 36, marginBottom: 14 }}>👥</div>
-          <div style={title}>{lang === 'en' ? "Connect with friends" : "Rejoins tes amis"}</div>
+          <div style={{ fontSize: 36, marginBottom: 14 }}>{inviterName ? '💌' : '👥'}</div>
+          <div style={title}>
+            {inviterName
+              ? (lang === 'en' ? `Join ${inviterName} on Monac'Out` : `Rejoins ${inviterName} sur Monac'Out`)
+              : (lang === 'en' ? "Connect with friends" : "Rejoins tes amis")}
+          </div>
           <div style={sub}>
-            {lang === 'en'
-              ? "See which friends are going to the same events."
-              : "Vois quels amis vont aux mêmes sorties que toi."}
+            {inviterName
+              ? (lang === 'en'
+                  ? `${inviterName} invited you. Create your account to become friends and see each other's outings.`
+                  : `${inviterName} t'invite. Crée ton compte pour devenir amis et voir vos sorties respectives.`)
+              : (lang === 'en'
+                  ? "See which friends are going to the same events."
+                  : "Vois quels amis vont aux mêmes sorties que toi.")}
           </div>
           <input
             type="email"
