@@ -129,7 +129,12 @@ const CAT_TO_FILTER = {
 export default function App() {
   const auth = useAuth();
   const social = useSocial(auth.user?.id);
-  const [tab, setTab] = useState("events");
+  const [pendingInvite, setPendingInvite] = useState(() => {
+    try { return new URLSearchParams(window.location.search).get("invite") || null; } catch { return null; }
+  });
+  const [tab, setTab] = useState(() =>
+    new URLSearchParams(window.location.search).get("invite") ? "friends" : "events"
+  );
   const [favorites, setFavorites] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_favs") || "[]"); }
     catch { return []; }
@@ -255,6 +260,8 @@ export default function App() {
           lang={lang}
           onShowAuth={() => setShowAuth(true)}
           onNavEvents={() => handleTabChange("events")}
+          initialInviteCode={pendingInvite}
+          onInviteConsumed={() => setPendingInvite(null)}
         />
       ) : (
         <FavoritesScreen

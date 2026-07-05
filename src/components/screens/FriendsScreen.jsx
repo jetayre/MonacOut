@@ -43,9 +43,9 @@ function eventDate(e) {
   return new Date(e.year || 2026, mi, parseInt(p[1]))
 }
 
-export default function FriendsScreen({ auth, social, events = [], lang = "fr", onNavEvents }) {
-  const [tab, setTab]           = useState('sorties') // sorties | amis
-  const [code, setCode]         = useState('')
+export default function FriendsScreen({ auth, social, events = [], lang = "fr", onNavEvents, initialInviteCode = null, onInviteConsumed }) {
+  const [tab, setTab]           = useState(initialInviteCode ? 'amis' : 'sorties')
+  const [code, setCode]         = useState(initialInviteCode || '')
   const [codeMsg, setCodeMsg]   = useState('')
   const [showAuth, setShowAuth] = useState(false)
 
@@ -73,7 +73,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   }
 
   const inviteCode  = auth.profile?.invite_code || '…'
-  const inviteLink  = `https://monacout.vercel.app?invite=${inviteCode}`
+  const inviteLink  = `https://monac-out.vercel.app?invite=${inviteCode}`
   const inviteText  = lang === 'en'
     ? `Join my circle on Mon Cercle! Use code ${inviteCode} or tap: ${inviteLink}`
     : `Rejoins mon cercle sur Mon Cercle ! Code : ${inviteCode} ou clique : ${inviteLink}`
@@ -263,7 +263,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
                 if (!code.trim()) return
                 const r = await social.addFriendByCode(code)
                 if (r.error) setCodeMsg('❌ ' + r.error)
-                else { setCodeMsg(lang === 'en' ? `✓ Request sent to ${r.name}` : `✓ Demande envoyée à ${r.name}`); setCode('') }
+                else { setCodeMsg(lang === 'en' ? `✓ Request sent to ${r.name}` : `✓ Demande envoyée à ${r.name}`); setCode(''); onInviteConsumed?.() }
               }} style={{
                 padding: '9px 16px', background: GOLD, color: '#fff', border: 'none',
                 borderRadius: 2, cursor: 'pointer', fontFamily: "'Josefin Sans', sans-serif",
