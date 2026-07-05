@@ -142,6 +142,20 @@ const CAT_TO_FILTER = {
   ENCHÈRES: "encheres",
 };
 
+// ── Bandeau « mise à jour disponible » ────────────────────────────────────────
+// L'app compare sa version à `latestVersion` (piloté depuis notif-config.json).
+// Si le serveur annonce une version plus récente → bandeau vers l'App Store.
+const APPSTORE_URL = "https://apps.apple.com/fr/app/monacout/id6774785049";
+function isNewerVersion(latest, current) {
+  const a = String(latest).split(".").map(n => parseInt(n) || 0);
+  const b = String(current).split(".").map(n => parseInt(n) || 0);
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if ((a[i] || 0) > (b[i] || 0)) return true;
+    if ((a[i] || 0) < (b[i] || 0)) return false;
+  }
+  return false;
+}
+
 export default function App() {
   const auth = useAuth();
   const social = useSocial(auth.user?.id);
@@ -173,6 +187,7 @@ export default function App() {
   const [inviteToast, setInviteToast] = useState(null);
   const [inviterName, setInviterName] = useState(null);
   const [deepLinkTick, setDeepLinkTick] = useState(0);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
   const engageRef = useRef(0);
 
@@ -188,6 +203,18 @@ export default function App() {
   useEffect(() => {
     fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); });
   }, []);
+
+  // Bandeau « mise à jour disponible » : compare la version de l'app à latestVersion (config live)
+  useEffect(() => {
+    const latest = notifConfig?.latestVersion;
+    if (!latest || !Capacitor.isNativePlatform()) return;
+    CapApp.getInfo().then(info => {
+      if (isNewerVersion(latest, info.version) &&
+          localStorage.getItem("monacout_update_dismissed") !== String(latest)) {
+        setUpdateAvailable(true);
+      }
+    }).catch(() => { /* getInfo indisponible (web) */ });
+  }, [notifConfig]);
 
   // Après connexion, si la personne n'a pas encore de profil (prénom) → on ouvre l'étape "prénom" automatiquement
   useEffect(() => {
@@ -432,6 +459,24 @@ export default function App() {
     {inviteToast && (
       <div style={{ position: "fixed", bottom: 30, left: "50%", transform: "translateX(-50%)", zIndex: 3000, background: "#0F1D3A", color: "#fff", padding: "12px 20px", borderRadius: 6, fontFamily: "'Lato', sans-serif", fontSize: 13, boxShadow: "0 6px 24px rgba(0,0,0,0.3)", maxWidth: "85%", textAlign: "center" }}>
         {inviteToast}
+      </div>
+    )}
+
+    {/* Bandeau discret « mise à jour disponible » (piloté par notif-config.json) */}
+    {updateAvailable && (
+      <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 3200, display: "flex", alignItems: "center", gap: 12, background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, padding: "10px 12px 10px 16px", boxShadow: "0 8px 30px rgba(0,0,0,0.22)", maxWidth: "88%" }}>
+        <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12.5, color: "#0F1D3A", lineHeight: 1.4 }}>
+          {lang === "en" ? "A new version is available." : "Une nouvelle version est disponible."}
+        </div>
+        <a href={APPSTORE_URL} target="_blank" rel="noopener noreferrer"
+          style={{ flexShrink: 0, background: "#0F1D3A", color: "#fff", textDecoration: "none", padding: "8px 14px", borderRadius: 4, fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase" }}>
+          {lang === "en" ? "Update" : "Mettre à jour"}
+        </a>
+        <button onClick={() => {
+          const latest = notifConfig?.latestVersion;
+          if (latest) localStorage.setItem("monacout_update_dismissed", String(latest));
+          setUpdateAvailable(false);
+        }} style={{ flexShrink: 0, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "#6A7080", lineHeight: 1, padding: "0 2px" }}>✕</button>
       </div>
     )}
     </>
