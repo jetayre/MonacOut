@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T20:36:33.108Z",
+  "generatedAt": "2026-07-05T20:39:32.095Z",
   "events": [
     {
       "date": "Lun 6 juil",
@@ -27,6 +27,15 @@
       "venue": "Monte-Carlo Country Club",
       "quarter": "Monte-Carlo",
       "emoji": "🎾"
+    },
+    {
+      "date": "Dim 5 juil",
+      "iso": "2026-07-05",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
     },
     {
       "date": "Lun 6 juil",
@@ -63,15 +72,6 @@
       "venue": "Terrasses de Fontvieille",
       "quarter": "Fontvieille",
       "emoji": "⚓"
-    },
-    {
-      "date": "Lun 6 juil",
-      "iso": "2026-07-06",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
     }
   ]
 }

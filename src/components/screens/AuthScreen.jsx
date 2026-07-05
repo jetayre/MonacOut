@@ -5,14 +5,22 @@ const GOLD = "#C4A241"
 const GOLD_FRAME = "#C9A96E"
 const BLUE = "#9FC3DC"
 
-export default function AuthScreen({ onClose, auth, lang = "fr" }) {
+export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = null }) {
   const [step, setStep]         = useState('email') // email | sent | name
   const [email, setEmail]       = useState('')
   const [name, setName]         = useState('')
+  const [topics, setTopics]     = useState([])
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
 
-  // Si connecté mais sans profil → étape nom
+  const TOPICS = [
+    { id: 'culture',   fr: 'Culture / Ateliers', en: 'Culture / Workshops' },
+    { id: 'foodnight', fr: 'Food / Nightlife',   en: 'Food / Nightlife' },
+    { id: 'musique',   fr: 'Musique',            en: 'Music' },
+    { id: 'sport',     fr: 'Sport',              en: 'Sport' },
+  ]
+
+  // Si connecté mais sans profil → étape nom + sujets préférés (optionnel)
   if (auth.user && !auth.profile) {
     return (
       <div style={overlay}>
@@ -28,12 +36,28 @@ export default function AuthScreen({ onClose, auth, lang = "fr" }) {
               style={input}
               autoFocus
             />
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: '#888', marginBottom: 8 }}>
+              {lang === 'en' ? "What interests you? (optional)" : "Ce qui t'intéresse ? (optionnel)"}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', marginBottom: 16 }}>
+              {TOPICS.map(t => {
+                const on = topics.includes(t.id)
+                return (
+                  <button key={t.id} type="button" onClick={() => setTopics(p => on ? p.filter(x => x !== t.id) : [...p, t.id])} style={{
+                    padding: '6px 12px', borderRadius: 16, cursor: 'pointer',
+                    border: `1.5px solid ${on ? GOLD : 'rgba(15,29,58,0.2)'}`,
+                    background: on ? GOLD : '#fff', color: on ? '#fff' : NAVY,
+                    fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+                  }}>{lang === 'en' ? t.en : t.fr}</button>
+                )
+              })}
+            </div>
             {error && <div style={err}>{error}</div>}
             <button
               onClick={async () => {
                 if (!name.trim()) return setError(lang === 'en' ? 'Required' : 'Requis')
                 setLoading(true)
-                await auth.saveProfile(name.trim())
+                await auth.saveProfile(name.trim(), topics)
                 setLoading(false)
                 onClose()
               }}
@@ -70,12 +94,20 @@ export default function AuthScreen({ onClose, auth, lang = "fr" }) {
       <div style={card}>
         <div style={inner}>
           <button onClick={onClose} style={closeBtn}>✕</button>
-          <div style={{ fontSize: 36, marginBottom: 14 }}>👥</div>
-          <div style={title}>{lang === 'en' ? "Connect with friends" : "Rejoins tes amis"}</div>
+          <div style={{ fontSize: 36, marginBottom: 14 }}>{inviterName ? '💌' : '👥'}</div>
+          <div style={title}>
+            {inviterName
+              ? (lang === 'en' ? `Join ${inviterName} on Monac'Out` : `Rejoins ${inviterName} sur Monac'Out`)
+              : (lang === 'en' ? "Connect with friends" : "Rejoins tes amis")}
+          </div>
           <div style={sub}>
-            {lang === 'en'
-              ? "See which friends are going to the same events."
-              : "Vois quels amis vont aux mêmes sorties que toi."}
+            {inviterName
+              ? (lang === 'en'
+                  ? `${inviterName} invited you. Create your account to become friends and see each other's outings.`
+                  : `${inviterName} t'invite. Crée ton compte pour devenir amis et voir vos sorties respectives.`)
+              : (lang === 'en'
+                  ? "See which friends are going to the same events."
+                  : "Vois quels amis vont aux mêmes sorties que toi.")}
           </div>
           <input
             type="email"

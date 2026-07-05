@@ -42,11 +42,13 @@ export function useAuth() {
     return { error }
   }
 
-  async function saveProfile(displayName) {
+  async function saveProfile(displayName, topics) {
     if (!supabase || !user) return
+    const row = { id: user.id, display_name: displayName }
+    if (Array.isArray(topics)) row.preferred_topics = topics
     const { data } = await supabase
       .from('profiles')
-      .upsert({ id: user.id, display_name: displayName })
+      .upsert(row)
       .select()
       .single()
     setProfile(data)
@@ -57,5 +59,11 @@ export function useAuth() {
     await supabase.auth.signOut()
   }
 
-  return { user, profile, loading, sendMagicLink, saveProfile, signOut }
+  async function deleteAccount() {
+    if (!supabase) return
+    await supabase.rpc('delete_own_account')
+    await supabase.auth.signOut()
+  }
+
+  return { user, profile, loading, sendMagicLink, saveProfile, signOut, deleteAccount }
 }
