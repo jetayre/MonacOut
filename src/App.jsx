@@ -10,6 +10,7 @@ import AuthScreen from "./components/screens/AuthScreen";
 import { useAuth } from "./hooks/useAuth";
 import { useSocial } from "./hooks/useSocial";
 import { Capacitor } from "@capacitor/core";
+import { App as CapApp } from "@capacitor/app";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
@@ -159,6 +160,7 @@ export default function App() {
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
   const [inviteToast, setInviteToast] = useState(null);
+  const [deepLinkTick, setDeepLinkTick] = useState(0);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
   const engageRef = useRef(0);
 
@@ -188,6 +190,21 @@ export default function App() {
     }
   }, []);
 
+  // App NATIVE ouverte via un lien (Universal Link) : on récupère le ?invite= du lien reçu
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    const handle = CapApp.addListener("appUrlOpen", ({ url }) => {
+      try {
+        const inv = new URL(url).searchParams.get("invite");
+        if (inv) {
+          localStorage.setItem("monacout_pending_invite", inv.trim().toLowerCase());
+          setDeepLinkTick(t => t + 1);
+        }
+      } catch { /* lien non pertinent */ }
+    });
+    return () => { handle.then(h => h.remove()); };
+  }, []);
+
   // Dès que la personne est connectée (avec un profil), on applique l'invitation en attente — SANS code à taper
   useEffect(() => {
     const inv = localStorage.getItem("monacout_pending_invite");
@@ -203,7 +220,7 @@ export default function App() {
       setTimeout(() => setInviteToast(null), 4500);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.user, auth.profile]);
+  }, [auth.user, auth.profile, deepLinkTick]);
 
   function handleTabChange(newTab) {
     const el = document.getElementById("main-scroll");
