@@ -72,16 +72,20 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
 
   const inviteCode  = auth.profile?.invite_code || '…'
   const inviteLink  = `https://monac-out.vercel.app?invite=${inviteCode}`
-  const inviteText  = lang === 'en'
-    ? `Join me on Monac'Out — the app for going out in Monaco! Tap this link and we'll be connected 👉 ${inviteLink}`
-    : `Rejoins-moi sur Monac'Out, l'appli des sorties à Monaco ! Clique sur ce lien et on sera connectés 👉 ${inviteLink}`
+  // Phrase SANS le lien : le lien est passé dans le champ `url` pour rester cliquable.
+  const inviteMsg   = lang === 'en'
+    ? `Join me on Monac'Out — the app for going out in Monaco! Tap the link and we'll be connected 👇`
+    : `Rejoins-moi sur Monac'Out, l'appli des sorties à Monaco ! Clique sur le lien et on sera connectés 👇`
+  // Repli copie/collage : phrase + lien réunis.
+  const inviteText  = `${inviteMsg}\n${inviteLink}`
 
   async function shareInvite() {
-    // On partage le TEXTE (phrase + lien) — la phrase s'affiche et le lien reste cliquable.
+    // On passe le lien dans `url` (champ dédié) → les apps le rendent cliquable avec aperçu.
+    const payload = { title: "Monac'Out", text: inviteMsg, url: inviteLink }
     if (Capacitor.isNativePlatform()) {
-      await Share.share({ text: inviteText }).catch(() => {})
+      await Share.share(payload).catch(() => {})
     } else if (navigator.share) {
-      await navigator.share({ text: inviteText }).catch(() => {})
+      await navigator.share(payload).catch(() => {})
     } else {
       navigator.clipboard?.writeText(inviteText)
       setCodeMsg(lang === 'en' ? 'Message copied!' : 'Message copié !')
