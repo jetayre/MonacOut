@@ -60,9 +60,11 @@ export function useAuth() {
   }
 
   async function deleteAccount() {
-    if (!supabase) return
-    await supabase.rpc('delete_own_account')
+    if (!supabase) return { error: 'Non connecté' }
+    const { error } = await supabase.rpc('delete_own_account')
+    if (error) return { error: error.message }   // on ne déconnecte PAS si la suppression a échoué
     await supabase.auth.signOut()
+    return { ok: true }
   }
 
   return { user, profile, loading, sendMagicLink, saveProfile, signOut, deleteAccount }

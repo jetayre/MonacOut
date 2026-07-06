@@ -317,7 +317,11 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               const ok = window.confirm(lang === 'en'
                 ? 'Delete your account and all your data? This cannot be undone.'
                 : 'Supprimer ton compte et toutes tes données ? Cette action est définitive.')
-              if (ok) await auth.deleteAccount()
+              if (!ok) return
+              const res = await auth.deleteAccount()
+              if (res?.error) window.alert(lang === 'en'
+                ? 'Could not delete your account. Please try again or contact eventsmonacout@gmail.com.'
+                : 'Impossible de supprimer ton compte. Réessaie ou écris à eventsmonacout@gmail.com.')
             }} style={{
               background: 'none', border: 'none', cursor: 'pointer', color: '#c00',
               fontFamily: "'Lato', sans-serif", fontSize: 11, textDecoration: 'underline',
