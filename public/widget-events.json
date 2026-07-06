@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T13:09:53.850Z",
+  "generatedAt": "2026-07-06T13:10:36.843Z",
   "events": [
     {
       "date": "Lun 6 juil",
@@ -38,6 +38,15 @@
       "emoji": "🩰"
     },
     {
+      "date": "Lun 6 juil",
+      "iso": "2026-07-06",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
       "date": "Mar 7 juil",
       "iso": "2026-07-07",
       "time": "20h30",
@@ -63,15 +72,6 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⚡"
-    },
-    {
-      "date": "Lun 6 juil",
-      "iso": "2026-07-06",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
     }
   ]
 }
