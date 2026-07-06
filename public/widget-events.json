@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T20:41:51.235Z",
+  "generatedAt": "2026-07-06T13:09:53.850Z",
   "events": [
     {
       "date": "Lun 6 juil",
@@ -29,15 +29,6 @@
       "emoji": "🎾"
     },
     {
-      "date": "Dim 5 juil",
-      "iso": "2026-07-05",
-      "time": "Tous les jours",
-      "title": "MUSÉES DE MONACO",
-      "venue": "Les incontournables",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
-    },
-    {
       "date": "Lun 6 juil",
       "iso": "2026-07-06",
       "time": "9h00 — 12h00",
@@ -47,31 +38,40 @@
       "emoji": "🩰"
     },
     {
-      "date": "Dim 5 juil",
-      "iso": "2026-07-05",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
+      "time": "20h30",
+      "title": "CONCERT JON BATISTE",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Dim 5 juil",
-      "iso": "2026-07-05",
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
+      "time": "21h30",
+      "title": "DOMINIQUE FILS-AIMÉ",
+      "venue": "Théâtre du Fort Antoine",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎵"
+    },
+    {
+      "date": "Mer 8 juil",
+      "iso": "2026-07-08",
+      "time": "09h00 — 18h00",
+      "title": "ENERGY BOAT CHALLENGE MONACO",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⚡"
+    },
+    {
+      "date": "Lun 6 juil",
+      "iso": "2026-07-06",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
-    },
-    {
-      "date": "Dim 5 juil",
-      "iso": "2026-07-05",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉE NAVAL DE MONACO",
-      "venue": "Terrasses de Fontvieille",
-      "quarter": "Fontvieille",
-      "emoji": "⚓"
     }
   ]
 }
