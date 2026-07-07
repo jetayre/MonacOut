@@ -45,6 +45,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Odéon Spa | https://odeonspa.com/ | BIEN-ÊTRE | |
 | Monte-Carlo SBM (restos/bars) | https://www.montecarlosbm.com/ | BRUNCH, APÉRO, SOIRÉE | |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
+| Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE (Quai Antoine 1er, rouvert juin 2026) | +377 9797 9595 |
 | Woo Monaco | https://woo.mc/ | BRUNCH | |
 | NMNM (Villa Paloma + Villa Sauber) | https://www.nmnm.mc/en/visit/visites-et-ateliers/ | ATELIER, EXPOSITION | |
 | Académie de Musique Prince Rainier III | https://academierainier3.mc/en | ATELIER | |
@@ -229,6 +230,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
     - Vérifier que le **mois et l'année** correspondent bien à l'édition annoncée (ex : un salon annuel peut changer de date d'une année à l'autre — ex : Green Shift Festival 2026 était en **avril** au Yacht Club de Monaco, pas en octobre au Grimaldi Forum)
     - Si la date n'est pas encore publiée par l'organisateur, **ne pas créer l'événement** — attendre la confirmation officielle
     - Un événement avec une date incorrecte est pire qu'un événement absent : il trompe l'utilisateur
+
+18. **Horaire des événements de soirée (apéro / nightlife)** : pour un événement de type APÉRO, SOIRÉE, JAZZ LIVE, DJ SET dont l'heure exacte n'est pas publiée par le lieu, ne pas bloquer l'ajout — le placer **en fin de journée sans heure précise** : `time: "En soirée"` (ou `"Soirée"`). La règle « ne pas inventer » s'applique à la **date/jour** (à vérifier absolument), pas à l'heure exacte d'un apéro. Ne jamais inventer une heure précise ; utiliser « En soirée » quand elle est inconnue.
 
 ---
 
