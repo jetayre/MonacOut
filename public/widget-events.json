@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T09:32:52.124Z",
+  "generatedAt": "2026-07-07T13:02:32.113Z",
   "events": [
     {
       "date": "Mar 7 juil",
@@ -58,20 +58,20 @@
     {
       "date": "Mar 7 juil",
       "iso": "2026-07-07",
+      "time": "Tous les jours",
+      "title": "HAPPY HOURS DE MONACO",
+      "venue": "Les meilleurs afterworks",
+      "quarter": "Monaco",
+      "emoji": "🍸"
+    },
+    {
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
-    },
-    {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "09h00 — 18h00",
-      "title": "ENERGY BOAT CHALLENGE MONACO",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⚡"
     }
   ]
 }

@@ -373,12 +373,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
                 padding: "6px 12px",
-                border: `1px solid ${isGoing ? GOLD_FRAME : "rgba(15,29,58,0.2)"}`,
+                border: `1px solid ${isGoing ? GOLD_FRAME : "#0F1D3A"}`,
                 borderRadius: 1, cursor: "pointer",
                 background: isGoing ? "#FFF8EC" : "none",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
-                textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#888",
+                textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#0F1D3A",
               }}
             >
               {isGoing ? "✓ " : ""}{lang === "en" ? "I'm going" : "J'y vais"}

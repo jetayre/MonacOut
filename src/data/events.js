@@ -1,4 +1,6 @@
 const _RAW = [
+  // ── CARTE HAPPY HOURS (ongoing) ──
+  {id:3543,cat:"APÉRO",date:"Mar 7 juil",time:"Tous les jours",title:"HAPPY HOURS\nDE\nMONACO",subtitle:"Les meilleurs afterworks · tous les jours",desc:"Les meilleurs happy hours et afterworks de Monaco. Touchez un lieu pour son adresse et ses horaires.",descEn:"Monaco’s best happy hours and after-work spots. Tap a venue for its address and times.",free:false,hot:true,fallback:"linear-gradient(150deg,#7A2808,#B05828,#4A1800)",accent:"#F8C070",emoji:"🍸",source:"MonacOut",quarter:"Monaco",ongoing:true,until:"2027-06-30",directory:[{name:"La Rascasse",link:"https://www.montecarlosbm.com/en/bar-nightclub-monaco/la-rascasse",info:"Port · tous les jours 18h–20h30 (−50%)"},{name:"La Brasserie de Monaco",link:"https://www.google.com/maps/search/La+Brasserie+de+Monaco+Port+Hercule",info:"Port · tous les jours 18h–20h (−50%)"},{name:"Buddha-Bar Monte-Carlo",link:"https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/",info:"Casino · mar–sam 18h–21h"},{name:"Cova Monte-Carlo",link:"https://www.google.com/maps/search/Cova+Monte-Carlo+Boulevard+des+Moulins",info:"Bd des Moulins · jeudi dès 17h · live"},{name:"Stars of Monaco",link:"https://starsofmonaco.com",info:"Port · lun–ven en soirée"}]},
   // ── CARTE BIEN-ÊTRE / SPAS (ongoing) ──
   {id:3542,cat:"BIEN-ÊTRE",date:"Mar 7 juil",time:"Tous les jours",title:"SPAS &\nBIEN-ÊTRE\nDE MONACO",subtitle:"Les meilleurs spas · tous les jours",desc:"Les plus beaux spas et adresses bien-être de Monaco, ouverts toute l’année. Touchez un lieu pour accéder à son site et réserver.",descEn:"Monaco’s finest spas and wellness addresses, open year-round. Tap a venue for its website and to book.",free:false,hot:true,fallback:"linear-gradient(150deg,#1A5A4A,#2A7A66,#0A3A2E)",accent:"#9FE8D0",emoji:"💆",source:"MonacOut",quarter:"Monaco",ongoing:true,until:"2027-06-30",directory:[{name:"Spa Métropole by Guerlain",link:"https://metropole.com/en/spa-montecarlo/",info:"Hôtel Métropole · Carré d’Or · Monte-Carlo"},{name:"Thermes Marins Monte-Carlo",link:"https://www.montecarlosbm.com/en/wellness-sport-monaco/thermes-marins-monte-carlo",info:"Monte-Carlo · 7j/7"},{name:"Odéon Spa",link:"https://odeonspa.com/",info:"La Condamine · massages & soins"},{name:"Hoolon Wellness",link:"https://hoolonwellness.com/",info:"Yoga · breathwork · massage"},{name:"Spa Cinq Mondes — Monte-Carlo Bay",link:"https://www.montecarlosbm.com/en/wellness-sport-monaco/spa-cinq-mondes",info:"Monte-Carlo Bay · Larvotto"},{name:"Willow Stream Spa — Fairmont",link:"https://www.fairmont.com/monte-carlo/willow-stream-spa/",info:"Fairmont · Monte-Carlo"}]},
 
@@ -865,5 +867,10 @@ export const ALL_EVENTS = _RAW
   .filter(e => { const d = _eventDate(e); return d && d >= _today; })
   .sort((a, b) => {
     const diff = _eventDate(a) - _eventDate(b);
-    return diff !== 0 ? diff : _eventHour(a) - _eventHour(b);
+    if (diff !== 0) return diff;
+    // Les fiches annuaire permanentes (spa, musées, cinéma, happy hours…) en dernier pour chaque jour
+    const ao = (a.ongoing || a.directory) ? 1 : 0;
+    const bo = (b.ongoing || b.directory) ? 1 : 0;
+    if (ao !== bo) return ao - bo;
+    return _eventHour(a) - _eventHour(b);
   });
