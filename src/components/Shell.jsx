@@ -213,7 +213,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                           <span style={{ display: "block", fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{d.name}</span>
                           {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
                         </span>
-                        <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>{lang === "en" ? "Visit →" : "Voir →"}</span>
+                        {d.link && <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>{lang === "en" ? "Visit →" : "Voir →"}</span>}
                       </a>
                     ))}
                   </div>
