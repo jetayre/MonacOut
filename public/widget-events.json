@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T09:22:34.021Z",
+  "generatedAt": "2026-07-07T09:28:49.056Z",
   "events": [
     {
       "date": "Mar 7 juil",
@@ -49,6 +49,15 @@
     {
       "date": "Mar 7 juil",
       "iso": "2026-07-07",
+      "time": "Tous les jours",
+      "title": "SPAS & BIEN-ÊTRE DE MONACO",
+      "venue": "Les meilleurs spas",
+      "quarter": "Monaco",
+      "emoji": "💆"
+    },
+    {
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -63,15 +72,6 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⚡"
-    },
-    {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
     }
   ]
 }
