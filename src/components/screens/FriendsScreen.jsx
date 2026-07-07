@@ -50,23 +50,65 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   const [showAuth, setShowAuth] = useState(false)
 
   if (!auth.user) {
+    const STRIPE_BG_LOGIN = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)"
     return (
-      <div style={{ padding: '40px 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: 48, marginBottom: 16 }}>👥</div>
-        <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 20, color: NAVY, marginBottom: 10 }}>
-          {lang === 'en' ? "See friends' plans" : "Les sorties de tes amis"}
+      <div>
+        {/* Header rayures nautiques avec retour vers l'app */}
+        <div style={{
+          position: 'sticky', top: 0, zIndex: 999,
+          background: STRIPE_BG_LOGIN,
+          padding: '10px 16px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          borderBottom: '1px solid rgba(15,29,58,0.12)',
+        }}>
+          <button onClick={onNavEvents} aria-label={lang === 'en' ? 'Back to Monac\'Out' : "Retour à Monac'Out"} style={{
+            position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
+            background: '#fff', border: `1px solid ${GOLD_FRAME}`, borderRadius: 20,
+            cursor: 'pointer', padding: '4px 12px 4px 8px',
+            display: 'flex', alignItems: 'center', gap: 3, color: NAVY,
+          }}>
+            <span style={{ fontSize: 17, lineHeight: 1, marginTop: -1 }}>‹</span>
+            <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 20, lineHeight: 1, color: NAVY }}>M</span>
+          </button>
+          <div style={{
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontSize: 15, fontWeight: 600, letterSpacing: 5,
+            textTransform: 'uppercase', color: NAVY,
+          }}>
+            {lang === 'en' ? "MY CIRCLE" : "MON CERCLE"}
+          </div>
         </div>
-        <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: GREY, lineHeight: 1.6, marginBottom: 28 }}>
-          {lang === 'en'
-            ? "Connect to see which friends are going to the same events — and let them see yours."
-            : "Connecte-toi pour voir quels amis vont aux mêmes sorties — et partage les tiennes."}
+
+        <div style={{ padding: '40px 24px', textAlign: 'center' }}>
+          <div style={{ fontSize: 48, marginBottom: 16 }}>👥</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 20, color: NAVY, marginBottom: 10 }}>
+            {lang === 'en' ? "See friends' plans" : "Les sorties de tes amis"}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: GREY, lineHeight: 1.6, marginBottom: 28 }}>
+            {lang === 'en'
+              ? "Sign in to see which friends are going to the same events — and let them see yours."
+              : "Connecte-toi pour voir quels amis vont aux mêmes sorties — et partage les tiennes."}
+          </div>
+          <button onClick={() => setShowAuth(true)} style={{
+            padding: '15px 36px', background: NAVY, color: '#fff', border: 'none',
+            borderRadius: 2, cursor: 'pointer',
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, fontWeight: 600,
+            letterSpacing: 2, textTransform: 'uppercase',
+          }}>{lang === 'en' ? "Sign in / Sign up" : "Se connecter / S'inscrire"}</button>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: GREY, marginTop: 12 }}>
+            {lang === 'en' ? "By email — no password needed." : "Par email — pas de mot de passe."}
+          </div>
+
+          {/* Retour bien visible vers les événements */}
+          <div style={{ marginTop: 32 }}>
+            <button onClick={onNavEvents} style={{
+              background: 'none', border: `1px solid ${GOLD_FRAME}`, borderRadius: 2,
+              padding: '10px 22px', cursor: 'pointer', color: NAVY,
+              fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+              letterSpacing: 1.5, textTransform: 'uppercase',
+            }}>{lang === 'en' ? "‹ Back to events" : "‹ Retour aux événements"}</button>
+          </div>
         </div>
-        <button onClick={() => setShowAuth(true)} style={{
-          padding: '13px 32px', background: NAVY, color: '#fff', border: 'none',
-          borderRadius: 2, cursor: 'pointer',
-          fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600,
-          letterSpacing: 2, textTransform: 'uppercase',
-        }}>{lang === 'en' ? "Connect" : "Se connecter"}</button>
         {showAuth && <AuthScreen auth={auth} lang={lang} onClose={() => setShowAuth(false)} />}
       </div>
     )
