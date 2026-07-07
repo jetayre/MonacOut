@@ -14,21 +14,29 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
         <div style={{
           border: `1.5px solid ${NAVY}`,
           background: CREAM,
-          padding: "5px 14px",
+          padding: "4px 14px",
           display: "flex",
-          alignItems: "baseline",
+          flexDirection: "column",
+          alignItems: "center",
           justifyContent: "center",
         }}>
-          <span style={{
+          <div style={{ display: "flex", alignItems: "baseline" }}>
+            <span style={{
+              fontFamily: "'Josefin Sans', sans-serif",
+              fontWeight: 400, fontSize: 13, letterSpacing: 3,
+              color: NAVY, textTransform: "uppercase",
+            }}>MONAC'</span>
+            <span style={{
+              fontFamily: "'Josefin Sans', sans-serif",
+              fontWeight: 600, fontSize: 13, letterSpacing: 2,
+              color: GOLD, textTransform: "uppercase",
+            }}>OUT</span>
+          </div>
+          <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontWeight: 400, fontSize: 13, letterSpacing: 3,
-            color: NAVY, textTransform: "uppercase",
-          }}>MONAC'</span>
-          <span style={{
-            fontFamily: "'Josefin Sans', sans-serif",
-            fontWeight: 600, fontSize: 13, letterSpacing: 2,
-            color: GOLD, textTransform: "uppercase",
-          }}>OUT</span>
+            fontWeight: 400, fontSize: 6, letterSpacing: 1.5,
+            color: GOLD, textTransform: "uppercase", marginTop: 2,
+          }}>Community &amp; lifestyle</div>
         </div>
       </div>
     );
@@ -75,6 +83,11 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
             textTransform: "uppercase",
           }}>OUT</span>
         </div>
+        <div style={{
+          fontFamily: "'Josefin Sans', sans-serif",
+          fontWeight: 400, fontSize: 8, letterSpacing: 2.5,
+          color: GOLD, textTransform: "uppercase", marginTop: 5,
+        }}>Community &amp; lifestyle</div>
       </div>
     </div>
   );
