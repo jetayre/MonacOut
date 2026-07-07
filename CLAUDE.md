@@ -12,8 +12,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 | Source | URL | Catégories | Contact lieu |
 |--------|-----|------------|--------------|
-| Opéra de Monte-Carlo — concerts | https://opmc.mc/en/concert/ | CONCERT, OPÉRA | +377 9200 1370 |
-| Opéra de Monte-Carlo — saison lyrique | https://opmc.mc/en/season-25-26/ | OPÉRA, MUSICAL | +377 9200 1370 |
+| Opéra de Monte-Carlo — concerts | https://opmc.mc/en/concert/ | CONCERT, OPÉRA | +377 9200 1370 | ⚠️ **opmc.mc bloque le proxy — passer par WebSearch** (ex: `"opéra Monte-Carlo ballet juillet 2026"`) |
+| Opéra de Monte-Carlo — saison lyrique | https://opmc.mc/en/season-25-26/ | OPÉRA, MUSICAL | +377 9200 1370 | ⚠️ **opmc.mc bloque le proxy — passer par WebSearch** |
 | Culture Monaco | https://culture.mc/en/what-s-on | THÉÂTRE, CONCERT SACRÉ, EXPOSITION | +377 9200 1370 |
 | Mairie de Monaco — agenda | https://www.mairie.mc/agenda | SPECTACLE (espaces publics), FÊTE NATIONALE, SPORT (espaces publics), Feux d'artifice, Marchés | +377 9315 2828 |
 | Club Bouliste Monégasque | https://cbmonaco.org | SPORT pétanque | +377 9205 9217 |
