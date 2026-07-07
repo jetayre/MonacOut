@@ -34,6 +34,10 @@ jobs:
         run: node cross-check-dates.mjs
         continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
 
+      - name: 📋 Scan complétude PrinciPocket (events manquants → rapport, sans email)
+        run: node principocket-scan.mjs
+        continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
+
       - name: 🚓 LE POLICIER — autofix + contrôle (dates, géo, liens, noms, traduction)
         id: police
         run: node police-events.mjs

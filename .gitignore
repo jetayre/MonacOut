@@ -28,3 +28,5 @@ dist-ssr
 android/keystore.properties
 android/monacout-release.keystore
 android/local.properties
+
+principocket-scan-report.txt

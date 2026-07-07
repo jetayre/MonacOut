@@ -140,8 +140,8 @@ function HeartIcon({ active, hasFavs }) {
 export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0 }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
-    ? { tagline: "Monaco Secret", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
-    : { tagline: "Monaco Secret", filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" }, empty: "Aucun événement pour cette période." };
+    ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
+    : { tagline: "Community & lifestyle", filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" }, empty: "Aucun événement pour cette période." };
 
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);

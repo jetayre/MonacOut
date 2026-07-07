@@ -9,32 +9,52 @@ const GOLD_FRAME = "#C9A96E";
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
 function addToCalendar(event) {
-  const parts = event.date.split(' ');
+  const parts = (event.date || '').split(' ');
   const day   = parseInt(parts[1]);
   const month = MOIS_ICS[parts[2]];
-  const year  = event.year || 2026;
-  const t     = event.time.match(/(\d{1,2})h(\d{2})/);
+  const year  = event.year || new Date().getFullYear();
+  if (isNaN(day) || month === undefined) return;
+  const t     = (event.time || '').match(/(\d{1,2})h(\d{2})/);
   const h     = t ? parseInt(t[1]) : 12;
   const m     = t ? parseInt(t[2]) : 0;
   const pad   = n => String(n).padStart(2, '0');
-  const fmt   = (y, mo, d, hh, mm) => `${y}${pad(mo+1)}${pad(d)}T${pad(hh)}${pad(mm)}00`;
+  const stamp = (hh, mm) => `${year}${pad(month+1)}${pad(day)}T${pad(hh)}${pad(mm)}00`;
+  const title = (event.title || '').replace(/\n/g, ' ');
+  const desc  = (event.desc || '').replace(/\n/g, ' ');
+
+  // App native (iOS/Android) : le téléchargement .ics via data-URI est ignoré par la
+  // WebView → on ouvre le modèle Google Agenda dans le navigateur externe (revenir via "‹ Monac'Out").
+  if (Capacitor.isNativePlatform()) {
+    const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent(title)
+      + '&dates=' + stamp(h, m) + '/' + stamp(h + 2, m)
+      + '&details=' + encodeURIComponent(desc + (event.link ? '\n' + event.link : ''))
+      + '&location=' + encodeURIComponent(event.subtitle || '');
+    window.open(url, '_blank');
+    return;
+  }
+
+  // Web : téléchargement d'un fichier .ics (via Blob, plus fiable que data-URI).
   const ics = [
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MonacOut//FR',
     'BEGIN:VEVENT',
-    `DTSTART:${fmt(year, month, day, h, m)}`,
-    `DTEND:${fmt(year, month, day, h + 2, m)}`,
-    `SUMMARY:${event.title.replace(/\n/g, ' ')}`,
-    `DESCRIPTION:${event.desc.replace(/\n/g, '\\n')}`,
-    `LOCATION:${event.subtitle}`,
+    `DTSTART:${stamp(h, m)}`,
+    `DTEND:${stamp(h + 2, m)}`,
+    `SUMMARY:${title}`,
+    `DESCRIPTION:${desc}`,
+    `LOCATION:${event.subtitle || ''}`,
     event.link ? `URL:${event.link}` : '',
     'END:VEVENT','END:VCALENDAR',
   ].filter(Boolean).join('\r\n');
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  const href = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
-  a.download = 'event.ics';
+  a.href = href;
+  a.download = 'monacout-event.ics';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(href), 1000);
 }
 
 const VENUE_PHOTOS = {
@@ -274,6 +294,25 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             }}>{event.subtitle}</div>
           )}
 
+          {/* Amis qui y vont — encart visible en scrollant */}
+          {friendsGoing.length > 0 && (
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: "#FFF8EC", border: `1px solid ${GOLD_FRAME}`,
+              borderRadius: 20, padding: "4px 12px 4px 6px", marginBottom: 18,
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#C4A241" style={{ flexShrink: 0 }} aria-hidden="true">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+              <FriendAvatars friends={friendsGoing} />
+              <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: NAVY, letterSpacing: 0.3 }}>
+                {friendsGoing.length === 1
+                  ? (lang === "en" ? `${friendsGoing[0].display_name} is going` : `${friendsGoing[0].display_name} y va`)
+                  : (lang === "en" ? `${friendsGoing.length} friends going` : `${friendsGoing.length} amis y vont`)}
+              </span>
+            </div>
+          )}
+
           {/* Organisation (fondations) */}
           {/fondation|fdtn|fight aids|croix.rouge|amade|association|mission enfance|anges gardiens|amapei|jewish|caritas|jcc/i.test(event.source || "") && (
             <div style={{
@@ -373,18 +412,17 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
                 padding: "6px 12px",
-                border: `1px solid ${isGoing ? GOLD_FRAME : "rgba(15,29,58,0.2)"}`,
+                border: `1px solid ${isGoing ? GOLD_FRAME : "#0F1D3A"}`,
                 borderRadius: 1, cursor: "pointer",
                 background: isGoing ? "#FFF8EC" : "none",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
-                textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#888",
+                textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#0F1D3A",
               }}
             >
-              {isGoing ? "✓ " : ""}{lang === "en" ? "I'm going" : "J'y vais"}
+              {isGoing ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}
             </button>
           )}
-          {friendsGoing.length > 0 && <FriendAvatars friends={friendsGoing} />}
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{

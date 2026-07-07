@@ -203,19 +203,26 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
 
                 {selectedEvent.directory ? (
                   <div style={{ marginBottom: 4 }}>
-                    {selectedEvent.directory.map((d, i) => (
-                      <a key={i} href={d.link} target="_blank" rel="noopener noreferrer" style={{
+                    {selectedEvent.directory.map((d, i) => {
+                      const mapUrl = d.map || `https://www.google.com/maps/search/${encodeURIComponent(d.name + " Monaco")}`;
+                      const isMapLink = d.link && /google\.[^/]*\/maps/.test(d.link);
+                      return (
+                      <div key={i} style={{
                         display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
-                        padding: "11px 2px", textDecoration: "none",
+                        padding: "11px 2px",
                         borderBottom: i < selectedEvent.directory.length - 1 ? "1px solid rgba(15,29,58,0.08)" : "none",
                       }}>
-                        <span style={{ textAlign: "left" }}>
+                        <span style={{ textAlign: "left", minWidth: 0 }}>
                           <span style={{ display: "block", fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{d.name}</span>
                           {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
                         </span>
-                        <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>{lang === "en" ? "Visit →" : "Voir →"}</span>
-                      </a>
-                    ))}
+                        <span style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+                          <a href={mapUrl} target="_blank" rel="noopener noreferrer" title={lang === "en" ? "Map" : "Carte"} style={{ fontSize: 15, textDecoration: "none", lineHeight: 1 }}>📍</a>
+                          {d.link && !isMapLink && <a href={d.link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, textDecoration: "none" }}>{lang === "en" ? "Visit →" : "Voir →"}</a>}
+                        </span>
+                      </div>
+                      );
+                    })}
                   </div>
                 ) : (
                 <>

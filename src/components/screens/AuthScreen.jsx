@@ -159,9 +159,11 @@ const inner = {
   textAlign: 'center',
 }
 const closeBtn = {
-  position: 'absolute', top: 10, right: 12,
-  background: 'none', border: 'none', cursor: 'pointer',
-  fontSize: 16, color: '#888', lineHeight: 1, padding: 0,
+  position: 'absolute', top: 8, right: 8,
+  width: 30, height: 30, borderRadius: '50%',
+  background: '#fff', border: `1px solid ${GOLD_FRAME}`, cursor: 'pointer',
+  fontSize: 17, color: NAVY, lineHeight: 1, padding: 0,
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
 }
 const title = {
   fontFamily: "'Josefin Sans', sans-serif",

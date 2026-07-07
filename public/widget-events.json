@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T17:17:56.323Z",
+  "generatedAt": "2026-07-07T17:18:34.242Z",
   "events": [
     {
       "date": "Mar 7 juil",
@@ -20,6 +20,15 @@
       "emoji": "🎵"
     },
     {
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
       "date": "Mer 8 juil",
       "iso": "2026-07-08",
       "time": "09h00 — 18h00",
@@ -38,35 +47,26 @@
       "emoji": "🎵"
     },
     {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "18h",
-      "title": "INCARNER LA PUISSANCE FÉMININE",
-      "venue": "Palais de la Scala",
-      "quarter": "Monte-Carlo",
-      "emoji": "✨"
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
+      "time": "Tous les jours",
+      "title": "SPAS & BIEN-ÊTRE DE MONACO",
+      "venue": "Les meilleurs spas",
+      "quarter": "Monaco",
+      "emoji": "💆"
     },
     {
       "date": "Mar 7 juil",
       "iso": "2026-07-07",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "09h00 — 18h00",
-      "title": "ENERGY BOAT CHALLENGE MONACO",
-      "venue": "Port Hercule",
+      "time": "18h00 — 20h30",
+      "title": "HAPPY HOURS DE MONACO",
+      "venue": "Les meilleurs afterworks",
       "quarter": "Monaco",
-      "emoji": "⚡"
+      "emoji": "🍸"
     },
     {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
+      "date": "Mar 7 juil",
+      "iso": "2026-07-07",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
