@@ -381,7 +381,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#0F1D3A",
               }}
             >
-              {isGoing ? "✓ " : ""}{lang === "en" ? "I'm going" : "J'y vais"}
+              {isGoing ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}
             </button>
           )}
           {friendsGoing.length > 0 && <FriendAvatars friends={friendsGoing} />}
