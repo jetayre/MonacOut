@@ -369,10 +369,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                       textTransform: "uppercase", color: "#000000",
                       textDecoration: "none",
                     }}
-                  ><span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    {event.free ? (lang === "en" ? "INFO" : "INFOS") : (lang === "en" ? "BOOK" : "RÉSERVER")}
-                  </span></a>
+                    aria-label={lang === "en" ? "Website" : "Site web"}
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </a>
                 ) : (
                   <button
                     onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}
