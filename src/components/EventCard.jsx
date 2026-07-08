@@ -376,7 +376,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               <span />
             )}
 
-            {/* Amis qui y vont — au centre : gris si personne, doré + avatars si des amis */}
+            {/* Groupe droite : amis + cœur côte à côte */}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+            {/* Amis qui y vont — à côté du cœur : gris si personne, doré + avatars si des amis */}
             {friendsGoing.length > 0 ? (
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 6,
@@ -409,6 +411,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
               }}
             >{isFav ? "❤️" : "🤍"}</button>
+            </div>
           </div>
 
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
