@@ -414,7 +414,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 0, flexWrap: "wrap" }}>
           {/* J'y vais */}
           {onGoingClick && (
             <button
@@ -437,7 +437,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
-              alignSelf: "flex-start",
+              alignSelf: "flex-start", marginLeft: -1,
               display: "inline-flex", alignItems: "center", gap: 5,
               padding: "6px 12px",
               border: `1px solid ${GOLD_FRAME}`,
