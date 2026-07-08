@@ -321,16 +321,26 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
         >
           {/* Header menu */}
           <div style={{
-            display: "flex", alignItems: "center", justifyContent: "flex-end",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
             padding: "12px 16px 10px",
             borderBottom: "1px solid rgba(196,162,65,0.2)",
             marginBottom: 8,
           }}>
+            {auth?.profile?.display_name ? (
+              <div style={{
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 13,
+                color: NAVY, letterSpacing: 0.5, minWidth: 0,
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              }}>
+                {lang === "en" ? "Hi, " : "Bonjour, "}
+                <span style={{ color: GOLD, fontWeight: 600 }}>{auth.profile.display_name}</span>
+              </div>
+            ) : <span />}
             <button
               onClick={() => setShowMenu?.(false)}
               style={{
                 background: "none", border: "none", cursor: "pointer",
-                fontSize: 20, color: GREY, padding: 4, lineHeight: 1,
+                fontSize: 20, color: GREY, padding: 4, lineHeight: 1, flexShrink: 0,
               }}
             >✕</button>
           </div>
