@@ -447,7 +447,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               textTransform: "uppercase", color: "#0F1D3A",
             }}
           >
-            {lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}
+            {lang === "en" ? "My calendar" : "Mon calendrier"}
           </button>
           {Capacitor.isNativePlatform() && (
             <button
