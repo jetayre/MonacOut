@@ -399,7 +399,7 @@ export default function App() {
       onToggleFav={toggleFav}
       favorites={favorites}
       adminOverlay={showAdmin ? <AdminScreen onClose={() => setShowAdmin(false)} /> : null}
-      contactEmail={notifConfig?.contactEmail || "eventsmonacout@gmail.com"}
+      contactEmail={notifConfig?.contactEmail || "contact@monacout.com"}
       auth={auth}
       onShowAuth={() => setShowAuth(true)}
       pendingCount={social.pending?.length || 0}

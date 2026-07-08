@@ -362,8 +362,8 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               if (!ok) return
               const res = await auth.deleteAccount()
               if (res?.error) window.alert(lang === 'en'
-                ? 'Could not delete your account. Please try again or contact eventsmonacout@gmail.com.'
-                : 'Impossible de supprimer ton compte. Réessaie ou écris à eventsmonacout@gmail.com.')
+                ? 'Could not delete your account. Please try again or contact contact@monacout.com.'
+                : 'Impossible de supprimer ton compte. Réessaie ou écris à contact@monacout.com.')
             }} style={{
               background: 'none', border: 'none', cursor: 'pointer', color: '#c00',
               fontFamily: "'Lato', sans-serif", fontSize: 11, textDecoration: 'underline',
