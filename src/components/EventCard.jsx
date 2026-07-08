@@ -294,8 +294,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             }}>{event.subtitle}</div>
           )}
 
-          {/* Amis qui y vont — encart visible en scrollant */}
-          {friendsGoing.length > 0 && (
+          {/* Amis qui y vont — icône toujours présente : grise si personne, dorée + avatars si des amis */}
+          {friendsGoing.length > 0 ? (
             <div style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               background: "#FFF8EC", border: `1px solid ${GOLD_FRAME}`,
@@ -310,6 +310,15 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   ? (lang === "en" ? `${friendsGoing[0].display_name} is going` : `${friendsGoing[0].display_name} y va`)
                   : (lang === "en" ? `${friendsGoing.length} friends going` : `${friendsGoing.length} amis y vont`)}
               </span>
+            </div>
+          ) : (
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              padding: "4px 10px", marginBottom: 18,
+            }} title={lang === "en" ? "No friends going yet" : "Aucun ami inscrit pour l'instant"}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#C7C1B4" style={{ flexShrink: 0 }} aria-hidden="true">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
             </div>
           )}
 
