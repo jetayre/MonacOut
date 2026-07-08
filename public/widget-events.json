@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T05:07:37.711Z",
+  "generatedAt": "2026-07-08T16:35:51.742Z",
   "events": [
     {
       "date": "Mer 8 juil",
@@ -20,6 +20,15 @@
       "emoji": "🎵"
     },
     {
+      "date": "Mer 8 juil",
+      "iso": "2026-07-08",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
       "date": "Jeu 9 juil",
       "iso": "2026-07-09",
       "time": "18h",
@@ -29,22 +38,22 @@
       "emoji": "✨"
     },
     {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "21h30",
-      "title": "CONCERT AU PALAIS PHILIPPE JORDAN",
-      "venue": "Cour d'honneur",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏰"
+      "date": "Mer 8 juil",
+      "iso": "2026-07-08",
+      "time": "Tous les jours",
+      "title": "SPAS & BIEN-ÊTRE DE MONACO",
+      "venue": "Les meilleurs spas",
+      "quarter": "Monaco",
+      "emoji": "💆"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "09h00 — 18h00",
-      "title": "ENERGY BOAT CHALLENGE DAY 3",
-      "venue": "Port Hercule",
+      "date": "Mer 8 juil",
+      "iso": "2026-07-08",
+      "time": "18h00 — 20h30",
+      "title": "HAPPY HOURS DE MONACO",
+      "venue": "Les meilleurs afterworks",
       "quarter": "Monaco",
-      "emoji": "⚡"
+      "emoji": "🍸"
     },
     {
       "date": "Jeu 9 juil",
@@ -58,15 +67,6 @@
     {
       "date": "Jeu 9 juil",
       "iso": "2026-07-09",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
