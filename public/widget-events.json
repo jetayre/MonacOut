@@ -1,33 +1,6 @@
 {
-  "generatedAt": "2026-07-07T17:31:10.538Z",
+  "generatedAt": "2026-07-08T05:07:37.711Z",
   "events": [
-    {
-      "date": "Mar 7 juil",
-      "iso": "2026-07-07",
-      "time": "20h30",
-      "title": "CONCERT JON BATISTE",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Mar 7 juil",
-      "iso": "2026-07-07",
-      "time": "21h30",
-      "title": "DOMINIQUE FILS-AIMÉ",
-      "venue": "Théâtre du Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Mar 7 juil",
-      "iso": "2026-07-07",
-      "time": "Tous les jours",
-      "title": "MUSÉES DE MONACO",
-      "venue": "Les incontournables",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
-    },
     {
       "date": "Mer 8 juil",
       "iso": "2026-07-08",
@@ -47,26 +20,53 @@
       "emoji": "🎵"
     },
     {
-      "date": "Mar 7 juil",
-      "iso": "2026-07-07",
-      "time": "Tous les jours",
-      "title": "SPAS & BIEN-ÊTRE DE MONACO",
-      "venue": "Les meilleurs spas",
-      "quarter": "Monaco",
-      "emoji": "💆"
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "18h",
+      "title": "INCARNER LA PUISSANCE FÉMININE",
+      "venue": "Palais de la Scala",
+      "quarter": "Monte-Carlo",
+      "emoji": "✨"
     },
     {
-      "date": "Mar 7 juil",
-      "iso": "2026-07-07",
-      "time": "18h00 — 20h30",
-      "title": "HAPPY HOURS DE MONACO",
-      "venue": "Les meilleurs afterworks",
-      "quarter": "Monaco",
-      "emoji": "🍸"
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "21h30",
+      "title": "CONCERT AU PALAIS PHILIPPE JORDAN",
+      "venue": "Cour d'honneur",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏰"
     },
     {
-      "date": "Mar 7 juil",
-      "iso": "2026-07-07",
+      "date": "Ven 10 juil",
+      "iso": "2026-07-10",
+      "time": "09h00 — 18h00",
+      "title": "ENERGY BOAT CHALLENGE DAY 3",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⚡"
+    },
+    {
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "09h00 — 18h00",
+      "title": "ENERGY BOAT CHALLENGE MONACO",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⚡"
+    },
+    {
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Ven 10 juil",
+      "iso": "2026-07-10",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
