@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react'
+import { Capacitor } from '@capacitor/core'
 import { supabase } from '../lib/supabase'
+
+// URL publique https de l'app (Universal Link). En natif, window.location.origin
+// vaut "capacitor://localhost" — inutilisable comme redirection de lien magique.
+const APP_URL = 'https://monac-out.vercel.app'
 
 export function useAuth() {
   const [user, setUser]       = useState(null)
@@ -35,9 +40,12 @@ export function useAuth() {
 
   async function sendMagicLink(email) {
     if (!supabase) return { error: 'Non configuré' }
+    // En natif, on redirige vers l'Universal Link https (jamais capacitor://localhost),
+    // sinon le lien magique ouvre "adresse invalide" dans Safari.
+    const emailRedirectTo = Capacitor.isNativePlatform() ? APP_URL : window.location.origin
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: window.location.origin }
+      options: { emailRedirectTo }
     })
     return { error }
   }

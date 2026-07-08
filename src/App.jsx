@@ -235,10 +235,22 @@ export default function App() {
     if (!Capacitor.isNativePlatform()) return;
     const handle = CapApp.addListener("appUrlOpen", ({ url }) => {
       try {
-        const inv = new URL(url).searchParams.get("invite");
+        const u = new URL(url);
+        const inv = u.searchParams.get("invite");
         if (inv) {
           localStorage.setItem("monacout_pending_invite", inv.trim().toLowerCase());
           setDeepLinkTick(t => t + 1);
+        }
+        // Retour du lien magique (Universal Link) : on établit la session dans l'app native.
+        // Flux implicite → jetons dans le hash ; flux PKCE → ?code=.
+        const hp = new URLSearchParams(u.hash?.startsWith("#") ? u.hash.slice(1) : "");
+        const access_token = hp.get("access_token");
+        const refresh_token = hp.get("refresh_token");
+        const code = u.searchParams.get("code");
+        if (supabase && access_token && refresh_token) {
+          supabase.auth.setSession({ access_token, refresh_token });
+        } else if (supabase && code) {
+          supabase.auth.exchangeCodeForSession(code);
         }
       } catch { /* lien non pertinent */ }
     });
