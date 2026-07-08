@@ -3,6 +3,19 @@
 ## Projet
 App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via git push to `main` (repo: jetayre/MonacOut).
 
+> **URL / domaines (important)** : le projet Vercel qui reçoit les déploiements est **`monac-out.vercel.app`** (AVEC tiret) — c'est la version à jour. `monacout.vercel.app` (sans tiret) est un ancien déploiement qui peut être en retard. Le code fetch encore les données live sur `monacout.vercel.app` (les deux servent les mêmes données). **Domaine propre : `monacout.com`** (OVH, DNS Vercel, propriété de Stéphanie) — vérifié dans Resend pour l'envoi d'emails.
+
+## Journal — 9 juil 2026 (session email + social + design)
+- **Fix critique auth** : lien magique cassé en natif (`emailRedirectTo` valait `capacitor://localhost` → « adresse invalide » Safari). Corrigé : redirige vers `https://monac-out.vercel.app` en natif (`useAuth.js`) + `appUrlOpen` récupère la session (`setSession`/`exchangeCodeForSession`) dans `App.jsx`.
+- **Emails à la marque** : domaine `monacout.com` vérifié dans **Resend** (EU). **Supabase → Custom SMTP** activé (host `smtp.resend.com`, port 465, user `resend`, pass = clé Resend, sender **`bonjour@monacout.com`**). Chaîne testée OK (email « Your sign-in link » delivered). Supabase URL Config : Site URL + Redirect URLs incluent `https://monac-out.vercel.app`. ⚠️ Régénérer la clé Resend (collée en clair pendant la session). Voir mémoire [[project-email-domain-monacout]].
+- **Email de connexion redessiné** à la marque (à coller dans Supabase Templates Magic Link + Confirm signup si besoin).
+- **Prénom** : salutation « Bonjour, <prénom> » dans le menu (Shell) ET sous le logo sur l'accueil (HomeScreen, prop `userName`). Le prénom vient de `profiles.display_name` (saisi à la 1ʳᵉ connexion). AuthScreen/App demandent le prénom si `!auth.profile?.display_name` (pas seulement si profil absent).
+- **Fiches événement (EventCard)** : bouton lien = icône website seule (retrait du mot RÉSERVER/INFOS) à côté du tel ; **icône amis toujours visible** (grise si personne, dorée + avatars si des amis y vont) **collée au cœur** à droite ; cadre « J'y vais » en or ; « J'y vais » collé à « Mon calendrier » (au lieu de « Ajouter au calendrier »). `FriendAvatars` : 3 avatars max + « +N ».
+- **Détail événement (Shell popup)** : affiche les amis qui y vont (« Léa et Marc y vont »), via prop `social`.
+- **Email de contact** : `contact@monacout.com` dans le code (App fallback, Shell « Proposer un événement », FriendsScreen suppression compte, confidentialite.html). ⚠️ `public/notif-config.json` garde `eventsmonacout@gmail.com` tant que la **réception** de contact@ n'est pas active (ImprovMX à faire).
+- **iOS v1.9 build 20** archivée (`~/Library/Developer/Xcode/Archives/2026-07-09/MonacOut-1.9.xcarchive`, com.monacout, pas de widget parasite). Reste : upload via Xcode Organizer + Submit for Review.
+- **Captures App Store** régénérées (anglais, 1179×2556) dans `~/Desktop/MonacOut_AppStore_Screenshots_NEW/` : 01-home (favori/cœur rouge + 2 amis), 02-sport (10 amis), 03-nightlife (Happy Hours & soirées, 8 amis).
+
 ## Rôle de Claude
 Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier les nouveaux événements, mettre à jour `src/data/events.js`, puis builder et pousser.
 
