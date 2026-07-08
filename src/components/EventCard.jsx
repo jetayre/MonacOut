@@ -423,7 +423,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
                 padding: "6px 12px",
-                border: `1px solid ${isGoing ? GOLD_FRAME : "#0F1D3A"}`,
+                border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 1, cursor: "pointer",
                 background: isGoing ? "#FFF8EC" : "none",
                 fontFamily: "'Josefin Sans', sans-serif",
