@@ -74,7 +74,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, onShowAuth, pendingCount = 0 }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -232,6 +232,30 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                   fontSize: 13, color: "#333", lineHeight: 1.65,
                   marginBottom: 18, textAlign: "left",
                 }}>{lang === "en" ? (selectedEvent.descEn || selectedEvent.desc) : selectedEvent.desc}</div>
+
+                {/* Amis qui y vont */}
+                {(() => {
+                  const going = social?.friendsGoingTo?.(selectedEvent.id) || [];
+                  if (!going.length) return null;
+                  const n = going.map(f => f.display_name).filter(Boolean);
+                  const label = n.length === 1
+                    ? (lang === "en" ? `${n[0]} is going` : `${n[0]} y va`)
+                    : n.length === 2
+                      ? (lang === "en" ? `${n[0]} and ${n[1]} are going` : `${n[0]} et ${n[1]} y vont`)
+                      : (lang === "en" ? `${n[0]}, ${n[1]} +${n.length - 2} more are going` : `${n[0]}, ${n[1]} +${n.length - 2} autres y vont`);
+                  return (
+                    <div style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                      background: "#FFF8EC", border: `1px solid ${GOLD_FRAME}`, borderRadius: 20,
+                      padding: "7px 14px", marginBottom: 16,
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill={GOLD} style={{ flexShrink: 0 }} aria-hidden="true">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                      </svg>
+                      <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, color: NAVY, letterSpacing: 0.3 }}>{label}</span>
+                    </div>
+                  );
+                })()}
 
                 {/* Coeur */}
                 <div style={{ textAlign: "center", marginBottom: 14 }}>

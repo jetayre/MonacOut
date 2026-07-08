@@ -401,6 +401,7 @@ export default function App() {
       adminOverlay={showAdmin ? <AdminScreen onClose={() => setShowAdmin(false)} /> : null}
       contactEmail={notifConfig?.contactEmail || "contact@monacout.com"}
       auth={auth}
+      social={social}
       onShowAuth={() => setShowAuth(true)}
       pendingCount={social.pending?.length || 0}
     >
