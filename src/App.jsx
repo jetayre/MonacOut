@@ -407,6 +407,7 @@ export default function App() {
       {tab === "events" ? (
         <HomeScreen
           {...sharedProps}
+          userName={auth.profile?.display_name || ""}
           filter={homeFilter}
           onFilterChange={setHomeFilter}
           catFilters={catFilters}

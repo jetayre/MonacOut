@@ -137,7 +137,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0 }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "" }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -298,6 +298,18 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             </button>
           </div>
         </div>
+
+        {/* Salutation — « Bonjour, <prénom> » sous le logo quand connectée */}
+        {userName && (
+          <div style={{
+            background: WHITE, borderTop: `1px solid ${BORDER}`, textAlign: "center",
+            padding: "5px 12px",
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, letterSpacing: 0.5, color: NAVY,
+          }}>
+            {lang === "en" ? "Hi, " : "Bonjour, "}
+            <span style={{ color: "#C4A241", fontWeight: 600 }}>{userName}</span>
+          </div>
+        )}
 
         {/* Barre de recherche */}
         <div style={{
