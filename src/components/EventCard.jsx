@@ -438,13 +438,13 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
               alignSelf: "flex-start",
-              display: "inline-flex", alignItems: "center", gap: 4,
-              padding: "4px 8px",
+              display: "inline-flex", alignItems: "center", gap: 5,
+              padding: "6px 12px",
               border: `1px solid ${GOLD_FRAME}`,
               borderRadius: 1, background: "none", cursor: "pointer",
               fontFamily: "'Josefin Sans', sans-serif",
-              fontSize: 8, fontWeight: 600, letterSpacing: 0.8,
-              textTransform: "uppercase", color: GREY,
+              fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+              textTransform: "uppercase", color: "#0F1D3A",
             }}
           >
             {lang === "en" ? "Add to calendar" : "Ajouter au calendrier"}
