@@ -218,7 +218,7 @@ export default function App() {
 
   // Après connexion, si la personne n'a pas encore de profil (prénom) → on ouvre l'étape "prénom" automatiquement
   useEffect(() => {
-    if (!auth.loading && auth.user && !auth.profile) setShowAuth(true);
+    if (!auth.loading && auth.user && !auth.profile?.display_name) setShowAuth(true);
   }, [auth.loading, auth.user, auth.profile]);
 
   // Lien d'invitation partagé (?invite=xxx) : on mémorise le code pour l'appliquer après connexion

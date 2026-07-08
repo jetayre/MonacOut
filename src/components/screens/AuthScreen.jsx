@@ -21,7 +21,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
   ]
 
   // Si connecté mais sans profil → étape nom + sujets préférés (optionnel)
-  if (auth.user && !auth.profile) {
+  if (auth.user && !auth.profile?.display_name) {
     return (
       <div style={overlay}>
         <div style={card}>
