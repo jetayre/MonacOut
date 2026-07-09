@@ -1,14 +1,23 @@
 {
-  "generatedAt": "2026-07-08T22:51:08.315Z",
+  "generatedAt": "2026-07-09T15:38:17.810Z",
   "events": [
+    {
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "10h00",
+      "title": "GLOBAL CHAMPIONS ARABIANS TOUR MONACO",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🐴"
+    },
     {
       "date": "Ven 10 juil",
       "iso": "2026-07-10",
-      "time": "19h30",
-      "title": "HERCULIS DIAMOND LEAGUE",
-      "venue": "Stade Louis II",
-      "quarter": "Fontvieille",
-      "emoji": "🏃"
+      "time": "10h00",
+      "title": "GLOBAL CHAMPIONS ARABIANS TOUR MONACO — JOUR 2",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🐴"
     },
     {
       "date": "Jeu 9 juil",
@@ -29,13 +38,31 @@
       "emoji": "🏰"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "19h30",
-      "title": "WAKU DOKI COMPAGNIE HUMAINE MONACO DANCE FORUM",
-      "venue": "Salle Garnier",
-      "quarter": "Monte-Carlo",
-      "emoji": "💃"
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "Tous les jours",
+      "title": "MUSÉES DE MONACO",
+      "venue": "Les incontournables",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "Tous les jours",
+      "title": "SPAS & BIEN-ÊTRE DE MONACO",
+      "venue": "Les meilleurs spas",
+      "quarter": "Monaco",
+      "emoji": "💆"
+    },
+    {
+      "date": "Jeu 9 juil",
+      "iso": "2026-07-09",
+      "time": "18h00 — 20h30",
+      "title": "HAPPY HOURS DE MONACO",
+      "venue": "Les meilleurs afterworks",
+      "quarter": "Monaco",
+      "emoji": "🍸"
     },
     {
       "date": "Ven 10 juil",
@@ -45,33 +72,6 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⚡"
-    },
-    {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "09h00 — 18h00",
-      "title": "ENERGY BOAT CHALLENGE MONACO",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⚡"
-    },
-    {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
     }
   ]
 }
