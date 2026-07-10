@@ -188,6 +188,7 @@ export default function App() {
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
   const [inviteToast, setInviteToast] = useState(null);
   const [inviterName, setInviterName] = useState(null);
+  const [showInAppBanner, setShowInAppBanner] = useState(false);
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
@@ -234,9 +235,18 @@ export default function App() {
   // Lien d'invitation partagé (?invite=xxx) : on mémorise le code pour l'appliquer après connexion
   useEffect(() => {
     const inv = new URLSearchParams(window.location.search).get("invite");
-    if (inv) {
-      localStorage.setItem("monacout_pending_invite", inv.trim().toLowerCase());
-      window.history.replaceState({}, "", window.location.pathname + window.location.hash);
+    if (!inv) return;
+    localStorage.setItem("monacout_pending_invite", inv.trim().toLowerCase());
+    window.history.replaceState({}, "", window.location.pathname + window.location.hash);
+    // Navigateur intégré WhatsApp/Instagram : session Supabase absente → bannière Safari
+    const ua = navigator.userAgent || "";
+    const isInApp = !Capacitor.isNativePlatform() && /WhatsApp|Instagram|FBAN|FBAV|Twitter|Line\//.test(ua);
+    if (isInApp) {
+      if (supabase) {
+        supabase.from("profiles").select("display_name").eq("invite_code", inv.trim().toLowerCase()).single()
+          .then(({ data }) => { if (data?.display_name) setInviterName(data.display_name); });
+      }
+      setShowInAppBanner(true);
     }
   }, []);
 
@@ -481,6 +491,32 @@ export default function App() {
           </button>
           <button onClick={() => setShowNotifPrompt(false)} style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
             {lang === "en" ? "Later" : "Plus tard"}
+          </button>
+        </div>
+      </div>
+    )}
+
+    {/* Bannière in-app browser (WhatsApp/Instagram) : invite reçue mais session absente */}
+    {showInAppBanner && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 4000, background: "rgba(0,0,0,0.7)", display: "flex", alignItems: "flex-end" }}>
+        <div style={{ width: "100%", background: "#fff", borderRadius: "16px 16px 0 0", padding: "28px 24px 40px", textAlign: "center" }}>
+          <div style={{ fontSize: 36, marginBottom: 12 }}>🔗</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontWeight: 600, fontSize: 15, color: "#0F1D3A", letterSpacing: 1, textTransform: "uppercase", marginBottom: 10 }}>
+            {inviterName ? `${inviterName} t'invite sur Monac'Out !` : "Invitation Monac'Out"}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13.5, color: "#4A5568", lineHeight: 1.6, marginBottom: 20 }}>
+            {lang === "en"
+              ? "Open this link in Safari so you can connect with your friend."
+              : "Pour vous connecter, ouvre ce lien dans Safari.\nAppuie sur ⋯ puis « Ouvrir dans Safari »."}
+          </div>
+          <button
+            onClick={() => { window.open(window.location.origin + "?invite=" + (localStorage.getItem("monacout_pending_invite") || ""), "_blank"); }}
+            style={{ width: "100%", padding: "14px 0", background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 4, fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", cursor: "pointer", marginBottom: 10 }}
+          >
+            {lang === "en" ? "Open in Safari" : "Ouvrir dans Safari"}
+          </button>
+          <button onClick={() => setShowInAppBanner(false)} style={{ background: "none", border: "none", color: "#9AA0A6", fontFamily: "'Lato', sans-serif", fontSize: 13, cursor: "pointer" }}>
+            {lang === "en" ? "Dismiss" : "Ignorer"}
           </button>
         </div>
       </div>
