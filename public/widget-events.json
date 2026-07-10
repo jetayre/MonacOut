@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T15:38:17.810Z",
+  "generatedAt": "2026-07-10T07:04:07.324Z",
   "events": [
     {
       "date": "Jeu 9 juil",
@@ -20,22 +20,13 @@
       "emoji": "🐴"
     },
     {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "18h",
-      "title": "INCARNER LA PUISSANCE FÉMININE",
-      "venue": "Palais de la Scala",
-      "quarter": "Monte-Carlo",
-      "emoji": "✨"
-    },
-    {
-      "date": "Jeu 9 juil",
-      "iso": "2026-07-09",
-      "time": "21h30",
-      "title": "CONCERT AU PALAIS PHILIPPE JORDAN",
-      "venue": "Cour d'honneur",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏰"
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "09h00 — 18h00",
+      "title": "ENERGY BOAT CHALLENGE FINALE",
+      "venue": "Port Hercule",
+      "quarter": "Monaco",
+      "emoji": "⚡"
     },
     {
       "date": "Jeu 9 juil",
@@ -65,6 +56,15 @@
       "emoji": "🍸"
     },
     {
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "10h — 19h",
+      "title": "MONACO MÉDITERRANÉE JOUR 1",
+      "venue": "Galerie Diaghilev",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍋"
+    },
+    {
       "date": "Ven 10 juil",
       "iso": "2026-07-10",
       "time": "09h00 — 18h00",
@@ -72,6 +72,33 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⚡"
+    },
+    {
+      "date": "Ven 10 juil",
+      "iso": "2026-07-10",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Ven 10 juil",
+      "iso": "2026-07-10",
+      "time": "21h30",
+      "title": "LES TALENTS DU FORT",
+      "venue": "Théâtre du Fort Antoine",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎭"
+    },
+    {
+      "date": "Ven 10 juil",
+      "iso": "2026-07-10",
+      "time": "21h30",
+      "title": "THÉÂTRE FORT ANTOINE",
+      "venue": "Théâtre Fort Antoine",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎭"
     }
   ]
 }
