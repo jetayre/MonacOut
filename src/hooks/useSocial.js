@@ -127,7 +127,7 @@ export function useSocial(userId) {
     if (target.id === userId) return { error: 'C\'est ton propre code !' }
     const { error } = await supabase
       .from('friendships')
-      .insert({ requester_id: userId, addressee_id: target.id })
+      .insert({ requester_id: userId, addressee_id: target.id, status: 'accepted' })
     if (error?.code === '23505') return { error: 'Demande déjà envoyée' }
     if (error) return { error: error.message }
     await load()
