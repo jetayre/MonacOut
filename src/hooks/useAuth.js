@@ -40,13 +40,18 @@ export function useAuth() {
 
   async function sendMagicLink(email) {
     if (!supabase) return { error: 'Non configuré' }
-    // En natif, on redirige vers l'Universal Link https (jamais capacitor://localhost),
-    // sinon le lien magique ouvre "adresse invalide" dans Safari.
-    const emailRedirectTo = Capacitor.isNativePlatform() ? APP_URL : window.location.origin
+    // Sans emailRedirectTo → Supabase envoie un code OTP à 6 chiffres (pas de lien).
+    // Fonctionne dans Gmail, WhatsApp, tous les clients mail.
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo }
+      options: { shouldCreateUser: true }
     })
+    return { error }
+  }
+
+  async function verifyOtp(email, token) {
+    if (!supabase) return { error: 'Non configuré' }
+    const { error } = await supabase.auth.verifyOtp({ email, token, type: 'email' })
     return { error }
   }
 
@@ -75,5 +80,5 @@ export function useAuth() {
     return { ok: true }
   }
 
-  return { user, profile, loading, sendMagicLink, saveProfile, signOut, deleteAccount }
+  return { user, profile, loading, sendMagicLink, verifyOtp, saveProfile, signOut, deleteAccount }
 }

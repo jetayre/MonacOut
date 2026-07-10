@@ -6,7 +6,7 @@ const GOLD_FRAME = "#C9A96E"
 const BLUE = "#9FC3DC"
 
 export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = null }) {
-  const [step, setStep]         = useState('email') // email | sent | name
+  const [step, setStep]         = useState('email') // email | code | name
   const [email, setEmail]       = useState('')
   const [name, setName]         = useState('')
   const [topics, setTopics]     = useState([])
@@ -70,7 +70,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
     )
   }
 
-  if (step === 'sent') {
+  if (step === 'code') {
     return (
       <div style={overlay}>
         <div style={card}>
@@ -78,11 +78,37 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
             <button onClick={onClose} style={closeBtn}>✕</button>
             <div style={{ fontSize: 36, marginBottom: 14 }}>📬</div>
             <div style={title}>{lang === 'en' ? "Check your inbox" : "Vérifie ta boîte mail"}</div>
-            <div style={{ ...sub, marginBottom: 0 }}>
+            <div style={{ ...sub, marginBottom: 16 }}>
               {lang === 'en'
-                ? `We sent a magic link to ${email}. Tap it to log in.`
-                : `Un lien magique a été envoyé à ${email}. Clique dessus pour te connecter.`}
+                ? `Enter the 6-digit code sent to ${email}.`
+                : `Saisis le code à 6 chiffres envoyé à ${email}.`}
             </div>
+            <input
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={6}
+              value={name}
+              onChange={e => { setName(e.target.value.slice(0, 6)); setError('') }}
+              placeholder="123456"
+              style={{ ...input, textAlign: 'center', fontSize: 22, letterSpacing: 6 }}
+              autoFocus
+            />
+            {error && <div style={err}>{error}</div>}
+            <button
+              onClick={async () => {
+                if (name.length !== 6) return setError(lang === 'en' ? '6 digits required' : '6 chiffres requis')
+                setLoading(true)
+                const { error: e } = await auth.verifyOtp(email, name.trim())
+                setLoading(false)
+                if (e) setError(e.message || 'Code invalide')
+              }}
+              disabled={loading}
+              style={btn}
+            >{loading ? '…' : (lang === 'en' ? "Confirm" : "Confirmer")}</button>
+            <button onClick={() => { setStep('email'); setName(''); setError('') }} style={{ ...btn, background: 'transparent', color: NAVY, border: `1px solid ${GOLD_FRAME}`, marginTop: 8 }}>
+              {lang === 'en' ? "Change email" : "Changer d'email"}
+            </button>
           </div>
         </div>
       </div>
@@ -125,13 +151,13 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
               const { error: e } = await auth.sendMagicLink(email.trim())
               setLoading(false)
               if (e) setError(e.message || 'Erreur')
-              else setStep('sent')
+              else setStep('code')
             }}
             disabled={loading}
             style={btn}
-          >{loading ? '…' : (lang === 'en' ? "Send magic link" : "Recevoir un lien magique")}</button>
+          >{loading ? '…' : (lang === 'en' ? "Send code" : "Recevoir le code")}</button>
           <div style={{ fontSize: 11, color: '#888', fontFamily: "'Lato', sans-serif", textAlign: 'center', marginTop: 12 }}>
-            {lang === 'en' ? "No password needed." : "Pas de mot de passe."}
+            {lang === 'en' ? "A 6-digit code will be sent to your email." : "Un code à 6 chiffres sera envoyé par email."}
           </div>
         </div>
       </div>
