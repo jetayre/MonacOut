@@ -7,6 +7,7 @@ import FavoritesScreen from "./components/screens/FavoritesScreen";
 import AdminScreen from "./components/screens/AdminScreen";
 import FriendsScreen from "./components/screens/FriendsScreen";
 import AuthScreen from "./components/screens/AuthScreen";
+import WelcomeScreen from "./components/screens/WelcomeScreen";
 import { useAuth } from "./hooks/useAuth";
 import { useSocial } from "./hooks/useSocial";
 import { supabase } from "./lib/supabase";
@@ -181,6 +182,7 @@ export default function App() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
@@ -220,6 +222,14 @@ export default function App() {
   useEffect(() => {
     if (!auth.loading && auth.user && !auth.profile?.display_name) setShowAuth(true);
   }, [auth.loading, auth.user, auth.profile]);
+
+  // Écran d'accueil au 1er lancement — invite à se connecter, SANS jamais forcer.
+  useEffect(() => {
+    if (auth.loading || auth.user) return;
+    if (localStorage.getItem("monacout_welcomed") === "1") return;
+    if (localStorage.getItem("monacout_pending_invite")) return; // le flux invitation gère déjà l'écran
+    setShowWelcome(true);
+  }, [auth.loading, auth.user]);
 
   // Lien d'invitation partagé (?invite=xxx) : on mémorise le code pour l'appliquer après connexion
   useEffect(() => {
@@ -442,6 +452,13 @@ export default function App() {
           auth={auth}
           lang={lang}
           inviterName={inviterName}
+        />
+      )}
+      {showWelcome && (
+        <WelcomeScreen
+          lang={lang}
+          onLogin={() => { localStorage.setItem("monacout_welcomed", "1"); setShowWelcome(false); setShowAuth(true); }}
+          onExplore={() => { localStorage.setItem("monacout_welcomed", "1"); setShowWelcome(false); }}
         />
       )}
     </Shell>
