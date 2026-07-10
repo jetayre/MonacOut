@@ -125,11 +125,20 @@ export function useSocial(userId) {
       .single()
     if (!target) return { error: 'Code introuvable' }
     if (target.id === userId) return { error: 'C\'est ton propre code !' }
-    const { error } = await supabase
+    const { data: existing } = await supabase
       .from('friendships')
-      .insert({ requester_id: userId, addressee_id: target.id, status: 'accepted' })
-    if (error?.code === '23505') return { error: 'Demande déjà envoyée' }
-    if (error) return { error: error.message }
+      .select('id')
+      .or(`and(requester_id.eq.${userId},addressee_id.eq.${target.id}),and(requester_id.eq.${target.id},addressee_id.eq.${userId})`)
+      .maybeSingle()
+
+    if (existing) {
+      await supabase.from('friendships').update({ status: 'accepted' }).eq('id', existing.id)
+    } else {
+      const { error } = await supabase
+        .from('friendships')
+        .insert({ requester_id: userId, addressee_id: target.id, status: 'accepted' })
+      if (error) return { error: error.message }
+    }
     await load()
     return { name: target.display_name }
   }
