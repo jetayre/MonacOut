@@ -5,6 +5,7 @@ import App from './App.jsx'
 import posthog from 'posthog-js'
 import * as Sentry from '@sentry/react'
 import { Capacitor } from '@capacitor/core'
+import { CapacitorUpdater } from '@capgo/capacitor-updater'
 
 class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -43,6 +44,30 @@ Sentry.init({
 if (!Capacitor.isNativePlatform() && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+// ── Mises à jour d'interface à distance (OTA) — app native uniquement ──────────
+// Permet de changer l'interface SANS repasser par la review Apple.
+// Auto-hébergé : l'app lit public/capgo/latest.json sur le site (git push = publier).
+if (Capacitor.isNativePlatform()) {
+  // 1) Confirme que le bundle actuel démarre bien — sinon Capgo revient à la version précédente (anti-brique).
+  CapacitorUpdater.notifyAppReady().catch(() => {});
+  // 2) Cherche une nouvelle interface ; si dispo, la télécharge et l'applique au PROCHAIN lancement.
+  const OTA_MANIFEST = 'https://monac-out.vercel.app/capgo/latest.json';
+  window.addEventListener('load', () => {
+    (async () => {
+      try {
+        const res = await fetch(`${OTA_MANIFEST}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const { version, url } = await res.json();
+        if (!version || !url) return;                         // rien à publier
+        const cur = await CapacitorUpdater.current();
+        if (cur?.bundle?.version === version) return;         // déjà à jour
+        const bundle = await CapacitorUpdater.download({ version, url });
+        await CapacitorUpdater.next({ id: bundle.id });       // appliqué au prochain lancement
+      } catch { /* hors-ligne ou erreur → on garde la version intégrée */ }
+    })();
   });
 }
 
