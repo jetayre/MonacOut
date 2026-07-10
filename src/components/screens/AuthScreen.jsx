@@ -84,23 +84,23 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
             <div style={title}>{lang === 'en' ? "Enter your code" : "Entre ton code"}</div>
             <div style={sub}>
               {lang === 'en'
-                ? `We emailed a 6-digit code to ${email}. Type it below.`
-                : `Un code à 6 chiffres a été envoyé à ${email}. Saisis-le ci-dessous.`}
+                ? `We emailed a code to ${email}. Type it below.`
+                : `Un code a été envoyé à ${email}. Saisis-le ci-dessous.`}
             </div>
             <input
               value={code}
-              onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 6)); setError('') }}
-              placeholder="000000"
+              onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
+              placeholder="Ton code"
               inputMode="numeric"
               autoComplete="one-time-code"
-              maxLength={6}
-              style={{ ...input, textAlign: 'center', letterSpacing: 10, fontSize: 24, fontWeight: 600 }}
+              maxLength={10}
+              style={{ ...input, textAlign: 'center', letterSpacing: 6, fontSize: 22, fontWeight: 600 }}
               autoFocus
             />
             {error && <div style={err}>{error}</div>}
             <button
               onClick={async () => {
-                if (code.length < 6) return setError(lang === 'en' ? 'Enter the 6 digits' : 'Saisis les 6 chiffres')
+                if (code.length < 4) return setError(lang === 'en' ? 'Enter your code' : 'Saisis ton code')
                 setLoading(true)
                 const { error: e } = await auth.verifyCode(email.trim(), code)
                 setLoading(false)
