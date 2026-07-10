@@ -18,24 +18,19 @@ export function useSocial(userId) {
       .eq('incognito', false)
     setMyParticipations((parts || []).map(p => p.event_id))
 
-    // Mes amis acceptés
+    // Toutes les connexions (pending ou accepted = ami immédiat via lien)
     const { data: friendships } = await supabase
       .from('friendships')
       .select('requester_id, addressee_id, status')
       .or(`requester_id.eq.${userId},addressee_id.eq.${userId}`)
-      .eq('status', 'accepted')
 
-    const friendIds = (friendships || []).map(f =>
+    const friendIds = [...new Set((friendships || []).map(f =>
       f.requester_id === userId ? f.addressee_id : f.requester_id
-    )
+    ))]
 
-    // Demandes en attente reçues
-    const { data: pendingReqs } = await supabase
-      .from('friendships')
-      .select('requester_id, id')
-      .eq('addressee_id', userId)
-      .eq('status', 'pending')
-    const pendingIds = (pendingReqs || []).map(r => r.requester_id)
+    // Demandes en attente reçues (pour UI optionnel)
+    const pendingReqs = []
+    const pendingIds = []
 
     // Profils des amis et demandeurs
     const allIds = [...new Set([...friendIds, ...pendingIds])]
@@ -125,20 +120,10 @@ export function useSocial(userId) {
       .single()
     if (!target) return { error: 'Code introuvable' }
     if (target.id === userId) return { error: 'C\'est ton propre code !' }
-    const { data: existing } = await supabase
+    const { error } = await supabase
       .from('friendships')
-      .select('id')
-      .or(`and(requester_id.eq.${userId},addressee_id.eq.${target.id}),and(requester_id.eq.${target.id},addressee_id.eq.${userId})`)
-      .maybeSingle()
-
-    if (existing) {
-      await supabase.from('friendships').update({ status: 'accepted' }).eq('id', existing.id)
-    } else {
-      const { error } = await supabase
-        .from('friendships')
-        .insert({ requester_id: userId, addressee_id: target.id, status: 'accepted' })
-      if (error) return { error: error.message }
-    }
+      .insert({ requester_id: userId, addressee_id: target.id })
+    if (error && error.code !== '23505') return { error: error.message }
     await load()
     return { name: target.display_name }
   }
