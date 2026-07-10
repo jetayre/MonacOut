@@ -80,24 +80,25 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
             <div style={title}>{lang === 'en' ? "Check your inbox" : "Vérifie ta boîte mail"}</div>
             <div style={{ ...sub, marginBottom: 16 }}>
               {lang === 'en'
-                ? `Enter the 6-digit code sent to ${email}.`
-                : `Saisis le code à 6 chiffres envoyé à ${email}.`}
+                ? `Enter the code sent to ${email}.`
+                : `Saisis le code envoyé à ${email}.`}
             </div>
             <input
-              type="number"
+              type="text"
               inputMode="numeric"
+              autoComplete="one-time-code"
               pattern="[0-9]*"
-              maxLength={6}
+              maxLength={8}
               value={name}
-              onChange={e => { setName(e.target.value.slice(0, 6)); setError('') }}
-              placeholder="123456"
+              onChange={e => { setName(e.target.value.replace(/\D/g, '').slice(0, 8)); setError('') }}
+              placeholder="12345678"
               style={{ ...input, textAlign: 'center', fontSize: 22, letterSpacing: 6 }}
               autoFocus
             />
             {error && <div style={err}>{error}</div>}
             <button
               onClick={async () => {
-                if (name.length !== 6) return setError(lang === 'en' ? '6 digits required' : '6 chiffres requis')
+                if (name.length < 6) return setError(lang === 'en' ? 'Code required' : 'Code requis')
                 setLoading(true)
                 const { error: e } = await auth.verifyOtp(email, name.trim())
                 setLoading(false)
@@ -157,7 +158,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
             style={btn}
           >{loading ? '…' : (lang === 'en' ? "Send code" : "Recevoir le code")}</button>
           <div style={{ fontSize: 11, color: '#888', fontFamily: "'Lato', sans-serif", textAlign: 'center', marginTop: 12 }}>
-            {lang === 'en' ? "A 6-digit code will be sent to your email." : "Un code à 6 chiffres sera envoyé par email."}
+            {lang === 'en' ? "A code will be sent to your email." : "Un code sera envoyé par email."}
           </div>
         </div>
       </div>
