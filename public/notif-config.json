@@ -9,5 +9,5 @@
   "_contactEmail": "Adresse qui reçoit les propositions d'événements (bouton « Proposer un événement »). Modifiable ici sans repasser par Apple.",
   "contactEmail": "eventsmonacout@gmail.com",
   "_latestVersion": "Dernière version publiée sur l'App Store. Bumper cette valeur (ex: 1.8) après avoir publié une nouvelle version → les apps plus anciennes afficheront un bandeau « Mettre à jour ». git push suffit, pas besoin de repasser par Apple.",
-  "latestVersion": "1.7"
+  "latestVersion": "2.0"
 }

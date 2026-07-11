@@ -38,20 +38,20 @@ export function useAuth() {
     setLoading(false)
   }
 
-  async function sendMagicLink(email) {
+  // Envoie un CODE à 6 chiffres par email (pas de lien magique → pas de page blanche, pas de redirection).
+  async function sendCode(email) {
     if (!supabase) return { error: 'Non configuré' }
-    // Sans emailRedirectTo → Supabase envoie un code OTP à 6 chiffres (pas de lien).
-    // Fonctionne dans Gmail, WhatsApp, tous les clients mail.
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { shouldCreateUser: true }
+      options: { shouldCreateUser: true },
     })
     return { error }
   }
 
-  async function verifyOtp(email, token) {
+  // Vérifie le code saisi → ouvre la session.
+  async function verifyCode(email, token) {
     if (!supabase) return { error: 'Non configuré' }
-    const { error } = await supabase.auth.verifyOtp({ email, token, type: 'email' })
+    const { error } = await supabase.auth.verifyOtp({ email, token: String(token).trim(), type: 'email' })
     return { error }
   }
 
@@ -80,5 +80,5 @@ export function useAuth() {
     return { ok: true }
   }
 
-  return { user, profile, loading, sendMagicLink, verifyOtp, saveProfile, signOut, deleteAccount }
+  return { user, profile, loading, sendCode, verifyCode, saveProfile, signOut, deleteAccount }
 }

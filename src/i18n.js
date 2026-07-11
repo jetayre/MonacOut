@@ -65,6 +65,7 @@ const CAT_EN = {
   "SPORT": "SPORT", "ATELIER": "WORKSHOP", "DANSE": "DANCE", "BIEN-ÊTRE": "WELLNESS",
   "BRUNCH": "BRUNCH", "APÉRO": "DRINKS", "SOIRÉE": "NIGHTLIFE", "ENCHÈRES": "AUCTION",
   "MARCHÉ": "MARKET", "FÊTE NATIONALE": "NATIONAL DAY",
+  "MISE À JOUR": "UPDATE",
 };
 
 const DAY_EN = { Dim: "Sun", Lun: "Mon", Mar: "Tue", Mer: "Wed", Jeu: "Thu", Ven: "Fri", Sam: "Sat" };
@@ -84,6 +85,7 @@ export function localizeDate(dateStr, lang) {
 // compositeurs / opéras (Mozart, Grace Kelly, Larvotto, Cyrano…).
 
 const TITLE_PHRASES = [
+  ["METS À JOUR", "PLEASE UPDATE"],
   ["MESSE DIMANCHE", "SUNDAY MASS"], ["MESSE DOMINICALE", "SUNDAY MASS"],
   ["MESSE LUNDI", "MONDAY MASS"], ["MESSE MARDI", "TUESDAY MASS"],
   ["MESSE MERCREDI", "WEDNESDAY MASS"], ["MESSE JEUDI", "THURSDAY MASS"],

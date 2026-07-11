@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T19:16:05.092Z",
+  "generatedAt": "2026-07-11T19:16:50.838Z",
   "events": [
     {
       "date": "Sam 11 juil",
@@ -9,15 +9,6 @@
       "venue": "Port Hercule",
       "quarter": "Monaco",
       "emoji": "⚡"
-    },
-    {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "21h00",
-      "title": "GALA FIGHT AIDS MONACO",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "❤️"
     },
     {
       "date": "Sam 11 juil",
@@ -36,6 +27,15 @@
       "venue": "Salle Garnier",
       "quarter": "Monte-Carlo",
       "emoji": "💃"
+    },
+    {
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "08h00 — 09h00",
+      "title": "METS À JOUR MONAC'OUT VERSION 2.0",
+      "venue": "App Store",
+      "quarter": "Monaco",
+      "emoji": "✨"
     },
     {
       "date": "Sam 11 juil",
