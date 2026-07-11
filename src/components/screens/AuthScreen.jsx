@@ -6,8 +6,9 @@ const GOLD_FRAME = "#C9A96E"
 const BLUE = "#9FC3DC"
 
 export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = null }) {
-  const [step, setStep]         = useState('email') // email | code | name
+  const [step, setStep]         = useState('email') // email | sent | name
   const [email, setEmail]       = useState('')
+  const [showCode, setShowCode] = useState(false)
   const [code, setCode]         = useState('')
   const [name, setName]         = useState('')
   const [topics, setTopics]     = useState([])
@@ -74,43 +75,68 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
     )
   }
 
-  if (step === 'code') {
+  if (step === 'sent') {
     return (
       <div style={overlay}>
         <div style={card}>
           <div style={inner}>
             <button onClick={onClose} style={closeBtn}>✕</button>
-            <div style={{ fontSize: 36, marginBottom: 14 }}>📬</div>
-            <div style={title}>{lang === 'en' ? "Check your inbox" : "Vérifie ta boîte mail"}</div>
-            <div style={{ ...sub, marginBottom: 8 }}>
+            <div style={{ fontSize: 48, marginBottom: 14 }}>📬</div>
+            <div style={title}>{lang === 'en' ? "Check your inbox!" : "Vérifie ta boîte mail !"}</div>
+            <div style={{ ...sub, marginBottom: 20 }}>
               {lang === 'en'
-                ? <>Email sent to <strong>{email}</strong>.<br/>Click the link — or enter the code below.</>
-                : <>Email envoyé à <strong>{email}</strong>.<br/>Clique sur le lien — ou saisis le code ci-dessous.</>}
+                ? <>We sent a link to <strong>{email}</strong>.<br/>Tap it — you're in.</>
+                : <>On a envoyé un lien à <strong>{email}</strong>.<br/>Clique dessus — c'est tout.</>}
             </div>
-            <input
-              value={code}
-              onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
-              placeholder={lang === 'en' ? 'Code (fallback)' : 'Code (si pas de lien)'}
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              maxLength={10}
-              style={{ ...input, textAlign: 'center', letterSpacing: 4, fontSize: 18, fontWeight: 600 }}
-            />
-            {error && <div style={err}>{error}</div>}
+            {!showCode && (
+              <button
+                onClick={async () => {
+                  setLoading(true)
+                  await auth.sendCode(email.trim())
+                  setLoading(false)
+                }}
+                disabled={loading}
+                style={{ ...btn, background: 'transparent', color: NAVY, border: `1px solid ${GOLD_FRAME}` }}
+              >{loading ? '…' : (lang === 'en' ? 'Resend' : 'Renvoyer le lien')}</button>
+            )}
+            {!showCode && (
+              <button
+                onClick={() => setShowCode(true)}
+                style={{ width: '100%', padding: 8, background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 11, marginTop: 8 }}
+              >{lang === 'en' ? "I didn't receive the email" : "Je n'ai pas reçu l'email"}</button>
+            )}
+            {showCode && (
+              <>
+                <div style={{ fontSize: 12, color: '#888', fontFamily: "'Lato', sans-serif", marginBottom: 8 }}>
+                  {lang === 'en' ? 'Enter the code from the email:' : 'Saisis le code reçu par email :'}
+                </div>
+                <input
+                  value={code}
+                  onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
+                  placeholder="00000000"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  maxLength={10}
+                  style={{ ...input, textAlign: 'center', letterSpacing: 4, fontSize: 20, fontWeight: 600 }}
+                  autoFocus
+                />
+                {error && <div style={err}>{error}</div>}
+                <button
+                  onClick={async () => {
+                    if (code.length < 4) return setError(lang === 'en' ? 'Enter your code' : 'Saisis ton code')
+                    setLoading(true)
+                    const { error: e } = await auth.verifyCode(email.trim(), code)
+                    setLoading(false)
+                    if (e) setError(lang === 'en' ? 'Wrong or expired code' : 'Code incorrect ou expiré')
+                  }}
+                  disabled={loading}
+                  style={btn}
+                >{loading ? '…' : (lang === 'en' ? 'Confirm' : 'Valider')}</button>
+              </>
+            )}
             <button
-              onClick={async () => {
-                if (code.length < 4) return setError(lang === 'en' ? 'Enter your code' : 'Saisis ton code')
-                setLoading(true)
-                const { error: e } = await auth.verifyCode(email.trim(), code)
-                setLoading(false)
-                if (e) setError(lang === 'en' ? 'Wrong or expired code' : 'Code incorrect ou expiré')
-              }}
-              disabled={loading}
-              style={btn}
-            >{loading ? '…' : (lang === 'en' ? "Confirm code" : "Valider le code")}</button>
-            <button
-              onClick={() => { setStep('email'); setCode(''); setError('') }}
-              style={{ width: '100%', padding: 8, background: 'none', color: '#888', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 12, marginTop: 4 }}
+              onClick={() => { setStep('email'); setCode(''); setShowCode(false); setError('') }}
+              style={{ width: '100%', padding: 8, background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 11, marginTop: 4 }}
             >{lang === 'en' ? "‹ Change email" : "‹ Changer d'email"}</button>
           </div>
         </div>
@@ -154,7 +180,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
               const { error: e } = await auth.sendCode(email.trim())
               setLoading(false)
               if (e) setError(e.message || 'Erreur')
-              else setStep('code')
+              else setStep('sent')
             }}
             disabled={loading}
             style={btn}
