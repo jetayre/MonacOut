@@ -1,24 +1,6 @@
 {
-  "generatedAt": "2026-07-10T16:32:12.315Z",
+  "generatedAt": "2026-07-11T05:11:35.770Z",
   "events": [
-    {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "10h00",
-      "title": "GLOBAL CHAMPIONS ARABIANS TOUR MONACO — JOUR 2",
-      "venue": "Port Hercule",
-      "quarter": "La Condamine",
-      "emoji": "🐴"
-    },
-    {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "19h30",
-      "title": "HERCULIS DIAMOND LEAGUE",
-      "venue": "Stade Louis II",
-      "quarter": "Fontvieille",
-      "emoji": "🏃"
-    },
     {
       "date": "Sam 11 juil",
       "iso": "2026-07-11",
@@ -29,8 +11,26 @@
       "emoji": "⚡"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "21h00",
+      "title": "GALA FIGHT AIDS MONACO",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "❤️"
+    },
+    {
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "10h — 19h",
+      "title": "MONACO MÉDITERRANÉE JOUR 1",
+      "venue": "Galerie Diaghilev",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍋"
+    },
+    {
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
       "time": "19h30",
       "title": "WAKU DOKI COMPAGNIE HUMAINE MONACO DANCE FORUM",
       "venue": "Salle Garnier",
@@ -38,17 +38,17 @@
       "emoji": "💃"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "09h00 — 18h00",
-      "title": "ENERGY BOAT CHALLENGE DAY 3",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⚡"
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "19h00 — 21h30",
+      "title": "CACAO CEREMONY & BREATHWORK",
+      "venue": "Aritual",
+      "quarter": "Monte-Carlo",
+      "emoji": "🔮"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -56,22 +56,22 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "21h30",
-      "title": "LES TALENTS DU FORT",
-      "venue": "Théâtre du Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎭"
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
     },
     {
-      "date": "Ven 10 juil",
-      "iso": "2026-07-10",
-      "time": "21h30",
-      "title": "THÉÂTRE FORT ANTOINE",
-      "venue": "Théâtre Fort Antoine",
-      "quarter": "Monaco-Ville",
-      "emoji": "🎭"
+      "date": "Sam 11 juil",
+      "iso": "2026-07-11",
+      "time": "10h00 — 12h00",
+      "title": "ATELIER RECYCLAGE CRÉATIF",
+      "venue": "A Fàbrica",
+      "quarter": "Monaco",
+      "emoji": "🌍"
     }
   ]
 }
