@@ -5,18 +5,25 @@ const GOLD = "#C4A241"
 const GOLD_FRAME = "#C9A96E"
 const BLUE = "#9FC3DC"
 
+const PENDING_KEY = 'monacout_pending_login_email'
+
 export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = null }) {
-  const [step, setStep]         = useState('email') // email | sent | name
-  const [email, setEmail]       = useState('')
-  const [showCode, setShowCode] = useState(false)
+  // Si un code est déjà en attente (on a quitté l'app pour lire le mail) → on rouvre PILE sur l'écran code.
+  const pending = (typeof localStorage !== 'undefined' && !auth.user) ? localStorage.getItem(PENDING_KEY) : null
+  const [step, setStep]         = useState(pending ? 'code' : 'email') // email | code | name
+  const [email, setEmail]       = useState(pending || '')
   const [code, setCode]         = useState('')
   const [name, setName]         = useState('')
   const [topics, setTopics]     = useState([])
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
 
+  const clearPending = () => { try { localStorage.removeItem(PENDING_KEY) } catch { /* rien */ } }
+  // Fermer = on abandonne la connexion en cours → on oublie le code en attente.
+  const handleClose = () => { clearPending(); onClose?.() }
+
   // Referme automatiquement dès que la personne est connectée avec un prénom.
-  useEffect(() => { if (auth.user && auth.profile?.display_name) onClose() }, [auth.user, auth.profile])
+  useEffect(() => { if (auth.user && auth.profile?.display_name) { clearPending(); onClose() } }, [auth.user, auth.profile])
 
   const TOPICS = [
     { id: 'culture',   fr: 'Culture / Ateliers', en: 'Culture / Workshops' },
@@ -25,13 +32,13 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
     { id: 'sport',     fr: 'Sport',              en: 'Sport' },
   ]
 
-  // Si connecté mais sans profil → étape nom + sujets préférés (optionnel)
+  // ── Étape prénom (nouveau compte) ──
   if (auth.user && !auth.profile?.display_name) {
     return (
       <div style={overlay}>
         <div style={card}>
           <div style={inner}>
-            <button onClick={onClose} style={closeBtn}>✕</button>
+            <button onClick={handleClose} style={closeBtn}>✕</button>
             <div style={title}>{lang === 'en' ? "Welcome!" : "Bienvenue !"}</div>
             <div style={sub}>{lang === 'en' ? "How should we call you?" : "Comment tu t'appelles ?"}</div>
             <input
@@ -75,68 +82,62 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
     )
   }
 
-  if (step === 'sent') {
+  // ── Étape code (champ visible directement + garde l'écran au retour du mail) ──
+  if (step === 'code') {
     return (
       <div style={overlay}>
         <div style={card}>
           <div style={inner}>
-            <button onClick={onClose} style={closeBtn}>✕</button>
-            <div style={{ fontSize: 48, marginBottom: 14 }}>📬</div>
-            <div style={title}>{lang === 'en' ? "Check your inbox!" : "Vérifie ta boîte mail !"}</div>
-            <div style={{ ...sub, marginBottom: 20 }}>
+            <button onClick={handleClose} style={closeBtn}>✕</button>
+            <div style={{ fontSize: 36, marginBottom: 10 }}>📩</div>
+            <div style={title}>{lang === 'en' ? "Enter your code" : "Entre ton code"}</div>
+            <div style={sub}>
               {lang === 'en'
-                ? <>We sent a link to <strong>{email}</strong>.<br/>Tap it — you're in.</>
-                : <>On a envoyé un lien à <strong>{email}</strong>.<br/>Clique dessus — c'est tout.</>}
+                ? <>Open your email <b style={{ color: NAVY }}>{email}</b>, come back here and type the code.</>
+                : <>Va lire ton email <b style={{ color: NAVY }}>{email}</b>, reviens ici et tape le code.</>}
             </div>
-            {!showCode && (
-              <button
-                onClick={async () => {
-                  setLoading(true)
-                  await auth.sendCode(email.trim())
-                  setLoading(false)
-                }}
-                disabled={loading}
-                style={{ ...btn, background: 'transparent', color: NAVY, border: `1px solid ${GOLD_FRAME}` }}
-              >{loading ? '…' : (lang === 'en' ? 'Resend' : 'Renvoyer le lien')}</button>
-            )}
-            {!showCode && (
-              <button
-                onClick={() => setShowCode(true)}
-                style={{ width: '100%', padding: 8, background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 11, marginTop: 8 }}
-              >{lang === 'en' ? "I didn't receive the email" : "Je n'ai pas reçu l'email"}</button>
-            )}
-            {showCode && (
-              <>
-                <div style={{ fontSize: 12, color: '#888', fontFamily: "'Lato', sans-serif", marginBottom: 8 }}>
-                  {lang === 'en' ? 'Enter the code from the email:' : 'Saisis le code reçu par email :'}
-                </div>
-                <input
-                  value={code}
-                  onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
-                  placeholder="00000000"
-                  inputMode="numeric"
-                  autoComplete="one-time-code"
-                  maxLength={10}
-                  style={{ ...input, textAlign: 'center', letterSpacing: 4, fontSize: 20, fontWeight: 600 }}
-                  autoFocus
-                />
-                {error && <div style={err}>{error}</div>}
-                <button
-                  onClick={async () => {
-                    if (code.length < 4) return setError(lang === 'en' ? 'Enter your code' : 'Saisis ton code')
-                    setLoading(true)
-                    const { error: e } = await auth.verifyCode(email.trim(), code)
-                    setLoading(false)
-                    if (e) setError(lang === 'en' ? 'Wrong or expired code' : 'Code incorrect ou expiré')
-                  }}
-                  disabled={loading}
-                  style={btn}
-                >{loading ? '…' : (lang === 'en' ? 'Confirm' : 'Valider')}</button>
-              </>
-            )}
+            <input
+              value={code}
+              onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
+              placeholder="– – – – – –"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              maxLength={10}
+              style={{ ...input, textAlign: 'center', letterSpacing: 8, fontSize: 26, fontWeight: 700, marginBottom: 6 }}
+              autoFocus
+            />
             <button
-              onClick={() => { setStep('email'); setCode(''); setShowCode(false); setError('') }}
-              style={{ width: '100%', padding: 8, background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 11, marginTop: 4 }}
+              type="button"
+              onClick={async () => {
+                try {
+                  const t = await navigator.clipboard.readText()
+                  const digits = (t || '').replace(/\D/g, '').slice(0, 10)
+                  if (digits) { setCode(digits); setError('') }
+                } catch { /* presse-papier indisponible */ }
+              }}
+              style={{ width: '100%', padding: 8, marginBottom: 6, background: 'none', color: GOLD, border: 'none', cursor: 'pointer', fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1 }}
+            >{lang === 'en' ? "📋 Paste the code" : "📋 Coller le code"}</button>
+            {error && <div style={err}>{error}</div>}
+            <button
+              onClick={async () => {
+                if (code.length < 4) return setError(lang === 'en' ? 'Enter your code' : 'Saisis ton code')
+                setLoading(true)
+                const { error: e } = await auth.verifyCode(email.trim(), code)
+                setLoading(false)
+                if (e) setError(lang === 'en' ? 'Wrong or expired code' : 'Code incorrect ou expiré')
+                else clearPending()
+                // succès → auth.user se met à jour, l'écran passe au prénom ou se referme
+              }}
+              disabled={loading}
+              style={btn}
+            >{loading ? '…' : (lang === 'en' ? "Confirm" : "Confirmer")}</button>
+            <button
+              onClick={async () => { setLoading(true); await auth.sendCode(email.trim()); setLoading(false); setError(lang === 'en' ? 'New code sent ✓' : 'Nouveau code envoyé ✓') }}
+              style={{ width: '100%', padding: 8, background: 'none', color: '#888', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 12, marginTop: 2 }}
+            >{lang === 'en' ? "Resend the code" : "Renvoyer le code"}</button>
+            <button
+              onClick={() => { clearPending(); setStep('email'); setCode(''); setError('') }}
+              style={{ width: '100%', padding: 6, background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 11 }}
             >{lang === 'en' ? "‹ Change email" : "‹ Changer d'email"}</button>
           </div>
         </div>
@@ -144,11 +145,12 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
     )
   }
 
+  // ── Étape email (départ) ──
   return (
     <div style={overlay}>
       <div style={card}>
         <div style={inner}>
-          <button onClick={onClose} style={closeBtn}>✕</button>
+          <button onClick={handleClose} style={closeBtn}>✕</button>
           <div style={{ fontSize: 36, marginBottom: 14 }}>{inviterName ? '💌' : '👥'}</div>
           <div style={title}>
             {inviterName
@@ -180,13 +182,13 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
               const { error: e } = await auth.sendCode(email.trim())
               setLoading(false)
               if (e) setError(e.message || 'Erreur')
-              else setStep('sent')
+              else { try { localStorage.setItem(PENDING_KEY, email.trim()) } catch { /* rien */ } setStep('code') }
             }}
             disabled={loading}
             style={btn}
           >{loading ? '…' : (lang === 'en' ? "Get my code" : "Recevoir mon code")}</button>
           <div style={{ fontSize: 11, color: '#888', fontFamily: "'Lato', sans-serif", textAlign: 'center', marginTop: 12 }}>
-            {lang === 'en' ? "A code will be sent to your email." : "Un code sera envoyé par email."}
+            {lang === 'en' ? "A 6-digit code will be sent to your email." : "Un code à 6 chiffres sera envoyé par email."}
           </div>
         </div>
       </div>
