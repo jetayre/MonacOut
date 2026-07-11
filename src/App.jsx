@@ -270,6 +270,12 @@ export default function App() {
     if (!auth.loading && auth.user && !auth.profile?.display_name) setShowAuth(true);
   }, [auth.loading, auth.user, auth.profile]);
 
+  // Si un code de connexion est en attente (on a quitté l'app pour lire le mail) → on rouvre l'écran (qui s'ouvre pile sur l'écran code)
+  useEffect(() => {
+    if (auth.loading || auth.user) return;
+    try { if (localStorage.getItem("monacout_pending_login_email")) setShowAuth(true); } catch { /* rien */ }
+  }, [auth.loading, auth.user]);
+
   // Écran d'accueil au 1er lancement — invite à se connecter, SANS jamais forcer.
   useEffect(() => {
     if (auth.loading || auth.user) return;
