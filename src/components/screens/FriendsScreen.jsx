@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
 import AuthScreen from './AuthScreen'
@@ -48,6 +48,16 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   const [code, setCode]         = useState(initialInviteCode || '')
   const [codeMsg, setCodeMsg]   = useState('')
   const [showAuth, setShowAuth] = useState(false)
+
+  // Auto-connexion : dès qu'on est connecté avec un profil, le lien d'invitation crée l'amitié SANS clic.
+  const inviteDoneRef = useRef(false)
+  useEffect(() => {
+    if (inviteDoneRef.current) return
+    if (!initialInviteCode || !auth.user || !auth.profile?.invite_code) return
+    if (String(initialInviteCode).trim().toLowerCase() === String(auth.profile.invite_code).toLowerCase()) return
+    inviteDoneRef.current = true
+    Promise.resolve(social.addFriendByCode(initialInviteCode)).then(() => onInviteConsumed?.())
+  }, [initialInviteCode, auth.user, auth.profile])
 
   if (!auth.user) {
     const STRIPE_BG_LOGIN = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)"

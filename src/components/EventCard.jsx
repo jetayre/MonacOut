@@ -226,7 +226,7 @@ function FriendAvatars({ friends = [] }) {
   )
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [] }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth }) {
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
   const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
@@ -395,6 +395,22 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     : (lang === "en" ? `${friendsGoing.length} friends` : `${friendsGoing.length} amis`)}
                 </span>
               </div>
+            ) : !loggedIn ? (
+              <button
+                onClick={e => { e.stopPropagation(); onShowAuth && onShowAuth(); }}
+                title={lang === "en" ? "See which friends are going" : "Vois quels amis y vont"}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 5,
+                  background: "#FFF8EC", border: `1px solid ${GOLD_FRAME}`,
+                  borderRadius: 20, padding: "3px 10px 3px 7px", cursor: "pointer",
+                }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#C4A241" style={{ flexShrink: 0 }} aria-hidden="true">
+                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                </svg>
+                <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, color: "#C4A241", letterSpacing: 0.3, whiteSpace: "nowrap" }}>
+                  {lang === "en" ? "Friends?" : "Amis ?"}
+                </span>
+              </button>
             ) : (
               <div style={{ display: "inline-flex", alignItems: "center" }}
                 title={lang === "en" ? "No friends going yet" : "Aucun ami inscrit pour l'instant"}>

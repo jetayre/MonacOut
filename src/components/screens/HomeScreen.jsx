@@ -137,7 +137,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "" }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "", loggedIn = false, onShowAuth }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -411,6 +411,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               onGoingClick={onGoingClick}
               isGoing={social?.myParticipations?.includes(e.id) ?? false}
               friendsGoing={social ? social.friendsGoingTo(e.id) : []}
+              loggedIn={loggedIn}
+              onShowAuth={onShowAuth}
             />
           ))
         )}

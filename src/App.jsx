@@ -129,6 +129,40 @@ async function scheduleDigest(events, favorites, config, topics) {
   if (toSchedule.length) await LocalNotifications.schedule({ notifications: toSchedule });
 }
 
+// ── Rappel « veille d'événement » pour chaque favori ──────────────────────────
+// La veille à 18h : « Demain : [titre] · [lieu] ». Le levier de rétention le plus fort.
+const FAV_ID_BASE = 91000;
+const MAX_FAV_IDS = 60;
+async function scheduleFavoriteReminders(events, favorites) {
+  if (!Capacitor.isNativePlatform()) return;
+  const perm = await LocalNotifications.checkPermissions();
+  if (perm.display !== 'granted') return;
+  const old = Array.from({ length: MAX_FAV_IDS }, (_, i) => ({ id: FAV_ID_BASE + i }));
+  try { await LocalNotifications.cancel({ notifications: old }); } catch { /* rien à annuler */ }
+  const now = new Date();
+  const favEvents = events.filter(e => favorites.includes(e.id));
+  const toSchedule = [];
+  let idx = 0;
+  for (const e of favEvents) {
+    if (idx >= MAX_FAV_IDS) break;
+    const d = parseForNotif(e);
+    if (!d) continue;
+    const at = new Date(d); at.setDate(d.getDate() - 1); at.setHours(18, 0, 0, 0);
+    if (at <= now) continue;                       // ne jamais programmer dans le passé
+    const titre = e.title.replace(/\n/g, ' ');
+    const lieu = e.subtitle ? e.subtitle.split(' · ')[0] : '';
+    const heure = (e.time || '').split(/[—–-]/)[0].trim();
+    toSchedule.push({
+      id: FAV_ID_BASE + idx,
+      title: 'Demain à Monaco ✨',
+      body: `${titre}${lieu ? ' · ' + lieu : ''}${/\d/.test(heure) ? ' · ' + heure : ''}`,
+      schedule: { at },
+    });
+    idx++;
+  }
+  if (toSchedule.length) await LocalNotifications.schedule({ notifications: toSchedule });
+}
+
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
@@ -195,7 +229,7 @@ export default function App() {
   const engageRef = useRef(0);
   const eventLinkRef = useRef(false);
 
-  useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); }, [events, favorites, notifConfig, auth.profile]);
+  useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
@@ -386,7 +420,7 @@ export default function App() {
     if (Capacitor.isNativePlatform()) {
       try {
         const perm = await LocalNotifications.requestPermissions();
-        if (perm.display === "granted") scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics);
+        if (perm.display === "granted") { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); }
       } catch { /* ignore */ }
     } else if ("Notification" in window) {
       try { await Notification.requestPermission(); } catch { /* ignore */ }
@@ -411,7 +445,7 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events, social, onGoingClick: handleGoingClick };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events, social, onGoingClick: handleGoingClick, loggedIn: !!auth.user, onShowAuth: () => setShowAuth(true) };
 
   return (
     <>
