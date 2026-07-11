@@ -38,12 +38,15 @@ export function useAuth() {
     setLoading(false)
   }
 
-  // Envoie un CODE à 6 chiffres par email (pas de lien magique → pas de page blanche, pas de redirection).
+  // Envoie un lien magique (clic = connecté) + code en secours dans le même email.
   async function sendCode(email) {
     if (!supabase) return { error: 'Non configuré' }
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { shouldCreateUser: true },
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: 'https://monac-out.vercel.app',
+      },
     })
     return { error }
   }

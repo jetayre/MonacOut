@@ -80,22 +80,21 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
         <div style={card}>
           <div style={inner}>
             <button onClick={onClose} style={closeBtn}>✕</button>
-            <div style={{ fontSize: 36, marginBottom: 14 }}>🔑</div>
-            <div style={title}>{lang === 'en' ? "Enter your code" : "Entre ton code"}</div>
-            <div style={sub}>
+            <div style={{ fontSize: 36, marginBottom: 14 }}>📬</div>
+            <div style={title}>{lang === 'en' ? "Check your inbox" : "Vérifie ta boîte mail"}</div>
+            <div style={{ ...sub, marginBottom: 8 }}>
               {lang === 'en'
-                ? `We emailed a code to ${email}. Type it below.`
-                : `Un code a été envoyé à ${email}. Saisis-le ci-dessous.`}
+                ? <>Email sent to <strong>{email}</strong>.<br/>Click the link — or enter the code below.</>
+                : <>Email envoyé à <strong>{email}</strong>.<br/>Clique sur le lien — ou saisis le code ci-dessous.</>}
             </div>
             <input
               value={code}
               onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
-              placeholder="Ton code"
+              placeholder={lang === 'en' ? 'Code (fallback)' : 'Code (si pas de lien)'}
               inputMode="numeric"
               autoComplete="one-time-code"
               maxLength={10}
-              style={{ ...input, textAlign: 'center', letterSpacing: 6, fontSize: 22, fontWeight: 600 }}
-              autoFocus
+              style={{ ...input, textAlign: 'center', letterSpacing: 4, fontSize: 18, fontWeight: 600 }}
             />
             {error && <div style={err}>{error}</div>}
             <button
@@ -105,11 +104,10 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
                 const { error: e } = await auth.verifyCode(email.trim(), code)
                 setLoading(false)
                 if (e) setError(lang === 'en' ? 'Wrong or expired code' : 'Code incorrect ou expiré')
-                // succès → auth.user se met à jour, l'écran passe à l'étape prénom ou se referme
               }}
               disabled={loading}
               style={btn}
-            >{loading ? '…' : (lang === 'en' ? "Confirm" : "Confirmer")}</button>
+            >{loading ? '…' : (lang === 'en' ? "Confirm code" : "Valider le code")}</button>
             <button
               onClick={() => { setStep('email'); setCode(''); setError('') }}
               style={{ width: '100%', padding: 8, background: 'none', color: '#888', border: 'none', cursor: 'pointer', fontFamily: "'Lato', sans-serif", fontSize: 12, marginTop: 4 }}
