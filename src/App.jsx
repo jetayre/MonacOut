@@ -193,6 +193,7 @@ export default function App() {
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
   const engageRef = useRef(0);
+  const eventLinkRef = useRef(false);
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); }, [events, favorites, notifConfig, auth.profile]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
@@ -206,6 +207,17 @@ export default function App() {
   useEffect(() => {
     fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); });
   }, []);
+
+  // Lien partagé « ?event=<id> » → ouvre directement la fiche de l'événement dans l'app/le site
+  useEffect(() => {
+    if (eventLinkRef.current || !events?.length) return;
+    try {
+      const eid = new URLSearchParams(window.location.search).get("event");
+      if (!eid) { eventLinkRef.current = true; return; }
+      const ev = events.find(e => String(e.id) === String(eid));
+      if (ev) { setSelectedEvent(ev); eventLinkRef.current = true; }
+    } catch { /* ignore */ }
+  }, [events]);
 
   // Bandeau « mise à jour disponible » : compare la version de l'app à latestVersion (config live)
   useEffect(() => {

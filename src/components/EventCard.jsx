@@ -456,8 +456,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 Haptics.impact({ style: ImpactStyle.Light }).catch(() => {});
                 await Share.share({
                   title: event.title.replace(/\n/g, ' '),
-                  text: `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}`,
-                  url: event.link || 'https://monacout.vercel.app',
+                  text: lang === 'en'
+                    ? `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}. See it on Monac'Out:`
+                    : `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}. À voir sur Monac'Out :`,
+                  url: `https://monac-out.vercel.app/?event=${event.id}`,
                   dialogTitle: lang === 'en' ? 'Share event' : 'Partager',
                 }).catch(() => {});
               }}
