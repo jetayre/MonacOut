@@ -100,6 +100,29 @@ async function main() {
         return [...new Set(text.match(/\b\d{1,2}h\d{2}\b/g) || [])].slice(0, 6);
       }
 
+      // Essai 0 : liens film directs (cinemas2monaco.com ?page=12&film=N)
+      // Le titre vient de l'img[alt] dans le lien, ou du texte du lien hors sous-éléments
+      const filmAnchors = [...document.querySelectorAll('a[href*="film="]')]
+        .filter(a => /[?&]film=\d+/.test(a.href));
+      if (filmAnchors.length >= 1 && filmAnchors.length <= 30) {
+        for (const a of filmAnchors) {
+          const imgAlt = cleanStr(a.querySelector('img')?.getAttribute('alt') || '');
+          // Texte direct du lien (sans texte des sous-éléments)
+          const linkTextDirect = [...a.childNodes]
+            .filter(n => n.nodeType === 3)
+            .map(n => n.textContent)
+            .join(' ')
+            .trim();
+          const raw = imgAlt || cleanStr(linkTextDirect) || cleanStr(a.textContent);
+          if (!raw || isNoise(raw) || seen.has(raw)) continue;
+          seen.add(raw);
+          const parent = a.closest('div,tr,li,article,td') || a.parentElement;
+          const times = extractTimes(parent?.innerText || '');
+          results.push({ title: raw, time: times.join(' · ') || null, link: a.href });
+          if (results.length >= 12) break;
+        }
+      }
+
       // Essai 1 : sélecteurs spécifiques aux sites de ciné
       const specificSelectors = [
         '[class*="film-card"]','[class*="filmCard"]','[class*="movie-card"]',
