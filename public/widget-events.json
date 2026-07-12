@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T15:56:37.426Z",
+  "generatedAt": "2026-07-12T16:08:27.936Z",
   "events": [
     {
       "date": "Dim 12 juil",
@@ -13,16 +13,7 @@
     {
       "date": "Dim 12 juil",
       "iso": "2026-07-12",
-      "time": "08h00 — 09h00",
-      "title": "METS À JOUR MONAC'OUT VERSION 2.0",
-      "venue": "App Store",
-      "quarter": "Monaco",
-      "emoji": "✨"
-    },
-    {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
-      "time": "08h00 — 09h00",
+      "time": "00h00",
       "title": "METS À JOUR MONAC'OUT VERSION 2.0",
       "venue": "App Store",
       "quarter": "Monaco",
@@ -72,6 +63,15 @@
       "venue": "Monaco-Ville",
       "quarter": "Monaco-Ville",
       "emoji": "🏛️"
+    },
+    {
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
     }
   ]
 }
