@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:38:25.094Z",
+  "generatedAt": "2026-07-12T07:39:39.092Z",
   "events": [
     {
       "date": "Dim 12 juil",
@@ -18,15 +18,6 @@
       "venue": "App Store",
       "quarter": "Monaco",
       "emoji": "✨"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "09h00 — 19h00",
-      "title": "JOURNÉE THALASSO PRESTIGE",
-      "venue": "Thermes Marins",
-      "quarter": "Monte-Carlo",
-      "emoji": "🌊"
     },
     {
       "date": "Lun 13 juil",
@@ -72,6 +63,15 @@
       "venue": "Place de la Visitation",
       "quarter": "Monaco-Ville",
       "emoji": "⛪"
+    },
+    {
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
     }
   ]
 }
