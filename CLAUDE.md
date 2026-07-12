@@ -123,12 +123,29 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
 | **Associations & Fondations monégasques** | | | |
-| Croix-Rouge Monégasque | https://croix-rouge.mc | GALA, caritatif (Gala de la Croix-Rouge, été, Salle des Étoiles) | +377 9765 8888 |
-| Fondation Prince Albert II de Monaco | https://www.fpa2.org | GALA, CONFÉRENCE environnement/océan | +377 9850 9160 |
-| Fondation Princesse Grace de Monaco | https://www.fondation-psse-grace.mc | GALA, culture, enfance malade | +377 9350 0100 |
-| AMADE Mondiale | https://www.amade-mondiale.org | GALA caritatif enfance (Princesse Caroline) | +377 9798 4400 |
-| Fondation Princesse Charlène de Monaco | https://www.fondationprincessecharlene.mc | SPORT, prévention noyade, GALA | +377 9898 9999 |
-| Fight Aids Monaco | https://fightaids-monaco.com | GALA (Princesse Stéphanie · Sporting Monte-Carlo) | +377 9707 1300 |
+| _— Fondations_ | | | |
+| Fondation Prince Albert II de Monaco | https://www.fpa2.org | environnement, climat, biodiversité, océans (GALA/CONFÉRENCE) | +377 9850 9160 |
+| Fondation Princesse Grace de Monaco | https://www.fondation-psse-grace.mc | aide aux vulnérables, action sociale, culture (GALA) | +377 9350 0100 |
+| Fondation Prince Pierre de Monaco | https://www.fondationprincepierre.mc _(à vérifier)_ | littérature, musique, arts (prix, CONCERT) | |
+| Fondation Albert Ier | https://www.oceano.org | patrimoine scientifique, océanographie | |
+| Fondation Centesimus Annus Pro Pontifice | _à vérifier_ | réflexion économique & sociale (CONFÉRENCE) | |
+| Fondation Princesse Charlène de Monaco | https://www.fondationprincessecharlene.mc | prévention noyade, SPORT (GALA) | +377 9898 9999 |
+| _— Humanitaire (Monaco Collectif Humanitaire)_ | https://mch.mc | caritatif, GALA, collectes | |
+| Croix-Rouge Monégasque | https://croix-rouge.mc | GALA (Gala été, Salle des Étoiles) | +377 9765 8888 |
+| AMADE Mondiale | https://www.amade-mondiale.org | enfance (Princesse Caroline, GALA) | +377 9798 4400 |
+| AMREF · Caritas · Children & Future · Mission Enfance · Monaco Aide et Présence · Share · Anna Pagani · Amitié Sans Frontières · St-Vincent-de-Paul · Amis du Liban · Kiwanis · Rotary Club Monaco · SEB | _à vérifier_ | caritatif, GALA, collectes | |
+| _— Santé_ | | | |
+| Fight Aids Monaco | https://fightaids-monaco.com | GALA (Princesse Stéphanie · Sporting) | +377 9707 1300 |
+| Recherche Alzheimer · Les Enfants de Frankie · Les Smileys de Monaco | _à vérifier_ | santé, caritatif (GALA) | |
+| _— Environnement_ | | | |
+| Monaco Blue Initiative | https://www.fpa2.org/en/events/monaco-blue-initiative | CONFÉRENCE océan | |
+| Art & Environnement Monaco · MC2D | _à vérifier_ | environnement | |
+| _— Culture & patrimoine_ | | | |
+| Amis de l'Opéra de Monte-Carlo · Petits Chanteurs de Monaco · Monaco Italie · Monaco Asie | _à vérifier_ | CONCERT, CHANTS, culture | |
+| _— Sport_ | | | |
+| Comité Olympique Monégasque · Guides & Scouts de Monaco · clubs sportifs (natation, voile, tennis…) | _à vérifier_ | SPORT | |
+| _— Économie & réseau_ | | | |
+| Monaco Economic Board · Jeune Chambre Économique · Industries Hôtelières Monégasques | _à vérifier_ | CONFÉRENCE business, networking | |
 | **Agendas de référence** | | | |
 | Visit Monaco — agenda | https://www.visitmonaco.com/fr/page/evenement | Tous types | |
 | Your Monaco — app officielle | https://yourmonaco.mc/en/latest-features/events-calendar | Tous types — app civique officielle de Monaco | |
