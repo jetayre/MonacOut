@@ -1,36 +1,18 @@
 {
-  "generatedAt": "2026-07-11T21:17:26.144Z",
+  "generatedAt": "2026-07-12T07:29:15.841Z",
   "events": [
     {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "09h00 — 18h00",
-      "title": "ENERGY BOAT CHALLENGE FINALE",
-      "venue": "Port Hercule",
-      "quarter": "Monaco",
-      "emoji": "⚡"
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
+      "time": "21h30",
+      "title": "CONCERT AU PALAIS MENDELSSOHN",
+      "venue": "Cour d'honneur",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏰"
     },
     {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "10h — 19h",
-      "title": "MONACO MÉDITERRANÉE JOUR 1",
-      "venue": "Galerie Diaghilev",
-      "quarter": "Monte-Carlo",
-      "emoji": "🍋"
-    },
-    {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "19h30",
-      "title": "WAKU DOKI COMPAGNIE HUMAINE MONACO DANCE FORUM",
-      "venue": "Salle Garnier",
-      "quarter": "Monte-Carlo",
-      "emoji": "💃"
-    },
-    {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
       "time": "08h00 — 09h00",
       "title": "METS À JOUR MONAC'OUT VERSION 2.0",
       "venue": "App Store",
@@ -38,17 +20,44 @@
       "emoji": "✨"
     },
     {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "19h00 — 21h30",
-      "title": "CACAO CEREMONY & BREATHWORK",
-      "venue": "Aritual",
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
+      "time": "09h00 — 19h00",
+      "title": "JOURNÉE THALASSO PRESTIGE",
+      "venue": "Thermes Marins",
       "quarter": "Monte-Carlo",
-      "emoji": "🔮"
+      "emoji": "🌊"
     },
     {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
+      "time": "08h00 — 09h00",
+      "title": "METS À JOUR MONAC'OUT VERSION 2.0",
+      "venue": "App Store",
+      "quarter": "Monaco",
+      "emoji": "✨"
+    },
+    {
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
+      "time": "10h — 19h",
+      "title": "MONACO MÉDITERRANÉE JOUR 2",
+      "venue": "Galerie Diaghilev",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍋"
+    },
+    {
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -56,22 +65,13 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
+      "date": "Dim 12 juil",
+      "iso": "2026-07-12",
+      "time": "10h00 — 16h00",
+      "title": "CHAPELLE DE LA VISITATION",
+      "venue": "Place de la Visitation",
+      "quarter": "Monaco-Ville",
       "emoji": "⛪"
-    },
-    {
-      "date": "Sam 11 juil",
-      "iso": "2026-07-11",
-      "time": "10h00 — 12h00",
-      "title": "ATELIER RECYCLAGE CRÉATIF",
-      "venue": "A Fàbrica",
-      "quarter": "Monaco",
-      "emoji": "🌍"
     }
   ]
 }
