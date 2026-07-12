@@ -121,6 +121,7 @@ async function main() {
           results.push({ title: raw, time: times.join(' · ') || null, link: a.href });
           if (results.length >= 12) break;
         }
+        if (results.length >= 1) return results;
       }
 
       // Essai 1 : sélecteurs spécifiques aux sites de ciné
