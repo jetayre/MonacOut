@@ -199,6 +199,16 @@ async function main() {
     await browser.close();
   }
 
+  // Filtre anti-parasites : les libellés de rubrique du site ("A L'AFFICHE VF & VO STF",
+  // "VF", durées seules…) ne sont PAS des films → on les retire.
+  films = films.filter(f => {
+    const t = (f.title || '').toUpperCase().trim();
+    if (/AFFICHE/.test(t)) return false;
+    if (/^(VF|VO|VOST|VOSTFR|VF ?& ?VO)\b/.test(t)) return false;
+    if (/^\d{1,2}\s*H\s*\d{2}$/.test(t.replace(/\s/g, ''))) return false;
+    return t.length >= 2;
+  });
+
   // ── 3. Créer UNE fiche par jour restant de la semaine cinéma ───────────────
   // (mercredi → mardi) pour que le filtre "Aujourd'hui" fonctionne chaque jour
   const today   = new Date(); today.setHours(0,0,0,0);
