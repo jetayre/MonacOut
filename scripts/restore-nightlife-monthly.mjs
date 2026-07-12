@@ -43,11 +43,26 @@ const V = [
 ];
 
 let s = readFileSync(FILE, "utf8");
+
+// ── IDEMPOTENT : retire les fiches déjà générées par ce script (marqueur nlg:1
+//    ou nos sources exactes) + l'ancien commentaire de section, AVANT de régénérer.
+//    → réexécutable chaque jour sans jamais créer de doublons.
+const SOURCES = new Set(V.map(v => v.subtitle.split(" · ")[0]));
+s = s.split("\n").filter(l => {
+  if (l.includes("nlg:1")) return false;
+  const m = l.match(/source:"([^"]+)"/);
+  if (m && SOURCES.has(m[1]) && /cat:"(APÉRO|SOIRÉE|BRUNCH)"/.test(l)) return false;
+  return true;
+}).join("\n");
+s = s.replace(/\n\s*\/\/ ── RÉCURRENCES NIGHTLIFE MENSUELLES[^\n]*/g, "");
+
 const maxId = Math.max(...[...s.matchAll(/\{id:(\d+),/g)].map(m => +m[1]));
 let id = Math.max(3600, maxId + 1);
 
+// ── FENÊTRE GLISSANTE : aujourd'hui → +12 mois. Régénéré chaque jour (via daily-check)
+//    → avance d'un jour chaque jour, ne s'arrête jamais.
 const today = new Date(); today.setHours(0, 0, 0, 0);
-const end   = new Date(2027, 4, 31); // fin mai 2027
+const end   = new Date(today); end.setFullYear(end.getFullYear() + 1);
 const lines = [];
 
 for (const v of V) {
@@ -59,8 +74,7 @@ for (const v of V) {
         const dt = nth(y, m, v.wd, n);
         if (dt && dt >= today && dt <= end) {
           const dateStr = `${JOURS[dt.getDay()]} ${dt.getDate()} ${MOIS[dt.getMonth()]}`;
-          const yr = dt.getFullYear() >= 2027 ? `year:${dt.getFullYear()},` : "";
-          lines.push(`  {id:${id++},${yr}cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${v.title}",subtitle:"${v.subtitle}",desc:"${v.desc}",descEn:"${v.descEn}",free:false,hot:false,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",link:"${v.link}",${v.phone ? `phone:"${v.phone}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
+          lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${v.title}",subtitle:"${v.subtitle}",desc:"${v.desc}",descEn:"${v.descEn}",free:false,hot:false,nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",link:"${v.link}",${v.phone ? `phone:"${v.phone}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
         }
       }
     }
@@ -69,6 +83,6 @@ for (const v of V) {
 }
 
 const idx = s.lastIndexOf("\n];");
-s = s.slice(0, idx) + "\n\n  // ── RÉCURRENCES NIGHTLIFE MENSUELLES (apéros/soirées/rooftop) ──\n" + lines.join("\n") + s.slice(idx);
+s = s.slice(0, idx) + "\n\n  // ── RÉCURRENCES NIGHTLIFE MENSUELLES (fenêtre glissante 12 mois, régénérée chaque jour) ──\n" + lines.join("\n") + s.slice(idx);
 writeFileSync(FILE, s);
-console.log(`✓ ${lines.length} fiches nightlife mensuelles rétablies (${V.length} lieux).`);
+console.log(`✓ ${lines.length} fiches nightlife régénérées (fenêtre glissante 12 mois, ${V.length} lieux).`);

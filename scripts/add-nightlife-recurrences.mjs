@@ -26,7 +26,7 @@ for (let d = 0; d < WEEKS * 7; d++) {
   const day = new Date(start); day.setDate(start.getDate() + d);
   const dateStr = `${JOURS[day.getDay()]} ${day.getDate()} ${MOIS[day.getMonth()]}`;
   if (day.getDay() === 5) lines.push(card(TWIGA, dateStr));            // vendredi
-  if (day.getDay() === 6) { lines.push(card(JIMMYZ, dateStr)); lines.push(card(SUNSET, dateStr)); } // samedi
+  if (day.getDay() === 6) { lines.push(card(SUNSET, dateStr)); } // Jimmy'z: programmation SBM réelle (voir events.js) // samedi
 }
 
 const idx = s.lastIndexOf("\n];");
