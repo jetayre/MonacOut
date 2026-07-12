@@ -122,30 +122,50 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | SPORTEL Monaco | https://www.sportelworld.com/ | CONFÉRENCE sport business | |
 | EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
-| **Associations & Fondations monégasques** | | | |
+| **Associations & Fondations monégasques** (URLs vérifiées — veille Stéphanie) | | | |
 | _— Fondations_ | | | |
-| Fondation Prince Albert II de Monaco | https://www.fpa2.org | environnement, climat, biodiversité, océans (GALA/CONFÉRENCE) | +377 9850 9160 |
-| Fondation Princesse Grace de Monaco | https://www.fondation-psse-grace.mc | aide aux vulnérables, action sociale, culture (GALA) | +377 9350 0100 |
+| Fondation Prince Albert II de Monaco | https://www.fpa2.org/fr/index | environnement, climat, biodiversité, océans (GALA/CONFÉRENCE) | +377 9850 9160 |
+| Fondation Princesse Grace de Monaco | https://www.fondation-psse-grace.mc/fr/ | aide aux vulnérables, action sociale, culture (GALA) | +377 9350 0100 |
 | Fondation Prince Pierre de Monaco | https://www.fondationprincepierre.mc/evenements | littérature, musique, arts (prix, CONCERT) | |
-| Fondation Albert Ier | https://www.oceano.org | patrimoine scientifique, océanographie | |
-| Fondation Centesimus Annus Pro Pontifice | https://www.centesimusannus.org | réflexion économique & sociale (CONFÉRENCE) | |
+| Fondation Albert Ier / Institut océanographique | https://www.oceano.org/ | patrimoine scientifique, océanographie | |
+| Fondation Centesimus Annus Pro Pontifice | https://www.centesimusannus.org/ | réflexion économique & sociale (CONFÉRENCE) | |
 | Fondation Princesse Charlène de Monaco | https://www.fondationprincessecharlene.mc | prévention noyade, SPORT (GALA) | +377 9898 9999 |
 | _— Humanitaire (Monaco Collectif Humanitaire)_ | https://mch.mc | caritatif, GALA, collectes | |
-| Croix-Rouge Monégasque | https://croix-rouge.mc | GALA (Gala été, Salle des Étoiles) | +377 9765 8888 |
-| AMADE Mondiale | https://www.amade-mondiale.org | enfance (Princesse Caroline, GALA) | +377 9798 4400 |
-| AMREF · Caritas · Children & Future · Mission Enfance · Monaco Aide et Présence · Share · Anna Pagani · Amitié Sans Frontières · St-Vincent-de-Paul · Amis du Liban · Kiwanis · Rotary Club Monaco · SEB | _à vérifier_ | caritatif, GALA, collectes | |
+| Croix-Rouge Monégasque | https://croix-rouge.mc/ | GALA, braderie, formations (Gala été · Salle des Étoiles) | +377 9765 8888 |
+| AMADE | https://www.amade.org/ | protection de l'enfance (Princesse Caroline, GALA) | +377 9798 4400 |
+| AMREF Monaco | https://www.amref.fr/ | santé en Afrique | |
+| Caritas Monaco | https://www.caritas-monaco.com/ | solidarité | |
+| Children & Future | https://childrenandfuture.com/ | enfance/solidarité (No Finish Line) | |
+| Mission Enfance | https://www.missionenfance.org/ | aide à l'enfance | |
+| Monaco Aide et Présence | https://mapmonaco.org/ | humanitaire | |
+| Share Monaco | https://sharemonaco.org/ | humanitaire | |
+| Association Anna Pagani | https://osimonaco.org/ | solidarité | |
+| Amitié Sans Frontières International | https://www.asf-i.org/ | humanitaire | |
+| Société Saint-Vincent-de-Paul Monaco | https://www.ssvpmonaco.com/ | solidarité | |
+| Les Amis du Liban Monaco | https://osimonaco.org/ | humanitaire | |
+| Kiwanis Club de Monaco | https://www.kiwanis.mc/ | club service, caritatif | |
+| Rotary Club de Monaco | https://www.rotary.mc/ | club service (réunions statutaires — pas de fiche sortie) | |
 | _— Santé_ | | | |
-| Fight Aids Monaco | https://fightaids-monaco.com | GALA (Princesse Stéphanie · Sporting) | +377 9707 1300 |
-| Recherche Alzheimer · Les Enfants de Frankie · Les Smileys de Monaco | _à vérifier_ | santé, caritatif (GALA) | |
+| Fight Aids Monaco | https://fightaidsmonaco.org/ | GALA, vente aux enchères (Princesse Stéphanie · Sporting) | +377 9707 1300 |
+| Asso. Monégasque Recherche Alzheimer (AMRA) | https://www.amramonaco.com/ | santé, recherche | |
+| Les Enfants de Frankie | https://www.lesenfantsdefrankie.mc/ | enfance malade | |
+| Les Smileys de Monaco | https://osimonaco.org/ | santé/solidarité | |
 | _— Environnement_ | | | |
-| Monaco Blue Initiative | https://www.fpa2.org/en/events/monaco-blue-initiative | CONFÉRENCE océan | |
-| Art & Environnement Monaco · MC2D | _à vérifier_ | environnement | |
+| Monaco Blue Initiative | https://www.monacoblueinitiative.org/ | CONFÉRENCE océan | |
+| Association Art & Environnement Monaco | https://osimonaco.org/ | art/environnement | |
+| MC2D | https://www.mc2d.org/ | développement durable | |
 | _— Culture & patrimoine_ | | | |
-| Amis de l'Opéra de Monte-Carlo · Petits Chanteurs de Monaco · Monaco Italie · Monaco Asie | _à vérifier_ | CONCERT, CHANTS, culture | |
+| Association Monaco Italie | https://www.monaco-italie.mc/ | culture/relations internationales | |
+| Monaco Asie | https://osimonaco.org/ | culture/relations internationales | |
+| Les Petits Chanteurs de Monaco | https://www.petits-chanteurs-monaco.com/ | musique, CHANTS | |
+| Association des Amis de l'Opéra de Monte-Carlo | https://www.opera.mc/ | OPÉRA, culture | |
 | _— Sport_ | | | |
-| Comité Olympique Monégasque · Guides & Scouts de Monaco · clubs sportifs (natation, voile, tennis…) | _à vérifier_ | SPORT | |
+| Comité Olympique Monégasque | https://www.comite-olympique.mc/ | SPORT | |
+| Guides et Scouts de Monaco | https://www.guides-scouts-monaco.com/ | jeunesse | |
 | _— Économie & réseau_ | | | |
-| Monaco Economic Board · Jeune Chambre Économique · Industries Hôtelières Monégasques | _à vérifier_ | CONFÉRENCE business, networking | |
+| Monaco Economic Board | https://www.meb.mc/ | CONFÉRENCE économie/business | |
+| Jeune Chambre Économique de Monaco | https://www.jcemonaco.mc/ | économie/citoyenneté | |
+| Association des Industries Hôtelières Monégasques | https://www.aihm.mc/ | professionnel, hôtellerie | |
 | **Agendas de référence** | | | |
 | Visit Monaco — agenda | https://www.visitmonaco.com/fr/page/evenement | Tous types | |
 | Your Monaco — app officielle | https://yourmonaco.mc/en/latest-features/events-calendar | Tous types — app civique officielle de Monaco | |
