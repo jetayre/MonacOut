@@ -317,8 +317,52 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
 
           {/* Bas de carte */}
           <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 24 }}>
+          {event.venues && (
+            <div style={{ width: "100%", marginBottom: 4 }}>
+              {event.venues.map((v, i) => (
+                <div key={i} style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "5px 0",
+                  borderBottom: i < event.venues.length - 1 ? "1px solid rgba(201,169,110,0.2)" : "none",
+                }}>
+                  <span style={{
+                    fontFamily: "'Lato', sans-serif", fontSize: 12, color: NAVY, flex: 1,
+                    textAlign: "left", paddingRight: 8,
+                  }}>{v.name}</span>
+                  <div style={{ display: "inline-flex", gap: 4, flexShrink: 0 }}>
+                    {v.link && (
+                      <a href={v.link} target="_blank" rel="noopener noreferrer"
+                         onClick={e => e.stopPropagation()}
+                         style={{
+                           display: "flex", alignItems: "center", justifyContent: "center",
+                           width: 28, height: 28, border: `1px solid ${GOLD_FRAME}`, borderRadius: 1,
+                           color: GOLD, textDecoration: "none",
+                         }}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <line x1="2" y1="12" x2="22" y2="12"/>
+                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                      </a>
+                    )}
+                    {v.phone && (
+                      <button
+                        onClick={e => { e.stopPropagation(); window.location.href = `tel:${v.phone.replace(/[\s()]/g, '')}`; }}
+                        style={{
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          width: 28, height: 28, border: `1px solid ${GOLD_FRAME}`, borderRadius: 1,
+                          background: "none", cursor: "pointer", color: GOLD,
+                        }}>
+                        <PhoneIcon />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            {(event.link || event.phone) ? (
+            {(event.link || event.phone) && !event.venues ? (
               <div style={{
                 display: "inline-flex",
                 alignItems: "stretch",
