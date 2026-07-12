@@ -58,7 +58,14 @@ async function main() {
   // ── 1. Supprimer les anciennes fiches hebdo cinéma (weeklyFilms:true) ───────
   let src = readFileSync(EVENTS_FILE, 'utf8');
   const linesBefore = src.split('\n');
-  const linesAfter = linesBefore.filter(l => !l.includes('weeklyFilms:true'));
+  const linesAfter = linesBefore.filter(l => {
+    // Remove new-style weekly cinema cards
+    if (l.includes('weeklyFilms:true')) return false;
+    // Remove old-style cards from before weeklyFilms flag existed:
+    // lines that are a Cinémas 2 Monaco event but not a permanent pinLast-only daily card
+    if (l.includes('source:"Cinémas 2 Monaco"') && !l.includes('pinLast:true')) return false;
+    return true;
+  });
   const removed = linesBefore.length - linesAfter.length;
   src = linesAfter.join('\n');
   console.log(`  Nettoyage : ${removed} ancienne(s) fiche(s) film supprimée(s)`);
@@ -84,6 +91,9 @@ async function main() {
         'agenda','horaires','mentions légales','nous contacter','english',
         'bandes annonces','newsletter','tarifs','abonnement','cinéma',
         'cinemas','cinémas 2 monaco','news',
+        'nouveauté','nouveautés','à l\'affiche','a l\'affiche','à l\'affiche cette semaine',
+        'vf','vo','vostf','vostfr','vf & vo stf','vf & vo stfr',
+        'en ce moment','en salles','toutes les séances',
       ]);
 
       function extractTimes(text) {
@@ -97,6 +107,19 @@ async function main() {
         '[class*="item-film"]','[class*="seance-film"]','[class*="programme-item"]',
         '.film','.movie','[data-film]','[data-movie]',
       ];
+      function cleanStr(s) {
+        return (s || '').replace(/[\n\r\t]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
+      }
+      function isNoise(t) {
+        const low = t.toLowerCase();
+        if (NOISE.has(low)) return true;
+        // reject section labels that look like "NOUVEAUTÉ" or "VF & VO STF — 2h00"
+        if (/^(vf|vo|vostf|nouveaut)/i.test(low)) return true;
+        // reject very short strings (< 4 chars) or suspiciously long ones
+        if (t.length < 4 || t.length > 100) return true;
+        return false;
+      }
+
       for (const sel of specificSelectors) {
         const els = [...document.querySelectorAll(sel)];
         if (els.length < 2 || els.length > 30) continue;
@@ -104,11 +127,11 @@ async function main() {
           const titleEl = el.querySelector(
             'h1,h2,h3,h4,[class*="titre"],[class*="title"],[class*="nom"],[class*="name"]'
           );
-          const title = titleEl?.innerText?.trim() || el.querySelector('strong,b')?.innerText?.trim();
-          if (!title || title.length < 3 || title.length > 120 || NOISE.has(title.toLowerCase()) || seen.has(title)) continue;
-          seen.add(title);
+          const rawTitle = cleanStr(titleEl?.innerText || el.querySelector('strong,b')?.innerText || '');
+          if (!rawTitle || isNoise(rawTitle) || seen.has(rawTitle)) continue;
+          seen.add(rawTitle);
           const times = extractTimes(el.innerText || '');
-          results.push({ title, time: times.join(' · ') || null, link: el.querySelector('a[href]')?.href });
+          results.push({ title: rawTitle, time: times.join(' · ') || null, link: el.querySelector('a[href]')?.href });
         }
         if (results.length >= 4) break;
       }
@@ -118,12 +141,12 @@ async function main() {
         const articles = [...document.querySelectorAll('article, .card, [class*="card"], li')];
         for (const el of articles.slice(0, 50)) {
           const titleEl = el.querySelector('h2,h3,h4,[class*="titre"],[class*="title"]');
-          const title = titleEl?.innerText?.trim();
-          if (!title || title.length < 3 || title.length > 120 || NOISE.has(title.toLowerCase()) || seen.has(title)) continue;
+          const rawTitle = cleanStr(titleEl?.innerText || '');
+          if (!rawTitle || isNoise(rawTitle) || seen.has(rawTitle)) continue;
           const times = extractTimes(el.innerText || '');
-          if (times.length === 0) continue; // ignorer les éléments sans horaires
-          seen.add(title);
-          results.push({ title, time: times.join(' · '), link: el.querySelector('a[href]')?.href });
+          if (times.length === 0) continue;
+          seen.add(rawTitle);
+          results.push({ title: rawTitle, time: times.join(' · '), link: el.querySelector('a[href]')?.href });
           if (results.length >= 12) break;
         }
       }
@@ -132,12 +155,12 @@ async function main() {
       if (results.length < 2) {
         const main = document.querySelector('main,#main,#content,.content') || document.body;
         for (const h of main.querySelectorAll('h2,h3,h4')) {
-          const title = h.innerText.trim();
-          if (title.length < 3 || title.length > 120 || NOISE.has(title.toLowerCase()) || seen.has(title)) continue;
+          const rawTitle = cleanStr(h.innerText);
+          if (!rawTitle || isNoise(rawTitle) || seen.has(rawTitle)) continue;
           const parent = h.closest('section,article,div') || h.parentElement;
           const times = extractTimes(parent?.innerText || '');
-          seen.add(title);
-          results.push({ title, time: times.join(' · ') || null });
+          seen.add(rawTitle);
+          results.push({ title: rawTitle, time: times.join(' · ') || null });
           if (results.length >= 12) break;
         }
       }
@@ -163,15 +186,16 @@ async function main() {
   if (films.length > 0) {
     // Venues : un objet par film, nom = titre + horaires si dispo
     const venues = films.map(film => {
-      const vName = film.time ? `${film.title} — ${film.time}` : film.title;
+      const safeTitle = film.title.replace(/[\n\r\t]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
+      const vName = film.time ? `${safeTitle} — ${film.time}` : safeTitle;
       const vLink = (film.link && !film.link.includes('cinemas2monaco.com/#')) ? film.link : 'https://www.cinemas2monaco.com';
-      return `{name:"${vName.replace(/"/g,'\\"')}",link:"${vLink}"}`;
+      return `{name:"${vName.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}",link:"${vLink}"}`;
     });
     const venuesStr = `[${venues.join(',')}]`;
 
     // Desc : liste des titres seuls
-    const filmList    = films.map(f => f.title).join(' · ');
-    const filmListEsc = filmList.replace(/"/g,'\\"');
+    const filmList    = films.map(f => f.title.replace(/[\n\r\t]+/g, ' ').trim()).join(' · ');
+    const filmListEsc = filmList.replace(/\\/g,'\\\\').replace(/"/g,'\\"');
 
     // Une fiche par jour restant (aujourd'hui inclus → mardi fin de semaine)
     const d = new Date(today);
