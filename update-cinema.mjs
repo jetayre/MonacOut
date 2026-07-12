@@ -55,12 +55,10 @@ async function main() {
   const logDate = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Monaco' });
   console.log(`\n[${logDate}] Programme cinéma — mise à jour hebdomadaire`);
 
-  // ── 1. Supprimer les anciennes fiches film ──────────────────────────────────
+  // ── 1. Supprimer les anciennes fiches hebdo cinéma (weeklyFilms:true) ───────
   let src = readFileSync(EVENTS_FILE, 'utf8');
   const linesBefore = src.split('\n');
-  const linesAfter = linesBefore.filter(l =>
-    !(l.includes('source:"Cinémas 2 Monaco"') && !l.includes('pinLast:true'))
-  );
+  const linesAfter = linesBefore.filter(l => !l.includes('weeklyFilms:true'));
   const removed = linesBefore.length - linesAfter.length;
   src = linesAfter.join('\n');
   console.log(`  Nettoyage : ${removed} ancienne(s) fiche(s) film supprimée(s)`);
@@ -155,11 +153,11 @@ async function main() {
     await browser.close();
   }
 
-  // ── 3. Créer UNE fiche groupée avec tous les films en venues[] ─────────────
-  const endDate   = getEndOfCinemaWeek();
-  const dateFr    = frDate(endDate);
-  const year      = endDate.getFullYear();
-  let nextId      = getMaxId() + 1;
+  // ── 3. Créer UNE fiche par jour restant de la semaine cinéma ───────────────
+  // (mercredi → mardi) pour que le filtre "Aujourd'hui" fonctionne chaque jour
+  const today   = new Date(); today.setHours(0,0,0,0);
+  const endDate = getEndOfCinemaWeek();
+  let nextId    = getMaxId() + 1;
 
   const entries = [];
   if (films.length > 0) {
@@ -174,11 +172,18 @@ async function main() {
     // Desc : liste des titres seuls
     const filmList    = films.map(f => f.title).join(' · ');
     const filmListEsc = filmList.replace(/"/g,'\\"');
-    const yearF       = year !== 2026 ? `,year:${year}` : '';
 
-    entries.push(
-      `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"Programme de la semaine",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}},`
-    );
+    // Une fiche par jour restant (aujourd'hui inclus → mardi fin de semaine)
+    const d = new Date(today);
+    while (d <= endDate) {
+      const dateFr = frDate(d);
+      const year   = d.getFullYear();
+      const yearF  = year !== 2026 ? `,year:${year}` : '';
+      entries.push(
+        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"10h30",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}},`
+      );
+      d.setDate(d.getDate() + 1);
+    }
   }
 
   // ── 4. Insérer dans events.js ──────────────────────────────────────────────
@@ -189,7 +194,7 @@ async function main() {
       return;
     }
     src = src.replace(INSERT_MARKER, `${entries.join('\n')}\n  ${INSERT_MARKER}`);
-    console.log(`  ✓ ${entries.length} fiche(s) ajoutée(s) — programme jusqu'au ${dateFr}`);
+    console.log(`  ✓ ${entries.length} fiche(s) ajoutée(s) — ${films.length} film(s), jusqu'au ${frDate(endDate)}`);
   }
 
   writeFileSync(EVENTS_FILE, src);
@@ -209,7 +214,7 @@ async function main() {
     execSync(`git add src/data/events.js`, { cwd: __dirname });
     const filmList = films.map(f => f.title).join(', ').slice(0, 80);
     const msg = entries.length > 0
-      ? `chore: programme cinéma semaine jusqu'au ${dateFr} — ${entries.length} film(s)`
+      ? `chore: programme cinéma — ${films.length} film(s), fiches dim→mar`
       : `chore: nettoyage fiches cinéma (aucun nouveau film scrapé)`;
     execSync(`git commit -m "${msg.replace(/"/g,'\\"')}"`, { cwd: __dirname });
     execSync('git push origin main', { cwd: __dirname });
