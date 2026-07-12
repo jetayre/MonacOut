@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:36:53.998Z",
+  "generatedAt": "2026-07-12T07:38:25.094Z",
   "events": [
     {
       "date": "Dim 12 juil",
@@ -27,6 +27,15 @@
       "venue": "Thermes Marins",
       "quarter": "Monte-Carlo",
       "emoji": "🌊"
+    },
+    {
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
+      "time": "08h00 — 09h00",
+      "title": "METS À JOUR MONAC'OUT VERSION 2.0",
+      "venue": "App Store",
+      "quarter": "Monaco",
+      "emoji": "✨"
     },
     {
       "date": "Dim 12 juil",
@@ -63,15 +72,6 @@
       "venue": "Place de la Visitation",
       "quarter": "Monaco-Ville",
       "emoji": "⛪"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉE OCÉANOGRAPHIQUE",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🐠"
     }
   ]
 }
