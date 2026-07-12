@@ -122,6 +122,13 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | SPORTEL Monaco | https://www.sportelworld.com/ | CONFÉRENCE sport business | |
 | EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
+| **Bars à vin & œnologie** | | | |
+| Wine Palace Monte-Carlo | https://www.instagram.com/wine_palace_montecarlo/ | dégustation, œnologie (pic pdt Monaco Yacht Show, sep) | |
+| Le Rouge et le Blanc (22 Quai J-C Rey) | réseaux sociaux _(pas d'agenda officiel)_ | dégustation, accords mets-vins | |
+| Quai des Artistes (4 Quai Antoine Ier) | réseaux sociaux | dîners œnologiques | |
+| Bar des Artistes (4 Quai Antoine Ier) | réseaux sociaux | concerts live + carte des vins | |
+| Gustave (Hôtel Hermitage) | https://www.montecarlosbm.com/en/agenda | grands crus & spiritueux (SBM) | |
+| Les Grands Chais Monégasques | _contact direct (sur invitation)_ | masterclass pro, dégustations importateurs | |
 | **Associations & Fondations monégasques** (URLs vérifiées — veille Stéphanie) | | | |
 | _— Fondations_ | | | |
 | Fondation Prince Albert II de Monaco | https://www.fpa2.org/fr/index | environnement, climat, biodiversité, océans (GALA/CONFÉRENCE) | +377 9850 9160 |
