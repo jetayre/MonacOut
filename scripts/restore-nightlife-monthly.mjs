@@ -40,6 +40,8 @@ const V = [
   { cat:"APÉRO",  wd:5, occ:[1,3],  months:[4,5,6,7,8,9], title:`ÉQUIVOQUE${NL}ROOFTOP${NL}SUNSET`, subtitle:"Équivoque Rooftop · Monte-Carlo",            time:"En soirée",     link:"https://www.equivoquemc.com/",                                                 phone:"+33 6 07 93 47 45", quarter:"Monte-Carlo", emoji:"🌇", fb:"linear-gradient(150deg,#7A2808,#B05828,#4A1800)", ac:"#F8A860", desc:"Apéro & DJ set sur le rooftop de l'Équivoque : coucher de soleil, cocktails et musique.", descEn:"Rooftop aperitivo & DJ set at Équivoque: sunset, cocktails and music." },
   { cat:"APÉRO",  wd:4, occ:[1],    months:null,          title:`APÉRO${NL}BLUE GIN${NL}MC BAY`,    subtitle:"Blue Gin · Monte-Carlo Bay · Larvotto",      time:"En soirée",     link:"https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin",           phone:"",              quarter:"Larvotto",    emoji:"🍸", fb:"linear-gradient(150deg,#0A2A4A,#1A4A6A,#04162A)", ac:"#8AC0E8", desc:"L'apéro du 1er jeudi au Blue Gin du Monte-Carlo Bay : cocktails face à la lagune.", descEn:"First-Thursday aperitivo at the Blue Gin, Monte-Carlo Bay: cocktails by the lagoon." },
   { cat:"SOIRÉE", wd:6, occ:[2,4],  months:null,          title:`AMAZÓNICO${NL}MONTE-CARLO`,        subtitle:"Amazónico · Place du Casino · Monte-Carlo",  time:"18h00 — 02h00", link:"https://www.montecarlosbm.com/en/restaurant-monaco/amazonico-monte-carlo",     phone:"",              quarter:"Monte-Carlo", emoji:"🌴", fb:"linear-gradient(150deg,#0A3A1A,#1A6A3A,#04220A)", ac:"#8AE0A0", desc:"Dîner festif et musique live à l'Amazónico, place du Casino : cuisine latino-tropicale, ambiance jungle et DJ jusqu'à 2h.", descEn:"Festive dinner and live music at Amazónico, Place du Casino: Latin-tropical cuisine, jungle vibes and DJ until 2am." },
+  { cat:"SOIRÉE", wd:5, occ:"all",  months:null,          title:`SOIRÉE${NL}TWIGA${NL}MONTE-CARLO`, subtitle:"Twiga Monte Carlo · Av. Princesse Grace",    time:"20h00 — 04h00", link:"https://twigaworld.com/twiga-montecarlo/",                                     phone:"+377 9999 2550", quarter:"Larvotto",   emoji:"🍾", fb:"linear-gradient(150deg,#3A0A50,#6A2A80,#200030)", ac:"#D0A0F0", desc:"La soirée du vendredi au Twiga Monte-Carlo : dîner-spectacle, performances live et dancefloor jusqu'à l'aube.", descEn:"Friday night at Twiga Monte-Carlo: dinner-show, live performances and dancefloor until dawn." },
+  { cat:"DJ SET", wd:6, occ:"all",  months:null,          title:`SUNSET${NL}DJ SET${NL}LARVOTTO`,   subtitle:"Sunset Monaco · Le Méridien · Larvotto",     time:"18h00 — 00h00", link:"https://www.sunsetmonaco.com/",                                                phone:"+377 9330 9880", quarter:"Larvotto",   emoji:"🎧", fb:"linear-gradient(150deg,#7A2808,#B05828,#4A1800)", ac:"#F8A860", desc:"Le samedi sunset à la plage du Méridien : DJ set, cocktails et coucher de soleil sur la Méditerranée.", descEn:"Saturday sunset at the Méridien beach: DJ set, cocktails and sunset over the Mediterranean." },
 ];
 
 let s = readFileSync(FILE, "utf8");
@@ -51,7 +53,7 @@ const SOURCES = new Set(V.map(v => v.subtitle.split(" · ")[0]));
 s = s.split("\n").filter(l => {
   if (l.includes("nlg:1")) return false;
   const m = l.match(/source:"([^"]+)"/);
-  if (m && SOURCES.has(m[1]) && /cat:"(APÉRO|SOIRÉE|BRUNCH)"/.test(l)) return false;
+  if (m && SOURCES.has(m[1])) return false;
   return true;
 }).join("\n");
 s = s.replace(/\n\s*\/\/ ── RÉCURRENCES NIGHTLIFE MENSUELLES[^\n]*/g, "");
@@ -70,7 +72,7 @@ for (const v of V) {
   while (cur <= end) {
     const y = cur.getFullYear(), m = cur.getMonth();
     if (!v.months || v.months.includes(m)) {
-      for (const n of v.occ) {
+      for (const n of (v.occ === "all" ? [1,2,3,4,5] : v.occ)) {
         const dt = nth(y, m, v.wd, n);
         if (dt && dt >= today && dt <= end) {
           const dateStr = `${JOURS[dt.getDay()]} ${dt.getDate()} ${MOIS[dt.getMonth()]}`;

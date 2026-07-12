@@ -122,6 +122,13 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | SPORTEL Monaco | https://www.sportelworld.com/ | CONFÉRENCE sport business | |
 | EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
+| **Associations & Fondations monégasques** | | | |
+| Croix-Rouge Monégasque | https://croix-rouge.mc | GALA, caritatif (Gala de la Croix-Rouge, été, Salle des Étoiles) | +377 9765 8888 |
+| Fondation Prince Albert II de Monaco | https://www.fpa2.org | GALA, CONFÉRENCE environnement/océan | +377 9850 9160 |
+| Fondation Princesse Grace de Monaco | https://www.fondation-psse-grace.mc | GALA, culture, enfance malade | +377 9350 0100 |
+| AMADE Mondiale | https://www.amade-mondiale.org | GALA caritatif enfance (Princesse Caroline) | +377 9798 4400 |
+| Fondation Princesse Charlène de Monaco | https://www.fondationprincessecharlene.mc | SPORT, prévention noyade, GALA | +377 9898 9999 |
+| Fight Aids Monaco | https://fightaids-monaco.com | GALA (Princesse Stéphanie · Sporting Monte-Carlo) | +377 9707 1300 |
 | **Agendas de référence** | | | |
 | Visit Monaco — agenda | https://www.visitmonaco.com/fr/page/evenement | Tous types | |
 | Your Monaco — app officielle | https://yourmonaco.mc/en/latest-features/events-calendar | Tous types — app civique officielle de Monaco | |

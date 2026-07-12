@@ -38,6 +38,9 @@ jobs:
         run: node principocket-scan.mjs
         continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
 
+      - name: 🍸 Régénère les récurrences nightlife (fenêtre glissante 12 mois, idempotent)
+        run: node scripts/restore-nightlife-monthly.mjs
+
       - name: 🚓 LE POLICIER — autofix + contrôle (dates, géo, liens, noms, traduction)
         id: police
         run: node police-events.mjs
