@@ -126,9 +126,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | _— Fondations_ | | | |
 | Fondation Prince Albert II de Monaco | https://www.fpa2.org | environnement, climat, biodiversité, océans (GALA/CONFÉRENCE) | +377 9850 9160 |
 | Fondation Princesse Grace de Monaco | https://www.fondation-psse-grace.mc | aide aux vulnérables, action sociale, culture (GALA) | +377 9350 0100 |
-| Fondation Prince Pierre de Monaco | https://www.fondationprincepierre.mc _(à vérifier)_ | littérature, musique, arts (prix, CONCERT) | |
+| Fondation Prince Pierre de Monaco | https://www.fondationprincepierre.mc/evenements | littérature, musique, arts (prix, CONCERT) | |
 | Fondation Albert Ier | https://www.oceano.org | patrimoine scientifique, océanographie | |
-| Fondation Centesimus Annus Pro Pontifice | _à vérifier_ | réflexion économique & sociale (CONFÉRENCE) | |
+| Fondation Centesimus Annus Pro Pontifice | https://www.centesimusannus.org | réflexion économique & sociale (CONFÉRENCE) | |
 | Fondation Princesse Charlène de Monaco | https://www.fondationprincessecharlene.mc | prévention noyade, SPORT (GALA) | +377 9898 9999 |
 | _— Humanitaire (Monaco Collectif Humanitaire)_ | https://mch.mc | caritatif, GALA, collectes | |
 | Croix-Rouge Monégasque | https://croix-rouge.mc | GALA (Gala été, Salle des Étoiles) | +377 9765 8888 |
