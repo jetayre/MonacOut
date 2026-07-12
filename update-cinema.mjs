@@ -155,20 +155,31 @@ async function main() {
     await browser.close();
   }
 
-  // ── 3. Créer les fiches événement ──────────────────────────────────────────
+  // ── 3. Créer UNE fiche groupée avec tous les films en venues[] ─────────────
   const endDate   = getEndOfCinemaWeek();
   const dateFr    = frDate(endDate);
   const year      = endDate.getFullYear();
   let nextId      = getMaxId() + 1;
 
-  const entries = films.map(film => {
-    const esc     = s => s.replace(/\\/g,'\\\\').replace(/"/g,'\\"');
-    const title   = cleanTitle(film.title);
-    const desc    = film.title.replace(/"/g,'\\"');
-    const time    = esc(film.time || 'Voir horaires sur le site');
-    const yearF   = year !== 2026 ? `,year:${year}` : '';
-    return `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"${time}",title:"${esc(title)}",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${desc}",descEn:"${desc}",free:false,hot:false,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"},`;
-  });
+  const entries = [];
+  if (films.length > 0) {
+    // Venues : un objet par film, nom = titre + horaires si dispo
+    const venues = films.map(film => {
+      const vName = film.time ? `${film.title} — ${film.time}` : film.title;
+      const vLink = (film.link && !film.link.includes('cinemas2monaco.com/#')) ? film.link : 'https://www.cinemas2monaco.com';
+      return `{name:"${vName.replace(/"/g,'\\"')}",link:"${vLink}"}`;
+    });
+    const venuesStr = `[${venues.join(',')}]`;
+
+    // Desc : liste des titres seuls
+    const filmList    = films.map(f => f.title).join(' · ');
+    const filmListEsc = filmList.replace(/"/g,'\\"');
+    const yearF       = year !== 2026 ? `,year:${year}` : '';
+
+    entries.push(
+      `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"Programme de la semaine",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}},`
+    );
+  }
 
   // ── 4. Insérer dans events.js ──────────────────────────────────────────────
   if (entries.length > 0) {
