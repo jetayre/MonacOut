@@ -1,0 +1,33 @@
+name: MonacOut — Programme cinéma hebdomadaire
+
+on:
+  schedule:
+    - cron: '0 6 * * 3'   # Mercredi 8h Monaco (UTC+2 en été)
+  workflow_dispatch:        # lancement manuel depuis GitHub
+
+jobs:
+  cinema-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Installer Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Configurer Git
+        run: |
+          git config user.name "MonacOut Bot"
+          git config user.email "noreply@github.com"
+
+      - name: Mettre à jour le programme cinéma
+        run: node update-cinema.mjs
