@@ -1929,14 +1929,23 @@ function _eventHour(e) {
   return m ? parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0) : 9999;
 }
 
+// Tri 3 niveaux pour chaque jour :
+// 0 → événements spécifiques (concerts, sport, théâtre…) triés par heure
+// 1 → fiches annuaire permanentes (pinLast : spas, musées, cinéma) triées par heure
+// 2 → apéros et dîners/soirées (APÉRO, SOIRÉE) en dernier, triés par heure
+const _APERO_SOIREE = new Set(['APÉRO', 'SOIRÉE']);
+function _sortTier(e) {
+  if (e.pinLast) return 1;
+  if (_APERO_SOIREE.has(e.cat)) return 2;
+  return 0;
+}
+
 export const ALL_EVENTS = _RAW
   .filter(e => { const d = _eventDate(e); return d && d >= _today; })
   .sort((a, b) => {
     const diff = _eventDate(a) - _eventDate(b);
     if (diff !== 0) return diff;
-    // Les fiches annuaire permanentes (spa, musées, cinéma, happy hours…) en dernier pour chaque jour
-    const ao = a.pinLast ? 1 : 0;
-    const bo = b.pinLast ? 1 : 0;
-    if (ao !== bo) return ao - bo;
+    const at = _sortTier(a), bt = _sortTier(b);
+    if (at !== bt) return at - bt;
     return _eventHour(a) - _eventHour(b);
   });
