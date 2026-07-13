@@ -328,6 +328,21 @@ Ces lieux ont des événements récurrents générés jusqu'à mai 2027. Ne pas 
 | **Equivoque Rooftop** | Bi-mensuel ven | Ven | APÉRO + DJ SET (mai→oct 2026 + 2027) |
 | **Sunset Monaco** | Mensuel sam | Sam | DJ SET (juil→sep 2026 + 2027) |
 | **Blue Gin** | Mensuel jeu ou sam | Jeu/Sam | APÉRO (mai 2026→mai 2027) |
+| **Pavyllon** (Hôtel Hermitage) | Chaque dimanche | Dim | BRUNCH Yannick Alléno (~145 €) |
+| **Las Brisas** (Monte-Carlo Bay) | Chaque dimanche, **été** (mai→sep) | Dim | BRUNCH buffet vue mer (~110-125 €) |
+| **Marlow** (Mareterra) | Chaque **samedi** | Sam | BRUNCH so British (~55 €) |
+| **Mada One** (One Monte-Carlo) | Chaque dimanche | Dim | BRUNCH gourmand |
+| **Le Petit Café Robuchon** (Mareterra) | Chaque dimanche | Dim | BRUNCH + champagne |
+| **Smakelijk!** (Le Méridien) | Chaque dimanche | Dim | BRUNCH belge (~85 €) |
+| **Café de Paris** (Place du Casino) | Chaque dimanche | Dim | BRUNCH brasserie |
+| **Gran Caffè** (rue Grimaldi) | Chaque dimanche | Dim | BRUNCH italien |
+| **Caffè Milano** (Quai Albert 1er) | Chaque dimanche | Dim | BRUNCH italien |
+| **La Rascasse** (happy hour) | Chaque mardi | Mar | APÉRO HH 17h30-20h |
+| **Sexy Tacos** (Larvotto) | Chaque mercredi | Mer | APÉRO HH 15h30-18h30 |
+| **COYA Monte-Carlo** | Chaque jeudi, **été** (avr→oct) | Jeu | APÉRO pisco bar / Clásico |
+| **Gustave** (Hôtel Hermitage) | Chaque jeudi | Jeu | APÉRO chic |
+| **Norma** (Marché Condamine) | Chaque vendredi | Ven | APÉRO afterwork 17h-20h |
+| **Buddha-Bar** (Place du Casino) | Chaque samedi | Sam | APÉRO cocktails signatures |
 
 ---
 
