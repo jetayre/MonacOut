@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:11:09.262Z",
+  "generatedAt": "2026-07-13T06:30:38.024Z",
   "events": [
     {
       "date": "Lun 13 juil",
@@ -56,15 +56,6 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Mer 15 juil",
-      "iso": "2026-07-15",
-      "time": "18h30 — 20h30",
-      "title": "MÉDITERRANÉE & BIODIVERSITÉ MARINE",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🐋"
-    },
-    {
       "date": "Lun 13 juil",
       "iso": "2026-07-13",
       "time": "08h00 — 20h00",
@@ -72,6 +63,15 @@
       "venue": "Monte-Carlo",
       "quarter": "Monte-Carlo",
       "emoji": "💆"
+    },
+    {
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
     }
   ]
 }

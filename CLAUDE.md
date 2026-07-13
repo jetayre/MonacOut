@@ -337,11 +337,11 @@ Ces lieux ont des événements récurrents générés jusqu'à mai 2027. Ne pas 
 | **Café de Paris** (Place du Casino) | Chaque dimanche | Dim | BRUNCH brasserie |
 | **Gran Caffè** (rue Grimaldi) | Chaque dimanche | Dim | BRUNCH italien |
 | **Caffè Milano** (Quai Albert 1er) | Chaque dimanche | Dim | BRUNCH italien |
-| **La Rascasse** (happy hour) | Chaque mardi | Mar | APÉRO HH 17h30-20h |
-| **Sexy Tacos** (Larvotto) | Chaque mercredi | Mer | APÉRO HH 15h30-18h30 |
+| **La Rascasse** (happy hour) | **Lun→Ven** | Lun-Ven | APÉRO HH 17h30-20h |
+| **Sexy Tacos** (Larvotto) | **Lun→Ven** | Lun-Ven | APÉRO HH 15h30-18h30 |
 | **COYA Monte-Carlo** | Chaque jeudi, **été** (avr→oct) | Jeu | APÉRO pisco bar / Clásico |
-| **Gustave** (Hôtel Hermitage) | Chaque jeudi | Jeu | APÉRO chic |
-| **Norma** (Marché Condamine) | Chaque vendredi | Ven | APÉRO afterwork 17h-20h |
+| **Gustave** (Hôtel Hermitage) | Chaque jeudi | Jeu | APÉRO chic (pas de HH à jour fixe) |
+| **Norma** (Marché Condamine) | **Mar→Sam** | Mar-Sam | APÉRO afterwork 17h-20h |
 | **Buddha-Bar** (Place du Casino) | Chaque samedi | Sam | APÉRO cocktails signatures |
 
 ---
