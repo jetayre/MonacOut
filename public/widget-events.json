@@ -1,68 +1,14 @@
 {
-  "generatedAt": "2026-07-12T21:50:38.139Z",
+  "generatedAt": "2026-07-13T05:13:00.656Z",
   "events": [
     {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "21h30",
-      "title": "CONCERT AU PALAIS MENDELSSOHN",
-      "venue": "Cour d'honneur",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏰"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
       "time": "00h00",
       "title": "METS À JOUR MONAC'OUT VERSION 2.1",
       "venue": "App Store",
       "quarter": "Monaco",
       "emoji": "✨"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h — 19h",
-      "title": "MONACO MÉDITERRANÉE JOUR 2",
-      "venue": "Galerie Diaghilev",
-      "quarter": "Monte-Carlo",
-      "emoji": "🍋"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 16h00",
-      "title": "CHAPELLE DE LA VISITATION",
-      "venue": "Place de la Visitation",
-      "quarter": "Monaco-Ville",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
     },
     {
       "date": "Lun 13 juil",
@@ -72,6 +18,60 @@
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
+    },
+    {
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Mar 14 juil",
+      "iso": "2026-07-14",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Mar 14 juil",
+      "iso": "2026-07-14",
+      "time": "21h30",
+      "title": "MARCEL PAGNOL VARIATIONS",
+      "venue": "Théâtre du Fort Antoine",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎭"
+    },
+    {
+      "date": "Mar 14 juil",
+      "iso": "2026-07-14",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Mer 15 juil",
+      "iso": "2026-07-15",
+      "time": "18h30 — 20h30",
+      "title": "MÉDITERRANÉE & BIODIVERSITÉ MARINE",
+      "venue": "Musée Océanographique",
+      "quarter": "Monaco-Ville",
+      "emoji": "🐋"
+    },
+    {
+      "date": "Lun 13 juil",
+      "iso": "2026-07-13",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
     }
   ]
 }
