@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-13T06:30:52.186Z",
+  "generatedAt": "2026-07-16T05:12:35.353Z",
   "events": [
     {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
       "time": "00h00",
       "title": "METS À JOUR MONAC'OUT VERSION 2.1",
       "venue": "App Store",
@@ -11,8 +11,17 @@
       "emoji": "✨"
     },
     {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
+      "time": "23h30 — 05h00",
+      "title": "JIMMY'Z MIRAGE",
+      "venue": "Jimmy'z",
+      "quarter": "Monte-Carlo",
+      "emoji": "🪩"
+    },
+    {
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -20,35 +29,17 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Mar 14 juil",
-      "iso": "2026-07-14",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Mar 14 juil",
-      "iso": "2026-07-14",
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
       "time": "21h30",
-      "title": "MARCEL PAGNOL VARIATIONS",
+      "title": "STYLETO EN CONCERT",
       "venue": "Théâtre du Fort Antoine",
       "quarter": "Monaco-Ville",
-      "emoji": "🎭"
+      "emoji": "🎶"
     },
     {
-      "date": "Mar 14 juil",
-      "iso": "2026-07-14",
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
       "time": "10h00 — 18h00",
       "title": "MUSÉES DE MONACO OUVERTS",
       "venue": "Monaco-Ville",
@@ -56,8 +47,8 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
       "time": "08h00 — 20h00",
       "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
       "venue": "Monte-Carlo",
@@ -65,13 +56,22 @@
       "emoji": "💆"
     },
     {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
       "time": "10h30",
       "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
       "venue": "Cinémas 2 Monaco",
       "quarter": "Monte-Carlo",
       "emoji": "🎬"
+    },
+    {
+      "date": "Jeu 16 juil",
+      "iso": "2026-07-16",
+      "time": "15h30 — 18h30",
+      "title": "HAPPY HOUR SEXY TACOS LARVOTTO",
+      "venue": "Sexy Tacos",
+      "quarter": "Larvotto",
+      "emoji": "🍹"
     }
   ]
 }
