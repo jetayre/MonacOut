@@ -163,6 +163,63 @@ async function scheduleFavoriteReminders(events, favorites) {
   if (toSchedule.length) await LocalNotifications.schedule({ notifications: toSchedule });
 }
 
+// ── Rappel « Ajoute tes amis » ────────────────────────────────────────────────
+// Pour les personnes connectées SANS ami : petit coup de pouce (J+2 et J+6 à 18h).
+// Annulé dès qu'elles ont au moins un ami → on n'embête jamais ceux qui en ont.
+const FRIENDS_NUDGE_BASE = 92000;
+async function scheduleFriendsNudge(loggedIn, friendCount) {
+  if (!Capacitor.isNativePlatform()) return;
+  const perm = await LocalNotifications.checkPermissions();
+  if (perm.display !== 'granted') return;
+  const old = [0, 1, 2].map(i => ({ id: FRIENDS_NUDGE_BASE + i }));
+  try { await LocalNotifications.cancel({ notifications: old }); } catch { /* rien à annuler */ }
+  if (!loggedIn) return;
+  const now = new Date();
+  // 0 ami → 2 rappels (J+2, J+6). A déjà des amis (souvent peu) → 1 seul rappel (J+3) pour en ajouter plus.
+  const nudges = friendCount === 0
+    ? [
+        { days: 2, title: '👥 Ajoute tes amis', body: 'Ajoute tes amis pour vous retrouver aux événements.' },
+        { days: 6, title: '👥 Vois où sortent tes amis', body: 'Ajoute tes amis pour vous retrouver aux événements à Monaco.' },
+      ]
+    : [
+        { days: 3, title: '👥 Agrandis ton cercle', body: 'Ajoute plus d\'amis pour vous retrouver aux événements.' },
+      ];
+  const toSchedule = [];
+  nudges.forEach((n, i) => {
+    const at = new Date(now); at.setDate(now.getDate() + n.days); at.setHours(18, 0, 0, 0);
+    if (at <= now) return;
+    toSchedule.push({ id: FRIENDS_NUDGE_BASE + i, title: n.title, body: n.body, schedule: { at } });
+  });
+  if (toSchedule.length) await LocalNotifications.schedule({ notifications: toSchedule });
+}
+
+// ── Rappel « à ne pas manquer » : les 2 meilleurs événements à venir ──────────
+// Se replanifie à chaque ouverture (J+1 à 12h) → ne se déclenche que si la personne ne revient pas.
+const HILITE_ID = 93000;
+async function scheduleHighlightsReminder(events, favorites) {
+  if (!Capacitor.isNativePlatform()) return;
+  const perm = await LocalNotifications.checkPermissions();
+  if (perm.display !== 'granted') return;
+  try { await LocalNotifications.cancel({ notifications: [{ id: HILITE_ID }] }); } catch { /* rien à annuler */ }
+  const now = new Date();
+  const winEnd = new Date(now); winEnd.setDate(now.getDate() + 7); winEnd.setHours(23, 59, 59, 999);
+  const top = events.filter(e => {
+    if (e.directory || e.noNotif) return false;
+    const d = parseForNotif(e);
+    return d && d >= now && d <= winEnd;
+  }).sort((a, b) => digestScore(b, favorites, now) - digestScore(a, favorites, now)).slice(0, 2);
+  if (!top.length) return;
+  const body = top.map(e => {
+    const d = parseForNotif(e);
+    const titre = e.title.replace(/\n/g, ' ');
+    const lieu = e.subtitle ? e.subtitle.split(' · ')[0] : '';
+    return `• ${JOURS_FR[d.getDay()]} ${d.getDate()} — ${titre}${lieu ? ' · ' + lieu : ''}`;
+  }).join('\n');
+  const at = new Date(now); at.setDate(now.getDate() + 1); at.setHours(12, 0, 0, 0);
+  if (at <= now) at.setDate(at.getDate() + 1);
+  await LocalNotifications.schedule({ notifications: [{ id: HILITE_ID, title: 'À ne pas manquer à Monaco ✨', body, schedule: { at } }] });
+}
+
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
@@ -229,7 +286,8 @@ export default function App() {
   const engageRef = useRef(0);
   const eventLinkRef = useRef(false);
 
-  useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
+  useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
+  useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
@@ -426,7 +484,7 @@ export default function App() {
     if (Capacitor.isNativePlatform()) {
       try {
         const perm = await LocalNotifications.requestPermissions();
-        if (perm.display === "granted") { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); }
+        if (perm.display === "granted") { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleFriendsNudge(!!auth.user, (social.friends || []).length); scheduleHighlightsReminder(events, favorites); }
       } catch { /* ignore */ }
     } else if ("Notification" in window) {
       try { await Notification.requestPermission(); } catch { /* ignore */ }
