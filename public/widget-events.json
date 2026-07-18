@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T09:17:04.420Z",
+  "generatedAt": "2026-07-18T09:18:35.893Z",
   "events": [
     {
       "date": "Sam 18 juil",
@@ -13,15 +13,6 @@
     {
       "date": "Sam 18 juil",
       "iso": "2026-07-18",
-      "time": "20h30",
-      "title": "77E GALA CROIX-ROUGE SOUL!",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🔴"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
       "time": "19h30",
       "title": "LA DAME AUX CAMÉLIAS BALLET PARIS",
       "venue": "Salle des Princes",
@@ -31,17 +22,8 @@
     {
       "date": "Sam 18 juil",
       "iso": "2026-07-18",
-      "time": "22h00",
-      "title": "FEUX D'ARTIFICE MONACO II",
-      "venue": "Port Hercule",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎇"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
       "time": "00h00",
-      "title": "METS À JOUR MONAC'OUT VERSION 2.0",
+      "title": "METS À JOUR MONAC'OUT VERSION 2.1",
       "venue": "App Store",
       "quarter": "Monaco",
       "emoji": "✨"
@@ -72,6 +54,24 @@
       "venue": "5 paroisses",
       "quarter": "Monaco",
       "emoji": "⛪"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "09h30",
+      "title": "ZUMBA LA DIGUE MONACO",
+      "venue": "Zumba La Digue",
+      "quarter": "La Condamine",
+      "emoji": "🕺"
     }
   ]
 }
