@@ -1,18 +1,45 @@
 {
-  "generatedAt": "2026-07-12T18:10:10.578Z",
+  "generatedAt": "2026-07-18T09:03:10.888Z",
   "events": [
     {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "21h30",
-      "title": "CONCERT AU PALAIS MENDELSSOHN",
-      "venue": "Cour d'honneur",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏰"
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "20h00",
+      "title": "GALA DE LA CROIX-ROUGE MONÉGASQUE",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎗️"
     },
     {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "20h30",
+      "title": "77E GALA CROIX-ROUGE SOUL!",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🔴"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "19h30",
+      "title": "LA DAME AUX CAMÉLIAS BALLET PARIS",
+      "venue": "Salle des Princes",
+      "quarter": "Monte-Carlo",
+      "emoji": "🌹"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "22h00",
+      "title": "FEUX D'ARTIFICE MONACO II",
+      "venue": "Port Hercule",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎇"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
       "time": "00h00",
       "title": "METS À JOUR MONAC'OUT VERSION 2.0",
       "venue": "App Store",
@@ -20,58 +47,31 @@
       "emoji": "✨"
     },
     {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "10h00 — 13h00",
+      "title": "INTENSIF BALLET ÉTÉ",
+      "venue": "Académie de Danse Princesse Grace",
+      "quarter": "Monaco-Ville",
+      "emoji": "🩰"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
       "quarter": "Monaco",
       "emoji": "⛪"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h — 19h",
-      "title": "MONACO MÉDITERRANÉE JOUR 2",
-      "venue": "Galerie Diaghilev",
-      "quarter": "Monte-Carlo",
-      "emoji": "🍋"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 16h00",
-      "title": "CHAPELLE DE LA VISITATION",
-      "venue": "Place de la Visitation",
-      "quarter": "Monaco-Ville",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 12 juil",
-      "iso": "2026-07-12",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Lun 13 juil",
-      "iso": "2026-07-13",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
     }
   ]
 }
