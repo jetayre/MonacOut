@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T15:12:45.950Z",
+  "generatedAt": "2026-07-18T15:36:43.188Z",
   "events": [
     {
       "date": "Sam 18 juil",
@@ -9,6 +9,15 @@
       "venue": "Salle des Étoiles",
       "quarter": "Larvotto",
       "emoji": "🎗️"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "10h00 — 19h00",
+      "title": "LE MARIAGE DU SIÈCLE AU PALAIS",
+      "venue": "Grands Appartements du Palais",
+      "quarter": "Monaco-Ville",
+      "emoji": "👰"
     },
     {
       "date": "Sam 18 juil",
@@ -27,6 +36,15 @@
       "venue": "App Store",
       "quarter": "Monaco",
       "emoji": "✨"
+    },
+    {
+      "date": "Sam 18 juil",
+      "iso": "2026-07-18",
+      "time": "09h30 — 18h00",
+      "title": "LE MARIAGE DU SIÈCLE EN PHILATÉLIE",
+      "venue": "Musée des Timbres et Monnaies",
+      "quarter": "Fontvieille",
+      "emoji": "📮"
     },
     {
       "date": "Sam 18 juil",
@@ -54,24 +72,6 @@
       "venue": "5 paroisses",
       "quarter": "Monaco",
       "emoji": "⛪"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "09h30",
-      "title": "ZUMBA LA DIGUE MONACO",
-      "venue": "Zumba La Digue",
-      "quarter": "La Condamine",
-      "emoji": "🕺"
     }
   ]
 }
