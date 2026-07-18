@@ -89,7 +89,7 @@ let id = Math.max(3600, maxId + 1);
 // ── FENÊTRE GLISSANTE : aujourd'hui → +12 mois. Régénéré chaque jour (via daily-check)
 //    → avance d'un jour chaque jour, ne s'arrête jamais.
 const today = new Date(); today.setHours(0, 0, 0, 0);
-const end   = new Date(today); end.setMonth(end.getMonth() + 3);   // fenêtre 3 mois (app légère → chargement rapide comme avant)
+const end   = new Date(today); end.setMonth(end.getMonth() + 6);   // fenêtre 6 mois
 const lines = [];
 
 for (const v of V) {

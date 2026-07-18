@@ -65,16 +65,9 @@ if (Capacitor.isNativePlatform()) {
         const cur = await CapacitorUpdater.current();
         if (cur?.bundle?.version === version) return;         // déjà à jour
         const bundle = await CapacitorUpdater.download({ version, url });
-        // Anti-boucle : au plus UN rechargement auto par session pour une version donnée.
-        // localStorage (persistant) → on ne recharge qu'UNE SEULE FOIS par version, jamais à chaque ouverture.
-        const applyKey = 'monacout_ota_applied_' + version;
-        if (localStorage.getItem(applyKey)) {
-          await CapacitorUpdater.next({ id: bundle.id });     // déjà appliqué → au prochain lancement, sans recharger
-          return;
-        }
-        localStorage.setItem(applyKey, '1');
-        await CapacitorUpdater.set({ id: bundle.id });        // bascule sur le nouveau bundle…
-        await CapacitorUpdater.reload();                      // …recharge UNE fois (plus de saut aux ouvertures suivantes)
+        // Applique au PROCHAIN démarrage à froid, en fond → JAMAIS de reload() à l'écran :
+        // plus de page blanche ni de saut à l'ouverture (l'app démarre direct, comme ce matin).
+        await CapacitorUpdater.next({ id: bundle.id });
       } catch { /* hors-ligne ou erreur → on garde la version intégrée */ }
     })();
   });
