@@ -280,6 +280,7 @@ export default function App() {
   const [inviteToast, setInviteToast] = useState(null);
   const [inviterName, setInviterName] = useState(null);
   const [showInAppBanner, setShowInAppBanner] = useState(false);
+  const [announce, setAnnounce] = useState(null);   // annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
@@ -288,6 +289,14 @@ export default function App() {
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
   useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
+  // Annonce in-app (broadcast à tous, même sans notifs) : affichée si présente, non expirée et non fermée.
+  useEffect(() => {
+    const a = notifConfig?.announcement;
+    if (!a || !a.id || !a.message) return setAnnounce(null);
+    if (a.until && new Date(a.until + "T23:59:59") < new Date()) return setAnnounce(null);
+    if (localStorage.getItem("monacout_announce_dismissed") === String(a.id)) return setAnnounce(null);
+    setAnnounce(a);
+  }, [notifConfig]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
@@ -654,6 +663,23 @@ export default function App() {
           if (latest) localStorage.setItem("monacout_update_dismissed", String(latest));
           setUpdateAvailable(false);
         }} style={{ flexShrink: 0, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "#6A7080", lineHeight: 1, padding: "0 2px" }}>✕</button>
+      </div>
+    )}
+
+    {/* Annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json → announcement */}
+    {announce && (
+      <div style={{ position: "fixed", top: 12, left: "50%", transform: "translateX(-50%)", zIndex: 3300, display: "flex", alignItems: "center", gap: 10, background: "#0F1D3A", color: "#fff", border: "1px solid #C9A96E", borderRadius: 10, padding: "10px 12px 10px 15px", boxShadow: "0 10px 34px rgba(0,0,0,0.32)", maxWidth: "92%" }}>
+        <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12.5, lineHeight: 1.4 }}>
+          {lang === "en" && announce.messageEn ? announce.messageEn : announce.message}
+        </div>
+        {announce.link && (
+          <a href={announce.link} target="_blank" rel="noopener noreferrer"
+            style={{ flexShrink: 0, background: "#C4A241", color: "#0F1D3A", textDecoration: "none", padding: "7px 12px", borderRadius: 5, fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: 0.5, whiteSpace: "nowrap" }}>
+            {lang === "en" && announce.ctaEn ? announce.ctaEn : (announce.cta || "Voir")}
+          </a>
+        )}
+        <button onClick={() => { localStorage.setItem("monacout_announce_dismissed", String(announce.id)); setAnnounce(null); }}
+          style={{ flexShrink: 0, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "rgba(255,255,255,0.65)", lineHeight: 1, padding: "0 2px" }}>✕</button>
       </div>
     )}
     </>

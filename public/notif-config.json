@@ -9,5 +9,15 @@
   "_contactEmail": "Adresse qui reçoit les propositions d'événements (bouton « Proposer un événement »). Modifiable ici sans repasser par Apple.",
   "contactEmail": "eventsmonacout@gmail.com",
   "_latestVersion": "Dernière version publiée sur l'App Store. Bumper cette valeur (ex: 1.8) après avoir publié une nouvelle version → les apps plus anciennes afficheront un bandeau « Mettre à jour ». git push suffit, pas besoin de repasser par Apple.",
-  "latestVersion": "2.1"
+  "latestVersion": "2.1",
+  "_announcement": "MESSAGE À TOUS dans l'app (même sans notifs). Change 'id' à chaque nouveau message, 'until' = date de fin (AAAA-MM-JJ). Mets message vide pour ne rien afficher. Un simple git push suffit — pas d'Apple, pas de serveur de push.",
+  "announcement": {
+    "id": "mariage-2026",
+    "message": "🏰 70 ans du Mariage du Siècle : projection lundi Place du Palais + 3 expos à découvrir.",
+    "messageEn": "🏰 70 years of the Wedding of the Century: Monday screening at Place du Palais + 3 exhibitions to discover.",
+    "cta": "",
+    "ctaEn": "",
+    "link": "",
+    "until": "2026-07-21"
+  }
 }
