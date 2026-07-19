@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-07-19T06:35:03.484Z",
+  "generatedAt": "2026-07-19T06:35:06.371Z",
   "events": [
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "10h00 — 19h00",
+      "title": "LE MARIAGE DU SIÈCLE AU PALAIS",
+      "venue": "Grands Appartements du Palais",
+      "quarter": "Monaco-Ville",
+      "emoji": "👰"
+    },
     {
       "date": "Dim 19 juil",
       "iso": "2026-07-19",
@@ -22,6 +31,15 @@
     {
       "date": "Dim 19 juil",
       "iso": "2026-07-19",
+      "time": "09h30 — 18h00",
+      "title": "LE MARIAGE DU SIÈCLE EN PHILATÉLIE",
+      "venue": "Musée des Timbres et Monnaies",
+      "quarter": "Fontvieille",
+      "emoji": "📮"
+    },
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -31,20 +49,11 @@
     {
       "date": "Dim 19 juil",
       "iso": "2026-07-19",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
+      "time": "En journée",
+      "title": "UN MARIAGE SOUS LES PROJECTEURS",
+      "venue": "Institut Audiovisuel de Monaco",
+      "quarter": "Fontvieille",
+      "emoji": "🎞️"
     },
     {
       "date": "Dim 19 juil",
@@ -63,15 +72,6 @@
       "venue": "Pavyllon",
       "quarter": "Monte-Carlo",
       "emoji": "🥂"
-    },
-    {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "12h00 — 15h00",
-      "title": "BRUNCH LAS BRISAS VUE MER",
-      "venue": "Las Brisas",
-      "quarter": "Larvotto",
-      "emoji": "🌊"
     }
   ]
 }
