@@ -668,7 +668,7 @@ export default function App() {
 
     {/* Annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json → announcement */}
     {announce && (
-      <div style={{ position: "fixed", top: "calc(env(safe-area-inset-top, 0px) + 8px)", left: "50%", transform: "translateX(-50%)", zIndex: 3300, display: "flex", alignItems: "center", gap: 10, background: "#0F1D3A", color: "#fff", border: "1px solid #C9A96E", borderRadius: 10, padding: "10px 12px 10px 15px", boxShadow: "0 10px 34px rgba(0,0,0,0.32)", maxWidth: "92%" }}>
+      <div style={{ position: "fixed", top: "calc(env(safe-area-inset-top, 0px) + 8px)", left: "50%", transform: "translateX(-50%)", zIndex: 3300, display: "flex", alignItems: "center", gap: 10, background: "#FFFDF7", color: "#0F1D3A", border: "1.5px solid #C4A241", borderRadius: 10, padding: "10px 12px 10px 15px", boxShadow: "0 8px 28px rgba(15,29,58,0.20)", maxWidth: "92%" }}>
         <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12.5, lineHeight: 1.4 }}>
           {lang === "en" && announce.messageEn ? announce.messageEn : announce.message}
         </div>
@@ -679,7 +679,7 @@ export default function App() {
           </a>
         )}
         <button onClick={() => { localStorage.setItem("monacout_announce_dismissed", String(announce.id)); setAnnounce(null); }}
-          style={{ flexShrink: 0, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "rgba(255,255,255,0.65)", lineHeight: 1, padding: "0 2px" }}>✕</button>
+          style={{ flexShrink: 0, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "#8A94A0", lineHeight: 1, padding: "0 2px" }}>✕</button>
       </div>
     )}
     </>
