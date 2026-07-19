@@ -12,12 +12,12 @@
   "latestVersion": "2.1",
   "_announcement": "MESSAGE À TOUS dans l'app (même sans notifs). Change 'id' à chaque nouveau message, 'until' = date de fin (AAAA-MM-JJ). Mets message vide pour ne rien afficher. Un simple git push suffit — pas d'Apple, pas de serveur de push.",
   "announcement": {
-    "id": "mariage-2026",
-    "message": "🏰 70 ans du Mariage du Siècle : projection lundi Place du Palais + 3 expos à découvrir.",
-    "messageEn": "🏰 70 years of the Wedding of the Century: Monday screening at Place du Palais + 3 exhibitions to discover.",
-    "cta": "",
-    "ctaEn": "",
-    "link": "",
-    "until": "2026-07-21"
+    "id": "castelroc-2026",
+    "message": "🍽️ Nouveau : dîner le week-end au Castelroc, terrasse face au Palais Princier.",
+    "messageEn": "🍽️ New: weekend dinner at Castelroc, terrace facing the Prince's Palace.",
+    "cta": "Réserver",
+    "ctaEn": "Book",
+    "link": "https://www.castelrocmonaco.com/",
+    "until": "2026-08-19"
   }
 }
