@@ -53,7 +53,7 @@ if (!Capacitor.isNativePlatform() && 'serviceWorker' in navigator) {
 if (Capacitor.isNativePlatform()) {
   // 1) Confirme que le bundle actuel démarre bien — sinon Capgo revient à la version précédente (anti-brique).
   CapacitorUpdater.notifyAppReady().catch(() => {});
-  // 2) Cherche une nouvelle interface ; si dispo, la télécharge et l'applique TOUT DE SUITE (auto-appliquant).
+  // 2) Cherche une nouvelle interface ; si dispo, la télécharge et l'applique (auto-appliquant).
   const OTA_MANIFEST = 'https://monac-out.vercel.app/capgo/latest.json';
   window.addEventListener('load', () => {
     (async () => {
@@ -65,15 +65,9 @@ if (Capacitor.isNativePlatform()) {
         const cur = await CapacitorUpdater.current();
         if (cur?.bundle?.version === version) return;         // déjà à jour
         const bundle = await CapacitorUpdater.download({ version, url });
-        // Anti-boucle : au plus UN rechargement auto par session pour une version donnée.
-        const applyKey = 'monacout_ota_applied_' + version;
-        if (sessionStorage.getItem(applyKey)) {
-          await CapacitorUpdater.next({ id: bundle.id });     // repli : au prochain lancement
-          return;
-        }
-        sessionStorage.setItem(applyKey, '1');
-        await CapacitorUpdater.set({ id: bundle.id });        // bascule sur le nouveau bundle…
-        await CapacitorUpdater.reload();                      // …et recharge immédiatement (auto-appliquant)
+        // Applique au PROCHAIN démarrage à froid, en fond → JAMAIS de reload() à l'écran :
+        // plus de page blanche ni de saut à l'ouverture (l'app démarre direct, comme ce matin).
+        await CapacitorUpdater.next({ id: bundle.id });
       } catch { /* hors-ligne ou erreur → on garde la version intégrée */ }
     })();
   });
