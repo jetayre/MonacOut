@@ -1,63 +1,27 @@
 {
-  "generatedAt": "2026-07-18T16:43:58.783Z",
+  "generatedAt": "2026-07-19T06:35:03.484Z",
   "events": [
     {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "20h00",
-      "title": "GALA DE LA CROIX-ROUGE MONÉGASQUE",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎗️"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "10h00 — 19h00",
-      "title": "LE MARIAGE DU SIÈCLE AU PALAIS",
-      "venue": "Grands Appartements du Palais",
-      "quarter": "Monaco-Ville",
-      "emoji": "👰"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
       "time": "19h30",
       "title": "LA DAME AUX CAMÉLIAS BALLET PARIS",
-      "venue": "Salle des Princes",
+      "venue": "Grimaldi Forum",
       "quarter": "Monte-Carlo",
-      "emoji": "🌹"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "00h00",
-      "title": "METS À JOUR MONAC'OUT VERSION 2.1",
-      "venue": "App Store",
-      "quarter": "Monaco",
-      "emoji": "✨"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "09h30 — 18h00",
-      "title": "LE MARIAGE DU SIÈCLE EN PHILATÉLIE",
-      "venue": "Musée des Timbres et Monnaies",
-      "quarter": "Fontvieille",
-      "emoji": "📮"
-    },
-    {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "10h00 — 13h00",
-      "title": "INTENSIF BALLET ÉTÉ",
-      "venue": "Académie de Danse Princesse Grace",
-      "quarter": "Monaco-Ville",
       "emoji": "🩰"
     },
     {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -65,13 +29,49 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 18 juil",
-      "iso": "2026-07-18",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
+    },
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "12h00 — 15h30",
+      "title": "BRUNCH NOBU MONTE-CARLO",
+      "venue": "Nobu Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍱"
+    },
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "12h00 — 15h00",
+      "title": "BRUNCH PAVYLLON HERMITAGE",
+      "venue": "Pavyllon",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
+    },
+    {
+      "date": "Dim 19 juil",
+      "iso": "2026-07-19",
+      "time": "12h00 — 15h00",
+      "title": "BRUNCH LAS BRISAS VUE MER",
+      "venue": "Las Brisas",
+      "quarter": "Larvotto",
+      "emoji": "🌊"
     }
   ]
 }
