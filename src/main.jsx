@@ -6,6 +6,7 @@ import posthog from 'posthog-js'
 import * as Sentry from '@sentry/react'
 import { Capacitor } from '@capacitor/core'
 import { CapacitorUpdater } from '@capgo/capacitor-updater'
+import { Analytics } from '@vercel/analytics/react'
 
 class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -77,6 +78,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
       <App />
+      {!Capacitor.isNativePlatform() && <Analytics />}
     </ErrorBoundary>
   </StrictMode>,
 )
