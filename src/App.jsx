@@ -380,6 +380,11 @@ export default function App() {
           localStorage.setItem("monacout_pending_invite", inv.trim().toLowerCase());
           setDeepLinkTick(t => t + 1);
         }
+        const eid = u.searchParams.get("event");
+        if (eid) {
+          localStorage.setItem("monacout_pending_event", eid);
+          setDeepLinkTick(t => t + 1);
+        }
         // Retour du lien magique (Universal Link) : on établit la session dans l'app native.
         // Flux implicite → jetons dans le hash ; flux PKCE → ?code=.
         const hp = new URLSearchParams(u.hash?.startsWith("#") ? u.hash.slice(1) : "");
@@ -395,6 +400,14 @@ export default function App() {
     });
     return () => { handle.then(h => h.remove()); };
   }, []);
+
+  // Deep link natif ?event=<id> → ouvre directement la fiche événement
+  useEffect(() => {
+    const eid = localStorage.getItem("monacout_pending_event");
+    if (!eid || !events?.length) return;
+    const ev = events.find(e => String(e.id) === String(eid));
+    if (ev) { setSelectedEvent(ev); localStorage.removeItem("monacout_pending_event"); }
+  }, [events, deepLinkTick]);
 
   // Dès que la personne est connectée (avec un profil), on applique l'invitation en attente — SANS code à taper
   useEffect(() => {
