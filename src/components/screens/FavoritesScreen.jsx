@@ -24,7 +24,7 @@ function ArrowLeft() {
   );
 }
 
-export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick, events = ALL_EVENTS }) {
+export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick, events = ALL_EVENTS, loggedIn = false, onShowAuth }) {
   const favEvents = events.filter(e => favorites.includes(e.id));
 
   return (
@@ -59,6 +59,26 @@ export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClic
       </div>
 
       <div style={{ padding: "16px 16px 20px" }}>
+        {/* Ligne discrète : sauvegarder ses favoris (visible seulement si pas connectée et au moins un favori) */}
+        {!loggedIn && favEvents.length > 0 && onShowAuth && (
+          <button
+            onClick={onShowAuth}
+            style={{
+              width: "100%", display: "flex", alignItems: "center", gap: 10,
+              background: "#FFFDF7", border: `1px solid ${GOLD}`, borderRadius: 6,
+              padding: "10px 14px", marginBottom: 14, cursor: "pointer", textAlign: "left",
+            }}
+          >
+            <span style={{ fontSize: 18, flexShrink: 0 }}>☁️</span>
+            <span style={{ flex: 1, fontFamily: "'Jost', sans-serif", fontSize: 13, color: NAVY, lineHeight: 1.35 }}>
+              {lang === "en" ? "Save my favourites" : "Sauvegarder mes favoris"}
+              <span style={{ display: "block", fontSize: 11, color: GREY, marginTop: 1 }}>
+                {lang === "en" ? "Keep them even on a new phone" : "Les garder même en changeant de téléphone"}
+              </span>
+            </span>
+            <span style={{ flexShrink: 0, color: GOLD, fontSize: 18, lineHeight: 1 }}>›</span>
+          </button>
+        )}
         {favEvents.length === 0 ? (
           <div style={{ textAlign: "center", padding: "60px 20px" }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🤍</div>

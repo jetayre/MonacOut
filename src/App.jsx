@@ -274,6 +274,7 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [showFavNudge, setShowFavNudge] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
@@ -465,7 +466,19 @@ export default function App() {
     setFavorites(prev => {
       const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
       localStorage.setItem("monacout_favs", JSON.stringify(next));
-      if (!prev.includes(id)) maybeAskNotif();   // ajout d'un favori = intérêt fort → on propose (au bon moment)
+      if (!prev.includes(id)) {
+        // 1er favori sans compte → on invite (une seule fois) à sauvegarder ses favoris.
+        // Sinon (déjà connectée, ou nudge déjà vu) → on propose les notifs au bon moment.
+        let nudged = false;
+        try {
+          if (!auth.user && next.length >= 1 && !localStorage.getItem("monacout_fav_nudge_shown")) {
+            localStorage.setItem("monacout_fav_nudge_shown", "1");
+            setShowFavNudge(true);
+            nudged = true;
+          }
+        } catch { /* localStorage indisponible */ }
+        if (!nudged) maybeAskNotif();   // ajout d'un favori = intérêt fort → on propose (au bon moment)
+      }
       return next;
     });
   }
@@ -604,6 +617,29 @@ export default function App() {
         />
       )}
     </Shell>
+
+    {/* Invitation douce à créer un compte après le 1er favori (conversion, jamais bloquante) */}
+    {showFavNudge && !auth.user && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
+        <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <div style={{ fontSize: 32, marginBottom: 10 }}>❤️</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
+            {lang === "en" ? "Keep your favourites" : "Garde tes favoris"}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
+            {lang === "en"
+              ? "Create your account to keep your favourite outings — even on a new phone — and see the ones your friends are going to."
+              : "Crée ton compte pour retrouver tes sorties favorites même en changeant de téléphone — et voir celles de tes amis."}
+          </div>
+          <button onClick={() => { setShowFavNudge(false); setShowAuth(true); }} style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8 }}>
+            {lang === "en" ? "Create my account" : "Créer mon compte"}
+          </button>
+          <button onClick={() => setShowFavNudge(false)} style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+            {lang === "en" ? "Later" : "Plus tard"}
+          </button>
+        </div>
+      </div>
+    )}
 
     {/* Petit message maison AVANT la demande iOS de notifications (meilleure acceptation) */}
     {showNotifPrompt && (
