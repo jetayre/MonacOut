@@ -30,8 +30,38 @@
           </div>
         </div>
         <div style="margin-top:16px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:14px;color:#C4A241">Community &amp; Lifestyle</div>
+        <div id="boot-store" style="display:none;margin-top:28px;text-align:center">
+          <a id="boot-store-btn" href="https://apps.apple.com/app/id6774785049"
+             style="display:inline-block;background:#0F1D3A;color:#C9A96E;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;padding:12px 28px;text-decoration:none;border:1.5px solid #C9A96E">
+            OUVRIR L'APP
+          </a>
+          <div style="margin-top:10px">
+            <a href="#" onclick="document.getElementById('boot-store').remove();return false;"
+               style="font-family:Helvetica,Arial,sans-serif;font-size:10px;color:#aaa;letter-spacing:1px;text-decoration:none">
+              Continuer sur le site →
+            </a>
+          </div>
+        </div>
       </div>
     </div>
+    <script>
+      // Sur iPhone/iPad hors app native : propose l'App Store et redirige automatiquement
+      (function () {
+        var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isNative = !!window.Capacitor; // déjà dans l'app Capacitor
+        if (!isIOS || isNative) return;
+        var storeUrl = 'https://apps.apple.com/app/id6774785049';
+        // Affiche le bouton après 600 ms (logo visible)
+        setTimeout(function () {
+          var el = document.getElementById('boot-store');
+          if (el) el.style.display = 'block';
+        }, 600);
+        // Redirige automatiquement vers l'App Store après 2 s
+        setTimeout(function () {
+          window.location.href = storeUrl;
+        }, 2000);
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
