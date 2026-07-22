@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T07:27:56.894Z",
+  "generatedAt": "2026-07-22T08:47:29.410Z",
   "events": [
     {
       "date": "Mer 22 juil",
@@ -15,15 +15,6 @@
       "iso": "2026-07-22",
       "time": "20h30",
       "title": "CONCERT AYA NAKAMURA",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Jeu 23 juil",
-      "iso": "2026-07-23",
-      "time": "20h30",
-      "title": "CONCERT JUANES",
       "venue": "Salle des Étoiles",
       "quarter": "Larvotto",
       "emoji": "🎵"
@@ -72,6 +63,15 @@
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
+    },
+    {
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
+      "time": "19h00",
+      "title": "ZUMBA LA DIGUE MONACO",
+      "venue": "Zumba La Digue",
+      "quarter": "La Condamine",
+      "emoji": "🕺"
     }
   ]
 }
