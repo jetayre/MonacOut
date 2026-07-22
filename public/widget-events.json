@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-19T16:28:52.051Z",
+  "generatedAt": "2026-07-22T07:27:35.750Z",
   "events": [
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
       "time": "10h00 — 19h00",
       "title": "LE MARIAGE DU SIÈCLE AU PALAIS",
       "venue": "Grands Appartements du Palais",
@@ -11,26 +11,26 @@
       "emoji": "👰"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "19h30",
-      "title": "LA DAME AUX CAMÉLIAS BALLET PARIS",
-      "venue": "Grimaldi Forum",
-      "quarter": "Monte-Carlo",
-      "emoji": "🩰"
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
+      "time": "20h30",
+      "title": "CONCERT AYA NAKAMURA",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "20h30",
+      "title": "CONCERT JUANES",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
       "time": "09h30 — 18h00",
       "title": "LE MARIAGE DU SIÈCLE EN PHILATÉLIE",
       "venue": "Musée des Timbres et Monnaies",
@@ -38,17 +38,17 @@
       "emoji": "📮"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
+      "time": "19h30",
+      "title": "BALETTI COCO BEACH SOIRÉE",
+      "venue": "Square Gastaud",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
       "time": "En journée",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel de Monaco",
@@ -56,22 +56,22 @@
       "emoji": "🎞️"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "12h00 — 15h30",
-      "title": "BRUNCH NOBU MONTE-CARLO",
-      "venue": "Nobu Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "🍱"
+      "date": "Mer 22 juil",
+      "iso": "2026-07-22",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
     },
     {
-      "date": "Dim 19 juil",
-      "iso": "2026-07-19",
-      "time": "12h00 — 15h00",
-      "title": "BRUNCH PAVYLLON HERMITAGE",
-      "venue": "Pavyllon",
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
-      "emoji": "🥂"
+      "emoji": "🏎️"
     }
   ]
 }
