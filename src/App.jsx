@@ -15,6 +15,13 @@ import { Capacitor } from "@capacitor/core";
 import { App as CapApp } from "@capacitor/app";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import posthog from "posthog-js";
+
+// Capteur de mesure (invisible pour l'utilisateur). Lié à des ACTIONS (clics),
+// jamais au défilement → aucune répétition parasite quand on scrolle.
+function track(event, props) {
+  try { posthog.capture(event, props); } catch { /* analytics indisponible */ }
+}
 
 const MOIS_APP = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
@@ -451,9 +458,11 @@ export default function App() {
   }
 
   function handleCatFilter(catId) {
-    setCatFilters(prev =>
-      prev.includes(catId) ? prev.filter(f => f !== catId) : [...prev, catId]
-    );
+    setCatFilters(prev => {
+      const active = prev.includes(catId);
+      if (!active) track("filter_used", { filter: catId });   // seulement à l'activation d'un filtre
+      return active ? prev.filter(f => f !== catId) : [...prev, catId];
+    });
     const el = document.getElementById("main-scroll");
     if (el) el.scrollTop = 0;
   }
@@ -467,6 +476,7 @@ export default function App() {
       const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
       localStorage.setItem("monacout_favs", JSON.stringify(next));
       if (!prev.includes(id)) {
+        track("favorite_added", { event_id: id });   // ajout d'un favori (jamais au retrait)
         // 1er favori sans compte → on invite (une seule fois) à sauvegarder ses favoris.
         // Sinon (déjà connectée, ou nudge déjà vu) → on propose les notifs au bon moment.
         let nudged = false;
@@ -474,6 +484,7 @@ export default function App() {
           if (!auth.user && next.length >= 1 && !localStorage.getItem("monacout_fav_nudge_shown")) {
             localStorage.setItem("monacout_fav_nudge_shown", "1");
             setShowFavNudge(true);
+            track("signup_prompt_shown", { source: "fav_nudge" });   // l'invitation compte s'est affichée
             nudged = true;
           }
         } catch { /* localStorage indisponible */ }
@@ -490,6 +501,7 @@ export default function App() {
   }
 
   function handleCardClick(e) {
+    track("event_opened", { event_id: e.id, cat: e.cat });   // ouverture d'une fiche (au clic)
     setSelectedEvent(e);
     bumpNotifEngagement();
   }

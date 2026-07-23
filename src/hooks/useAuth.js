@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Capacitor } from '@capacitor/core'
+import posthog from 'posthog-js'
 import { supabase } from '../lib/supabase'
 
 // URL publique https de l'app (Universal Link). En natif, window.location.origin
@@ -60,6 +61,7 @@ export function useAuth() {
 
   async function saveProfile(displayName, topics) {
     if (!supabase || !user) return
+    const isNew = !profile?.display_name           // 1er enregistrement du prénom = nouveau compte
     const row = { id: user.id, display_name: displayName }
     if (Array.isArray(topics)) row.preferred_topics = topics
     const { data } = await supabase
@@ -68,6 +70,9 @@ export function useAuth() {
       .select()
       .single()
     setProfile(data)
+    if (isNew) {
+      try { posthog.capture('signup_completed', { topics: Array.isArray(topics) ? topics : [] }) } catch { /* analytics indisponible */ }
+    }
   }
 
   async function signOut() {
