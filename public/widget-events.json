@@ -1,59 +1,23 @@
 {
-  "generatedAt": "2026-07-22T19:16:25.026Z",
+  "generatedAt": "2026-07-23T05:09:47.987Z",
   "events": [
     {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
-      "time": "10h00 — 19h00",
-      "title": "LE MARIAGE DU SIÈCLE AU PALAIS",
-      "venue": "Grands Appartements du Palais",
-      "quarter": "Monaco-Ville",
-      "emoji": "👰"
-    },
-    {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
       "time": "20h30",
-      "title": "CONCERT AYA NAKAMURA",
+      "title": "CONCERT JUANES",
       "venue": "Salle des Étoiles",
       "quarter": "Larvotto",
       "emoji": "🎵"
     },
     {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
-      "time": "09h30 — 18h00",
-      "title": "LE MARIAGE DU SIÈCLE EN PHILATÉLIE",
-      "venue": "Musée des Timbres et Monnaies",
-      "quarter": "Fontvieille",
-      "emoji": "📮"
-    },
-    {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
-      "time": "19h30",
-      "title": "BALETTI COCO BEACH SOIRÉE",
-      "venue": "Square Gastaud",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
-      "time": "En journée",
-      "title": "UN MARIAGE SOUS LES PROJECTEURS",
-      "venue": "Institut Audiovisuel de Monaco",
-      "quarter": "Fontvieille",
-      "emoji": "🎞️"
-    },
-    {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "21h30",
+      "title": "8 SOIRS PAR SEMAINE",
+      "venue": "Théâtre du Fort Antoine",
       "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
+      "emoji": "🎭"
     },
     {
       "date": "Jeu 23 juil",
@@ -65,13 +29,49 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Mer 22 juil",
-      "iso": "2026-07-22",
-      "time": "19h00",
-      "title": "ZUMBA LA DIGUE MONACO",
-      "venue": "Zumba La Digue",
-      "quarter": "La Condamine",
-      "emoji": "🕺"
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Ven 24 juil",
+      "iso": "2026-07-24",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
+    },
+    {
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Jeu 23 juil",
+      "iso": "2026-07-23",
+      "time": "15h30 — 18h30",
+      "title": "HAPPY HOUR SEXY TACOS LARVOTTO",
+      "venue": "Sexy Tacos",
+      "quarter": "Larvotto",
+      "emoji": "🍹"
     }
   ]
 }
