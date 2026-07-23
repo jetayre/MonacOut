@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { T } from "./i18n";
 import Shell from "./components/Shell";
 import { fetchLiveEvents, fetchNotifConfig, BUNDLED_EVENTS } from "./data/liveEvents";
@@ -31,6 +31,28 @@ function parseForNotif(e) {
   const month = MOIS_APP[parts[2]];
   if (isNaN(day) || month === undefined) return null;
   return new Date(e.year || 2026, month, day);
+}
+
+// Cartes « annuaire » Spas & Musées : elles existent en 1 exemplaire PAR JOUR
+// (repérables au champ `venues`). Pour éviter de les revoir à chaque jour quand on scrolle,
+// on ne garde que l'occurrence la PLUS PROCHE (aujourd'hui) de chaque carte, et on masque le reste.
+// ⚠️ Le CINÉMA est exclu : il change chaque semaine avec les nouveaux films → on le laisse tel quel.
+function isDailyDirectory(e) {
+  return e && Array.isArray(e.venues) && e.cat !== "CINÉMA";
+}
+function collapseVenueCards(events) {
+  if (!Array.isArray(events)) return events;
+  const best = new Map();                 // titre → { i, t } = occurrence la plus proche
+  events.forEach((e, i) => {
+    if (!isDailyDirectory(e)) return;
+    const d = parseForNotif(e);
+    const t = d ? d.getTime() : Infinity;
+    const cur = best.get(e.title);
+    if (!cur || t < cur.t) best.set(e.title, { i, t });
+  });
+  if (!best.size) return events;
+  const keep = new Set(Array.from(best.values(), v => v.i));
+  return events.filter((e, i) => !isDailyDirectory(e) || keep.has(i));
 }
 
 // ── Pop-up automatique : les sorties phares à venir ───────────────────────────
@@ -556,7 +578,11 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events, social, onGoingClick: handleGoingClick, loggedIn: !!auth.user, onShowAuth: () => setShowAuth(true) };
+  // Liste pour l'AFFICHAGE : cartes annuaire (spa/musées/cinéma) réduites à une seule occurrence.
+  // (Les notifications continuent d'utiliser `events` brut plus haut.)
+  const displayEvents = useMemo(() => collapseVenueCards(events), [events]);
+
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, loggedIn: !!auth.user, onShowAuth: () => setShowAuth(true) };
 
   return (
     <>
