@@ -659,6 +659,7 @@ export default function App() {
         <FriendsScreen
           auth={auth}
           social={social}
+          events={events}
           lang={lang}
           onShowAuth={() => setShowAuth(true)}
           onNavEvents={() => handleTabChange("events")}
