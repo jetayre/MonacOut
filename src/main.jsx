@@ -74,6 +74,15 @@ if (Capacitor.isNativePlatform()) {
   });
 }
 
+// Masque l'écran de démarrage ivoire après le rendu React
+setTimeout(() => {
+  const boot = document.getElementById('boot');
+  if (boot) {
+    boot.style.opacity = '0';
+    setTimeout(() => boot.remove(), 500);
+  }
+}, 600);
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
