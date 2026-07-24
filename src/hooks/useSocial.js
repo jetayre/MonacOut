@@ -48,6 +48,18 @@ export function useSocial(userId) {
       .eq('user_id', userId)
       .in('visible_to_id', friendIds)
     const visSet = new Set((vis || []).map(v => v.visible_to_id))
+
+    // Par défaut : on se rend visible à ses amis (sauf ceux qu'on a explicitement masqués).
+    // Le masquage est mémorisé en local → on ne re-force jamais la visibilité d'un ami masqué.
+    try {
+      const hidden = JSON.parse(localStorage.getItem('monacout_vis_hidden') || '[]')
+      const toDefault = friendIds.filter(fid => !visSet.has(fid) && !hidden.includes(fid))
+      if (toDefault.length) {
+        await supabase.from('visibility').insert(toDefault.map(fid => ({ user_id: userId, visible_to_id: fid })))
+        toDefault.forEach(fid => visSet.add(fid))
+      }
+    } catch { /* best-effort : si ça échoue, on garde l'état existant */ }
+
     setVisibility([...visSet])
 
     // Participations des amis qui m'ont autorisé à les voir
@@ -102,12 +114,17 @@ export function useSocial(userId) {
   async function toggleVisibility(friendId) {
     if (!supabase || !userId) return
     const isVisible = visibility.includes(friendId)
+    let hidden = []
+    try { hidden = JSON.parse(localStorage.getItem('monacout_vis_hidden') || '[]') } catch { /* rien */ }
     if (isVisible) {
       await supabase.from('visibility').delete().eq('user_id', userId).eq('visible_to_id', friendId)
       setVisibility(prev => prev.filter(id => id !== friendId))
+      // On mémorise le masquage → le défaut « visible » ne le re-forcera pas au prochain chargement.
+      if (!hidden.includes(friendId)) { try { localStorage.setItem('monacout_vis_hidden', JSON.stringify([...hidden, friendId])) } catch { /* rien */ } }
     } else {
       await supabase.from('visibility').insert({ user_id: userId, visible_to_id: friendId })
       setVisibility(prev => [...prev, friendId])
+      try { localStorage.setItem('monacout_vis_hidden', JSON.stringify(hidden.filter(id => id !== friendId))) } catch { /* rien */ }
     }
   }
 
