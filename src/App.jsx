@@ -42,6 +42,7 @@ function isDailyDirectory(e) {
 }
 function collapseVenueCards(events) {
   if (!Array.isArray(events)) return events;
+  // 1) Regroupe : ne garder que l'occurrence la plus proche de chaque carte annuaire.
   const best = new Map();                 // titre → { i, t } = occurrence la plus proche
   events.forEach((e, i) => {
     if (!isDailyDirectory(e)) return;
@@ -52,7 +53,28 @@ function collapseVenueCards(events) {
   });
   if (!best.size) return events;
   const keep = new Set(Array.from(best.values(), v => v.i));
-  return events.filter((e, i) => !isDailyDirectory(e) || keep.has(i));
+  const kept = events.filter((e, i) => !isDailyDirectory(e) || keep.has(i));
+
+  // 2) Repositionne : place chaque carte annuaire À LA FIN de sa journée (jamais en haut).
+  const dayKey = e => `${e.year || 2026}|${e.date}`;
+  const dirs = [], rest = [];
+  kept.forEach(e => (isDailyDirectory(e) ? dirs : rest).push(e));
+  if (!dirs.length) return kept;
+  const byDay = new Map();
+  dirs.forEach(e => { const k = dayKey(e); if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push(e); });
+  const out = [];
+  const done = new Set();
+  for (let i = 0; i < rest.length; i++) {
+    out.push(rest[i]);
+    const k = dayKey(rest[i]);
+    const next = rest[i + 1];
+    if (byDay.has(k) && !done.has(k) && (!next || dayKey(next) !== k)) {
+      byDay.get(k).forEach(c => out.push(c));   // dernier event du jour → on ajoute les cartes annuaire après
+      done.add(k);
+    }
+  }
+  byDay.forEach((cards, k) => { if (!done.has(k)) cards.forEach(c => out.push(c)); });  // filet (jour sans autre event)
+  return out;
 }
 
 // ── Pop-up automatique : les sorties phares à venir ───────────────────────────
