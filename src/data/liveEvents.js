@@ -4,7 +4,7 @@
 
 import { ALL_EVENTS } from "./events";
 
-const LIVE_URL = "https://monacout.vercel.app/events.json";
+const LIVE_URL = "https://monac-out.vercel.app/events.json";
 const MOIS = { jan: 0, "fév": 1, mar: 2, avr: 3, mai: 4, juin: 5, juil: 6, "août": 7, sep: 8, oct: 9, nov: 10, "déc": 11 };
 
 function eventDate(e) {
@@ -47,7 +47,7 @@ export async function fetchLiveEvents() {
 // ── Réglages de notifications pilotables depuis le site (sans repasser par Apple) ──
 // L'app lit public/notif-config.json (servi sur monacout.vercel.app) au lancement.
 // Repli sur les valeurs par défaut codées dans App.jsx si absent/hors-ligne.
-const NOTIF_CONFIG_URL = "https://monacout.vercel.app/notif-config.json";
+const NOTIF_CONFIG_URL = "https://monac-out.vercel.app/notif-config.json";
 const JOUR_OFFSET = { lundi: 0, mardi: 1, mercredi: 2, jeudi: 3, vendredi: 4, samedi: 5, dimanche: 6 };
 
 export async function fetchNotifConfig() {
