@@ -330,8 +330,18 @@ export default function App() {
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
+  // Délai : attend que l'écran de démarrage ait fini de s'estomper (600ms + 500ms fade = 1100ms)
+  // → évite le flash visible quand la liste change d'ordre au premier rendu.
   useEffect(() => {
-    fetchLiveEvents().then(live => { if (live && live.length) setEvents(live); });
+    let cancelled = false;
+    const t0 = Date.now();
+    fetchLiveEvents().then(live => {
+      if (cancelled || !live?.length) return;
+      const elapsed = Date.now() - t0;
+      const wait = Math.max(0, 1200 - elapsed);
+      setTimeout(() => { if (!cancelled) setEvents(live); }, wait);
+    });
+    return () => { cancelled = true; };
   }, []);
 
   // Récupère les réglages de notifications EN DIRECT (jours/heure/fréquence sans passer par Apple)
