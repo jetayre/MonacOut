@@ -311,6 +311,23 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           </div>
         )}
 
+        {/* Bouton « Inscris-toi » sous le logo — visible UNIQUEMENT si pas connectée (additif, sans impact sur les connectées) */}
+        {!loggedIn && onShowAuth && (
+          <div style={{
+            background: WHITE, borderTop: `1px solid ${BORDER}`, textAlign: "center",
+            padding: "7px 12px",
+          }}>
+            <button onClick={onShowAuth} style={{
+              background: NAVY, color: "#fff", border: "none", borderRadius: 3,
+              padding: "8px 24px", cursor: "pointer",
+              fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+              letterSpacing: 1.5, textTransform: "uppercase",
+            }}>
+              {lang === "en" ? "Sign up" : "Inscris-toi"}
+            </button>
+          </div>
+        )}
+
         {/* Barre de recherche */}
         <div style={{
           background: WHITE, borderTop: `1px solid ${BORDER}`,
