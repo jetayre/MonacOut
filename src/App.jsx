@@ -163,10 +163,10 @@ async function scheduleDigest(events, favorites, config, topics) {
         .slice(0, perDigest);
       const hasFav = top.some(e => favorites.includes(e.id));
       const body = top.map(e => {
-        const d = parseForNotif(e);
         const titre = e.title.replace(/\n/g, ' ');
         const lieu = e.subtitle ? e.subtitle.split(' · ')[0] : '';
-        return `• ${JOURS_FR[d.getDay()]} ${d.getDate()} — ${titre}${lieu ? ' · ' + lieu : ''}`;
+        // Teaser : on affiche seulement le NOM (+ lieu), PAS la date → donne envie d'ouvrir l'app pour voir quand.
+        return `• ${titre}${lieu ? ' · ' + lieu : ''}`;
       }).join('\n');
       const id = DIGEST_ID_BASE + w * sendOffsets.length + s;
       toSchedule.push({
