@@ -16,8 +16,10 @@
       "iconColor": "#C4A241"
     },
     "SplashScreen": {
-      "launchShowDuration": 1000,
-      "backgroundColor": "#FFFFFF"
+      "launchShowDuration": 0,
+      "launchAutoHide": false,
+      "backgroundColor": "#FFFDF7",
+      "showSpinner": false
     },
     "CapacitorUpdater": {
       "autoUpdate": false,

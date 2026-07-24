@@ -6,6 +6,7 @@ import posthog from 'posthog-js'
 import * as Sentry from '@sentry/react'
 import { Capacitor } from '@capacitor/core'
 import { CapacitorUpdater } from '@capgo/capacitor-updater'
+import { SplashScreen } from '@capacitor/splash-screen'
 import { Analytics } from '@vercel/analytics/react'
 
 class ErrorBoundary extends Component {
@@ -74,8 +75,11 @@ if (Capacitor.isNativePlatform()) {
   });
 }
 
-// Masque l'écran de démarrage ivoire après le rendu React
+// Masque le SplashScreen natif + l'écran ivoire après le rendu React
 setTimeout(() => {
+  if (Capacitor.isNativePlatform()) {
+    SplashScreen.hide({ fadeOutDuration: 300 }).catch(() => {});
+  }
   const boot = document.getElementById('boot');
   if (boot) {
     boot.style.opacity = '0';
