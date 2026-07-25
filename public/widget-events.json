@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-07-24T15:50:12.689Z",
+  "generatedAt": "2026-07-25T05:09:32.722Z",
   "events": [
     {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
-      "time": "20h00 — 23h30",
-      "title": "MILONGA DIGUE DU PORT III",
-      "venue": "Nouvelle Digue du Port Hercule",
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
+      "time": "22h00",
+      "title": "FEUX D'ARTIFICE MONACO II",
+      "venue": "Port Hercule",
       "quarter": "Monte-Carlo",
-      "emoji": "🌟"
+      "emoji": "🎇"
     },
     {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -20,8 +20,26 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
+      "time": "18h00",
+      "title": "MESSE SAMEDI",
+      "venue": "5 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
+      "time": "20h30",
+      "title": "JAZZ FESTIVAL LARVOTTO",
+      "venue": "La Note Bleue",
+      "quarter": "Larvotto",
+      "emoji": "🎷"
+    },
+    {
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
       "time": "10h00 — 18h00",
       "title": "MUSÉES DE MONACO OUVERTS",
       "venue": "Monaco-Ville",
@@ -29,8 +47,17 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
+      "time": "09h30",
+      "title": "ZUMBA LA DIGUE MONACO",
+      "venue": "Zumba La Digue",
+      "quarter": "La Condamine",
+      "emoji": "🕺"
+    },
+    {
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
       "time": "08h00 — 20h00",
       "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
       "venue": "Monte-Carlo",
@@ -38,40 +65,13 @@
       "emoji": "💆"
     },
     {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
+      "date": "Sam 25 juil",
+      "iso": "2026-07-25",
       "time": "10h30",
       "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
       "venue": "Cinémas 2 Monaco",
       "quarter": "Monte-Carlo",
       "emoji": "🎬"
-    },
-    {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
-      "time": "15h30 — 18h30",
-      "title": "HAPPY HOUR SEXY TACOS LARVOTTO",
-      "venue": "Sexy Tacos",
-      "quarter": "Larvotto",
-      "emoji": "🍹"
-    },
-    {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
-      "time": "17h00 — 20h00",
-      "title": "APÉRO NORMA CONDAMINE",
-      "venue": "Norma",
-      "quarter": "La Condamine",
-      "emoji": "🍷"
-    },
-    {
-      "date": "Ven 24 juil",
-      "iso": "2026-07-24",
-      "time": "17h30 — 20h00",
-      "title": "HAPPY HOUR LA RASCASSE PORT HERCULE",
-      "venue": "La Rascasse",
-      "quarter": "La Condamine",
-      "emoji": "🍻"
     }
   ]
 }
