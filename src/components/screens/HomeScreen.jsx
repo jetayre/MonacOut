@@ -311,21 +311,19 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           </div>
         )}
 
-        {/* Bouton « Inscris-toi » sous le logo — visible UNIQUEMENT si pas connectée (additif, sans impact sur les connectées) */}
+        {/* Barre « Inscris-toi » pleine largeur, bien en haut (en-tête fixe) — UNIQUEMENT si pas connectée (additif) */}
         {!loggedIn && onShowAuth && (
-          <div style={{
-            background: WHITE, borderTop: `1px solid ${BORDER}`, textAlign: "center",
-            padding: "7px 12px",
+          <button onClick={onShowAuth} style={{
+            display: "block", width: "100%", border: "none", cursor: "pointer",
+            background: NAVY, color: "#fff",
+            padding: "11px 16px", textAlign: "center",
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 12.5, fontWeight: 600, letterSpacing: 0.8,
+            borderTop: `1px solid ${BORDER}`,
           }}>
-            <button onClick={onShowAuth} style={{
-              background: NAVY, color: "#fff", border: "none", borderRadius: 3,
-              padding: "8px 24px", cursor: "pointer",
-              fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
-              letterSpacing: 1.5, textTransform: "uppercase",
-            }}>
-              {lang === "en" ? "Sign up" : "Inscris-toi"}
-            </button>
-          </div>
+            {lang === "en"
+              ? "✨ Sign up — find your friends & favourites ›"
+              : "✨ Inscris-toi — retrouve tes amis & tes favoris ›"}
+          </button>
         )}
 
         {/* Barre de recherche */}
