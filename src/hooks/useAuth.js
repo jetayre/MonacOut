@@ -17,14 +17,18 @@ export function useAuth() {
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
-      if (session?.user) loadProfile(session.user.id)
-      else setLoading(false)
+      if (session?.user) {
+        try { posthog.identify(session.user.id) } catch { /* analytics indispo */ }  // relie la personne PostHog au compte (savoir qui est inscrit)
+        loadProfile(session.user.id)
+      } else setLoading(false)
     })
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
       setUser(session?.user ?? null)
-      if (session?.user) loadProfile(session.user.id)
-      else { setProfile(null); setLoading(false) }
+      if (session?.user) {
+        try { posthog.identify(session.user.id) } catch { /* analytics indispo */ }
+        loadProfile(session.user.id)
+      } else { setProfile(null); setLoading(false) }
     })
     return () => subscription.unsubscribe()
   }, [])
@@ -78,6 +82,7 @@ export function useAuth() {
   async function signOut() {
     if (!supabase) return
     await supabase.auth.signOut()
+    try { posthog.reset() } catch { /* analytics indispo */ }  // délie la personne PostHog (déconnexion explicite uniquement)
   }
 
   async function deleteAccount() {
