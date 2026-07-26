@@ -137,7 +137,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "", loggedIn = false, onShowAuth }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "", loggedIn = false, authReady = false, onShowAuth }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -312,7 +312,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         )}
 
         {/* Barre « Inscris-toi » pleine largeur, bien en haut (en-tête fixe) — UNIQUEMENT si pas connectée (additif) */}
-        {!loggedIn && onShowAuth && (
+        {authReady && !loggedIn && onShowAuth && (
           <button onClick={onShowAuth} style={{
             display: "block", width: "100%", border: "none", cursor: "pointer",
             background: NAVY, color: "#fff",

@@ -625,7 +625,7 @@ export default function App() {
   // (Les notifications continuent d'utiliser `events` brut plus haut.)
   const displayEvents = useMemo(() => collapseVenueCards(events), [events]);
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, loggedIn: !!auth.user, onShowAuth: () => setShowAuth(true) };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, loggedIn: !!auth.user, authReady: !auth.loading, onShowAuth: () => setShowAuth(true) };
 
   return (
     <>
