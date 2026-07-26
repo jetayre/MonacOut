@@ -366,6 +366,14 @@ export default function App() {
     return () => { cancelled = true; };
   }, []);
 
+  // Propose les notifications ~3,5 s après l'entrée dans l'app (pour TOUT LE MONDE), une fois l'écran de bienvenue passé.
+  // maybeAskNotif est protégé (n'affiche que si la permission est encore demandable → jamais 2 fois).
+  useEffect(() => {
+    if (showWelcome) return;
+    const t = setTimeout(() => { maybeAskNotif(); }, 3500);
+    return () => clearTimeout(t);
+  }, [showWelcome]);
+
   // Récupère les réglages de notifications EN DIRECT (jours/heure/fréquence sans passer par Apple)
   useEffect(() => {
     fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); });
@@ -570,12 +578,14 @@ export default function App() {
           askedNotifRef.current = true;
           localStorage.setItem("monacout_notif_asked", "1");
           setShowNotifPrompt(true);
+          track("notif_prompt_shown");
         }
       } catch { /* ignore */ }
     } else if ("Notification" in window && Notification.permission === "default") {
       askedNotifRef.current = true;
       localStorage.setItem("monacout_notif_asked", "1");
       setShowNotifPrompt(true);
+      track("notif_prompt_shown");
     }
   }
 
@@ -585,10 +595,11 @@ export default function App() {
     if (Capacitor.isNativePlatform()) {
       try {
         const perm = await LocalNotifications.requestPermissions();
+        track("notif_permission", { result: perm.display });   // granted / denied → mesure le taux d'acceptation
         if (perm.display === "granted") { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleFriendsNudge(!!auth.user, (social.friends || []).length); scheduleHighlightsReminder(events, favorites); }
       } catch { /* ignore */ }
     } else if ("Notification" in window) {
-      try { await Notification.requestPermission(); } catch { /* ignore */ }
+      try { const r = await Notification.requestPermission(); track("notif_permission", { result: r }); } catch { /* ignore */ }
     }
   }
 
@@ -728,7 +739,7 @@ export default function App() {
           <button onClick={acceptNotif} style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8 }}>
             {lang === "en" ? "Yes, notify me" : "Oui, préviens-moi"}
           </button>
-          <button onClick={() => setShowNotifPrompt(false)} style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+          <button onClick={() => { setShowNotifPrompt(false); track("notif_later"); }} style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
             {lang === "en" ? "Later" : "Plus tard"}
           </button>
         </div>

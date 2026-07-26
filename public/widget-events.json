@@ -1,18 +1,45 @@
 {
-  "generatedAt": "2026-07-25T20:38:45.593Z",
+  "generatedAt": "2026-07-26T13:45:23.249Z",
   "events": [
     {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "22h00",
-      "title": "FEUX D'ARTIFICE MONACO II",
-      "venue": "Port Hercule",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎇"
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "20h30",
+      "title": "CONCERT JOHN LEGEND",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "21h30",
+      "title": "MARTHA ARGERICH AU PALAIS",
+      "venue": "Cour d'honneur",
+      "quarter": "Monaco-Ville",
+      "emoji": "🌟"
+    },
+    {
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "09h00 — 13h00",
+      "title": "YOGA CRUISE CÔTE D'AZUR",
+      "venue": "Yoga Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "🌊"
+    },
+    {
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -20,58 +47,31 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "12h00 — 15h30",
+      "title": "BRUNCH NOBU MONTE-CARLO",
+      "venue": "Nobu Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍱"
     },
     {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "20h30",
-      "title": "JAZZ FESTIVAL LARVOTTO",
-      "venue": "La Note Bleue",
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "12h00 — 15h00",
+      "title": "BRUNCH PAVYLLON HERMITAGE",
+      "venue": "Pavyllon",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
+    },
+    {
+      "date": "Dim 26 juil",
+      "iso": "2026-07-26",
+      "time": "12h00 — 15h00",
+      "title": "BRUNCH LAS BRISAS VUE MER",
+      "venue": "Las Brisas",
       "quarter": "Larvotto",
-      "emoji": "🎷"
-    },
-    {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "09h30",
-      "title": "ZUMBA LA DIGUE MONACO",
-      "venue": "Zumba La Digue",
-      "quarter": "La Condamine",
-      "emoji": "🕺"
-    },
-    {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
-    },
-    {
-      "date": "Sam 25 juil",
-      "iso": "2026-07-25",
-      "time": "10h30",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "emoji": "🌊"
     }
   ]
 }
