@@ -1,5 +1,12 @@
 import { StrictMode, Component } from 'react'
 import { createRoot } from 'react-dom/client'
+// Polices du logo EMBARQUÉES (chargées depuis l'app, pas internet) → plus de saut de taille au démarrage
+import '@fontsource/playfair-display/400.css'
+import '@fontsource/playfair-display/700.css'
+import '@fontsource/josefin-sans/300.css'
+import '@fontsource/josefin-sans/400.css'
+import '@fontsource/josefin-sans/600.css'
+import '@fontsource/josefin-sans/700.css'
 import './index.css'
 import App from './App.jsx'
 import posthog from 'posthog-js'
