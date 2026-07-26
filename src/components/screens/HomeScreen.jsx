@@ -299,6 +299,14 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           </div>
         </div>
 
+        {/* Pendant le chargement de l'auth : on réserve la place du bandeau (invisible) → « Bonjour » apparaît sans faire sauter la mise en page */}
+        {!authReady && (
+          <div style={{
+            background: WHITE, borderTop: `1px solid ${BORDER}`, textAlign: "center",
+            padding: "5px 12px", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, visibility: "hidden",
+          }}>&nbsp;</div>
+        )}
+
         {/* Salutation — « Bonjour, <prénom> » sous le logo quand connectée */}
         {userName && (
           <div style={{
