@@ -727,14 +727,13 @@ export default function App() {
     {showNotifPrompt && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
         <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
-          <div style={{ fontSize: 34, marginBottom: 10 }}>✨</div>
-          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
-            {lang === "en" ? "Get notified of outings?" : "Être prévenue des sorties ?"}
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, marginTop: 4, letterSpacing: 0.5 }}>
+            {lang === "en" ? "Never miss a great outing" : "Ne rate aucune belle sortie"}
           </div>
           <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
             {lang === "en"
-              ? "Get a little reminder of the best outings in Monaco (2-3× a week). You can stop anytime."
-              : "Reçois un petit rappel des plus belles sorties à Monaco (2-3× par semaine). Tu pourras arrêter quand tu veux."}
+              ? "A reminder of the outings not to miss, right on your phone."
+              : "Un rappel des sorties à ne pas manquer, direct sur ton téléphone."}
           </div>
           <button onClick={acceptNotif} style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8 }}>
             {lang === "en" ? "Yes, notify me" : "Oui, préviens-moi"}
