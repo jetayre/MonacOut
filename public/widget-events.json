@@ -1,45 +1,9 @@
 {
-  "generatedAt": "2026-07-26T16:17:29.139Z",
+  "generatedAt": "2026-07-27T05:11:04.337Z",
   "events": [
     {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "20h30",
-      "title": "CONCERT JOHN LEGEND",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "21h30",
-      "title": "MARTHA ARGERICH AU PALAIS",
-      "venue": "Cour d'honneur",
-      "quarter": "Monaco-Ville",
-      "emoji": "🌟"
-    },
-    {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "09h00 — 13h00",
-      "title": "YOGA CRUISE CÔTE D'AZUR",
-      "venue": "Yoga Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "🌊"
-    },
-    {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
+      "date": "Lun 27 juil",
+      "iso": "2026-07-27",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -47,31 +11,67 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "12h00 — 15h30",
-      "title": "BRUNCH NOBU MONTE-CARLO",
-      "venue": "Nobu Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "🍱"
+      "date": "Lun 27 juil",
+      "iso": "2026-07-27",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
     },
     {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "12h00 — 15h00",
-      "title": "BRUNCH PAVYLLON HERMITAGE",
-      "venue": "Pavyllon",
+      "date": "Mar 28 juil",
+      "iso": "2026-07-28",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
-      "emoji": "🥂"
+      "emoji": "🏎️"
     },
     {
-      "date": "Dim 26 juil",
-      "iso": "2026-07-26",
-      "time": "12h00 — 15h00",
-      "title": "BRUNCH LAS BRISAS VUE MER",
-      "venue": "Las Brisas",
-      "quarter": "Larvotto",
-      "emoji": "🌊"
+      "date": "Mar 28 juil",
+      "iso": "2026-07-28",
+      "time": "21h30",
+      "title": "A BOCCA CHIUSA",
+      "venue": "Théâtre du Fort Antoine",
+      "quarter": "Monaco-Ville",
+      "emoji": "🎭"
+    },
+    {
+      "date": "Mar 28 juil",
+      "iso": "2026-07-28",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Lun 27 juil",
+      "iso": "2026-07-27",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
+    },
+    {
+      "date": "Lun 27 juil",
+      "iso": "2026-07-27",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mar 28 juil",
+      "iso": "2026-07-28",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
     }
   ]
 }
