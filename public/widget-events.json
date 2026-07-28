@@ -1,24 +1,6 @@
 {
-  "generatedAt": "2026-07-27T05:11:04.337Z",
+  "generatedAt": "2026-07-28T05:11:19.833Z",
   "events": [
-    {
-      "date": "Lun 27 juil",
-      "iso": "2026-07-27",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Lun 27 juil",
-      "iso": "2026-07-27",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
     {
       "date": "Mar 28 juil",
       "iso": "2026-07-28",
@@ -47,22 +29,22 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Lun 27 juil",
-      "iso": "2026-07-27",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "20h30",
+      "title": "SOUL! WHERE LEGENDS COME BACK",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Lun 27 juil",
-      "iso": "2026-07-27",
-      "time": "10h30",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
     },
     {
       "date": "Mar 28 juil",
@@ -72,6 +54,24 @@
       "venue": "Monte-Carlo",
       "quarter": "Monte-Carlo",
       "emoji": "💆"
+    },
+    {
+      "date": "Mar 28 juil",
+      "iso": "2026-07-28",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "19h00",
+      "title": "ZUMBA LA DIGUE MONACO",
+      "venue": "Zumba La Digue",
+      "quarter": "La Condamine",
+      "emoji": "🕺"
     }
   ]
 }
