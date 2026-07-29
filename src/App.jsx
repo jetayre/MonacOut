@@ -342,10 +342,38 @@ export default function App() {
   useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
   // Annonce in-app (broadcast à tous, même sans notifs) : affichée si présente, non expirée et non fermée.
   useEffect(() => {
-    const a = notifConfig?.announcement;
+    const cfg = notifConfig;
+    if (!cfg) return setAnnounce(null);
+    const dismissed = localStorage.getItem("monacout_announce_dismissed");
+    // Format DATÉ (announcements[]) : « Ce soir : » le jour J, « Demain soir : » la veille, bascule auto d'un event au suivant.
+    if (Array.isArray(cfg.announcements)) {
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const cands = [];
+      for (const a of cfg.announcements) {
+        if (!a || !a.id || !a.date) continue;
+        const diff = Math.round((new Date(a.date + "T00:00:00") - today) / 86400000);
+        const lead = a.leadDays != null ? a.leadDays : 1;
+        if (diff < 0 || diff > lead) continue;                 // seulement le jour J et les jours J-lead
+        if (dismissed === String(a.id)) continue;              // fermée par l'utilisateur
+        cands.push({ a, diff });
+      }
+      if (!cands.length) return setAnnounce(null);
+      cands.sort((x, y) => x.diff - y.diff);                   // l'événement le plus proche d'abord
+      const { a, diff } = cands[0];
+      const preFR = diff === 0 ? "Ce soir : " : diff === 1 ? "Demain soir : " : "";
+      const preEN = diff === 0 ? "Tonight: " : diff === 1 ? "Tomorrow night: " : "";
+      return setAnnounce({
+        id: a.id,
+        message: preFR + (a.titleFR || a.message || ""),
+        messageEn: preEN + (a.titleEN || a.messageEn || a.titleFR || ""),
+        cta: a.cta, ctaEn: a.ctaEn, link: a.link,
+      });
+    }
+    // Ancien format : annonce unique statique.
+    const a = cfg.announcement;
     if (!a || !a.id || !a.message) return setAnnounce(null);
     if (a.until && new Date(a.until + "T23:59:59") < new Date()) return setAnnounce(null);
-    if (localStorage.getItem("monacout_announce_dismissed") === String(a.id)) return setAnnounce(null);
+    if (dismissed === String(a.id)) return setAnnounce(null);
     setAnnounce(a);
   }, [notifConfig]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
