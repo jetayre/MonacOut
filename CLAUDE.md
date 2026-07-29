@@ -16,6 +16,13 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **iOS v1.9 build 20** archivée (`~/Library/Developer/Xcode/Archives/2026-07-09/MonacOut-1.9.xcarchive`, com.monacout, pas de widget parasite). Reste : upload via Xcode Organizer + Submit for Review.
 - **Captures App Store** régénérées (anglais, 1179×2556) dans `~/Desktop/MonacOut_AppStore_Screenshots_NEW/` : 01-home (favori/cœur rouge + 2 amis), 02-sport (10 amis), 03-nightlife (Happy Hours & soirées, 8 amis).
 
+## Journal — 29 juil 2026 (complétion massive + fix carte cinéma)
+- **43 événements ajoutés à la main** (ids 4724-4766), vérifiés lieu + date + heure, Le Policier FEU VERT, en ligne. Scripts : `scripts/add-batch-2026.mjs` (20 culturels : concerts Disney/Star Wars ciné-concerts, Thursday Live Sessions, théâtre TPG, cinéma d'été Médiathèque, Roma de Massenet, récital Jansen & Kantorow…) + `scripts/add-batch2-2026.mjs` (14 religieux CHANTS paroisse Saint-Charles, 2 Vuelta Grand Départ, 2 Soirées Musicales Estivales, 5 conférences pro). Les 24 opéras OPMC 26-27 (4700-4723) avaient été ajoutés juste avant.
+- **⚠️ FIX carte cinéma hebdo (id 1004031)** : elle avait **disparu** car `scripts/refresh-cinema.mjs` (lancé chaque jour par daily-check.yml) redatait un **id codé en dur `2050` devenu inexistant** (la carte est régénérée avec un nouvel id). Corrigé : le script cible désormais le **marqueur stable `weeklyFilms:true`**. ⚠️ RÈGLE : **ne jamais cibler la carte cinéma par son id** (il change) — toujours par `weeklyFilms:true`. Cette carte doit être redatée au jour même sinon le filtre « aujourd'hui→futur » la masque.
+- **FIX Marine (id 4741)** : PrinciPocket la donnait au 27 fév ET 13 fév 2027 → doublon avec mauvaise date. Vérifié (jds.fr) : **une seule date, sam 13 fév 2027 20h30**. Le 27 fév était faux. Leçon : PrinciPocket peut avoir des dates dupliquées/erronées → recouper si un même titre apparaît 2× à des dates proches.
+- **Méthode PrinciPocket (pour l'agent de complétion)** : `node principocket-scan.mjs` liste les manquants (titre + date seulement). Pour lieu + heure exacts → **GET la fiche** `https://www.principocket.com<slug>` : le **titre** = balise `<h1>`, le **lieu** = 1er lien `/en/places/…`, la **date+heure** = texte « `<Jour> D <Mois> YYYY from HH:MM to HH:MM` ». ⚠️ Le scan a des **faux positifs** : (a) opéras déjà présents re-signalés car titre ≠ (« la vie parisienne opera » vs « LA VIE PARISIENNE OFFENBACH ») → **dédupliquer par date+lieu, pas par titre** ; (b) events sans lieu/heure sur la fiche → **skipper + signaler** (ne rien inventer). Toujours recouper le site officiel du lieu (table des sources ci-dessus).
+- **Skippés le 29 juil** (à retenter) : ateliers CycloShow & Mission XY (lieu absent de PrinciPocket, introuvable officiellement), Stage gravure pointe sèche au Foyer Sainte Dévote (heure non confirmée). Conférences pro fermées : finalement INCLUSES sur demande de Stéphanie (Les Assises, BNI ×2, Ministres du Sport, Forbes Summit).
+
 ## Rôle de Claude
 Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier les nouveaux événements, mettre à jour `src/data/events.js`, puis builder et pousser.
 
@@ -35,6 +42,12 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Théâtre Princesse Grace | https://www.tpgmonaco.mc | DANSE (Salle Princesse Grace), THÉÂTRE | +377 9325 3227 |
 | Paroisse Sacré-Cœur Monaco | https://saintmartin.diocese.mc | CHANTS (Église du Sacré-Cœur) | +377 9330 7526 |
 | Cathédrale Saint-Nicolas | https://www.maitrisecathedrale.mc/fr/prochaines-dates | CONCERT, CHANTS (Cathédrale) | +377 9999 1400 |
+| Paroisse Saint-Charles | https://saintcharles.diocese.mc/ | CHANTS (Heure Sainte, Bénédiction des malades, messes) — Église Saint-Charles, Monte-Carlo | +377 9330 7490 |
+| Paroisse Saint-Martin / Sacré-Cœur | https://saintmartin.diocese.mc | CHANTS (messes, célébrations) | +377 9330 7526 |
+| Diocèse de Monaco | https://diocese.mc | CHANTS (fêtes diocésaines, caté, service santé) | |
+| Auditorium Rainier III | https://opmc.mc/en/concert/ | CONCERT, OPÉRA (Orchestre Philharmonique, Auditorium Rainier III · Monte-Carlo) | +377 9200 1370 |
+| Soirées Musicales Estivales (Mairie) | https://www.mairie.mc/programme-estival-2026 | CONCERT gratuit en plein air (Square Gastaud · La Condamine, ~19h30, juil-août) | +377 9315 2828 |
+| La Vuelta — Grand Départ Monaco 2026 | https://www.lavuelta.es/en | SPORT cyclisme (22 août CLM Place du Casino · 23 août départ Jardin Exotique) | |
 | Espace Léo Ferré | https://www.espaceleoferre.mc/ | CONCERT, DANSE, SPECTACLE (Fontvieille) | +377 9310 1210 |
 | AS Monaco Basket | https://billetterie.asmonaco.basketball/fr | BASKET | |
 | AS Monaco FC | https://billetterie.asmonaco.com/ | FOOTBALL | |
@@ -252,7 +265,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 5. **Ne pas dupliquer** : avant d'ajouter, vérifier que l'événement n'existe pas déjà (même titre, même date).
 
-6. **ID unique** : toujours incrémenter depuis le dernier ID dans le fichier. **Dernier ID utilisé : 4653.** Prochain ID : 4654.
+6. **ID unique** : toujours incrémenter depuis le dernier ID **manuel** dans le fichier. **Dernier ID manuel utilisé : 4766.** Prochain ID : 4767. ⚠️ Ne PAS repartir des gros ids générés (1000000+) : ce sont les récurrences auto (nightlife, cinéma). Rester dans la plage 4xxx pour les ajouts manuels/agent.
 
 7. **VÉRIFIER LE JOUR DE LA SEMAINE** : le champ `date` doit commencer par le bon abrégé (Lun/Mar/Mer/Jeu/Ven/Sam/Dim). Toujours vérifier avec `new Date(year, mois, jour).getDay()` avant d'insérer. Les erreurs de jour sont invisibles à l'œil nu mais font échouer les filtres "Aujourd'hui" et "Week-end".
 

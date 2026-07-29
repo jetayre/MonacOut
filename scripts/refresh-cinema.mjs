@@ -31,8 +31,10 @@ function redate(line) {
 
 s = s.split("\n").map((line) => {
   if (!/^\s*\{id:\d+,/.test(line)) return line;
-  // 1) carte cinéma
-  if (/\{id:2050,/.test(line)) return redate(line);
+  // 1) carte cinéma hebdo — cibler le marqueur STABLE weeklyFilms.
+  //    (Ne JAMAIS coder l'id en dur : la carte est régénérée avec un nouvel id,
+  //     l'ancien id:2050 devenait introuvable → la fiche expirait et disparaissait.)
+  if (/weeklyFilms:true/.test(line) || /\{id:2050,/.test(line)) return redate(line);
   // 2) expos en cours, tant qu'on est avant la date de fin
   if (/ongoing:true/.test(line)) {
     const u = line.match(/until:"([^"]+)"/);
