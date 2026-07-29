@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T06:40:26.405Z",
+  "generatedAt": "2026-07-29T06:54:43.747Z",
   "events": [
     {
       "date": "Jeu 30 juil",
@@ -47,15 +47,6 @@
       "emoji": "🎵"
     },
     {
-      "date": "Jeu 30 juil",
-      "iso": "2026-07-30",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
-    },
-    {
       "date": "Mer 29 juil",
       "iso": "2026-07-29",
       "time": "19h00",
@@ -72,6 +63,15 @@
       "venue": "Monte-Carlo",
       "quarter": "Monte-Carlo",
       "emoji": "💆"
+    },
+    {
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
     }
   ]
 }
