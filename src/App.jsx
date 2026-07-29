@@ -161,7 +161,6 @@ async function scheduleDigest(events, favorites, config, topics) {
       const top = [...winEvents]
         .sort((a, b) => digestScore(b, favorites, winStart, topics) - digestScore(a, favorites, winStart, topics))
         .slice(0, perDigest);
-      const hasFav = top.some(e => favorites.includes(e.id));
       const body = top.map(e => {
         const titre = e.title.replace(/\n/g, ' ');
         const lieu = e.subtitle ? e.subtitle.split(' · ')[0] : '';
@@ -171,7 +170,7 @@ async function scheduleDigest(events, favorites, config, topics) {
       const id = DIGEST_ID_BASE + w * sendOffsets.length + s;
       toSchedule.push({
         id: id < DIGEST_ID_BASE + MAX_DIGEST_IDS ? id : DIGEST_ID_BASE + MAX_DIGEST_IDS - 1,
-        title: (hasFav ? '⭐ ' : '') + 'Vos sorties à venir à Monaco',
+        title: 'Vos sorties à venir à Monaco',
         body,
         schedule: { at },
       });
@@ -205,7 +204,7 @@ async function scheduleFavoriteReminders(events, favorites) {
     const heure = (e.time || '').split(/[—–-]/)[0].trim();
     toSchedule.push({
       id: FAV_ID_BASE + idx,
-      title: 'Demain à Monaco ✨',
+      title: 'Demain à Monaco',
       body: `${titre}${lieu ? ' · ' + lieu : ''}${/\d/.test(heure) ? ' · ' + heure : ''}`,
       schedule: { at },
     });
@@ -229,11 +228,11 @@ async function scheduleFriendsNudge(loggedIn, friendCount) {
   // 0 ami → 2 rappels (J+2, J+6). A déjà des amis (souvent peu) → 1 seul rappel (J+3) pour en ajouter plus.
   const nudges = friendCount === 0
     ? [
-        { days: 2, title: '👥 Ajoute tes amis', body: 'Ajoute tes amis pour vous retrouver aux événements.' },
-        { days: 6, title: '👥 Vois où sortent tes amis', body: 'Ajoute tes amis pour vous retrouver aux événements à Monaco.' },
+        { days: 2, title: 'Ajoute tes amis', body: 'Ajoute tes amis pour vous retrouver aux événements.' },
+        { days: 6, title: 'Vois où sortent tes amis', body: 'Ajoute tes amis pour vous retrouver aux événements à Monaco.' },
       ]
     : [
-        { days: 3, title: '👥 Agrandis ton cercle', body: 'Ajoute plus d\'amis pour vous retrouver aux événements.' },
+        { days: 3, title: 'Agrandis ton cercle', body: 'Ajoute plus d\'amis pour vous retrouver aux événements.' },
       ];
   const toSchedule = [];
   nudges.forEach((n, i) => {
@@ -268,7 +267,7 @@ async function scheduleHighlightsReminder(events, favorites) {
   }).join('\n');
   const at = new Date(now); at.setDate(now.getDate() + 1); at.setHours(12, 0, 0, 0);
   if (at <= now) at.setDate(at.getDate() + 1);
-  await LocalNotifications.schedule({ notifications: [{ id: HILITE_ID, title: 'À ne pas manquer à Monaco ✨', body, schedule: { at } }] });
+  await LocalNotifications.schedule({ notifications: [{ id: HILITE_ID, title: 'À ne pas manquer à Monaco', body, schedule: { at } }] });
 }
 
 const CAT_TO_FILTER = {
