@@ -332,6 +332,7 @@ export default function App() {
   const [inviterName, setInviterName] = useState(null);
   const [showInAppBanner, setShowInAppBanner] = useState(false);
   const [announce, setAnnounce] = useState(null);   // annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json
+  const [resumeTick, setResumeTick] = useState(0);  // incrémenté au retour au 1er plan → recalcule « ce soir / demain » sans fermer l'app
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
@@ -374,7 +375,7 @@ export default function App() {
     if (!a || !a.id || !a.message) return setAnnounce(null);
     if (a.until && new Date(a.until + "T23:59:59") < new Date()) return setAnnounce(null);
     setAnnounce(a);
-  }, [notifConfig]);
+  }, [notifConfig, resumeTick]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
@@ -400,9 +401,16 @@ export default function App() {
     return () => clearTimeout(t);
   }, [showWelcome]);
 
-  // Récupère les réglages de notifications EN DIRECT (jours/heure/fréquence sans passer par Apple)
+  // Récupère les réglages EN DIRECT + REFRESH au retour au 1er plan (natif + web) →
+  // le bandeau « demain soir » bascule tout seul en « ce soir » le lendemain, sans fermer l'app.
   useEffect(() => {
-    fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); });
+    const refresh = () => { setResumeTick(t => t + 1); fetchNotifConfig().then(cfg => { if (cfg) setNotifConfig(cfg); }); };
+    refresh();
+    let sub;
+    if (Capacitor.isNativePlatform()) CapApp.addListener("appStateChange", ({ isActive }) => { if (isActive) refresh(); }).then(h => { sub = h; });
+    const onVis = () => { if (document.visibilityState === "visible") refresh(); };
+    document.addEventListener("visibilitychange", onVis);
+    return () => { document.removeEventListener("visibilitychange", onVis); if (sub) sub.remove(); };
   }, []);
 
   // Lien partagé « ?event=<id> » → ouvre directement la fiche de l'événement dans l'app/le site
