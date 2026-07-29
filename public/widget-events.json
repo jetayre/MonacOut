@@ -1,15 +1,6 @@
 {
-  "generatedAt": "2026-07-29T06:54:43.747Z",
+  "generatedAt": "2026-07-29T18:28:59.259Z",
   "events": [
-    {
-      "date": "Jeu 30 juil",
-      "iso": "2026-07-30",
-      "time": "21h30",
-      "title": "CONCERT AU PALAIS BERNSTEIN",
-      "venue": "Cour d'honneur",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏰"
-    },
     {
       "date": "Mer 29 juil",
       "iso": "2026-07-29",
@@ -29,24 +20,6 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Jeu 30 juil",
-      "iso": "2026-07-30",
-      "time": "10h00 — 19h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Jeu 30 juil",
-      "iso": "2026-07-30",
-      "time": "20h30",
-      "title": "SOUL! WHERE LEGENDS COME BACK",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
       "date": "Mer 29 juil",
       "iso": "2026-07-29",
       "time": "19h00",
@@ -63,6 +36,33 @@
       "venue": "Monte-Carlo",
       "quarter": "Monte-Carlo",
       "emoji": "💆"
+    },
+    {
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mer 29 juil",
+      "iso": "2026-07-29",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
     },
     {
       "date": "Mer 29 juil",
