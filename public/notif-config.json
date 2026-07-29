@@ -17,9 +17,9 @@
   ],
   "_announcement": "Ancien format (repli statique pour les apps pas encore mises à jour avec la logique 'ce soir/demain').",
   "announcement": {
-    "id": "palais-2026-07-30",
-    "message": "Concert au Palais Princier — jeudi 30 juil, 21h30.",
-    "messageEn": "Concert at the Prince's Palace — Thursday 30 July, 9:30pm.",
+    "id": "palais-demain-ce-soir",
+    "message": "Demain soir : Concert au Palais Princier — Cour d'Honneur, 21h30.",
+    "messageEn": "Tomorrow night: concert at the Prince's Palace — Court of Honour, 9:30pm.",
     "cta": "Le programme",
     "ctaEn": "Programme",
     "link": "https://opmc.mc/en/",
