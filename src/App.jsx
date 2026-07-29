@@ -341,10 +341,11 @@ export default function App() {
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
   useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
   // Annonce in-app (broadcast à tous, même sans notifs) : affichée si présente, non expirée et non fermée.
+  // NB : la fermeture (✕) ne mémorise RIEN → le bandeau RÉAPPARAÎT à chaque ouverture de l'app
+  // (tant que l'événement est encore d'actualité). Choix voulu : ne pas rater un « ce soir ».
   useEffect(() => {
     const cfg = notifConfig;
     if (!cfg) return setAnnounce(null);
-    const dismissed = localStorage.getItem("monacout_announce_dismissed");
     // Format DATÉ (announcements[]) : « Ce soir : » le jour J, « Demain soir : » la veille, bascule auto d'un event au suivant.
     if (Array.isArray(cfg.announcements)) {
       const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -354,7 +355,6 @@ export default function App() {
         const diff = Math.round((new Date(a.date + "T00:00:00") - today) / 86400000);
         const lead = a.leadDays != null ? a.leadDays : 1;
         if (diff < 0 || diff > lead) continue;                 // seulement le jour J et les jours J-lead
-        if (dismissed === String(a.id)) continue;              // fermée par l'utilisateur
         cands.push({ a, diff });
       }
       if (!cands.length) return setAnnounce(null);
@@ -373,7 +373,6 @@ export default function App() {
     const a = cfg.announcement;
     if (!a || !a.id || !a.message) return setAnnounce(null);
     if (a.until && new Date(a.until + "T23:59:59") < new Date()) return setAnnounce(null);
-    if (dismissed === String(a.id)) return setAnnounce(null);
     setAnnounce(a);
   }, [notifConfig]);
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
@@ -835,7 +834,7 @@ export default function App() {
             {lang === "en" && announce.ctaEn ? announce.ctaEn : (announce.cta || "Voir")}
           </a>
         )}
-        <button onClick={() => { localStorage.setItem("monacout_announce_dismissed", String(announce.id)); setAnnounce(null); }}
+        <button onClick={() => setAnnounce(null)}
           style={{ flexShrink: 0, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "#8A94A0", lineHeight: 1, padding: "0 2px" }}>✕</button>
       </div>
     )}
