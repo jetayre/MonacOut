@@ -52,13 +52,14 @@ let auto = null;
 if (!activeManual) {
   let evts = [];
   try { const j = JSON.parse(readFileSync(EVENTS_FILE, 'utf8')); evts = Array.isArray(j) ? j : (j.events || []); } catch { /* pas d'events → pas d'auto */ }
-  const EXCL_CAT = new Set(['APÉRO', 'BRUNCH', 'SOIRÉE', 'BIEN-ÊTRE', 'MARCHÉ', 'ENCHÈRES', 'CONFÉRENCE', 'SALON']);
+  // Liste BLANCHE : uniquement des temps forts CULTURELS (pas de sport, enchères, apéro, conférence…).
+  const CULTURAL = new Set(['OPÉRA', 'CONCERT', 'MUSICAL', 'THÉÂTRE', 'DANSE', 'GALA', 'FESTIVAL', 'SPECTACLE', 'JAZZ LIVE']);
   const NOTABLE = new Set(['OPÉRA', 'GALA', 'FESTIVAL']);
   const cands = [];
   for (const e of evts) {
     if (!e || !e.date || !e.link) continue;
     if (e.venues || e.ongoing || e.weeklyFilms || e.noNotif || e.nlg || e.directory || e.recurring) continue;
-    if (EXCL_CAT.has(e.cat)) continue;
+    if (!CULTURAL.has(e.cat)) continue;                            // que la culture
     if (!(e.hot === true || NOTABLE.has(e.cat))) continue;         // filtre strict : que du notable
     const d = evDate(e); if (!d) continue;
     const df = diffDays(d);
