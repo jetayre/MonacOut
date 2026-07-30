@@ -1,9 +1,27 @@
 {
-  "generatedAt": "2026-07-29T19:15:10.641Z",
+  "generatedAt": "2026-07-30T05:48:58.369Z",
   "events": [
     {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
+      "time": "21h30",
+      "title": "CONCERT AU PALAIS BERNSTEIN",
+      "venue": "Cour d'honneur",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏰"
+    },
+    {
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
+      "time": "10h00 — 19h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
+      "quarter": "Monte-Carlo",
+      "emoji": "🏎️"
+    },
+    {
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
       "time": "20h30",
       "title": "SOUL! WHERE LEGENDS COME BACK",
       "venue": "Salle des Étoiles",
@@ -11,8 +29,8 @@
       "emoji": "🎵"
     },
     {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
       "time": "10h00 — 18h00",
       "title": "MUSÉES DE MONACO OUVERTS",
       "venue": "Monaco-Ville",
@@ -20,17 +38,17 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
-      "time": "19h00",
-      "title": "ZUMBA LA DIGUE MONACO",
-      "venue": "Zumba La Digue",
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
+      "time": "15h00",
+      "title": "CINÉMA D'ÉTÉ LES MUSICIENS",
+      "venue": "Médiathèque Caroline",
       "quarter": "La Condamine",
-      "emoji": "🕺"
+      "emoji": "🎬"
     },
     {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
       "time": "08h00 — 20h00",
       "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
       "venue": "Monte-Carlo",
@@ -38,40 +56,22 @@
       "emoji": "💆"
     },
     {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
-      "time": "10h30",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
+      "time": "15h30 — 18h30",
+      "title": "HAPPY HOUR SEXY TACOS LARVOTTO",
+      "venue": "Sexy Tacos",
+      "quarter": "Larvotto",
+      "emoji": "🍹"
     },
     {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
-      "time": "10h30",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
-    },
-    {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
-      "time": "10h30",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
-    },
-    {
-      "date": "Mer 29 juil",
-      "iso": "2026-07-29",
-      "time": "10h30",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "date": "Jeu 30 juil",
+      "iso": "2026-07-30",
+      "time": "17h00 — 20h00",
+      "title": "APÉRO NORMA CONDAMINE",
+      "venue": "Norma",
+      "quarter": "La Condamine",
+      "emoji": "🍷"
     }
   ]
 }
