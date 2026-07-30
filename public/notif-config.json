@@ -2,7 +2,11 @@
   "_aide": "Réglages des notifications, pilotables SANS repasser par Apple. Modifie les valeurs ci-dessous puis : npm run build + git push. L'app lira les nouveaux réglages au prochain lancement.",
   "_jours_possibles": "lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche",
   "_heure": "0 à 23 (ex: 18 = 18h)",
-  "jours": ["mardi", "jeudi", "samedi"],
+  "jours": [
+    "mardi",
+    "jeudi",
+    "samedi"
+  ],
   "heure": 18,
   "parRappel": 4,
   "semaines": 8,
@@ -12,14 +16,30 @@
   "latestVersion": "2.1",
   "_announcements": "Message à TOUS (inscrits compris). Annonces DATÉES : l'app affiche « Ce soir : » le jour même et « Demain soir : » la veille, et bascule toute seule vers l'événement suivant. date=AAAA-MM-JJ ; leadDays=nb de jours avant où l'afficher (défaut 1) ; titleFR/titleEN = juste l'événement (SANS 'ce soir', l'app l'ajoute). git push suffit.",
   "announcements": [
-    { "id": "palais-2026-07-30", "date": "2026-07-30", "titleFR": "Concert au Palais Princier — Cour d'Honneur, 21h30", "titleEN": "Concert at the Prince's Palace — Court of Honour, 9:30pm", "cta": "Le programme", "ctaEn": "Programme", "link": "https://opmc.mc/en/" },
-    { "id": "vanessa-2026-07-31", "date": "2026-07-31", "titleFR": "Vanessa Paradis à l'Opéra Garnier, 20h30", "titleEN": "Vanessa Paradis at the Opéra Garnier, 8:30pm", "cta": "Réserver", "ctaEn": "Book", "link": "https://www.montecarlosbm.com/en/spectacles/monte-carlo-summer-festival/vanessa-paradis" }
+    {
+      "id": "palais-2026-07-30",
+      "date": "2026-07-30",
+      "titleFR": "Concert au Palais Princier — Cour d'Honneur, 21h30",
+      "titleEN": "Concert at the Prince's Palace — Court of Honour, 9:30pm",
+      "cta": "Le programme",
+      "ctaEn": "Programme",
+      "link": "https://opmc.mc/en/"
+    },
+    {
+      "id": "vanessa-2026-07-31",
+      "date": "2026-07-31",
+      "titleFR": "Vanessa Paradis à l'Opéra Garnier, 20h30",
+      "titleEN": "Vanessa Paradis at the Opéra Garnier, 8:30pm",
+      "cta": "Réserver",
+      "ctaEn": "Book",
+      "link": "https://www.montecarlosbm.com/en/spectacles/monte-carlo-summer-festival/vanessa-paradis"
+    }
   ],
   "_announcement": "Ancien format (repli statique pour les apps pas encore mises à jour avec la logique 'ce soir/demain').",
   "announcement": {
-    "id": "palais-demain-ce-soir",
-    "message": "Demain soir : Concert au Palais Princier — Cour d'Honneur, 21h30.",
-    "messageEn": "Tomorrow night: concert at the Prince's Palace — Court of Honour, 9:30pm.",
+    "id": "palais-2026-07-30-cesoir",
+    "message": "Ce soir : Concert au Palais Princier — Cour d'Honneur, 21h30.",
+    "messageEn": "Tonight: Concert at the Prince's Palace — Court of Honour, 9:30pm.",
     "cta": "Le programme",
     "ctaEn": "Programme",
     "link": "https://opmc.mc/en/",

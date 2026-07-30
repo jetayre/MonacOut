@@ -56,12 +56,15 @@ jobs:
       - name: 🎬 Rafraîchir la carte cinéma (date du jour)
         run: node scripts/refresh-cinema.mjs
 
+      - name: 🔔 Recalcule le repli du bandeau annonce (Ce soir / Demain soir)
+        run: node scripts/refresh-announcement.mjs
+
       - name: Build & push des corrections automatiques
         run: |
-          if ! git diff --quiet src/data/events.js; then
+          if ! git diff --quiet src/data/events.js public/notif-config.json; then
             npm run build
-            git add src/data/events.js
-            git commit -m "chore: police — corrections automatiques ($(date +%Y-%m-%d))"
+            git add src/data/events.js public/notif-config.json public/events.json public/widget-events.json
+            git commit -m "chore: maj auto (events + bandeau ce soir/demain) ($(date +%Y-%m-%d))"
             git push
           fi
 
