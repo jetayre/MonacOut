@@ -13,6 +13,18 @@ const CREAM = "#FFFFFF";
 const BORDER = "rgba(15,29,58,0.12)";
 const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)";
 
+// Met un texte à plat pour la recherche : minuscules, sans accents, et toute
+// ponctuation (tirets, points médians, apostrophes…) remplacée par une espace.
+// « Monte-Carlo Summer Festival » et « monte carlo summer festival » deviennent
+// alors le même texte.
+function normalizeForSearch(str) {
+  return (str || "")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 // Boutons de catégories groupées (barre sous les filtres temps, à la place des quartiers)
 const EVENT_GROUPS = [
   { id: "culture",   label: "Culture/Ateliers", labelEn: "Culture/Workshops", cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE","ATELIER","DANSE","BIEN-ÊTRE"] },
@@ -191,16 +203,20 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
 
   let filtered;
   if (searchQuery.trim()) {
-    const q = searchQuery.toLowerCase();
+    // Recherche tolérante : on ignore accents, tirets et ponctuation, et on
+    // cherche TOUS les mots (dans n'importe quel ordre) plutôt que la suite
+    // exacte de caractères. Sans ça « monte carlo summer festival » ne trouvait
+    // rien, parce que les fiches écrivent « Monte-Carlo Summer Festival ».
+    const words = normalizeForSearch(searchQuery).split(" ").filter(Boolean);
     filtered = filterByCats(events, catFilters).filter(e => {
       // Recherche dans TOUS les champs, en français ET en anglais
-      const hay = [
+      const hay = normalizeForSearch([
         e.title, localizeTitle((e.title || "").replace(/\n/g, " "), "en"),
         e.subtitle, e.quarter,
         e.cat, localizeCat(e.cat, "en"),
         e.desc, e.descEn, e.source, e.time,
-      ].join(" ").toLowerCase();
-      return hay.includes(q);
+      ].join(" "));
+      return words.every(w => hay.includes(w));
     });
   } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;

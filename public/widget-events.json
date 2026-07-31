@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T15:10:37.453Z",
+  "generatedAt": "2026-07-31T16:03:26.753Z",
   "events": [
     {
       "date": "Ven 31 juil",
@@ -40,6 +40,15 @@
     {
       "date": "Ven 31 juil",
       "iso": "2026-07-31",
+      "time": "10h30",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Ven 31 juil",
+      "iso": "2026-07-31",
       "time": "15h30 — 18h30",
       "title": "HAPPY HOUR SEXY TACOS LARVOTTO",
       "venue": "Sexy Tacos",
@@ -63,15 +72,6 @@
       "venue": "La Rascasse",
       "quarter": "La Condamine",
       "emoji": "🍻"
-    },
-    {
-      "date": "Ven 31 juil",
-      "iso": "2026-07-31",
-      "time": "18h00 — 22h30",
-      "title": "APÉRO TERRASSE TAVOLO COLUMBUS",
-      "venue": "Tavolo",
-      "quarter": "Fontvieille",
-      "emoji": "🍸"
     }
   ]
 }
