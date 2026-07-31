@@ -38,7 +38,7 @@ jobs:
         run: node principocket-scan.mjs
         continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
 
-      - name: 🤖 Auto-complétion (robot déterministe : ajoute les manquants 100 % sûrs)
+      - name: "🤖 Auto-complétion (robot déterministe : ajoute les manquants 100 % sûrs)"
         run: node scripts/auto-complete-events.mjs
         continue-on-error: true   # n'ajoute que lieu+date+heure confirmés ; Le Policier valide juste après
 
