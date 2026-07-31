@@ -37,12 +37,12 @@
   ],
   "_announcement": "Ancien format (repli statique pour les apps pas encore mises à jour avec la logique 'ce soir/demain').",
   "announcement": {
-    "id": "palais-2026-07-30-cesoir",
-    "message": "Ce soir : Concert au Palais Princier — Cour d'Honneur, 21h30.",
-    "messageEn": "Tonight: Concert at the Prince's Palace — Court of Honour, 9:30pm.",
-    "cta": "Le programme",
-    "ctaEn": "Programme",
-    "link": "https://opmc.mc/en/",
-    "until": "2026-07-30"
+    "id": "vanessa-2026-07-31-cesoir",
+    "message": "Ce soir : Vanessa Paradis à l'Opéra Garnier, 20h30.",
+    "messageEn": "Tonight: Vanessa Paradis at the Opéra Garnier, 8:30pm.",
+    "cta": "Réserver",
+    "ctaEn": "Book",
+    "link": "https://www.montecarlosbm.com/en/spectacles/monte-carlo-summer-festival/vanessa-paradis",
+    "until": "2026-07-31"
   }
 }
