@@ -29,12 +29,24 @@ function redate(line) {
   return line.replace(/date:"[^"]*"/, `date:"${todayStr}"`);
 }
 
+// Combien de fiches cinéma hebdo dans le fichier ?
+// update-cinema.mjs en génère UNE PAR JOUR (mer→mar) : elles ont déjà chacune
+// leur vraie date, il ne faut SURTOUT PAS les redater, sinon les 7 s'écrasent
+// sur le jour même, le dédoublonnage en supprime 6, et la seule survivante ne
+// tient plus que par ce script — le jour où il ne tourne pas, elle passe dans
+// le passé et le nettoyage la supprime (panne du 29-31 juil 2026).
+// On ne redate que s'il n'y en a qu'une (ancien format à fiche unique).
+const weeklyCount = (s.match(/weeklyFilms:true/g) || []).length;
+const redateWeekly = weeklyCount <= 1;
+
 s = s.split("\n").map((line) => {
   if (!/^\s*\{id:\d+,/.test(line)) return line;
   // 1) carte cinéma hebdo — cibler le marqueur STABLE weeklyFilms.
   //    (Ne JAMAIS coder l'id en dur : la carte est régénérée avec un nouvel id,
   //     l'ancien id:2050 devenait introuvable → la fiche expirait et disparaissait.)
-  if (/weeklyFilms:true/.test(line) || /\{id:2050,/.test(line)) return redate(line);
+  if (/weeklyFilms:true/.test(line) || /\{id:2050,/.test(line)) {
+    return redateWeekly ? redate(line) : line;
+  }
   // 2) expos en cours, tant qu'on est avant la date de fin
   if (/ongoing:true/.test(line)) {
     const u = line.match(/until:"([^"]+)"/);
@@ -48,3 +60,9 @@ s = s.split("\n").map((line) => {
 
 writeFileSync(FILE, s);
 console.log(`Fiches redatées sur ${todayStr} :`, count);
+console.log(
+  `Fiches cinéma hebdo : ${weeklyCount} — ` +
+    (redateWeekly
+      ? "fiche unique → redatée sur aujourd'hui"
+      : "une par jour → laissées à leurs vraies dates (pas de redatage)")
+);
