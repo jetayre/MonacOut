@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T21:18:52.310Z",
+  "generatedAt": "2026-08-01T21:23:47.087Z",
   "events": [
     {
       "date": "Sam 1 août",
@@ -15,7 +15,7 @@
       "iso": "2026-08-01",
       "time": "21h30",
       "title": "FEUX D'ARTIFICE MONACO III",
-      "venue": "Port Hercule",
+      "venue": "Quai Albert Ier",
       "quarter": "Monte-Carlo",
       "emoji": "🎆"
     },
@@ -49,15 +49,6 @@
     {
       "date": "Sam 1 août",
       "iso": "2026-08-01",
-      "time": "22h00",
-      "title": "SOIRÉE FEUX D'ARTIFICE",
-      "venue": "Quai Albert Ier",
-      "quarter": "La Condamine",
-      "emoji": "🎆"
-    },
-    {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
       "time": "09h30",
       "title": "ZUMBA LA DIGUE MONACO",
       "venue": "Zumba La Digue",
@@ -72,6 +63,15 @@
       "venue": "Musée Océanographique",
       "quarter": "Monaco-Ville",
       "emoji": "🐠"
+    },
+    {
+      "date": "Sam 1 août",
+      "iso": "2026-08-01",
+      "time": "10h00 — 12h00",
+      "title": "EXPLORATION JARDIN EXOTIQUE",
+      "venue": "Jardin Exotique de Monaco",
+      "quarter": "Monaco-Ville",
+      "emoji": "🌿"
     }
   ]
 }
