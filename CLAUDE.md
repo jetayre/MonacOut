@@ -89,6 +89,11 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
 | Automobile Club Monaco | https://acm.mc/ | RALLYE | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
+| Palais Princier de Monaco | https://www.visitepalaisdemonaco.com/ | EXPOSITION, SPECTACLE — Grands Appartements, cour d'honneur (concerts d'été), Monaco-Ville | +377 9325 1831 |
+| Musée d'Anthropologie Préhistorique | https://map.gouv.mc/ | EXPOSITION, ATELIER — entrée par le Jardin Exotique, 56 bis bd du Jardin Exotique | +377 9898 8006 |
+| Institut Audiovisuel de Monaco | https://institut-audiovisuel.mc/ | CINÉMA, EXPOSITION, CONFÉRENCE — 83-85 bd du Jardin Exotique | +377 9798 4326 |
+| Hôtel Columbus Monte-Carlo | https://www.columbushotels.com/ | APÉRO, CONCERT — « Les Lives du Summer Bar », terrasse Tavolo, Fontvieille | +377 9205 9000 |
+| Quai Albert Ier (espace public) | https://www.mairie.mc/les-soirees-feux-dartifice-au-quai-albert-1er | SPECTACLE, SOIRÉE — feux d'artifice, animations enfants, soirées DJ de la Mairie | +377 9315 2828 |
 | Société Nautique de Monaco — restaurant | https://www.restaurantsocietenautique.club/ | BRUNCH samedi 11h-15h, déjeuners en semaine — club d'aviron, Port Hercule, **ouvert à tous** (pas réservé aux membres) | +377 9350 5130 |
 | Monaco Classic Week (YCM) | https://monacoclassicweek.com/ | SPORT voile classique — biennale années impaires (2027, 2029…) | +377 9310 6300 |
 | CREM Monaco | https://www.crem.mc/ | APÉRO, GALA — Club des Résidents Étrangers de Monaco | |

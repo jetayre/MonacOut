@@ -1,5 +1,12 @@
 const _RAW = [
   // ── AUTO-COMPLÉTION robot (PrinciPocket, lieu+date+heure vérifiés) ──
+  {id:700001,year:2027,cat:"CINÉMA",date:"Ven 26 fév",time:"En journée",title:"A WEDDING IN THE SPOTLIGHT. RAINIER III AND GRACE KELLY. 12–19 APRIL 1956",subtitle:"Institut Audiovisuel de Monaco · Monaco",desc:"A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 — Institut Audiovisuel de Monaco, Monaco.",descEn:"A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 — Institut Audiovisuel de Monaco, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#1A2A4A,#2A3A5A,#0A1A3A)",accent:"#9FC3DC",emoji:"🎬",link:"https://institut-audiovisuel.mc/",phone:"+377 9798 4326",source:"Institut Audiovisuel de Monaco",quarter:"Monaco"},
+  {id:700002,cat:"APÉRO",date:"Ven 28 août",time:"En soirée",title:"LES LIVES DU SUMMER BAR",subtitle:"Hôtel Columbus Monte-Carlo · Monte-Carlo",desc:"Les Lives du Summer Bar — Hôtel Columbus Monte-Carlo, Monaco.",descEn:"Les Lives du Summer Bar — Hôtel Columbus Monte-Carlo, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#385878,#506898,#283848)",accent:"#C0D8F4",emoji:"🎵",link:"https://www.columbushotels.com/",phone:"+377 9205 9000",source:"Hôtel Columbus Monte-Carlo",quarter:"Monte-Carlo"},
+  {id:700003,year:2027,cat:"EXPOSITION",date:"Dim 3 jan",time:"En journée",title:"VICTOR BRAUNER, THE MAGICAL ADVENTURE",subtitle:"NMNM · Monaco",desc:"Victor Brauner, The Magical Adventure — NMNM, Monaco.",descEn:"Victor Brauner, The Magical Adventure — NMNM, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#2A4A4A,#3A6A6A,#183838)",accent:"#A8E0E0",emoji:"🖼️",link:"https://www.nmnm.mc/",source:"NMNM",quarter:"Monaco"},
+  {id:700004,cat:"EXPOSITION",date:"Ven 25 sep",time:"En journée",title:"EXHIBITION: WEDDING OF THE CENTURY",subtitle:"Palais Princier de Monaco · Monaco-Ville",desc:"Exhibition: Wedding of the century — Palais Princier de Monaco, Monaco.",descEn:"Exhibition: Wedding of the century — Palais Princier de Monaco, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#2A4A4A,#3A6A6A,#183838)",accent:"#A8E0E0",emoji:"🖼️",link:"https://www.visitepalaisdemonaco.com/",phone:"+377 9325 1831",source:"Palais Princier de Monaco",quarter:"Monaco-Ville"},
+  {id:700005,cat:"EXPOSITION",date:"Ven 16 oct",time:"En journée",title:"EXHIBITION - FROM TOUMAÏ TO SAPIENS",subtitle:"Musée d'Anthropologie Préhistorique · Monaco",desc:"Exhibition - From Toumaï to Sapiens — Musée d'Anthropologie Préhistorique, Monaco.",descEn:"Exhibition - From Toumaï to Sapiens — Musée d'Anthropologie Préhistorique, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#2A4A4A,#3A6A6A,#183838)",accent:"#A8E0E0",emoji:"🖼️",link:"https://map.gouv.mc/",phone:"+377 9898 8006",source:"Musée d'Anthropologie Préhistorique",quarter:"Monaco"},
+  {id:700006,cat:"EXPOSITION",date:"Mar 15 déc",time:"En journée",title:"EXPOSITION MAGIES D'AILLEURS",subtitle:"Musée d'Anthropologie Préhistorique · Monaco",desc:"Exposition Magies d'ailleurs — Musée d'Anthropologie Préhistorique, Monaco.",descEn:"Exposition Magies d'ailleurs — Musée d'Anthropologie Préhistorique, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#2A4A4A,#3A6A6A,#183838)",accent:"#A8E0E0",emoji:"🖼️",link:"https://map.gouv.mc/",phone:"+377 9898 8006",source:"Musée d'Anthropologie Préhistorique",quarter:"Monaco"},
+  // ── AUTO-COMPLÉTION robot (PrinciPocket, lieu+date+heure vérifiés) ──
   {id:700000,cat:"CONCERT",date:"Jeu 1 oct",time:"18h30",title:"POSITIVE ENERGY",subtitle:"Auditorium Rainier III · Monte-Carlo",desc:"Positive Energy — Auditorium Rainier III, Monaco.",descEn:"Positive Energy — Auditorium Rainier III, Monaco.",free:false,hot:false,fallback:"linear-gradient(150deg,#385878,#506898,#283848)",accent:"#C0D8F4",emoji:"🎵",link:"https://opmc.mc/en/concert/",phone:"+377 9200 1370",source:"Auditorium Rainier III",quarter:"Monte-Carlo"},
   // ── LOT 2 : religieux, Vuelta, Soirées Musicales, conférences pro (vérifiés) ──
   {id:4744,cat:"CHANTS",date:"Mar 1 sep",time:"20h00",title:"HEURE\nSAINTE",subtitle:"Église Saint-Charles · Monte-Carlo",desc:"Heure Sainte : temps d'adoration et de prière à l'église Saint-Charles.",descEn:"Holy Hour: a time of adoration and prayer at Saint-Charles church.",free:false,hot:false,fallback:"linear-gradient(150deg,#5A4A2A,#7A6A3A,#3A2E18)",accent:"#E8D8A8",emoji:"🙏",link:"https://saintcharles.diocese.mc/",phone:"+377 9330 7490",source:"Paroisse Saint-Charles",quarter:"Monte-Carlo"},
@@ -2859,8 +2866,15 @@ function _eventDate(e) {
 }
 const _today = new Date(); _today.setHours(0, 0, 0, 0);
 function _eventHour(e) {
-  const m = (e.time || '').replace(/\s/g,'').match(/^(\d{1,2})h(\d{2})?/);
-  return m ? parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0) : 9999;
+  const t = (e.time || '').replace(/\s/g, '');
+  const m = t.match(/^(\d{1,2})h(\d{2})?/);
+  if (m) return parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0);
+  // Horaires en toutes lettres (heure non publiée par la source).
+  // « En journée » se place APRÈS les brunchs et AVANT les apéros — sinon, faute
+  // d'heure, ces fiches tombaient tout en bas, après les concerts du soir.
+  const mot = t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  if (mot === 'enjournee') return e.cat === 'BRUNCH' ? 12 * 60 : 16 * 60;
+  return 9999;   // « En soirée » et cas inconnus : en dernier
 }
 
 // Tri 3 niveaux pour chaque jour :

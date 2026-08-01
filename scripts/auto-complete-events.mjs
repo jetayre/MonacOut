@@ -54,9 +54,34 @@ const VENUES = [
   { match:/brasserie de monaco|monaco brewery/i, name:'Brasserie de Monaco',      quarter:'La Condamine', link:'https://brasseriedemonaco.com', phone:'+377 9798 5120', cat:'SOIRÉE' },
   { match:/soci[ée]t[ée] nautique|aviron|rowing/i, name:'Restaurant de la Société Nautique', quarter:'La Condamine', link:'https://www.restaurantsocietenautique.club/', phone:'+377 9350 5130', cat:'BRUNCH' },
 ];
-function findVenue(v) { for (const x of VENUES) if (x.match.test(v)) return x; return null; }
+
+// ── TOUS les lieux du tableau des sources de CLAUDE.md viennent compléter la liste ──
+// Les 19 entrées ci-dessus restent prioritaires (regex réglées à la main) ; les autres
+// sont déduites du tableau. Ajouter une ligne au tableau suffit désormais à couvrir
+// un lieu — avant, le robot n'en connaissait que 15 sur ~148 et jetait tout le reste.
+const CURES = new Set(VENUES.map((v) => v.name.toLowerCase()));
+let SOURCES_ECARTEES = [];
+try {
+  const { lieuxDepuisSources } = await import("./venues-from-sources.mjs");
+  const { lieux, ecartes } = lieuxDepuisSources(new URL("../CLAUDE.md", import.meta.url).pathname);
+  SOURCES_ECARTEES = ecartes;
+  for (const l of lieux) if (!CURES.has(l.name.toLowerCase())) VENUES.push(l);
+} catch (e) {
+  console.log("⚠️  tableau des sources illisible, on reste sur les lieux écrits à la main :", e.message);
+}
+console.log(`Lieux surveillés : ${VENUES.length} (${CURES.size} réglés à la main + le tableau des sources)`);
+
+// Accents ignorés : PrinciPocket écrit « Théâtre », nos clés sont sans accent.
+const aplati = (s) => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+function findVenue(v) { const p = aplati(v); for (const x of VENUES) if (x.match.test(p)) return x; return null; }
 
 // ── Catégorie affinée par mots-clés du titre (sinon : catégorie par défaut du lieu) ──
+// Heure non publiée : mention honnête selon le type d'événement (jamais un horaire inventé).
+const SANS_HEURE = {
+  EXPOSITION: 'En journée', 'MARCHÉ': 'En journée', SALON: 'En journée', CINÉMA: 'En journée',
+  'APÉRO': 'En soirée', 'SOIRÉE': 'En soirée', 'DJ SET': 'En soirée', 'JAZZ LIVE': 'En soirée',
+};
+
 function catFromTitle(title, def) {
   const t = title.toLowerCase();
   if (/messe|heure sainte|b[ée]n[ée]diction|pri[èe]re|c[aa]t[ée]|esprit-saint|chapelet|vĉ|vêpres|adoration/.test(t)) return 'CHANTS';
@@ -152,21 +177,31 @@ for (const slug of slugs) {
     const dateStr = `${JOURS[dt.getDay()]} ${D} ${MOIS_FR[mo]}`;      // jour recalculé par code (règle 7)
     // dédup fine par date+lieu
     if (!venue) { report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — lieu inconnu (« ${venueRaw||'?'} »)`); continue; }
-    if (!hh)    { report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — heure inconnue`); continue; }
+    // Heure absente : on n'invente JAMAIS un horaire précis, mais pour les types
+    // d'événements qui durent toute la journée (expositions, marchés, salons) ou
+    // qui se passent forcément le soir (apéros, soirées), on publie une mention
+    // honnête plutôt que de perdre l'événement — c'est l'esprit de la règle 18.
+    let heure = hh;
+    if (!heure) {
+      const parDefaut = SANS_HEURE[catFromTitle(title, venue.cat)];
+      if (!parDefaut) { report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — heure inconnue`); continue; }
+      heure = parDefaut;
+      report.push(`  ~ « ${title} » [${dateStr} ${Y}] — heure non publiée → « ${heure} »`);
+    }
     const dvKey = norm(dateStr) + '|' + norm(venue.name);
     if (existingDateVenue.has(dvKey) || titleExists(norm(title))) { continue; }   // déjà présent (silencieux)
     // construit l'objet
     const cat = catFromTitle(title, venue.cat);
     const [bg, ac, emo] = PAL[cat] || PAL['CONCERT'];
-    const time = `${hh.padStart(2,'0')}h${mm}`;
+    if (hh) heure = `${hh.padStart(2,'0')}h${mm}`;   // heure publiée → format maison ; sinon on garde la mention
     const T = title.toUpperCase().replace(/"/g,'\\"');
     const safe = s => s.replace(/"/g,'\\"');
     const yr = Y >= 2027 ? `year:${Y},` : '';
     const link = venue.link ? `link:"${venue.link}",` : '';
     const phone = venue.phone ? `phone:"${venue.phone}",` : '';
     const desc = safe(`${title} — ${venue.name}, Monaco.`);
-    rows.push(`  {id:${nextId},${yr}cat:"${cat}",date:"${dateStr}",time:"${time}",title:"${T}",subtitle:"${venue.name} · ${venue.quarter}",desc:"${desc}",descEn:"${desc}",free:false,hot:false,fallback:"${bg}",accent:"${ac}",emoji:"${emo}",${link}${phone}source:"${safe(venue.name)}",quarter:"${venue.quarter}"},`);
-    added.push(`+ [${dateStr} ${Y}] ${title} @ ${venue.name} (${cat} ${time})`);
+    rows.push(`  {id:${nextId},${yr}cat:"${cat}",date:"${dateStr}",time:"${heure}",title:"${T}",subtitle:"${venue.name} · ${venue.quarter}",desc:"${desc}",descEn:"${desc}",free:false,hot:false,fallback:"${bg}",accent:"${ac}",emoji:"${emo}",${link}${phone}source:"${safe(venue.name)}",quarter:"${venue.quarter}"},`);
+    added.push(`+ [${dateStr} ${Y}] ${title} @ ${venue.name} (${cat} ${heure})`);
     existingDateVenue.add(dvKey);
     usedIds.add(nextId); do { nextId++; } while (usedIds.has(nextId));
   }

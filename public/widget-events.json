@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T21:40:06.733Z",
+  "generatedAt": "2026-08-01T21:56:35.764Z",
   "events": [
     {
       "date": "Sam 1 août",
@@ -9,15 +9,6 @@
       "venue": "Salle des Étoiles",
       "quarter": "Larvotto",
       "emoji": "🎵"
-    },
-    {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "21h30",
-      "title": "FEUX D'ARTIFICE MONACO III",
-      "venue": "Quai Albert Ier",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎆"
     },
     {
       "date": "Sam 1 août",
@@ -72,6 +63,15 @@
       "venue": "Jardin Exotique de Monaco",
       "quarter": "Monaco-Ville",
       "emoji": "🌿"
+    },
+    {
+      "date": "Sam 1 août",
+      "iso": "2026-08-01",
+      "time": "En journée",
+      "title": "PREMIERS SECOURS FORMATION ADULTES",
+      "venue": "Croix-Rouge Monégasque",
+      "quarter": "Monaco",
+      "emoji": "🚑"
     }
   ]
 }
