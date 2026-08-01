@@ -59,11 +59,15 @@ jobs:
       - name: 🔔 Recalcule le repli du bandeau annonce (Ce soir / Demain soir)
         run: node scripts/refresh-announcement.mjs
 
+      # Le robot tourne ici (GitHub Actions), où PrinciPocket est joignable — ce n'est
+      # PAS le cas depuis le cloud Anthropic. On commite donc sa liste de lieux à
+      # compléter pour que l'agent chercheur puisse la lire sans refaire le scan.
       - name: Build & push des corrections automatiques
         run: |
-          if ! git diff --quiet src/data/events.js public/notif-config.json; then
+          git add -f lieux-a-completer.txt auto-complete-report.txt 2>/dev/null || true
+          if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
             npm run build
-            git add src/data/events.js public/notif-config.json public/events.json public/widget-events.json
+            git add src/data/events.js public/notif-config.json public/events.json public/widget-events.json lieux-a-completer.txt auto-complete-report.txt
             git commit -m "chore: maj auto (events + bandeau ce soir/demain) ($(date +%Y-%m-%d))"
             git push
           fi

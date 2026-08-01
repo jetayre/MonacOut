@@ -22,7 +22,7 @@ import { readFileSync } from "fs";
 // Sites d'agenda / annuaires : jamais utilisables comme lien d'un lieu (règle 16)
 const AGREGATEURS = [
   "visitmonaco.com", "yourmonaco.mc", "principocket.com", "monte-carlo.mc",
-  "culture.mc", "pagesjaunes.fr", "google.com", "songkick.com", "eurotravelo.com",
+  "culture.mc", "poivre-et-sel-riviera.fr", "pagesjaunes.fr", "google.com", "songkick.com", "eurotravelo.com",
 ];
 
 // Mots trop courants pour identifier un lieu à eux seuls

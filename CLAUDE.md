@@ -57,6 +57,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 ## Sources officielles à vérifier (exhaustif)
 
+
+> **🔎 SOURCES DE DÉCOUVERTE DE LIEUX (jamais un `link` de fiche — règle 12/16).** En plus de PrinciPocket, l'agent chercheur balaie **Poivre & Sel Riviera** (`https://www.poivre-et-sel-riviera.fr`), guide gastronomique de la Côte d'Azur, rubriques **Restaurants · Cocktails · Métiers de bouche · Découvertes**. Ses articles monégasques portent le **code postal 98000** dans l'URL (ex. `/post/le-vivaldi-bar-à-cocktails-98000-monaco`) — c'est le repère pour ne retenir que Monaco. C'est ainsi qu'on a trouvé **Le Vivaldi**, absent de partout ailleurs. ⚠️ Ces sites servent UNIQUEMENT à repérer un établissement : le `link` publié doit toujours être le **site officiel du lieu** (ou son Instagram officiel s'il n'a pas de site). `venues-from-sources.mjs` les exclut automatiquement.
+
 > **⚙️ CE TABLEAU PILOTE LE ROBOT (depuis le 1er août 2026).** `scripts/venues-from-sources.mjs` le lit à chaque passage : **ajouter une ligne ici suffit à ce qu'un lieu soit couvert** par la complétion automatique (avant, le robot ne connaissait que 15 lieux écrits en dur et jetait tout le reste — « Les Lives du Summer Bar », l'expo du Palais Princier… étaient rejetés pour « lieu inconnu »). Format à respecter : `| Nom | https://site-officiel | CATÉGORIES + précisions | +377 ... |`. La **1ʳᵉ catégorie citée** devient la catégorie par défaut du lieu ; le **quartier** est déduit s'il est mentionné dans la ligne. Les agrégateurs (visitmonaco, culture.mc, principocket…) sont automatiquement exclus comme lien (règle 16). Un lieu dont le nom n'a aucun mot distinctif est signalé, jamais deviné. Vérifier avec `node scripts/venues-from-sources.mjs`.
 
 
