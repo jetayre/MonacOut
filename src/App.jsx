@@ -335,12 +335,35 @@ export default function App() {
   const [resumeTick, setResumeTick] = useState(0);  // incrémenté au retour au 1er plan → recalcule « ce soir / demain » sans fermer l'app
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const [updateAvailable, setUpdateAvailable] = useState(false);
-  const askedNotifRef = useRef(localStorage.getItem("monacout_notif_asked") === "1");
   const engageRef = useRef(0);
   const eventLinkRef = useRef(false);
+  const promptedThisSessionRef = useRef(false);   // un seul message par session, jamais deux d'affilée
+  const authUserRef = useRef(null);               // valeur à jour d'auth.user pour les minuteurs
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
   useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
+  useEffect(() => { authUserRef.current = auth.user; }, [auth.user]);
+
+  // Au lancement : on compte la visite, puis on sollicite les gens qui reviennent
+  // MÊME s'ils n'ouvrent jamais de fiche. C'était le trou : la demande de notifications
+  // ne partait qu'après 2 fiches ouvertes, or 85 % des visiteurs n'en ouvrent aucune —
+  // on ne posait donc la question qu'à 10 % d'entre eux (et personne ne refusait).
+  useEffect(() => {
+    // Migration : l'ancien drapeau « déjà demandé » bloquait à vie. On le convertit
+    // en « 1 demande sans date » → ces personnes pourront être resollicitées.
+    try {
+      if (localStorage.getItem("monacout_notif_asked") === "1" && !localStorage.getItem("monacout_notif_asks")) writeNum("monacout_notif_asks", 1);
+      if (localStorage.getItem("monacout_fav_nudge_shown") === "1" && !localStorage.getItem("monacout_signup_asks")) writeNum("monacout_signup_asks", 1);
+    } catch { /* ignore */ }
+
+    const visites = bumpCount("monacout_sessions");
+    // On laisse respirer : jamais à la seconde où l'app s'ouvre.
+    const t = setTimeout(() => {
+      if (!authUserRef.current && visites >= 4 && maybeAskSignup("visites")) return;
+      if (visites >= 3) maybeAskNotif();
+    }, 12000);
+    return () => clearTimeout(t);
+  }, []);   // eslint-disable-line react-hooks/exhaustive-deps
   // Annonce in-app (broadcast à tous, même sans notifs) : affichée si présente, non expirée et non fermée.
   // NB : la fermeture (✕) ne mémorise RIEN → le bandeau RÉAPPARAÎT à chaque ouverture de l'app
   // (tant que l'événement est encore d'actualité). Choix voulu : ne pas rater un « ce soir ».
@@ -575,25 +598,20 @@ export default function App() {
         track("favorite_added", { event_id: id });   // ajout d'un favori (jamais au retrait)
         // 1er favori sans compte → on invite (une seule fois) à sauvegarder ses favoris.
         // Sinon (déjà connectée, ou nudge déjà vu) → on propose les notifs au bon moment.
-        let nudged = false;
-        try {
-          if (!auth.user && next.length >= 1 && !localStorage.getItem("monacout_fav_nudge_shown")) {
-            localStorage.setItem("monacout_fav_nudge_shown", "1");
-            setShowFavNudge(true);
-            track("signup_prompt_shown", { source: "fav_nudge" });   // l'invitation compte s'est affichée
-            nudged = true;
-          }
-        } catch { /* localStorage indisponible */ }
+        const nudged = maybeAskSignup("fav_nudge");
         if (!nudged) maybeAskNotif();   // ajout d'un favori = intérêt fort → on propose (au bon moment)
       }
       return next;
     });
   }
 
-  // Compte les signes d'intérêt (ouverture d'un événement). Au 2e → on propose les notifs.
+  // Compte les signes d'intérêt (ouverture d'un événement).
+  // 2 fiches dans la même visite, OU 3 fiches en cumulé → on sollicite.
   function bumpNotifEngagement() {
     engageRef.current += 1;
-    if (engageRef.current >= 2) maybeAskNotif();
+    const total = bumpCount("monacout_card_opens");
+    if (!auth.user && total >= 3 && maybeAskSignup("cartes")) return;   // le compte d'abord
+    if (engageRef.current >= 2 || total >= 3) maybeAskNotif();
   }
 
   function handleCardClick(e) {
@@ -602,22 +620,53 @@ export default function App() {
     bumpNotifEngagement();
   }
 
-  // Affiche notre petit message maison AVANT la demande iOS — une seule fois, si pas déjà répondu.
+  // ── Compteurs d'intérêt conservés d'une visite à l'autre ─────────────────
+  // engageRef repart à zéro à chaque lancement ; ces compteurs-là, non.
+  function readNum(k) { try { return parseInt(localStorage.getItem(k) || "0", 10) || 0; } catch { return 0; } }
+  function writeNum(k, v) { try { localStorage.setItem(k, String(v)); } catch { /* ignore */ } }
+  function bumpCount(k) { const v = readNum(k) + 1; writeNum(k, v); return v; }
+  const DAY_MS = 86400000;
+
+  // Autorise à reposer la question : au plus `max` fois en tout, espacées de `days` jours,
+  // et jamais deux messages dans la même session.
+  function canAskAgain(kAsks, kLast, max, days) {
+    if (promptedThisSessionRef.current) return false;
+    if (readNum(kAsks) >= max) return false;
+    const last = readNum(kLast);
+    return !last || Date.now() - last > days * DAY_MS;
+  }
+  function noteAsked(kAsks, kLast) {
+    promptedThisSessionRef.current = true;
+    writeNum(kAsks, readNum(kAsks) + 1);
+    writeNum(kLast, Date.now());
+  }
+
+  // Invitation à créer un compte. Renvoie true si le message a été affiché.
+  function maybeAskSignup(source) {
+    if (auth.user) return false;
+    if (!canAskAgain("monacout_signup_asks", "monacout_signup_last_ask", 2, 10)) return false;
+    noteAsked("monacout_signup_asks", "monacout_signup_last_ask");
+    setShowFavNudge(true);
+    track("signup_prompt_shown", { source });
+    return true;
+  }
+
+  // Affiche notre petit message maison AVANT la demande iOS.
+  // Reposable jusqu'à 3 fois, à 7 jours d'intervalle : « plus tard » ne doit pas
+  // valoir « plus jamais » (14 personnes sur 20 avaient répondu « plus tard »).
   async function maybeAskNotif() {
-    if (askedNotifRef.current) return;
+    if (!canAskAgain("monacout_notif_asks", "monacout_notif_last_ask", 3, 7)) return;
     if (Capacitor.isNativePlatform()) {
       try {
         const p = await LocalNotifications.checkPermissions();
         if (p.display === "prompt" || p.display === "prompt-with-rationale") {
-          askedNotifRef.current = true;
-          localStorage.setItem("monacout_notif_asked", "1");
+          noteAsked("monacout_notif_asks", "monacout_notif_last_ask");
           setShowNotifPrompt(true);
           track("notif_prompt_shown");
         }
       } catch { /* ignore */ }
     } else if ("Notification" in window && Notification.permission === "default") {
-      askedNotifRef.current = true;
-      localStorage.setItem("monacout_notif_asked", "1");
+      noteAsked("monacout_notif_asks", "monacout_notif_last_ask");
       setShowNotifPrompt(true);
       track("notif_prompt_shown");
     }
