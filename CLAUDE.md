@@ -75,6 +75,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Thermes Marins Monte-Carlo | https://www.montecarlosbm.com/en/wellness-sport-monaco/thermes-marins-monte-carlo | BIEN-ÊTRE | |
 | Odéon Spa | https://odeonspa.com/ | BIEN-ÊTRE | |
 | Monte-Carlo SBM (restos/bars) | https://www.montecarlosbm.com/ | BRUNCH, APÉRO, SOIRÉE | |
+| 99 Sushi Bar Monaco | https://www.99sushibar.com/en/99-sushi-bar-monaco/ | APÉRO « Afterlight » tous les jours 18h-19h, bar à saké — 16 Quai du Petit Portier, Mareterra | +377 9992 5102 |
+| Le Vivaldi (bar à cocktails) | https://www.instagram.com/vivaldi_monaco/ | APÉRO, DJ — 6 av. de la Piscine, Port Hercule, mar→dim 18h-2h, **fermé le lundi**, pas de site web | +33 6 63 07 20 20 |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
 | Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE (Quai Antoine 1er, rouvert juin 2026) | +377 9797 9595 |
 | Woo Monaco | https://woo.mc/ | BRUNCH | |

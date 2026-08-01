@@ -49,6 +49,10 @@ const VENUES = [
   { match:/oc[ée]anographique/i,           name:'Musée Océanographique',          quarter:'Monaco-Ville', link:'https://musee.oceano.org/', phone:'', cat:'ATELIER' },
   { match:/l[ée]o ferr[ée]/i,              name:'Espace Léo Ferré',               quarter:'Fontvieille',  link:'https://www.espaceleoferre.mc/', phone:'+377 9310 1210', cat:'CONCERT' },
   { match:/sporting|salle des [ée]toiles/i,name:'Salle des Étoiles',              quarter:'Larvotto',     link:'https://www.montecarlosbm.com/en/sporting-monte-carlo', phone:'+377 9806 7071', cat:'CONCERT' },
+  { match:/99 sushi/i,                     name:'99 Sushi Bar',                   quarter:'Monaco',       link:'https://www.99sushibar.com/en/99-sushi-bar-monaco/', phone:'+377 9992 5102', cat:'APÉRO' },
+  { match:/vivaldi/i,                      name:'Le Vivaldi',                     quarter:'La Condamine', link:'https://www.instagram.com/vivaldi_monaco/', phone:'+33 6 63 07 20 20', cat:'APÉRO' },
+  { match:/brasserie de monaco|monaco brewery/i, name:'Brasserie de Monaco',      quarter:'La Condamine', link:'https://brasseriedemonaco.com', phone:'+377 9798 5120', cat:'SOIRÉE' },
+  { match:/soci[ée]t[ée] nautique|aviron|rowing/i, name:'Restaurant de la Société Nautique', quarter:'La Condamine', link:'https://www.restaurantsocietenautique.club/', phone:'+377 9350 5130', cat:'BRUNCH' },
 ];
 function findVenue(v) { for (const x of VENUES) if (x.match.test(v)) return x; return null; }
 
