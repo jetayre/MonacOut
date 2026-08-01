@@ -87,6 +87,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
 | Automobile Club Monaco | https://acm.mc/ | RALLYE | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
+| Société Nautique de Monaco — restaurant | https://www.restaurantsocietenautique.club/ | BRUNCH samedi 11h-15h, déjeuners en semaine — club d'aviron, Port Hercule, **ouvert à tous** (pas réservé aux membres) | +377 9350 5130 |
 | Monaco Classic Week (YCM) | https://monacoclassicweek.com/ | SPORT voile classique — biennale années impaires (2027, 2029…) | +377 9310 6300 |
 | CREM Monaco | https://www.crem.mc/ | APÉRO, GALA — Club des Résidents Étrangers de Monaco | |
 | Monaco Energy Boat Challenge | https://energyboatchallenge.com/ | SPORT nautique — énergie alternative | +377 9315 2600 |
@@ -102,8 +103,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | U Tapu | https://www.google.com/maps/search/U+Tapu+Marche+Condamine+Monaco | APÉRO (tapas corses-basques, marché Condamine) | +33 6 61 93 89 36 |
 | Slammers Monaco | https://www.instagram.com/slammers_monaco/ | APÉRO, SOIRÉE (sports bar) | |
 | Ship & Castle Monaco | https://www.instagram.com/shipandcastlemonaco/ | APÉRO (pub britannique, jeudi) | |
-| Monaco Brewery | https://www.brasserie-de-monaco.com/ | APÉRO (craft beer, samedi) | |
-| La Brasserie de Monaco | https://www.brasserie-de-monaco.com/ | BRUNCH, APÉRO (Fontvieille) | +377 9777 0990 |
+| Monaco Brewery (= La Brasserie de Monaco, même établissement) | https://brasseriedemonaco.com | APÉRO (craft beer) | +377 9798 5120 |
+| La Brasserie de Monaco | https://brasseriedemonaco.com | SOIRÉE, APÉRO, BRUNCH — microbrasserie, 36 route de la Piscine, darse sud du **Port Hercule / La Condamine** (⚠️ PAS Fontvieille, erreur corrigée le 1er août 2026), DJ résident tous les soirs dès 18h, service jusqu'à 3h ven/sam | +377 9798 5120 |
 | Panino Club Monaco | https://panino-club.com/ | APÉRO (vendredi, Blvd des Moulins) | |
 | Buddha-Bar Monte-Carlo | https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/ | APÉRO, SOIRÉE | +377 9999 8080 |
 | Turbo Monaco | https://www.turbomonaco.com/ | SOIRÉE (GP week + saison) | +377 9999 2000 |
