@@ -92,6 +92,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
 | Automobile Club Monaco | https://acm.mc/ | RALLYE | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
+| Foyer Sainte Dévote | https://diocese.mc | ATELIER, CONFÉRENCE — 3 rue Philibert Florence, La Condamine (salle paroissiale, pas de site propre) | +377 9797 7020 |
 | Palais Princier de Monaco | https://www.visitepalaisdemonaco.com/ | EXPOSITION, SPECTACLE — Grands Appartements, cour d'honneur (concerts d'été), Monaco-Ville | +377 9325 1831 |
 | Musée d'Anthropologie Préhistorique | https://map.gouv.mc/ | EXPOSITION, ATELIER — entrée par le Jardin Exotique, 56 bis bd du Jardin Exotique | +377 9898 8006 |
 | Institut Audiovisuel de Monaco | https://institut-audiovisuel.mc/ | CINÉMA, EXPOSITION, CONFÉRENCE — 83-85 bd du Jardin Exotique | +377 9798 4326 |

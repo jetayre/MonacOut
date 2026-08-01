@@ -78,7 +78,7 @@ function findVenue(v) { const p = aplati(v); for (const x of VENUES) if (x.match
 // ── Catégorie affinée par mots-clés du titre (sinon : catégorie par défaut du lieu) ──
 // Heure non publiée : mention honnête selon le type d'événement (jamais un horaire inventé).
 const SANS_HEURE = {
-  EXPOSITION: 'En journée', 'MARCHÉ': 'En journée', SALON: 'En journée', CINÉMA: 'En journée',
+  EXPOSITION: 'En journée', 'MARCHÉ': 'En journée', SALON: 'En journée', CINÉMA: 'En journée', ATELIER: 'En journée',
   'APÉRO': 'En soirée', 'SOIRÉE': 'En soirée', 'DJ SET': 'En soirée', 'JAZZ LIVE': 'En soirée',
 };
 
@@ -91,7 +91,7 @@ function catFromTitle(title, def) {
   if (/conf[ée]rence|rencontre|colloque|d[ée]bat/.test(t)) return 'CONFÉRENCE';
   if (/atelier|stage|workshop/.test(t)) return 'ATELIER';
   if (/th[éé][âa]tre|pi[èe]ce|com[ée]die/.test(t)) return 'THÉÂTRE';
-  if (/exposition|vernissage/.test(t)) return 'EXPOSITION';
+  if (/exposition|vernissage|exhibition/.test(t)) return 'EXPOSITION';
   return def;
 }
 const PAL = {
@@ -145,6 +145,7 @@ function fetchListing(page) {
 }
 
 const report = [];
+const aCompleter = new Set();   // lieux vus par la source mais absents du tableau
 const added = [];
 const today = new Date(); today.setHours(0,0,0,0);
 const horizon = new Date(today); horizon.setMonth(horizon.getMonth()+12);
@@ -163,7 +164,7 @@ for (const slug of slugs) {
   if (!title) continue;
   const places = [...d.matchAll(/href="\/en\/places\/[^"]+"[^>]*>([\s\S]*?)<\/a>/g)].map(x=>x[1].replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
   const venueRaw = [...new Set(places)][0] || '';
-  const venue = findVenue(venueRaw);
+  let venue = findVenue(venueRaw);
   // sessions : « Weekday D Month YYYY from HH:MM »
   const txt = d.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
   const sessRe = /(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+(\d{1,2})\s+(\w+)\s+(\d{4})(?:\s+from\s+(\d{1,2}):(\d{2}))?/gi;
@@ -176,7 +177,22 @@ for (const slug of slugs) {
     const key = `${Y}-${mo}-${D}`; if (seen.has(key)) continue; seen.add(key);
     const dateStr = `${JOURS[dt.getDay()]} ${D} ${MOIS_FR[mo]}`;      // jour recalculé par code (règle 7)
     // dédup fine par date+lieu
-    if (!venue) { report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — lieu inconnu (« ${venueRaw||'?'} »)`); continue; }
+    // RÈGLE 3 (modifiée le 2 août 2026) : un lieu absent de la liste ne fait plus
+    // perdre l'événement. On publie avec le VRAI nom du lieu donné par la source,
+    // sans jamais inventer de lien ni de téléphone, et on inscrit le lieu dans
+    // lieux-a-completer.txt pour que ses coordonnées officielles soient ajoutées
+    // au tableau des sources (un script ne sait pas chercher un site officiel).
+    if (!venue) {
+      const nom = (venueRaw || '').trim();
+      // « ? », « Principauté de Monaco »… ne sont pas des lieux : là, on skippe vraiment.
+      if (!nom || nom.length < 4 || /^principaut[ée]|^monaco$|^\?+$/i.test(nom)) {
+        report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — aucun lieu exploitable (« ${nom || '?'} »)`);
+        continue;
+      }
+      venue = { name: nom, quarter: 'Monaco', link: '', phone: '', cat: 'SPECTACLE', provisoire: true };
+      aCompleter.add(nom);
+      report.push(`  + LIEU NOUVEAU « ${nom} » — publié sans lien ni téléphone, à compléter dans CLAUDE.md`);
+    }
     // Heure absente : on n'invente JAMAIS un horaire précis, mais pour les types
     // d'événements qui durent toute la journée (expositions, marchés, salons) ou
     // qui se passent forcément le soir (apéros, soirées), on publie une mention

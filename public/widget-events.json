@@ -1,18 +1,27 @@
 {
-  "generatedAt": "2026-08-01T22:01:22.847Z",
+  "generatedAt": "2026-08-01T22:07:55.312Z",
   "events": [
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "20h30",
-      "title": "LP EN CONCERT",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "07h00 — 09h00",
+      "title": "BOOTCAMP SUMMER MONACO",
+      "venue": "Monaco Wellness System",
+      "quarter": "Monaco-Ville",
+      "emoji": "💪"
     },
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -20,58 +29,49 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉE NAVAL DE MONACO",
-      "venue": "Terrasses de Fontvieille",
-      "quarter": "Fontvieille",
-      "emoji": "⚓"
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "20h30",
+      "title": "SOUL! WHERE LEGENDS COME BACK",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
     },
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "18h00",
-      "title": "MESSE SAMEDI",
-      "venue": "5 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "07h00 — 09h00",
+      "title": "YOGA LARVOTTO ÉTÉ",
+      "venue": "Plage du Larvotto",
+      "quarter": "Larvotto",
+      "emoji": "🌅"
     },
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "09h30",
-      "title": "ZUMBA LA DIGUE MONACO",
-      "venue": "Zumba La Digue",
-      "quarter": "La Condamine",
-      "emoji": "🕺"
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "12h00 — 15h30",
+      "title": "BRUNCH NOBU MONTE-CARLO",
+      "venue": "Nobu Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍱"
     },
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "10h00 — 12h30",
-      "title": "ATELIER ARTS MARINS",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🐠"
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "12h00 — 15h00",
+      "title": "BRUNCH PAVYLLON HERMITAGE",
+      "venue": "Pavyllon",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "10h00 — 12h00",
-      "title": "EXPLORATION JARDIN EXOTIQUE",
-      "venue": "Jardin Exotique de Monaco",
-      "quarter": "Monaco-Ville",
-      "emoji": "🌿"
-    },
-    {
-      "date": "Sam 1 août",
-      "iso": "2026-08-01",
-      "time": "En journée",
-      "title": "PREMIERS SECOURS FORMATION ADULTES",
-      "venue": "Croix-Rouge Monégasque",
-      "quarter": "Monaco",
-      "emoji": "🚑"
+      "date": "Dim 2 août",
+      "iso": "2026-08-02",
+      "time": "12h00 — 15h00",
+      "title": "BRUNCH LAS BRISAS VUE MER",
+      "venue": "Las Brisas",
+      "quarter": "Larvotto",
+      "emoji": "🌊"
     }
   ]
 }
