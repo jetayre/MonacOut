@@ -90,7 +90,12 @@ export function lieuxDepuisSources(cheminMd) {
     if (nom.length < 4) continue;
 
     const tel = (ligne.match(/\+\d[\d\s]{7,}/) || [])[0];
-    const q = QUARTIERS.find(([cle]) => sansAccent(ligne).includes(cle));
+    // Le quartier se lit dans la colonne « précisions » (celle qui porte l'adresse),
+    // PAS dans le nom : « Maison Gigi Monte-Carlo » est en réalité au Port Hercule.
+    // On ne retombe sur la ligne entière que si la colonne ne dit rien.
+    const texteAdresse = sansAccent(cellules[3] || "");
+    const q = QUARTIERS.find(([cle]) => texteAdresse.includes(cle))
+           || QUARTIERS.find(([cle]) => sansAccent(ligne).includes(cle));
     // on prend la catégorie qui apparaît EN PREMIER dans la cellule (l'ordre du
     // tableau reflète l'usage principal du lieu : « APÉRO, CONCERT » = d'abord un bar)
     const cellCat = cellules[3] || "";
