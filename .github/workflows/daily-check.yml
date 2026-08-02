@@ -64,10 +64,15 @@ jobs:
       # compléter pour que l'agent chercheur puisse la lire sans refaire le scan.
       - name: Build & push des corrections automatiques
         run: |
-          git add -f lieux-a-completer.txt auto-complete-report.txt 2>/dev/null || true
+          # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
+          # que s'il a quelque chose à signaler). Toujours tester leur présence : un
+          # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
+          for f in lieux-a-completer.txt auto-complete-report.txt; do
+            if [ -f "$f" ]; then git add -f "$f"; fi
+          done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
             npm run build
-            git add src/data/events.js public/notif-config.json public/events.json public/widget-events.json lieux-a-completer.txt auto-complete-report.txt
+            git add src/data/events.js public/notif-config.json public/events.json public/widget-events.json
             git commit -m "chore: maj auto (events + bandeau ce soir/demain) ($(date +%Y-%m-%d))"
             git push
           fi
