@@ -228,6 +228,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   }
   if (groupFilter) { const g = EVENT_GROUPS.find(x => x.id === groupFilter); if (g) filtered = filtered.filter(e => g.cats.includes(e.cat)); }
 
+  // Le fil ne montre que de VRAIS événements. Les deux fiches d'annuaire permanentes
+  // — « Musées de Monaco ouverts » et « Bien-être : spas & studios » — sont là tous
+  // les jours et encombraient la liste : on ne les affiche plus que lorsqu'on
+  // demande explicitement leur catégorie (Musée / Bien-être), ou en recherche.
+  // La carte cinéma, elle, reste dans le fil : c'est un programme qui change.
+  const estAnnuairePermanent = e => e.pinLast === true && e.cat !== "CINÉMA";
+  const filtreCatActif = (catFilters && catFilters.length > 0) || !!groupFilter;
+  if (!filtreCatActif && !searchQuery.trim()) filtered = filtered.filter(e => !estAnnuairePermanent(e));
+
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
       ? `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]} — ${rangeEnd.getDate()} ${MOIS_NOM_COURT[rangeEnd.getMonth()]}`
