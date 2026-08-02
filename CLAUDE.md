@@ -107,6 +107,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Le Vivaldi (bar à cocktails) | https://www.instagram.com/vivaldi_monaco/ | APÉRO, DJ — 6 av. de la Piscine, Port Hercule, mar→dim 18h-2h, **fermé le lundi**, pas de site web | +33 6 63 07 20 20 |
 | Maison Gigi Monte-Carlo | https://www.instagram.com/maisongigimontecarlo/ | APÉRO, SOIRÉE (trattoria italienne + bar à cocktails, ambiance festive le week-end) — 32 route de la Piscine, Port Hercule / La Condamine, pas de site officiel → lien Instagram officiel | +377 9798 3456 |
 | Café Semplice | https://www.cafesemplice.com/en/home-en/ | APÉRO bar à vins et cocktails 17h-20h (côté café-restaurant italien en journée) — 25 bd Albert 1er, Port Hercule / La Condamine, lun→sam | +377 3770 0658 |
+| Frenk | https://www.instagram.com/frenk.mc/ | APÉRO italien, cocktails, tous les jours 8h-23h (dim 9h-23h) — 32 quai Jean-Charles Rey, Port de Fontvieille, pas de site officiel → lien Instagram officiel | +377 9992 5838 |
+| Neptune Monaco Beach | https://www.neptunemonaco.com/ | BRUNCH, APÉRO — plage privée, restaurant méditerranéen et bar à cocktails, Plage du Larvotto | +377 9330 0551 |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
 | Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE (Quai Antoine 1er, rouvert juin 2026) | +377 9797 9595 |
 | Woo Monaco | https://woo.mc/ | BRUNCH | |
