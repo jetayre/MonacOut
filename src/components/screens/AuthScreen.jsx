@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { fichierVersAvatar } from '../../lib/avatar'
 
 const NAVY = "#0F1D3A"
 const GOLD = "#C4A241"
@@ -15,6 +16,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
   const [code, setCode]         = useState('')
   const [name, setName]         = useState('')
   const [topics, setTopics]     = useState([])
+  const [avatar, setAvatar]     = useState('')      // photo de profil, en data URL
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
 
@@ -41,6 +43,34 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
             <button onClick={handleClose} style={closeBtn}>✕</button>
             <div style={title}>{lang === 'en' ? "Welcome!" : "Bienvenue !"}</div>
             <div style={sub}>{lang === 'en' ? "How should we call you?" : "Comment tu t'appelles ?"}</div>
+
+            {/* Photo — carré à coins arrondis, 44 px, entièrement optionnelle.
+                Sélecteur de photos standard : aucun plugin natif, donc aucune
+                nouvelle validation Apple nécessaire. */}
+            <label htmlFor="mo-avatar" style={{ display: 'block', width: 44, margin: '0 auto 6px', cursor: 'pointer' }}>
+              <div style={{
+                width: 44, height: 44, borderRadius: 4, overflow: 'hidden',
+                border: `1px solid ${avatar ? GOLD_FRAME : 'rgba(15,29,58,0.25)'}`,
+                background: avatar ? `center/cover no-repeat url(${avatar})` : '#FFFDF7',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#9AA0AE', fontSize: 16, fontFamily: "'Lato', sans-serif",
+              }}>{avatar ? '' : '＋'}</div>
+            </label>
+            <input
+              id="mo-avatar" type="file" accept="image/*" style={{ display: 'none' }}
+              onChange={async e => {
+                const f = e.target.files?.[0]; e.target.value = ''
+                if (!f) return
+                try { setAvatar(await fichierVersAvatar(f)); setError('') }
+                catch { setError(lang === 'en' ? "Couldn't read that photo" : "Photo illisible") }
+              }}
+            />
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: '#9AA0AE', marginBottom: 12 }}>
+              {avatar
+                ? (lang === 'en' ? "Tap to change" : "Touche pour changer")
+                : (lang === 'en' ? "Photo (optional)" : "Photo (optionnel)")}
+            </div>
+
             <input
               value={name}
               onChange={e => setName(e.target.value)}
@@ -69,7 +99,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
               onClick={async () => {
                 if (!name.trim()) return setError(lang === 'en' ? 'Required' : 'Requis')
                 setLoading(true)
-                await auth.saveProfile(name.trim(), topics)
+                await auth.saveProfile(name.trim(), topics, avatar)
                 setLoading(false)
                 onClose()
               }}

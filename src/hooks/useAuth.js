@@ -63,16 +63,22 @@ export function useAuth() {
     return { error }
   }
 
-  async function saveProfile(displayName, topics) {
+  async function saveProfile(displayName, topics, avatarUrl) {
     if (!supabase || !user) return
     const isNew = !profile?.display_name           // 1er enregistrement du prénom = nouveau compte
     const row = { id: user.id, display_name: displayName }
     if (Array.isArray(topics)) row.preferred_topics = topics
-    const { data } = await supabase
-      .from('profiles')
-      .upsert(row)
-      .select()
-      .single()
+    if (typeof avatarUrl === 'string') row.avatar_url = avatarUrl   // '' = retirer la photo
+
+    let { data, error } = await supabase.from('profiles').upsert(row).select().single()
+    // Filet de sécurité : si la colonne avatar_url n'existe pas encore côté base,
+    // on réenregistre SANS la photo. Le prénom ne doit jamais être perdu à cause d'elle.
+    if (error && 'avatar_url' in row) {
+      const sansPhoto = { ...row }; delete sansPhoto.avatar_url
+      const retour = await supabase.from('profiles').upsert(sansPhoto).select().single()
+      data = retour.data; error = retour.error
+    }
+    if (error) return { error: error.message }
     setProfile(data)
     if (isNew) {
       try { posthog.capture('signup_completed', { topics: Array.isArray(topics) ? topics : [] }) } catch { /* analytics indisponible */ }

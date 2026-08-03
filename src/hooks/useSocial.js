@@ -38,7 +38,7 @@ export function useSocial(userId) {
 
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('id, display_name, invite_code')
+      .select('*')   // « * » et non une liste figée : la liste d amis ne doit pas casser si avatar_url n existe pas encore
       .in('id', allIds)
 
     // Visibilité : qui a activé "peut me voir"

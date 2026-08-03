@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { fichierVersAvatar } from '../lib/avatar';
 import { Capacitor } from "@capacitor/core";
 import { localizeCat, localizeTitle } from "../i18n";
 
@@ -351,13 +352,40 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
             marginBottom: 8,
           }}>
             {auth?.profile?.display_name ? (
-              <div style={{
-                fontFamily: "'Josefin Sans', sans-serif", fontSize: 13,
-                color: NAVY, letterSpacing: 0.5, minWidth: 0,
-                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-              }}>
-                {lang === "en" ? "Hi, " : "Bonjour, "}
-                <span style={{ color: GOLD, fontWeight: 600 }}>{auth.profile.display_name}</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+                {/* Photo de profil, modifiable ICI : l'écran d'inscription ne se rouvre
+                    jamais, donc c'est le seul endroit où les comptes déjà créés
+                    peuvent ajouter ou changer leur photo. Carré 24 px, coins 4. */}
+                <label htmlFor="mo-avatar-menu" title={lang === "en" ? "Change photo" : "Changer ma photo"} style={{ cursor: "pointer", flexShrink: 0 }}>
+                  <div style={{
+                    width: 24, height: 24, borderRadius: 4, overflow: "hidden",
+                    border: `1px solid ${auth.profile.avatar_url ? GOLD : "rgba(15,29,58,0.25)"}`,
+                    background: auth.profile.avatar_url
+                      ? `center/cover no-repeat url(${auth.profile.avatar_url})`
+                      : "#FFFDF7",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: GREY, fontSize: 11, fontFamily: "'Lato', sans-serif",
+                  }}>{auth.profile.avatar_url ? "" : "＋"}</div>
+                </label>
+                <input
+                  id="mo-avatar-menu" type="file" accept="image/*" style={{ display: "none" }}
+                  onChange={async e => {
+                    const f = e.target.files?.[0]; e.target.value = "";
+                    if (!f) return;
+                    try {
+                      const url = await fichierVersAvatar(f);
+                      await auth.saveProfile(auth.profile.display_name, undefined, url);
+                    } catch { /* photo illisible : on ne change rien */ }
+                  }}
+                />
+                <div style={{
+                  fontFamily: "'Josefin Sans', sans-serif", fontSize: 13,
+                  color: NAVY, letterSpacing: 0.5, minWidth: 0,
+                  overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                }}>
+                  {lang === "en" ? "Hi, " : "Bonjour, "}
+                  <span style={{ color: GOLD, fontWeight: 600 }}>{auth.profile.display_name}</span>
+                </div>
               </div>
             ) : <span />}
             <button

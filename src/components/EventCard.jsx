@@ -214,12 +214,15 @@ function FriendAvatars({ friends = [] }) {
   return (
     <div style={{ display:'flex', alignItems:'center', gap:2, marginLeft:4 }}>
       {shown.map(f => (
+        // Carré à coins arrondis (et non un rond) pour rester dans l'esprit des
+        // cadres droits de l'app. Photo si la personne en a mis une, sinon l'initiale.
         <div key={f.id} title={f.display_name} style={{
-          width:20, height:20, borderRadius:'50%', background:avatarColor(f.id),
+          width:18, height:18, borderRadius:3, flexShrink:0,
+          background: f.avatar_url ? `center/cover no-repeat url(${f.avatar_url})` : avatarColor(f.id),
           color:'#fff', display:'flex', alignItems:'center', justifyContent:'center',
           fontFamily:"'Josefin Sans',sans-serif", fontSize:8, fontWeight:600,
-          border:'1.5px solid #fff', flexShrink:0,
-        }}>{(f.display_name?.[0]||'?').toUpperCase()}</div>
+          border:'1.5px solid #fff',
+        }}>{f.avatar_url ? '' : (f.display_name?.[0]||'?').toUpperCase()}</div>
       ))}
       {extra > 0 && <span style={{ fontSize:9, color:GREY, fontFamily:"'Lato',sans-serif" }}>+{extra}</span>}
     </div>

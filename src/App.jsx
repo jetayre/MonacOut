@@ -16,6 +16,7 @@ import { App as CapApp } from "@capacitor/app";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import posthog from "posthog-js";
+import { fichierVersAvatar } from "./lib/avatar";
 
 // Capteur de mesure (invisible pour l'utilisateur). Lié à des ACTIONS (clics),
 // jamais au défilement → aucune répétition parasite quand on scrolle.
@@ -325,6 +326,7 @@ export default function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [showFavNudge, setShowFavNudge] = useState(false);
+  const [showPhotoNudge, setShowPhotoNudge] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
@@ -339,10 +341,12 @@ export default function App() {
   const eventLinkRef = useRef(false);
   const promptedThisSessionRef = useRef(false);   // un seul message par session, jamais deux d'affilée
   const authUserRef = useRef(null);               // valeur à jour d'auth.user pour les minuteurs
+  const profileRef = useRef(null);                // idem pour le profil (a-t-elle déjà une photo ?)
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
   useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
   useEffect(() => { authUserRef.current = auth.user; }, [auth.user]);
+  useEffect(() => { profileRef.current = auth.profile; }, [auth.profile]);
 
   // Au lancement : on compte la visite, puis on sollicite les gens qui reviennent
   // MÊME s'ils n'ouvrent jamais de fiche. C'était le trou : la demande de notifications
@@ -360,6 +364,7 @@ export default function App() {
     // On laisse respirer : jamais à la seconde où l'app s'ouvre.
     const t = setTimeout(() => {
       if (!authUserRef.current && visites >= 4 && maybeAskSignup("visites")) return;
+      if (maybeAskPhoto()) return;          // connectée mais sans photo → on l'invite (2× max)
       if (visites >= 3) maybeAskNotif();
     }, 12000);
     return () => clearTimeout(t);
@@ -641,6 +646,19 @@ export default function App() {
     writeNum(kLast, Date.now());
   }
 
+  // Invitation à ajouter sa photo — uniquement aux personnes CONNECTÉES qui n'en ont
+  // pas encore. Sans ça elles ne sauraient pas que c'est possible : le carré du menu
+  // ne se remarque pas. 2 fois maximum, à 14 jours d'écart.
+  function maybeAskPhoto() {
+    const p = authUserRef.current ? profileRef.current : null;
+    if (!p || !p.display_name || p.avatar_url) return false;
+    if (!canAskAgain("monacout_photo_asks", "monacout_photo_last_ask", 2, 14)) return false;
+    noteAsked("monacout_photo_asks", "monacout_photo_last_ask");
+    setShowPhotoNudge(true);
+    track("photo_prompt_shown");
+    return true;
+  }
+
   // Invitation à créer un compte. Renvoie true si le message a été affiché.
   function maybeAskSignup(source) {
     if (auth.user) return false;
@@ -784,6 +802,51 @@ export default function App() {
     </Shell>
 
     {/* Invitation douce à créer un compte après le 1er favori (conversion, jamais bloquante) */}
+
+    {/* Invitation à ajouter sa photo — uniquement aux personnes connectées qui n'en
+        ont pas. Sans ce message elles ne sauraient pas que c'est possible : le petit
+        carré du menu passe inaperçu. Sélecteur de photos standard (aucun plugin natif). */}
+    {showPhotoNudge && auth.user && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
+        <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <label htmlFor="mo-avatar-nudge" style={{ display: "block", width: 56, margin: "0 auto 12px", cursor: "pointer" }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: 5, border: "1px solid rgba(15,29,58,0.25)",
+              background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+              color: "#9AA0AE", fontSize: 20, fontFamily: "'Lato', sans-serif",
+            }}>＋</div>
+          </label>
+          <input
+            id="mo-avatar-nudge" type="file" accept="image/*" style={{ display: "none" }}
+            onChange={async e => {
+              const f = e.target.files?.[0]; e.target.value = "";
+              if (!f) return;
+              try {
+                const url = await fichierVersAvatar(f);
+                await auth.saveProfile(auth.profile?.display_name || "", undefined, url);
+                track("photo_added");
+                setShowPhotoNudge(false);
+              } catch { /* photo illisible : on laisse le message ouvert */ }
+            }}
+          />
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
+            {lang === "en" ? "Add your photo" : "Ajoute ta photo"}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
+            {lang === "en"
+              ? "Your friends will recognise you on the outings you're going to."
+              : "Tes amis te reconnaîtront sur les sorties où tu vas."}
+          </div>
+          <label htmlFor="mo-avatar-nudge" style={{ display: "block", width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, boxSizing: "border-box" }}>
+            {lang === "en" ? "Choose my photo" : "Choisir ma photo"}
+          </label>
+          <button onClick={() => { setShowPhotoNudge(false); track("photo_later"); }} style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+            {lang === "en" ? "Later" : "Plus tard"}
+          </button>
+        </div>
+      </div>
+    )}
+
     {showFavNudge && !auth.user && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
         <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
