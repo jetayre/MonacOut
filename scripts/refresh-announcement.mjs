@@ -55,18 +55,39 @@ if (!activeManual) {
   // Liste BLANCHE : uniquement des temps forts CULTURELS (pas de sport, enchères, apéro, conférence…).
   const CULTURAL = new Set(['OPÉRA', 'CONCERT', 'MUSICAL', 'THÉÂTRE', 'DANSE', 'GALA', 'FESTIVAL', 'SPECTACLE', 'JAZZ LIVE']);
   const NOTABLE = new Set(['OPÉRA', 'GALA', 'FESTIVAL']);
+  // SALLES DE PRESTIGE : un spectacle qui s'y donne est un temps fort par nature,
+  // même si personne n'a pensé à le marquer « hot ». Sans cette règle le bandeau
+  // restait vide la plupart des jours (2 août : « Soul! » au Sporting était écarté).
+  const PRESTIGE = /salle des [ée]toiles|sporting|palais princier|cour d.honneur|auditorium rainier|salle garnier|op[ée]ra de monte-carlo|salle des princes/i;
+  const enSallePrestige = e => PRESTIGE.test(`${e.subtitle || ''} ${e.source || ''}`);
   const cands = [];
   for (const e of evts) {
     if (!e || !e.date || !e.link) continue;
     if (e.venues || e.ongoing || e.weeklyFilms || e.noNotif || e.nlg || e.directory || e.recurring) continue;
     if (!CULTURAL.has(e.cat)) continue;                            // que la culture
-    if (!(e.hot === true || NOTABLE.has(e.cat))) continue;         // filtre strict : que du notable
+    if (!(e.hot === true || NOTABLE.has(e.cat) || enSallePrestige(e))) continue;   // notable, ou grande salle
     const d = evDate(e); if (!d) continue;
     const df = diffDays(d);
     if (df < 0 || df > 1) continue;                                 // seulement ce soir / demain soir
     cands.push({ e, df, d });
   }
-  cands.sort((x, y) => x.df - y.df || (y.e.hot ? 1 : 0) - (x.e.hot ? 1 : 0));
+  // Combien de jours différents chaque spectacle occupe-t-il ? Une série qui se joue
+  // tous les soirs (ex. « Soul! » du 2 au 9 août) monopoliserait le bandeau une
+  // semaine entière et écraserait un concert exceptionnel donné le même soir.
+  // À égalité de jour, on préfère donc l'événement le plus RARE.
+  const nbDates = new Map();
+  for (const e of evts) {
+    const cle = (e.title || '').replace(/\n/g, ' ').trim();
+    if (!cle) continue;
+    if (!nbDates.has(cle)) nbDates.set(cle, new Set());
+    nbDates.get(cle).add(`${e.year || CUR_YEAR}-${e.date}`);
+  }
+  const rarete = e => (nbDates.get((e.title || '').replace(/\n/g, ' ').trim()) || { size: 1 }).size;
+
+  cands.sort((x, y) =>
+    x.df - y.df ||
+    rarete(x.e) - rarete(y.e) ||                      // l'événement unique d'abord
+    (y.e.hot ? 1 : 0) - (x.e.hot ? 1 : 0));
   if (cands.length) {
     const { e, d } = cands[0];
     const clean = e.title.replace(/\n/g, ' ').replace(/\s*ⓘ\s*$/, '').replace(/\s+/g, ' ').trim();
