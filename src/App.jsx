@@ -944,15 +944,15 @@ export default function App() {
 
     {/* Annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json → announcement */}
     {announce && (
-      <div style={{ position: "fixed", top: "calc(env(safe-area-inset-top, 0px) + 8px)", left: "50%", transform: "translateX(-50%)", zIndex: 3300, display: "flex", flexDirection: "column", alignItems: "center", gap: 10, background: "#FFFDF7", color: "#0F1D3A", border: "1.5px solid #C4A241", borderRadius: 10, padding: "13px 34px", boxShadow: "0 8px 28px rgba(15,29,58,0.20)", maxWidth: "92%" }}>
+      <div style={{ position: "fixed", top: "calc(env(safe-area-inset-top, 0px) + 8px)", left: "50%", transform: "translateX(-50%)", zIndex: 3300, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 14, background: "#FFFDF7", color: "#0F1D3A", border: "1.5px solid #C4A241", borderRadius: 3, padding: "10px 30px 10px 16px", width: "92%", boxShadow: "0 8px 28px rgba(15,29,58,0.20)", maxWidth: "92%" }}>
         <button onClick={() => setAnnounce(null)}
           style={{ position: "absolute", top: 6, right: 8, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "#8A94A0", lineHeight: 1, padding: "0 2px" }}>✕</button>
-        <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 14, lineHeight: 1.45, textAlign: "center" }}>
+        <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13.5, lineHeight: 1.4, textAlign: "left", flex: 1, minWidth: 0 }}>
           {lang === "en" && announce.messageEn ? announce.messageEn : announce.message}
         </div>
         {announce.link && (
           <a href={announce.link} target="_blank" rel="noopener noreferrer"
-            style={{ alignSelf: "center", padding: "7px 16px", borderRadius: 20, border: "1.5px solid #0F1D3A", background: "#0F1D3A", color: "#FFFFFF", textDecoration: "none", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 0.3, whiteSpace: "nowrap" }}>
+            style={{ flexShrink: 0, padding: "6px 14px", borderRadius: 3, border: "1.5px solid #0F1D3A", background: "#0F1D3A", color: "#FFFFFF", textDecoration: "none", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 0.3, whiteSpace: "nowrap" }}>
             {lang === "en" && announce.ctaEn ? announce.ctaEn : (announce.cta || "Voir")}
           </a>
         )}

@@ -336,7 +336,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         {userName && (
           <div style={{
             background: WHITE, borderTop: `1px solid ${BORDER}`,
-            padding: "5px 12px",
+            padding: "7px 12px",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
             fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, letterSpacing: 0.5, color: NAVY,
           }}>
@@ -344,7 +344,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 pas alourdir l'en-tête. Se change depuis le menu. */}
             {avatarUrl && (
               <div style={{
-                width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                width: 40, height: 40, borderRadius: "50%", flexShrink: 0,
                 background: `center/cover no-repeat url(${avatarUrl})`,
                 border: "1px solid rgba(196,162,65,0.6)",
               }} />
