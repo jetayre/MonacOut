@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T20:05:19.543Z",
+  "generatedAt": "2026-08-03T20:18:39.290Z",
   "events": [
     {
       "date": "Lun 3 août",
@@ -49,15 +49,6 @@
     {
       "date": "Lun 3 août",
       "iso": "2026-08-03",
-      "time": "20h30",
-      "title": "SOUL! WHERE LEGENDS COME BACK",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
       "time": "10h00 — 18h00",
       "title": "MUSÉES DE MONACO OUVERTS",
       "venue": "Monaco-Ville",
@@ -67,11 +58,20 @@
     {
       "date": "Lun 3 août",
       "iso": "2026-08-03",
-      "time": "En journée",
-      "title": "PREMIERS SECOURS FORMATION ADULTES",
-      "venue": "Croix-Rouge Monégasque",
-      "quarter": "Monaco",
-      "emoji": "🚑"
+      "time": "20h30",
+      "title": "SOUL! WHERE LEGENDS COME BACK",
+      "venue": "Salle des Étoiles",
+      "quarter": "Larvotto",
+      "emoji": "🎵"
+    },
+    {
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
     }
   ]
 }

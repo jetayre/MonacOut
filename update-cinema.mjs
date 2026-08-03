@@ -238,7 +238,7 @@ async function main() {
       const year   = d.getFullYear();
       const yearF  = year !== 2026 ? `,year:${year}` : '';
       entries.push(
-        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"10h30",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}},`
+        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"14h00",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}},`
       );
       d.setDate(d.getDate() + 1);
     }
