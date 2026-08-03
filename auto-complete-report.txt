@@ -1,4 +1,4 @@
-PrinciPocket : 153 fiches scannées.
+PrinciPocket : 152 fiches scannées.
   SKIP « Start of the 2026 Vuelta » [Dim 23 août 2026] — aucun lieu exploitable (« Principauté de Monaco »)
   SKIP « Les ateliers CycloShow » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
   SKIP « Les ateliers Mission xy » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)

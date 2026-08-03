@@ -1,27 +1,45 @@
 {
-  "generatedAt": "2026-08-02T21:45:42.259Z",
+  "generatedAt": "2026-08-03T06:52:29.086Z",
   "events": [
     {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
-      "time": "07h00 — 09h00",
-      "title": "BOOTCAMP SUMMER MONACO",
-      "venue": "Monaco Wellness System",
-      "quarter": "Monaco-Ville",
-      "emoji": "💪"
-    },
-    {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "9h00 — 17h00",
+      "title": "STAGE DÉCOUVERTE MER ENFANTS",
+      "venue": "Académie Monégasque de la Mer",
       "quarter": "Monaco",
-      "emoji": "⛪"
+      "emoji": "⛵"
     },
     {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "9h00 — 17h00",
+      "title": "STAGE VOILE OPTIMIST ÉTÉ II",
+      "venue": "Yacht Club de Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "⛵"
+    },
+    {
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "9h00 — 12h00",
+      "title": "STAGE TENNIS JUNIOR ÉTÉ II",
+      "venue": "Monte-Carlo Country Club",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎾"
+    },
+    {
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "9h00 — 12h00",
+      "title": "STAGE BALLET INTENSIF ÉTÉ II",
+      "venue": "Académie Princesse Grace",
+      "quarter": "Monte-Carlo",
+      "emoji": "🩰"
+    },
+    {
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -29,8 +47,8 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
       "time": "20h30",
       "title": "SOUL! WHERE LEGENDS COME BACK",
       "venue": "Salle des Étoiles",
@@ -38,40 +56,22 @@
       "emoji": "🎵"
     },
     {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
-      "time": "07h00 — 09h00",
-      "title": "YOGA LARVOTTO ÉTÉ",
-      "venue": "Plage du Larvotto",
-      "quarter": "Larvotto",
-      "emoji": "🌅"
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
     },
     {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
-      "time": "12h00 — 15h30",
-      "title": "BRUNCH NOBU MONTE-CARLO",
-      "venue": "Nobu Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "🍱"
-    },
-    {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
-      "time": "12h00 — 15h00",
-      "title": "BRUNCH PAVYLLON HERMITAGE",
-      "venue": "Pavyllon",
-      "quarter": "Monte-Carlo",
-      "emoji": "🥂"
-    },
-    {
-      "date": "Dim 2 août",
-      "iso": "2026-08-02",
-      "time": "12h00 — 15h00",
-      "title": "BRUNCH LAS BRISAS VUE MER",
-      "venue": "Las Brisas",
-      "quarter": "Larvotto",
-      "emoji": "🌊"
+      "date": "Lun 3 août",
+      "iso": "2026-08-03",
+      "time": "En journée",
+      "title": "PREMIERS SECOURS FORMATION ADULTES",
+      "venue": "Croix-Rouge Monégasque",
+      "quarter": "Monaco",
+      "emoji": "🚑"
     }
   ]
 }

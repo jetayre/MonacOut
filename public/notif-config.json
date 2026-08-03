@@ -15,25 +15,12 @@
   "_latestVersion": "Dernière version publiée sur l'App Store. Bumper cette valeur (ex: 1.8) après avoir publié une nouvelle version → les apps plus anciennes afficheront un bandeau « Mettre à jour ». git push suffit, pas besoin de repasser par Apple.",
   "latestVersion": "2.1",
   "_announcements": "Message à TOUS (inscrits compris). Annonces DATÉES : l'app affiche « Ce soir : » le jour même et « Demain soir : » la veille, et bascule toute seule vers l'événement suivant. date=AAAA-MM-JJ ; leadDays=nb de jours avant où l'afficher (défaut 1) ; titleFR/titleEN = juste l'événement (SANS 'ce soir', l'app l'ajoute). git push suffit.",
-  "announcements": [
-    {
-      "id": "auto-282",
-      "date": "2026-08-02",
-      "titleFR": "CONCERT AU PALAIS BEETHOVEN — Cour d'honneur, 21h30",
-      "titleEN": "CONCERT AU PALAIS BEETHOVEN — Cour d'honneur, 21h30",
-      "cta": "Découvrir",
-      "ctaEn": "Discover",
-      "link": "https://opmc.mc/en/concert/martin-rajna-zoltan-fejervari/"
-    }
-  ],
+  "announcements": [],
   "_announcement": "Ancien format (repli statique pour les apps pas encore mises à jour avec la logique 'ce soir/demain').",
   "announcement": {
-    "id": "auto-282-cesoir",
-    "message": "Ce soir : CONCERT AU PALAIS BEETHOVEN — Cour d'honneur, 21h30.",
-    "messageEn": "Tonight: CONCERT AU PALAIS BEETHOVEN — Cour d'honneur, 21h30.",
-    "cta": "Découvrir",
-    "ctaEn": "Discover",
-    "link": "https://opmc.mc/en/concert/martin-rajna-zoltan-fejervari/",
-    "until": "2026-08-02"
+    "id": "none",
+    "message": "",
+    "messageEn": "",
+    "until": "2026-08-03"
   }
 }
