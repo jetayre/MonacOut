@@ -358,7 +358,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                     peuvent ajouter ou changer leur photo. Carré 24 px, coins 4. */}
                 <label htmlFor="mo-avatar-menu" title={lang === "en" ? "Change photo" : "Changer ma photo"} style={{ cursor: "pointer", flexShrink: 0 }}>
                   <div style={{
-                    width: 24, height: 24, borderRadius: 4, overflow: "hidden",
+                    width: 32, height: 32, borderRadius: "50%", overflow: "hidden",
                     border: `1px solid ${auth.profile.avatar_url ? GOLD : "rgba(15,29,58,0.25)"}`,
                     background: auth.profile.avatar_url
                       ? `center/cover no-repeat url(${auth.profile.avatar_url})`

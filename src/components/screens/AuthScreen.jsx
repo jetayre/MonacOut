@@ -28,7 +28,7 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
   useEffect(() => { if (auth.user && auth.profile?.display_name) { clearPending(); onClose() } }, [auth.user, auth.profile])
 
   const TOPICS = [
-    { id: 'culture',   fr: 'Culture / Ateliers', en: 'Culture / Workshops' },
+    { id: 'culture',   fr: 'Musée / Ciné / Atelier', en: 'Museum / Cinema / Workshop' },
     { id: 'foodnight', fr: 'Food / Nightlife',   en: 'Food / Nightlife' },
     { id: 'musique',   fr: 'Musique',            en: 'Music' },
     { id: 'sport',     fr: 'Sport',              en: 'Sport' },
@@ -47,13 +47,13 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
             {/* Photo — carré à coins arrondis, 44 px, entièrement optionnelle.
                 Sélecteur de photos standard : aucun plugin natif, donc aucune
                 nouvelle validation Apple nécessaire. */}
-            <label htmlFor="mo-avatar" style={{ display: 'block', width: 44, margin: '0 auto 6px', cursor: 'pointer' }}>
+            <label htmlFor="mo-avatar" style={{ display: 'block', width: 64, margin: '0 auto 6px', cursor: 'pointer' }}>
               <div style={{
-                width: 44, height: 44, borderRadius: 4, overflow: 'hidden',
+                width: 64, height: 64, borderRadius: '50%', overflow: 'hidden',
                 border: `1px solid ${avatar ? GOLD_FRAME : 'rgba(15,29,58,0.25)'}`,
                 background: avatar ? `center/cover no-repeat url(${avatar})` : '#FFFDF7',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: '#9AA0AE', fontSize: 16, fontFamily: "'Lato', sans-serif",
+                color: '#9AA0AE', fontSize: 22, fontFamily: "'Lato', sans-serif",
               }}>{avatar ? '' : '＋'}</div>
             </label>
             <input

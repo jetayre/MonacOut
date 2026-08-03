@@ -27,7 +27,7 @@ function normalizeForSearch(str) {
 
 // Boutons de catégories groupées (barre sous les filtres temps, à la place des quartiers)
 const EVENT_GROUPS = [
-  { id: "culture",   label: "Culture/Ateliers", labelEn: "Culture/Workshops", cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE","ATELIER","DANSE","BIEN-ÊTRE"] },
+  { id: "culture",   label: "Musée/Ciné/Atelier", labelEn: "Museum/Cinema/Workshop", cats: ["EXPOSITION","CONFÉRENCE","CINÉMA","THÉÂTRE","OPÉRA","MUSICAL","SPECTACLE","FESTIVAL","ENCHÈRES","MARCHÉ","SALON","FÊTE NATIONALE","ATELIER","DANSE","BIEN-ÊTRE"] },
   { id: "foodnight", label: "Food/Nightlife", labelEn: "Food/Nightlife", cats: ["BRUNCH","APÉRO","FOODY","SOIRÉE","DJ SET","GALA"] },
   { id: "musique",   label: "Concert/Ballet/Opéra", labelEn: "Concert/Ballet/Opera", cats: ["CONCERT","OPÉRA","MUSICAL","DANSE","JAZZ LIVE","CHANTS"] },
   { id: "sport",     label: "Sport",     labelEn: "Sport",     cats: ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","TENNIS","RALLYE","SPORT"] },
@@ -149,7 +149,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "", loggedIn = false, authReady = false, onShowAuth }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "", avatarUrl = "", loggedIn = false, authReady = false, onShowAuth }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -335,12 +335,24 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         {/* Salutation — « Bonjour, <prénom> » sous le logo quand connectée */}
         {userName && (
           <div style={{
-            background: WHITE, borderTop: `1px solid ${BORDER}`, textAlign: "center",
+            background: WHITE, borderTop: `1px solid ${BORDER}`,
             padding: "5px 12px",
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
             fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, letterSpacing: 0.5, color: NAVY,
           }}>
-            {lang === "en" ? "Hi, " : "Bonjour, "}
-            <span style={{ color: "#C4A241", fontWeight: 600 }}>{userName}</span>
+            {/* Photo de profil sur l'accueil, à gauche du bonjour. Carré 20 px pour ne
+                pas alourdir l'en-tête. Se change depuis le menu. */}
+            {avatarUrl && (
+              <div style={{
+                width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                background: `center/cover no-repeat url(${avatarUrl})`,
+                border: "1px solid rgba(196,162,65,0.6)",
+              }} />
+            )}
+            <span>
+              {lang === "en" ? "Hi, " : "Bonjour, "}
+              <span style={{ color: "#C4A241", fontWeight: 600 }}>{userName}</span>
+            </span>
           </div>
         )}
 

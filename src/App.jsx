@@ -755,7 +755,7 @@ export default function App() {
       {tab === "events" ? (
         <HomeScreen
           {...sharedProps}
-          userName={auth.profile?.display_name || ""}
+          userName={auth.profile?.display_name || ""} avatarUrl={auth.profile?.avatar_url || ""}
           filter={homeFilter}
           onFilterChange={setHomeFilter}
           catFilters={catFilters}
@@ -809,9 +809,9 @@ export default function App() {
     {showPhotoNudge && auth.user && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
         <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
-          <label htmlFor="mo-avatar-nudge" style={{ display: "block", width: 56, margin: "0 auto 12px", cursor: "pointer" }}>
+          <label htmlFor="mo-avatar-nudge" style={{ display: "block", width: 72, margin: "0 auto 12px", cursor: "pointer" }}>
             <div style={{
-              width: 56, height: 56, borderRadius: 5, border: "1px solid rgba(15,29,58,0.25)",
+              width: 72, height: 72, borderRadius: "50%", border: "1px solid rgba(15,29,58,0.25)",
               background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
               color: "#9AA0AE", fontSize: 20, fontFamily: "'Lato', sans-serif",
             }}>＋</div>
