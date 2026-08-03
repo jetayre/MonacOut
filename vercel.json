@@ -1,7 +1,6 @@
 {
   "redirects": [
     {
-      "_comment": "QR codes déjà imprimés : MonacOut-QR.png (12 juin 2026) encode https://monacout.vercel.app, c'est-à-dire l'ANCIEN projet et le SITE, alors qu'on veut envoyer les gens sur l'App Store (25,3 % d'entre eux y installent l'app). On ne peut pas modifier un QR imprimé, mais on peut changer là où son adresse mène. La règle est limitée à l'hôte monacout.vercel.app ET à la racine : monacout.com reste le site, et les fichiers de données (events.json, notif-config.json) restent servis normalement.",
       "source": "/",
       "has": [{ "type": "host", "value": "monacout.vercel.app" }],
       "destination": "https://apps.apple.com/fr/app/monacout/id6774785049",
