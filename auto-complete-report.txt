@@ -1,6 +1,15 @@
 PrinciPocket : 152 fiches scannées.
+  SKIP « Monaco Athletics Festival: a new major high jump event in Monaco » [Mer 5 août 2026] — heure inconnue
   SKIP « Start of the 2026 Vuelta » [Dim 23 août 2026] — aucun lieu exploitable (« Principauté de Monaco »)
+  ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
+  = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
+  ~ « Les Lives du Summer Bar » [Ven 28 août 2026] — heure non publiée → « En soirée »
   SKIP « Les ateliers CycloShow » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
   SKIP « Les ateliers Mission xy » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
+  ~ « Exhibition: Wedding of the century » [Ven 25 sep 2026] — heure non publiée → « En journée »
+  = « Exhibition: Wedding of the century » [Ven 25 sep 2026] — déjà couvert par une expo en cours au même lieu
+  ~ « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — heure non publiée → « En journée »
+  = « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — déjà couvert par une expo en cours au même lieu
 
-AJOUTÉS : 0
+AJOUTÉS : 1
++ [Ven 28 août 2026] Les Lives du Summer Bar @ Hôtel Columbus Monte-Carlo (APÉRO En soirée)
