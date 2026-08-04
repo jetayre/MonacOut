@@ -1,23 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2498 fiches inspectées le 2026-08-04.
+2497 fiches inspectées le 2026-08-04.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ FICHES SANS CONTENU — la description répète le titre (6)
-   · Mer 9 sep · STAGES PRATIQUES AMATEURS - GRAVURE POINTE SÈCHE — description = titre (id 700007)
-   · Jeu 1 oct · POSITIVE ENERGY — description = titre (id 700000)
-   · Dim 4 oct · EXHIBITION - HERITAGE AT RISK — description = titre (id 700008)
-   · Mer 23 déc · CONCERT SPIRITUEL DE NOËL — description = titre (id 3528)
-   · Dim 3 jan · VICTOR BRAUNER, THE MAGICAL ADVENTURE — description = titre (id 700003)
-   · Ven 26 fév · A WEDDING IN THE SPOTLIGHT. RAINIER III AND GRACE KELLY. 12–19 APRIL 1956 — description = titre (id 700001)
-
-■ TITRES EN ANGLAIS — jamais retraduits depuis la source (3)
-   · Dim 16 août · BEAUTY & WELLNESS WORKSHOP (id 1170)
-   · Dim 4 oct · EXHIBITION - HERITAGE AT RISK (id 700008)
-   · Ven 26 fév · A WEDDING IN THE SPOTLIGHT. RAINIER III AND GRACE KELLY. 12–19 APRIL 1956 (id 700001)
-
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (5)
-   · Dim 11 oct · THE LEGEND OF THE MAGIC CRYSTAL — Théâtre des Variétés (id 4735)
-   · Sam 17 oct · OUVERTURE SAISON VARIÉTÉS — Théâtre des Variétés (id 207)
-   · Sam 21 nov · PIÈCE D'AUTOMNE VARIÉTÉS — Théâtre des Variétés (id 208)
-   · Sam 28 nov · ATELIER LINDY HOP MONACO — Théâtre des Variétés (id 179)
-   · Sam 19 déc · SPECTACLE DE NOËL FAMILLE — Théâtre des Variétés (id 209)
+✅ Rien à signaler.

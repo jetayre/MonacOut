@@ -45,6 +45,21 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **🩹 Piège rencontré** : `vercel.json` est **validé strictement** — une simple clé `_comment` a mis **les DEUX projets en ERROR** (monac-out ET monacout). Les sites ont continué de servir le dernier déploiement réussi (aucun utilisateur n'a rien vu), mais plus aucune mise à jour n'aurait pu partir. **Ne jamais mettre de commentaire dans un fichier de configuration JSON** ; et après toute modification de `vercel.json`, vérifier l'état des déploiements (`readyState`), pas seulement que le site répond 200.
 - Règle : pour obtenir des installations, diffuser le **lien App Store** ; garder `monacout.com` pour montrer le produit en dix secondes (à un commerçant par exemple).
 
+## Journal — 4 août 2026 (les 24 fiches signalées reprises une par une → 0 signal)
+
+**Le contrôle qualité (`scripts/quality-check.mjs`) est retombé à ZÉRO signal** sur 2 497 fiches. Ce que la reprise manuelle a révélé — utile pour la prochaine fois :
+
+- **🐛 LE BUG DE FOND : le robot date une exposition à son DERNIER JOUR.** PrinciPocket publie « du 6 juillet au 26 février » et le robot n'en retient qu'une date. L'expo était donc **invisible pendant toute la période où l'on pouvait y aller** (c'est le bug qu'a rencontré Nadège). Corrigées ainsi (`ongoing:true` + `until:"AAAA-MM-JJ"`, redatées chaque jour) : **Victor Brauner** (Villa Paloma, jusqu'au 3 jan 2027), **Un Mariage sous les projecteurs** (Institut Audiovisuel, jusqu'au 26 fév 2027), **Patrimoine en danger** (jusqu'au 4 oct 2026). → **Signe qui doit alerter : une fiche EXPOSITION sans `ongoing`.**
+- **🗺️ DEUX ERREURS DE LIEU dues au rapprochement par mot-clé** — le robot associe un mot du titre à un lieu du tableau et se trompe :
+  - « Heritage at Risk » était mise dans l'**Église Saint-Martin** ; elle est en réalité **sur les grilles des Jardins Saint-Martin** (expo photo en plein air, gratuite).
+  - « Stages pratiques amateurs — gravure pointe sèche » était mise au **Foyer Sainte Dévote** (c'est ce que dit PrinciPocket) ; elle a lieu au **Pavillon Bosio**, 1 av. des Pins (École Supérieure d'Arts Plastiques de la Mairie, prof. Laure Fissore, 9-11 sep 10h-17h, `esap@mairie.mc`, +377 9330 1839). **Leçon : toujours recouper le lieu sur le site de l'organisateur, PrinciPocket se trompe aussi sur le lieu, pas seulement sur la date.**
+- **💸 UN CONCERT GRATUIT ANNONCÉ PAYANT.** Le « Concert de Noël » du 23 déc à l'Église Saint-Charles était en `free:false` : or **tous les « concerts spirituels » de l'OPMC sont à entrée libre** (série faite avec le Diocèse). Corrigé, et le programme réel ajouté (dir. Peter Szüts, Elenor Bowers Jolley soprano, Gérald Rolland trompette — Bach, Scarlatti, Haendel, Vivaldi). **En vérifiant, un 2ᵉ concert spirituel manquait totalement** : Haydn, « Les Sept Dernières Paroles du Christ en croix », **jeu 18 mars 2027 20h, entrée libre** (id 4767) → ajouté. Source fiable et complète pour cette série : `https://opmc.mc/venue/eglise-saint-charles-monaco/`.
+- **🎭 UNE FICHE COMPLÈTEMENT MAL CLASSÉE.** « Positive Energy » (1ᵉʳ oct, Auditorium Rainier III) était en `CONCERT` avec le lien de l'OPMC : c'est en réalité un **spectacle caritatif de l'association Dessine un Papillon** (matériel médical pour enfants hospitalisés), joué par la troupe **Les Échos-liés** — chorégraphies, acrobaties, comédie, 23-35 €. Passée en `SPECTACLE`, lien `dessineunpapillon.com`. **Le piège** : le robot met le lien de l'OPMC dès que l'Auditorium est cité, alors que la salle est aussi louée à des tiers. **Ne pas déduire l'organisateur de la salle.**
+- **📞 Téléphone du Théâtre des Variétés corrigé** dans ce tableau : **+377 9325 6783** (l'ancien +377 9330 1861 était faux). Les 5 fiches concernées pointent vers `monservicepublic.gouv.mc` (page officielle du théâtre) — ⚠️ **`theatredesvarietes.fr` est le théâtre de PARIS**, ne jamais l'utiliser.
+- **Méthode qui a marché** : le contrôle qualité liste, on cherche chaque fiche sur le site **de l'organisateur** (pas l'agrégateur), on écrit la vraie description, et **on écrit le fichier après CHAQUE fiche** — un script qui garde ses corrections en mémoire jusqu'à la fin perd tout s'il plante avant d'écrire (déjà vécu).
+
+**📈 Repère App Store au 3 août** : **167 premiers téléchargements**, 32 réinstallations, **1 240 impressions → 468 vues de fiche → 25 % de conversion** (une app Lifestyle tourne plutôt à 3-5 %). 448 mises à jour = les OTA arrivent bien. La fiche App Store convertit très bien : c'est **le lien App Store** qu'il faut diffuser, pas le site.
+
 ## Journal — 1-2 août 2026 (le robot passe de 15 à 142 lieux + réception email)
 
 **🤖 LE ROBOT SURVEILLE MAINTENANT TOUT LE TABLEAU DES SOURCES.** Il ne connaissait que **15 lieux écrits en dur** sur ~148 documentés : tout le reste était jeté en silence (« Les Lives du Summer Bar » au Columbus, l'expo du Palais Princier, deux expos du Musée d'Anthropologie… rejetés depuis des semaines pour « lieu inconnu »). Nouveau module **`scripts/venues-from-sources.mjs`** : il lit le tableau ci-dessus et en fait la table du robot → **142 lieux surveillés**. Garde-fous : agrégateurs exclus (règle 16) ; un lieu n'est retenu que s'il a un **mot distinctif unique**, sinon on exige **tous** ses mots (sépare « Théâtre Princesse Grace » d'« Académie Princesse Grace ») ; accents ignorés à la comparaison (PrinciPocket écrit « Théâtre ») ; les lieux sans mot distinctif sont **signalés, jamais devinés**. Vérifier : `node scripts/venues-from-sources.mjs`.
@@ -96,7 +111,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Mairie de Monaco — agenda | https://www.mairie.mc/agenda | SPECTACLE (espaces publics), FÊTE NATIONALE, SPORT (espaces publics), Feux d'artifice, Marchés | +377 9315 2828 |
 | Club Bouliste Monégasque | https://cbmonaco.org | SPORT pétanque | +377 9205 9217 |
 | Sporting Monte-Carlo | https://meetings.montecarlosbm.com/en/sporting-monte-carlo | DANSE (Salle du Sporting) | +377 9806 7071 |
-| Théâtre des Variétés | https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes | DANSE, ATELIER (Théâtre des Variétés) | +377 9330 1861 |
+| Théâtre des Variétés | https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes | DANSE, ATELIER (Théâtre des Variétés) | +377 9325 6783 |
 | Théâtre Princesse Grace | https://www.tpgmonaco.mc | DANSE (Salle Princesse Grace), THÉÂTRE | +377 9325 3227 |
 | Paroisse Sacré-Cœur Monaco | https://saintmartin.diocese.mc | CHANTS (Église du Sacré-Cœur) | +377 9330 7526 |
 | Cathédrale Saint-Nicolas | https://www.maitrisecathedrale.mc/fr/prochaines-dates | CONCERT, CHANTS (Cathédrale) | +377 9999 1400 |
@@ -124,7 +139,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Théâtre Princesse Grace | https://www.tpgmonaco.mc/fr/programme | THÉÂTRE, SPECTACLE | +377 9325 3227 |
 | Théâtre des Muses Monaco | https://www.letheatredesmuses.com/ | THÉÂTRE, SPECTACLE, ATELIER | |
 | Théâtre Fort Antoine | https://www.theatrefortantoine.com/ | THÉÂTRE | |
-| Théâtre des Variétés Monaco | https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes | THÉÂTRE, SPECTACLE | +377 9330 1861 |
+| Théâtre des Variétés Monaco | https://www.monte-carlo.mc/fr/sorties/spectacles/theatre-des-varietes | THÉÂTRE, SPECTACLE | +377 9325 6783 |
 | Thermes Marins Monte-Carlo | https://www.montecarlosbm.com/en/wellness-sport-monaco/thermes-marins-monte-carlo | BIEN-ÊTRE | |
 | Odéon Spa | https://odeonspa.com/ | BIEN-ÊTRE | |
 | Monte-Carlo SBM (restos/bars) | https://www.montecarlosbm.com/ | BRUNCH, APÉRO, SOIRÉE | |

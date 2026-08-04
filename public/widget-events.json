@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T13:41:15.426Z",
+  "generatedAt": "2026-08-04T13:54:06.863Z",
   "events": [
     {
       "date": "Mar 4 août",
@@ -31,6 +31,15 @@
     {
       "date": "Mar 4 août",
       "iso": "2026-08-04",
+      "time": "09h30 — 17h30",
+      "title": "UN MARIAGE SOUS LES PROJECTEURS",
+      "venue": "Institut Audiovisuel",
+      "quarter": "Monaco",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -49,29 +58,20 @@
     {
       "date": "Mar 4 août",
       "iso": "2026-08-04",
-      "time": "20h30",
-      "title": "SOUL! WHERE LEGENDS COME BACK",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
+      "time": "En journée",
+      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
+      "venue": "Grilles des Jardins Saint-Martin",
+      "quarter": "Monaco-Ville",
+      "emoji": "📷"
     },
     {
       "date": "Mar 4 août",
       "iso": "2026-08-04",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
-    },
-    {
-      "date": "Mar 4 août",
-      "iso": "2026-08-04",
-      "time": "14h00",
-      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
-      "venue": "Cinémas 2 Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎬"
+      "time": "11h00 — 19h00",
+      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🖼️"
     }
   ]
 }
