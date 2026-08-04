@@ -62,12 +62,16 @@ jobs:
       # Le robot tourne ici (GitHub Actions), où PrinciPocket est joignable — ce n'est
       # PAS le cas depuis le cloud Anthropic. On commite donc sa liste de lieux à
       # compléter pour que l'agent chercheur puisse la lire sans refaire le scan.
+      - name: "🔎 Contrôle qualité des fiches (signale, ne corrige pas)"
+        run: node scripts/quality-check.mjs
+        continue-on-error: true
+
       - name: Build & push des corrections automatiques
         run: |
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt; do
+          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then

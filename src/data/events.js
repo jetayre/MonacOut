@@ -271,7 +271,6 @@ const _RAW = [
   // ── DÎNERS CASTELROC AVANT CONCERTS AU PALAIS (dimanches) ─────
 
   // ── EXPOSITIONS & MUSÉES ──────────────────────────────────────
-  {id:290,cat:"EXPOSITION",date:"Sam 15 août",time:"10h00 — 20h00",title:"MONACO &\nL'AUTOMOBILE\nGRIMALDI",subtitle:"Ravel Hall · Grimaldi Forum",desc:"3 500 m² et 50 véhicules emblématiques — 20 vainqueurs du Grand Prix et du Rallye Monte-Carlo. Ouvert jusqu'au 6 septembre. Jeudis jusqu'à 22h.",descEn:"3,500 m² and 50 iconic vehicles — 20 Grand Prix and Monte-Carlo Rally winners. Open until 6 September. Thursdays until 10 pm.",free:false,hot:false,fallback:"linear-gradient(150deg,#882830,#A84848,#781820)",accent:"#F4B0B0",emoji:"🏎️",link:"https://www.grimaldiforum.com/en/events-schedule-monaco/monaco-and-the-automobile-from-1893-to-nowadays",source:"Grimaldi Forum",phone:"+377 9999 3000",quarter:"Monte-Carlo"},
 
   // ── EXPOSITIONS — couverture quotidienne mai–août ─────────────
   // Musée Océanographique (ouvert 7j/7 — "Méditerranée 2050")
