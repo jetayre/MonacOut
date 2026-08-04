@@ -270,7 +270,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               </div>
               {social.pending.map(p => (
                 <div key={p.friendshipId} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                  <Avatar name={p.display_name} id={p.id} size={44} photo={p.avatar_url} />
+                  <Avatar name={p.display_name} id={p.id} size={56} photo={p.avatar_url} />
                   <div style={{ flex: 1, fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY }}>{p.display_name}</div>
                   <button onClick={() => social.acceptFriend(p.friendshipId)} style={{
                     padding: '6px 10px', background: NAVY, color: '#fff', border: 'none', borderRadius: 2, cursor: 'pointer',
@@ -302,7 +302,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               padding: '12px 0',
               borderBottom: i < friendsEvents.length - 1 ? `1px solid rgba(15,29,58,0.07)` : 'none',
             }}>
-              <Avatar name={friend.display_name} id={friend.id} size={48} photo={friend.avatar_url} />
+              <Avatar name={friend.display_name} id={friend.id} size={64} photo={friend.avatar_url} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, color: NAVY, fontWeight: 600, marginBottom: 2 }}>
                   {friend.display_name}
@@ -330,7 +330,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               </div>
               {social.friends.map(f => (
                 <div key={f.id} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                  <Avatar name={f.display_name} id={f.id} size={44} photo={f.avatar_url} />
+                  <Avatar name={f.display_name} id={f.id} size={56} photo={f.avatar_url} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{f.display_name}</div>
                   </div>
