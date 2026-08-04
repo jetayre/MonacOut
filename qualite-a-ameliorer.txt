@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2494 fiches inspectées le 2026-08-04.
+2495 fiches inspectées le 2026-08-04.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ FICHES SANS CONTENU — la description répète le titre (14)
