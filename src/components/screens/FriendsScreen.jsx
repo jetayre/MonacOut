@@ -20,17 +20,18 @@ function avatarColor(id = '') {
   return colors[Math.abs(h) % colors.length]
 }
 
-function Avatar({ name = '?', id = '', size = 28 }) {
+function Avatar({ name = '?', id = '', size = 28, photo = '' }) {
+  // Photo de profil si la personne en a mis une, sinon son initiale sur fond coloré.
   return (
     <div style={{
       width: size, height: size, borderRadius: '50%',
-      background: avatarColor(id), color: '#fff',
+      background: photo ? `center/cover no-repeat url(${photo})` : avatarColor(id), color: '#fff',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: "'Josefin Sans', sans-serif", fontSize: size * 0.38,
       fontWeight: 600, flexShrink: 0,
       border: '1.5px solid #fff',
     }}>
-      {(name[0] || '?').toUpperCase()}
+      {photo ? '' : (name[0] || '?').toUpperCase()}
     </div>
   )
 }
@@ -269,7 +270,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               </div>
               {social.pending.map(p => (
                 <div key={p.friendshipId} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                  <Avatar name={p.display_name} id={p.id} size={32} />
+                  <Avatar name={p.display_name} id={p.id} size={32} photo={p.avatar_url} />
                   <div style={{ flex: 1, fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY }}>{p.display_name}</div>
                   <button onClick={() => social.acceptFriend(p.friendshipId)} style={{
                     padding: '6px 10px', background: NAVY, color: '#fff', border: 'none', borderRadius: 2, cursor: 'pointer',
@@ -301,7 +302,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               padding: '12px 0',
               borderBottom: i < friendsEvents.length - 1 ? `1px solid rgba(15,29,58,0.07)` : 'none',
             }}>
-              <Avatar name={friend.display_name} id={friend.id} size={34} />
+              <Avatar name={friend.display_name} id={friend.id} size={34} photo={friend.avatar_url} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, color: NAVY, fontWeight: 600, marginBottom: 2 }}>
                   {friend.display_name}
@@ -329,7 +330,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
               </div>
               {social.friends.map(f => (
                 <div key={f.id} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                  <Avatar name={f.display_name} id={f.id} size={32} />
+                  <Avatar name={f.display_name} id={f.id} size={32} photo={f.avatar_url} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{f.display_name}</div>
                   </div>
