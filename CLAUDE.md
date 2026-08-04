@@ -356,7 +356,13 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 
 5. **Ne pas dupliquer** : avant d'ajouter, vérifier que l'événement n'existe pas déjà (même titre, même date).
 
-6. **ID unique** : toujours incrémenter depuis le dernier ID **manuel** dans le fichier. **Dernier ID manuel utilisé : 4766.** Prochain ID : 4767. ⚠️ Ne PAS repartir des gros ids générés (1000000+) : ce sont les récurrences auto (nightlife, cinéma). Rester dans la plage 4xxx pour les ajouts manuels/agent.
+6. **ID unique** : toujours incrémenter depuis le dernier ID **manuel** dans le fichier. ⚠️ **NE JAMAIS se fier au chiffre écrit ici** (il était périmé le 4 août 2026 : il indiquait 4766 alors que 4773 était déjà pris → doublon d'id créé, qui aurait cassé les favoris). **Toujours le calculer :**
+   ```bash
+   grep -oE '\{id:4[0-9]{3},' src/data/events.js | grep -oE '[0-9]+' | sort -n | tail -1
+   # et vérifier qu'aucun id n'est en double :
+   grep -oE '\{id:[0-9]+,' src/data/events.js | sort | uniq -d
+   ```
+   **Dernier ID manuel utilisé : 4774** (indicatif seulement — vérifier avec la commande). Ne PAS repartir des gros ids générés (1000000+) : ce sont les récurrences auto (nightlife, cinéma). Rester dans la plage 4xxx pour les ajouts manuels/agent.
 
 7. **VÉRIFIER LE JOUR DE LA SEMAINE** : le champ `date` doit commencer par le bon abrégé (Lun/Mar/Mer/Jeu/Ven/Sam/Dim). Toujours vérifier avec `new Date(year, mois, jour).getDay()` avant d'insérer. Les erreurs de jour sont invisibles à l'œil nu mais font échouer les filtres "Aujourd'hui" et "Week-end".
 

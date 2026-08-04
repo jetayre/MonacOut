@@ -42,7 +42,23 @@ for (const e of ev) {
   parTitre.get(k).push(e);
 }
 
-const pb = { invisible: [], vide: [], anglais: [], sansLien: [], doublon: [] };
+const pb = { idDouble: [], invisible: [], vide: [], anglais: [], sansLien: [], doublon: [] };
+
+// ── 0. DEUX FICHES AVEC LE MÊME ID. Arrivé le 4 août 2026 : la note « dernier id
+//    utilisé » de CLAUDE.md était périmée. Conséquence invisible à l'œil mais réelle :
+//    les favoris sont stockés par id, donc mettre l'un en favori marque aussi l'autre,
+//    et React réutilise la même clé pour deux cartes différentes.
+const parId = new Map();
+for (const e of ev) {
+  if (e.id == null) continue;
+  if (!parId.has(e.id)) parId.set(e.id, []);
+  parId.get(e.id).push(e);
+}
+for (const [id, g] of parId) {
+  if (g.length > 1) {
+    pb.idDouble.push(`id ${id} utilisé ${g.length}× : ` + g.map(x => `« ${titre(x)} » (${x.date})`).join(" / "));
+  }
+}
 
 for (const [cle, groupe] of parTitre) {
   const e = groupe[0];
@@ -92,6 +108,7 @@ for (const [cle, groupe] of parTitre) {
 }
 
 const sections = [
+  ["IDENTIFIANTS EN DOUBLE — deux fiches partagent un id (casse les favoris)", pb.idDouble],
   ["FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe", pb.invisible],
   ["DOUBLONS PROBABLES — même lieu, même jour qu'une série existante", pb.doublon],
   ["FICHES SANS CONTENU — la description répète le titre", pb.vide],
