@@ -1,45 +1,9 @@
 {
-  "generatedAt": "2026-08-03T20:18:39.290Z",
+  "generatedAt": "2026-08-04T06:20:35.964Z",
   "events": [
     {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
-      "time": "9h00 — 17h00",
-      "title": "STAGE DÉCOUVERTE MER ENFANTS",
-      "venue": "Académie Monégasque de la Mer",
-      "quarter": "Monaco",
-      "emoji": "⛵"
-    },
-    {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
-      "time": "9h00 — 17h00",
-      "title": "STAGE VOILE OPTIMIST ÉTÉ II",
-      "venue": "Yacht Club de Monaco",
-      "quarter": "Monte-Carlo",
-      "emoji": "⛵"
-    },
-    {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
-      "time": "9h00 — 12h00",
-      "title": "STAGE TENNIS JUNIOR ÉTÉ II",
-      "venue": "Monte-Carlo Country Club",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎾"
-    },
-    {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
-      "time": "9h00 — 12h00",
-      "title": "STAGE BALLET INTENSIF ÉTÉ II",
-      "venue": "Académie Princesse Grace",
-      "quarter": "Monte-Carlo",
-      "emoji": "🩰"
-    },
-    {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
       "time": "10h00 — 19h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -47,8 +11,8 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
       "time": "10h00 — 18h00",
       "title": "MUSÉES DE MONACO OUVERTS",
       "venue": "Monaco-Ville",
@@ -56,8 +20,8 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
       "time": "20h30",
       "title": "SOUL! WHERE LEGENDS COME BACK",
       "venue": "Salle des Étoiles",
@@ -65,13 +29,49 @@
       "emoji": "🎵"
     },
     {
-      "date": "Lun 3 août",
-      "iso": "2026-08-03",
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "10h00 — 18h00",
+      "title": "MUSÉES DE MONACO OUVERTS",
+      "venue": "Monaco-Ville",
+      "quarter": "Monaco-Ville",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
       "time": "08h00 — 20h00",
       "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
       "venue": "Monte-Carlo",
       "quarter": "Monte-Carlo",
       "emoji": "💆"
+    },
+    {
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
+      "time": "14h00",
+      "title": "CINÉMA À L'AFFICHE CETTE SEMAINE",
+      "venue": "Cinémas 2 Monaco",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎬"
+    },
+    {
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "08h00 — 20h00",
+      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
+      "venue": "Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "💆"
+    },
+    {
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "10h00 — 12h30",
+      "title": "ATELIER ILLUSTRATION MARINE",
+      "venue": "Musée Océanographique",
+      "quarter": "Monaco-Ville",
+      "emoji": "🐠"
     }
   ]
 }
