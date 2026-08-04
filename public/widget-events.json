@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-08-04T06:20:35.964Z",
+  "generatedAt": "2026-08-04T10:50:26.930Z",
   "events": [
+    {
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
+      "time": "10h00 — 19h00",
+      "title": "MARIAGE DU SIÈCLE AU PALAIS",
+      "venue": "Grands Appartements",
+      "quarter": "Monaco-Ville",
+      "emoji": "👰"
+    },
     {
       "date": "Mar 4 août",
       "iso": "2026-08-04",
@@ -27,15 +36,6 @@
       "venue": "Salle des Étoiles",
       "quarter": "Larvotto",
       "emoji": "🎵"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
     },
     {
       "date": "Mar 4 août",

@@ -132,6 +132,37 @@ function titleExists(candNorm) {
   for (const ws of wordSets) { let sh=0; for (const w of cw) if (ws.has(w)) sh++; if (sh >= (cw.size<=1?1:2)) return true; }
   return false;
 }
+// ── EXPOS EN COURS : ne pas recréer une fiche pour un événement DÉJÀ COUVERT ──
+// PrinciPocket annonce une exposition de longue durée par sa DATE DE FIN. Le robot
+// créait donc une fiche isolée ce jour-là, en doublon d'une fiche « ongoing » qui
+// couvre déjà toute la période (ex. « Mariage du siècle », 18 juin → 25 sep, une
+// seule fiche redatée chaque jour). On collecte les fiches ongoing et leur date de
+// fin par lieu : tout candidat au même lieu, à une date couverte, est ignoré.
+const ongoingParLieu = new Map();
+for (const l of src.split('\n')) {
+  if (!/ongoing:true/.test(l)) continue;
+  const sub = l.match(/subtitle:"([^"]*)"/); const unt = l.match(/until:"([^"]+)"/);
+  if (!sub || !unt) continue;
+  const lieu = norm(sub[1] || '');            // sous-titre ENTIER : la salle précise n'est pas le nom du lieu
+  const fin = new Date(unt[1] + 'T00:00:00');
+  const dejaLa = ongoingParLieu.get(lieu);
+  if (!dejaLa || fin > dejaLa) ongoingParLieu.set(lieu, fin);   // on garde la fin la plus lointaine
+}
+const BANALS_LIEU = new Set(['monaco','monte','carlo','salle','musee','palais','grands','centre','espace','de','du','des','la','le','les']);
+function dejaCouvertParUneExpo(nomLieu, dateEvenement) {
+  // « Palais Princier de Monaco » (robot) doit reconnaître « Grands Appartements ·
+  // Palais Princier · Monaco-Ville » (fiche ongoing) : on rapproche sur le mot le
+  // plus caractéristique du nom, pas sur une égalité stricte.
+  const mots = norm(nomLieu).replace(/[^a-z0-9]+/g,' ').split(' ')
+    .filter(m => m.length >= 5 && !BANALS_LIEU.has(m))
+    .sort((a,b) => b.length - a.length);
+  if (!mots.length) return false;
+  for (const [sousTitre, fin] of ongoingParLieu) {
+    if (dateEvenement <= fin && mots.some(m => sousTitre.includes(m))) return true;
+  }
+  return false;
+}
+
 const usedIds = new Set([...src.matchAll(/\{id:(\d+)/g)].map(m=>+m[1]));
 let nextId = 700000; while (usedIds.has(nextId)) nextId++;   // bande dédiée robot : 7xxxxx
 
@@ -203,6 +234,10 @@ for (const slug of slugs) {
       if (!parDefaut) { report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — heure inconnue`); continue; }
       heure = parDefaut;
       report.push(`  ~ « ${title} » [${dateStr} ${Y}] — heure non publiée → « ${heure} »`);
+    }
+    if (dejaCouvertParUneExpo(venue.name, dt)) {
+      report.push(`  = « ${title} » [${dateStr} ${Y}] — déjà couvert par une expo en cours au même lieu`);
+      continue;
     }
     const dvKey = norm(dateStr) + '|' + norm(venue.name);
     if (existingDateVenue.has(dvKey) || titleExists(norm(title))) { continue; }   // déjà présent (silencieux)
