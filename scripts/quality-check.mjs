@@ -57,12 +57,18 @@ for (const [cle, groupe] of parTitre) {
 
   // ── 2. Description qui ne fait que répéter le titre : la fiche n'apprend rien.
   const d = norm(e.desc), ti = norm(titre(e));
-  if (d && ti && d.startsWith(ti) && d.length < ti.length + 60) {
+  const lieu = norm((e.subtitle || "").split(" · ")[0]);
+  // Forme produite par le robot faute d'information : « Titre — Lieu, Quartier. »
+  const gabaritRobot = d && ti && lieu && d.startsWith(ti) && d.includes(lieu) && d.length < ti.length + lieu.length + 30;
+  if (gabaritRobot) {
     pb.vide.push(`${e.date} · ${titre(e)} — description = titre (id ${e.id})`);
   }
 
   // ── 3. Titre resté en anglais (brut de la source, jamais retraduit).
-  if (/\b(exhibition|wedding|screening|workshop|the encounter)\b/i.test(titre(e))
+  // « The Encounter », « Victor Brauner » : ce sont des NOMS PROPRES d'œuvres ou
+  // d'artistes, on ne les traduit pas. On ne signale que les mots DESCRIPTIFS restés
+  // en anglais, ceux que la source n'a jamais retraduits.
+  if (/\b(exhibition|screening|workshop|wedding in the)\b/i.test(titre(e))
       && !/\b(le|la|les|du|des|au|aux|un|une)\b/i.test(titre(e))) {
     pb.anglais.push(`${e.date} · ${titre(e)} (id ${e.id})`);
   }

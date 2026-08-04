@@ -1,28 +1,18 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2495 fiches inspectées le 2026-08-04.
+2498 fiches inspectées le 2026-08-04.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ FICHES SANS CONTENU — la description répète le titre (14)
-   · Ven 28 août · LES LIVES DU SUMMER BAR — description = titre (id 700002)
-   · Mar 1 sep · HEURE SAINTE — description = titre (id 4744)
+■ FICHES SANS CONTENU — la description répète le titre (6)
    · Mer 9 sep · STAGES PRATIQUES AMATEURS - GRAVURE POINTE SÈCHE — description = titre (id 700007)
    · Jeu 1 oct · POSITIVE ENERGY — description = titre (id 700000)
    · Dim 4 oct · EXHIBITION - HERITAGE AT RISK — description = titre (id 700008)
-   · Ven 16 oct · EXHIBITION - FROM TOUMAÏ TO SAPIENS — description = titre (id 700005)
-   · Dim 18 oct · ADALBERTO MIANI TROPHY — description = titre (id 1967)
-   · Dim 25 oct · GRIMALDI TROPHY — description = titre (id 1968)
-   · Dim 6 déc · NAVICAP CHALLENGE – ELENA SIVOLDAEVA TROPHY — description = titre (id 1971)
-   · Mar 15 déc · EXPOSITION MAGIES D'AILLEURS — description = titre (id 700006)
    · Mer 23 déc · CONCERT SPIRITUEL DE NOËL — description = titre (id 3528)
    · Dim 3 jan · VICTOR BRAUNER, THE MAGICAL ADVENTURE — description = titre (id 700003)
    · Ven 26 fév · A WEDDING IN THE SPOTLIGHT. RAINIER III AND GRACE KELLY. 12–19 APRIL 1956 — description = titre (id 700001)
-   · Dim 7 mar · PRIMO CUP – UBS TROPHY — description = titre (id 1969)
 
-■ TITRES EN ANGLAIS — jamais retraduits depuis la source (5)
+■ TITRES EN ANGLAIS — jamais retraduits depuis la source (3)
    · Dim 16 août · BEAUTY & WELLNESS WORKSHOP (id 1170)
-   · Jeu 1 oct · THE ENCOUNTER (id 4733)
    · Dim 4 oct · EXHIBITION - HERITAGE AT RISK (id 700008)
-   · Ven 16 oct · EXHIBITION - FROM TOUMAÏ TO SAPIENS (id 700005)
    · Ven 26 fév · A WEDDING IN THE SPOTLIGHT. RAINIER III AND GRACE KELLY. 12–19 APRIL 1956 (id 700001)
 
 ■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (5)

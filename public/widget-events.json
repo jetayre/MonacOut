@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T13:26:27.517Z",
+  "generatedAt": "2026-08-04T13:37:37.801Z",
   "events": [
     {
       "date": "Mar 4 août",
@@ -9,6 +9,24 @@
       "venue": "Grands Appartements",
       "quarter": "Monaco-Ville",
       "emoji": "👰"
+    },
+    {
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
+      "time": "09h00 — 18h00",
+      "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
+      "venue": "Musée d'Anthropologie Préhistorique",
+      "quarter": "Monaco",
+      "emoji": "🦴"
+    },
+    {
+      "date": "Mar 4 août",
+      "iso": "2026-08-04",
+      "time": "09h00 — 18h00",
+      "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
+      "venue": "Musée d'Anthropologie Préhistorique",
+      "quarter": "Monaco",
+      "emoji": "🦴"
     },
     {
       "date": "Mar 4 août",
@@ -54,24 +72,6 @@
       "venue": "Cinémas 2 Monaco",
       "quarter": "Monte-Carlo",
       "emoji": "🎬"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "10h00 — 12h30",
-      "title": "ATELIER ILLUSTRATION MARINE",
-      "venue": "Musée Océanographique",
-      "quarter": "Monaco-Ville",
-      "emoji": "🐠"
     }
   ]
 }
