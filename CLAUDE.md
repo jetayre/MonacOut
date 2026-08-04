@@ -133,6 +133,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Maison Gigi Monte-Carlo | https://www.instagram.com/maisongigimontecarlo/ | APÉRO, SOIRÉE (trattoria italienne + bar à cocktails, ambiance festive le week-end) — 32 route de la Piscine, Port Hercule / La Condamine, pas de site officiel → lien Instagram officiel | +377 9798 3456 |
 | Café Semplice | https://www.cafesemplice.com/en/home-en/ | APÉRO bar à vins et cocktails 17h-20h (côté café-restaurant italien en journée) — 25 bd Albert 1er, Port Hercule / La Condamine, lun→sam | +377 3770 0658 |
 | Frenk | https://www.instagram.com/frenk.mc/ | APÉRO italien, cocktails, tous les jours 8h-23h (dim 9h-23h) — 32 quai Jean-Charles Rey, Port de Fontvieille, pas de site officiel → lien Instagram officiel | +377 9992 5838 |
+| Bella Vita | https://www.bellavita.mc/ | APÉRO happy hour 18h-20h (brasserie italienne, service continu, petit-déj jusqu'à 11h) — 21 rue Princesse Caroline, La Condamine | +377 9350 4202 |
+| Bistro Coe | https://bistrocoe.mc/ | APÉRO cocktails (bistrot méditerranéen face à la mer, tous les jours 9h-23h) — Complexe Balnéaire du Larvotto, Larvotto | +377 9992 2790 |
+| Café Maï | https://www.instagram.com/cafemai.mc/ | BRUNCH samedi (bistrot français sous les arcades, pas de site officiel → lien Instagram officiel) — Place d'Armes, La Condamine | +377 9992 3534 |
 | Neptune Monaco Beach | https://www.neptunemonaco.com/ | BRUNCH, APÉRO — plage privée, restaurant méditerranéen et bar à cocktails, Plage du Larvotto | +377 9330 0551 |
 | La Môme Monte-Carlo | https://www.lamomemontecarlo.com/en/ | SOIRÉE, APÉRO — rooftop méditerranéen, DJ/pianiste/chanteur tous les soirs, vue Port Hercule — 7 av. J.F. Kennedy (Port Palace Hôtel), La Condamine | +377 9992 1193 |
 | Caffè Milano | https://www.caffemilano.mc/ | BRUNCH dimanche (restaurant italien vue port, ouvert tous les jours 12h-21h30) — 1 Quai Albert 1er, Port Hercule / La Condamine | +377 9350 7721 |
