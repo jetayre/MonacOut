@@ -126,6 +126,15 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
                 ? <>Open your email <b style={{ color: NAVY }}>{email}</b>, come back here and type the code.</>
                 : <>Va lire ton email <b style={{ color: NAVY }}>{email}</b>, reviens ici et tape le code.</>}
             </div>
+            {/* 36 % des personnes qui demandent un code n'arrivent jamais au bout (58
+                comptes créés, 37 profils, relevé du 5 août 2026). La première cause
+                probable est le mail classé en indésirable : on donne donc l'expéditeur
+                exact, pour qu'il soit cherchable, AVANT que la personne renonce. */}
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11.5, color: '#8A8A8A', lineHeight: 1.5, marginTop: -6, marginBottom: 12 }}>
+              {lang === 'en'
+                ? <>Not in your inbox? Look in <b style={{ color: '#666' }}>spam</b> — it comes from <b style={{ color: '#666' }}>bonjour@monacout.com</b></>
+                : <>Rien dans ta boîte ? Regarde dans les <b style={{ color: '#666' }}>indésirables</b> — l'email vient de <b style={{ color: '#666' }}>bonjour@monacout.com</b></>}
+            </div>
             <input
               value={code}
               onChange={e => { setCode(e.target.value.replace(/\D/g, '').slice(0, 10)); setError('') }}
