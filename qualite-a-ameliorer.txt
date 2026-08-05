@@ -1,5 +1,6 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2503 fiches inspectées le 2026-08-05.
+2515 fiches inspectées le 2026-08-05.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-✅ Rien à signaler.
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
+   · Ven 14 août · NOTRE DAME DJ SET TWIGA — même lieu et même jour qu'une série de 27 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4775)

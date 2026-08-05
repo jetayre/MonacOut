@@ -78,13 +78,14 @@ let s = readFileSync(FILE, "utf8");
 // ── IDEMPOTENT : retire les fiches déjà générées par ce script (marqueur nlg:1
 //    ou nos sources exactes) + l'ancien commentaire de section, AVANT de régénérer.
 //    → réexécutable chaque jour sans jamais créer de doublons.
-const SOURCES = new Set(V.map(v => v.subtitle.split(" · ")[0]));
-s = s.split("\n").filter(l => {
-  if (l.includes("nlg:1")) return false;
-  const m = l.match(/source:"([^"]+)"/);
-  if (m && SOURCES.has(m[1])) return false;
-  return true;
-}).join("\n");
+//    ⚠️ CE SCRIPT NE SUPPRIME QUE CE QU'IL A LUI-MÊME ÉCRIT (marqueur `nlg:1`).
+//    Il retirait AUSSI toute fiche dont le `source:` correspondait à un de ses lieux.
+//    C'était un nettoyage d'anciennes fiches antérieures au marqueur — vérifié le
+//    5 août 2026 : cette règle ne concernait plus AUCUNE fiche. En revanche elle
+//    aurait effacé en silence, chaque nuit, toute fiche écrite à la main dans un de
+//    ces lieux (ex. le DJ set de Notre Dame au Twiga le 14 août, ajouté ce jour-là).
+//    Une soirée exceptionnelle dans un club récurrent aurait donc disparu sans trace.
+s = s.split("\n").filter(l => !l.includes("nlg:1")).join("\n");
 s = s.replace(/\n\s*\/\/ ── RÉCURRENCES NIGHTLIFE MENSUELLES[^\n]*/g, "");
 
 const maxId = Math.max(...[...s.matchAll(/\{id:(\d+),/g)].map(m => +m[1]));
