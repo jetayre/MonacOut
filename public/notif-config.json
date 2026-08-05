@@ -17,8 +17,8 @@
   "_announcements": "Message à TOUS (inscrits compris). Annonces DATÉES : l'app affiche « Ce soir : » le jour même et « Demain soir : » la veille, et bascule toute seule vers l'événement suivant. date=AAAA-MM-JJ ; leadDays=nb de jours avant où l'afficher (défaut 1) ; titleFR/titleEN = juste l'événement (SANS 'ce soir', l'app l'ajoute). git push suffit.",
   "announcements": [
     {
-      "id": "auto-2064",
-      "date": "2026-08-04",
+      "id": "auto-2065",
+      "date": "2026-08-05",
       "titleFR": "SOUL! WHERE LEGENDS COME BACK — Salle des Étoiles, 20h30",
       "titleEN": "SOUL! WHERE LEGENDS COME BACK — Salle des Étoiles, 20h30",
       "cta": "Découvrir",
@@ -28,12 +28,12 @@
   ],
   "_announcement": "Ancien format (repli statique pour les apps pas encore mises à jour avec la logique 'ce soir/demain').",
   "announcement": {
-    "id": "auto-2064-cesoir",
+    "id": "auto-2065-cesoir",
     "message": "Ce soir : SOUL! WHERE LEGENDS COME BACK — Salle des Étoiles, 20h30.",
     "messageEn": "Tonight: SOUL! WHERE LEGENDS COME BACK — Salle des Étoiles, 20h30.",
     "cta": "Découvrir",
     "ctaEn": "Discover",
     "link": "https://www.montecarlosbm.com/fr/spectacles/monte-carlo-summer-festival",
-    "until": "2026-08-04"
+    "until": "2026-08-05"
   }
 }

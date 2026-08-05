@@ -1,6 +1,42 @@
 {
-  "generatedAt": "2026-08-05T05:15:54.159Z",
+  "generatedAt": "2026-08-05T06:20:20.566Z",
   "events": [
+    {
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "10h00 — 19h00",
+      "title": "MARIAGE DU SIÈCLE AU PALAIS",
+      "venue": "Grands Appartements",
+      "quarter": "Monaco-Ville",
+      "emoji": "👰"
+    },
+    {
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "09h00 — 18h00",
+      "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
+      "venue": "Musée d'Anthropologie Préhistorique",
+      "quarter": "Monaco",
+      "emoji": "🦴"
+    },
+    {
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "09h00 — 18h00",
+      "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
+      "venue": "Musée d'Anthropologie Préhistorique",
+      "quarter": "Monaco",
+      "emoji": "🦴"
+    },
+    {
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
+      "time": "09h30 — 17h30",
+      "title": "UN MARIAGE SOUS LES PROJECTEURS",
+      "venue": "Institut Audiovisuel",
+      "quarter": "Monaco",
+      "emoji": "🎬"
+    },
     {
       "date": "Mer 5 août",
       "iso": "2026-08-05",
@@ -13,60 +49,24 @@
     {
       "date": "Mer 5 août",
       "iso": "2026-08-05",
-      "time": "18h30 — 20h30",
-      "title": "CONFÉRENCE ÉTÉ PHILOMONACO",
-      "venue": "Médiathèque Caroline",
-      "quarter": "Monaco",
-      "emoji": "💭"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "19h30",
-      "title": "SOIRÉES MUSICALES BELLA ITALIA",
-      "venue": "Square Gastaud",
-      "quarter": "La Condamine",
-      "emoji": "🎶"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "20h30",
-      "title": "SOUL! WHERE LEGENDS COME BACK",
-      "venue": "Salle des Étoiles",
-      "quarter": "Larvotto",
-      "emoji": "🎵"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
-    },
-    {
-      "date": "Mer 5 août",
-      "iso": "2026-08-05",
-      "time": "10h00 — 12h30",
-      "title": "ATELIER ILLUSTRATION MARINE",
-      "venue": "Musée Océanographique",
+      "time": "En journée",
+      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
+      "venue": "Grilles des Jardins Saint-Martin",
       "quarter": "Monaco-Ville",
-      "emoji": "🐠"
+      "emoji": "📷"
     },
     {
       "date": "Mer 5 août",
       "iso": "2026-08-05",
-      "time": "19h00",
-      "title": "ZUMBA LA DIGUE MONACO",
-      "venue": "Zumba La Digue",
-      "quarter": "La Condamine",
-      "emoji": "🕺"
+      "time": "11h00 — 19h00",
+      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🖼️"
     },
     {
-      "date": "Jeu 6 août",
-      "iso": "2026-08-06",
+      "date": "Mer 5 août",
+      "iso": "2026-08-05",
       "time": "08h00 — 20h00",
       "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
       "venue": "Monte-Carlo",
