@@ -58,6 +58,13 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **📞 Téléphone du Théâtre des Variétés corrigé** dans ce tableau : **+377 9325 6783** (l'ancien +377 9330 1861 était faux). Les 5 fiches concernées pointent vers `monservicepublic.gouv.mc` (page officielle du théâtre) — ⚠️ **`theatredesvarietes.fr` est le théâtre de PARIS**, ne jamais l'utiliser.
 - **Méthode qui a marché** : le contrôle qualité liste, on cherche chaque fiche sur le site **de l'organisateur** (pas l'agrégateur), on écrit la vraie description, et **on écrit le fichier après CHAQUE fiche** — un script qui garde ses corrections en mémoire jusqu'à la fin perd tout s'il plante avant d'écrire (déjà vécu).
 
+**📏 ON MESURE MAINTENANT LE DÉFILEMENT, PAS LES CLICS (OTA v0.0.70, 5 août).** Constat : le 4 août, **20 personnes ont ouvert l'app, une seule a ouvert une fiche**. J'en ai fait une alerte ; Stéphanie a tranché — « ce n'est pas grave si elles n'ouvrent pas, l'important c'est de scroller ». Elle a raison : la carte du fil porte déjà le nom, la date et le lieu ; ouvrir la fiche ne sert qu'à réserver ou téléphoner. **`event_opened` n'est donc PAS un indicateur de succès** et un taux faible ne doit pas être présenté comme un problème.
+- Nouvel événement **`scroll_depth`**, props `{fiches, affichees}` — jalons à **5, 10, 20, 40 fiches parcourues**. Compté **en nombre de fiches, pas en pourcentage** : selon le filtre le fil fait 6 ou 200 fiches, « 50 % » ne voudrait rien dire.
+- **Une seule mesure par jalon et par visite** (`jalonsEnvoyes`, un Set) → 4 événements maximum par visite, les allers-retours ne comptent pas double. Rien n'est envoyé si la personne ne scrolle pas, ni si le fil est trop court pour défiler.
+- Calcul **différé d'une frame** (`requestAnimationFrame`) : le défilement doit rester parfaitement fluide. Le capteur est greffé sur le listener de scroll existant de `HomeScreen.jsx` (celui qui masque les filtres), il n'en ajoute pas un second.
+- `track()` vit désormais dans **`src/lib/track.js`** (partagé) ; celui d'`App.jsx` reste en place, inchangé.
+- **Ce qu'on cherche à savoir** : quelle part des visiteurs dépasse 5 fiches (= ils parcourent vraiment), et jusqu'où vont ceux qui restent. Premiers chiffres exploitables ~3 jours après le 5 août, le temps que les apps installées prennent l'OTA.
+
 **📈 Repère App Store au 3 août** : **167 premiers téléchargements**, 32 réinstallations, **1 240 impressions → 468 vues de fiche → 25 % de conversion** (une app Lifestyle tourne plutôt à 3-5 %). 448 mises à jour = les OTA arrivent bien. La fiche App Store convertit très bien : c'est **le lien App Store** qu'il faut diffuser, pas le site.
 
 ## Journal — 1-2 août 2026 (le robot passe de 15 à 142 lieux + réception email)
