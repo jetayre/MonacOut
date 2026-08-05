@@ -97,7 +97,10 @@ for (const [cle, groupe] of parTitre) {
   if (groupe.length === 1) {
     const lieu = norm((e.subtitle || "").split(" · ")[0]);
     for (const [autreCle, autre] of parTitre) {
-      if (autreCle === cle || autre.length < 5) continue;
+      // Seuil à 3 (et non 5) : le 5 août 2026, le robot a créé « Les Lives du Summer
+      // Bar » en double d'une série de 4 concerts déjà en place au même endroit le
+      // même soir. Une série de 3 dates suffit à établir qu'il s'agit d'un récurrent.
+      if (autreCle === cle || autre.length < 3) continue;
       if (norm((autre[0].subtitle || "").split(" · ")[0]) !== lieu) continue;
       if (autre.some(x => x.date === e.date)) {
         pb.doublon.push(`${e.date} · ${titre(e)} — même lieu et même jour qu'une série de ${autre.length} fiches « ${titre(autre[0])} » (id ${e.id})`);

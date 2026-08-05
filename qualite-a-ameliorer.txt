@@ -1,6 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2481 fiches inspectées le 2026-08-05.
+2503 fiches inspectées le 2026-08-05.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ FICHES SANS CONTENU — la description répète le titre (1)
-   · Ven 28 août · LES LIVES DU SUMMER BAR — description = titre (id 700009)
+✅ Rien à signaler.
