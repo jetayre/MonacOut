@@ -4,6 +4,7 @@ import { localizeTitle, localizeCat } from "../../i18n";
 import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
+import { track } from "../../lib/track";
 
 const NAVY = "#0F1D3A";
 const GOLD = "#C9A96E";
@@ -178,16 +179,47 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     tapTimer.current = setTimeout(() => setLogoTaps(0), 2000);
   }
 
+  // Combien de fiches sont affichées à l'instant. Mis à jour à chaque rendu, lu par
+  // le capteur de défilement ci-dessous (qui, lui, n'est installé qu'une seule fois).
+  const nbAffichees = useRef(0);
+  // Jalons de profondeur déjà envoyés pendant cette visite : on ne mesure que la
+  // descente la plus profonde, pas chaque va-et-vient. 4 mesures par visite maximum.
+  const jalonsEnvoyes = useRef(new Set());
+
   useEffect(() => {
     const el = document.getElementById("main-scroll");
     if (!el) return;
     let lastY = 0;
+    let enAttente = false;
     const handler = () => {
       const y = el.scrollTop;
       if (y < 10) setFiltersVisible(true);
       else if (y > lastY + 6) setFiltersVisible(false);
       else if (y < lastY - 6) setFiltersVisible(true);
       lastY = y;
+
+      // ── Mesure de la profondeur de lecture ──────────────────────────────────
+      // Ce qui compte pour Monac'Out, c'est que les gens PARCOURENT le fil : la
+      // carte donne déjà le nom, la date et le lieu, ouvrir la fiche n'est utile
+      // que pour réserver. On mesure donc jusqu'où ils descendent, en NOMBRE DE
+      // FICHES vues (pas en pourcentage : le fil n'a pas la même longueur selon
+      // le filtre, et « 50 % » ne veut rien dire quand il ne reste que 6 fiches).
+      // Calcul différé d'une frame : le scroll doit rester parfaitement fluide.
+      if (enAttente) return;
+      enAttente = true;
+      requestAnimationFrame(() => {
+        enAttente = false;
+        const total = nbAffichees.current;
+        const hauteur = el.scrollHeight;
+        if (total < 1 || hauteur <= el.clientHeight) return;   // rien à faire défiler
+        const vues = Math.round(total * Math.min(1, (y + el.clientHeight) / hauteur));
+        for (const jalon of [5, 10, 20, 40]) {
+          if (vues >= jalon && !jalonsEnvoyes.current.has(jalon)) {
+            jalonsEnvoyes.current.add(jalon);
+            track("scroll_depth", { fiches: jalon, affichees: total });
+          }
+        }
+      });
     };
     el.addEventListener("scroll", handler, { passive: true });
     return () => el.removeEventListener("scroll", handler);
@@ -236,6 +268,10 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const estAnnuairePermanent = e => e.pinLast === true && e.cat !== "CINÉMA";
   const filtreCatActif = (catFilters && catFilters.length > 0) || !!groupFilter;
   if (!filtreCatActif && !searchQuery.trim()) filtered = filtered.filter(e => !estAnnuairePermanent(e));
+
+  // On tient la longueur du fil à jour pour le capteur de profondeur : celui-ci est
+  // installé une fois pour toutes et ne verrait pas la variable `filtered` changer.
+  nbAffichees.current = filtered.length;
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
