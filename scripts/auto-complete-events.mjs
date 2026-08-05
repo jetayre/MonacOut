@@ -121,8 +121,31 @@ const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').
 let src = readFileSync(FILE, 'utf8');
 const existingTitles = new Set([...src.matchAll(/title:"([^"]+)"/g)].map(m => norm(m[1].replace(/\\n/g,' '))));
 const existingDateVenue = new Set();
+// Segments de lieu déjà occupés, PAR DATE. On garde tous les segments du sous-titre
+// SAUF le dernier (c'est le quartier), parce que la salle précise et le nom du lieu
+// peuvent être écrits différemment d'une fiche à l'autre.
+const segmentsParDate = new Map();
 for (const m of src.matchAll(/date:"([^"]+)"[^}]*?subtitle:"([^"]*)"/g)) {
-  existingDateVenue.add(norm(m[1]) + '|' + norm((m[2]||'').split(' · ')[0]));
+  const d = norm(m[1]);
+  existingDateVenue.add(d + '|' + norm((m[2]||'').split(' · ')[0]));
+  const parts = (m[2]||'').split(' · ');
+  const utiles = (parts.length > 1 ? parts.slice(0, -1) : parts).map(norm).filter(x => x.length >= 6);
+  if (!segmentsParDate.has(d)) segmentsParDate.set(d, new Set());
+  for (const u of utiles) segmentsParDate.get(d).add(u);
+}
+// ── MÊME LIEU, MÊME JOUR, ÉCRIT AUTREMENT ────────────────────────────────────────
+// Le 5 août 2026 le robot a recréé chaque nuit « Les Lives du Summer Bar » au
+// Columbus alors qu'une série de concerts couvrait déjà ces vendredis : sa clé de
+// dédup comparait le PREMIER segment du sous-titre, or la fiche existante disait
+// « Summer Bar · Hôtel Columbus » et le robot « Hôtel Columbus Monte-Carlo ».
+// On exige donc qu'un des deux noms CONTIENNE l'autre — pas un simple mot commun,
+// pour ne pas confondre « Théâtre Princesse Grace » et « Académie Princesse Grace ».
+function memeLieuMemeJour(nomLieu, dateStr) {
+  const cand = norm(nomLieu);
+  if (cand.length < 6) return false;
+  for (const seg of (segmentsParDate.get(norm(dateStr)) || []))
+    if (cand.includes(seg) || seg.includes(cand)) return true;
+  return false;
 }
 const wordSets = [...existingTitles].map(t => new Set(t.split(' ').filter(w=>w.length>=4)));
 function titleExists(candNorm) {
@@ -241,6 +264,10 @@ for (const slug of slugs) {
     }
     const dvKey = norm(dateStr) + '|' + norm(venue.name);
     if (existingDateVenue.has(dvKey) || titleExists(norm(title))) { continue; }   // déjà présent (silencieux)
+    if (memeLieuMemeJour(venue.name, dateStr)) {
+      report.push(`  = « ${title} » [${dateStr} ${Y}] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)`);
+      continue;
+    }
     // construit l'objet
     const cat = catFromTitle(title, venue.cat);
     const [bg, ac, emo] = PAL[cat] || PAL['CONCERT'];
