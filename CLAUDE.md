@@ -185,6 +185,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Neptune Monaco Beach | https://www.neptunemonaco.com/ | BRUNCH, APÉRO — plage privée, restaurant méditerranéen et bar à cocktails, Plage du Larvotto | +377 9330 0551 |
 | La Môme Monte-Carlo | https://www.lamomemontecarlo.com/en/ | SOIRÉE, APÉRO — rooftop méditerranéen, DJ/pianiste/chanteur tous les soirs, vue Port Hercule — 7 av. J.F. Kennedy (Port Palace Hôtel), La Condamine | +377 9992 1193 |
 | Caffè Milano | https://www.caffemilano.mc/ | BRUNCH dimanche (restaurant italien vue port, ouvert tous les jours 12h-21h30) — 1 Quai Albert 1er, Port Hercule / La Condamine | +377 9350 7721 |
+| Baretto Monte-Carlo | https://www.barettomontecarlo.com/ | APÉRO aperitivo & cocktails (restaurant italien chic, service continu lun-ven 8h30-22h, sam 9h30-22h) — 24 bd Princesse Charlotte, Monte-Carlo | +377 9992 4422 |
+| Huit et Demi | https://www.huit-et-demi-restaurant-italien-monaco.com/ | APÉRO cocktails & cuisine italienne (restaurant à thème cinéma, terrasse, service continu midi et soir) — 4 rue Langlé, La Condamine | +377 9350 9702 |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
 | Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE (Quai Antoine 1er, rouvert juin 2026) | +377 9797 9595 |
 | Woo Monaco | https://woo.mc/ | BRUNCH | |
