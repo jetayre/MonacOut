@@ -41,6 +41,10 @@
   //    remontaient tous « inconnu » et la mesure ne servait à rien.
   var chemin = location.pathname.replace(/^\/+|\/+$/g, "").replace(/\.html$/, "");
   if (chemin === "go") chemin = "";   // accès direct au fichier : le chemin ne dit rien, on retombe sur ?s=
+  // Le QR imprimé du 12 juin encode « monacout.vercel.app » — impossible à réimprimer.
+  // On reconnaît donc ce QR À SON HÔTE : la racine de cet hôte n'existe que pour lui.
+  // C'est le seul moyen de savoir si ce QR, posé dans un lieu très passant, sert.
+  if (!chemin && location.hostname === "monacout.vercel.app") chemin = "qr-juin";
   var source = (chemin || new URLSearchParams(location.search).get("s") || "inconnu")
                  .replace(/[^a-z0-9_-]/gi, "").slice(0, 24).toLowerCase();
   try {
