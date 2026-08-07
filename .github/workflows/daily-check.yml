@@ -81,6 +81,14 @@ jobs:
             git push
           fi
 
+      # Placé APRÈS le build : le script y lit les identifiants Supabase publics
+      # quand .env.local n'existe pas (cas du CI). Un lien d'invitation cassé est
+      # invisible — personne ne signale une amitié qui ne s'est jamais faite.
+      - name: "💌 Chaîne d'invitation (code, garde-fou, adresse)"
+        id: invitations
+        run: node scripts/check-invitations.mjs
+        continue-on-error: true
+
       - name: Vérification réseau des liens (santé des billetteries)
         id: verify
         run: node verify-events.mjs
@@ -92,8 +100,13 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: node send-alert-email.mjs
 
-      - name: Statut final (échec visible si le policier a vu rouge)
-        if: steps.police.outcome == 'failure'
+      - name: Statut final (échec visible si le policier ou les invitations ont vu rouge)
+        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure'
         run: |
-          echo "::error::Le policier a détecté des fautes critiques non corrigeables automatiquement — rapport envoyé par email."
+          if [ "${{ steps.invitations.outcome }}" = "failure" ]; then
+            echo "::error::La chaîne d'invitation est cassée — voir l'étape « Chaîne d'invitation » ci-dessus."
+          fi
+          if [ "${{ steps.police.outcome }}" = "failure" ]; then
+            echo "::error::Le policier a détecté des fautes critiques non corrigeables automatiquement — rapport envoyé par email."
+          fi
           exit 1
