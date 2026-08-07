@@ -47,6 +47,13 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 
 ## Journal — 7 août 2026 (le lien d'invitation vide + liens suivis par canal)
 
+**📣 LE BANDEAU DU HAUT EST SUPPRIMÉ — l'annonce devient un carré central (OTA v0.0.73).** Le rectangle se plaçait **au-dessus du logo** et, la croix ne mémorisant rien, il **revenait à chaque ouverture de l'app**. Stéphanie : « il bloque le logo et est agaçant ». ⚠️ **Ne pas le remettre en haut.**
+- Même facture que les messages qu'elle apprécie (fond ivoire, filet or, coins arrondis, fond assombri) : surtitre doré « Ce soir » / « Demain soir », le titre de l'événement, bouton « Voir », puis « Fermer ». Fermeture aussi en appuyant à côté.
+- **Une apparition PAR PHASE, deux par événement maximum** : une fois la veille, une fois le jour J. Mémorisé dans `localStorage.monacout_annonces_vues` (clé `id|phase`, 30 dernières). Vérifié en simulant 6 ouvertures successives.
+- **Sort à 2,8 s**, donc AVANT la demande de notifications (3,5 s), et pose `promptedThisSessionRef` → **jamais deux messages empilés** dans une visite. L'annonce est du contenu, elle passe avant les demandes.
+- Mesures PostHog : **`annonce_vue`** (props `annonce`, `phase`) et **`annonce_cliquee`**. Le pilotage reste `public/notif-config.json` → `announcements[]`, inchangé (git push suffit, pas de passage par Apple).
+
+
 **💌 LE LIEN D'INVITATION POUVAIT PARTIR SANS CODE (OTA v0.0.72).** Samantha s'inscrit à 11h54, partage aussitôt son lien ; Stéphanie l'ouvre → « Code introuvable ». Cause : `FriendsScreen.jsx` construisait le lien avec **`auth.profile?.invite_code || '…'`**. Profil pas encore chargé → lien contenant l'**ellipsis**, amitié perdue **en silence** (aucune erreur nulle part, personne ne signale une amitié qui ne s'est pas faite). Le code de Samantha, `578eaa`, était parfaitement valide.
 - **Corrigé** : `codePret` valide le code (`/^[a-z0-9]{4,}$/i`) avant toute construction de lien, et `shareInvite()` refuse de partir en affichant « Un instant, ton code arrive… ». Message d'échec réécrit : « Ce code n'existe pas — demande à ton amie de renvoyer son lien » (« Code introuvable » laissait croire à une panne).
 - **🪤 BOMBE À RETARDEMENT DÉSAMORCÉE AU PASSAGE** : la redirection du QR du 12 juin (`monacout.vercel.app/` → App Store) **avalait les liens d'invitation**. Un `source: "/"` dans `vercel.json` ne compare **que le chemin**, jamais la query — donc `/?invite=xxx` partait vers l'App Store. Le journal du 3 août affirmait que ces liens avaient été vérifiés : ils l'avaient été sur `monacout.com`, pas sur l'hôte concerné. Corrigé avec `missing: [{query invite}, {query event}]`. **Leçon : vérifier une règle d'hôte SUR CET HÔTE, pas sur un autre.**
