@@ -392,6 +392,12 @@ export default function App() {
       const { a, diff } = cands[0];
       const preFR = diff === 0 ? "Ce soir : " : diff === 1 ? "Demain soir : " : "";
       const preEN = diff === 0 ? "Tonight: " : diff === 1 ? "Tomorrow night: " : "";
+      // L'annonce porte l'id de la fiche (« auto-2067 ») : on va y chercher le titre,
+      // le lieu et l'heure pour TOUT afficher sur le carré. Aucun lien vers
+      // l'extérieur — on ne fait pas sortir les gens de l'app (règle du 7 août 2026).
+      const idFiche = Number(String(a.id).replace(/\D/g, ""));
+      const fiche = idFiche ? events.find(e => e.id === idFiche) : null;
+      const propre = s => (s || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "").trim();
       return setAnnounce({
         id: a.id,
         phase: diff === 0 ? "cesoir" : "avant",   // une seule apparition par phase
@@ -399,9 +405,13 @@ export default function App() {
         titreEn: diff === 0 ? "Tonight" : "Tomorrow night",
         message: preFR + (a.titleFR || a.message || ""),
         messageEn: preEN + (a.titleEN || a.messageEn || a.titleFR || ""),
-        texte: a.titleFR || a.message || "",
-        texteEn: a.titleEN || a.messageEn || a.titleFR || "",
-        cta: a.cta, ctaEn: a.ctaEn, link: a.link,
+        // Depuis la fiche quand elle existe : titre seul, sans le lieu ni l'heure
+        // recollés dans le libellé de la configuration (sinon on les afficherait 2×).
+        texte: fiche ? propre(fiche.title) : (a.titleFR || a.message || ""),
+        texteEn: fiche ? propre(fiche.title) : (a.titleEN || a.messageEn || a.titleFR || ""),
+        lieu: fiche ? fiche.subtitle : "",
+        heure: fiche ? fiche.time : "",
+        gratuit: !!(fiche && fiche.free),
       });
     }
     // Ancien format : annonce unique statique.
@@ -409,7 +419,7 @@ export default function App() {
     if (!a || !a.id || !a.message) return setAnnounce(null);
     if (a.until && new Date(a.until + "T23:59:59") < new Date()) return setAnnounce(null);
     setAnnounce(a);
-  }, [notifConfig, resumeTick]);
+  }, [notifConfig, resumeTick, events]);   // `events` : les fiches arrivent en différé, on recalcule quand elles sont là
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
@@ -433,17 +443,15 @@ export default function App() {
   // les autres messages, et il n'apparaît QU'UNE FOIS par phase : une fois la veille
   // (« Demain soir »), une fois le jour même (« Ce soir »). Deux apparitions par
   // événement au maximum, jamais deux fois dans la même visite.
-  // 🛑 ANNONCE DÉSACTIVÉE le 7 août 2026, quelques minutes après sa mise en ligne.
-  // Son bouton « Découvrir » ouvrait un site extérieur avec target="_blank" : dans
-  // l'app native, ça ouvre une fenêtre SANS barre de navigation ni bouton retour →
-  // écran noir, personne ne peut revenir. Vécu par Stéphanie sur son téléphone.
-  // ⚠️ NE PAS RÉACTIVER tant qu'un lien externe n'est pas ouvert proprement (Safari
-  //    ou navigateur intégré refermable). Le défaut vient du LIEN, pas du carré :
-  //    tout `target="_blank"` de l'app est suspect et doit être traité d'abord.
-  //    Le contenu reste piloté par notif-config.json, rien n'est perdu.
-  const ANNONCE_ACTIVE = false;
+  // ⚠️ LE CARRÉ N'A PLUS AUCUN LIEN VERS L'EXTÉRIEUR — et ne doit jamais en reprendre.
+  // Première version (v0.0.73) : un bouton « Découvrir » ouvrait le site du lieu avec
+  // target="_blank". Dans l'app native, ça ouvre une fenêtre SANS barre de navigation
+  // ni bouton retour → écran noir, impossible de revenir. Vécu par Stéphanie.
+  // Décision du 7 août 2026 : « je veux un carré avec l'info SUR le carré, je ne veux
+  // pas inciter les gens à sortir de l'app ». Le carré porte donc titre + lieu + heure,
+  // et rien d'autre qu'un bouton « Fermer ».
   useEffect(() => {
-    if (!ANNONCE_ACTIVE || showWelcome || !announce) return;
+    if (showWelcome || !announce) return;
     const cle = `${announce.id}|${announce.phase}`;
     let vues = [];
     try { vues = JSON.parse(localStorage.getItem("monacout_annonces_vues") || "[]"); } catch { vues = []; }
@@ -990,19 +998,24 @@ export default function App() {
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2.5, textTransform: "uppercase", color: "#C4A241", marginBottom: 10 }}>
             {lang === "en" ? announce.titreEn : announce.titre}
           </div>
-          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", lineHeight: 1.35, marginBottom: 20, letterSpacing: 0.3 }}>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", lineHeight: 1.35, letterSpacing: 0.3 }}>
             {lang === "en" && announce.texteEn ? announce.texteEn : announce.texte}
           </div>
-          {announce.link && (
-            <a href={announce.link} target="_blank" rel="noopener noreferrer"
-               onClick={() => { track("annonce_cliquee", { annonce: announce.id }); setShowAnnounce(false); }}
-               style={{ display: "block", width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, textDecoration: "none", boxSizing: "border-box" }}>
-              {lang === "en" && announce.ctaEn ? announce.ctaEn : (announce.cta || "Voir")}
-            </a>
+          {announce.lieu && (
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12.5, color: "#6A7080", lineHeight: 1.45, marginTop: 8 }}>
+              {announce.lieu}
+            </div>
           )}
+          {(announce.heure || announce.gratuit) && (
+            <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: "#0F1D3A", letterSpacing: 1, marginTop: 8 }}>
+              {announce.heure}
+              {announce.gratuit && <span style={{ color: "#C4A241" }}>{announce.heure ? " · " : ""}{lang === "en" ? "FREE" : "ENTRÉE LIBRE"}</span>}
+            </div>
+          )}
+          {/* Aucun lien vers l'extérieur : voir le commentaire plus haut. */}
           <button onClick={() => setShowAnnounce(false)}
-                  style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
-            {lang === "en" ? "Close" : "Fermer"}
+                  style={{ width: "100%", padding: 10, marginTop: 20, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase" }}>
+            {lang === "en" ? "Got it" : "J'ai vu"}
           </button>
         </div>
       </div>
