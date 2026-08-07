@@ -1,5 +1,18 @@
-PrinciPocket : 146 fiches scannées.
+PrinciPocket : 162 fiches scannées.
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
   SKIP « Start of the 2026 Vuelta » [Dim 23 août 2026] — aucun lieu exploitable (« Principauté de Monaco »)
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Jardin Exotique et Centre botanique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  = « Garden Comedy » [Ven 28 août 2026] — déjà couvert par une expo en cours au même lieu
+  + LIEU NOUVEAU « Maison du Numérique de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  + LIEU NOUVEAU « Marché de La Condamine » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  = « LOTO & BINGO Votre rendez-vous gagnant ! » [Sam 29 août 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
   = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
   ~ « Les Lives du Summer Bar » [Ven 28 août 2026] — heure non publiée → « En soirée »
@@ -8,9 +21,24 @@ PrinciPocket : 146 fiches scannées.
   = « Space exploration today and tomorrow » [Ven 11 sep 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   SKIP « Les ateliers CycloShow » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
   SKIP « Les ateliers Mission xy » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
+  SKIP « Art and Luxury Fair » [Ven 25 sep 2026] — heure inconnue
   ~ « Exhibition: Wedding of the century » [Ven 25 sep 2026] — heure non publiée → « En journée »
   = « Exhibition: Wedding of the century » [Ven 25 sep 2026] — déjà couvert par une expo en cours au même lieu
+  + LIEU NOUVEAU « Ecole Supérieure d’Arts Plastiques, Pavillon Bosio » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  SKIP « Garden club #6 – Et si le soleil était bleu, est-ce qu’on le verrait ? » [Dim 4 oct 2026] — heure inconnue
+  SKIP « A wedding in Monaco. » [Ven 16 oct 2026] — heure inconnue
   ~ « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — heure non publiée → « En journée »
   = « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — déjà couvert par une expo en cours au même lieu
 
-AJOUTÉS : 0
+AJOUTÉS : 11
++ [Mer 12 août 2026] Exploring the WhatsApp application @ Maison du Numérique de Monaco (SPECTACLE 15h00)
++ [Jeu 13 août 2026] Getting started with Monaco Telecom TV @ Maison du Numérique de Monaco (SPECTACLE 11h00)
++ [Ven 14 août 2026] Discovering social networks @ Maison du Numérique de Monaco (SPECTACLE 16h00)
++ [Mer 19 août 2026] Create and manage your email account @monaco.mc @ Maison du Numérique de Monaco (SPECTACLE 15h00)
++ [Jeu 20 août 2026] Getting started with the Apple TV @ Maison du Numérique de Monaco (SPECTACLE 15h00)
++ [Ven 21 août 2026] Getting started with iPhone - Level 1 @ Maison du Numérique de Monaco (SPECTACLE 16h00)
++ [Mer 26 août 2026] Understanding digital identity with Mconnect @ Maison du Numérique de Monaco (SPECTACLE 11h00)
++ [Jeu 27 août 2026] Prendre en main MonacoTelecom TV - AndroidTV @ Maison du Numérique de Monaco (SPECTACLE 15h00)
++ [Ven 28 août 2026] ChatGPT : Plongez dans le monde de l'IA @ Maison du Numérique de Monaco (SPECTACLE 16h00)
++ [Dim 4 avr 2027] Symphonic Concert - T. Koopman @ Auditorium Rainier III (CONCERT 18h00)
++ [Dim 11 avr 2027] Symphonic Concert - E. G. Jensen - B. Luts @ Auditorium Rainier III (CONCERT 18h00)
