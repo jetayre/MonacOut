@@ -1,5 +1,5 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
       "has": [{ "type": "host", "value": "monacout.vercel.app" }],
@@ -7,8 +7,11 @@
         { "type": "query", "key": "invite" },
         { "type": "query", "key": "event" }
       ],
-      "destination": "/go.html"
-    },
+      "destination": "/go.html",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
     { "source": "/insta", "destination": "/go.html?s=insta" },
     { "source": "/story", "destination": "/go.html?s=story" },
     { "source": "/fb", "destination": "/go.html?s=facebook" },
