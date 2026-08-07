@@ -3,6 +3,10 @@
     {
       "source": "/",
       "has": [{ "type": "host", "value": "monacout.vercel.app" }],
+      "missing": [
+        { "type": "query", "key": "invite" },
+        { "type": "query", "key": "event" }
+      ],
       "destination": "https://apps.apple.com/fr/app/monacout/id6774785049",
       "permanent": false
     }

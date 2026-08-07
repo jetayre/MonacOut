@@ -135,7 +135,9 @@ export function useSocial(userId) {
       .select('id, display_name')
       .eq('invite_code', inviteCode.trim().toLowerCase())
       .single()
-    if (!target) return { error: 'Code introuvable' }
+    // Message explicite : « Code introuvable » laissait croire à une panne. Le cas
+    // réel le plus fréquent est un lien partagé avant que le code soit chargé.
+    if (!target) return { error: 'Ce code n\'existe pas — demande à ton amie de renvoyer son lien' }
     if (target.id === userId) return { error: 'C\'est ton propre code !' }
     const { error } = await supabase
       .from('friendships')

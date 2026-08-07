@@ -125,7 +125,13 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
     )
   }
 
-  const inviteCode  = auth.profile?.invite_code || '…'
+  // ⚠️ Le code peut ne pas être encore chargé (profil en cours de lecture, ou compte
+  //    tout juste créé). Avant le 7 août 2026 on partageait alors un lien contenant
+  //    « … » : la personne qui le recevait voyait « Code introuvable » et l'amitié
+  //    était perdue en silence. C'est arrivé à Samantha, inscrite à 11h54 et qui a
+  //    partagé son lien dans la foulée. On ne partage plus tant qu'il n'est pas prêt.
+  const codePret    = /^[a-z0-9]{4,}$/i.test(auth.profile?.invite_code || '')
+  const inviteCode  = codePret ? auth.profile.invite_code : '…'
   const inviteLink  = `https://monac-out.vercel.app?invite=${inviteCode}`
   // Phrase SANS le lien : le lien est passé dans le champ `url` pour rester cliquable.
   const inviteMsg   = lang === 'en'
@@ -135,6 +141,11 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   const inviteText  = `${inviteMsg}\n${inviteLink}`
 
   async function shareInvite() {
+    if (!codePret) {
+      setCodeMsg(lang === 'en' ? 'One moment, your code is loading…' : 'Un instant, ton code arrive…')
+      setTimeout(() => setCodeMsg(''), 2500)
+      return
+    }
     // On passe le lien dans `url` (champ dédié) → les apps le rendent cliquable avec aperçu.
     const payload = { title: "Monac'Out", text: inviteMsg, url: inviteLink }
     if (Capacitor.isNativePlatform()) {
