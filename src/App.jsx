@@ -433,8 +433,17 @@ export default function App() {
   // les autres messages, et il n'apparaît QU'UNE FOIS par phase : une fois la veille
   // (« Demain soir »), une fois le jour même (« Ce soir »). Deux apparitions par
   // événement au maximum, jamais deux fois dans la même visite.
+  // 🛑 ANNONCE DÉSACTIVÉE le 7 août 2026, quelques minutes après sa mise en ligne.
+  // Son bouton « Découvrir » ouvrait un site extérieur avec target="_blank" : dans
+  // l'app native, ça ouvre une fenêtre SANS barre de navigation ni bouton retour →
+  // écran noir, personne ne peut revenir. Vécu par Stéphanie sur son téléphone.
+  // ⚠️ NE PAS RÉACTIVER tant qu'un lien externe n'est pas ouvert proprement (Safari
+  //    ou navigateur intégré refermable). Le défaut vient du LIEN, pas du carré :
+  //    tout `target="_blank"` de l'app est suspect et doit être traité d'abord.
+  //    Le contenu reste piloté par notif-config.json, rien n'est perdu.
+  const ANNONCE_ACTIVE = false;
   useEffect(() => {
-    if (showWelcome || !announce) return;
+    if (!ANNONCE_ACTIVE || showWelcome || !announce) return;
     const cle = `${announce.id}|${announce.phase}`;
     let vues = [];
     try { vues = JSON.parse(localStorage.getItem("monacout_annonces_vues") || "[]"); } catch { vues = []; }
