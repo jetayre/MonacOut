@@ -1,9 +1,11 @@
-PrinciPocket : 148 fiches scannées.
+PrinciPocket : 146 fiches scannées.
   SKIP « Start of the 2026 Vuelta » [Dim 23 août 2026] — aucun lieu exploitable (« Principauté de Monaco »)
   ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
   = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
   ~ « Les Lives du Summer Bar » [Ven 28 août 2026] — heure non publiée → « En soirée »
   = « Les Lives du Summer Bar » [Ven 28 août 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
+  + LIEU NOUVEAU « Centre de Conférences - One Monte-Carlo » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  = « Space exploration today and tomorrow » [Ven 11 sep 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   SKIP « Les ateliers CycloShow » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
   SKIP « Les ateliers Mission xy » [Sam 12 sep 2026] — aucun lieu exploitable (« ? »)
   ~ « Exhibition: Wedding of the century » [Ven 25 sep 2026] — heure non publiée → « En journée »
