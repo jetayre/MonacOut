@@ -71,7 +71,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt; do
+          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt liens-morts.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
@@ -84,6 +84,13 @@ jobs:
       # Placé APRÈS le build : le script y lit les identifiants Supabase publics
       # quand .env.local n'existe pas (cas du CI). Un lien d'invitation cassé est
       # invisible — personne ne signale une amitié qui ne s'est jamais faite.
+      # Un lien mort est invisible de nous et visible d'eux : « Réserver » ouvre une
+      # page vide. smakelijk-restaurant.com l'est resté des semaines sur 27 fiches.
+      - name: "🔗 Liens des fiches (mortels seulement, identité iPhone)"
+        id: liens
+        run: node scripts/check-links.mjs
+        continue-on-error: true
+
       - name: "💌 Chaîne d'invitation (code, garde-fou, adresse)"
         id: invitations
         run: node scripts/check-invitations.mjs
@@ -101,8 +108,11 @@ jobs:
         run: node send-alert-email.mjs
 
       - name: Statut final (échec visible si le policier ou les invitations ont vu rouge)
-        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure'
+        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure'
         run: |
+          if [ "${{ steps.liens.outcome }}" = "failure" ]; then
+            echo "::error::Des liens de fiches sont morts — voir liens-morts.txt et l étape « Liens des fiches »."
+          fi
           if [ "${{ steps.invitations.outcome }}" = "failure" ]; then
             echo "::error::La chaîne d'invitation est cassée — voir l'étape « Chaîne d'invitation » ci-dessus."
           fi
