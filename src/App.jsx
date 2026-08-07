@@ -334,6 +334,7 @@ export default function App() {
   const [inviterName, setInviterName] = useState(null);
   const [showInAppBanner, setShowInAppBanner] = useState(false);
   const [announce, setAnnounce] = useState(null);   // annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json
+  const [showAnnounce, setShowAnnounce] = useState(false);   // le carré central, montré une fois par phase
   const [resumeTick, setResumeTick] = useState(0);  // incrémenté au retour au 1er plan → recalcule « ce soir / demain » sans fermer l'app
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const [updateAvailable, setUpdateAvailable] = useState(false);
@@ -393,8 +394,13 @@ export default function App() {
       const preEN = diff === 0 ? "Tonight: " : diff === 1 ? "Tomorrow night: " : "";
       return setAnnounce({
         id: a.id,
+        phase: diff === 0 ? "cesoir" : "avant",   // une seule apparition par phase
+        titre: diff === 0 ? "Ce soir" : "Demain soir",
+        titreEn: diff === 0 ? "Tonight" : "Tomorrow night",
         message: preFR + (a.titleFR || a.message || ""),
         messageEn: preEN + (a.titleEN || a.messageEn || a.titleFR || ""),
+        texte: a.titleFR || a.message || "",
+        texteEn: a.titleEN || a.messageEn || a.titleFR || "",
         cta: a.cta, ctaEn: a.ctaEn, link: a.link,
       });
     }
@@ -420,6 +426,28 @@ export default function App() {
     });
     return () => { cancelled = true; };
   }, []);
+
+  // ── L'ANNONCE « CE SOIR » : un carré au centre, plus un bandeau en haut ──────────
+  // Le bandeau se plaçait au-dessus du logo et revenait à CHAQUE ouverture même après
+  // avoir été fermé — jugé agaçant le 7 août 2026. Désormais c'est le même carré que
+  // les autres messages, et il n'apparaît QU'UNE FOIS par phase : une fois la veille
+  // (« Demain soir »), une fois le jour même (« Ce soir »). Deux apparitions par
+  // événement au maximum, jamais deux fois dans la même visite.
+  useEffect(() => {
+    if (showWelcome || !announce) return;
+    const cle = `${announce.id}|${announce.phase}`;
+    let vues = [];
+    try { vues = JSON.parse(localStorage.getItem("monacout_annonces_vues") || "[]"); } catch { vues = []; }
+    if (vues.includes(cle)) return;
+    const t = setTimeout(() => {
+      if (promptedThisSessionRef.current) return;   // un seul message par visite
+      promptedThisSessionRef.current = true;
+      try { localStorage.setItem("monacout_annonces_vues", JSON.stringify([...vues, cle].slice(-30))); } catch { /* stockage plein */ }
+      setShowAnnounce(true);
+      track("annonce_vue", { annonce: announce.id, phase: announce.phase });
+    }, 2800);   // avant la demande de notifications (3,5 s) : l'annonce est du contenu, pas une demande
+    return () => clearTimeout(t);
+  }, [announce, showWelcome]);
 
   // Propose les notifications ~3,5 s après l'entrée dans l'app (pour TOUT LE MONDE), une fois l'écran de bienvenue passé.
   // maybeAskNotif est protégé (n'affiche que si la permission est encore demandable → jamais 2 fois).
@@ -942,20 +970,32 @@ export default function App() {
       </div>
     )}
 
-    {/* Annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json → announcement */}
-    {announce && (
-      <div style={{ position: "fixed", top: "calc(env(safe-area-inset-top, 0px) + 8px)", left: "50%", transform: "translateX(-50%)", zIndex: 3300, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 14, background: "#FFFDF7", color: "#0F1D3A", border: "1.5px solid #C4A241", borderRadius: 3, padding: "10px 30px 10px 16px", width: "92%", boxShadow: "0 8px 28px rgba(15,29,58,0.20)", maxWidth: "92%" }}>
-        <button onClick={() => setAnnounce(null)}
-          style={{ position: "absolute", top: 6, right: 8, background: "none", border: "none", cursor: "pointer", fontSize: 15, color: "#8A94A0", lineHeight: 1, padding: "0 2px" }}>✕</button>
-        <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13.5, lineHeight: 1.4, textAlign: "left", flex: 1, minWidth: 0 }}>
-          {lang === "en" && announce.messageEn ? announce.messageEn : announce.message}
+    {/* Annonce « Ce soir » — carré au centre, même facture que les autres messages.
+        Remplace le bandeau du haut, retiré le 7 août 2026 : il masquait le logo et
+        revenait à chaque ouverture. Ici : une apparition par phase, puis plus rien. */}
+    {showAnnounce && announce && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 3300, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
+           onClick={() => setShowAnnounce(false)}>
+        <div onClick={e => e.stopPropagation()}
+             style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2.5, textTransform: "uppercase", color: "#C4A241", marginBottom: 10 }}>
+            {lang === "en" ? announce.titreEn : announce.titre}
+          </div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", lineHeight: 1.35, marginBottom: 20, letterSpacing: 0.3 }}>
+            {lang === "en" && announce.texteEn ? announce.texteEn : announce.texte}
+          </div>
+          {announce.link && (
+            <a href={announce.link} target="_blank" rel="noopener noreferrer"
+               onClick={() => { track("annonce_cliquee", { annonce: announce.id }); setShowAnnounce(false); }}
+               style={{ display: "block", width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, textDecoration: "none", boxSizing: "border-box" }}>
+              {lang === "en" && announce.ctaEn ? announce.ctaEn : (announce.cta || "Voir")}
+            </a>
+          )}
+          <button onClick={() => setShowAnnounce(false)}
+                  style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+            {lang === "en" ? "Close" : "Fermer"}
+          </button>
         </div>
-        {announce.link && (
-          <a href={announce.link} target="_blank" rel="noopener noreferrer"
-            style={{ flexShrink: 0, padding: "6px 14px", borderRadius: 3, border: "1.5px solid #0F1D3A", background: "#0F1D3A", color: "#FFFFFF", textDecoration: "none", fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 0.3, whiteSpace: "nowrap" }}>
-            {lang === "en" && announce.ctaEn ? announce.ctaEn : (announce.cta || "Voir")}
-          </a>
-        )}
       </div>
     )}
     </>
