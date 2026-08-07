@@ -240,7 +240,18 @@ for (const slug of slugs) {
       const nom = (venueRaw || '').trim();
       // « ? », « Principauté de Monaco »… ne sont pas des lieux : là, on skippe vraiment.
       if (!nom || nom.length < 4 || /^principaut[ée]|^monaco$|^\?+$/i.test(nom)) {
-        report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — aucun lieu exploitable (« ${nom || '?'} »)`);
+        // ⚠️ PAS DE LIEU N'EST PAS UNE IMPASSE. Le 7 août 2026, deux ateliers ont été
+        //    écartés deux fois (29 juillet, puis 7 août) « lieu introuvable » — alors
+        //    que la fiche portait le lien de L'ORGANISATEUR (diocese.mc), qui donnait
+        //    l'adresse exacte. On ne lisait que le champ « lieu ». On remonte donc
+        //    maintenant les liens externes de la page : c'est la piste à suivre.
+        //    (Et une fois suivie, on a découvert que l'un des deux se tenait à
+        //    Cap d'Ail, en France — donc hors périmètre, règle 15.)
+        const pistes = [...new Set([...html.matchAll(/href="(https?:\/\/[^"]+)"/g)].map(m => m[1]))]
+          .filter(u => !/principocket|monacoplatform|facebook|instagram|twitter|linkedin|youtube|google|apple\.com|whatsapp|\.(png|jpg|svg|css|js)/i.test(u))
+          .slice(0, 3);
+        report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — aucun lieu sur la fiche` +
+          (pistes.length ? ` · ORGANISATEUR À SUIVRE : ${pistes.join(' ')}` : ' · aucune piste sur la page'));
         continue;
       }
       venue = { name: nom, quarter: 'Monaco', link: '', phone: '', cat: 'SPECTACLE', provisoire: true };
