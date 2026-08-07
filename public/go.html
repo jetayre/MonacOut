@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monac'Out</title>
+<meta name="robots" content="noindex">
+<style>
+  html,body{height:100%;margin:0}
+  body{display:flex;align-items:center;justify-content:center;background:#FFFDF8;
+       font-family:'Josefin Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0F1D3A}
+  .m{font-family:Georgia,'Playfair Display',serif;font-weight:700;font-size:64px;line-height:1}
+  .t{font-size:11px;letter-spacing:7px;text-transform:uppercase;color:#C9A96E;margin-top:10px}
+  .c{text-align:center}
+  a{color:#C9A96E;font-size:12px;letter-spacing:1px;display:block;margin-top:22px}
+</style>
+</head>
+<body>
+  <!--
+    Page de passage vers l'App Store, invisible en pratique : elle enregistre PAR OÙ
+    la personne est arrivée, puis redirige aussitôt. Créée le 7 août 2026 parce que
+    les 171 téléchargements étaient impossibles à attribuer à un canal — Instagram,
+    Facebook ou les flyers, on n'en savait rien.
+    Pourquoi une page et pas une simple redirection : une redirection 307 n'exécute
+    aucun code, donc rien ne peut être compté. On envoie l'événement avec `keepalive`
+    pour qu'il parte même si la navigation démarre dans la milliseconde qui suit.
+    Les flyers imprimés ne passent PAS par ici (ils encodent l'App Store en direct et
+    ne sont pas réimprimables) : cette page ne mesure que les canaux numériques.
+  -->
+  <div class="c">
+    <div class="m">M</div>
+    <div class="t">Monac'Out</div>
+    <a id="f" href="https://apps.apple.com/fr/app/monacout/id6774785049">Ouvrir dans l'App Store →</a>
+  </div>
+<script>
+(function () {
+  var CIBLE = "https://apps.apple.com/fr/app/monacout/id6774785049";
+  var source = (new URLSearchParams(location.search).get("s") || "inconnu")
+                 .replace(/[^a-z0-9_-]/gi, "").slice(0, 24).toLowerCase();
+  try {
+    fetch("https://eu.i.posthog.com/capture/", {
+      method: "POST", keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: "phc_qfThmficvfkSEgsMLbKiJcgiHRYyAJ5GU2i8pavYYzNU",
+        event: "lien_suivi",
+        distinct_id: (crypto.randomUUID ? crypto.randomUUID() : String(Math.random())),
+        properties: { canal: source, $current_url: location.href }
+      })
+    });
+  } catch (e) { /* mesure indisponible : on redirige quand même */ }
+  // Le lien reste cliquable si la redirection est bloquée (rare, mais on ne laisse
+  // jamais quelqu'un sur une page morte).
+  setTimeout(function () { location.replace(CIBLE); }, 150);
+})();
+</script>
+</body>
+</html>
