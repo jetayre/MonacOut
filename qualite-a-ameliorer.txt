@@ -1,6 +1,30 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2501 fiches inspectées le 2026-08-07.
+2517 fiches inspectées le 2026-08-07.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
    · Ven 14 août · NOTRE DAME DJ SET TWIGA — même lieu et même jour qu'une série de 27 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4775)
+
+■ FICHES SANS CONTENU — la description répète le titre (11)
+   · Mer 12 août · EXPLORING THE WHATSAPP APPLICATION — description = titre (id 700009)
+   · Jeu 13 août · GETTING STARTED WITH MONACO TELECOM TV — description = titre (id 700010)
+   · Ven 14 août · DISCOVERING SOCIAL NETWORKS — description = titre (id 700011)
+   · Mer 19 août · CREATE AND MANAGE YOUR EMAIL ACCOUNT @MONACO.MC — description = titre (id 700012)
+   · Jeu 20 août · GETTING STARTED WITH THE APPLE TV — description = titre (id 700013)
+   · Ven 21 août · GETTING STARTED WITH IPHONE - LEVEL 1 — description = titre (id 700014)
+   · Mer 26 août · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — description = titre (id 700015)
+   · Jeu 27 août · PRENDRE EN MAIN MONACOTELECOM TV - ANDROIDTV — description = titre (id 700016)
+   · Ven 28 août · CHATGPT : PLONGEZ DANS LE MONDE DE L'IA — description = titre (id 700017)
+   · Dim 4 avr · SYMPHONIC CONCERT - T. KOOPMAN — description = titre (id 700018)
+   · Dim 11 avr · SYMPHONIC CONCERT - E. G. JENSEN - B. LUTS — description = titre (id 700019)
+
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (9)
+   · Mer 12 août · EXPLORING THE WHATSAPP APPLICATION — Maison du Numérique de Monaco (id 700009)
+   · Jeu 13 août · GETTING STARTED WITH MONACO TELECOM TV — Maison du Numérique de Monaco (id 700010)
+   · Ven 14 août · DISCOVERING SOCIAL NETWORKS — Maison du Numérique de Monaco (id 700011)
+   · Mer 19 août · CREATE AND MANAGE YOUR EMAIL ACCOUNT @MONACO.MC — Maison du Numérique de Monaco (id 700012)
+   · Jeu 20 août · GETTING STARTED WITH THE APPLE TV — Maison du Numérique de Monaco (id 700013)
+   · Ven 21 août · GETTING STARTED WITH IPHONE - LEVEL 1 — Maison du Numérique de Monaco (id 700014)
+   · Mer 26 août · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — Maison du Numérique de Monaco (id 700015)
+   · Jeu 27 août · PRENDRE EN MAIN MONACOTELECOM TV - ANDROIDTV — Maison du Numérique de Monaco (id 700016)
+   · Ven 28 août · CHATGPT : PLONGEZ DANS LE MONDE DE L'IA — Maison du Numérique de Monaco (id 700017)
