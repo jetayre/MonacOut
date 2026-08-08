@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-08-08T04:46:33.874Z",
+  "generatedAt": "2026-08-08T08:09:13.669Z",
   "events": [
+    {
+      "date": "Sam 8 août",
+      "iso": "2026-08-08",
+      "time": "09h30 — 18h30",
+      "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
+      "venue": "La Rose des Vents",
+      "quarter": "Larvotto",
+      "emoji": "🌺"
+    },
     {
       "date": "Sam 8 août",
       "iso": "2026-08-08",
@@ -63,15 +72,6 @@
       "venue": "Grilles des Jardins Saint-Martin",
       "quarter": "Monaco-Ville",
       "emoji": "📷"
-    },
-    {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
-      "time": "11h00 — 19h00",
-      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🖼️"
     }
   ]
 }

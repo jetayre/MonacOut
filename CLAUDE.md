@@ -266,6 +266,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Castelroc Monaco | https://www.castelrocmonaco.com/ | BRUNCH, APÉRO (Place du Palais, Monaco-Ville) | +377 93 30 36 68 |
 | Étoile de Monaco (gym & trampoline) | https://www.etoiledemonaco.com | ATELIER, SPORT enfants — club de gymnastique et trampoline depuis 1890, Vallon Sainte-Dévote (parking gare) · La Condamine ; stages vacances 10h-12h, inscription `etoile@monaco.mc` | +377 9770 3320 |
 | Maison du Numérique de Monaco | https://www.maisondunumerique.mc/agenda | ATELIER numérique **GRATUIT sur réservation** (WhatsApp, iPhone, ChatGPT, MConnect, Monaco Telecom TV…) — Les Jardins d'Apolline, 1 Prom. Honoré II · Monaco ; mar→ven 10h-18h30, sam 10h-14h30 | +377 9226 9226 |
+| La Rose des Vents (beach club) | https://larosedesvents.com/the-beach/ | BRUNCH, APÉRO, EXPOSITION — plage du Larvotto, av. Princesse Grace ; saison mars→octobre 9h30-18h30, restaurant midi et soir, transats **sur réservation téléphonique** ; prise de contrôle **Gucci** été 2026 (motif Flora) | +377 9990 6440 |
 | Ironman Monaco | https://www.ironman.com/ | SPORT | |
 | Sunshine Yoga Monte-Carlo | https://yogamontecarlo.com/contact-us/ | YOGA, BIEN-ÊTRE | +33 6 64 91 96 42 |
 | Novotel Monte-Carlo (Azzurra Bar) | https://www.novotelmontecarlo.com/en/restaurant-bars/ | APÉRO | +377 99 99 83 00 |
