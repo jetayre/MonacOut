@@ -229,6 +229,10 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Palais Princier de Monaco | https://www.visitepalaisdemonaco.com/ | EXPOSITION, SPECTACLE — Grands Appartements, cour d'honneur (concerts d'été), Monaco-Ville | +377 9325 1831 |
 | Musée d'Anthropologie Préhistorique | https://map.gouv.mc/ | EXPOSITION, ATELIER — entrée par le Jardin Exotique, 56 bis bd du Jardin Exotique | +377 9898 8006 |
 | Institut Audiovisuel de Monaco | https://institut-audiovisuel.mc/ | CINÉMA, EXPOSITION, CONFÉRENCE — 83-85 bd du Jardin Exotique | +377 9798 4326 |
+| Jardin Exotique de Monaco | https://www.jardin-exotique.mc/ | EXPOSITION, ATELIER — jardin botanique, grotte de l'Observatoire, conférences/ateliers nature (« Garden club ») — 62 bd du Jardin Exotique, Monaco | +377 9315 2980 |
+| Marché de la Condamine | https://www.mairie.mc/le-marche-de-la-condamine | MARCHÉ alimentaire quotidien — halle couverte (en travaux 2026, commerçants relocalisés Place d'Armes), La Condamine | +377 9315 2832 |
+| Centre de Conférences - One Monte-Carlo | https://meetings.montecarlosbm.com/en/one-monte-carlo-meeting | CONFÉRENCE, SALON — 1 place du Casino, Monte-Carlo | +377 9806 1717 |
+| Pavillon Bosio (École Supérieure d'Arts Plastiques) | https://pavillonbosio.com/ | ATELIER arts plastiques & scénographie, stages amateurs — 1 av. des Pins, Monaco-Ville | +377 9330 1839 |
 | Hôtel Columbus Monte-Carlo | https://www.columbushotels.com/ | APÉRO, CONCERT — « Les Lives du Summer Bar », terrasse Tavolo, Fontvieille | +377 9205 9000 |
 | Quai Albert Ier (espace public) | https://www.mairie.mc/les-soirees-feux-dartifice-au-quai-albert-1er | SPECTACLE, SOIRÉE — feux d'artifice, animations enfants, soirées DJ de la Mairie | +377 9315 2828 |
 | Société Nautique de Monaco — restaurant | https://www.restaurantsocietenautique.club/ | BRUNCH samedi 11h-15h, déjeuners en semaine — club d'aviron, Port Hercule, **ouvert à tous** (pas réservé aux membres) | +377 9350 5130 |
