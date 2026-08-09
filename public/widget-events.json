@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-08T16:40:51.823Z",
+  "generatedAt": "2026-08-09T04:55:52.235Z",
   "events": [
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "10h00 — 19h00",
       "title": "MARIAGE DU SIÈCLE AU PALAIS",
       "venue": "Grands Appartements",
@@ -20,8 +20,8 @@
       "emoji": "👰"
     },
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,8 +47,17 @@
       "emoji": "🎬"
     },
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "10h00 — 20h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
@@ -56,22 +65,13 @@
       "emoji": "🏎️"
     },
     {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "10h00 — 18h00",
       "title": "MUSÉES DE MONACO OUVERTS",
       "venue": "Monaco-Ville",
       "quarter": "Monaco-Ville",
       "emoji": "🏛️"
-    },
-    {
-      "date": "Sam 8 août",
-      "iso": "2026-08-08",
-      "time": "En journée",
-      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
-      "venue": "Grilles des Jardins Saint-Martin",
-      "quarter": "Monaco-Ville",
-      "emoji": "📷"
     }
   ]
 }
