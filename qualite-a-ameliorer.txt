@@ -1,9 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-<<<<<<< HEAD
-2502 fiches inspectées le 2026-08-09.
-=======
-2479 fiches inspectées le 2026-08-09.
->>>>>>> c7656e9 (events: fiche annuaire Jardin Exotique et Grotte de l'Observatoire)
+2484 fiches inspectées le 2026-08-09.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
