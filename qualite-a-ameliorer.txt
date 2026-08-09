@@ -1,6 +1,7 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2488 fiches inspectées le 2026-08-09.
+2490 fiches inspectées le 2026-08-09.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
+   · Dim 9 août · LAS BRISAS SOIRÉES CRÉOLES MONTE-CARLO BAY — même lieu et même jour qu'une série de 8 fiches « BRUNCH LAS BRISAS VUE MER » (id 4801)
    · Ven 14 août · NOTRE DAME DJ SET TWIGA — même lieu et même jour qu'une série de 26 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4775)

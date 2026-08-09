@@ -69,6 +69,16 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 
 **🪤 FICHES D'ANNUAIRE : elles sont en SÉRIE, pas redatées.** « Musées de Monaco ouverts » et « Bien-être » existent en **une fiche par jour sur 338 jours**. En les voyant datées de la veille j'ai cru qu'elles n'étaient plus mises à jour et je les ai passées en `ongoing` — ce qui créait un doublon **chaque jour**. Rattrapé par le contrôle des ids en double avant publication. ⚠️ Une fiche datée d'hier n'est pas forcément cassée : c'est peut-être simplement celle d'hier, que `cleanup-events.mjs` supprimera.
 
+**🎐 POP-UP DE L'ÉTÉ SBM (campagne « Monte-Carlo Glow Up 2026 »)** — inventaire fait le 9 août :
+- ✅ **Jardin Belle Époque by Perrier-Jouët**, Square Beaumarchais face à l'Hermitage, 14h-20h (12h le week-end), jusqu'en octobre
+- ✅ **Origamis géants** : oiseaux et papillons en fibre peinte, depuis le 9 juin, au Casino, Hôtel de Paris, Hermitage, Monte-Carlo Bay, Casino Café de Paris et avenue des Beaux-Arts. Illuminés la nuit, **libre d'accès**. ⚠️ **Date de fin NON COMMUNIQUÉE** par SBM (campagne « printemps-été ») : bornée au 22 septembre, **à revérifier fin septembre**.
+- ✅ **Las Brisas, soirées créoles** au Monte-Carlo Bay, du 10 juillet au 23 août, dîners en musique au coucher du soleil
+- ✅ **Kids Club éphémère** du Monte-Carlo Bay avec Petit VIP, jusqu'au 31 août
+- ❌ **La Vigie Zanoni** : adresse officielle **Roquebrune-Cap-Martin 06190**, en France malgré « Monte-Carlo Beach » → règle 15
+- ❌ **Coupe du Monde FIFA** dans les bars SBM : terminé le 19 juillet, passé
+
+**⚖️ DEUX DOUBLONS ASSUMÉS, à ne pas « corriger »** : le ven 14 août au **Twiga** (soirée générique + DJ set nommé de Notre Dame) et **Las Brisas** le dimanche (brunch de midi + dîner créole du soir). Le contrôle qualité les signale ; ce sont bien deux choses différentes au même endroit. **Stéphanie a tranché le 5 août : on ne fusionne pas.**
+
 **➕ Ajouts du 9 août** : Gucci × La Rose des Vents (en cours jusqu'au 31 oct), fiche annuaire **Jardin Exotique et Grotte** (rouvert le 30 mars après 6 ans, horaires par saison, 12/18 €, gratuit pour les Monégasques), **visites patrimoniales** des 12 et 19 août (Place du Casino, 16h-18h — le Policier a refusé le lien `culture.mc`, règle 16, bascule sur `gouv.mc`), **Jardin Belle Époque by Perrier-Jouët** et **Kids Club éphémère** du Monte-Carlo Bay. **Le Fernet** ajouté au tableau des sources (aucun événement publié à ce jour). Le salon art3f des 11-13 sep était **déjà présent** avec les bons horaires.
 
 ## Journal — 7 août 2026 (le lien d'invitation vide + liens suivis par canal)
