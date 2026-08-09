@@ -263,6 +263,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA | |
 | Jack Monaco | https://jackmonaco.playfun.tv/ | APÉRO, SOIRÉE | |
 | Nobu Monte-Carlo | https://www.fairmont.com/en/hotels/monte-carlo/fairmont-monte-carlo/dining/nobu.restaurant.html | SOIRÉE | |
+| Horizon Rooftop (Fairmont Monte-Carlo) | https://www.fairmont.com/monte-carlo/dining/horizon-rooftop-monaco/ | APÉRO, SOIRÉE — bar à champagne et cocktails en rooftop, coucher de soleil sur la Méditerranée, 7ème étage — 12 av. des Spélugues, Monte-Carlo | +377 9350 6500 |
 | Castelroc Monaco | https://www.castelrocmonaco.com/ | BRUNCH, APÉRO (Place du Palais, Monaco-Ville) | +377 93 30 36 68 |
 | Étoile de Monaco (gym & trampoline) | https://www.etoiledemonaco.com | ATELIER, SPORT enfants — club de gymnastique et trampoline depuis 1890, Vallon Sainte-Dévote (parking gare) · La Condamine ; stages vacances 10h-12h, inscription `etoile@monaco.mc` | +377 9770 3320 |
 | Maison du Numérique de Monaco | https://www.maisondunumerique.mc/agenda | ATELIER numérique **GRATUIT sur réservation** (WhatsApp, iPhone, ChatGPT, MConnect, Monaco Telecom TV…) — Les Jardins d'Apolline, 1 Prom. Honoré II · Monaco ; mar→ven 10h-18h30, sam 10h-14h30 | +377 9226 9226 |
