@@ -45,6 +45,32 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **🩹 Piège rencontré** : `vercel.json` est **validé strictement** — une simple clé `_comment` a mis **les DEUX projets en ERROR** (monac-out ET monacout). Les sites ont continué de servir le dernier déploiement réussi (aucun utilisateur n'a rien vu), mais plus aucune mise à jour n'aurait pu partir. **Ne jamais mettre de commentaire dans un fichier de configuration JSON** ; et après toute modification de `vercel.json`, vérifier l'état des déploiements (`readyState`), pas seulement que le site répond 200.
 - Règle : pour obtenir des installations, diffuser le **lien App Store** ; garder `monacout.com` pour montrer le produit en dix secondes (à un commerçant par exemple).
 
+## Journal — 8-9 août 2026 (d'où viennent vraiment les gens + le lien d'invitation mène à l'app)
+
+**🔍 ON SAIT ENFIN PAR OÙ LES GENS ARRIVENT — et ce n'est pas Instagram.** En listant les adresses réellement ouvertes (PostHog, `$current_url`) :
+| Adresse | Personnes (14 j) |
+|---|---|
+| `capacitor://localhost` (app installée) | 76 |
+| **`monac-out.vercel.app/?invite=4750b5`** | **14** |
+| **`monacout.com/?utm_source=chatgpt.com`** | **13** |
+- **Le lien d'invitation de Nadège, à lui seul, a amené 14 personnes.** C'est le premier canal d'acquisition, devant tout le reste. ⚠️ Un lien d'invitation ouvre **le SITE**, jamais l'App Store : ces gens découvrent Monac'Out sans jamais l'installer. C'est ce qui explique qu'il y ait plus de nouveaux appareils que de téléchargements.
+- **ChatGPT envoie du monde** : 13 personnes avec la marque `utm_source=chatgpt.com`. Personne n'a rien fait pour ça. À surveiller, ça peut devenir un vrai canal.
+- **42 personnes sur 118 utilisent l'app depuis un navigateur**, sans l'avoir installée.
+- Deux liens d'invitation ouverts avec des codes **inexistants** (`3413x0`, `3i1390`) : recopie manuelle fautive ou lien tronqué par une messagerie.
+
+**📲 LE LIEN D'INVITATION MÈNE MAINTENANT À L'APP (OTA v0.0.76).** Les 20 personnes ayant ouvert une invitation étaient toutes dans un **vrai navigateur** (Safari 10, Chrome iOS 7, bureau 3) — pas dans un navigateur intégré. Elles n'avaient pas l'app et **rien ne leur proposait de l'installer**.
+- Carte affichée avec le **prénom de l'amie** (lu dans `profiles` via le code du lien — jamais écrit en dur), le bouton App Store, et **le code affiché en clair** : l'App Store ne peut pas transporter le code, sans lui l'amitié serait perdue après installation.
+- **Étendu à TOUS les visiteurs du site sur iPhone** (pas seulement les invités) : même carte après 8 s, **3 fois maximum espacées de 7 jours** (`monacout_install_asks`).
+- **Pas de « continuer sur le site »** — décision de Stéphanie. Une croix discrète reste : un écran sans issue est ce qui a produit la page noire du 7 août.
+- ⚠️ **iPhone UNIQUEMENT** : envoyer un Android vers l'App Store d'Apple ne mène nulle part tant que l'app Android n'est pas publiée. Jamais affichée dans l'app installée. 8 cas simulés.
+- Mesures : `invite_web_shown` (props `source`), `invite_install_clic`, `invite_web_ferme`.
+
+**🗺️ RAPPEL DE PÉRIMÈTRE — « Monte-Carlo » dans le nom ne veut PAS dire Monaco.** Deux exclusions le même jour, toutes deux découvertes en allant à l'adresse officielle : **Mission XY** (Cap d'Ail 06320) et **La Vigie Zanoni** — malgré « Monte-Carlo Beach », son adresse est **Roquebrune-Cap-Martin 06190**. Règle 15. **Toujours vérifier le code postal sur le site de l'établissement, jamais se fier au nom.**
+
+**🪤 FICHES D'ANNUAIRE : elles sont en SÉRIE, pas redatées.** « Musées de Monaco ouverts » et « Bien-être » existent en **une fiche par jour sur 338 jours**. En les voyant datées de la veille j'ai cru qu'elles n'étaient plus mises à jour et je les ai passées en `ongoing` — ce qui créait un doublon **chaque jour**. Rattrapé par le contrôle des ids en double avant publication. ⚠️ Une fiche datée d'hier n'est pas forcément cassée : c'est peut-être simplement celle d'hier, que `cleanup-events.mjs` supprimera.
+
+**➕ Ajouts du 9 août** : Gucci × La Rose des Vents (en cours jusqu'au 31 oct), fiche annuaire **Jardin Exotique et Grotte** (rouvert le 30 mars après 6 ans, horaires par saison, 12/18 €, gratuit pour les Monégasques), **visites patrimoniales** des 12 et 19 août (Place du Casino, 16h-18h — le Policier a refusé le lien `culture.mc`, règle 16, bascule sur `gouv.mc`), **Jardin Belle Époque by Perrier-Jouët** et **Kids Club éphémère** du Monte-Carlo Bay. **Le Fernet** ajouté au tableau des sources (aucun événement publié à ce jour). Le salon art3f des 11-13 sep était **déjà présent** avec les bons horaires.
+
 ## Journal — 7 août 2026 (le lien d'invitation vide + liens suivis par canal)
 
 **📣 LE BANDEAU DU HAUT EST SUPPRIMÉ — l'annonce devient un carré central (OTA v0.0.73).** Le rectangle se plaçait **au-dessus du logo** et, la croix ne mémorisant rien, il **revenait à chaque ouverture de l'app**. Stéphanie : « il bloque le logo et est agaçant ». ⚠️ **Ne pas le remettre en haut.**
