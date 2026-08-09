@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T04:55:52.235Z",
+  "generatedAt": "2026-08-09T07:14:29.033Z",
   "events": [
     {
       "date": "Dim 9 août",
@@ -40,6 +40,15 @@
     {
       "date": "Dim 9 août",
       "iso": "2026-08-09",
+      "time": "09h00 — 19h00",
+      "title": "JARDIN EXOTIQUE ET GROTTE",
+      "venue": "62 bd du Jardin Exotique",
+      "quarter": "Monaco",
+      "emoji": "🌵"
+    },
+    {
+      "date": "Dim 9 août",
+      "iso": "2026-08-09",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -63,15 +72,6 @@
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
-    },
-    {
-      "date": "Dim 9 août",
-      "iso": "2026-08-09",
-      "time": "10h00 — 18h00",
-      "title": "MUSÉES DE MONACO OUVERTS",
-      "venue": "Monaco-Ville",
-      "quarter": "Monaco-Ville",
-      "emoji": "🏛️"
     }
   ]
 }
