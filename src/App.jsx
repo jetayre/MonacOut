@@ -333,6 +333,8 @@ export default function App() {
   const [inviteToast, setInviteToast] = useState(null);
   const [inviterName, setInviterName] = useState(null);
   const [showInAppBanner, setShowInAppBanner] = useState(false);
+  const [showInstallInvite, setShowInstallInvite] = useState(false);   // invité arrivé sur le SITE, sans l'app
+  const [codeInvitation, setCodeInvitation] = useState("");
   const [announce, setAnnounce] = useState(null);   // annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json
   const [showAnnounce, setShowAnnounce] = useState(false);   // le carré central, montré une fois par phase
   const [resumeTick, setResumeTick] = useState(0);  // incrémenté au retour au 1er plan → recalcule « ce soir / demain » sans fermer l'app
@@ -537,14 +539,45 @@ export default function App() {
     // Navigateur intégré WhatsApp/Instagram : session Supabase absente → bannière Safari
     const ua = navigator.userAgent || "";
     const isInApp = !Capacitor.isNativePlatform() && /WhatsApp|Instagram|FBAN|FBAV|Twitter|Line\//.test(ua);
-    if (isInApp) {
-      if (supabase) {
-        supabase.from("profiles").select("display_name").eq("invite_code", inv.trim().toLowerCase()).single()
-          .then(({ data }) => { if (data?.display_name) setInviterName(data.display_name); });
-      }
-      setShowInAppBanner(true);
+    if (supabase) {
+      supabase.from("profiles").select("display_name").eq("invite_code", inv.trim().toLowerCase()).single()
+        .then(({ data }) => { if (data?.display_name) setInviterName(data.display_name); });
+    }
+    if (isInApp) { setShowInAppBanner(true); return; }
+    // ── LE LIEN D'INVITATION DOIT MENER À L'APP ──────────────────────────────────
+    // Relevé du 9 août 2026 : 20 personnes ont ouvert un lien d'invitation, toutes
+    // dans un VRAI navigateur (Safari 10, Chrome iOS 7, bureau 3) — pas dans un
+    // navigateur intégré. Elles n'avaient donc pas l'app : le lien les déposait sur
+    // le site, et RIEN ne leur proposait de l'installer. Le lien de Nadège à lui
+    // seul a amené 14 personnes de cette façon, toutes restées sur le web.
+    // On leur propose donc l'app, en gardant le code visible : après installation
+    // il suffit de le saisir dans Mon Cercle, rien n'est perdu.
+    // iPhone/iPad UNIQUEMENT : l'app n'existe pas encore sur Android, y envoyer
+    // quelqu'un vers l'App Store d'Apple ne mènerait nulle part.
+    if (!Capacitor.isNativePlatform() && /iPhone|iPad|iPod/i.test(ua)) {
+      setCodeInvitation(inv.trim().toLowerCase());
+      setShowInstallInvite(true);
+      track("invite_web_shown", { source: "invitation" });
     }
   }, []);
+
+  // ── TOUS LES VISITEURS DU SITE SUR IPHONE, PAS SEULEMENT LES INVITÉS ────────────
+  // Relevé du 9 août 2026 : 42 personnes utilisent Monac'Out depuis leur navigateur
+  // sans avoir l'app. Rien ne leur proposait de l'installer. On leur montre donc la
+  // même invitation, après quelques secondes, et pas plus de 3 fois espacées de 7
+  // jours — on propose, on ne harcèle pas.
+  useEffect(() => {
+    if (Capacitor.isNativePlatform() || showWelcome) return;
+    if (!/iPhone|iPad|iPod/i.test(navigator.userAgent || "")) return;
+    if (new URLSearchParams(window.location.search).get("invite")) return;   // déjà géré au-dessus
+    if (!canAskAgain("monacout_install_asks", "monacout_install_last_ask", 3, 7)) return;
+    const t = setTimeout(() => {
+      noteAsked("monacout_install_asks", "monacout_install_last_ask");
+      setShowInstallInvite(true);
+      track("invite_web_shown", { source: "visite" });
+    }, 8000);   // le temps de voir le fil : on propose l'app à quelqu'un qui l'utilise déjà
+    return () => clearTimeout(t);
+  }, [showWelcome]);
 
   // App NATIVE ouverte via un lien (Universal Link) : on récupère le ?invite= du lien reçu
   useEffect(() => {
@@ -937,6 +970,45 @@ export default function App() {
     )}
 
     {/* Bannière in-app browser (WhatsApp/Instagram) : invite reçue mais session absente */}
+    {/* Invitation reçue, ouverte dans un vrai navigateur sur téléphone : la personne
+        n'a pas l'app. On la lui propose, sans l'y forcer, et on garde son code
+        affiché en clair pour qu'elle puisse le saisir après installation. */}
+    {showInstallInvite && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 4000, background: "rgba(15,29,58,0.55)", display: "flex", alignItems: "flex-end" }}>
+        <div style={{ position: "relative", width: "100%", background: "#FFFDF7", borderRadius: "16px 16px 0 0", padding: "26px 24px 34px", textAlign: "center", borderTop: "1px solid #C9A96E" }}>
+          <div style={{ fontFamily: "Georgia, 'Playfair Display', serif", fontWeight: 700, fontSize: 40, color: "#0F1D3A", lineHeight: 1 }}>M</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 15, fontWeight: 600, letterSpacing: 1, color: "#0F1D3A", marginTop: 12, marginBottom: 8 }}>
+            {inviterName
+              ? (lang === "en" ? `${inviterName} invites you to Monac'Out` : `${inviterName} t'invite sur Monac'Out`)
+              : (lang === "en" ? "You're invited to Monac'Out" : "Tu es invité·e sur Monac'Out")}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13.5, color: "#4A5568", lineHeight: 1.6, marginBottom: 18 }}>
+            {lang === "en"
+              ? "Everything happening in Monaco, in one app. Free."
+              : "Tout ce qui se passe à Monaco, dans une seule appli. Gratuite."}
+          </div>
+          <a href={APPSTORE_URL} target="_blank" rel="noopener noreferrer"
+             onClick={() => track("invite_install_clic")}
+             style={{ display: "block", width: "100%", padding: 13, background: "#0F1D3A", color: "#fff", borderRadius: 3, textDecoration: "none", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", boxSizing: "border-box" }}>
+            {lang === "en" ? "Get the app — free" : "Installer l'app — gratuit"}
+          </a>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: "#6A7080", marginTop: 14, lineHeight: 1.6 }}>
+            {lang === "en" ? "Your invite code:" : "Ton code d'invitation :"}{" "}
+            <b style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 15, letterSpacing: 3, color: "#C4A241" }}>{codeInvitation.toUpperCase()}</b>
+            <br />
+            {lang === "en" ? "Enter it in My Circle after installing." : "À saisir dans Mon Cercle après l'installation."}
+          </div>
+          {/* Pas de « continuer sur le site » : décision de Stéphanie le 9 août 2026,
+              elle veut que le lien mène à l'app. Une petite croix discrète reste,
+              volontairement : un écran sans aucune issue est ce qui a produit la
+              page noire du 7 août, et on ne piège personne. */}
+          <button onClick={() => { setShowInstallInvite(false); track("invite_web_ferme"); }}
+                  aria-label={lang === "en" ? "Close" : "Fermer"}
+                  style={{ position: "absolute", top: 10, right: 14, background: "none", border: "none", color: "#B8BEC6", fontSize: 20, lineHeight: 1, cursor: "pointer", padding: 4 }}>✕</button>
+        </div>
+      </div>
+    )}
+
     {showInAppBanner && (
       <div style={{ position: "fixed", inset: 0, zIndex: 4000, background: "rgba(0,0,0,0.7)", display: "flex", alignItems: "flex-end" }}>
         <div style={{ width: "100%", background: "#fff", borderRadius: "16px 16px 0 0", padding: "28px 24px 40px", textAlign: "center" }}>
