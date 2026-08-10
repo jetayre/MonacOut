@@ -335,8 +335,6 @@ export default function App() {
   const [showInAppBanner, setShowInAppBanner] = useState(false);
   const [showInstallInvite, setShowInstallInvite] = useState(false);   // invité arrivé sur le SITE, sans l'app
   const [codeInvitation, setCodeInvitation] = useState("");
-  const [announce, setAnnounce] = useState(null);   // annonce in-app : message à TOUS (même sans notifs), piloté par notif-config.json
-  const [showAnnounce, setShowAnnounce] = useState(false);   // le carré central, montré une fois par phase
   const [resumeTick, setResumeTick] = useState(0);  // incrémenté au retour au 1er plan → recalcule « ce soir / demain » sans fermer l'app
   const [deepLinkTick, setDeepLinkTick] = useState(0);
   const [updateAvailable, setUpdateAvailable] = useState(false);
@@ -372,56 +370,6 @@ export default function App() {
     }, 12000);
     return () => clearTimeout(t);
   }, []);   // eslint-disable-line react-hooks/exhaustive-deps
-  // Annonce in-app (broadcast à tous, même sans notifs) : affichée si présente, non expirée et non fermée.
-  // NB : la fermeture (✕) ne mémorise RIEN → le bandeau RÉAPPARAÎT à chaque ouverture de l'app
-  // (tant que l'événement est encore d'actualité). Choix voulu : ne pas rater un « ce soir ».
-  useEffect(() => {
-    const cfg = notifConfig;
-    if (!cfg) return setAnnounce(null);
-    // Format DATÉ (announcements[]) : « Ce soir : » le jour J, « Demain soir : » la veille, bascule auto d'un event au suivant.
-    if (Array.isArray(cfg.announcements)) {
-      const today = new Date(); today.setHours(0, 0, 0, 0);
-      const cands = [];
-      for (const a of cfg.announcements) {
-        if (!a || !a.id || !a.date) continue;
-        const diff = Math.round((new Date(a.date + "T00:00:00") - today) / 86400000);
-        const lead = a.leadDays != null ? a.leadDays : 1;
-        if (diff < 0 || diff > lead) continue;                 // seulement le jour J et les jours J-lead
-        cands.push({ a, diff });
-      }
-      if (!cands.length) return setAnnounce(null);
-      cands.sort((x, y) => x.diff - y.diff);                   // l'événement le plus proche d'abord
-      const { a, diff } = cands[0];
-      const preFR = diff === 0 ? "Ce soir : " : diff === 1 ? "Demain soir : " : "";
-      const preEN = diff === 0 ? "Tonight: " : diff === 1 ? "Tomorrow night: " : "";
-      // L'annonce porte l'id de la fiche (« auto-2067 ») : on va y chercher le titre,
-      // le lieu et l'heure pour TOUT afficher sur le carré. Aucun lien vers
-      // l'extérieur — on ne fait pas sortir les gens de l'app (règle du 7 août 2026).
-      const idFiche = Number(String(a.id).replace(/\D/g, ""));
-      const fiche = idFiche ? events.find(e => e.id === idFiche) : null;
-      const propre = s => (s || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "").trim();
-      return setAnnounce({
-        id: a.id,
-        phase: diff === 0 ? "cesoir" : "avant",   // une seule apparition par phase
-        titre: diff === 0 ? "Ce soir" : "Demain soir",
-        titreEn: diff === 0 ? "Tonight" : "Tomorrow night",
-        message: preFR + (a.titleFR || a.message || ""),
-        messageEn: preEN + (a.titleEN || a.messageEn || a.titleFR || ""),
-        // Depuis la fiche quand elle existe : titre seul, sans le lieu ni l'heure
-        // recollés dans le libellé de la configuration (sinon on les afficherait 2×).
-        texte: fiche ? propre(fiche.title) : (a.titleFR || a.message || ""),
-        texteEn: fiche ? propre(fiche.title) : (a.titleEN || a.messageEn || a.titleFR || ""),
-        lieu: fiche ? fiche.subtitle : "",
-        heure: fiche ? fiche.time : "",
-        gratuit: !!(fiche && fiche.free),
-      });
-    }
-    // Ancien format : annonce unique statique.
-    const a = cfg.announcement;
-    if (!a || !a.id || !a.message) return setAnnounce(null);
-    if (a.until && new Date(a.until + "T23:59:59") < new Date()) return setAnnounce(null);
-    setAnnounce(a);
-  }, [notifConfig, resumeTick, events]);   // `events` : les fiches arrivent en différé, on recalcule quand elles sont là
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
   // Récupère les événements EN DIRECT depuis le site (corrections sans passer par Apple)
@@ -445,28 +393,6 @@ export default function App() {
   // les autres messages, et il n'apparaît QU'UNE FOIS par phase : une fois la veille
   // (« Demain soir »), une fois le jour même (« Ce soir »). Deux apparitions par
   // événement au maximum, jamais deux fois dans la même visite.
-  // ⚠️ LE CARRÉ N'A PLUS AUCUN LIEN VERS L'EXTÉRIEUR — et ne doit jamais en reprendre.
-  // Première version (v0.0.73) : un bouton « Découvrir » ouvrait le site du lieu avec
-  // target="_blank". Dans l'app native, ça ouvre une fenêtre SANS barre de navigation
-  // ni bouton retour → écran noir, impossible de revenir. Vécu par Stéphanie.
-  // Décision du 7 août 2026 : « je veux un carré avec l'info SUR le carré, je ne veux
-  // pas inciter les gens à sortir de l'app ». Le carré porte donc titre + lieu + heure,
-  // et rien d'autre qu'un bouton « Fermer ».
-  useEffect(() => {
-    if (showWelcome || !announce) return;
-    const cle = `${announce.id}|${announce.phase}`;
-    let vues = [];
-    try { vues = JSON.parse(localStorage.getItem("monacout_annonces_vues") || "[]"); } catch { vues = []; }
-    if (vues.includes(cle)) return;
-    const t = setTimeout(() => {
-      if (promptedThisSessionRef.current) return;   // un seul message par visite
-      promptedThisSessionRef.current = true;
-      try { localStorage.setItem("monacout_annonces_vues", JSON.stringify([...vues, cle].slice(-30))); } catch { /* stockage plein */ }
-      setShowAnnounce(true);
-      track("annonce_vue", { annonce: announce.id, phase: announce.phase });
-    }, 2800);   // avant la demande de notifications (3,5 s) : l'annonce est du contenu, pas une demande
-    return () => clearTimeout(t);
-  }, [announce, showWelcome]);
 
   // Propose les notifications ~3,5 s après l'entrée dans l'app (pour TOUT LE MONDE), une fois l'écran de bienvenue passé.
   // maybeAskNotif est protégé (n'affiche que si la permission est encore demandable → jamais 2 fois).
@@ -1059,39 +985,6 @@ export default function App() {
       </div>
     )}
 
-    {/* Annonce « Ce soir » — carré au centre, même facture que les autres messages.
-        Remplace le bandeau du haut, retiré le 7 août 2026 : il masquait le logo et
-        revenait à chaque ouverture. Ici : une apparition par phase, puis plus rien. */}
-    {showAnnounce && announce && (
-      <div style={{ position: "fixed", inset: 0, zIndex: 3300, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
-           onClick={() => setShowAnnounce(false)}>
-        <div onClick={e => e.stopPropagation()}
-             style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
-          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: 2.5, textTransform: "uppercase", color: "#C4A241", marginBottom: 10 }}>
-            {lang === "en" ? announce.titreEn : announce.titre}
-          </div>
-          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", lineHeight: 1.35, letterSpacing: 0.3 }}>
-            {lang === "en" && announce.texteEn ? announce.texteEn : announce.texte}
-          </div>
-          {announce.lieu && (
-            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12.5, color: "#6A7080", lineHeight: 1.45, marginTop: 8 }}>
-              {announce.lieu}
-            </div>
-          )}
-          {(announce.heure || announce.gratuit) && (
-            <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: "#0F1D3A", letterSpacing: 1, marginTop: 8 }}>
-              {announce.heure}
-              {announce.gratuit && <span style={{ color: "#C4A241" }}>{announce.heure ? " · " : ""}{lang === "en" ? "FREE" : "ENTRÉE LIBRE"}</span>}
-            </div>
-          )}
-          {/* Aucun lien vers l'extérieur : voir le commentaire plus haut. */}
-          <button onClick={() => setShowAnnounce(false)}
-                  style={{ width: "100%", padding: 10, marginTop: 20, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase" }}>
-            {lang === "en" ? "Got it" : "J'ai vu"}
-          </button>
-        </div>
-      </div>
-    )}
     </>
   );
 }
