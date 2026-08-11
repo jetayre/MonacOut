@@ -372,6 +372,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Pizzeria Sorrento | https://pizzeriasorrento.mc/ | APÉRO — pizzeria italienne sur place et à emporter, 22 rue Basse · Monaco-Ville. Aucun événement récurrent publié au 10 août 2026 | +377 9992 4334 |
 | Les Perles de Monte-Carlo | https://www.perlesdemontecarlo.com/en/ | APÉRO — restaurant de fruits de mer et bar à huîtres, 47-48 quai Jean-Charles Rey · Fontvieille ; ouvert du lundi au samedi. Aucun événement récurrent publié au 10 août 2026 | +377 9777 8431 |
 | U Cavagnetu | https://ucavagnetu.com/ | SOIRÉE — restaurant monégasque traditionnel depuis 1967, 14 rue Comte Félix Gastaldi · Monaco-Ville. Aucun événement récurrent publié au 10 août 2026 | +377 9398 2040 |
+| La Pêcherie U Luvassu | https://www.ma-poissonnerie.mc/ | APÉRO — poissonnerie et pêcherie du dernier pêcheur de Monaco (Éric Rinaldi), dégustation sur place, 8 quai de l'Hirondelle · Port Hercule ; poissonnerie lun-sam 6h-16h, dégustation 12h-14h et 19h30-22h, fermé dimanche. Aucun événement récurrent publié au 11 août 2026 | +377 9777 0751 |
 | Stade Nautique Rainier III | https://www.mairie.mc/le-stade-nautique-rainier-iii | BIEN-ÊTRE aquagym & aquabike — bassin plein air du **Port Hercule**, saison **1er mai → 7 oct**. Cours 45 min, **réservation obligatoire sur sports.mairie.mc**. Planning : lun 7h15+12h30 · mar 12h30+18h30 · **mer 7h15+12h30+18h30 AQUAGYM** · jeu 12h30+18h30 · ven 12h30 · sam et dim 8h. ⚠️ Le planning n'existe qu'en **PDF** sur mairie.mc — à relire à chaque changement de saison | +377 9330 6483 |
 | Piscine Saint-Charles | https://www.mairie.mc/la-piscine-saint-charles-1 | BIEN-ÊTRE — bassin couvert 28-32°C + salle de sport, Monte-Carlo. **FERMÉE EN AOÛT** et aux vacances de Noël. Eau : Aquagym/Aquaforme, Aquatonic, Aquabike, Aquarelax, Aquatrampo, ATF, Aquapower+. Salle : Pilates, Oxygène, Stretching, Body Sculpt, Spinning. **Réservation obligatoire sur sports.mairie.mc**, non-annulation 4 h avant = débitée. ⚠️ Plannings en **PDF uniquement** sur mairie.mc, colonnes à relire par position | +377 9315 2295 |
 | Ironman Monaco | https://www.ironman.com/ | SPORT | |
@@ -400,6 +401,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
 | **Bars à vin & œnologie** | | | |
+| Caves & Gourmandises | https://www.caves-gourmandises.com/ | APÉRO — œnothèque et épicerie fine, dégustation de vins et spiritueux, 25 bd Albert 1er · La Condamine (Port Hercule) ; lun-sam 10h-19h30, fermé dimanche. Aucun événement récurrent publié au 11 août 2026 | +377 9770 5494 |
 | Wine Palace Monte-Carlo | https://www.instagram.com/wine_palace_montecarlo/ | dégustation, œnologie (pic pdt Monaco Yacht Show, sep) | |
 | Le Rouge et le Blanc (22 Quai J-C Rey) | réseaux sociaux _(pas d'agenda officiel)_ | dégustation, accords mets-vins | |
 | Quai des Artistes (4 Quai Antoine Ier) | réseaux sociaux | dîners œnologiques | |
