@@ -331,6 +331,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Pizzeria Sorrento | https://pizzeriasorrento.mc/ | APÉRO — pizzeria italienne sur place et à emporter, 22 rue Basse · Monaco-Ville. Aucun événement récurrent publié au 10 août 2026 | +377 9992 4334 |
 | Les Perles de Monte-Carlo | https://www.perlesdemontecarlo.com/en/ | APÉRO — restaurant de fruits de mer et bar à huîtres, 47-48 quai Jean-Charles Rey · Fontvieille ; ouvert du lundi au samedi. Aucun événement récurrent publié au 10 août 2026 | +377 9777 8431 |
 | U Cavagnetu | https://ucavagnetu.com/ | SOIRÉE — restaurant monégasque traditionnel depuis 1967, 14 rue Comte Félix Gastaldi · Monaco-Ville. Aucun événement récurrent publié au 10 août 2026 | +377 9398 2040 |
+| Stade Nautique Rainier III | https://www.mairie.mc/le-stade-nautique-rainier-iii | BIEN-ÊTRE aquagym & aquabike — bassin plein air du **Port Hercule**, saison **1er mai → 7 oct**. Cours 45 min, **réservation obligatoire sur sports.mairie.mc**. Planning : lun 7h15+12h30 · mar 12h30+18h30 · **mer 7h15+12h30+18h30 AQUAGYM** · jeu 12h30+18h30 · ven 12h30 · sam et dim 8h. ⚠️ Le planning n'existe qu'en **PDF** sur mairie.mc — à relire à chaque changement de saison | +377 9330 6483 |
 | Ironman Monaco | https://www.ironman.com/ | SPORT | |
 | Sunshine Yoga Monte-Carlo | https://yogamontecarlo.com/contact-us/ | YOGA, BIEN-ÊTRE | +33 6 64 91 96 42 |
 | Novotel Monte-Carlo (Azzurra Bar) | https://www.novotelmontecarlo.com/en/restaurant-bars/ | APÉRO | +377 99 99 83 00 |
