@@ -3046,8 +3046,19 @@ const _MM = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','n
 const _nowUpd = new Date();
 const _updateCard = { id: 999900, year: _nowUpd.getFullYear(), cat: "MISE À JOUR", date: `${_JJ[_nowUpd.getDay()]} ${_nowUpd.getDate()} ${_MM[_nowUpd.getMonth()]}`, time: "00h00", title: "METS À JOUR\nMONAC'OUT\nVERSION 2.1", subtitle: "App Store · Monac'Out", desc: "Une nouvelle version de Monac'Out est disponible ! Mets à jour l'app depuis l'App Store pour la connexion simplifiée, tes amis et les dernières améliorations.", descEn: "A new version of Monac'Out is available! Update from the App Store for simpler sign-in, friends and the latest improvements.", free: true, hot: true, fallback: "linear-gradient(150deg,#0F1D3A,#243B66,#C4A241)", accent: "#C4A241", emoji: "✨", link: "https://apps.apple.com/fr/app/monacout/id6774785049", source: "Monac'Out", quarter: "Monaco" };
 
+// Une attraction EN COURS (ongoing:true) est ouverte tous les jours jusqu'à `until`.
+// Elle ne porte pourtant qu'UNE date dans le fichier. Tant qu'on se reposait sur le
+// script de nuit pour la redater, elle sortait du fil au moindre passage manqué.
+// On la garde désormais tant que sa date de fin n'est pas passée : elle est là chaque
+// jour entre l'ouverture et la fermeture, script ou pas.
+export function _encoreOuvert(e, ref) {
+  if (!e.ongoing || !e.until) return false;
+  const fin = new Date(e.until + "T00:00:00");
+  return !isNaN(fin) && fin >= ref;
+}
+
 export const ALL_EVENTS = [..._RAW
-  .filter(e => { const d = _eventDate(e); return d && d >= _today; })
+  .filter(e => { const d = _eventDate(e); return d && (d >= _today || _encoreOuvert(e, _today)); })
   .sort((a, b) => {
     const diff = _eventDate(a) - _eventDate(b);
     if (diff !== 0) return diff;

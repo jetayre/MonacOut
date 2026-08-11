@@ -97,7 +97,12 @@ function couvreLaPeriode(e, debut, fin) {
 function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date()); const weekendDates = getWeekendDates();
   switch (filterId) {
-    case "today": { const y = new Date().getFullYear(); return events.filter(e => e.date === todayStr && (e.year || y) === y); }
+    case "today": {
+      const y = new Date().getFullYear();
+      const t = new Date(); t.setHours(0, 0, 0, 0);
+      return events.filter(e =>
+        (e.date === todayStr && (e.year || y) === y) || couvreLaPeriode(e, t, t));
+    }
     case "weekend": {
       const y = new Date().getFullYear();
       const t = new Date(); t.setHours(0, 0, 0, 0); const jour = t.getDay();

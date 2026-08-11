@@ -21,11 +21,20 @@ function eventHour(e) {
   return m ? parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0) : 9999;
 }
 
+// Une attraction EN COURS reste ouverte jusqu'à `until`, même si sa date affichée
+// date d'hier (le script de nuit peut ne pas être passé). Sans ça les expositions
+// sortaient du fil du jour au lendemain.
+function encoreOuvert(e, ref) {
+  if (!e.ongoing || !e.until) return false;
+  const fin = new Date(e.until + "T00:00:00");
+  return !isNaN(fin) && fin >= ref;
+}
+
 // Filtre aujourd'hui→futur + tri chronologique (comme ALL_EVENTS, mais au runtime)
 function normalize(events) {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   return events
-    .filter(e => { const d = eventDate(e); return d && d >= today; })
+    .filter(e => { const d = eventDate(e); return d && (d >= today || encoreOuvert(e, today)); })
     .sort((a, b) => {
       const diff = eventDate(a) - eventDate(b);
       return diff !== 0 ? diff : eventHour(a) - eventHour(b);

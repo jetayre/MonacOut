@@ -37,8 +37,22 @@ const content = readFileSync(EVENTS_FILE, 'utf8');
 const lines = content.split('\n');
 let removed = 0;
 
+// Une attraction EN COURS (ongoing:true) est ouverte tous les jours jusqu'à `until`.
+// Elle ne porte qu'une date, redatée chaque nuit par refresh-cinema.mjs. Si ce
+// redatage saute une seule fois, elle tombait ici et était SUPPRIMÉE pour de bon —
+// une exposition ouverte jusqu'en janvier disparaissait sans que personne le voie.
+// On ne la supprime donc que lorsque sa date de fin est réellement passée.
+function encoreOuvert(line) {
+  if (!/ongoing:true/.test(line)) return false;
+  const u = line.match(/until:"(\d{4}-\d{2}-\d{2})"/);
+  if (!u) return false;
+  const fin = new Date(u[1] + 'T00:00:00');
+  return !isNaN(fin) && fin >= today;
+}
+
 const filtered = lines.filter(line => {
   if (!line.trim().startsWith('{id:')) return true;
+  if (encoreOuvert(line)) return true;
   const d = parseEventDate(line);
   if (d && d < cutoff) { removed++; return false; }
   return true;

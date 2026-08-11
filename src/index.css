@@ -12,6 +12,22 @@ body {
   font-family: -apple-system, sans-serif;
 }
 
+/* L'app glissait de gauche à droite au doigt sur iPhone : rien n'empêchait la page
+   de défiler ni de rebondir horizontalement. On verrouille l'axe horizontal au
+   niveau du document. Les rangées qui défilent VRAIMENT de côté (les filtres) ont
+   leur propre `overflow-x` et continuent de fonctionner : le verrou ne s'applique
+   qu'à la page elle-même. */
+html, body, #root {
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+html, body {
+  position: relative;
+  width: 100%;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
