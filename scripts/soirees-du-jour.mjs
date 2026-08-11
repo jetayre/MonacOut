@@ -31,6 +31,7 @@
  * Usage : node scripts/soirees-du-jour.mjs [--dry]
  */
 import { existsSync, readFileSync, writeFileSync } from "fs";
+import { BASE_SOIR, BASE_BRUNCH, idFiche, chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -209,8 +210,9 @@ const listeLieux = arr => {
 // avec une icône téléphone cliquable. Demande de Stéphanie : « mets-les l'un en dessous
 // de l'autre avec l'icône tel qu'on peut cliquer, pas leur tél » — donc le numéro ne
 // s'écrit plus dans le texte, il devient un bouton d'appel.
+const regLieux = chargerRegistreLieux();
 const annuaireJSON = lieux => "[" + lieux.map(e => {
-  const bouts = [`name:"${(e.lieu || "").replace(/"/g, "")}"`];
+  const bouts = [`name:"${(e.lieu || "").replace(/"/g, "")}"`, `vid:${numeroLieu(regLieux, e.lieu)}`];
   if (e.heure) bouts.push(`info:"${e.heure.replace(/"/g, "")}"`);
   if (e.tel) bouts.push(`tel:"${e.tel.replace(/"/g, "")}"`);
   return "{" + bouts.join(",") + "}";
@@ -247,7 +249,6 @@ function carteBrunch(id, date, annee, lieux) {
 }
 
 // Les ids 93xxxx sont réservés à ce script (aucune autre plage ne les utilise).
-let idSoir = 930000, idBrunch = 940000;
 const nouvelles = [];
 let nbSoir = 0, nbBrunch = 0;
 // On génère depuis le REGISTRE, pas depuis la seule extraction : c'est ce qui rend le
@@ -258,8 +259,13 @@ for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a
   // Même convention que le reste du fichier : pas de `year` pour l'année courante.
   const annee = Number(an) === ANNEE_COURANTE ? "" : an;
   const s = listeLieux(v.soir || []), b = listeLieux(v.brunch || []);
-  if (s.length) { nouvelles.push(carteSoir(idSoir++, date, annee, s)); nbSoir++; }
-  if (b.length) { nouvelles.push(carteBrunch(idBrunch++, date, annee, b)); nbBrunch++; }
+  // ⚠️ Identifiant DÉDUIT DE LA DATE, jamais d'un compteur : une amie qui coche
+  // « J'y vais » ce soir doit retrouver le même identifiant demain, après que le CI a
+  // purgé les journées passées. Un compteur ferait glisser la participation d'un jour.
+  const d = dateDeLaCle(cle);
+  if (!d) continue;
+  if (s.length) { nouvelles.push(carteSoir(idFiche(BASE_SOIR, d), date, annee, s)); nbSoir++; }
+  if (b.length) { nouvelles.push(carteBrunch(idFiche(BASE_BRUNCH, d), date, annee, b)); nbBrunch++; }
 }
 
 // ── Écriture ──────────────────────────────────────────────────────────────────
@@ -307,4 +313,5 @@ console.log(rapport);
 if (DRY) { console.log("\n(--dry : rien n'a été écrit)"); process.exit(0); }
 writeFileSync(FICHIER, sortie);
 writeFileSync(REGISTRE, JSON.stringify(registre, null, 1) + "\n");
+ecrireRegistreLieux(regLieux);
 writeFileSync(SORTIE, rapport + "\n");

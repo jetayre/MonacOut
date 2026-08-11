@@ -66,6 +66,10 @@ fil (`HomeScreen`, prop `friendsGoing`). Elles restent visibles dans la fiche qu
 ouvre, où aucun jour n'est sous-entendu. Le jour que l'utilisatrice choisit pour
 elle-même est retenu en local (`monacout_jours_participation`), donc jamais partagé.
 
+➜ **La même technique d'identifiant composé pourrait régler ce cas** (`id × 1000 +
+n° du jour`, cf. `lib-lieux.mjs`) : c'est la prochaine étape pour remettre Nadège au bon
+jour du Mariage du siècle au lieu de la masquer.
+
 **Le vrai correctif**, quand Stéphanie pourra exécuter une requête dans Supabase
 (SQL Editor) :
 
@@ -556,7 +560,43 @@ ne les concernent pas (pas de lien officiel unique, pas de période, libellé de
 partagé avec un autre récapitulatif). **`recap` n'est pas un moyen de faire taire un
 signalement gênant** — une vraie fiche mal saisie doit être corrigée.
 
-### « J'y vais » lieu par lieu sur une fiche récapitulative
+### « J'y vais » lieu par lieu — PARTAGÉ avec les amies (`vid` + identifiant composé)
+
+Sur une fiche récapitulative ouverte (« ce soir », « brunchs », « musées »), chaque lieu
+porte son bouton **« J'y vais »**, et **les amies le voient**. C'est tout l'intérêt de la
+fonction — Stéphanie, 11 août 2026.
+
+**Aucune modification de la base n'a été nécessaire.** `participations` ne connaît qu'un
+`event_id` entier : on lui donne un identifiant **composé**, qui désigne « ce lieu, ce
+jour-là ».
+
+```
+event_id = idFiche × 1000 + numéro du lieu
+idFiche  = base + nombre de jours depuis le 1er janvier 2026
+           (930000 = ce soir · 940000 = brunchs · 950000 = musées)
+```
+
+Tout est dans **`scripts/lib-lieux.mjs`**, avec le registre `lieux-ids.json` (nom du lieu
+→ numéro **définitif**, append-only). Plafond : 950 730 999, sous la limite d'un entier
+PostgreSQL (2 147 483 647). Aucun événement réel n'approche ces valeurs (le plus grand
+est ~1 007 276), donc pas de confusion possible.
+
+🚨 **Les deux pièges à ne jamais reproduire :**
+- **Ne JAMAIS numéroter les fiches du jour avec un compteur.** Le CI purge les journées
+  passées : au passage suivant, la fiche 930000 désigne une AUTRE date et la participation
+  d'une amie glisse en silence sur un autre jour. L'identifiant doit être **déduit de la
+  date**. Vérifié : deux passages d'affilée donnent le même id (950222 pour le 11 août).
+- **Ne JAMAIS utiliser le rang du lieu dans la liste.** Dès qu'un lieu ferme, les rangs
+  glissent et la participation change de lieu. D'où le registre `lieux-ids.json`, où un
+  numéro attribué n'est **jamais** réattribué.
+
+L'onglet Amies décompose ces identifiants (`eid > 900000000`) pour afficher **le lieu et
+la date** — « Nadège · 99 Sushi Bar · mardi 11 août » — et non « ce soir : 6 terrasses ».
+
+Les colonnes `jour` et `lieu` décrites au § « À FAIRE » restent **souhaitables** (plus
+lisibles, requêtables), mais ne sont plus un préalable.
+
+### (obsolète) « J'y vais » lieu par lieu sur une fiche récapitulative
 
 Dans la fiche qui s'ouvre (« ce soir », « brunchs », « musées »), chaque lieu porte un
 bouton **« J'y vais »** à côté de son nom — demande de Stéphanie du 11 août 2026.

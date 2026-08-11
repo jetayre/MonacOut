@@ -164,11 +164,21 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   const friendsEvents = []
   for (const friend of social.friends) {
     for (const eid of friend.participations) {
-      const ev = events.find(e => e.id === eid)
+      let ev = events.find(e => e.id === eid)
+      let lieu = null
+      // Participation à UN LIEU d'une fiche récapitulative (« ce soir », « musées ») :
+      // l'identifiant est composé — fiche du jour × 1000 + numéro du lieu. Sans cette
+      // décomposition, la sortie n'apparaissait pas ici du tout.
+      if (!ev && eid > 900000000) {
+        const carte = events.find(e => e.id === Math.floor(eid / 1000))
+        const vid = eid % 1000
+        const entree = carte?.directory?.find(d => d.vid === vid)
+        if (carte && entree) { ev = carte; lieu = entree.name }
+      }
       if (!ev) continue
       const d = eventDate(ev)
       if (!d || d < today) continue
-      friendsEvents.push({ event: ev, friend, date: d })
+      friendsEvents.push({ event: ev, friend, date: d, lieu })
     }
   }
   friendsEvents.sort((a, b) => a.date - b.date)
@@ -307,7 +317,7 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
                 ? (lang === 'en' ? "Add friends to see their plans." : "Ajoute des amis pour voir leurs sorties.")
                 : (lang === 'en' ? "None of your friends have marked events yet." : "Aucun ami n'a encore marqué de sortie.")}
             </div>
-          ) : friendsEvents.map(({ event: ev, friend, date }, i) => (
+          ) : friendsEvents.map(({ event: ev, friend, date, lieu }, i) => (
             <div key={`${ev.id}-${friend.id}-${i}`} style={{
               display: 'flex', alignItems: 'center', gap: 12,
               padding: '12px 0',
@@ -319,10 +329,12 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
                   {friend.display_name}
                 </div>
                 <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: '#333', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {ev.title.replace(/\n/g, ' ')}
+                  {/* Participation à un lieu précis d'une fiche récapitulative : on
+                      affiche LE LIEU, pas « ce soir : 6 terrasses ouvertes ». */}
+                  {lieu || ev.title.replace(/\n/g, ' ')}
                 </div>
                 <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 1 }}>
-                  {jours[date.getDay()]} {date.getDate()} {MOIS_FR[date.getMonth()]} · {ev.subtitle?.split(' · ')[0]}
+                  {jours[date.getDay()]} {date.getDate()} {MOIS_FR[date.getMonth()]} · {lieu ? (ev.cat === 'EXPOSITION' ? (lang === 'en' ? 'Museum' : 'Musée') : (lang === 'en' ? 'Drinks' : 'Apéro')) : ev.subtitle?.split(' · ')[0]}
                 </div>
               </div>
             </div>

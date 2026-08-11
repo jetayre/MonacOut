@@ -75,7 +75,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0, lieuxYVais = {}, onToggleLieuYVais }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -225,14 +225,31 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                           {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-                          {/* « J'y vais » lieu par lieu. Retenu sur l'appareil : un lieu
-                              d'une fiche récapitulative n'est pas un événement, il n'a
-                              pas d'identifiant en base. Non partagé avec les amies. */}
-                          {onToggleLieuYVais && (() => {
-                            const jyVais = !!lieuxYVais[`${selectedEvent.id}|${d.name}`];
+                          {/* « J'y vais » lieu par lieu, VISIBLE PAR LES AMIES.
+                              L'identifiant écrit en base est composé : identifiant de la
+                              fiche du jour (déduit de la DATE) × 1000 + numéro définitif
+                              du lieu. Il désigne donc « ce lieu, ce soir-là » sans
+                              ambiguïté et sans toucher au schéma de la base.
+                              Voir scripts/lib-lieux.mjs pour le raisonnement complet. */}
+                          {d.vid > 0 && (() => {
+                            const idLieu = selectedEvent.id * 1000 + d.vid;
+                            const jyVais = (social?.myParticipations || []).includes(idLieu);
+                            const amies = social?.friendsGoingTo?.(idLieu) || [];
                             return (
+                              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                              {amies.length > 0 && (
+                                <span title={amies.map(f => f.display_name).filter(Boolean).join(", ")}
+                                      style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 9,
+                                               fontWeight: 600, color: GOLD, whiteSpace: "nowrap" }}>
+                                  {amies.map(f => (f.display_name || "").split(" ")[0]).filter(Boolean).slice(0, 2).join(", ")}
+                                  {amies.length > 2 ? ` +${amies.length - 2}` : ""}
+                                </span>
+                              )}
                               <button
-                                onClick={() => onToggleLieuYVais(selectedEvent.id, d.name)}
+                                onClick={() => {
+                                  if (!auth?.user) { onShowAuth?.(); return; }
+                                  social?.toggleParticipation?.(idLieu);
+                                }}
                                 aria-pressed={jyVais}
                                 style={{
                                   display: "inline-flex", alignItems: "center", gap: 3,
@@ -247,6 +264,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                               >
                                 {jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}
                               </button>
+                              </span>
                             );
                           })()}
                           {/* Téléphone cliquable. `tel:` ouvre le composeur du téléphone,

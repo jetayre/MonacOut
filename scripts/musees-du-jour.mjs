@@ -26,6 +26,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { BASE_MUSEES, idFiche, chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FICHIER = join(__dirname, "..", "src", "data", "events.js");
@@ -100,13 +101,13 @@ lignes.forEach((l, i) => {
 // ── Génération ────────────────────────────────────────────────────────────────
 const NL = "\\n";
 const ANNEE_COURANTE = new Date().getFullYear();
+const regLieux = chargerRegistreLieux();
 const annuaireJSON = lst => "[" + lst.map(m => {
-  const b = [`name:"${m.nom}"`, `info:"${m.heures(m._mois)}"`];
+  const b = [`name:"${m.nom}"`, `vid:${numeroLieu(regLieux, m.nom)}`, `info:"${m.heures(m._mois)}"`];
   if (m.tel) b.push(`tel:"${m.tel}"`);
   return "{" + b.join(",") + "}";
 }).join(",") + "]";
 
-let id = 950000;
 const nouvelles = [];
 const debut = new Date(); debut.setHours(0, 0, 0, 0);
 for (let k = 0; k < HORIZON_JOURS; k++) {
@@ -123,7 +124,7 @@ for (let k = 0; k < HORIZON_JOURS; k++) {
     + ` Tap the card to see them one by one and call in a single move.`
     + (ouverts.length < MUSEES.length ? ` The NMNM and the Musée du Vieux Monaco close on Mondays.` : "");
   nouvelles.push(
-    `  {id:${id++},${an}cat:"EXPOSITION",date:"${date}",time:"10h00",`
+    `  {id:${idFiche(BASE_MUSEES, d)},${an}cat:"EXPOSITION",date:"${date}",time:"10h00",`
     + `title:"MUSÉES${NL}${ouverts.length} OUVERTS${NL}AUJOURD'HUI",subtitle:"Musées de Monaco · Principauté",`
     + `desc:"${desc}",descEn:"${descEn}",free:false,hot:false,recap:true,mdj:1,directory:${annuaireJSON(ouverts)},`
     + `fallback:"linear-gradient(150deg,#1A3A5A,#2A5A8A,#0A1E38)",accent:"#A8CCF0",emoji:"🏛️",`
@@ -161,4 +162,5 @@ const rapport = [
 console.log(rapport);
 if (DRY) { console.log("\n(--dry : rien n'a été écrit)"); process.exit(0); }
 writeFileSync(FICHIER, sortie);
+ecrireRegistreLieux(regLieux);
 writeFileSync(SORTIE, rapport + "\n");
