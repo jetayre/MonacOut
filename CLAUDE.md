@@ -45,6 +45,23 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **🩹 Piège rencontré** : `vercel.json` est **validé strictement** — une simple clé `_comment` a mis **les DEUX projets en ERROR** (monac-out ET monacout). Les sites ont continué de servir le dernier déploiement réussi (aucun utilisateur n'a rien vu), mais plus aucune mise à jour n'aurait pu partir. **Ne jamais mettre de commentaire dans un fichier de configuration JSON** ; et après toute modification de `vercel.json`, vérifier l'état des déploiements (`readyState`), pas seulement que le site répond 200.
 - Règle : pour obtenir des installations, diffuser le **lien App Store** ; garder `monacout.com` pour montrer le produit en dix secondes (à un commerçant par exemple).
 
+## Journal — 11 août 2026 (bis) — les plannings de piscine se lisent tout seuls
+
+**❓ « Comment faire pour que tu aies toujours ça tous les jours exactement sans que j'intervienne ? »** Les 133 fiches aquagym/pilates venaient de PDF que Stéphanie m'avait envoyés et que j'avais lus à la main. Ça ne tient pas : les plannings changent à chaque saison et les fiches s'arrêtaient au 7 octobre.
+
+**🏊 `scripts/piscines.mjs`, câblé dans `daily-check.yml`.** Deux fois par jour, il ouvre les pages des deux piscines sur mairie.mc, y trouve les PDF de planning, **reconstitue les tableaux par la POSITION des mots** dans le document (une extraction de texte ordinaire perd les colonnes et rend le tableau inexploitable), puis régénère les fiches.
+- **Il choisit le PDF dont la PÉRIODE couvre aujourd'hui.** Première version : il prenait le premier PDF lisible et a servi le **planning de juin le 11 août**. Il lit maintenant « Du 1er juillet au 7 octobre 2026 » en tête de document et ne retient que celui-là. La date de fin des fiches suit la période du PDF, elle n'est plus écrite en dur.
+- **⚠️ GARDE-FOU : si un PDF devient illisible, le script NE TOUCHE À RIEN et alerte.** Éprouvé en simulant des PDF introuvables : 136 fiches avant, 136 après, deux alertes. **Mieux vaut un planning d'hier qu'un fil vide** — un script qui efface du bon contenu parce qu'il n'a pas su lire est pire que pas de script.
+- **Idempotent par marqueur `psc:`** — il ne retire que ses propres fiches, jamais celles des autres (leçon du 7 août sur le générateur nightlife).
+- Le passage quotidien **échoue visiblement** si une lecture rate.
+
+**Résultat : le filtre Bien-être passe de 1 événement sur 7 jours à 151 fiches.**
+- **Stade Nautique** (plein air, Port Hercule, jusqu'au 7 oct) : aquabike lun 7h15+12h30, mar 12h30+18h30, mer 7h15+12h30 + **aquagym 18h30**, jeu 12h30+18h30, ven 12h30, sam et dim 8h.
+- **Piscine Saint-Charles** (couverte 28-32°C + salle de sport, **fermée en août**) : Aquagym, Aquatonic, Aquabike, Aquarelax, Aquatrampo, ATF, Aquapower+ dans l'eau ; Pilates, Oxygène, Stretching, Body Sculpt, Spinning en salle.
+- **Une fiche par jour et par piscine**, jamais une par cours : sept fiches quotidiennes noieraient le fil, exactement le défaut reproché aux apéros.
+
+**🔎 Le breathwork reste introuvable.** Hoolon Wellness est une boutique de massages sans planning en ligne ; Pilates Fit Club, Yoga Monte-Carlo et Yoga Solstice passent par des systèmes de réservation fermés ou par Instagram. Rien à importer automatiquement de ce côté.
+
 ## Journal — 11 août 2026 (la reprise de PrinciPocket ne dépend plus de personne)
 
 **❓ LA QUESTION DE STÉPHANIE** : « que peut-on faire pour être sûr que tu mets tous les events qui sont dans PrinciPocket, sans mon intervention ? » Elle avait testé trois événements au hasard : un absent (rentrée des catéchistes), deux introuvables faute du bon nom (salon du livre, Pesquet).
