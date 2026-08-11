@@ -24,7 +24,9 @@ console.log(`\n📦  Nouvelle interface OTA : v${version}\n`);
 
 // 2) Build du web
 console.log('→ build…');
-execSync('npm run build', { cwd: ROOT, stdio: 'inherit' });
+// VITE_OTA_VERSION grave sa propre version dans le bundle : chaque événement PostHog
+// dira alors quelle interface la personne utilise, et on saura enfin qui a reçu l'OTA.
+execSync('npm run build', { cwd: ROOT, stdio: 'inherit', env: { ...process.env, VITE_OTA_VERSION: version } });
 
 // 3) Nettoie les anciens zips + zippe l'interface (index.html à la racine du zip)
 mkdirSync(CAPGO_DIR, { recursive: true });

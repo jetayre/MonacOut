@@ -39,6 +39,26 @@ posthog.init('phc_qfThmficvfkSEgsMLbKiJcgiHRYyAJ5GU2i8pavYYzNU', {
   capture_pageleave: true,       // mesure le temps passé
 })
 
+// ── Version de l'interface, attachée à TOUS les événements ────────────────────
+// Sans elle, impossible de savoir si une correction publiée en OTA arrive vraiment
+// chez les gens : le 11 août 2026, 19 personnes déclenchaient encore un événement
+// retiré du code depuis des jours, et on ne l'a découvert que par hasard.
+// `register` = propriété collée à chaque événement suivant, pas seulement celui-ci.
+// Tout est enveloppé : si quoi que ce soit manque, on n'envoie rien et l'app continue.
+let versionInterface = 'inconnue'
+try {
+  // eslint-disable-next-line no-undef
+  if (typeof __OTA_VERSION__ === 'string') versionInterface = __OTA_VERSION__
+} catch { /* define absent (mode dev) → on garde « inconnue » */ }
+
+try {
+  posthog.register({
+    version_interface: versionInterface,        // version du bundle en cours d'exécution
+    plateforme: Capacitor.getPlatform(),        // ios · android · web
+    natif: Capacitor.isNativePlatform(),
+  })
+} catch { /* jamais bloquer le démarrage pour une mesure */ }
+
 // Compteur fiable en natif : un événement à chaque ouverture de l'app.
 // → tableau de bord : eu.posthog.com (utilisateurs uniques, sessions, ouvertures)
 posthog.capture('app_opened', { platform: Capacitor.getPlatform() })
