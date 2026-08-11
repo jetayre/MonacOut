@@ -484,6 +484,18 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 }
 ```
 
+### Fiches RÉCAPITULATIVES (`recap: true`)
+
+Une fiche qui **résume d'autres fiches** — « Les expositions de l'hiver à Monaco »,
+« La Villa Paloma cet automne » — n'est pas un événement : elle cite les dates de fin
+d'expositions qui ont, elles, leur propre fiche. Le contrôle qualité la prendrait pour
+une exposition réduite à une seule fiche et la signalerait à chaque passage. Marquer
+`recap: true` l'en exempte.
+
+**N'utiliser ce champ que pour de vrais récapitulatifs.** Ce n'est pas un moyen de faire
+taire un signalement gênant : une exposition réelle mal saisie doit être corrigée, pas
+étiquetée `recap`.
+
 ### Fiches EN COURS (`ongoing`) — expositions, musées, installations permanentes
 
 Une attraction ouverte tous les jours (exposition, jardin, pop-up d'été) ne se saisit

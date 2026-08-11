@@ -66,8 +66,13 @@ for (const [cle, groupe] of parTitre) {
   // ── 1. LE BUG DE NADÈGE : une période DATÉE est annoncée, mais une seule fiche,
   //    et elle n'est pas marquée « ongoing » (donc jamais redatée) → introuvable.
   //    On exige une vraie date de fin : « jusqu'au 6 septembre », pas « jusqu'au petit matin ».
+  //    Exemption `recap:true` : une fiche qui RÉSUME d'autres fiches (« les
+  //    expositions de l'hiver », « la Villa Paloma cet automne ») cite forcément
+  //    des dates de fin sans être elle-même un événement. Sans cette exemption,
+  //    elle restait signalée à chaque passage — et un rapport qui crie pour rien
+  //    est un rapport qu'on cesse de lire.
   const periode = (e.desc || "").match(/jusqu'au\s+(\d{1,2}\s+\w+)/i);
-  if (groupe.length === 1 && periode && !e.ongoing) {
+  if (groupe.length === 1 && periode && !e.ongoing && !e.recap) {
     pb.invisible.push(`${e.date} · ${titre(e)} — annoncée « jusqu'au ${periode[1]} » mais UNE SEULE fiche, non ongoing → invisible les autres jours (id ${e.id})`);
   }
 
