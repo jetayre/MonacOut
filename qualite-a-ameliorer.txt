@@ -4,6 +4,3 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
    · Ven 14 août · NOTRE DAME DJ SET TWIGA — même lieu et même jour qu'une série de 52 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4775)
-
-■ FICHES SANS CONTENU — la description répète le titre (1)
-   · Mar 12 jan · MUSICAL HAPPY HOUR — description = titre (id 800009)
