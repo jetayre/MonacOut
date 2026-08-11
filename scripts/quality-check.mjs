@@ -71,6 +71,17 @@ for (const [cle, groupe] of parTitre) {
     pb.invisible.push(`${e.date} · ${titre(e)} — annoncée « jusqu'au ${periode[1]} » mais UNE SEULE fiche, non ongoing → invisible les autres jours (id ${e.id})`);
   }
 
+  // ── 1 bis. LE BUG DES EXPOS : une fiche `ongoing` ne porte QU'UNE date, celle du
+  //    jour. Sans `until`, refresh-cinema.mjs ne la redate jamais et cleanup-events.mjs
+  //    finit par la SUPPRIMER — une exposition ouverte des mois disparaît en silence.
+  //    `until` n'est donc pas optionnel : c'est ce qui maintient la fiche en vie.
+  if (e.ongoing && !e.until) {
+    pb.invisible.push(`${e.date} · ${titre(e)} — « ongoing » SANS date de fin (until) → sera supprimée en silence (id ${e.id})`);
+  }
+  if (e.ongoing && e.until && isNaN(new Date(e.until + "T00:00:00"))) {
+    pb.invisible.push(`${e.date} · ${titre(e)} — « until » illisible : « ${e.until} » (attendu AAAA-MM-JJ) (id ${e.id})`);
+  }
+
   // ── 2. Description qui ne fait que répéter le titre : la fiche n'apprend rien.
   const d = norm(e.desc), ti = norm(titre(e));
   const lieu = norm((e.subtitle || "").split(" · ")[0]);

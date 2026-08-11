@@ -45,6 +45,22 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **🩹 Piège rencontré** : `vercel.json` est **validé strictement** — une simple clé `_comment` a mis **les DEUX projets en ERROR** (monac-out ET monacout). Les sites ont continué de servir le dernier déploiement réussi (aucun utilisateur n'a rien vu), mais plus aucune mise à jour n'aurait pu partir. **Ne jamais mettre de commentaire dans un fichier de configuration JSON** ; et après toute modification de `vercel.json`, vérifier l'état des déploiements (`readyState`), pas seulement que le site répond 200.
 - Règle : pour obtenir des installations, diffuser le **lien App Store** ; garder `monacout.com` pour montrer le produit en dix secondes (à un commerçant par exemple).
 
+## Journal — 11 août 2026 (ter) — « où sont les expos ? »
+
+**❓ Question de Stéphanie, en apparence anodine.** Les expositions étaient bien là — 9 en cours dans le fil. Mais en vérifiant j'ai trouvé la panne qu'elle décrivait depuis des jours sans qu'on l'identifie : *« quand je cherche à partir du calendrier je ne les vois pas »*. Je croyais à des événements manquants. C'était un défaut d'affichage.
+
+**Le mécanisme.** Une fiche `ongoing` ne porte **qu'une seule date : celle du jour**, réécrite chaque nuit. Elle sortait donc du fil dès qu'on demandait autre chose qu'aujourd'hui :
+- « Ce week-end » → **aucune** exposition, alors qu'elles sont toutes ouvertes samedi et dimanche
+- calendrier au 11 septembre → **aucune** exposition, alors que Victor Brauner est ouvert jusqu'en janvier 2027
+
+**Le correctif ne se contente pas de rustiner l'affichage : il coupe la dépendance au script de nuit.** Une fiche `ongoing` est désormais retenue tant que `until` n'est pas passée, dans les quatre endroits listés au § « Fiches EN COURS ». Mesuré : week-end du 15-16 août 44 → 56 fiches ; 11 septembre 17 → 27 ; 3 octobre 18 → 26, avec les origamis et le Mariage du siècle correctement retirés puisque terminés.
+
+**⚠️ Le vrai danger était ailleurs, et il était silencieux.** `cleanup-events.mjs` supprimait **définitivement** toute fiche datée d'avant-hier, sans exception pour les `ongoing`. Un seul passage de CI manqué et une exposition ouverte jusqu'en janvier disparaissait pour de bon, sans alerte, sans trace. Simulation à 3 jours sans script : **13 fiches en cours effacées**. Le nettoyage refuse maintenant de toucher une fiche dont `until` est à venir, et `quality-check.mjs` signale toute fiche `ongoing` sans `until` ou avec un `until` illisible.
+
+**🖐️ Bug signalé par Stéphanie dans la foulée : « l'image de l'app bouge de gauche à droite avec le doigt ».** `src/index.css` ne contenait aucune protection sur l'axe horizontal — la page entière se laissait tirer de côté. Verrou `overflow-x: hidden` + `overscroll-behavior-x: none` sur `html`, `body` et `#root`. Les rangées qui défilent VRAIMENT de côté (les filtres, `overflow-x` local) continuent de fonctionner : le verrou ne porte que sur la page.
+
+**Leçon.** Une question de Stéphanie qui commence par « où sont… » ne signifie pas forcément qu'il manque des données. Ici les données étaient complètes depuis le début : c'est le chemin pour y accéder qui était cassé. **Vérifier l'affichage sur les autres filtres et sur une date future, pas seulement sur le fil du jour.**
+
 ## Journal — 11 août 2026 (bis) — les plannings de piscine se lisent tout seuls
 
 **❓ « Comment faire pour que tu aies toujours ça tous les jours exactement sans que j'intervienne ? »** Les 133 fiches aquagym/pilates venaient de PDF que Stéphanie m'avait envoyés et que j'avais lus à la main. Ça ne tient pas : les plannings changent à chaque saison et les fiches s'arrêtaient au 7 octobre.
@@ -459,6 +475,38 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
   quarter: "Monaco-Ville",          // quartier: Monaco-Ville, Monte-Carlo, Larvotto, Fontvieille, Monaco
 }
 ```
+
+### Fiches EN COURS (`ongoing`) — expositions, musées, installations permanentes
+
+Une attraction ouverte tous les jours (exposition, jardin, pop-up d'été) ne se saisit
+**pas** en une fiche par jour. On écrit **une seule fiche** avec deux champs :
+
+```js
+ongoing: true,
+until: "2027-01-03",   // AAAA-MM-JJ — dernier jour d'ouverture. OBLIGATOIRE.
+```
+
+**`until` n'est jamais optionnel.** Une fiche `ongoing` ne porte qu'UNE date — celle du
+jour, réécrite chaque nuit par `scripts/refresh-cinema.mjs`. Ce script ne redate que les
+fiches dont `until` est encore à venir. Sans `until` : jamais redatée → `cleanup-events.mjs`
+la voit datée d'hier → **supprimée définitivement, sans alerte**. Une exposition ouverte
+jusqu'en janvier peut disparaître ainsi. `scripts/quality-check.mjs` le signale désormais.
+
+L'affichage ne dépend plus du script de nuit (corrigé le 11 août 2026). Une fiche `ongoing`
+apparaît **chaque jour entre sa date et son `until`**, dans le fil du jour, dans « Ce
+week-end » et à n'importe quelle date du calendrier. Quatre endroits appliquent la règle,
+et il faut les tenir cohérents :
+
+| Fichier | Ce qu'il fait |
+|---|---|
+| `src/data/events.js` → `_encoreOuvert()` | garde la fiche dans `ALL_EVENTS` (données embarquées) |
+| `src/data/liveEvents.js` → `encoreOuvert()` | idem sur les données chargées en direct |
+| `src/components/screens/HomeScreen.jsx` → `couvreLaPeriode()` | filtres Aujourd'hui / Ce week-end / calendrier |
+| `cleanup-events.mjs` → `encoreOuvert()` | refuse de supprimer une fiche encore ouverte |
+
+Quand `until` est dépassée, la fiche sort du fil et le nettoyage la supprime : c'est voulu.
+**Surveiller les `until` qui approchent** — une expo prolongée doit voir sa date repoussée,
+sinon elle disparaît le lendemain de la date inscrite.
 
 ### Catégories disponibles
 `CONCERT`, `OPÉRA`, `MUSICAL`, `THÉÂTRE`, `JAZZ LIVE`, `DJ SET`, `CHANTS`, `CINÉMA`, `FESTIVAL`, `GALA`, `SPECTACLE`, `EXPOSITION`, `CONFÉRENCE`, `FOOTBALL`, `BASKET`, `FORMULE 1`, `FORMULE E`, `TENNIS`, `RALLYE`, `SPORT`, `ATELIER`, `DANSE`, `BIEN-ÊTRE`, `BRUNCH`, `APÉRO`, `SOIRÉE`, `ENCHÈRES`, `MARCHÉ`, `SALON`, `FÊTE NATIONALE`
