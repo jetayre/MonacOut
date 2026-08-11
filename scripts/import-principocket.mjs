@@ -42,6 +42,12 @@ import { dirname, join } from "path";
 const racine = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FICHIER = join(racine, "src", "data", "events.js");
 const RAPPORT = join(racine, "import-principocket.txt");
+// ⚠️ LE REGISTRE EST LE CŒUR DU DISPOSITIF. Sans lui, un événement écarté ne laisse
+// aucune trace après l'exécution : il est réexaminé et réécarté chaque nuit, en
+// silence, indéfiniment. Le registre garde pour CHAQUE événement PrinciPocket la
+// date où on l'a vu pour la première fois et son sort. Un événement écarté depuis
+// plus de 3 jours devient une ALERTE : quelque chose demande une décision humaine.
+const REGISTRE = join(racine, "principocket-registre.json");
 const DRY = process.argv.includes("--dry");
 
 const UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 " +
@@ -166,6 +172,14 @@ let nextId = 800000; while (usedIds.has(nextId)) nextId++;
 const auj = new Date(); auj.setHours(0, 0, 0, 0);
 const horizon = new Date(auj); horizon.setMonth(horizon.getMonth() + 12);
 
+let registre = {};
+try { registre = JSON.parse(readFileSync(REGISTRE, "utf8")); } catch { /* première exécution */ }
+const aujISO = new Date().toISOString().slice(0, 10);
+const note = (sl, etat, detail) => {
+  const p = registre[sl] || { vuLe: aujISO };
+  registre[sl] = { ...p, etat, detail: detail || "", majLe: aujISO };
+};
+
 const ajoutes = [], horsMonaco = [], sansLieu = [], deja = [];
 const lignes = [];
 for (const f of fiches) {
@@ -176,7 +190,7 @@ for (const f of fiches) {
   const cat = categorie(f.titre);
   const heure = f.h1 ? (f.h2 ? `${f.h1.replace(":", "h")} — ${f.h2.replace(":", "h")}` : f.h1.replace(":", "h"))
                      : (SANS_HEURE[cat] || null);
-  if (!heure) { continue; }                                    // heure indispensable hors catégories tolérées
+  if (!heure) { note(f.sl, "ecarte", "heure non publiée et catégorie " + cat + " en exige une"); continue; }
   const mtCles = motsCles(f.titre), mlCles = motsCles(f.lieu);
   let ajoutePour = 0;
   for (const d of dates) {
@@ -195,7 +209,11 @@ for (const f of fiches) {
       return lieuOk || titreOk;
     });
     if (present || couvert) continue;
-    if (!f.lieu || f.lieu.length < 4 || /^principaut|^monaco$/i.test(f.lieu)) { sansLieu.push(`${cleDate(d)} · ${f.titre}`); continue; }
+    if (!f.lieu || f.lieu.length < 4 || /^principaut|^monaco$/i.test(f.lieu)) {
+      sansLieu.push(`${cleDate(d)} · ${f.titre}`);
+      note(f.sl, "ecarte", "aucun lieu exploitable : « " + (f.lieu || "?") + " »");
+      continue;
+    }
     const [bg, ac, emo] = PAL[cat] || PAL.SPECTACLE;
     const id = nextId++;
     const an = d.getFullYear() !== 2026 ? `year:${d.getFullYear()},` : "";
@@ -203,8 +221,8 @@ for (const f of fiches) {
     lignes.push(`  {id:${id},${an}cat:"${cat}",date:"${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}",time:"${heure}",title:"${esc(titre.toUpperCase())}",subtitle:"${esc(f.lieu)} · Monaco",desc:"${esc(f.titre)} — ${esc(f.lieu)}.",descEn:"${esc(f.titre)} — ${esc(f.lieu)}.",free:false,hot:false,fallback:"${bg}",accent:"${ac}",emoji:"${emo}",${v && v.link ? `link:"${v.link}",` : ""}${v && v.phone ? `phone:"${v.phone}",` : ""}source:"${esc(f.lieu)}",quarter:"${v ? v.quarter : "Monaco"}"},`);
     ajoutePour++;
   }
-  if (ajoutePour) ajoutes.push(`${f.titre} — ${f.lieu} (${ajoutePour} jour(s))`);
-  else deja.push(f.titre);
+  if (ajoutePour) { ajoutes.push(`${f.titre} — ${f.lieu} (${ajoutePour} jour(s))`); note(f.sl, "importe", f.titre); }
+  else { deja.push(f.titre); note(f.sl, "deja", f.titre); }
   if (/cap d.ail|roquebrune|beausoleil|nice|menton|06[0-9]{3}/i.test(f.lieu)) horsMonaco.push(`${f.titre} — ${f.lieu}`);
 }
 
@@ -213,7 +231,18 @@ txt += `${slugs.size} événements lus · ${ajoutes.length} importés (${lignes.
 if (ajoutes.length) txt += `\n■ IMPORTÉS\n` + ajoutes.map(a => "   + " + a).join("\n") + "\n";
 if (sansLieu.length) txt += `\n■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main\n` + sansLieu.map(a => "   ? " + a).join("\n") + "\n";
 if (horsMonaco.length) txt += `\n■ ⚠️ HORS DE MONACO — règle 15, à trancher\n` + horsMonaco.map(a => "   ! " + a).join("\n") + "\n";
+// Ce qui est écarté depuis plus de 3 jours : personne ne s'en est occupé.
+const vieux = Object.entries(registre).filter(([, r]) => {
+  if (r.etat !== "ecarte") return false;
+  return (Date.now() - new Date(r.vuLe + "T00:00:00")) / 86400000 > 3;
+});
+if (vieux.length) {
+  txt += `\n■ 🚨 ÉCARTÉS DEPUIS PLUS DE 3 JOURS — demandent une décision humaine\n`;
+  for (const [sl, r] of vieux)
+    txt += `   ! vu le ${r.vuLe} · ${r.detail}\n     https://www.principocket.com${sl}\n`;
+}
 writeFileSync(RAPPORT, txt);
+if (!DRY) writeFileSync(REGISTRE, JSON.stringify(registre, null, 1));
 
 console.log(`  ${ajoutes.length} événements importés → ${lignes.length} fiches`);
 console.log(`  ${deja.length} déjà présents · ${sansLieu.length} sans lieu · ${horsMonaco.length} hors Monaco`);
@@ -224,3 +253,7 @@ if (lignes.length) {
   console.log("  ✓ src/data/events.js mis à jour");
 }
 console.log("→ détail dans import-principocket.txt");
+if (vieux.length) {
+  console.log(`\n🚨 ${vieux.length} événement(s) écarté(s) depuis plus de 3 jours — voir le rapport.`);
+  process.exit(1);
+}

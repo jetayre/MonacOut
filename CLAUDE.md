@@ -45,6 +45,26 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 - **🩹 Piège rencontré** : `vercel.json` est **validé strictement** — une simple clé `_comment` a mis **les DEUX projets en ERROR** (monac-out ET monacout). Les sites ont continué de servir le dernier déploiement réussi (aucun utilisateur n'a rien vu), mais plus aucune mise à jour n'aurait pu partir. **Ne jamais mettre de commentaire dans un fichier de configuration JSON** ; et après toute modification de `vercel.json`, vérifier l'état des déploiements (`readyState`), pas seulement que le site répond 200.
 - Règle : pour obtenir des installations, diffuser le **lien App Store** ; garder `monacout.com` pour montrer le produit en dix secondes (à un commerçant par exemple).
 
+## Journal — 11 août 2026 (la reprise de PrinciPocket ne dépend plus de personne)
+
+**❓ LA QUESTION DE STÉPHANIE** : « que peut-on faire pour être sûr que tu mets tous les events qui sont dans PrinciPocket, sans mon intervention ? » Elle avait testé trois événements au hasard : un absent (rentrée des catéchistes), deux introuvables faute du bon nom (salon du livre, Pesquet).
+
+**🐛 POURQUOI L'ANCIEN SCAN RATAIT DES CHOSES.** `principocket-scan.mjs` comparait les **titres** avec un rapprochement flou : **deux mots communs de 4 lettres suffisaient** à déclarer un événement « déjà présent ». « Journée de rentrée 2026 des catéchistes » était confondue avec « Heure du conte rentrée Médiathèque » (*rentrée* + *2026*). C'est un **faux NÉGATIF** — il cache un manque au lieu d'en inventer un, ce qui est bien pire, car rien ne le signale jamais.
+
+**✅ CE QUI REMPLACE — `scripts/import-principocket.mjs`, câblé dans `daily-check.yml`.** Trois principes :
+1. **Comparaison par DATE + LIEU, jamais par titre seul.** Deux événements le même jour au même endroit sont le même ; deux titres qui se ressemblent ne le sont pas.
+2. **Deux sources, pas une** : la liste paginée `/en/events?page=N` ET les pages mois par mois `/en/events-for/AAAA-MM` sur 12 mois. Elles ne contiennent pas la même chose.
+3. **Une fiche par JOUR** pour les événements sur plusieurs jours (le stage de gravure du 9 au 11 n'existait que le 9).
+Il reconnaît aussi les fiches **`ongoing`**, qui couvrent une période mais ne portent que la date du jour — sans ça il croyait manquants Victor Brauner, Heritage at Risk, Toumaï, Magies d'ailleurs et le Mariage du siècle.
+
+**📒 LE REGISTRE — c'est lui qui garantit qu'on ne perd rien.** `principocket-registre.json`, **commité** à chaque passage, garde pour CHAQUE événement PrinciPocket la date où il a été vu la première fois et son sort (`importe` / `deja` / `ecarte` + motif). Sans registre, un événement écarté ne laisse **aucune trace** : il est réexaminé et réécarté chaque nuit, en silence, indéfiniment. **Un écart de plus de 3 jours fait échouer le passage quotidien** — visible en rouge sur GitHub.
+
+**Résultat du premier passage : 169 événements lus, 26 importés** (Monaco Card Show, Café Littéraire, Picnic Music Live, LUXE PACK, SPORTEL, BNI, Shrek, Shishkin, et toute la saison 2027 de l'OPMC — Netrebko, Volodos, Schiff, Dutoit, Stutzmann, Le Tricorne), **8 écartés** pour heure non publiée ou lieu inexploitable, tous inscrits au registre.
+
+**🎺 LES THÈMES DES LIEUX D'APÉRO — limite à connaître.** Balayage des sites des 47 lieux d'apéro/brunch à la recherche de rendez-vous thématiques récurrents : **un seul** (le Twiga) publie son programme sur son site — il annonce vendredi ET samedi, le samedi manquait, 26 fiches → 52. **Tous les autres annoncent sur Instagram**, illisible par un script. Les captures d'écran de Stéphanie restent donc irremplaçables : c'est ainsi qu'on a eu Trumpet Nights et Formula 1 Live chez Sexy Tacos.
+
+**📛 NOMMER LES FICHES COMME LES GENS LES CHERCHENT.** Deux événements bien présents étaient introuvables : le « Salon du livre Monaco » (cherché sous *international book fair* → renommé **Salon International du Livre de Monaco**) et la conférence spatiale du 11 septembre (cherchée sous *Pesquet*, absent du titre). **Règle : le titre doit contenir le nom que le public retiendra** — l'artiste, l'appellation officielle.
+
 ## Journal — 8-9 août 2026 (d'où viennent vraiment les gens + le lien d'invitation mène à l'app)
 
 **🔍 ON SAIT ENFIN PAR OÙ LES GENS ARRIVENT — et ce n'est pas Instagram.** En listant les adresses réellement ouvertes (PostHog, `$current_url`) :

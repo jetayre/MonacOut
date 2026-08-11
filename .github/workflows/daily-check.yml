@@ -38,6 +38,15 @@ jobs:
         run: node principocket-scan.mjs
         continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
 
+      # Reprise INTÉGRALE de PrinciPocket, avec registre persistant. Ne dépend plus de
+      # ce qu'un humain pense à relancer : tourne deux fois par jour, garde la trace
+      # de chaque événement vu, et passe au ROUGE si quelque chose est écarté depuis
+      # plus de 3 jours sans que personne s'en occupe.
+      - name: "📥 Reprise intégrale PrinciPocket (registre + alerte)"
+        id: import
+        run: node scripts/import-principocket.mjs
+        continue-on-error: true
+
       - name: "🤖 Auto-complétion (robot déterministe : ajoute les manquants 100 % sûrs)"
         run: node scripts/auto-complete-events.mjs
         continue-on-error: true   # n'ajoute que lieu+date+heure confirmés ; Le Policier valide juste après
@@ -71,7 +80,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt liens-morts.txt; do
+          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt liens-morts.txt import-principocket.txt principocket-registre.json; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
@@ -108,8 +117,11 @@ jobs:
         run: node send-alert-email.mjs
 
       - name: Statut final (échec visible si le policier ou les invitations ont vu rouge)
-        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure'
+        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure' || steps.import.outcome == 'failure'
         run: |
+          if [ "${{ steps.import.outcome }}" = "failure" ]; then
+            echo "::error::Des evenements PrinciPocket sont ecartes depuis plus de 3 jours — voir import-principocket.txt."
+          fi
           if [ "${{ steps.liens.outcome }}" = "failure" ]; then
             echo "::error::Des liens de fiches sont morts — voir liens-morts.txt et l étape « Liens des fiches »."
           fi
