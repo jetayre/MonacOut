@@ -629,13 +629,16 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 && (!e.ongoing
                     || (joursParticipation[e.id] ? joursParticipation[e.id] === e.date : !!e.premierJour))
               }
-              // Même raison que pour « J'y vais » : une expo apparaît chaque jour, et
-              // toutes ses occurrences partagent le même identifiant. Sans ça, Nadège
-              // et Toma s'affichaient sur TOUS les jours du Mariage du siècle. Le jour
-              // qu'une amie a choisi reste sur SON téléphone : on ne peut pas le
-              // connaître, donc on montre les amies sur la première occurrence, une
-              // seule fois, plutôt que partout.
-              friendsGoing={social ? ((e.ongoing && !e.premierJour) ? [] : social.friendsGoingTo(e.id)) : []}
+              // ⚠️ AUCUNE amie n'est affichée sur une fiche « en cours » dans le fil.
+              // La table `participations` ne stocke QUE l'identifiant de l'événement,
+              // sans date : impossible de savoir quel jour une amie y est allée. Les
+              // afficher sur une occurrence, c'était affirmer un jour faux — Nadège
+              // apparaissait sur « aujourd'hui » alors qu'elle y était allée la semaine
+              // précédente. Elles restent visibles dans la fiche qu'on ouvre, là où
+              // aucun jour n'est sous-entendu.
+              // ➜ Pour les remettre au bon jour, il faut une colonne `jour` dans
+              //    `participations` (voir le journal du 11 août 2026 dans CLAUDE.md).
+              friendsGoing={social ? (e.ongoing ? [] : social.friendsGoingTo(e.id)) : []}
               loggedIn={loggedIn}
               onShowAuth={onShowAuth}
             />

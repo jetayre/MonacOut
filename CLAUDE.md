@@ -53,6 +53,32 @@ Et une règle de méthode, apprise le 11 août 2026 : **vérifier l'affichage ai
 - **🩹 Piège rencontré** : `vercel.json` est **validé strictement** — une simple clé `_comment` a mis **les DEUX projets en ERROR** (monac-out ET monacout). Les sites ont continué de servir le dernier déploiement réussi (aucun utilisateur n'a rien vu), mais plus aucune mise à jour n'aurait pu partir. **Ne jamais mettre de commentaire dans un fichier de configuration JSON** ; et après toute modification de `vercel.json`, vérifier l'état des déploiements (`readyState`), pas seulement que le site répond 200.
 - Règle : pour obtenir des installations, diffuser le **lien App Store** ; garder `monacout.com` pour montrer le produit en dix secondes (à un commerçant par exemple).
 
+## À FAIRE — partager le JOUR d'une participation (identifié le 11 août 2026)
+
+**Le défaut** : la table Supabase `participations` ne contient que `user_id` et
+`event_id`. **Aucune date.** Une exposition ouverte des mois n'a qu'un identifiant :
+impossible de savoir quel jour une amie y est allée. Stéphanie voyait donc « Nadège »
+sur le Mariage du siècle **d'aujourd'hui** alors qu'elle y était allée la semaine
+précédente.
+
+**Contournement en place** : aucune amie n'est affichée sur une fiche `ongoing` dans le
+fil (`HomeScreen`, prop `friendsGoing`). Elles restent visibles dans la fiche qu'on
+ouvre, où aucun jour n'est sous-entendu. Le jour que l'utilisatrice choisit pour
+elle-même est retenu en local (`monacout_jours_participation`), donc jamais partagé.
+
+**Le vrai correctif**, quand Stéphanie pourra exécuter une requête dans Supabase
+(SQL Editor) :
+
+```sql
+alter table participations add column if not exists jour date;
+```
+
+Ensuite, côté code : `toggleParticipation(eventId, jour)` écrit `jour`,
+`useSocial` le relit, et `friendsGoingTo(eventId, date)` ne renvoie que les amies
+inscrites CE jour-là. On peut alors réafficher les amies sur la bonne journée, dans le
+fil comme dans la fiche. **Ne pas encoder le jour dans `event_id`** (par exemple
+`id * 1000 + n° du jour`) : ça casserait les favoris et les participations existantes.
+
 ## Journal — 11 août 2026 (ter) — « où sont les expos ? »
 
 **❓ Question de Stéphanie, en apparence anodine.** Les expositions étaient bien là — 9 en cours dans le fil. Mais en vérifiant j'ai trouvé la panne qu'elle décrivait depuis des jours sans qu'on l'identifie : *« quand je cherche à partir du calendrier je ne les vois pas »*. Je croyais à des événements manquants. C'était un défaut d'affichage.
