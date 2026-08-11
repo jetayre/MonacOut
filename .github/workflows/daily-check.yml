@@ -65,6 +65,13 @@ jobs:
       # APRÈS le générateur nightlife, et c'est essentiel : celui-ci recrée les fiches
       # « le lieu est ouvert » à chaque passage, celui-là les refond en UNE fiche par
       # jour. L'ordre inverse laisserait 1 200 fiches d'apéro revenir deux fois par jour.
+      # Rejouable par construction : reconstruit tout depuis sa config d'horaires
+      # vérifiés, ne dépend d'aucune fiche existante. Même garde-fou que les autres.
+      - name: "🏛️ Une fiche musées par jour (nombre réellement ouvert)"
+        id: musees
+        run: node scripts/musees-du-jour.mjs
+        continue-on-error: true
+
       - name: "🍸 Une fiche par jour pour les lieux simplement ouverts"
         id: soirees
         run: node scripts/soirees-du-jour.mjs
@@ -102,7 +109,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
+          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
@@ -139,7 +146,7 @@ jobs:
         run: node send-alert-email.mjs
 
       - name: Statut final (échec visible si le policier ou les invitations ont vu rouge)
-        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure' || steps.import.outcome == 'failure' || steps.piscines.outcome == 'failure' || steps.soirees.outcome == 'failure'
+        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure' || steps.import.outcome == 'failure' || steps.piscines.outcome == 'failure' || steps.soirees.outcome == 'failure' || steps.musees.outcome == 'failure'
         run: |
           if [ "${{ steps.soirees.outcome }}" = "failure" ]; then
             echo "::error::Les fiches « ce soir » n ont pas pu etre reconstruites — registre soirees-du-jour.json vide ou illisible. Le fil est INCHANGE, rien n a ete perdu."

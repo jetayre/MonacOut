@@ -113,7 +113,9 @@ for (const [cle, groupe] of parTitre) {
 
   // ── 5. Doublon d'une série : même LIEU + même période, mais un titre différent
   //    et une seule occurrence, alors qu'une série couvre déjà ces dates.
-  if (groupe.length === 1) {
+  // Exemption `recap:true` : deux récapitulatifs peuvent porter le même libellé de
+  // lieu (« Musées de Monaco », « Bars & terrasses ») sans être des doublons.
+  if (groupe.length === 1 && !e.recap) {
     const lieu = norm((e.subtitle || "").split(" · ")[0]);
     for (const [autreCle, autre] of parTitre) {
       // Seuil à 3 (et non 5) : le 5 août 2026, le robot a créé « Les Lives du Summer
