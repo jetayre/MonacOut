@@ -742,6 +742,28 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
+  // ── « J'y vais » sur UN LIEU d'une fiche récapitulative ────────────────────────
+  // Les fiches « ce soir », « brunchs » et « musées » listent plusieurs lieux, qui ne
+  // sont pas des événements : ils n'ont pas d'identifiant en base. La table
+  // `participations` ne stocke qu'un `event_id`, donc ce choix est retenu SUR
+  // L'APPAREIL et n'est pas partagé avec les amies. Pour le partager il faut deux
+  // colonnes (`jour`, `lieu`) — voir « À FAIRE » dans CLAUDE.md.
+  const [lieuxYVais, setLieuxYVais] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("monacout_lieux_yvais") || "{}"); }
+    catch { return {}; }
+  });
+
+  function toggleLieuYVais(eventId, lieu) {
+    const cle = `${eventId}|${lieu}`;
+    setLieuxYVais(prev => {
+      const suivant = { ...prev };
+      if (suivant[cle]) delete suivant[cle]; else suivant[cle] = true;
+      try { localStorage.setItem("monacout_lieux_yvais", JSON.stringify(suivant)); } catch { /* quota */ }
+      return suivant;
+    });
+    track("lieu_y_vais", { event_id: eventId, lieu });
+  }
+
   // Jour choisi pour chaque exposition marquée « J'y vais » (voir handleGoingClick).
   const [joursParticipation, setJoursParticipation] = useState(() => {
     try { return JSON.parse(localStorage.getItem("monacout_jours_participation") || "{}"); }
@@ -765,6 +787,8 @@ export default function App() {
       catFilters={catFilters}
       onCatFilter={handleCatFilter}
       onClearFilters={() => setCatFilters([])}
+      lieuxYVais={lieuxYVais}
+      onToggleLieuYVais={toggleLieuYVais}
       showMenu={showMenu}
       setShowMenu={setShowMenu}
       selectedEvent={selectedEvent}

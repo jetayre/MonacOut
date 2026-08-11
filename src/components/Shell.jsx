@@ -75,7 +75,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
+export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0, lieuxYVais = {}, onToggleLieuYVais }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -224,7 +224,31 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                           <span style={{ display: "block", fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{d.name}</span>
                           {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
                         </span>
-                        <span style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+                        <span style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                          {/* « J'y vais » lieu par lieu. Retenu sur l'appareil : un lieu
+                              d'une fiche récapitulative n'est pas un événement, il n'a
+                              pas d'identifiant en base. Non partagé avec les amies. */}
+                          {onToggleLieuYVais && (() => {
+                            const jyVais = !!lieuxYVais[`${selectedEvent.id}|${d.name}`];
+                            return (
+                              <button
+                                onClick={() => onToggleLieuYVais(selectedEvent.id, d.name)}
+                                aria-pressed={jyVais}
+                                style={{
+                                  display: "inline-flex", alignItems: "center", gap: 3,
+                                  padding: "4px 8px", cursor: "pointer",
+                                  border: `1px solid ${jyVais ? GOLD : "rgba(15,29,58,0.18)"}`,
+                                  borderRadius: 1, background: jyVais ? "#FFF8EC" : "none",
+                                  fontFamily: "'Josefin Sans', sans-serif",
+                                  fontSize: 8.5, fontWeight: 600, letterSpacing: 1,
+                                  textTransform: "uppercase",
+                                  color: jyVais ? GOLD : NAVY, whiteSpace: "nowrap",
+                                }}
+                              >
+                                {jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}
+                              </button>
+                            );
+                          })()}
                           {/* Téléphone cliquable. `tel:` ouvre le composeur du téléphone,
                               ce n'est PAS une page web : aucun risque d'écran noir comme
                               avec target="_blank". Demande de Stéphanie : une icône à

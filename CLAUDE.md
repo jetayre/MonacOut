@@ -71,6 +71,7 @@ elle-même est retenu en local (`monacout_jours_participation`), donc jamais par
 
 ```sql
 alter table participations add column if not exists jour date;
+alter table participations add column if not exists lieu text;
 ```
 
 Ensuite, côté code : `toggleParticipation(eventId, jour)` écrit `jour`,
@@ -554,6 +555,22 @@ bouton **« Infos · n lieux »**, sans quoi rien n'indique qu'il faut la touche
 ne les concernent pas (pas de lien officiel unique, pas de période, libellé de lieu
 partagé avec un autre récapitulatif). **`recap` n'est pas un moyen de faire taire un
 signalement gênant** — une vraie fiche mal saisie doit être corrigée.
+
+### « J'y vais » lieu par lieu sur une fiche récapitulative
+
+Dans la fiche qui s'ouvre (« ce soir », « brunchs », « musées »), chaque lieu porte un
+bouton **« J'y vais »** à côté de son nom — demande de Stéphanie du 11 août 2026.
+
+⚠️ **Ce choix est retenu SUR L'APPAREIL** (`monacout_lieux_yvais`), pas en base, et
+**n'est donc pas partagé avec les amies**. Raison : un lieu listé dans un récapitulatif
+n'est pas un événement, il n'a pas d'identifiant en base, et `participations` ne stocke
+qu'un `event_id`. **Ne JAMAIS bricoler un identifiant synthétique** (du genre
+`id_carte × 100 + rang du lieu`) : le rang change dès qu'un lieu ferme, et la
+participation glisserait en silence sur un autre lieu.
+
+Le partage devient possible avec les deux colonnes décrites au § « À FAIRE — partager le
+JOUR d'une participation » : `jour date` et `lieu text`. Le couple (jour, lieu) suffit
+alors à désigner précisément où va une amie ce soir-là.
 
 ### Les amies sur une fiche « en cours »
 
