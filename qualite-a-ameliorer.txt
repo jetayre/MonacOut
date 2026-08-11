@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2703 fiches inspectées le 2026-08-11.
+1510 fiches inspectées le 2026-08-11.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)

@@ -62,6 +62,14 @@ jobs:
       - name: 🍸 Régénère les récurrences nightlife (fenêtre glissante 12 mois, idempotent)
         run: node scripts/restore-nightlife-monthly.mjs
 
+      # APRÈS le générateur nightlife, et c'est essentiel : celui-ci recrée les fiches
+      # « le lieu est ouvert » à chaque passage, celui-là les refond en UNE fiche par
+      # jour. L'ordre inverse laisserait 1 200 fiches d'apéro revenir deux fois par jour.
+      - name: "🍸 Une fiche par jour pour les lieux simplement ouverts"
+        id: soirees
+        run: node scripts/soirees-du-jour.mjs
+        continue-on-error: true
+
       - name: 🚓 LE POLICIER — autofix + contrôle (dates, géo, liens, noms, traduction)
         id: police
         run: node police-events.mjs
@@ -94,7 +102,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
+          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then

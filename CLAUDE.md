@@ -486,6 +486,46 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 }
 ```
 
+### Une fiche par jour pour « le lieu est simplement ouvert » (`sdj:1`)
+
+`scripts/soirees-du-jour.mjs`, lancé deux fois par jour **après** le générateur nightlife.
+
+**Le constat du 11 août 2026** : 1 426 fiches sur 2 708 étaient des apéros, brunchs et
+soirées. Le 99 Sushi Bar en avait **185**, répétant « l'apéro quotidien, 18h-19h ».
+Aucune information propre à la date : un annuaire déguisé en événements, qui noyait les
+vrais rendez-vous. Décision de Stéphanie : *« une fiche tous les jours générale, et quand
+événement particulier dans un des lieux une fiche séparée. »*
+
+| | Devient |
+|---|---|
+| « le lieu est ouvert, comme d'habitude » | fondu dans **une** fiche « CE SOIR : n terrasses ouvertes » (18h) ou « BRUNCHS : n adresses » (12h) |
+| un rendez-vous qui a un nom | **garde sa fiche** : Trumpet Nights, soirées Twiga, sunset DJ, Lilly's Club Night, pub night du Ship & Castle, concerts, dégustations |
+
+Résultat : **1 194 fiches refondues en 185 + 56**, soit ~950 de moins dans le fil.
+
+**La liste des titres génériques est FERMÉE et écrite à la main** dans le script. Ne
+jamais la remplacer par une heuristique du genre « le titre commence par APÉRO » :
+« APÉRO NORMA » est générique, « SUSHI SOUS LES ÉTOILES BUDDHA-BAR » non. **En cas de
+doute : garder la fiche séparée.** Mieux vaut une fiche de trop qu'un rendez-vous effacé.
+
+**La liste du jour vient des fiches réellement prévues ce jour-là**, jamais d'une liste
+figée : si un lieu ne travaille pas le dimanche, il n'apparaît pas dans la fiche du
+dimanche. Les jours d'ouverture sont déjà encodés dans `restore-nightlife-monthly.mjs`
+(`wd:`) — il n'y a rien à aller rechercher, donc rien à inventer.
+
+**Les noms de tous les lieux sont dans la description**, avec leurs horaires et leurs
+téléphones : la recherche doit continuer de trouver « 99 Sushi Bar » un mardi, même si
+ce lieu n'a plus de fiche à lui ce jour-là.
+
+⚠️ **L'ordre dans le CI est essentiel.** `restore-nightlife-monthly.mjs` recrée les
+fiches génériques à chaque passage ; `soirees-du-jour.mjs` doit tourner **après**, sinon
+les 1 200 fiches d'apéro reviennent deux fois par jour.
+
+⚠️ **Le champ `year` est absent pour l'année courante et présent pour les autres.** En
+regroupant par « date + année » sans normaliser, `Mar 11 août` et `Mar 11 août + year:2026`
+tombaient dans deux paquets → **deux fiches le même soir**, chacune avec la moitié des
+lieux. Vaut pour tout script qui regroupe par jour.
+
 ### Fiches RÉCAPITULATIVES (`recap: true`)
 
 Une fiche qui **résume d'autres fiches** — « Les expositions de l'hiver à Monaco »,

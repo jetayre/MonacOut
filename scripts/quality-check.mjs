@@ -106,7 +106,10 @@ for (const [cle, groupe] of parTitre) {
   }
 
   // ── 4. Pas de lien officiel : on ne peut ni réserver ni se renseigner.
-  if (!e.link) pb.sansLien.push(`${e.date} · ${titre(e)} — ${(e.subtitle || "").split(" · ")[0]} (id ${e.id})`);
+  // Une fiche `recap:true` (« ce soir : 6 terrasses ouvertes », « les expositions de
+  // l'hiver ») résume PLUSIEURS lieux : il n'existe aucun lien unique à mettre, et
+  // les noms + téléphones sont dans sa description. On ne la signale donc pas.
+  if (!e.link && !e.recap) pb.sansLien.push(`${e.date} · ${titre(e)} — ${(e.subtitle || "").split(" · ")[0]} (id ${e.id})`);
 
   // ── 5. Doublon d'une série : même LIEU + même période, mais un titre différent
   //    et une seule occurrence, alors qu'une série couvre déjà ces dates.
