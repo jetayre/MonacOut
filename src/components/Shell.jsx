@@ -225,6 +225,20 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                           {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+                          {/* Téléphone cliquable. `tel:` ouvre le composeur du téléphone,
+                              ce n'est PAS une page web : aucun risque d'écran noir comme
+                              avec target="_blank". Demande de Stéphanie : une icône à
+                              toucher plutôt que le numéro écrit en clair. */}
+                          {d.tel && (
+                            <a href={`tel:${d.tel.replace(/[^+0-9]/g, "")}`}
+                               title={lang === "en" ? `Call ${d.name}` : `Appeler ${d.name}`}
+                               aria-label={lang === "en" ? `Call ${d.name}` : `Appeler ${d.name}`}
+                               style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", lineHeight: 1 }}>
+                              <svg width="17" height="17" viewBox="0 0 24 24" fill={GOLD} aria-hidden="true">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                              </svg>
+                            </a>
+                          )}
                           <a href={mapUrl} target="_blank" rel="noopener noreferrer" title={lang === "en" ? "Map" : "Carte"} style={{ fontSize: 15, textDecoration: "none", lineHeight: 1 }}>📍</a>
                           {d.link && !isMapLink && <a href={d.link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, textDecoration: "none" }}>{lang === "en" ? "Visit →" : "Voir →"}</a>}
                         </span>

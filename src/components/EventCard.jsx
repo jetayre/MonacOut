@@ -497,6 +497,25 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               {isGoing ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}
             </button>
           )}
+          {/* Fiche récapitulative (« ce soir : n terrasses ») : rien n'indiquait qu'il
+              fallait la toucher pour voir les lieux. On le dit explicitement. */}
+          {Array.isArray(event.directory) && event.directory.length > 0 && (
+            <button
+              onClick={e => { e.stopPropagation(); onCardClick?.(event); }}
+              style={{
+                alignSelf: "flex-start",
+                display: "inline-flex", alignItems: "center", gap: 5,
+                padding: "6px 12px",
+                border: `1px solid ${GOLD_FRAME}`,
+                borderRadius: 1, background: "#FFF8EC", cursor: "pointer",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+                textTransform: "uppercase", color: GOLD_FRAME,
+              }}
+            >
+              {lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`}
+            </button>
+          )}
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{

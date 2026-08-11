@@ -205,34 +205,43 @@ const listeLieux = arr => {
 
 // Le texte cite CHAQUE lieu par son nom : la recherche doit continuer de trouver
 // « 99 Sushi Bar » un mardi, même si le lieu n'a plus de fiche à lui ce jour-là.
+// `directory` : la liste STRUCTURÉE des lieux, un par ligne dans la fiche qui s'ouvre,
+// avec une icône téléphone cliquable. Demande de Stéphanie : « mets-les l'un en dessous
+// de l'autre avec l'icône tel qu'on peut cliquer, pas leur tél » — donc le numéro ne
+// s'écrit plus dans le texte, il devient un bouton d'appel.
+const annuaireJSON = lieux => "[" + lieux.map(e => {
+  const bouts = [`name:"${(e.lieu || "").replace(/"/g, "")}"`];
+  if (e.heure) bouts.push(`info:"${e.heure.replace(/"/g, "")}"`);
+  if (e.tel) bouts.push(`tel:"${e.tel.replace(/"/g, "")}"`);
+  return "{" + bouts.join(",") + "}";
+}).join(",") + "]";
+
 function carteSoir(id, date, annee, lieux) {
   const noms = lieux.map(e => e.heure && /^\d/.test(e.heure) ? `${e.lieu} (${e.heure})` : e.lieu);
-  const tel = lieux.filter(e => e.tel).map(e => `${e.lieu} ${e.tel}`);
   const desc = `Les terrasses et bars de la Principauté ouverts ce soir, sans soirée particulière : ${noms.join(" · ")}.`
-    + (tel.length ? ` Réservations : ${tel.join(" · ")}.` : "")
+    + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
     + ` Les soirées à thème et les concerts ont leur propre fiche.`;
   const descEn = `The Principality's terraces and bars open tonight, with no special event on: ${noms.join(" · ")}.`
-    + (tel.length ? ` Bookings: ${tel.join(" · ")}.` : "")
+    + ` Tap the card to see them one by one and call in a single move.`
     + ` Themed nights and concerts have their own cards.`;
   return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"APÉRO",date:"${date}",time:"18h00",`
     + `title:"CE SOIR${NL}${lieux.length} TERRASSE${lieux.length > 1 ? "S" : ""}${NL}OUVERTE${lieux.length > 1 ? "S" : ""}",subtitle:"Bars & terrasses · Principauté",`
-    + `desc:"${desc}",descEn:"${descEn}",free:true,hot:false,recap:true,sdj:1,`
+    + `desc:"${desc}",descEn:"${descEn}",free:true,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
     + `fallback:"linear-gradient(150deg,#1A2A4A,#2A4A6A,#0A1428)",accent:"#A8C8E8",emoji:"🍸",`
     + `source:"Monac'Out",quarter:"Monaco"},`;
 }
 
 function carteBrunch(id, date, annee, lieux) {
   const noms = lieux.map(e => e.heure && /^\d/.test(e.heure) ? `${e.lieu} (${e.heure})` : e.lieu);
-  const tel = lieux.filter(e => e.tel).map(e => `${e.lieu} ${e.tel}`);
   const desc = `Où bruncher à Monaco ce jour-là : ${noms.join(" · ")}.`
-    + (tel.length ? ` Réservations : ${tel.join(" · ")}.` : "")
+    + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
     + ` Les brunchs événements gardent leur propre fiche.`;
   const descEn = `Where to brunch in Monaco that day: ${noms.join(" · ")}.`
-    + (tel.length ? ` Bookings: ${tel.join(" · ")}.` : "")
+    + ` Tap the card to see them one by one and call in a single move.`
     + ` Special brunch events keep their own cards.`;
   return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"BRUNCH",date:"${date}",time:"12h00",`
     + `title:"BRUNCH${lieux.length > 1 ? "S" : ""}${NL}${lieux.length} ADRESSE${lieux.length > 1 ? "S" : ""}${NL}À MONACO",subtitle:"Brunchs · Principauté",`
-    + `desc:"${desc}",descEn:"${descEn}",free:true,hot:false,recap:true,sdj:1,`
+    + `desc:"${desc}",descEn:"${descEn}",free:true,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
     + `fallback:"linear-gradient(150deg,#3A2A10,#6A5228,#241800)",accent:"#E8D0A0",emoji:"🥐",`
     + `source:"Monac'Out",quarter:"Monaco"},`;
 }

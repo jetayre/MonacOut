@@ -629,7 +629,13 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 && (!e.ongoing
                     || (joursParticipation[e.id] ? joursParticipation[e.id] === e.date : !!e.premierJour))
               }
-              friendsGoing={social ? social.friendsGoingTo(e.id) : []}
+              // Même raison que pour « J'y vais » : une expo apparaît chaque jour, et
+              // toutes ses occurrences partagent le même identifiant. Sans ça, Nadège
+              // et Toma s'affichaient sur TOUS les jours du Mariage du siècle. Le jour
+              // qu'une amie a choisi reste sur SON téléphone : on ne peut pas le
+              // connaître, donc on montre les amies sur la première occurrence, une
+              // seule fois, plutôt que partout.
+              friendsGoing={social ? ((e.ongoing && !e.premierJour) ? [] : social.friendsGoingTo(e.id)) : []}
               loggedIn={loggedIn}
               onShowAuth={onShowAuth}
             />
