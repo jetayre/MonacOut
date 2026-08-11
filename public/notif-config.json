@@ -15,25 +15,7 @@
   "_latestVersion": "Dernière version publiée sur l'App Store. Bumper cette valeur (ex: 1.8) après avoir publié une nouvelle version → les apps plus anciennes afficheront un bandeau « Mettre à jour ». git push suffit, pas besoin de repasser par Apple.",
   "latestVersion": "2.1",
   "_announcements": "Message à TOUS (inscrits compris). Annonces DATÉES : l'app affiche « Ce soir : » le jour même et « Demain soir : » la veille, et bascule toute seule vers l'événement suivant. date=AAAA-MM-JJ ; leadDays=nb de jours avant où l'afficher (défaut 1) ; titleFR/titleEN = juste l'événement (SANS 'ce soir', l'app l'ajoute). git push suffit.",
-  "announcements": [
-    {
-      "id": "auto-2058",
-      "date": "2026-08-11",
-      "titleFR": "LISA STANSFIELD — Salle des Étoiles, 20h30",
-      "titleEN": "LISA STANSFIELD — Salle des Étoiles, 20h30",
-      "cta": "Découvrir",
-      "ctaEn": "Discover",
-      "link": "https://www.montecarlosbm.com/fr/spectacles/monte-carlo-summer-festival"
-    }
-  ],
-  "_announcement": "Ancien format (repli statique pour les apps pas encore mises à jour avec la logique 'ce soir/demain').",
-  "announcement": {
-    "id": "auto-2058-cesoir",
-    "message": "Ce soir : LISA STANSFIELD — Salle des Étoiles, 20h30.",
-    "messageEn": "Tonight: LISA STANSFIELD — Salle des Étoiles, 20h30.",
-    "cta": "Découvrir",
-    "ctaEn": "Discover",
-    "link": "https://www.montecarlosbm.com/fr/spectacles/monte-carlo-summer-festival",
-    "until": "2026-08-11"
-  }
+  "announcements": [],
+  "_announcement": "DÉSACTIVÉ le 11 août 2026. Le bandeau/carré d'annonce a été retiré du code (demande de Stéphanie : « supprime le mais ne casse rien »), mais les apps restées sur un ancien bundle OTA continuaient de l'afficher : 19 personnes déclenchaient encore annonce_vue sur 3 jours. Ce fichier étant lu en direct, le mettre à null éteint le carré chez TOUT LE MONDE, anciennes versions comprises. L'étape refresh-announcement du CI est débranchée pour qu'il ne revienne pas. Pour le réactiver un jour : remettre l'étape et repartir de announcements[].",
+  "announcement": null
 }

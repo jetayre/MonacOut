@@ -73,8 +73,14 @@ jobs:
       - name: 🎬 Rafraîchir la carte cinéma (date du jour)
         run: node scripts/refresh-cinema.mjs
 
-      - name: 🔔 Recalcule le repli du bandeau annonce (Ce soir / Demain soir)
-        run: node scripts/refresh-announcement.mjs
+      # DÉBRANCHÉ le 11 août 2026. Le carré d'annonce a été retiré du code, mais les
+      # apps restées sur un ancien bundle OTA l'affichaient encore (19 personnes
+      # déclenchaient annonce_vue sur 3 jours) — avec un bouton « Découvrir » qui
+      # ouvrait un site externe, la cause de l'écran noir. public/notif-config.json
+      # étant lu en direct, `announcement: null` l'éteint partout, anciennes versions
+      # comprises ; il ne faut donc plus que ce script le régénère.
+      # - name: 🔔 Recalcule le repli du bandeau annonce (Ce soir / Demain soir)
+      #   run: node scripts/refresh-announcement.mjs
 
       # Le robot tourne ici (GitHub Actions), où PrinciPocket est joignable — ce n'est
       # PAS le cas depuis le cloud Anthropic. On commite donc sa liste de lieux à
