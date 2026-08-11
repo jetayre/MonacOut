@@ -30,14 +30,23 @@
  *
  * Usage : node scripts/soirees-du-jour.mjs [--dry]
  */
-import { readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FICHIER = join(__dirname, "..", "src", "data", "events.js");
 const SORTIE = join(__dirname, "..", "soirees-du-jour.txt");
+// ⚠️ REGISTRE — sans lui, ce script DÉTRUIT des données. Éprouvé le 11 août 2026 :
+// au 1er passage il a bien refondu 1 194 fiches en 241 ; au 2e il a supprimé ses
+// propres 241 fiches et n'a rien pu reconstruire, puisque les fiches génériques qui
+// lui servaient de source avaient disparu. 2 707 → 1 754 → 1 513 fiches, en silence.
+// Le registre garde la composition de chaque journée : le script redevient rejouable.
+const REGISTRE = join(__dirname, "..", "soirees-du-jour.json");
 const DRY = process.argv.includes("--dry");
+// --reset : ignore le registre et repart des seules fiches présentes. À utiliser
+// quand les lieux ou leurs jours d'ouverture ont vraiment changé.
+const RESET = process.argv.includes("--reset");
 const ANNEE_COURANTE = new Date().getFullYear();
 
 // ── Les titres « le lieu est simplement ouvert » ──────────────────────────────
@@ -129,6 +138,47 @@ lignes.forEach((l, i) => {
   aSupprimer.add(i);
 });
 
+// ── Fusion avec le registre ───────────────────────────────────────────────────
+// L'extraction ne voit que les fiches génériques ENCORE présentes. Après un premier
+// passage, il n'y en a plus : c'est le registre qui fournit la composition du jour.
+// Le générateur nightlife en recrée une partie à chaque passage (les `nlg:1`), jamais
+// les fiches écrites à la main — d'où une fusion par UNION, jamais un remplacement.
+// Pour retirer un lieu pour de bon : `--reset`, ou supprimer sa ligne du registre.
+let registre = {};
+if (!RESET && existsSync(REGISTRE)) {
+  try { registre = JSON.parse(readFileSync(REGISTRE, "utf8")) || {}; } catch { registre = {}; }
+}
+
+const MOIS_NUM = { jan:0, "fév":1, mar:2, avr:3, mai:4, juin:5, juil:6, "août":7, sep:8, oct:9, nov:10, "déc":11 };
+function dateDeLaCle(cle) {
+  const [d, an] = cle.split("|");
+  const p = d.trim().split(" ");
+  const m = MOIS_NUM[p[2]];
+  if (m === undefined || isNaN(parseInt(p[1]))) return null;
+  return new Date(Number(an) || ANNEE_COURANTE, m, parseInt(p[1]));
+}
+
+const union = (a = [], b = []) => {
+  const vus = new Set(); const out = [];
+  for (const e of [...a, ...b]) if (e && e.lieu && !vus.has(e.lieu)) { vus.add(e.lieu); out.push(e); }
+  return out;
+};
+
+for (const [cle, v] of parJour) {
+  registre[cle] = {
+    soir: union(registre[cle]?.soir, v.soir),
+    brunch: union(registre[cle]?.brunch, v.brunch),
+  };
+}
+
+// Purge les journées passées : le nettoyage quotidien les retire du fil de toute façon.
+const hier = new Date(); hier.setHours(0, 0, 0, 0); hier.setDate(hier.getDate() - 1);
+let purgees = 0;
+for (const cle of Object.keys(registre)) {
+  const d = dateDeLaCle(cle);
+  if (!d || d < hier) { delete registre[cle]; purgees++; }
+}
+
 // ── Génération ────────────────────────────────────────────────────────────────
 const NL = "\\n";
 const listeLieux = arr => {
@@ -175,11 +225,14 @@ function carteBrunch(id, date, annee, lieux) {
 let idSoir = 930000, idBrunch = 940000;
 const nouvelles = [];
 let nbSoir = 0, nbBrunch = 0;
-for (const [cle, v] of parJour) {
+// On génère depuis le REGISTRE, pas depuis la seule extraction : c'est ce qui rend le
+// script rejouable. Tri par date pour que les ids restent stables d'un passage à l'autre.
+for (const cle of Object.keys(registre).sort((a, b) => (dateDeLaCle(a) || 0) - (dateDeLaCle(b) || 0))) {
+  const v = registre[cle];
   const [date, an] = cle.split("|");
   // Même convention que le reste du fichier : pas de `year` pour l'année courante.
   const annee = Number(an) === ANNEE_COURANTE ? "" : an;
-  const s = listeLieux(v.soir), b = listeLieux(v.brunch);
+  const s = listeLieux(v.soir || []), b = listeLieux(v.brunch || []);
   if (s.length) { nouvelles.push(carteSoir(idSoir++, date, annee, s)); nbSoir++; }
   if (b.length) { nouvelles.push(carteBrunch(idBrunch++, date, annee, b)); nbBrunch++; }
 }
@@ -191,9 +244,21 @@ const idx = gardees.lastIndexOf("];") >= 0
   : -1;
 if (idx === -1) { console.error("✗ Marqueur `];` introuvable — rien n'a été écrit."); process.exit(1); }
 
-const sortie = [...gardees.slice(0, idx), ...nouvelles, ...gardees.slice(idx)].join("\n");
-
 const retirees = aSupprimer.size - dejaGenerees;
+
+// ── GARDE-FOU. C'est LUI qui aurait évité l'incident du 11 août 2026 ──────────
+// Ce script retire des fiches puis en écrit d'autres. Si la deuxième moitié échoue
+// pour une raison quelconque, il ne reste qu'une suppression — 1 200 fiches perdues
+// sans un mot. On refuse donc d'écrire un fichier qui enlève sans remplacer.
+// Mieux vaut un fil inchangé qu'un fil amputé : la même règle que pour les piscines.
+if (aSupprimer.size > 0 && nouvelles.length === 0) {
+  console.error(`✗ ${aSupprimer.size} fiche(s) à retirer mais AUCUNE fiche du jour à écrire.`);
+  console.error("  Le fichier n'a PAS été modifié. Registre vide ou illisible ?");
+  console.error(`  Registre : ${REGISTRE}`);
+  process.exit(1);
+}
+
+const sortie = [...gardees.slice(0, idx), ...nouvelles, ...gardees.slice(idx)].join("\n");
 const rapport = [
   `FICHES « CE SOIR » / « BRUNCHS » — ${new Date().toISOString().slice(0, 10)}`,
   ``,
@@ -201,6 +266,7 @@ const rapport = [
   `Anciennes fiches du jour remplacées : ${dejaGenerees}`,
   `Fiches « ce soir » créées : ${nbSoir}`,
   `Fiches « brunchs » créées : ${nbBrunch}`,
+  `Journées au registre : ${Object.keys(registre).length} (${purgees} passées purgées)`,
   ``,
   `Gain net : ${retirees - nbSoir - nbBrunch} fiches de moins dans le fil.`,
   ``,
@@ -211,4 +277,5 @@ const rapport = [
 console.log(rapport);
 if (DRY) { console.log("\n(--dry : rien n'a été écrit)"); process.exit(0); }
 writeFileSync(FICHIER, sortie);
+writeFileSync(REGISTRE, JSON.stringify(registre, null, 1) + "\n");
 writeFileSync(SORTIE, rapport + "\n");

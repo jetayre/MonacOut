@@ -102,7 +102,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
+          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
@@ -139,8 +139,11 @@ jobs:
         run: node send-alert-email.mjs
 
       - name: Statut final (échec visible si le policier ou les invitations ont vu rouge)
-        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure' || steps.import.outcome == 'failure' || steps.piscines.outcome == 'failure'
+        if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure' || steps.import.outcome == 'failure' || steps.piscines.outcome == 'failure' || steps.soirees.outcome == 'failure'
         run: |
+          if [ "${{ steps.soirees.outcome }}" = "failure" ]; then
+            echo "::error::Les fiches « ce soir » n ont pas pu etre reconstruites — registre soirees-du-jour.json vide ou illisible. Le fil est INCHANGE, rien n a ete perdu."
+          fi
           if [ "${{ steps.piscines.outcome }}" = "failure" ]; then
             echo "::error::Un planning de piscine n a pas pu etre lu — voir piscines.txt. Les fiches existantes ont ete conservees."
           fi

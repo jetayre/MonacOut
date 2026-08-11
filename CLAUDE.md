@@ -521,6 +521,18 @@ ce lieu n'a plus de fiche à lui ce jour-là.
 fiches génériques à chaque passage ; `soirees-du-jour.mjs` doit tourner **après**, sinon
 les 1 200 fiches d'apéro reviennent deux fois par jour.
 
+🚨 **Un script qui RETIRE puis ÉCRIT doit être rejouable, et refuser d'écrire s'il n'a
+rien à mettre.** Éprouvé le 11 août 2026 : au 1ᵉʳ passage le script a bien refondu
+1 194 fiches en 241 ; au 2ᵉ il a supprimé ses propres 241 fiches et n'a rien pu
+reconstruire, puisque les fiches génériques qui lui servaient de source avaient
+disparu. **2 707 → 1 754 → 1 513 fiches, en silence, et c'est parti en production.**
+Deux protections, à reprendre dans tout script du même genre :
+- **un registre** (`soirees-du-jour.json`, commité par le CI) qui garde la composition
+  de chaque journée, pour que le script puisse toujours reconstruire ;
+- **un garde-fou** : si des fiches sont à retirer mais qu'aucune n'est à écrire, le
+  fichier n'est PAS modifié et la sortie est 1. Mieux vaut un fil inchangé qu'un fil
+  amputé — la même règle que pour les plannings de piscine.
+
 ⚠️ **Le champ `year` est absent pour l'année courante et présent pour les autres.** En
 regroupant par « date + année » sans normaliser, `Mar 11 août` et `Mar 11 août + year:2026`
 tombaient dans deux paquets → **deux fiches le même soir**, chacune avec la moitié des
