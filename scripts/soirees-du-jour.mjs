@@ -92,8 +92,11 @@ const GENERIQUES_BRUNCH = [
   "HEALTHY BRUNCH WOO MONACO",
 ];
 
+// ⚠️ L'apostrophe devient une ESPACE. Sans ça « BRUNCH CLUB D'AVIRON » ne
+// correspondait pas à l'entrée « BRUNCH CLUB D AVIRON » de la liste, et ses 26 fiches
+// restaient dans le fil sans qu'on s'en aperçoive. Écrire les entrées SANS apostrophe.
 const plat = s => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "")
-  .replace(/[^A-Za-z0-9&' -]/g, " ").replace(/\s+/g, " ").trim().toUpperCase();
+  .replace(/[^A-Za-z0-9& -]/g, " ").replace(/\s+/g, " ").trim().toUpperCase();
 
 const estGenerique = (titre, liste) => {
   const t = plat(titre);
@@ -133,7 +136,7 @@ lignes.forEach((l, i) => {
   if (!parJour.has(cle)) parJour.set(cle, { soir: [], brunch: [] });
 
   const lieu = (champ(l, "subtitle").split(" · ")[0] || "").trim();
-  const entree = { lieu, heure: champ(l, "time"), tel: champ(l, "phone") };
+  const entree = { lieu, heure: champ(l, "time"), tel: champ(l, "phone"), titre: plat(titre) };
   parJour.get(cle)[soir ? "soir" : "brunch"].push(entree);
   aSupprimer.add(i);
 });
@@ -164,6 +167,18 @@ const union = (a = [], b = []) => {
   return out;
 };
 
+// Mémoire des titres réellement reconnus, tous passages confondus. Une entrée de la
+// liste qui n'a JAMAIS rien apparié est une faute de frappe : on le dit clairement,
+// sinon un lieu reste dans le fil sans que personne le remarque (cas Club d'Aviron).
+registre.__titresFondus = Array.isArray(registre.__titresFondus) ? registre.__titresFondus : [];
+for (const [, v] of parJour) {
+  for (const e of [...(v.soir || []), ...(v.brunch || [])]) {
+    if (e.titre && !registre.__titresFondus.includes(e.titre)) registre.__titresFondus.push(e.titre);
+  }
+}
+const jamaisVues = [...GENERIQUES_SOIR, ...GENERIQUES_BRUNCH]
+  .filter(g => !registre.__titresFondus.some(t => t.startsWith(g)));
+
 for (const [cle, v] of parJour) {
   registre[cle] = {
     soir: union(registre[cle]?.soir, v.soir),
@@ -175,6 +190,7 @@ for (const [cle, v] of parJour) {
 const hier = new Date(); hier.setHours(0, 0, 0, 0); hier.setDate(hier.getDate() - 1);
 let purgees = 0;
 for (const cle of Object.keys(registre)) {
+  if (cle.startsWith("__")) continue;
   const d = dateDeLaCle(cle);
   if (!d || d < hier) { delete registre[cle]; purgees++; }
 }
@@ -227,7 +243,7 @@ const nouvelles = [];
 let nbSoir = 0, nbBrunch = 0;
 // On génère depuis le REGISTRE, pas depuis la seule extraction : c'est ce qui rend le
 // script rejouable. Tri par date pour que les ids restent stables d'un passage à l'autre.
-for (const cle of Object.keys(registre).sort((a, b) => (dateDeLaCle(a) || 0) - (dateDeLaCle(b) || 0))) {
+for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a, b) => (dateDeLaCle(a) || 0) - (dateDeLaCle(b) || 0))) {
   const v = registre[cle];
   const [date, an] = cle.split("|");
   // Même convention que le reste du fichier : pas de `year` pour l'année courante.
@@ -266,7 +282,7 @@ const rapport = [
   `Anciennes fiches du jour remplacées : ${dejaGenerees}`,
   `Fiches « ce soir » créées : ${nbSoir}`,
   `Fiches « brunchs » créées : ${nbBrunch}`,
-  `Journées au registre : ${Object.keys(registre).length} (${purgees} passées purgées)`,
+  `Journées au registre : ${Object.keys(registre).filter(k => !k.startsWith("__")).length} (${purgees} passées purgées)`,
   ``,
   `Gain net : ${retirees - nbSoir - nbBrunch} fiches de moins dans le fil.`,
   ``,
@@ -274,6 +290,10 @@ const rapport = [
   `sunset DJ, Lilly's Club Night, pub night Ship & Castle, concerts, dégustations…).`,
 ].join("\n");
 
+if (jamaisVues.length) {
+  console.error("\n⚠️  Entrée(s) de la liste qui n'ont JAMAIS rien apparié — faute de frappe ?");
+  jamaisVues.forEach(g => console.error("   ✗ " + g));
+}
 console.log(rapport);
 if (DRY) { console.log("\n(--dry : rien n'a été écrit)"); process.exit(0); }
 writeFileSync(FICHIER, sortie);
