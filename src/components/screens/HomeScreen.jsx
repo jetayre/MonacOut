@@ -81,11 +81,31 @@ function parseEventDate(e) {
   return new Date(e.year || new Date().getFullYear(), month, day);
 }
 
+// Une expo « en cours » (ongoing:true) ne porte qu'UNE seule date — celle du jour,
+// remise à jour chaque nuit. Elle disparaissait donc dès qu'on demandait le week-end
+// ou une date de septembre au calendrier, alors qu'elle est ouverte jusqu'en janvier.
+// On la fait apparaître sur toute sa durée : elle a commencé (sa date ≤ fin demandée)
+// et elle n'est pas terminée (son `until` ≥ début demandé).
+function couvreLaPeriode(e, debut, fin) {
+  if (!e.ongoing || !e.until) return false;
+  const finExpo = new Date(e.until + "T00:00:00");
+  if (isNaN(finExpo)) return false;
+  const d = parseEventDate(e);
+  return !!d && finExpo >= debut && d <= fin;
+}
+
 function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date()); const weekendDates = getWeekendDates();
   switch (filterId) {
     case "today": { const y = new Date().getFullYear(); return events.filter(e => e.date === todayStr && (e.year || y) === y); }
-    case "weekend": { const y = new Date().getFullYear(); return events.filter(e => weekendDates.includes(e.date) && (e.year || y) === y); }
+    case "weekend": {
+      const y = new Date().getFullYear();
+      const t = new Date(); t.setHours(0, 0, 0, 0); const jour = t.getDay();
+      const sam = new Date(t); sam.setDate(t.getDate() + (jour === 0 ? 6 : jour === 6 ? 0 : 6 - jour));
+      const dim = new Date(t); dim.setDate(t.getDate() + (jour === 0 ? 0 : 7 - jour));
+      return events.filter(e =>
+        (weekendDates.includes(e.date) && (e.year || y) === y) || couvreLaPeriode(e, sam, dim));
+    }
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
       const in7 = new Date(today); in7.setDate(today.getDate() + 6);
@@ -252,7 +272,10 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     });
   } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
-    filtered = filterByCats(events.filter(e => { const d = parseEventDate(e); return d && d >= rangeStart && d <= endBound; }), catFilters);
+    filtered = filterByCats(events.filter(e => {
+      const d = parseEventDate(e);
+      return (d && d >= rangeStart && d <= endBound) || couvreLaPeriode(e, rangeStart, endBound);
+    }), catFilters);
   } else if (filter === "calendar") {
     filtered = filterByCats(events, catFilters);
   } else {
