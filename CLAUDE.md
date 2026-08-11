@@ -512,6 +512,60 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 }
 ```
 
+### Une fiche MUSÉES par jour (`mdj:1`)
+
+`scripts/musees-du-jour.mjs`, lancé deux fois par jour par le CI. **365 fiches, une par
+jour**, dans le fil (PAS `pinLast`), titre « MUSÉES · n OUVERTS AUJOURD'HUI ».
+
+Demande de Stéphanie du 11 août 2026 : *« fais la fiche musée tous les jours comme les
+apéros en mettant le nb de musée ouvert ce jour et que l'on voit en scrollant »*, puis
+*« et mets-la dans le scroll, pas juste dans l'onglet musée »*. Avant, une seule fiche
+annuaire `pinLast` existait en **336 exemplaires** cachés, masqués du fil.
+
+**Le nombre annoncé doit être JUSTE — c'est tout l'intérêt de la fiche.** Les jours et
+horaires sont dans la config du script, chacun **vérifié sur le site officiel du musée**
+le 11 août 2026 : oceano.org, nmnm.mc, map.gouv.mc, mtm-monaco.mc, traditions-monaco.com.
+Résultat : **6 ouverts en semaine, 4 le lundi** (le NMNM et le Musée du Vieux Monaco
+ferment le lundi). **Ne JAMAIS ajouter un musée à cette liste sans avoir lu ses horaires
+sur son site officiel**, et ne jamais deviner un horaire pour compléter le compte.
+
+Le **Musée des Souvenirs Napoléoniens est volontairement absent** : sa réouverture n'est
+annoncée nulle part sur le site du Palais. On ne compte pas un musée dont on ne peut pas
+affirmer qu'il est ouvert.
+
+Rejouable par construction : le script reconstruit tout depuis sa config, il ne dépend
+d'aucune fiche existante. Même garde-fou que les autres (retirer sans remplacer = refus
+d'écrire, sortie 1).
+
+### Les fiches récapitulatives et leur liste cliquable (`directory`)
+
+Les fiches « CE SOIR : n terrasses », « BRUNCHS : n adresses » et « MUSÉES : n ouverts »
+portent un champ **`directory`** : `[{name, info, tel}]`. La fiche qu'on ouvre affiche
+alors les lieux **l'un en dessous de l'autre**, avec les horaires du jour et une **icône
+téléphone cliquable** (`tel:`) — demande de Stéphanie : *« mets-les l'un en dessous de
+l'autre avec l'icône tel qu'on peut cliquer, pas leur tél »*. Le numéro n'est donc plus
+écrit dans le texte.
+
+`tel:` est sûr : il ouvre le composeur du téléphone, ce n'est pas une page web — aucun
+risque de l'écran noir qu'avait provoqué `target="_blank"`. La carte affiche aussi un
+bouton **« Infos · n lieux »**, sans quoi rien n'indique qu'il faut la toucher.
+
+⚠️ Ces fiches portent `recap: true` : cela les exempte des règles du contrôle qualité qui
+ne les concernent pas (pas de lien officiel unique, pas de période, libellé de lieu
+partagé avec un autre récapitulatif). **`recap` n'est pas un moyen de faire taire un
+signalement gênant** — une vraie fiche mal saisie doit être corrigée.
+
+### Les amies sur une fiche « en cours »
+
+**Aucune amie n'est affichée sur une fiche `ongoing` dans le fil.** La table
+`participations` ne stocke que `user_id` et `event_id`, **sans date** : impossible de
+savoir quel jour une amie est allée à une exposition ouverte des mois. Les afficher sur
+une occurrence revenait à affirmer un jour faux. Elles restent visibles dans la fiche
+qu'on ouvre. Voir le § « À FAIRE — partager le JOUR d'une participation ».
+
+Le jour que l'utilisatrice choisit **pour elle-même** est retenu en local
+(`monacout_jours_participation`) : « J'y vais » ne se coche que ce jour-là.
+
 ### Une fiche par jour pour « le lieu est simplement ouvert » (`sdj:1`)
 
 `scripts/soirees-du-jour.mjs`, lancé deux fois par jour **après** le générateur nightlife.
