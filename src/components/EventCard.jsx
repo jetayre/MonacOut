@@ -481,7 +481,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {/* J'y vais */}
           {onGoingClick && (
             <button
-              onClick={e => { e.stopPropagation(); onGoingClick(event.id); }}
+              onClick={e => { e.stopPropagation(); onGoingClick(event.id, event.date, !!event.ongoing); }}
               style={{
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,

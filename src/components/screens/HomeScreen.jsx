@@ -127,13 +127,19 @@ function etaleLesEnCours(liste) {
     const derniere = new Date(Math.min(fin.getTime(), horizon.getTime()));
     if (d > derniere) { sortie.push(e); continue; }
 
+    let premier = true;
     for (let j = new Date(d); j <= derniere; j.setDate(j.getDate() + 1)) {
       sortie.push({
         ...e,
         date: toFrDate(j),
         year: j.getFullYear(),
         cleFil: `${e.id}-${j.getFullYear()}-${j.getMonth() + 1}-${j.getDate()}`,
+        // Repli quand aucun jour n'a été retenu (coche posée avant cette version, ou
+        // sur un autre appareil) : on l'affiche sur la PREMIÈRE occurrence seulement,
+        // jamais sur toutes — sinon on retombe sur le défaut signalé le 11 août 2026.
+        premierJour: premier,
       });
+      premier = false;
     }
   }
   // Indispensable : les copies sont créées à la place de l'originale, donc groupées.
@@ -229,7 +235,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, pendingFriends = 0, userName = "", avatarUrl = "", loggedIn = false, authReady = false, onShowAuth }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, joursParticipation = {}, pendingFriends = 0, userName = "", avatarUrl = "", loggedIn = false, authReady = false, onShowAuth }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -617,7 +623,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               onCardClick={onCardClick}
               lang={lang}
               onGoingClick={onGoingClick}
-              isGoing={social?.myParticipations?.includes(e.id) ?? false}
+              isGoing={
+                (social?.myParticipations?.includes(e.id) ?? false)
+                // Une expo « en cours » : la coche n'appartient qu'au jour choisi.
+                && (!e.ongoing
+                    || (joursParticipation[e.id] ? joursParticipation[e.id] === e.date : !!e.premierJour))
+              }
               friendsGoing={social ? social.friendsGoingTo(e.id) : []}
               loggedIn={loggedIn}
               onShowAuth={onShowAuth}

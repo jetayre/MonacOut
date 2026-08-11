@@ -708,8 +708,24 @@ export default function App() {
     }
   }
 
-  function handleGoingClick(eventId) {
+  // ── « J'y vais » sur une exposition : UN SEUL jour, pas toute la durée ──────────
+  // Une exposition ouverte des mois apparaît désormais chaque jour dans le fil, et
+  // toutes ces occurrences partagent le même identifiant. « J'y vais » se retrouvait
+  // donc coché sur tous les jours de l'expo, ce qui ne veut rien dire : on y va un
+  // jour. On retient donc localement LE jour choisi et on n'affiche la coche que là.
+  // La base, elle, ne stocke qu'une ligne par événement — c'est ce qui permet aux
+  // amies de voir « elle va à Brauner ». Le jour précis reste sur l'appareil.
+  function handleGoingClick(eventId, jour, enCours) {
     if (!auth.user) { setShowAuth(true); return; }
+    if (enCours && jour) {
+      const dejaInscrite = (social.myParticipations || []).includes(eventId);
+      setJoursParticipation(prev => {
+        const suivant = { ...prev };
+        if (dejaInscrite) delete suivant[eventId]; else suivant[eventId] = jour;
+        try { localStorage.setItem("monacout_jours_participation", JSON.stringify(suivant)); } catch { /* quota */ }
+        return suivant;
+      });
+    }
     social.toggleParticipation(eventId);
   }
 
@@ -726,11 +742,17 @@ export default function App() {
     if (el) el.scrollTop = 0;
   }
 
+  // Jour choisi pour chaque exposition marquée « J'y vais » (voir handleGoingClick).
+  const [joursParticipation, setJoursParticipation] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("monacout_jours_participation") || "{}"); }
+    catch { return {}; }
+  });
+
   // Liste pour l'AFFICHAGE : cartes annuaire (spa/musées/cinéma) réduites à une seule occurrence.
   // (Les notifications continuent d'utiliser `events` brut plus haut.)
   const displayEvents = useMemo(() => collapseVenueCards(events), [events]);
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, loggedIn: !!auth.user, authReady: !auth.loading, onShowAuth: () => setShowAuth(true) };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, joursParticipation, loggedIn: !!auth.user, authReady: !auth.loading, onShowAuth: () => setShowAuth(true) };
 
   return (
     <>

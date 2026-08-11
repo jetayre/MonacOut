@@ -1,8 +1,8 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 24/07/2026 18:00:00
-Événements analysés : 2111
-Problèmes détectés : 16
+Généré le : 11/08/2026 18:00:00
+Événements analysés : 1755
+Problèmes détectés : 17
 ========================================
 
 ✓ Tous les événements ont un champ descEn.
@@ -11,10 +11,7 @@ Problèmes détectés : 16
 
 ✓ Aucun événement trop ancien détecté.
 
-── TROUS DE COUVERTURE MENSUELLE (16) ──
-  Trou couverture : aucun événement "CONFÉRENCE" en juil 2026
-  Trou couverture : aucun événement "APÉRO" en fév 2027
-  Trou couverture : aucun événement "BRUNCH" en fév 2027
+── TROUS DE COUVERTURE MENSUELLE (17) ──
   Trou couverture : aucun événement "APÉRO" en mar 2027
   Trou couverture : aucun événement "BRUNCH" en mar 2027
   Trou couverture : aucun événement "ATELIER" en mar 2027
@@ -28,6 +25,10 @@ Problèmes détectés : 16
   Trou couverture : aucun événement "BRUNCH" en juin 2027
   Trou couverture : aucun événement "ATELIER" en juin 2027
   Trou couverture : aucun événement "CONFÉRENCE" en juin 2027
+  Trou couverture : aucun événement "APÉRO" en juil 2027
+  Trou couverture : aucun événement "BRUNCH" en juil 2027
+  Trou couverture : aucun événement "ATELIER" en juil 2027
+  Trou couverture : aucun événement "CONFÉRENCE" en juil 2027
 
 ✓ Toutes les fêtes (Pâques, Pentecôte, Toussaint, Noël…) correctement datées.
 
@@ -35,18 +36,70 @@ Problèmes détectés : 16
 
 ✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).
 
-── VÉRIFICATION LIENS (119 URLs testées) ──────────
+── VÉRIFICATION LIENS (133 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (26)
-     [id:4658] DÉGUSTATION VIN & BUFFET LA PAMPA
-     → (vide)
-     💬 Lien manquant
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (277)
+     [id:700009,700010,700011,700012,700013,700014,700015,700016,700017] WHATSAPP PRENDRE EN MAIN ATELIER GRATUIT, MONACO TELECOM TV PRENDRE EN MAIN ATELIER GRATUIT, LES RÉSEAUX SOCIAUX ATELIER GRATUIT, CRÉER SON ADRESSE MAIL @MONACO.MC ATELIER GRATUIT, APPLE TV PRENDRE EN MAIN ATELIER GRATUIT, IPHONE NIVEAU 1 ATELIER GRATUIT, MCONNECT L'IDENTITÉ NUMÉRIQUE ATELIER GRATUIT, MONACO TELECOM TV SUR ANDROID TV ATELIER GRATUIT, CHATGPT DÉCOUVRIR L'INTELLIGENCE ARTIFICIELLE
+     → https://www.maisondunumerique.mc/agenda
+     💬 Inaccessible (réseau) : This operation was aborted
 
-     [id:53,66,248,448] CONCERT DE L'ASSOMPTION, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE
+     [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
+     → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
+     → https://map.gouv.mc/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:4757,53,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE L'ASSOMPTION, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
-     [id:4654,4655] LA VUELTA GRAND DÉPART MONACO J1, LA VUELTA GRAND DÉPART MONACO J2
+     [id:4728,4729,4731,1102,1938,1940,800001,800002] CINÉMA FAMILLE HOLA FRIDA, GOÛTER ZÉRO DÉCHET ECOPOLIS, LUDO MÉMO LE JEU ET LE CERVEAU, HEURE DU CONTE RENTRÉE MÉDIATHÈQUE, CONFÉRENCE MÉDIATHÈQUE JANVIER, CONFÉRENCE MÉDIATHÈQUE MARS, CAFÉ LITTÉRAIRE FONDATION PRINCE PIERRE, PICNIC MUSIC LIVE STRAY PICKS MÉDIATHÈQUE
+     → https://www.mediatheque.mc/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4700] RÉCITAL JONATHAN TETELMAN
+     → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4701,4702] PORGY AND BESS GERSHWIN, PORGY AND BESS GERSHWIN
+     → https://www.opera.mc/en/seasons/26-27/porgy-and-bess
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4703,4704,4705,4706,4707] LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH
+     → https://www.opera.mc/en/seasons/26-27/la-vie-parisienne
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4708,4710,4711] L'ITALIANA IN ALGERI ROSSINI, L'ITALIANA IN ALGERI ROSSINI, L'ITALIANA IN ALGERI ROSSINI
+     → https://www.opera.mc/en/seasons/26-27/l-italiana-in-algeri
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4712] RÉCITAL BARTOLI & FAGIOLI
+     → https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4713] FIDELIO BEETHOVEN VERSION CONCERT
+     → https://www.opera.mc/en/seasons/26-27/fidelio
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4714] RÉCITAL ASMIK GRIGORIAN
+     → https://www.opera.mc/en/seasons/26-27/asmik-grigorian
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4715,4716,4717,4718] RIGOLETTO VERDI, RIGOLETTO VERDI, RIGOLETTO VERDI, RIGOLETTO VERDI
+     → https://www.opera.mc/en/seasons/26-27/rigoletto
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4719,4720,4721,4722] SIEGFRIED WAGNER, SIEGFRIED WAGNER, SIEGFRIED WAGNER, SIEGFRIED WAGNER
+     → https://www.opera.mc/en/seasons/26-27/siegfried
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4723] IL RITORNO D'ULISSE MONTEVERDI
+     → https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4659,4654,4655] LA VUELTA PRÉSENTATION DES ÉQUIPES, LA VUELTA GRAND DÉPART MONACO J1, LA VUELTA GRAND DÉPART MONACO J2
      → https://lavueltamonaco.gouv.mc
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
@@ -54,15 +107,19 @@ Problèmes détectés : 16
      → https://www.ironman.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1361] MONACO BUSINESS 2026
-     → https://www.monacoeconomicboard.com/
-     💬 Inaccessible (réseau) : fetch failed
+     [id:58] MONACO RUN 2026
+     → https://www.monacorun.com/
+     💬 HTTP 503
 
      [id:62] FÊTE NATIONALE DE MONACO
      → https://www.palais.mc/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : This operation was aborted
 
-     [id:127,705,1062] ATELIER DANSE CONTEMPORAINE, BALLET DE MONTE-CARLO AUTOMNE, STAGE BALLET INTENSIF ÉTÉ II
+     [id:65,708] MARCHÉ DE NOËL MONACO, MARCHÉ DE NOËL MONACO
+     → https://www.mairie.mc/le-village-de-noel
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:127,705] ATELIER DANSE CONTEMPORAINE, BALLET DE MONTE-CARLO AUTOMNE
      → https://www.balletsdemontecarlo.com/
      💬 Inaccessible (réseau) : fetch failed
 
@@ -70,37 +127,21 @@ Problèmes détectés : 16
      → https://hvmc.com/ventes-a-venir/
      💬 HTTP 403
 
-     [id:179] ATELIER LINDY HOP MONACO
-     → (vide)
-     💬 Lien manquant
-
-     [id:207] OUVERTURE SAISON VARIÉTÉS
-     → (vide)
-     💬 Lien manquant
-
-     [id:208] PIÈCE D'AUTOMNE VARIÉTÉS
-     → (vide)
-     💬 Lien manquant
-
-     [id:209] SPECTACLE DE NOËL FAMILLE
-     → (vide)
-     💬 Lien manquant
-
-     [id:357] MUSÉE NAVAL DE MONACO
-     → (vide)
-     💬 Lien manquant
+     [id:242,243] LA VILLA PALOMA CET AUTOMNE DEUX EXPOSITIONS, LES EXPOSITIONS DE L'HIVER À MONACO
+     → https://www.nmnm.mc/en/exhibitions/
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:751,752] MONACO LEGEND AUCTIONS, MONACO LEGEND AUTUMN SALE
      → https://www.monacolegendauctions.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1087] STAGE TENNIS JUNIOR ÉTÉ II
-     → https://www.mccc.mc/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     [id:991,992,993] ART3F SALON D'ART CONTEMPORAIN, ART3F SALON D'ART CONTEMPORAIN, ART3F SALON D'ART CONTEMPORAIN
+     → https://www.chapiteau-monaco.com/en/art-fair-art3f/
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
-     [id:1102,1938,1940] HEURE DU CONTE RENTRÉE MÉDIATHÈQUE, CONFÉRENCE MÉDIATHÈQUE JANVIER, CONFÉRENCE MÉDIATHÈQUE MARS
-     → https://www.mediatheque.mc/
-     💬 Inaccessible (réseau) : fetch failed
+     [id:1172] RENTRÉE FITNESS MONACO
+     → https://www.monacowellnesssystem.com/
+     💬 Redirigé vers un autre domaine : https://monacowellnesssystem.com/
 
      [id:1175,1185] FÉMININ SACRÉ & ÉNERGIE, ATELIER CORPS & ESPRIT
      → https://www.holisticrelaxing.com/
@@ -114,50 +155,1034 @@ Problèmes détectés : 16
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:3034,3042,3050,3058,3066,3074] AFTERWORK AMU MONTE-CARLO, AFTERWORK AMU MONTE-CARLO, AFTERWORK AMU MONTE-CARLO, AFTERWORK AMU MONTE-CARLO, AFTERWORK AMU MONTE-CARLO, AFTERWORK AMU MONTE-CARLO
-     → https://amu-montecarlo.com/
-     💬 Redirigé vers un autre domaine : https://amurestaurant.com/fr/monte-carlo/
+     [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
+     → https://larosedesvents.com/the-beach/
+     💬 HTTP 403
 
-     [id:3040,3048,3056,3064,3072] SASS CAFÉ APÉRO DU MARDI, SASS CAFÉ APÉRO DU MARDI, SASS CAFÉ APÉRO DU MARDI, SASS CAFÉ APÉRO DU MARDI, SASS CAFÉ APÉRO DU MARDI
-     → https://www.sasscafe.com/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
+     → https://www.opera.mc/
+     💬 Inaccessible (réseau) : fetch failed
 
-     [id:1003118,1003119,1003120,1003121,1003122,1003123,1003124,1003125,1003126,1003127,1003128,1003129] APÉRO JACK MONACO, APÉRO JACK MONACO, APÉRO JACK MONACO, APÉRO JACK MONACO, APÉRO JACK MONACO, APÉRO JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO
+     [id:1007316,1007317,1007318,1007319,1007320,1007321] SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO, SOIRÉE JACK MONACO
      → https://jackmonaco.playfun.tv/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1003181,1003182,1003183,1003184,1003185,1003186,1003187,1003188,1003189,1003190,1003191,1003192,1003193,1003194,1003195,1003196,1003197,1003198,1003199,1003200,1003201,1003202,1003203,1003204,1003205,1003206] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
+     [id:1007396,1007397,1007398,1007399,1007400,1007401,1007402,1007403,1007404,1007405,1007406,1007407,1007408,1007409,1007410,1007411,1007412,1007413,1007414,1007415,1007416,1007417,1007418,1007419,1007420,1007421] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
      → https://www.sunsetmonaco.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1003235,1003236,1003237,1003238,1003239,1003240,1003241,1003242,1003243,1003244,1003245,1003246,1003247,1003248,1003249,1003250,1003251,1003252,1003253,1003254,1003255,1003256,1003257,1003258,1003259,1003260,1003261,1003262,1003263,1003264,1003265,1003266,1003267,1003268,1003269,1003270,1003271,1003272,1003273,1003274,1003275,1003276,1003277,1003278,1003279,1003280,1003281,1003282,1003283,1003284,1003285,1003286] ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO
+     [id:1007448,1007449,1007450,1007451,1007452,1007453,1007454,1007455,1007456,1007457,1007458,1007459,1007460,1007461,1007462,1007463,1007464,1007465,1007466,1007467,1007468,1007469,1007470,1007471,1007472,1007473,1007474,1007475,1007476,1007477,1007478,1007479,1007480,1007481,1007482,1007483,1007484,1007485,1007486,1007487,1007488,1007489,1007490,1007491,1007492,1007493,1007494,1007495,1007496,1007497,1007498,1007499,1007500] ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO
      → https://www.zumba.com/fr-FR/class_detail/25717535-5178-11ee-88b0-0e028c8dc8fd
      💬 HTTP 403
 
-     [id:1003454,1003455,1003456,1003457,1003458,1003459,1003460,1003461,1003462,1003463,1003464,1003465,1003466,1003467,1003468,1003469,1003470,1003471,1003472,1003473,1003474,1003475,1003476,1003477,1003478,1003479] BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO, BRUNCH SMAKELIJK LARVOTTO
-     → https://www.smakelijk-restaurant.com/
+     [id:4811] LA VUELTA SUR LA TERRASSE LA RASCASSE
+     → https://www.larascasse-monaco.mc/
      💬 Inaccessible (réseau) : fetch failed
 
-     [id:1003999,1004000,1004001,1004002,1004003,1004004,1004005,1004006,1004007,1004008,1004009,1004010,1004011,1004012,1004013,1004014,1004015,1004016,1004017,1004018,1004019,1004020,1004021,1004022,1004023,1004024] APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO, APÉRO BUDDHA-BAR MONTE-CARLO
-     → https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     [id:4812] A MIDSUMMER NIGHT'S DREAM GUCCI FLORA
+     → https://larosedesvents.com/
+     💬 HTTP 403
+
+     [id:930000] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930001] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930002] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940000] BRUNCHS 2 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930003] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930004] CE SOIR 11 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930005] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940001] BRUNCHS 2 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930006] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930007] CE SOIR 10 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930008] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940002] BRUNCHS 2 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:940003] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930009] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930010] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930011] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940004] BRUNCHS 9 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930012] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940005] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930013] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930014] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930015] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940006] BRUNCHS 9 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930016] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940007] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930017] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930018] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930019] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940008] BRUNCHS 9 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930020] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940009] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930021] CE SOIR 10 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930022] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930023] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930024] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930025] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930026] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930027] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930028] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930029] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930030] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930031] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930032] CE SOIR 9 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930033] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930034] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930035] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930036] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930037] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930038] CE SOIR 8 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930039] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930040] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930041] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930042] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930043] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930044] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940010] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930045] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940011] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930046] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940012] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930047] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940013] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930048] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930049] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930050] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940014] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930051] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940015] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930052] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940016] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930053] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940017] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930054] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940018] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930055] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930056] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940019] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930057] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940020] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930058] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940021] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930059] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940022] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930060] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930061] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940023] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930062] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940024] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930063] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940025] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930064] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940026] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930065] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930066] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930067] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940027] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930068] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940028] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930069] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940029] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930070] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940030] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930071] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940031] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930072] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940032] BRUNCHS 1 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930073] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940033] BRUNCHS 8 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930074] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940034] BRUNCHS 8 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930075] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940035] BRUNCHS 8 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930076] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940036] BRUNCHS 8 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930077] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940037] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930078] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940038] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930079] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940039] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930080] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940040] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930081] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940041] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930082] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940042] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930083] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940043] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930084] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940044] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930085] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940045] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930086] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940046] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930087] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940047] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930088] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940048] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930089] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940049] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930090] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940050] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930091] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940051] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930092] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940052] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930093] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940053] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930094] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940054] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930095] CE SOIR 2 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:940055] BRUNCHS 7 ADRESSES À MONACO
+     → (vide)
+     💬 Lien manquant
+
+     [id:930096] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930097] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930098] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930099] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930100] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930101] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930102] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930103] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930104] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930105] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930106] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930107] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930108] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930109] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930110] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930111] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930112] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930113] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930114] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930115] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930116] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930117] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930118] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930119] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930120] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930121] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930122] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930123] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930124] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930125] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930126] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930127] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930128] CE SOIR 7 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930129] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930130] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930131] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930132] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930133] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930134] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930135] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930136] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930137] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930138] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930139] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930140] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930141] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930142] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930143] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930144] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930145] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930146] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930147] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930148] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930149] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930150] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930151] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930152] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930153] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930154] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930155] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930156] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930157] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930158] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930159] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930160] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930161] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930162] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930163] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930164] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930165] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930166] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930167] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930168] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930169] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930170] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930171] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930172] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930173] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930174] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930175] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930176] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930177] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930178] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930179] CE SOIR 3 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930180] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930181] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930182] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930183] CE SOIR 5 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
+     [id:930184] CE SOIR 6 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (41)
+  💡 À VÉRIFIER MANUELLEMENT (35)
+     [id:700020,700021,700022] LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS
+     → https://www.columbushotels.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:700000] POSITIVE ENERGY LES ÉCHOS-LIÉS
+     → https://www.dessineunpapillon.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:4744,4746,4747,4748,4749,4751,4752,4753,4755] HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, MESSE VICTIMES DU CANCER
+     → https://saintcharles.diocese.mc/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:4754,249,533,534,537,538,541,542,545,546,549,550,553,554,557,558,561,562,565,566,569,570,573,574,577,578,581,582,585,586,589,590,593,594,597,598,601,602,605,606,609,610,613,614,617,618,621,622,625,626,629,630,633,634,637,638,641,642,645,646,649,650,653,654,657,658,661,662,665,666,669,670,673,674,677,678,681,682,685,686,689] MESSE VICTIMES DU SIDA, CONCERT CHORAL SACRÉ-CŒUR, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI
+     → https://saintmartin.diocese.mc
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:4762,4763,4764,4765,4766,4730,4737,4738,4739,4740,4741,4742,4793,800000,800003,800004,800005,800008,800012,800013] LES ASSISES SÉCURITÉ, BNI NATIONAL CONFERENCE, BNI GLOBAL CONVENTION 2026, CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, STELLA ALMONDO PIANO, THURSDAY LIVE SESSIONS FRIEDBERG, DISNEY EN CONCERT SUIVEZ VOS RÊVES, THURSDAY LIVE SESSIONS JIMMY GNECCO, THURSDAY LIVE SESSIONS DIRTY DEEP, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, MARIAGE À MONACO L'ÉVÉNEMENT MÉDIATIQUE DE 1956, MONACO CARD SHOW GRIMALDI FORUM, LUXE PACK MONACO GRIMALDI FORUM, SPORTEL MONACO GRIMALDI FORUM, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, MARINE EN CONCERT, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN
+     → https://www.grimaldiforum.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:4733,4734,4736,178,180,4790,4791] THE ENCOUNTER, SISTERS AUDREY & VICTORIA, UNE HEURE À T'ATTENDRE, TANGO ARGENTIN AUTOMNE, MILONGA DE NOËL MONACO, ART & LUXURY FAIR THÉÂTRE PSSE GRACE, ART & LUXURY FAIR THÉÂTRE PSSE GRACE
+     → https://www.tpgmonaco.mc
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
      [id:3544,3546] SHREK THE MUSICAL, SHREK THE MUSICAL
      → https://www.grimaldiforum.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:80,51,410,3035,3036,3043,3044,3051,3052,3059,3060,3067,3068,3075,3076] FERMETURE SAISON NOTE BLEUE, JAZZ FESTIVAL LARVOTTO, DÉGUSTATION ROSÉS DE PROVENCE, SUNSET APÉRO NOTE BLEUE, BRUNCH LA NOTE BLEUE LARVOTTO, SUNSET APÉRO NOTE BLEUE, BRUNCH LA NOTE BLEUE LARVOTTO, SUNSET APÉRO NOTE BLEUE, BRUNCH LA NOTE BLEUE LARVOTTO, SUNSET APÉRO NOTE BLEUE, BRUNCH LA NOTE BLEUE LARVOTTO, SUNSET APÉRO NOTE BLEUE, BRUNCH LA NOTE BLEUE LARVOTTO, SUNSET APÉRO NOTE BLEUE, BRUNCH LA NOTE BLEUE LARVOTTO
+     [id:80,410] FERMETURE SAISON NOTE BLEUE, DÉGUSTATION ROSÉS DE PROVENCE
      → https://lanotebleue.mc/en/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:3481,3482] 8 SOIRS PAR SEMAINE, A BOCCA CHIUSA
-     → https://www.theatrefortantoine.com
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:479,480,245,246,247,1939,1941] CONFÉRENCE ÉTÉ PHILOMONACO, CONFÉRENCE DE FIN D'ANNÉE, RENCONTRES PHILOSOPHIQUES SEPTEMBRE, RENCONTRES PHILOSOPHIQUES OCTOBRE, RENCONTRES PHILOSOPHIQUES NOVEMBRE, CONFÉRENCE PHILOMONACO FÉVRIER, CONFÉRENCE PHILOMONACO AVRIL
-     → https://philomonaco.com
+     [id:1361] MONACO BUSINESS 2026
+     → https://www.meb.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:1362] LUXE PACK MONACO 2026
@@ -172,35 +1197,19 @@ Problèmes détectés : 16
      → https://sportelmonaco.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:58] MONACO RUN 2026
-     → https://www.monacorun.com/
+     [id:4773] LA VIE EST BELLE LA MÔME
+     → https://www.lamomemontecarlo.com/en/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:145,392,1931,3593,3596,3599,3602,3605,3608,3611,3614,3617,3620,3623,3626,3629,3632,3635,3638,3641,3644,3647,3650,3653,3656,3659,3662,3665,3668,3671,3674,3677,3680,3683,3686,3689,3692,3695,3698,3701,3704,3707,3710,3713,3716,3719,3722,3725,3728,3731,3734,3737,3740,3743,3746,3749,3752,3755,3758,3761,3764,3767,3770,3773,3776,3779,3782,3785,3788,3791,3794,3797,3800,3803,3806,3809,3812,3815,3818,3821,3824,3827,3830,3833,3836,3839,3842,3845,3848,3851,3854,3857,3860,3863,3866,3869,3872,3875,3878,3881,3884,3887,3890,3893,3896,3899,3902,3905,3908,3911,3914,3917,3920,3923,3926,3929,3932,3935,3938,3941,3944,3947,3950,3953,3956,3959,3962,3965,3968,3971,3974,3977,3980,3983,3986,3989,3992,3995,3998,4001,4004,4007,4010,4013,4016,4019,4022,4025,4028,4031,4034,4037,4040,4043,4046,4049,4052,4055,4058,4061,4064,4067,4070,4073,4076,4079,4082,4085,4088,4091,4094,4097,4100,4103,4106,4109,4112,4115,4118,4121,4124,4127,4130,4133,4136,4139,4142,4145,4148,4151,4154,4157,4160,4163,4166,4169,4172,4175,4178,4181,4184,4187,4190,4193,4196,4199,4202,4205,4208,4211,4214,4217,4220,4223,4226,4229,4232,4235,4238,4241,4244,4247,4250,4253,4256,4259,4262,4265,4268,4271,4274,4277,4280,4283,4286,4289,4292,4295,4298,4301,4304,4307,4310,4313,4316,4319,4322,4325,4328,4331,4334,4337,4340,4343,4346,4349,4352,4355,4358,4361,4364,4367,4370,4373,4376,4379,4382,4385,4388,4391,4394,4397,4400,4403,4406,4409,4412,4415,4418,4421,4424,4427,4430,4433,4436,4439,4442,4445,4448,4451,4454,4457,4460,4463,4466,4469,4472,4475,4478,4481,4484,4487,4490,4493,4496,4499,4502,4505,4508,4511,4514,4517,4520,4523,4526,4529,4532,4535,4538,4541,4544,4547,4550,4553,4556,4559,4562,4565,4568,4571,4574,4577,4580,4583,4586,4589,4592,4595,4598,4601,4604,4607,4610,4613,4616,4619,4622,4625,4628,4631,4634,4637,4640,4643,4646,4649,4652] ATELIER ARTS MARINS, ATELIER ILLUSTRATION MARINE, ATELIER OCÉAN DES MERVEILLES, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS
-     → https://musee.oceano.org/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:178,180] TANGO ARGENTIN AUTOMNE, MILONGA DE NOËL MONACO
-     → https://www.tpgmonaco.mc
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:242] EXPOSITION NMNM AUTOMNE
-     → https://www.nmnm.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:249,521,522,525,526,529,530,533,534,537,538,541,542,545,546,549,550,553,554,557,558,561,562,565,566,569,570,573,574,577,578,581,582,585,586,589,590,593,594,597,598,601,602,605,606,609,610,613,614,617,618,621,622,625,626,629,630,633,634,637,638,641,642,645,646,649,650,653,654,657,658,661,662,665,666,669,670,673,674,677,678,681,682,685,686,689] CONCERT CHORAL SACRÉ-CŒUR, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI
-     → https://saintmartin.diocese.mc
+     [id:480,245,246,247,1939,1941] CONFÉRENCE DE FIN D'ANNÉE, RENCONTRES PHILOSOPHIQUES SEPTEMBRE, RENCONTRES PHILOSOPHIQUES OCTOBRE, RENCONTRES PHILOSOPHIQUES NOVEMBRE, CONFÉRENCE PHILOMONACO FÉVRIER, CONFÉRENCE PHILOMONACO AVRIL
+     → https://philomonaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:219,220,221] RENTRÉE LES MUSES 2026, SEULE EN SCÈNE LES MUSES, REVUE DE FIN D'ANNÉE LES MUSES
      → https://www.letheatredesmuses.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:3557,3558,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,1003287,1003288,1003289,1003290,1003291,1003292,1003293,1003294,1003295,1003296,1003297,1003298,1003299,1003300,1003301,1003302,1003303,1003304,1003305,1003306,1003307,1003308,1003309,1003310,1003311,1003312,1003313,1003314,1003315,1003316,1003317,1003318,1003319,1003320,1003321,1003322,1003323,1003324,1003325,1003326,1003327,1003328,1003329,1003330,1003331,1003332,1003333,1003334,1003335,1003336,1003337,1003338,1003339] DÎNER CASTELROC AVANT CONCERT, DÎNER CASTELROC AVANT CONCERT, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS, DÎNER CASTELROC PLACE DU PALAIS
-     → https://www.castelrocmonaco.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:472,473] SALON DU LIVRE MONACO, SALON DU LIVRE MONACO
+     [id:472,473] SALON INTERNATIONAL DU LIVRE DE MONACO, SALON INTERNATIONAL DU LIVRE DE MONACO
      → https://salondulivredemonaco.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -216,32 +1225,12 @@ Problèmes détectés : 16
      → https://www.jumping-monaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:940] THÉÂTRE FORT ANTOINE
-     → https://www.theatrefortantoine.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
      [id:1021] BAL DE NOËL PRINCESSE CHARLÈNE
      → https://www.fondationprincessecharlene.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1078] STAGE DÉCOUVERTE MER ENFANTS
-     → https://www.academiemonegasquedelamer.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
      [id:1081] REPRISE GYM ENFANTS
      → https://feminasports.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1084,1924,1925,1926,1927,1928] STAGE VOILE OPTIMIST ÉTÉ II, PALERMO MONTE-CARLO ARRIVÉE, TROPHÉE VIRGINIE HERIOT, TROPHÉE GRIMALDI YCM, SPORTSBOAT WINTER SERIES ACTE I, SPORTSBOAT WINTER SERIES ACTE II
-     → https://yacht-club-monaco.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1108] EXPLORATION JARDIN EXOTIQUE
-     → https://www.jardin-exotique.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1168,1172] BOOTCAMP SUMMER MONACO, RENTRÉE FITNESS MONACO
-     → https://www.monacowellnesssystem.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:1173] MÉDITATION DE RENTRÉE
@@ -256,23 +1245,19 @@ Problèmes détectés : 16
      → https://aritual.fr/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1004026,1004027,1004028,1004029,1004030,1004031] CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE
+     [id:1007276,1007277] CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE
      → https://www.cinemas2monaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:3039,3047,3055,3063,3071,3079] HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO, HEALTHY BRUNCH WOO MONACO
-     → https://woo.mc/
+     [id:1924,1925,1926,1927,1928] PALERMO MONTE-CARLO ARRIVÉE, TROPHÉE VIRGINIE HERIOT, TROPHÉE GRIMALDI YCM, SPORTSBOAT WINTER SERIES ACTE I, SPORTSBOAT WINTER SERIES ACTE II
+     → https://yacht-club-monaco.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:3304,3305,3306,3307,3308,3309] STARS OF MONACO LE PORT, STARS OF MONACO LE PORT, STARS OF MONACO LE PORT, STARS OF MONACO LE PORT, STARS OF MONACO LE PORT, STARS OF MONACO LE PORT
-     → https://starsofmonaco.com
+     [id:1931,3647,3650,3653,3656,3659,3662,3665,3668,3671,3674,3677,3680,3683,3686,3689,3692,3695,3698,3701,3704,3707,3710,3713,3716,3719,3722,3725,3728,3731,3734,3737,3740,3743,3746,3749,3752,3755,3758,3761,3764,3767,3770,3773,3776,3779,3782,3785,3788,3791,3794,3797,3800,3803,3806,3809,3812,3815,3818,3821,3824,3827,3830,3833,3836,3839,3842,3845,3848,3851,3854,3857,3860,3863,3866,3869,3872,3875,3878,3881,3884,3887,3890,3893,3896,3899,3902,3905,3908,3911,3914,3917,3920,3923,3926,3929,3932,3935,3938,3941,3944,3947,3950,3953,3956,3959,3962,3965,3968,3971,3974,3977,3980,3983,3986,3989,3992,3995,3998,4001,4004,4007,4010,4013,4016,4019,4022,4025,4028,4031,4034,4037,4040,4043,4046,4049,4052,4055,4058,4061,4064,4067,4070,4073,4076,4079,4082,4085,4088,4091,4094,4097,4100,4103,4106,4109,4112,4115,4118,4121,4124,4127,4130,4133,4136,4139,4142,4145,4148,4151,4154,4157,4160,4163,4166,4169,4172,4175,4178,4181,4184,4187,4190,4193,4196,4199,4202,4205,4208,4211,4214,4217,4220,4223,4226,4229,4232,4235,4238,4241,4244,4247,4250,4253,4256,4259,4262,4265,4268,4271,4274,4277,4280,4283,4286,4289,4292,4295,4298,4301,4304,4307,4310,4313,4316,4319,4322,4325,4328,4331,4334,4337,4340,4343,4346,4349,4352,4355,4358,4361,4364,4367,4370,4373,4376,4379,4382,4385,4388,4391,4394,4397,4400,4403,4406,4409,4412,4415,4418,4421,4424,4427,4430,4433,4436,4439,4442,4445,4448,4451,4454,4457,4460,4463,4466,4469,4472,4475,4478,4481,4484,4487,4490,4493,4496,4499,4502,4505,4508,4511,4514,4517,4520,4523,4526,4529,4532,4535,4538,4541,4544,4547,4550,4553,4556,4559,4562,4565,4568,4571,4574,4577,4580,4583,4586,4589,4592,4595,4598,4601,4604,4607,4610,4613,4616,4619,4622,4625,4628,4631,4634,4637,4640,4643,4646,4649,4652] ATELIER OCÉAN DES MERVEILLES, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS, MUSÉES DE MONACO OUVERTS
+     → https://musee.oceano.org/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:3403,3404,3405,3406,3407,3408,3409] APÉRO TERRASSE TAVOLO COLUMBUS, APÉRO TERRASSE TAVOLO COLUMBUS, APÉRO TERRASSE TAVOLO COLUMBUS, APÉRO TERRASSE TAVOLO COLUMBUS, APÉRO TERRASSE TAVOLO COLUMBUS, APÉRO TERRASSE TAVOLO COLUMBUS, APÉRO TERRASSE TAVOLO COLUMBUS
-     → https://www.columbushotels.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:3490,3491,3492,3493,3494,3495,3496,3497,3498,3499,3500,3501,3502,3503,3504,3505,3506,3507,3508] CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC
+     [id:3496,3497,3498,3499,3500,3501,3502,3503,3504,3505,3506,3507,3508] CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC
      → https://www.cantinettaantinori.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -280,35 +1265,31 @@ Problèmes détectés : 16
      → https://www.fpa2.org
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1003086,1003087,1003088,1003089,1003090,1003091] APÉRO PANINO CLUB, APÉRO PANINO CLUB, APÉRO PANINO CLUB, APÉRO PANINO CLUB, APÉRO PANINO CLUB, APÉRO PANINO CLUB
-     → https://panino-club.com/
+     [id:4777,4778,4779,4780,4781,4782,4783,4784,4785,4786] STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS
+     → https://www.etoiledemonaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1003110,1003111,1003112,1003113,1003114,1003115] LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT
-     → https://lillysclub.com/
+     [id:4787,4795,4805] GARDEN COMEDY JARDIN EXOTIQUE, JARDIN EXOTIQUE ET GROTTE, APÉRO-CONCERT EL INSA BANDA JARDIN EXOTIQUE
+     → https://www.jardin-exotique.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1003130,1003131,1003132,1003133,1003134,1003135] ÉQUIVOQUE ROOFTOP SUNSET, ÉQUIVOQUE ROOFTOP SUNSET, ÉQUIVOQUE ROOFTOP SUNSET, ÉQUIVOQUE ROOFTOP SUNSET, ÉQUIVOQUE ROOFTOP SUNSET, ÉQUIVOQUE ROOFTOP SUNSET
-     → https://www.equivoquemc.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1003506,1003507,1003508,1003509,1003510,1003511,1003512,1003513,1003514,1003515,1003516,1003517,1003518,1003519,1003520,1003521,1003522,1003523,1003524,1003525,1003526,1003527,1003528,1003529,1003530,1003531] BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO, BRUNCH GRAN CAFFÈ MONACO
-     → https://grancaffe.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1003532,1003533,1003534,1003535,1003536,1003537,1003538,1003539,1003540,1003541,1003542,1003543,1003544,1003545,1003546,1003547,1003548,1003549,1003550,1003551,1003552,1003553,1003554,1003555,1003556,1003557] BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE, BRUNCH CAFFÈ MILANO PORT HERCULE
-     → https://www.caffemilano.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1003691,1003692,1003694,1003695,1003696,1003697,1003698,1003699,1003700,1003701,1003702,1003703,1003704,1003705,1003706,1003707,1003708,1003709,1003710,1003711,1003712,1003713,1003714,1003715,1003716,1003717,1003718,1003719,1003720,1003721,1003722,1003723,1003724,1003725,1003726,1003727,1003728,1003729,1003730,1003731,1003732,1003733,1003734,1003735,1003736,1003737,1003738,1003739,1003740,1003741,1003742,1003743,1003744,1003745,1003746,1003747,1003748,1003749,1003750,1003751,1003752,1003753,1003754,1003755,1003756,1003757,1003758,1003759,1003760,1003761,1003762,1003763,1003764,1003765,1003766,1003767,1003768,1003769,1003770,1003771,1003772,1003773,1003774,1003775,1003776,1003777,1003778,1003779,1003780,1003781,1003782,1003783,1003784,1003785,1003786,1003787,1003788,1003789,1003790,1003791,1003792,1003793,1003794,1003795,1003796,1003797,1003798,1003799,1003800,1003801,1003802,1003803,1003804,1003805,1003806,1003807,1003808,1003809,1003810,1003811,1003812,1003813,1003814,1003815,1003816,1003817,1003818,1003819,1003820,1003821,1003822,1003823] HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO, HAPPY HOUR SEXY TACOS LARVOTTO
+     [id:4802,4803,1008456,1008457,1008458,1008459,1008460,1008461,1008462,1008463,1008464,1008465,1008466,1008467,1008468,1008469,1008470,1008471,1008472,1008473,1008474,1008475,1008476,1008477,1008478,1008479,1008480,1008481] FORMULA 1 LIVE SEXY TACOS LARVOTTO, FORMULA 1 LIVE SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO, TRUMPET NIGHTS SEXY TACOS LARVOTTO
      → https://www.sexytacos.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1003866,1003868,1003869,1003870,1003871,1003872,1003873,1003874,1003875,1003876,1003877,1003878,1003879,1003880,1003881,1003882,1003883,1003884,1003885,1003886,1003887,1003888,1003889,1003890,1003891,1003892,1003893,1003894,1003895,1003896,1003897,1003898,1003899,1003900,1003901,1003902,1003903,1003904,1003905,1003906,1003907,1003908,1003909,1003910,1003911,1003912,1003913,1003914,1003915,1003916,1003917,1003918,1003919,1003920,1003921,1003922,1003923,1003924,1003925,1003926,1003927,1003928,1003929,1003930,1003931,1003932,1003933,1003934,1003935,1003936,1003937,1003938,1003939,1003940,1003941,1003942,1003943,1003944,1003945,1003946,1003947,1003948,1003949,1003950,1003951,1003952,1003953,1003954,1003955,1003956,1003957,1003958,1003959,1003960,1003961,1003962,1003963,1003964,1003965,1003966,1003967,1003968,1003969,1003970,1003971,1003972,1003973,1003974,1003975,1003976,1003977,1003978,1003979,1003980,1003981,1003982,1003983,1003984,1003985,1003986,1003987,1003988,1003989,1003990,1003991,1003992,1003993,1003994,1003995,1003996,1003997,1003998] APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE, APÉRO NORMA CONDAMINE
-     → https://norma.mc/
+     [id:4806] ATELIERS DE CIRQUE SOUS LE CHAPITEAU FONTVIEILLE
+     → https://www.montecarlofestival.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 58 liens OK (directs, page réservation détectée)
+     [id:1007303,1007304,1007305,1007306,1007307,1007308] LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT
+     → https://lillysclub.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+     [id:1008060,1008061,1008062,1008063,1008064,1008065,1008066,1008067,1008068,1008069,1008070,1008071,1008072,1008073,1008074,1008075,1008076,1008077,1008078,1008079,1008080,1008081,1008082,1008083,1008084,1008085] BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE, BRUNCH CLUB D'AVIRON PORT HERCULE
+     → https://www.restaurantsocietenautique.club/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+  ✓ 62 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
