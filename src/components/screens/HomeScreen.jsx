@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import { localizeTitle, localizeCat } from "../../i18n";
 import MonacOutLogo from "../MonacOutLogo";
@@ -94,23 +94,77 @@ function couvreLaPeriode(e, debut, fin) {
   return !!d && finExpo >= debut && d <= fin;
 }
 
+// ── LES EXPOS DANS LE DÉFILEMENT ────────────────────────────────────────────────
+// Le fil est une liste continue : chaque fiche y apparaît UNE fois, à sa date. Une
+// exposition « en cours » n'a qu'une date — celle du jour — donc en descendant le fil
+// on la voyait aujourd'hui puis plus jamais, alors qu'elle est ouverte tous les jours
+// jusqu'en janvier. On la répète donc sur chacun de ses jours d'ouverture.
+//
+// La répétition est faite À L'AFFICHAGE, pas dans les données : aucune fiche n'est
+// dupliquée dans events.js, aucun id n'est réutilisé, les favoris continuent de
+// fonctionner (même id ⇒ mettre l'expo en favori la met partout, ce qui est voulu).
+// Chaque copie reçoit une `cleFil` unique pour la clé React.
+//
+// Horizon : 120 jours. Au-delà, le fil deviendrait illisible pour un gain nul —
+// personne ne fait défiler quatre mois. Les dates plus lointaines restent
+// accessibles par le calendrier, qui applique `couvreLaPeriode` sans limite.
+const HORIZON_EN_COURS = 120;
+
+function etaleLesEnCours(liste) {
+  const aujourdhui = new Date(); aujourdhui.setHours(0, 0, 0, 0);
+  const horizon = new Date(aujourdhui);
+  horizon.setDate(horizon.getDate() + HORIZON_EN_COURS);
+
+  const sortie = [];
+  for (const e of liste) {
+    const debut = e.ongoing && e.until ? parseEventDate(e) : null;
+    const fin = e.ongoing && e.until ? new Date(e.until + "T00:00:00") : null;
+    if (!debut || !fin || isNaN(fin)) { sortie.push(e); continue; }
+
+    // Première occurrence : aujourd'hui au plus tôt (une expo commencée en juin ne
+    // doit pas réapparaître dans le passé). Dernière : sa fermeture, dans l'horizon.
+    const d = new Date(Math.max(debut.getTime(), aujourdhui.getTime()));
+    const derniere = new Date(Math.min(fin.getTime(), horizon.getTime()));
+    if (d > derniere) { sortie.push(e); continue; }
+
+    for (let j = new Date(d); j <= derniere; j.setDate(j.getDate() + 1)) {
+      sortie.push({
+        ...e,
+        date: toFrDate(j),
+        year: j.getFullYear(),
+        cleFil: `${e.id}-${j.getFullYear()}-${j.getMonth() + 1}-${j.getDate()}`,
+      });
+    }
+  }
+  // Indispensable : les copies sont créées à la place de l'originale, donc groupées.
+  // Sans ce tri, 120 fiches « Victor Brauner » s'empilaient au milieu du fil au lieu
+  // d'apparaître une par une, chacune à son jour.
+  return sortie.sort((a, b) => {
+    const da = parseEventDate(a), db = parseEventDate(b);
+    if (!da || !db) return 0;
+    return (da - db) || (heureDeTri(a) - heureDeTri(b));
+  });
+}
+
+// Heure en minutes, pour trier à l'intérieur d'une même journée. Reprend la
+// convention de src/data/events.js : « En journée » → 11h, « En soirée » → 21h.
+function heureDeTri(e) {
+  const t = (e.time || "").replace(/\s/g, "");
+  const m = t.match(/^(\d{1,2})h(\d{2})?/);
+  if (m) return parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0);
+  const mot = t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  if (mot === "enjournee") return 11 * 60;
+  if (mot === "ensoiree") return 21 * 60;
+  return 9999;
+}
+
 function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date()); const weekendDates = getWeekendDates();
   switch (filterId) {
-    case "today": {
-      const y = new Date().getFullYear();
-      const t = new Date(); t.setHours(0, 0, 0, 0);
-      return events.filter(e =>
-        (e.date === todayStr && (e.year || y) === y) || couvreLaPeriode(e, t, t));
-    }
-    case "weekend": {
-      const y = new Date().getFullYear();
-      const t = new Date(); t.setHours(0, 0, 0, 0); const jour = t.getDay();
-      const sam = new Date(t); sam.setDate(t.getDate() + (jour === 0 ? 6 : jour === 6 ? 0 : 6 - jour));
-      const dim = new Date(t); dim.setDate(t.getDate() + (jour === 0 ? 0 : 7 - jour));
-      return events.filter(e =>
-        (weekendDates.includes(e.date) && (e.year || y) === y) || couvreLaPeriode(e, sam, dim));
-    }
+    // Les fiches « en cours » sont déjà étalées jour par jour en amont
+    // (etaleLesEnCours) : ces filtres n'ont donc rien de spécial à faire.
+    case "today": { const y = new Date().getFullYear(); return events.filter(e => e.date === todayStr && (e.year || y) === y); }
+    case "weekend": { const y = new Date().getFullYear(); return events.filter(e => weekendDates.includes(e.date) && (e.year || y) === y); }
     case "week": {
       const today = new Date(); today.setHours(0,0,0,0);
       const in7 = new Date(today); in7.setDate(today.getDate() + 6);
@@ -207,6 +261,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // Combien de fiches sont affichées à l'instant. Mis à jour à chaque rendu, lu par
   // le capteur de défilement ci-dessous (qui, lui, n'est installé qu'une seule fois).
   const nbAffichees = useRef(0);
+  // Nombre de cartes réellement posées dans le DOM (rendu progressif, voir plus bas).
+  const [nbRendues, setNbRendues] = useState(40);
   // Jalons de profondeur déjà envoyés pendant cette visite : on ne mesure que la
   // descente la plus profonde, pas chaque va-et-vient. 4 mesures par visite maximum.
   const jalonsEnvoyes = useRef(new Set());
@@ -222,6 +278,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       else if (y > lastY + 6) setFiltersVisible(false);
       else if (y < lastY - 6) setFiltersVisible(true);
       lastY = y;
+
+      // Rendu progressif : on pose 40 cartes de plus dès qu'on arrive à deux écrans
+      // du bas, pour que le fil paraisse infini sans jamais tout poser d'un coup.
+      if (el.scrollHeight - (y + el.clientHeight) < el.clientHeight * 2) {
+        setNbRendues(n => (n >= nbAffichees.current ? n : n + 40));
+      }
 
       // ── Mesure de la profondeur de lecture ──────────────────────────────────
       // Ce qui compte pour Monac'Out, c'est que les gens PARCOURENT le fil : la
@@ -250,6 +312,13 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     return () => el.removeEventListener("scroll", handler);
   }, []);
 
+  // Repartir du haut du fil (40 cartes) à chaque changement de vue : sinon on gardait
+  // les centaines de cartes déjà posées pour la vue précédente.
+  // ⚠️ `catFilters.join()` et non `catFilters` : le parent recrée le tableau à chaque
+  // rendu, donc la dépendance changerait sans arrêt et remettrait le fil à 40 cartes
+  // en boucle — le défilement infini n'avancerait jamais.
+  useEffect(() => { setNbRendues(40); }, [filter, searchQuery, groupFilter, rangeStart, rangeEnd, catFilters.join(",")]);
+
   function handleFilterChange(newFilter) {
     const el = document.getElementById("main-scroll");
     if (filter === newFilter && newFilter !== "calendar") { setFilter("all"); if (el) el.scrollTop = 0; return; }
@@ -257,6 +326,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     setFilter(newFilter); setFiltersVisible(true);
     if (el) el.scrollTop = 0;
   }
+
+  // Fil continu : les fiches « en cours » y sont répétées sur chacun de leurs jours
+  // d'ouverture. La RECHERCHE et le CALENDRIER travaillent sur la liste d'origine :
+  // la recherche ne doit pas renvoyer 120 fois la même exposition, et le calendrier
+  // gère lui-même les dates lointaines (au-delà de l'horizon) via `couvreLaPeriode`.
+  const evenementsEtales = useMemo(() => etaleLesEnCours(events), [events]);
 
   let filtered;
   if (searchQuery.trim()) {
@@ -284,7 +359,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   } else if (filter === "calendar") {
     filtered = filterByCats(events, catFilters);
   } else {
-    filtered = filterByCats(filterByTime(events, filter), catFilters);
+    filtered = filterByCats(filterByTime(evenementsEtales, filter), catFilters);
   }
   if (groupFilter) { const g = EVENT_GROUPS.find(x => x.id === groupFilter); if (g) filtered = filtered.filter(e => g.cats.includes(e.cat)); }
 
@@ -300,6 +375,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // On tient la longueur du fil à jour pour le capteur de profondeur : celui-ci est
   // installé une fois pour toutes et ne verrait pas la variable `filtered` changer.
   nbAffichees.current = filtered.length;
+
+  // Rendu progressif. Le fil posait déjà toutes ses cartes d'un coup ; en répétant
+  // les expositions jour par jour il en compte ~900 de plus, ce qui se sentirait au
+  // démarrage sur iPhone. On en pose 40, puis 40 de plus dès qu'on approche du bas.
+  // Purement visuel : `filtered.length` reste la vraie longueur pour la mesure.
+  const aAfficher = filtered.slice(0, nbRendues);
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
@@ -494,7 +575,10 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           background: WHITE, borderTop: `1px solid ${BORDER}`,
           maxHeight: filtersVisible ? "44px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
         }}>
-          <div style={{ display: "flex", gap: 5, justifyContent: "center", padding: "5px 8px 7px", overflowX: "auto", scrollbarWidth: "none" }}>
+          {/* `touchAction: pan-x` : le conteneur parent verrouille le geste horizontal
+              (l'app glissait de côté). Cette rangée-ci, elle, doit rester balayable
+              latéralement — on lui rend explicitement le droit. */}
+          <div style={{ display: "flex", gap: 5, justifyContent: "center", padding: "5px 8px 7px", overflowX: "auto", overscrollBehaviorX: "contain", touchAction: "pan-x", scrollbarWidth: "none" }}>
             {EVENT_GROUPS.map(g => {
               const active = groupFilter === g.id;
               return (
@@ -523,9 +607,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             {t.empty}
           </div>
         ) : (
-          filtered.map((e) => (
+          aAfficher.map((e) => (
             <EventCard
-              key={e.id}
+              key={e.cleFil || e.id}
               event={e}
               favorites={favorites}
               onToggleFav={onToggleFav}

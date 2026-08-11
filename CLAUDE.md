@@ -5,6 +5,14 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 
 > **URL / domaines (important)** : le projet Vercel qui reçoit les déploiements est **`monac-out.vercel.app`** (AVEC tiret) — c'est la version à jour. `monacout.vercel.app` (sans tiret) est un ancien déploiement qui peut être en retard. Le code fetch encore les données live sur `monacout.vercel.app` (les deux servent les mêmes données). **Domaine propre : `monacout.com`** (OVH, DNS Vercel, propriété de Stéphanie) — vérifié dans Resend pour l'envoi d'emails.
 
+### 🔴 Les trois règles qui ne se négocient pas
+
+1. **Tout PrinciPocket, sans exception.** Chaque événement de `principocket.com` se tenant à Monaco doit être dans l'app. Les seules sorties : hors Monaco, heure non publiée (mise en attente dans le registre), ou déjà présent. → **règle 12**
+2. **Une fiche `ongoing` sans `until` disparaît en silence.** `until` est obligatoire, au format `AAAA-MM-JJ`. → § « Fiches EN COURS »
+3. **Ne jamais inventer** une date, une heure, un numéro ou un lien. Une heure d'apéro inconnue s'écrit `"En soirée"`. → **règles 17 et 18**
+
+Et une règle de méthode, apprise le 11 août 2026 : **vérifier l'affichage ailleurs que sur le fil du jour.** Les expositions étaient toutes présentes dans les données et pourtant invisibles dans « Ce week-end » et dans le calendrier. Une donnée correcte mais inaccessible est une donnée absente.
+
 ## Journal — 9 juil 2026 (session email + social + design)
 - **Fix critique auth** : lien magique cassé en natif (`emailRedirectTo` valait `capacitor://localhost` → « adresse invalide » Safari). Corrigé : redirige vers `https://monac-out.vercel.app` en natif (`useAuth.js`) + `appUrlOpen` récupère la session (`setSession`/`exchangeCodeForSession`) dans `App.jsx`.
 - **Emails à la marque** : domaine `monacout.com` vérifié dans **Resend** (EU). **Supabase → Custom SMTP** activé (host `smtp.resend.com`, port 465, user `resend`, pass = clé Resend, sender **`bonjour@monacout.com`**). Chaîne testée OK (email « Your sign-in link » delivered). Supabase URL Config : Site URL + Redirect URLs incluent `https://monac-out.vercel.app`. ⚠️ Régénérer la clé Resend (collée en clair pendant la session). Voir mémoire [[project-email-domain-monacout]].
@@ -571,7 +579,28 @@ sinon elle disparaît le lendemain de la date inscrite.
 
 11. **`conf: true`** : ajouter ce champ aux événements avec une dimension networking/conférence dont la `cat` n'est pas `CONFÉRENCE` (ex: SALON, FESTIVAL, EXPOSITION). Cela les fait apparaître dans le filtre Conférences de l'app. Ne pas l'ajouter aux événements purement artistiques ou sportifs.
 
-12. **Principocket** (`principocket.com`) : source interne de découverte uniquement. Les liens et le nom du site ne doivent **jamais** être surfacés dans l'app. Les événements trouvés via principocket affichent le lieu officiel comme `source` et `link`.
+12. **🔴 PRINCIPOCKET SE REPREND EN ENTIER, SANS EXCEPTION** — demande explicite de Stéphanie, 11 août 2026 : *« je veux que tu recopies tout PrinciPocket sans exception »*.
+
+    **La règle.** Tout événement listé sur `principocket.com` et se tenant à Monaco **doit** exister dans l'app. Pas « les principaux », pas « ceux qui semblent intéressants » : **tous**. Un seul manquant est un défaut, pas un arbitrage. Trois seules sorties légitimes :
+    - il se tient **hors de Monaco** (règle 15) → écarté, motif tracé ;
+    - **l'heure n'est pas publiée** et ce n'est pas un apéro/soirée (règle 18) → mis en attente dans le registre, jamais inventé ;
+    - il est **déjà présent** dans l'app.
+
+    **Pourquoi cette règle existe.** Stéphanie a testé trois événements au hasard (rentrée des catéchistes, Salon du Livre, conférence Pesquet) : un absent, deux introuvables. Son verdict : *« l'app ne va pas marcher si tu continues comme ça »*. Le défaut n'était pas la paresse, c'était la méthode — je comparais par **titre**, et un même événement écrit différemment passait pour absent ou pour présent selon l'humeur du libellé.
+
+    **La méthode qui marche, et qu'il ne faut pas dégrader.** `scripts/import-principocket.mjs`, lancé deux fois par jour par le CI :
+    - compare par **DATE + LIEU**, jamais par titre ;
+    - lit la liste paginée **ET** les 12 pages mensuelles (la liste seule en rate) ;
+    - crée **une fiche par jour** d'un événement sur plusieurs jours ;
+    - reconnaît les fiches `ongoing` déjà en place (sinon 6 expositions ressortaient « manquantes » à chaque passage) ;
+    - tient un **registre persistant** (`principocket-registre.json`) où chaque événement vu garde son état et son motif ;
+    - **passe le CI au ROUGE** si un événement est écarté depuis plus de 3 jours sans traitement. C'est ce qui empêche l'oubli silencieux.
+
+    **Ne jamais « nettoyer » ce registre pour faire passer le CI au vert.** Le rouge est le signal ; l'éteindre sans traiter l'événement revient à perdre l'événement.
+
+    **PrinciPocket reste invisible pour l'utilisateur** : source interne de découverte uniquement. Le nom du site et ses liens ne doivent **jamais** apparaître dans l'app — `source` et `link` pointent toujours vers le lieu officiel (règle 16).
+
+    **Et PrinciPocket ne suffit pas.** Il ne voit pas tout : les thèmes de soirée d'une quarantaine de lieux d'apéro ne sont annoncés que sur Instagram (Trumpet Nights au Sexy Tacos a été trouvé par Stéphanie, pas par le robot), et les studios bien-être passent par des réservations fermées. Reprendre PrinciPocket en entier est le **plancher**, pas le plafond : croiser aussi le programme officiel de la Mairie, les sites des lieux, et les comptes des établissements.
 
 13. **Lieu précis obligatoire** : le champ `subtitle` doit toujours contenir le nom exact de la salle ou du lieu (pas seulement la ville). Exemples corrects :
     - `subtitle: "Salle Garnier · Monte-Carlo"` ✅

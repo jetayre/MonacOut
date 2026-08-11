@@ -129,9 +129,16 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
         </div>
 
         {/* Contenu scrollable */}
+        {/* `overflowX/overscrollBehaviorX` : l'app se laissait tirer de gauche à droite
+            au doigt. La règle est aussi dans index.css, mais on la pose ICI en style
+            inline parce que c'est CE conteneur qui reçoit réellement le geste. */}
         <div id="main-scroll" style={{
           flex: 1,
           overflowY: "auto",
+          overflowX: "hidden",
+          overscrollBehaviorX: "none",
+          touchAction: "pan-y",
+          maxWidth: "100%",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }} className="hide-scrollbar">
