@@ -355,7 +355,7 @@
  },
  "/en/events/f56ca61fcea730e38c68172430a4b348-ADN": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ADN",
   "majLe": "2026-08-12"
  },
@@ -511,7 +511,7 @@
  },
  "/en/events/d1d5e088c13d99c1366a978a460c272e-OPERA-DE-MONTE-CARLO-CAPE-TOWN-HERITAGE": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "OPERA DE MONTE CARLO CAPE TOWN HERITAGE",
   "majLe": "2026-08-12"
  },
