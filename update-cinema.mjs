@@ -269,7 +269,11 @@ async function main() {
 
   // ── 6. Git push ─────────────────────────────────────────────────────────────
   try {
-    execSync(`git add src/data/events.js`, { cwd: __dirname });
+    // ⚠️ Commiter AUSSI les fichiers produits par le build : l'app lit ses données en
+    // direct dans public/events.json (liveEvents.js). Ne pousser que la source revenait
+    // à publier un programme cinéma invisible jusqu'au prochain passage de daily-check —
+    // et indéfiniment si ce passage n'avait, lui, rien à modifier.
+    execSync(`git add src/data/events.js public/events.json public/widget-events.json`, { cwd: __dirname });
     const filmList = films.map(f => f.title).join(', ').slice(0, 80);
     const msg = entries.length > 0
       ? `chore: programme cinéma — ${films.length} film(s), fiches dim→mar`

@@ -1,6 +1,8 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-08-07 — 137 liens, 2512 fiches.
+Contrôle du 2026-08-12 — 131 liens, 1760 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://www.monacorun.com/
+   HTTP 503 — serveur en panne — 1 fiche(s)
+     · [id 58] Dim 11 oct MONACO RUN 2026 — Place du Palais

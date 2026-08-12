@@ -1040,7 +1040,11 @@ async function main() {
   const titles = eventsToAdd.map(e => e.title.substring(0, 40)).join(', ');
   const msg = `chore: auto-add ${eventsToAdd.length} événements (${new Date().toISOString().substring(0,10)})`;
   try {
-    execSync(`git add src/data/events.js`, { cwd: __dirname });
+    // ⚠️ Commiter AUSSI les fichiers produits par le build : l'app lit ses données en
+    // direct dans public/events.json (liveEvents.js). Sans ça, les événements ajoutés
+    // ici n'apparaissaient qu'au prochain passage de daily-check ayant lui-même quelque
+    // chose à commiter — donc parfois jamais.
+    execSync(`git add src/data/events.js public/events.json public/widget-events.json`, { cwd: __dirname });
     execSync(`git commit -m "${msg.replace(/"/g, '\\"')}"`, { cwd: __dirname });
     execSync(`git push origin main`, { cwd: __dirname });
     console.log(`  ✓ Poussé sur GitHub : ${eventsToAdd.length} nouveaux événements.`);

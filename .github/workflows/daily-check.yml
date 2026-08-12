@@ -139,6 +139,24 @@ jobs:
         run: node verify-events.mjs
         continue-on-error: true
 
+      # Ces trois contrôles tournent APRÈS le push ci-dessus (ils ont besoin du build).
+      # Leurs rapports n'étaient donc JAMAIS commités : le message d'erreur renvoyait
+      # vers un liens-morts.txt vieux de plusieurs jours qui disait « aucun lien mort »,
+      # pendant que l'étape en signalait deux. Une alerte qui pointe vers un fichier
+      # périmé ne vaut pas mieux que pas d'alerte.
+      - name: "📄 Publier les rapports des contrôles d'après-build"
+        if: always()
+        continue-on-error: true
+        run: |
+          for f in liens-morts.txt verify-events-report.txt; do
+            if [ -f "$f" ]; then git add -f "$f"; fi
+          done
+          if ! git diff --quiet --cached; then
+            git commit -m "chore: rapports de controle ($(date +%Y-%m-%d))"
+            git pull --rebase --autostash
+            git push
+          fi
+
       - name: Alerte email si le policier ou la vérif ont signalé un problème
         if: steps.police.outcome == 'failure' || steps.verify.outcome == 'failure'
         env:
