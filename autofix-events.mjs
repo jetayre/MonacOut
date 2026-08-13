@@ -70,8 +70,6 @@ const VENUE_DAY_RULES = [
   { venue: 'Slammers',                day: 4, cat: 'APÉRO'   },
   { venue: 'Ship & Castle',           day: 4, cat: 'APÉRO'   },
   { venue: 'Equivoque',               day: 5, cat: 'APÉRO'   },
-  { venue: 'Jack Monaco',             day: 5, cat: 'APÉRO'   },
-  { venue: 'Jack Monaco',             day: 6, cat: 'SOIRÉE'  },
 ];
 
 function nearestCorrectDay(year, month, day, targetDayIdx) {

@@ -13,6 +13,40 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 
 Et une règle de méthode, apprise le 11 août 2026 : **vérifier l'affichage ailleurs que sur le fil du jour.** Les expositions étaient toutes présentes dans les données et pourtant invisibles dans « Ce week-end » et dans le calendrier. Une donnée correcte mais inaccessible est une donnée absente.
 
+## Journal — 13 août 2026 (Jack Monaco a fermé — retiré partout)
+
+**🔒 JACK MONACO EST DÉFINITIVEMENT FERMÉ** (Stéphanie, 13 août 2026 : « c'est
+definitively closed »). **Ne pas le remettre**, sous aucune forme.
+
+Le signal était un lien mort qui passait le CI au rouge : `jackmonaco.playfun.tv`
+répondait **200** mais ne servait que **663 octets** — un script d'orientation, sans
+titre ni texte. ⚠️ **Un code HTTP 200 ne prouve rien : c'est le CONTENU qui tranche.**
+J'ai d'abord annoncé un faux positif sur la foi du 200, à tort. `jack.mc`, que citent
+encore les moteurs de recherche, ne résout plus.
+
+**Le retrait a demandé neuf endroits** — en oublier un seul aurait fait revenir les
+fiches à la nuit suivante :
+
+| Fichier | Ce qui y était |
+|---|---|
+| `scripts/restore-nightlife-monthly.mjs` | les 2 récurrences (APÉRO 1ᵉʳ ven, SOIRÉE 1ᵉʳ sam) |
+| `scripts/soirees-du-jour.mjs` | « APERO JACK MONACO » dans la liste fermée des titres génériques |
+| `autofix-events.mjs` | 2 attentes jour/catégorie |
+| `auto-events.mjs` | libellé, quartier, catégorie par défaut, **et un scraper pointé sur `jack.mc` mort** |
+| `CLAUDE.md` | la ligne du tableau des sources (qui **pilote le robot**) + celle des récurrences |
+| `src/data/events.js` | 6 fiches SOIRÉE |
+| `soirees-du-jour.json` | 6 entrées du registre |
+| les récapitulatifs « CE SOIR » | le lieu figurait dans 6 fiches, **avec le compte affiché dans le titre** |
+
+⚠️ `lieux-ids.json` garde volontairement `"Jack Monaco": 39`. Le registre est
+**append-only** : un numéro attribué n'est jamais réattribué, sinon les
+participations déjà enregistrées glisseraient sur un autre lieu.
+
+**Leçon générale** : un lieu récurrent n'est pas rangé à un seul endroit. Avant de
+déclarer un retrait terminé, chercher son nom dans **tout** le dépôt
+(`grep -rn -i "<lieu>" --include="*.mjs" --include="*.md" --include="*.json"`), pas
+seulement dans `src/data/events.js`.
+
 ## Journal — 9 juil 2026 (session email + social + design)
 - **Fix critique auth** : lien magique cassé en natif (`emailRedirectTo` valait `capacitor://localhost` → « adresse invalide » Safari). Corrigé : redirige vers `https://monac-out.vercel.app` en natif (`useAuth.js`) + `appUrlOpen` récupère la session (`setSession`/`exchangeCodeForSession`) dans `App.jsx`.
 - **Emails à la marque** : domaine `monacout.com` vérifié dans **Resend** (EU). **Supabase → Custom SMTP** activé (host `smtp.resend.com`, port 465, user `resend`, pass = clé Resend, sender **`bonjour@monacout.com`**). Chaîne testée OK (email « Your sign-in link » delivered). Supabase URL Config : Site URL + Redirect URLs incluent `https://monac-out.vercel.app`. ⚠️ Régénérer la clé Resend (collée en clair pendant la session). Voir mémoire [[project-email-domain-monacout]].
@@ -389,7 +423,6 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Le Méridien Beach Plaza | https://www.marriott.com/en-us/hotels/mcmmd-le-meridien-beach-plaza/dining/ | BRUNCH, SOIRÉE, BIEN-ÊTRE (Larvotto) | +377 93 30 98 80 |
 | Lilly's Club | https://lillysclub.com/ | SOIRÉE, DJ SET | |
 | Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA | |
-| Jack Monaco | _aucun site officiel joignable_ | APÉRO, SOIRÉE — restaurant-bar-lounge du **Port Hercule**, ouvert tous les jours 12h-3h, DJ le soir. ⚠️ **Ne pas remettre `jackmonaco.playfun.tv`** : la page répond 200 mais ne sert que 663 octets de script, sans aucun contenu — un lien mort au sens de la règle 16 (13 août 2026). `jack.mc`, cité par les moteurs de recherche, **ne résout plus**. Aucun compte Instagram vérifiable (Instagram renvoie 200 pour n'importe quel nom). Les fiches sortent donc **sans `link`**, décision de Stéphanie du 13 août : « tu laisses l'info et tu retires le lien » | |
 | Nobu Monte-Carlo | https://www.fairmont.com/en/hotels/monte-carlo/fairmont-monte-carlo/dining/nobu.restaurant.html | SOIRÉE | |
 | Horizon Rooftop (Fairmont Monte-Carlo) | https://www.fairmont.com/monte-carlo/dining/horizon-rooftop-monaco/ | APÉRO, SOIRÉE — bar à champagne et cocktails en rooftop, coucher de soleil sur la Méditerranée, 7ème étage — 12 av. des Spélugues, Monte-Carlo | +377 9350 6500 |
 | Castelroc Monaco | https://www.castelrocmonaco.com/ | BRUNCH, APÉRO (Place du Palais, Monaco-Ville) | +377 93 30 36 68 |
@@ -867,7 +900,6 @@ Ces lieux ont des événements récurrents générés jusqu'à mai 2027. Ne pas 
 | **Nikki Beach** | Mensuel sam | Sam | BRUNCH DJ (mai→sep 2026 + 2027) |
 | **Jimmy'z** | Mensuel sam | Sam | SOIRÉE (mai 2026→mai 2027) |
 | **Lilly's Club** | Mensuel 3e sam | Sam | SOIRÉE (mai 2026→mai 2027) |
-| **Jack Monaco** | Mensuel (ven APÉRO / sam SOIRÉE) | Ven/Sam | APÉRO + SOIRÉE (mai 2026→mai 2027) |
 | **Amber Lounge** | 3 galas hors GP | Sam | GALA (sep & nov 2026, avr 2027) |
 | **Equivoque Rooftop** | Bi-mensuel ven | Ven | APÉRO + DJ SET (mai→oct 2026 + 2027) |
 | **Sunset Monaco** | Mensuel sam | Sam | DJ SET (juil→sep 2026 + 2027) |

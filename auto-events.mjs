@@ -119,7 +119,6 @@ const SOURCE_VENUE = {
   'Twiga Monte Carlo':               'Twiga Monte Carlo · Av. Princesse Grace',
   'Lilly\'s Club':                   'Lilly\'s Club · Monte-Carlo',
   'Amber Lounge Monaco':             'Amber Lounge · Monaco GP',
-  'Jack Monaco':                     'Jack Monaco · Port Monaco',
   'Nobu Monte-Carlo':                'Nobu Monte-Carlo · Fairmont',
   // ── Théâtres monaco ──────────────────────────────────────────────────────
   'Théâtre Princesse Grace':         'Théâtre Princesse Grace · Monaco',
@@ -220,7 +219,6 @@ const SOURCE_QUARTER = {
   'Sunset Monaco':               'Larvotto',
   'Twiga Monte Carlo':           'Larvotto',
   'Lilly\'s Club':               'Monte-Carlo',
-  'Jack Monaco':                 'Monaco',
   'Nobu Monte-Carlo':            'Monte-Carlo',
   'Théâtre Princesse Grace':     'Monaco',
   'Théâtre des Muses Monaco':    'Monaco',
@@ -399,7 +397,6 @@ function inferCat(title, source) {
   if (source === 'Blue Gin Monte-Carlo Bay') return 'APÉRO';
   if (source === 'The Marlow Monaco') return 'BRUNCH';
   if (source === 'Amber Lounge Monaco') return 'SOIRÉE';
-  if (source === 'Jack Monaco') return 'APÉRO';
   if (source === 'Nobu Monte-Carlo') return 'SOIRÉE';
   if (source === 'Grimaldi Forum') return 'SPECTACLE';
   if (source === 'YCM Monaco') return 'SPORT';
@@ -849,7 +846,6 @@ async function main() {
     { name: 'Lilly\'s Club',      fn: p => scrapeGeneric(p, 'https://lillysclub.com/future-events',                       'Lilly\'s Club') },
     { name: 'Jimmy\'z SBM',       fn: p => scrapeGeneric(p, 'https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo', 'Jimmy\'z Monte-Carlo') },
     { name: 'Amber Lounge',       fn: p => scrapeGeneric(p, 'https://www.amberlounge.com/events/monaco-2026/',              'Amber Lounge Monaco') },
-    { name: 'Jack Monaco',        fn: p => scrapeGeneric(p, 'https://www.jack.mc/',                                          'Jack Monaco') },
     { name: 'Nobu Monte-Carlo',   fn: p => scrapeGeneric(p, 'https://www.fairmont-montecarlo.com/en/events/',                'Nobu Monte-Carlo') },
     // ── Conférences ──────────────────────────────────────────────────────────
     { name: 'One to One MC',       fn: p => scrapeGeneric(p, 'https://www.onetoone-retail-ecommerce.com/',                 'One to One Monaco') },
