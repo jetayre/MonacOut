@@ -1,8 +1,12 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-08-13 — 133 liens, 1765 fiches.
+Contrôle du 2026-08-13 — 133 liens, 1766 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
 ■ https://www.ironman.com/mc-triathlon
    HTTP 404 — page inexistante — 1 fiche(s)
      · [id 1009709] Sam 15 août FEATURED EVENT — Monaco
+
+■ https://www.fpa2.org
+   AbortError — 1 fiche(s)
+     · [id 1000367] Mer 30 sep WWF × FONDATION PRINCE ALBERT II — Fondation Prince Albert II

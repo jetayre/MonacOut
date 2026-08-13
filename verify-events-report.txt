@@ -1,7 +1,7 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 13/08/2026 13:51:51
-Événements analysés : 1771
+Généré le : 13/08/2026 19:05:41
+Événements analysés : 1772
 Problèmes détectés : 18
 ========================================
 
@@ -44,7 +44,7 @@ Problèmes détectés : 18
      ⚡ HTTP 404
 
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (643)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (640)
      [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
      → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
      💬 Inaccessible (réseau) : This operation was aborted
@@ -103,7 +103,7 @@ Problèmes détectés : 18
 
      [id:4659,4654,4655] LA VUELTA PRÉSENTATION DES ÉQUIPES, LA VUELTA GRAND DÉPART MONACO J1, LA VUELTA GRAND DÉPART MONACO J2
      → https://lavueltamonaco.gouv.mc
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:56] IRONMAN MONACO 2026
      → https://www.ironman.com/
@@ -157,10 +157,6 @@ Problèmes détectés : 18
      → https://www.ironman.com/proseries
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
-     [id:1000381] WINE PALACE × MONACO YACHT SHOW
-     → https://www.instagram.com/wine_palace_montecarlo/
-     💬 HTTP 429
-
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
      💬 HTTP 403
@@ -172,14 +168,6 @@ Problèmes détectés : 18
      [id:4812] A MIDSUMMER NIGHT'S DREAM GUCCI FLORA
      → https://larosedesvents.com/
      💬 HTTP 403
-
-     [id:1009722,1009723,1009724,1009725,1009726,1009727,1009728] SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO
-     → https://www.instagram.com/slammers_monaco/
-     💬 HTTP 429
-
-     [id:1009729,1009730,1009731,1009732,1009733,1009734] SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO
-     → https://www.instagram.com/shipandcastlemonaco/
-     💬 HTTP 429
 
      [id:1009819,1009820,1009821,1009822,1009823,1009824,1009825,1009826,1009827,1009828,1009829,1009830,1009831,1009832,1009833,1009834,1009835,1009836,1009837,1009838,1009839,1009840,1009841,1009842,1009843,1009844,1009845] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
      → https://www.sunsetmonaco.com/
@@ -2619,7 +2607,7 @@ Problèmes détectés : 18
 
 
   💡 À VÉRIFIER MANUELLEMENT (35)
-     [id:700020,700021,700022] LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS
+     [id:700020,700021,700022,800029] LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS, DJ BAGUETTE AT TAVOLO
      → https://www.columbushotels.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -2759,7 +2747,7 @@ Problèmes détectés : 18
      → https://lillysclub.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 61 liens OK (directs, page réservation détectée)
+  ✓ 64 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
