@@ -1,6 +1,13 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-08-12 — 131 liens, 1769 fiches.
+Contrôle du 2026-08-13 — 131 liens, 1768 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://jackmonaco.playfun.tv/
+   UND_ERR_CONNECT_TIMEOUT — 6 fiche(s)
+     · [id 1008531] Sam 5 sep SOIRÉE JACK MONACO — Jack Monaco
+     · [id 1008532] Sam 3 oct SOIRÉE JACK MONACO — Jack Monaco
+     · [id 1008533] Sam 7 nov SOIRÉE JACK MONACO — Jack Monaco
+     · [id 1008534] Sam 5 déc SOIRÉE JACK MONACO — Jack Monaco
+     · [id 1008535] Sam 2 jan SOIRÉE JACK MONACO — Jack Monaco
+     … et 1 autre(s)
