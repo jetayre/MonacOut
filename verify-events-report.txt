@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 14/08/2026 07:26:47
+Généré le : 14/08/2026 19:10:34
 Événements analysés : 1766
 Problèmes détectés : 18
 ========================================
@@ -44,58 +44,66 @@ Problèmes détectés : 18
      ⚡ HTTP 404
 
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (640)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (646)
+     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
+     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4757,53,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE L'ASSOMPTION, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
+     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
+     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4701,4702] PORGY AND BESS GERSHWIN, PORGY AND BESS GERSHWIN
      → https://www.opera.mc/en/seasons/26-27/porgy-and-bess
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4703,4704,4705,4706,4707] LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH
      → https://www.opera.mc/en/seasons/26-27/la-vie-parisienne
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4708,4710,4711] L'ITALIANA IN ALGERI ROSSINI, L'ITALIANA IN ALGERI ROSSINI, L'ITALIANA IN ALGERI ROSSINI
      → https://www.opera.mc/en/seasons/26-27/l-italiana-in-algeri
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4712] RÉCITAL BARTOLI & FAGIOLI
      → https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4713] FIDELIO BEETHOVEN VERSION CONCERT
      → https://www.opera.mc/en/seasons/26-27/fidelio
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4714] RÉCITAL ASMIK GRIGORIAN
      → https://www.opera.mc/en/seasons/26-27/asmik-grigorian
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4715,4716,4717,4718] RIGOLETTO VERDI, RIGOLETTO VERDI, RIGOLETTO VERDI, RIGOLETTO VERDI
      → https://www.opera.mc/en/seasons/26-27/rigoletto
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4719,4720,4721,4722] SIEGFRIED WAGNER, SIEGFRIED WAGNER, SIEGFRIED WAGNER, SIEGFRIED WAGNER
      → https://www.opera.mc/en/seasons/26-27/siegfried
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4723] IL RITORNO D'ULISSE MONTEVERDI
      → https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4659,4654,4655] LA VUELTA PRÉSENTATION DES ÉQUIPES, LA VUELTA GRAND DÉPART MONACO J1, LA VUELTA GRAND DÉPART MONACO J2
      → https://lavueltamonaco.gouv.mc
@@ -103,6 +111,10 @@ Problèmes détectés : 18
 
      [id:56] IRONMAN MONACO 2026
      → https://www.ironman.com/
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:4773] LA VIE EST BELLE LA MÔME
+     → https://www.lamomemontecarlo.com/en/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:62] FÊTE NATIONALE DE MONACO
@@ -129,6 +141,10 @@ Problèmes détectés : 18
      → https://www.chapiteau-monaco.com/en/art-fair-art3f/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
+     [id:1021] BAL DE NOËL PRINCESSE CHARLÈNE
+     → https://www.fondationprincessecharlene.mc
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:1172] RENTRÉE FITNESS MONACO
      → https://www.monacowellnesssystem.com/
      💬 Redirigé vers un autre domaine : https://monacowellnesssystem.com/
@@ -153,13 +169,21 @@ Problèmes détectés : 18
      → https://www.ironman.com/proseries
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
+     [id:1000367] WWF × FONDATION PRINCE ALBERT II
+     → https://www.fpa2.org
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
+     [id:4797] VISITE PATRIMONIALE MONTE-CARLO & MARETERRA
+     → https://www.gouv.mc/actualites/visites-patrimoniales-au-caeur-de-monaco
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
      → https://www.opera.mc/
-     💬 Inaccessible (réseau) : fetch failed
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4812] A MIDSUMMER NIGHT'S DREAM GUCCI FLORA
      → https://larosedesvents.com/
@@ -2606,7 +2630,7 @@ Problèmes détectés : 18
      💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (35)
+  💡 À VÉRIFIER MANUELLEMENT (32)
      [id:700020,700021,700022,800029] LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS, DJ BAGUETTE AT TAVOLO
      → https://www.columbushotels.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2659,10 +2683,6 @@ Problèmes détectés : 18
      → https://sportelmonaco.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:4773] LA VIE EST BELLE LA MÔME
-     → https://www.lamomemontecarlo.com/en/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
      [id:480,245,246,247,1939,1941] CONFÉRENCE DE FIN D'ANNÉE, RENCONTRES PHILOSOPHIQUES SEPTEMBRE, RENCONTRES PHILOSOPHIQUES OCTOBRE, RENCONTRES PHILOSOPHIQUES NOVEMBRE, CONFÉRENCE PHILOMONACO FÉVRIER, CONFÉRENCE PHILOMONACO AVRIL
      → https://philomonaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2685,10 +2705,6 @@ Problèmes détectés : 18
 
      [id:3551,3552,3553] JUMPING INTERNATIONAL JOUR 1, JUMPING INTERNATIONAL JOUR 2, GRAND PRIX JUMPING MONACO
      → https://www.jumping-monaco.com
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1021] BAL DE NOËL PRINCESSE CHARLÈNE
-     → https://www.fondationprincessecharlene.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:1081] REPRISE GYM ENFANTS
@@ -2723,10 +2739,6 @@ Problèmes détectés : 18
      → https://www.cantinettaantinori.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1000367] WWF × FONDATION PRINCE ALBERT II
-     → https://www.fpa2.org
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
      [id:4777,4778,4779,4780,4781,4782,4783,4784,4785,4786] STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS, STAGE DE TRAMPOLINE DÈS 5 ANS
      → https://www.etoiledemonaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2747,7 +2759,7 @@ Problèmes détectés : 18
      → https://lillysclub.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 65 liens OK (directs, page réservation détectée)
+  ✓ 62 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport

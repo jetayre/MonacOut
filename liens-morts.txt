@@ -3,6 +3,99 @@ Contrôle du 2026-08-14 — 132 liens, 1760 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
+■ https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
+   UND_ERR_CONNECT_TIMEOUT — 5 fiche(s)
+     · [id 4735] Dim 11 oct THE LEGEND OF THE MAGIC CRYSTAL — Théâtre des Variétés
+     · [id 207] Sam 17 oct OUVERTURE SAISON VARIÉTÉS — Théâtre des Variétés
+     · [id 208] Sam 21 nov PIÈCE D'AUTOMNE VARIÉTÉS — Théâtre des Variétés
+     · [id 179] Sam 28 nov ATELIER LINDY HOP MONACO — Théâtre des Variétés
+     · [id 209] Sam 19 déc SPECTACLE DE NOËL FAMILLE — Théâtre des Variétés
+
+■ https://www.opera.mc/en/seasons/26-27/la-vie-parisienne
+   UND_ERR_CONNECT_TIMEOUT — 5 fiche(s)
+     · [id 4703] Mer 23 déc LA VIE PARISIENNE OFFENBACH — Salle Garnier
+     · [id 4704] Sam 26 déc LA VIE PARISIENNE OFFENBACH — Salle Garnier
+     · [id 4705] Dim 27 déc LA VIE PARISIENNE OFFENBACH — Salle Garnier
+     · [id 4706] Mar 29 déc LA VIE PARISIENNE OFFENBACH — Salle Garnier
+     · [id 4707] Jeu 31 déc LA VIE PARISIENNE OFFENBACH — Salle Garnier
+
+■ https://www.opera.mc/en/seasons/26-27/siegfried
+   UND_ERR_CONNECT_TIMEOUT — 4 fiche(s)
+     · [id 4719] Lun 5 avr SIEGFRIED WAGNER — Salle Garnier
+     · [id 4720] Jeu 8 avr SIEGFRIED WAGNER — Salle Garnier
+     · [id 4721] Dim 11 avr SIEGFRIED WAGNER — Salle Garnier
+     · [id 4722] Jeu 15 avr SIEGFRIED WAGNER — Salle Garnier
+
+■ https://www.opera.mc/en/seasons/26-27/rigoletto
+   UND_ERR_CONNECT_TIMEOUT — 4 fiche(s)
+     · [id 4715] Dim 21 fév RIGOLETTO VERDI — Salle Garnier
+     · [id 4716] Mar 23 fév RIGOLETTO VERDI — Salle Garnier
+     · [id 4717] Jeu 25 fév RIGOLETTO VERDI — Salle Garnier
+     · [id 4718] Dim 28 fév RIGOLETTO VERDI — Salle Garnier
+
+■ https://lavueltamonaco.gouv.mc
+   UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
+     · [id 4659] Jeu 20 août LA VUELTA PRÉSENTATION DES ÉQUIPES — Place du Casino
+     · [id 4654] Sam 22 août LA VUELTA GRAND DÉPART MONACO J1 — Place du Casino
+     · [id 4655] Dim 23 août LA VUELTA GRAND DÉPART MONACO J2 — Palais Princier
+
+■ https://www.opera.mc/en/seasons/26-27/l-italiana-in-algeri
+   UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
+     · [id 4708] Mar 26 jan L'ITALIANA IN ALGERI ROSSINI — Salle Garnier
+     · [id 4710] Jeu 28 jan L'ITALIANA IN ALGERI ROSSINI — Salle Garnier
+     · [id 4711] Sam 30 jan L'ITALIANA IN ALGERI ROSSINI — Salle Garnier
+
+■ https://map.gouv.mc/
+   UND_ERR_CONNECT_TIMEOUT — 2 fiche(s)
+     · [id 700005] Ven 14 août DE TOUMAÏ À SAPIENS ANTHROPOLOGIE — Musée d'Anthropologie Préhistorique
+     · [id 700006] Ven 14 août MAGIES D'AILLEURS ANTHROPOLOGIE — Musée d'Anthropologie Préhistorique
+
+■ https://www.opera.mc/en/seasons/26-27/porgy-and-bess
+   UND_ERR_CONNECT_TIMEOUT — 2 fiche(s)
+     · [id 4701] Dim 15 nov PORGY AND BESS GERSHWIN — Grimaldi Forum
+     · [id 4702] Sam 21 nov PORGY AND BESS GERSHWIN — Grimaldi Forum
+
+■ https://www.opera.mc/
+   UND_ERR_CONNECT_TIMEOUT — 2 fiche(s)
+     · [id 800010] Dim 24 jan L'ITALIANA IN ALGERI ROSSINI — Salle Garnier
+     · [id 800023] Dim 13 juin RÉCITAL PIANO ANDRÁS SCHIFF — Salle Garnier
+
+■ https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 700008] Ven 14 août PATRIMOINE EN DANGER JARDINS SAINT-MARTIN — Grilles des Jardins Saint-Martin
+
 ■ https://www.ironman.com/mc-triathlon
    HTTP 404 — page inexistante — 1 fiche(s)
      · [id 1009709] Sam 15 août FEATURED EVENT — Monaco
+
+■ https://www.gouv.mc/actualites/visites-patrimoniales-au-caeur-de-monaco
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4797] Mer 19 août VISITE PATRIMONIALE MONTE-CARLO & MARETERRA — Départ Place du Casino
+
+■ https://www.fpa2.org
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 1000367] Mer 30 sep WWF × FONDATION PRINCE ALBERT II — Fondation Prince Albert II
+
+■ https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4700] Sam 7 nov RÉCITAL JONATHAN TETELMAN — Salle Garnier
+
+■ https://www.fondationprincessecharlene.mc
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 1021] Sam 5 déc BAL DE NOËL PRINCESSE CHARLÈNE — Sporting Monte-Carlo
+
+■ https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4723] Mar 13 avr IL RITORNO D'ULISSE MONTEVERDI — Salle Garnier
+
+■ https://www.opera.mc/en/seasons/26-27/fidelio
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4713] Sam 6 fév FIDELIO BEETHOVEN VERSION CONCERT — Grimaldi Forum
+
+■ https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4712] Ven 29 jan RÉCITAL BARTOLI & FAGIOLI — Salle Garnier
+
+■ https://www.opera.mc/en/seasons/26-27/asmik-grigorian
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4714] Dim 7 fév RÉCITAL ASMIK GRIGORIAN — Salle Garnier
