@@ -275,6 +275,11 @@ const UI_NOISE = new Set([
   'boutique','agenda','programme','planning','season','saison',
   'accueil','home','menu','footer','header','news','newsletter',
   'billetterie','tickets','contact','about','infos pratiques','informations',
+  // 13 août 2026 : ironman.com a produit une fiche « FEATURED EVENT » datée du
+  // samedi suivant, lieu « Monaco », lien 404 — une étiquette d'interface prise
+  // pour un événement. Ces libellés de mise en avant n'annoncent jamais rien.
+  'featured event','featured events','featured','a la une','highlights',
+  'nos evenements','tous les evenements','all events','see all','voir tout',
 ]);
 
 const GENERIC_TYPES = new Set([
@@ -833,7 +838,6 @@ async function main() {
     { name: 'La Môme MC',         fn: p => scrapeGeneric(p, 'https://www.lamome-montecarlo.com/',                        'La Môme Monte-Carlo') },
     { name: 'Tennis Masters',      fn: p => scrapeGeneric(p, 'https://www.montecarlomasters.com/',                       'Monte-Carlo Masters') },
     { name: 'Club Bouliste',       fn: p => scrapeGeneric(p, 'https://cbmonaco.org',                                        'Club Bouliste Monaco') },
-    { name: 'Ironman Monaco',      fn: p => scrapeGeneric(p, 'https://www.ironman.com/mc-triathlon',                        'Ironman Monaco') },
     { name: 'Energy Boat',         fn: p => scrapeGeneric(p, 'https://energyboatchallenge.com/',                            'Monaco Energy Boat Challenge') },
     { name: 'YCM calendar',        fn: p => scrapeGeneric(p, 'https://www.yacht-club-monaco.mc/en/event/calendar/',         'YCM Monaco') },
     { name: 'YCM events',         fn: p => scrapeGeneric(p, 'https://www.ycm.mc/fr/programme-de-la-semaine',             'Wine Palace YCM') },
