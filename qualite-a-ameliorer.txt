@@ -1,11 +1,12 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1765 fiches inspectées le 2026-08-13.
+1766 fiches inspectées le 2026-08-14.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
    · Ven 14 août · NOTRE DAME DJ SET TWIGA — même lieu et même jour qu'une série de 54 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4775)
    · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 55 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
-■ FICHES SANS CONTENU — la description répète le titre (2)
+■ FICHES SANS CONTENU — la description répète le titre (3)
+   · Dim 16 août · DJ BAGUETTE AT TAVOLO — description = titre (id 800029)
    · Jeu 22 oct · ADN — description = titre (id 800027)
    · Dim 22 nov · OPERA DE MONTE CARLO CAPE TOWN HERITAGE — description = titre (id 800028)
