@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 15/08/2026 06:21:28
+Généré le : 15/08/2026 18:32:44
 Événements analysés : 1754
 Problèmes détectés : 17
 ========================================
@@ -38,7 +38,7 @@ Problèmes détectés : 17
 
 ── VÉRIFICATION LIENS (128 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (638)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (639)
      [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
      → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
      💬 Inaccessible (réseau) : This operation was aborted
@@ -49,11 +49,15 @@ Problèmes détectés : 17
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4757,53,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE L'ASSOMPTION, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
+     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
@@ -97,7 +101,7 @@ Problèmes détectés : 17
 
      [id:4659,4654,4655] LA VUELTA PRÉSENTATION DES ÉQUIPES, LA VUELTA GRAND DÉPART MONACO J1, LA VUELTA GRAND DÉPART MONACO J2
      → https://lavueltamonaco.gouv.mc
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:62] FÊTE NATIONALE DE MONACO
      → https://www.palais.mc/
@@ -2729,7 +2733,7 @@ Problèmes détectés : 17
      → https://lillysclub.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 64 liens OK (directs, page réservation détectée)
+  ✓ 63 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
