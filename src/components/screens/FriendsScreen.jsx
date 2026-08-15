@@ -25,7 +25,7 @@ function Avatar({ name = '?', id = '', size = 28, photo = '' }) {
   return (
     <div style={{
       width: size, height: size, borderRadius: '50%',
-      background: photo ? `center/cover no-repeat url(${photo})` : avatarColor(id), color: '#fff',
+      background: photo ? `center/cover no-repeat url("${photo}")` : avatarColor(id), color: '#fff',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: "'Josefin Sans', sans-serif", fontSize: size * 0.38,
       fontWeight: 600, flexShrink: 0,

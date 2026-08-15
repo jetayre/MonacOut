@@ -424,7 +424,7 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                     width: 32, height: 32, borderRadius: "50%", overflow: "hidden",
                     border: `1px solid ${auth.profile.avatar_url ? GOLD : "rgba(15,29,58,0.25)"}`,
                     background: auth.profile.avatar_url
-                      ? `center/cover no-repeat url(${auth.profile.avatar_url})`
+                      ? `center/cover no-repeat url("${auth.profile.avatar_url}")`
                       : "#FFFDF7",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     color: GREY, fontSize: 11, fontFamily: "'Lato', sans-serif",

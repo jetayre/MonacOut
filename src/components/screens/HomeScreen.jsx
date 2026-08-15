@@ -496,7 +496,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             {avatarUrl && (
               <div style={{
                 width: 40, height: 40, borderRadius: "50%", flexShrink: 0,
-                background: `center/cover no-repeat url(${avatarUrl})`,
+                background: `center/cover no-repeat url("${avatarUrl}")`,
                 border: "1px solid rgba(196,162,65,0.6)",
               }} />
             )}

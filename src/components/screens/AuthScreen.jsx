@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { fichierVersAvatar } from '../../lib/avatar'
+import { fichierVersAvatar, avatarMonogramme, MONOGRAMMES } from '../../lib/avatar'
 
 const NAVY = "#0F1D3A"
 const GOLD = "#C4A241"
@@ -16,7 +16,8 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
   const [code, setCode]         = useState('')
   const [name, setName]         = useState('')
   const [topics, setTopics]     = useState([])
-  const [avatar, setAvatar]     = useState('')      // photo de profil, en data URL
+  const [photo, setPhoto]       = useState('')      // photo choisie, en data URL
+  const [mono, setMono]         = useState(null)    // index de l'avatar monogramme, ou null
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
 
@@ -33,6 +34,11 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
     { id: 'musique',   fr: 'Musique',            en: 'Music' },
     { id: 'sport',     fr: 'Sport',              en: 'Sport' },
   ]
+
+  // La photo l'emporte si elle existe ; sinon le monogramme, RECALCULÉ à chaque frappe
+  // pour qu'il porte toujours la bonne initiale (on stocke l'index, pas l'image figée —
+  // sinon quelqu'un qui choisit son avatar avant de taper son prénom garderait un point).
+  const avatar = photo || (mono !== null ? avatarMonogramme(name, mono) : '')
 
   // ── Étape prénom (nouveau compte) ──
   if (auth.user && !auth.profile?.display_name) {
@@ -51,7 +57,10 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
               <div style={{
                 width: 64, height: 64, borderRadius: '50%', overflow: 'hidden',
                 border: `1px solid ${avatar ? GOLD_FRAME : 'rgba(15,29,58,0.25)'}`,
-                background: avatar ? `center/cover no-repeat url(${avatar})` : '#FFFDF7',
+                // Guillemets autour de l'URL : la photo est un JPEG sans caractère
+                // gênant, mais un avatar monogramme est un SVG — mieux vaut ne pas
+                // dépendre de son encodage exact.
+                background: avatar ? `center/cover no-repeat url("${avatar}")` : '#FFFDF7',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: '#9AA0AE', fontSize: 22, fontFamily: "'Lato', sans-serif",
               }}>{avatar ? '' : '＋'}</div>
@@ -61,14 +70,45 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
               onChange={async e => {
                 const f = e.target.files?.[0]; e.target.value = ''
                 if (!f) return
-                try { setAvatar(await fichierVersAvatar(f)); setError('') }
+                try { setPhoto(await fichierVersAvatar(f)); setMono(null); setError('') }
                 catch { setError(lang === 'en' ? "Couldn't read that photo" : "Photo illisible") }
               }}
             />
-            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: '#9AA0AE', marginBottom: 12 }}>
-              {avatar
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: '#9AA0AE', marginBottom: 10 }}>
+              {photo
                 ? (lang === 'en' ? "Tap to change" : "Touche pour changer")
                 : (lang === 'en' ? "Photo (optional)" : "Photo (optionnel)")}
+            </div>
+
+            {/* ── Ou un avatar, sans photo ──────────────────────────────────────
+                8 personnes sur 44 seulement avaient mis une photo. Un monogramme
+                ne demande qu'un geste et donne quand même un visage à la liste
+                d'amies. Il porte l'initiale du prénom, qui se met à jour à mesure
+                qu'on tape. Rien n'est imposé : on peut continuer sans rien choisir. */}
+            <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 11, color: '#9AA0AE', marginBottom: 7 }}>
+              {lang === 'en' ? "or pick an avatar" : "ou choisis un avatar"}
+            </div>
+            <div style={{ display: 'flex', gap: 7, justifyContent: 'center', marginBottom: 14 }}>
+              {MONOGRAMMES.map((_, i) => {
+                const actif = mono === i && !photo
+                return (
+                  <button
+                    key={i} type="button"
+                    aria-label={(lang === 'en' ? 'Avatar ' : 'Avatar ') + (i + 1)}
+                    aria-pressed={actif}
+                    onClick={() => { setMono(mono === i && !photo ? null : i); setPhoto(''); setError('') }}
+                    style={{
+                      width: 34, height: 34, padding: 0, borderRadius: '50%', cursor: 'pointer',
+                      // Le cercle choisi est cerclé d'or ET légèrement agrandi : sur un
+                      // écran au soleil, la couleur seule ne suffit pas à voir sa sélection.
+                      border: `2px solid ${actif ? GOLD : 'rgba(15,29,58,0.18)'}`,
+                      transform: actif ? 'scale(1.12)' : 'none',
+                      transition: 'transform .12s ease, border-color .12s ease',
+                      background: `center/cover no-repeat url("${avatarMonogramme(name, i)}")`,
+                    }}
+                  />
+                )
+              })}
             </div>
 
             <input
