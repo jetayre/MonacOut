@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { lienInvitation } from '../../lib/invite'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
 import AuthScreen from './AuthScreen'
@@ -132,7 +133,8 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
   //    partagé son lien dans la foulée. On ne partage plus tant qu'il n'est pas prêt.
   const codePret    = /^[a-z0-9]{4,}$/i.test(auth.profile?.invite_code || '')
   const inviteCode  = codePret ? auth.profile.invite_code : '…'
-  const inviteLink  = `https://monac-out.vercel.app?invite=${inviteCode}`
+  // Une seule source pour le lien : src/lib/invite.js (voir le pourquoi de monacout.com)
+  const inviteLink  = lienInvitation(inviteCode)
   // Phrase SANS le lien : le lien est passé dans le champ `url` pour rester cliquable.
   const inviteMsg   = lang === 'en'
     ? `Join me on Monac'Out — the app for going out in Monaco! Tap the link and we'll be connected 👇`

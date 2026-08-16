@@ -11,6 +11,7 @@ import WelcomeScreen from "./components/screens/WelcomeScreen";
 import { useAuth } from "./hooks/useAuth";
 import { useSocial } from "./hooks/useSocial";
 import { supabase } from "./lib/supabase";
+import { partagerInvitation } from "./lib/invite";
 import { Capacitor } from "@capacitor/core";
 import { App as CapApp } from "@capacitor/app";
 import { LocalNotifications } from "@capacitor/local-notifications";
@@ -327,6 +328,7 @@ export default function App() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [showFavNudge, setShowFavNudge] = useState(false);
   const [showPhotoNudge, setShowPhotoNudge] = useState(false);
+  const [showInviteNudge, setShowInviteNudge] = useState(false);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
@@ -345,6 +347,40 @@ export default function App() {
   const profileRef = useRef(null);                // idem pour le profil (a-t-elle déjà une photo ?)
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
+  // ── Carte « invite tes amies » ───────────────────────────────────────────────
+  // 27 personnes sur 42 n'ont AUCUNE amie : elles se sont inscrites et se retrouvent
+  // devant un onglet Amies vide. La relance existante est une notification J+2, qui
+  // n'atteint que les apps installées ayant autorisé les notifications (~19 personnes).
+  //
+  // Deux moments, un seul message :
+  //  · juste après l'inscription — le seul instant où l'attention est acquise ;
+  //  · à l'ouverture, pour les inscrites DÉJÀ là qui n'ont personne (les 27).
+  //
+  // Mêmes garde-fous que les autres sollicitations : 2 fois maximum, à 14 jours
+  // d'écart, et jamais deux messages dans la même visite (canAskAgain s'en charge).
+  // ⚠️ Ne concerne QUE les personnes connectées : le lien d'invitation porte le code
+  // personnel, donc quelqu'un sans compte n'a rien à partager.
+  const avaitUnPrenom = useRef(null);
+  useEffect(() => {
+    const prenom = auth.profile?.display_name || '';
+    const avant = avaitUnPrenom.current;
+    avaitUnPrenom.current = prenom;
+    if (!prenom) return;                                   // pas encore inscrite
+    if ((social.friends || []).length > 0) return;         // elle a déjà des amies
+    const vientDeSInscrire = avant !== null && !avant;
+    // Après l'inscription : 900 ms, le temps que l'écran se referme (sinon les deux
+    // se superposent, l'empilement proscrit le 7 août). Sinon : 12 s, comme les autres
+    // messages — on laisse d'abord regarder le fil.
+    const delai = vientDeSInscrire ? 900 : 12000;
+    const t = setTimeout(() => {
+      if (!canAskAgain('monacout_invite_asks', 'monacout_invite_last_ask', 2, 14)) return;
+      noteAsked('monacout_invite_asks', 'monacout_invite_last_ask');
+      setShowInviteNudge(true);
+      track('invite_nudge_shown', { moment: vientDeSInscrire ? 'inscription' : 'ouverture' });
+    }, delai);
+    return () => clearTimeout(t);
+  }, [auth.profile, social.friends]);
+
   useEffect(() => { scheduleFriendsNudge(!!auth.user, (social.friends || []).length); }, [auth.user, social.friends]);
   useEffect(() => { authUserRef.current = auth.user; }, [auth.user]);
   useEffect(() => { profileRef.current = auth.profile; }, [auth.profile]);
@@ -668,8 +704,8 @@ export default function App() {
     if (auth.user) return false;
     if (!canAskAgain("monacout_signup_asks", "monacout_signup_last_ask", 2, 10)) return false;
     noteAsked("monacout_signup_asks", "monacout_signup_last_ask");
-    setShowFavNudge(true);
-    track("signup_prompt_shown", { source });
+    setShowInviteNudge(true);
+    track("invite_nudge_shown", { moment: "sans-compte", source });
     return true;
   }
 
@@ -832,6 +868,54 @@ export default function App() {
     {/* Invitation à ajouter sa photo — uniquement aux personnes connectées qui n'en
         ont pas. Sans ce message elles ne sauraient pas que c'est possible : le petit
         carré du menu passe inaperçu. Sélecteur de photos standard (aucun plugin natif). */}
+    {/* ── Invite tes amies — s'ouvre PAR-DESSUS, se ferme ou mène au partage ──────
+        Demande de Stéphanie, 16 août 2026. Deux issues seulement, jamais de cul-de-sac
+        (leçon de l'écran noir du 7 août) : « Partager » ou « Plus tard ». Le partage
+        ouvre la feuille du téléphone — pas une page web, donc aucun risque d'écran noir. */}
+    {showInviteNudge && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
+           onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}>
+        <div onClick={e => e.stopPropagation()}
+             style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <div style={{ fontSize: 32, marginBottom: 10 }}>👯</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
+            {auth.user
+              ? (lang === "en" ? "Invite your friends" : "Invite tes amies")
+              : (lang === "en" ? "Share with your friends" : "Partage avec tes amies")}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
+            {auth.user
+              ? (lang === "en"
+                ? "Monac'Out is better together: see where your friends are going, and let them see you."
+                : "Monac'Out est plus sympa à plusieurs : vois où sortent tes amies, et qu'elles voient où tu vas.")
+              : (lang === "en"
+                ? "Your personal link connects them to you — you'll each see where the others are going. Creating your account takes 30 seconds."
+                : "Ton lien personnel les connecte à toi : vous verrez où sortent les unes et les autres. Créer ton compte prend 30 secondes.")}
+          </div>
+          <button
+            onClick={async () => {
+              if (!auth.user) {
+                track("invite_nudge_vers_inscription");
+                setShowInviteNudge(false);
+                setShowAuth(true);
+                return;
+              }
+              const r = await partagerInvitation(auth.profile?.invite_code, lang);
+              track("invite_nudge_partage", { resultat: r });
+              if (r !== "sans-code") setShowInviteNudge(false);
+            }}
+            style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, boxSizing: "border-box" }}>
+            {auth.user
+              ? (lang === "en" ? "Share with my friends" : "Partager à mes amies")
+              : (lang === "en" ? "Create my account and share" : "Créer mon compte et partager")}
+          </button>
+          <button onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}
+                  style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+            {lang === "en" ? "Later" : "Plus tard"}
+          </button>
+        </div>
+      </div>
+    )}
     {showPhotoNudge && auth.user && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
         <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
