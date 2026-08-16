@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fichierVersAvatar, avatarMonogramme, MONOGRAMMES } from '../../lib/avatar'
+import { prenomDepuisEmail } from '../../lib/prenom'
 
 const NAVY = "#0F1D3A"
 const GOLD = "#C4A241"
@@ -14,7 +15,8 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
   const [step, setStep]         = useState(pending ? 'code' : 'email') // email | code | name
   const [email, setEmail]       = useState(pending || '')
   const [code, setCode]         = useState('')
-  const [name, setName]         = useState('')
+  const [nameSaisi, setNameSaisi] = useState('')
+  const [nameTouche, setNameTouche] = useState(false)  // la personne a-t-elle touche au champ ?
   const [topics, setTopics]     = useState([])
   const [photo, setPhoto]       = useState('')      // photo choisie, en data URL
   const [mono, setMono]         = useState(null)    // index de l'avatar monogramme, ou null
@@ -27,6 +29,14 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
 
   // Referme automatiquement dès que la personne est connectée avec un prénom.
   useEffect(() => { if (auth.user && auth.profile?.display_name) { clearPending(); onClose() } }, [auth.user, auth.profile])
+
+  // Le prénom deviné est une valeur DÉRIVÉE, pas un état posé dans un effet :
+  // écrire dans le state depuis un useEffect déclenche des rendus en cascade (eslint le
+  // refuse) et rend le champ difficile à effacer. Ici, tant que personne n'a touché au
+  // champ, il AFFICHE la suggestion ; au premier caractère tapé, la saisie prend la main
+  // — y compris pour tout effacer.
+  const suggere = prenomDepuisEmail(auth.user?.email)
+  const name = nameTouche ? nameSaisi : suggere
 
   const TOPICS = [
     { id: 'culture',   fr: 'Musée / Ciné / Atelier', en: 'Museum / Cinema / Workshop' },
@@ -113,11 +123,23 @@ export default function AuthScreen({ onClose, auth, lang = "fr", inviterName = n
 
             <input
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={e => { setNameTouche(true); setNameSaisi(e.target.value) }}
               placeholder={lang === 'en' ? "Your first name" : "Ton prénom"}
               style={input}
               autoFocus
             />
+            {/* ⚠️ Le dire à voix haute est INDISPENSABLE. L'adresse ne porte pas toujours
+                la bonne orthographe : « letiziacogoni@… » appartient à une Laetizia,
+                « valerieallonge@… » à une Valeria. Sans cette phrase, quelqu'un valide
+                sans regarder et se retrouve affiché sous un prénom faux auprès de ses
+                amies. On propose pour épargner la frappe, jamais pour décider à sa place. */}
+            {suggere && name === suggere && (
+              <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 10.5, color: '#9AA0AE', marginTop: -6, marginBottom: 10 }}>
+                {lang === 'en'
+                  ? "Guessed from your email — correct it if needed"
+                  : "Deviné d'après ton adresse — corrige si besoin"}
+              </div>
+            )}
             <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: '#888', marginBottom: 8 }}>
               {lang === 'en' ? "What interests you? (optional)" : "Ce qui t'intéresse ? (optionnel)"}
             </div>
