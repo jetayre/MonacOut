@@ -1,9 +1,9 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1751 fiches inspectées le 2026-08-16.
+1735 fiches inspectées le 2026-08-16.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
-   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 53 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
+   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 52 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
 ■ FICHES SANS CONTENU — la description répète le titre (3)
    · Dim 16 août · DJ BAGUETTE AT TAVOLO — description = titre (id 800029)
