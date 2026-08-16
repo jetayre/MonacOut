@@ -247,9 +247,15 @@ Il reconnaît aussi les fiches **`ongoing`**, qui couvrent une période mais ne 
 - Hypothèse « ça part en spam » **non confirmée** : contrôle de la boîte Gmail sur 60 jours → **aucun code en indésirables, aucun rebond**, expéditeur bien `bonjour@monacout.com`, et le code figure **dans l'objet** du mail. Ça ne dit rien des autres messageries (iCloud, Orange) que l'on ne peut pas observer.
 - ~~**Suspect principal : la panne du 1er août**~~ — **TRANCHÉ LE 16 AOÛT 2026, ET C'ÉTAIT FAUX.** La clé `service_role` a permis de lire `auth.users` : sur **67 comptes, les 67 ont validé leur code**. Personne n'a jamais été bloqué par un e-mail non reçu. La panne du 1ᵉʳ août n'a laissé aucune victime.
 
-**🎯 LA PERTE EST AU DERNIER ÉCRAN, PAS DANS L'E-MAIL.** 67 comptes dans `auth.users`, **45 profils** : **22 personnes (33 %) reçoivent leur code, le saisissent, se connectent — puis ferment l'écran « Comment tu t'appelles ? » sans donner leur prénom.** Elles ont un compte valide et inutilisable : sans prénom, elles n'existent pour aucune amie.
-- Réparties sur 9 jours, **proportionnellement au trafic** (9 le 24 juillet, qui fut le plus gros jour : 27 personnes, 93 ouvertures). Ce n'est donc pas un incident, c'est un **taux de fuite structurel** de l'écran.
-- **1 seule des 22 est revenue** un autre jour. L'écran se réaffiche pourtant à chaque ouverture tant que le prénom manque.
+**🧪 D'ABORD : RETIRER NOS PROPRES TESTS, SINON TOUT EST FAUX.** La base contient **17 comptes de test** (`jetayre+…`, `@example.com`) dont 3 sont allés jusqu'au prénom (`TestPhoto`, `AprèsMaj`, `TestV65`). Question de Stéphanie, le 16 août : *« ceux sont tes tests ? »* — et oui, ils l'étaient. J'avais d'abord annoncé « 22 abandons, 33 % », dont **14 étaient mes propres essais**. Le pic du 24 juillet était à 7/9 des tests.
+➜ **Filtrer sur `/\+|test|fix\d|example\.com/` avant tout calcul sur les comptes.**
+
+**🎯 LA PERTE EST AU DERNIER ÉCRAN, PAS DANS L'E-MAIL.** Une fois les tests retirés :
+**50 personnes réelles, 42 prénoms → 8 (16 %) reçoivent leur code, le saisissent, se
+connectent, puis ferment l'écran « Comment tu t'appelles ? » sans répondre.** Elles ont un
+compte valide et inutilisable : sans prénom, elles n'existent pour aucune amie.
+- Réparties **une par jour environ, sur un mois** (12 et 22 et 26 juillet, 2 le 24, puis 1ᵉʳ, 2 et 9 août). Un filet régulier, pas un incident.
+- **1 seule est revenue** un autre jour. L'écran se réaffiche pourtant à chaque ouverture tant que le prénom manque.
 - ⚠️ **Leur renvoyer un code ne sert à RIEN** : elles en ont déjà eu un et il a marché. Et un code de connexion **expire en ~1 h** — un envoi groupé arrive mort, ce qui prouverait à ces gens que l'app est cassée. Le levier est l'écran, pas l'e-mail.
 
 **Comment relire ces chiffres** (la clé `service_role` est dans `.env.local` sous `SUPABASE_SERVICE_KEY`) :
