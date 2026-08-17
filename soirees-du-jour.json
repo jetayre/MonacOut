@@ -1,61 +1,4 @@
 {
- "Sam 15 août|2026": {
-  "soir": [
-   {
-    "lieu": "Castelroc",
-    "heure": "19h00",
-    "tel": "+377 93 30 36 68"
-   },
-   {
-    "lieu": "Stars of Monaco",
-    "heure": "18h00 — 00h00",
-    "tel": "+377 9797 9595"
-   },
-   {
-    "lieu": "Le Vivaldi",
-    "heure": "18h00 — 02h00",
-    "tel": "+33 6 63 07 20 20"
-   },
-   {
-    "lieu": "Brasserie de Monaco",
-    "heure": "18h00 — 03h00",
-    "tel": "+377 9798 5120"
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102"
-   },
-   {
-    "lieu": "Norma",
-    "heure": "17h00 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Buddha-Bar",
-    "heure": "En soirée",
-    "tel": "+377 9999 8080"
-   }
-  ],
-  "brunch": [
-   {
-    "lieu": "La Note Bleue",
-    "heure": "12h00 — 15h30",
-    "tel": "+377 9315 2265"
-   },
-   {
-    "lieu": "Marlow",
-    "heure": "11h30 — 15h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Restaurant de la Société Nautique",
-    "heure": "11h00 — 15h00",
-    "tel": "+377 9350 5130",
-    "titre": "BRUNCH CLUB D AVIRON PORT HERCULE"
-   }
-  ]
- },
  "Jeu 20 août|2026": {
   "soir": [
    {
@@ -7092,6 +7035,41 @@
   "brunch": []
  },
  "Mar 16 fév|2027": {
+  "soir": [
+   {
+    "lieu": "La Rascasse",
+    "heure": "17h30 — 20h00",
+    "tel": "",
+    "titre": "HAPPY HOUR LA RASCASSE PORT HERCULE"
+   },
+   {
+    "lieu": "Le Vivaldi",
+    "heure": "18h00 — 02h00",
+    "tel": "+33 6 63 07 20 20",
+    "titre": "LE VIVALDI BAR A COCKTAILS PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Sexy Tacos",
+    "heure": "15h30 — 18h30",
+    "tel": "+377 9990 7338",
+    "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
+   },
+   {
+    "lieu": "Norma",
+    "heure": "17h00 — 20h00",
+    "tel": "",
+    "titre": "APERO NORMA CONDAMINE"
+   }
+  ],
+  "brunch": []
+ },
+ "Mer 17 fév|2027": {
   "soir": [
    {
     "lieu": "La Rascasse",
