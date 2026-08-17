@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 17/08/2026 06:33:36
+Généré le : 17/08/2026 18:35:22
 Événements analysés : 1736
 Problèmes détectés : 17
 ========================================
@@ -38,7 +38,7 @@ Problèmes détectés : 17
 
 ── VÉRIFICATION LIENS (129 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (638)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (636)
      [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
      → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
      💬 Inaccessible (réseau) : This operation was aborted
@@ -49,15 +49,11 @@ Problèmes détectés : 17
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
-
-     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
-     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
-     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
@@ -137,19 +133,15 @@ Problèmes détectés : 17
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 HTTP 403
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1000374,1000375,1000376,1000377,1000378,1000379,1000380] PREMIERS SECOURS FORMATION ADULTES, PREMIERS SECOURS FORMATION ADULTES, PREMIERS SECOURS FORMATION ADULTES, PREMIERS SECOURS FORMATION ADULTES, PREMIERS SECOURS FORMATION ADULTES, PREMIERS SECOURS FORMATION ADULTES, PREMIERS SECOURS FORMATION ADULTES
-     → https://croix-rouge.mc/nos-missions/se-former/formations-et-initiations/
-     💬 Inaccessible (réseau) : This operation was aborted
-
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 HTTP 403
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
      → https://www.opera.mc/
@@ -2737,7 +2729,7 @@ Problèmes détectés : 17
      → https://lillysclub.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 62 liens OK (directs, page réservation détectée)
+  ✓ 64 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
