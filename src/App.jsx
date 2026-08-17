@@ -371,12 +371,11 @@ export default function App() {
     // Après l'inscription : 900 ms, le temps que l'écran se referme (sinon les deux
     // se superposent, l'empilement proscrit le 7 août). Sinon : 12 s, comme les autres
     // messages — on laisse d'abord regarder le fil.
-    const delai = vientDeSInscrire ? 900 : 12000;
+    // 900 ms après l'inscription (le temps que l'écran se referme) ; 3 s sinon —
+    // assez pour que le fil soit dessiné, et « à l’ouverture » comme demandé.
+    const delai = vientDeSInscrire ? 900 : 3000;
     const t = setTimeout(() => {
-      if (!canAskAgain('monacout_invite_asks', 'monacout_invite_last_ask', 2, 14)) return;
-      noteAsked('monacout_invite_asks', 'monacout_invite_last_ask');
-      setShowInviteNudge(true);
-      track('invite_nudge_shown', { moment: vientDeSInscrire ? 'inscription' : 'ouverture' });
+      maybeAskInvite(vientDeSInscrire ? 'inscription' : 'ouverture');
     }, delai);
     return () => clearTimeout(t);
   }, [auth.profile, social.friends]);
@@ -398,13 +397,20 @@ export default function App() {
     } catch { /* ignore */ }
 
     const visites = bumpCount("monacout_sessions");
-    // On laisse respirer : jamais à la seconde où l'app s'ouvre.
+    // La carte de partage arrive À L'OUVERTURE — 3 s, demande de Stéphanie du
+    // 17 août 2026. Elle ne dépend plus du nombre de visites : chacun la voit à sa
+    // 1ʳᵉ ouverture puis à sa 3ᵉ (le comptage est dans maybeAskInvite).
+    const tPartage = setTimeout(() => {
+      if (!authUserRef.current) maybeAskInvite("sans-compte");
+    }, 3000);
+    // Les autres messages gardent leur rythme : on laisse respirer, jamais à la
+    // seconde où l'app s'ouvre. Si la carte de partage est déjà passée, le garde-fou
+    // « un seul message par visite » les mettra d'office au tour suivant.
     const t = setTimeout(() => {
-      if (!authUserRef.current && visites >= 4 && maybeAskSignup("visites")) return;
       if (maybeAskPhoto()) return;          // connectée mais sans photo → on l'invite (2× max)
       if (visites >= 3) maybeAskNotif();
     }, 12000);
-    return () => clearTimeout(t);
+    return () => { clearTimeout(tPartage); clearTimeout(t); };
   }, []);   // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { localStorage.setItem("monacout_lang", lang); }, [lang]);
 
@@ -686,6 +692,26 @@ export default function App() {
     writeNum(kLast, Date.now());
   }
 
+  // Carte de partage : à la 1ʳᵉ ouverture, puis à la 3ᵉ. Demande de Stéphanie,
+  // 17 août 2026 — elle veut la voir arriver à l'ouverture, pas au bout de plusieurs
+  // jours. On compte donc des OUVERTURES, pas des délais.
+  //
+  // Une ouverture n'est comptée que si le créneau du jour est libre : si un autre
+  // message est déjà passé dans la visite, on ne consomme pas l'occasion, sinon la
+  // personne perdrait sa 1ʳᵉ fois sans avoir rien vu.
+  const INVITE_OUV = "monacout_invite_ouvertures";
+  function maybeAskInvite(moment) {
+    const n = readNum(INVITE_OUV) + 1;
+    if (n > 3) return false;                       // 1ʳᵉ et 3ᵉ : c'est fini après
+    if (n !== 1 && n !== 3) { writeNum(INVITE_OUV, n); return false; }  // la 2ᵉ passe
+    if (promptedThisSessionRef.current) return false;                   // créneau pris
+    writeNum(INVITE_OUV, n);
+    promptedThisSessionRef.current = true;
+    setShowInviteNudge(true);
+    track("invite_nudge_shown", { moment, ouverture: n });
+    return true;
+  }
+
   // Invitation à ajouter sa photo — uniquement aux personnes CONNECTÉES qui n'en ont
   // pas encore. Sans ça elles ne sauraient pas que c'est possible : le carré du menu
   // ne se remarque pas. 2 fois maximum, à 14 jours d'écart.
@@ -702,10 +728,7 @@ export default function App() {
   // Invitation à créer un compte. Renvoie true si le message a été affiché.
   function maybeAskSignup(source) {
     if (auth.user) return false;
-    if (!canAskAgain("monacout_signup_asks", "monacout_signup_last_ask", 2, 10)) return false;
-    noteAsked("monacout_signup_asks", "monacout_signup_last_ask");
-    setShowInviteNudge(true);
-    track("invite_nudge_shown", { moment: "sans-compte", source });
+    return maybeAskInvite("sans-compte");
     return true;
   }
 
