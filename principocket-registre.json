@@ -235,8 +235,8 @@
  },
  "/en/events/a0b575002416d82c4c346444d916c23a-Les-Lives-du-Summer-Bar": {
   "vuLe": "2026-08-11",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "deja",
+  "detail": "Les Lives du Summer Bar",
   "majLe": "2026-08-17"
  },
  "/en/events/919a5a7f225074dc0e604fb4ceab4df7-The-Encounter": {
@@ -295,8 +295,8 @@
  },
  "/en/events/0b607d23d6f128eff29f2b487d2921b5-LES-ASSISES": {
   "vuLe": "2026-08-11",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "LES ASSISES",
   "majLe": "2026-08-17"
  },
  "/en/events/2e5edb95a963d77b3ac26765b98dff06-Exhibition-Wedding-of-the-century": {
@@ -325,8 +325,8 @@
  },
  "/en/events/386fa2737021b2e07280b37998a2cb70-Garden-club-6-Et-si-le-soleil-etait-bleu-est-ce-qu-on-le-verrait": {
   "vuLe": "2026-08-11",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "Garden club 6 Et si le soleil etait bleu est ce qu on le verrait",
   "majLe": "2026-08-17"
  },
  "/en/events/32016ca77bf70ba840178337a3c19be7-The-legend-of-the-Magic-Crystal": {
@@ -379,8 +379,8 @@
  },
  "/en/events/be270d3be2e9a6d96e346558be084f62-A-wedding-in-Monaco": {
   "vuLe": "2026-08-11",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "A wedding in Monaco",
   "majLe": "2026-08-17"
  },
  "/en/events/781864ef4185b47ceb519812a883a7de-Symphonic-Concert-L-Kuokman-R-Goosby": {
@@ -457,8 +457,8 @@
  },
  "/en/events/8843eb75deae6cb1fc8266a23f905a85-THEATRE-PRINCESSE-GRACE-LE-BOURGEOIS-GENTILHOMME": {
   "vuLe": "2026-08-11",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie THÉÂTRE en exige une",
+  "etat": "deja",
+  "detail": "THEATRE PRINCESSE GRACE LE BOURGEOIS GENTILHOMME",
   "majLe": "2026-08-17"
  },
  "/en/events/f539d19f6e925de12b86d15b6d3624b8-OPERA-DE-MONTE-CARLO-CARMEN": {

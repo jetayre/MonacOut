@@ -190,25 +190,33 @@ for (const f of fiches) {
   const cat = categorie(f.titre);
   const heure = f.h1 ? (f.h2 ? `${f.h1.replace(":", "h")} — ${f.h2.replace(":", "h")}` : f.h1.replace(":", "h"))
                      : (SANS_HEURE[cat] || null);
-  if (!heure) { note(f.sl, "ecarte", "heure non publiée et catégorie " + cat + " en exige une"); continue; }
   const mtCles = motsCles(f.titre), mlCles = motsCles(f.lieu);
+  // Une fiche de l'app correspond-elle ? (même logique qu'avant, écrite une seule fois)
+  const correspond = (e) => {
+    const sub = norm(e.subtitle), tit = norm(e.title.replace(/\n/g, " "));
+    const lieuOk = mlCles.length && mlCles.some(w => sub.includes(w));
+    const titreOk = mtCles.length && mtCles.filter(w => tit.includes(w)).length >= Math.min(2, mtCles.length);
+    return lieuOk || titreOk;
+  };
+  const dejaLa = (d) => (parDate.get(cleDate(d)) || []).some(correspond)
+                     || enCours.some(({ e, fin }) => d <= fin && correspond(e));
+
+  // 🚨 L'HEURE MANQUANTE NE DOIT PAS FAIRE CRIER AU MANQUE QUAND RIEN NE MANQUE.
+  // Avant le 17 août 2026, l'écartement « heure non publiée » se faisait AVANT ce
+  // test : un événement déjà présent dans l'app mais dont PrinciPocket ne publie pas
+  // l'horaire était réécarté chaque nuit, et faisait rougir le passage au bout de
+  // 3 jours. Six des huit alertes en cours étaient de fausses alertes — dont le
+  // Grand Départ de La Vuelta, présent depuis des semaines avec ses quatre fiches.
+  // On regarde donc D'ABORD si c'est déjà là ; on n'écarte que ce qui manque vraiment.
+  if (!heure) {
+    if (dates.every(dejaLa)) { deja.push(f.titre); note(f.sl, "deja", f.titre); continue; }
+    note(f.sl, "ecarte", "heure non publiée et catégorie " + cat + " en exige une");
+    continue;
+  }
+
   let ajoutePour = 0;
   for (const d of dates) {
-    const cands = parDate.get(cleDate(d)) || [];
-    const present = cands.some(e => {
-      const sub = norm(e.subtitle), tit = norm(e.title.replace(/\n/g, " "));
-      const lieuOk = mlCles.length && mlCles.some(w => sub.includes(w));
-      const titreOk = mtCles.length && mtCles.filter(w => tit.includes(w)).length >= Math.min(2, mtCles.length);
-      return lieuOk || titreOk;
-    });
-    const couvert = enCours.some(({ e, fin }) => {
-      if (d > fin) return false;
-      const sub = norm(e.subtitle), tit = norm(e.title.replace(/\n/g, " "));
-      const lieuOk = mlCles.length && mlCles.some(w => sub.includes(w));
-      const titreOk = mtCles.length && mtCles.filter(w => tit.includes(w)).length >= Math.min(2, mtCles.length);
-      return lieuOk || titreOk;
-    });
-    if (present || couvert) continue;
+    if (dejaLa(d)) continue;
     if (!f.lieu || f.lieu.length < 4 || /^principaut|^monaco$/i.test(f.lieu)) {
       sansLieu.push(`${cleDate(d)} · ${f.titre}`);
       note(f.sl, "ecarte", "aucun lieu exploitable : « " + (f.lieu || "?") + " »");
