@@ -3,4 +3,10 @@ Contrôle du 2026-08-18 — 127 liens, 1729 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://larosedesvents.com/the-beach/
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 4794] Mar 18 août GUCCI × LA ROSE DES VENTS LE MOTIF FLORA — La Rose des Vents
+
+■ https://odeonspa.com/
+   UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · [id 1177] Dim 27 sep RECOVERY WEEKEND ODÉON SPA — Odéon Spa

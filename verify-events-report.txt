@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 18/08/2026 18:40:07
+Généré le : 18/08/2026 22:03:20
 Événements analysés : 1735
 Problèmes détectés : 17
 ========================================
@@ -38,9 +38,9 @@ Problèmes détectés : 17
 
 ── VÉRIFICATION LIENS (127 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (645)
-     [id:700021,700022] LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS
-     → https://www.columbushotels.com/
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (648)
+     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
+     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
      💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
@@ -49,7 +49,7 @@ Problèmes détectés : 17
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
@@ -137,15 +137,19 @@ Problèmes détectés : 17
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 HTTP 403
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
+     [id:1000381] WINE PALACE × MONACO YACHT SHOW
+     → https://www.instagram.com/wine_palace_montecarlo/
+     💬 HTTP 429
+
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 HTTP 403
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
      → https://www.opera.mc/
@@ -186,6 +190,14 @@ Problèmes détectés : 17
      [id:800037] LES CONCERTS DE LA VOUTE SOLI DEO GLORIA BY JSB
      → (vide)
      💬 Lien manquant
+
+     [id:1008505,1008506,1008507,1008508,1008509,1008510] SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO
+     → https://www.instagram.com/slammers_monaco/
+     💬 HTTP 429
+
+     [id:1008511,1008512,1008513,1008514,1008515,1008516] SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO
+     → https://www.instagram.com/shipandcastlemonaco/
+     💬 HTTP 429
 
      [id:1008598,1008599,1008600,1008601,1008602,1008603,1008604,1008605,1008606,1008607,1008608,1008609,1008610,1008611,1008612,1008613,1008614,1008615,1008616,1008617,1008618,1008619,1008620,1008621,1008622,1008623] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
      → https://www.sunsetmonaco.com/
@@ -2620,7 +2632,11 @@ Problèmes détectés : 17
      💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (35)
+  💡 À VÉRIFIER MANUELLEMENT (36)
+     [id:700021,700022] LOS CHULOS SUMMER BAR COLUMBUS, LOS CHULOS SUMMER BAR COLUMBUS
+     → https://www.columbushotels.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
      [id:700000] POSITIVE ENERGY LES ÉCHOS-LIÉS
      → https://www.dessineunpapillon.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2633,7 +2649,7 @@ Problèmes détectés : 17
      → https://saintmartin.diocese.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:4762,4763,4764,4765,4766,4730,4737,4738,4739,4740,4741,4742,4793,800000,800003,800004,800005,800008,800013,800026,800028,800012] LES ASSISES SÉCURITÉ, BNI NATIONAL CONFERENCE, BNI GLOBAL CONVENTION 2026, CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, STELLA ALMONDO PIANO, THURSDAY LIVE SESSIONS FRIEDBERG, DISNEY EN CONCERT SUIVEZ VOS RÊVES, THURSDAY LIVE SESSIONS JIMMY GNECCO, THURSDAY LIVE SESSIONS DIRTY DEEP, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, MARIAGE À MONACO L'ÉVÉNEMENT MÉDIATIQUE DE 1956, MONACO CARD SHOW GRIMALDI FORUM, LUXE PACK MONACO GRIMALDI FORUM, SPORTEL MONACO GRIMALDI FORUM, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN, SHREK\ LE MUSICAL\ GRIMALDI FORUM, OPERA DE MONTE CARLO CAPE TOWN HERITAGE, MARINE EN CONCERT
+     [id:4762,4763,4764,4765,4766,4730,4737,4738,4739,4740,4741,4742,4793,800000,800003,800004,800005,800008,800013,800026,800028] LES ASSISES SÉCURITÉ, BNI NATIONAL CONFERENCE, BNI GLOBAL CONVENTION 2026, CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, STELLA ALMONDO PIANO, THURSDAY LIVE SESSIONS FRIEDBERG, DISNEY EN CONCERT SUIVEZ VOS RÊVES, THURSDAY LIVE SESSIONS JIMMY GNECCO, THURSDAY LIVE SESSIONS DIRTY DEEP, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, MARIAGE À MONACO L'ÉVÉNEMENT MÉDIATIQUE DE 1956, MONACO CARD SHOW GRIMALDI FORUM, LUXE PACK MONACO GRIMALDI FORUM, SPORTEL MONACO GRIMALDI FORUM, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN, SHREK\ LE MUSICAL\ GRIMALDI FORUM, OPERA DE MONTE CARLO CAPE TOWN HERITAGE
      → https://www.grimaldiforum.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -2649,7 +2665,7 @@ Problèmes détectés : 17
      → https://www.grimaldiforum.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:80,4830] FERMETURE SAISON NOTE BLEUE, DOGS & COFFEE ADOPTION SPA DE MONACO
+     [id:80,4831,4830] FERMETURE SAISON NOTE BLEUE, LA NOTE BLEUE SUMMER FESTIVAL 2026, DOGS & COFFEE ADOPTION SPA DE MONACO
      → https://lanotebleue.mc/en/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -2761,7 +2777,7 @@ Problèmes détectés : 17
      → https://lillysclub.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 62 liens OK (directs, page réservation détectée)
+  ✓ 58 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
