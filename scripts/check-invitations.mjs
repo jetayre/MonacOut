@@ -43,13 +43,23 @@ if (/function shareInvite[\s\S]{0,220}if \(!codePret\)/.test(ecran))
 else
   ko("shareInvite() ne vérifie plus codePret — c'est EXACTEMENT le bug du 7 août 2026");
 
-const lien = ecran.match(/const inviteLink\s*=\s*`([^`]+)`/);
-if (!lien) ko("impossible de retrouver la construction du lien d'invitation");
+// Le lien n'est plus construit dans l'écran mais dans src/lib/invite.js, pour qu'une
+// seule source serve à la fois l'onglet Amies et la carte de partage (17 août 2026).
+// On épingle donc les DEUX : la fabrique dans la bibliothèque, et le fait que l'écran
+// s'en serve vraiment. Sans le second test, quelqu'un pourrait réécrire un lien en dur
+// dans l'écran sans que rien ne le signale.
+const fabrique = readFileSync(join(racine, "src/lib/invite.js"), "utf8");
+const lien = fabrique.match(/lienInvitation\s*=\s*\(code\)\s*=>\s*`([^`]+)`/);
+if (!lien) ko("impossible de retrouver lienInvitation() dans src/lib/invite.js");
 else {
-  const hote = lien[1].replace("${inviteCode}", "CODE");
+  const hote = lien[1].replace("${code}", "CODE");
   ok(`lien construit : ${hote}`);
   var HOTE_LIEN = hote.replace(/\?invite=CODE.*$/, "");
 }
+if (/lienInvitation\s*\(\s*inviteCode\s*\)/.test(ecran))
+  ok("l'écran Amies utilise bien cette fabrique, pas un lien écrit en dur");
+else
+  ko("FriendsScreen n'appelle plus lienInvitation() — un lien en dur a pu réapparaître");
 
 // ── 2. LES CODES EN BASE ─────────────────────────────────────────────────────────
 // Les identifiants sont publics (ils sont dans le bundle livré aux navigateurs).
