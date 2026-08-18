@@ -180,7 +180,21 @@ const note = (sl, etat, detail) => {
   registre[sl] = { ...p, etat, detail: detail || "", majLe: aujISO };
 };
 
+// ── DÉCISIONS HUMAINES DÉJÀ PRISES ──────────────────────────────────────────────
+// L'alerte dit « demandent une décision humaine ». Il faut donc pouvoir enregistrer
+// que la décision A ÉTÉ PRISE, sinon la même alerte revient chaque nuit pour
+// l'éternité — et une alarme qui crie toujours finit par ne plus être lue.
+//
+// ⚠️ CE N'EST PAS UN MOYEN DE PASSER AU VERT (interdit par CLAUDE.md). Chaque entrée
+// porte une RAISON écrite, et reste affichée dans le rapport sous « décisions prises ».
+// On assume ce qu'on a décidé, on ne l'efface pas.
+// Format de principocket-decisions.json : { "<slug>": "la raison, datée" }
+let DECISIONS = {};
+try { DECISIONS = JSON.parse(readFileSync(join(racine, "principocket-decisions.json"), "utf8")); }
+catch { /* pas de décision enregistrée, c'est le cas normal */ }
+
 const ajoutes = [], horsMonaco = [], sansLieu = [], deja = [];
+const tranches = [];
 const lignes = [];
 for (const f of fiches) {
   const dates = [...new Set(f.dates.filter(d => d >= auj && d <= horizon).map(d => d.getTime()))]
@@ -208,6 +222,7 @@ for (const f of fiches) {
   // 3 jours. Six des huit alertes en cours étaient de fausses alertes — dont le
   // Grand Départ de La Vuelta, présent depuis des semaines avec ses quatre fiches.
   // On regarde donc D'ABORD si c'est déjà là ; on n'écarte que ce qui manque vraiment.
+  if (DECISIONS[f.sl]) { tranches.push(`${f.titre} — ${DECISIONS[f.sl]}`); note(f.sl, "tranche", DECISIONS[f.sl]); continue; }
   if (!heure) {
     if (dates.every(dejaLa)) { deja.push(f.titre); note(f.sl, "deja", f.titre); continue; }
     note(f.sl, "ecarte", "heure non publiée et catégorie " + cat + " en exige une");
@@ -238,9 +253,11 @@ let txt = `REPRISE INTÉGRALE PRINCIPOCKET — ${new Date().toISOString().slice(
 txt += `${slugs.size} événements lus · ${ajoutes.length} importés (${lignes.length} fiches) · ${deja.length} déjà présents\n`;
 if (ajoutes.length) txt += `\n■ IMPORTÉS\n` + ajoutes.map(a => "   + " + a).join("\n") + "\n";
 if (sansLieu.length) txt += `\n■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main\n` + sansLieu.map(a => "   ? " + a).join("\n") + "\n";
+if (tranches.length) txt += `\n■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment\n` + tranches.map(a => "   · " + a).join("\n") + "\n";
 if (horsMonaco.length) txt += `\n■ ⚠️ HORS DE MONACO — règle 15, à trancher\n` + horsMonaco.map(a => "   ! " + a).join("\n") + "\n";
 // Ce qui est écarté depuis plus de 3 jours : personne ne s'en est occupé.
-const vieux = Object.entries(registre).filter(([, r]) => {
+const vieux = Object.entries(registre).filter(([sl, r]) => {
+  if (DECISIONS[sl]) return false;          // décision prise et écrite : plus une alerte
   if (r.etat !== "ecarte") return false;
   return (Date.now() - new Date(r.vuLe + "T00:00:00")) / 86400000 > 3;
 });
