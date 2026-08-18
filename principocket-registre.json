@@ -367,8 +367,8 @@
  },
  "/en/events/6af4173e70fe48a5d41c067f137bb200-La-Note-Bleue-Summer-Festival-2026": {
   "vuLe": "2026-08-11",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "La Note Bleue Summer Festival 2026",
   "majLe": "2026-08-18"
  },
  "/en/events/868ee07e33b1f624a35b88d7e5edbbdb-Benediction-des-Malades": {
@@ -973,7 +973,7 @@
  },
  "/en/events/e0b0bf9df232c178cde99d1998a135a5-Les-Concerts-de-la-Voute-A-Journey-to-the-Heart-of-Opera": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute A Journey to the Heart of Opera",
   "majLe": "2026-08-18"
  },
@@ -985,7 +985,7 @@
  },
  "/en/events/05c419e617ec2216e726a8eb2e861000-Les-Concerts-de-la-Voute-Gabriel-Dupont-la-Nature-retrouvee": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Gabriel Dupont la Nature retrouvee",
   "majLe": "2026-08-18"
  },
@@ -997,43 +997,43 @@
  },
  "/en/events/8d580722f3713e46b7a157b8175ec5a6-Les-Concerts-de-la-Voute-Christmas-Cantatas": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Christmas Cantatas",
   "majLe": "2026-08-18"
  },
  "/en/events/817ce5b25fa8378616c37826054e8c9b-Les-Concerts-de-la-Voute-Make-way-for-the-young-people": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Make way for the young people",
   "majLe": "2026-08-18"
  },
  "/en/events/f5ab102917d96e59b8748e1021c199dd-Les-Concerts-de-la-Voute-Romeo-and-Juliet": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Romeo and Juliet",
   "majLe": "2026-08-18"
  },
  "/en/events/b8eac686a6faf3b9d529522e3b63d292-Les-Concerts-de-la-Voute-Woman-Power": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Woman Power",
   "majLe": "2026-08-18"
  },
  "/en/events/c4d941fa428bddf93192a8449c6ba401-Les-Concerts-de-la-Voute-Farewell-Song": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Farewell Song",
   "majLe": "2026-08-18"
  },
  "/en/events/98c274c5eedffc6556a39dce37f53c9a-Les-Concerts-de-la-Voute-Soli-Deo-Gloria-By-JSB": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute Soli Deo Gloria By JSB",
   "majLe": "2026-08-18"
  },
  "/en/events/7b588712aae8e680ad7a4cc429afa16c-Les-Concerts-de-la-Voute-David-and-Bruno-Put-on-a-Show-Episode-2": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute David and Bruno Put on a Show Episode 2",
   "majLe": "2026-08-18"
  }

@@ -1,10 +1,30 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1720 fiches inspectées le 2026-08-18.
+1729 fiches inspectées le 2026-08-18.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
    · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 50 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
-■ FICHES SANS CONTENU — la description répète le titre (2)
+■ FICHES SANS CONTENU — la description répète le titre (11)
+   · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
    · Jeu 22 oct · ADN — description = titre (id 800027)
+   · Sam 24 oct · LES CONCERTS DE LA VOUTE GABRIEL DUPONT LA NATURE RETROUVEE — description = titre (id 800030)
    · Dim 22 nov · OPERA DE MONTE CARLO CAPE TOWN HERITAGE — description = titre (id 800028)
+   · Sam 19 déc · LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS — description = titre (id 800031)
+   · Sam 23 jan · LES CONCERTS DE LA VOUTE MAKE WAY FOR THE YOUNG PEOPLE — description = titre (id 800032)
+   · Sam 20 fév · LES CONCERTS DE LA VOUTE ROMEO AND JULIET — description = titre (id 800033)
+   · Sam 13 mar · LES CONCERTS DE LA VOUTE WOMAN POWER — description = titre (id 800034)
+   · Sam 17 avr · LES CONCERTS DE LA VOUTE FAREWELL SONG — description = titre (id 800035)
+   · Sam 22 mai · LES CONCERTS DE LA VOUTE SOLI DEO GLORIA BY JSB — description = titre (id 800037)
+   · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — description = titre (id 800036)
+
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (9)
+   · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — Eglise Réformée de Monaco (id 800029)
+   · Sam 24 oct · LES CONCERTS DE LA VOUTE GABRIEL DUPONT LA NATURE RETROUVEE — Eglise Réformée de Monaco (id 800030)
+   · Sam 19 déc · LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS — Eglise Réformée de Monaco (id 800031)
+   · Sam 23 jan · LES CONCERTS DE LA VOUTE MAKE WAY FOR THE YOUNG PEOPLE — Eglise Réformée de Monaco (id 800032)
+   · Sam 20 fév · LES CONCERTS DE LA VOUTE ROMEO AND JULIET — Eglise Réformée de Monaco (id 800033)
+   · Sam 13 mar · LES CONCERTS DE LA VOUTE WOMAN POWER — Eglise Réformée de Monaco (id 800034)
+   · Sam 17 avr · LES CONCERTS DE LA VOUTE FAREWELL SONG — Eglise Réformée de Monaco (id 800035)
+   · Sam 22 mai · LES CONCERTS DE LA VOUTE SOLI DEO GLORIA BY JSB — Eglise Réformée de Monaco (id 800037)
+   · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — Eglise Réformée de Monaco (id 800036)
