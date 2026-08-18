@@ -53,7 +53,8 @@ const ANNEE_COURANTE = new Date().getFullYear();
 // ── Les titres « le lieu est simplement ouvert » ──────────────────────────────
 // Comparaison sur le début du titre, à plat (sans accents ni ponctuation).
 const GENERIQUES_SOIR = [
-  "AFTERLIGHT BY 99 MARETERRA",              // 99 Sushi Bar — apéro quotidien
+  "AFTERLIGHT BY 99 MARETERRA",
+  "APERO AMAZONICO MONTE-CARLO",           // ouvert tous les soirs 18h-2h              // 99 Sushi Bar — apéro quotidien
   "LE VIVALDI BAR A COCKTAILS PORT HERCULE",
   "HAPPY HOUR SEXY TACOS LARVOTTO",
   "APERO NORMA CONDAMINE",
