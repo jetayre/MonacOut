@@ -1,8 +1,16 @@
 REPRISE INTÉGRALE PRINCIPOCKET — 2026-08-18
-160 événements lus · 1 importés (1 fiches) · 153 déjà présents
+171 événements lus · 9 importés (9 fiches) · 155 déjà présents
 
 ■ IMPORTÉS
-   + Marine en concert — Grimaldi Forum Monaco (1 jour(s))
+   + Les Concerts de la Voute A Journey to the Heart of Opera — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Gabriel Dupont la Nature retrouvee — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Christmas Cantatas — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Make way for the young people — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Romeo and Juliet — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Woman Power — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Farewell Song — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute David and Bruno Put on a Show Episode 2 — Eglise Réformée de Monaco (1 jour(s))
+   + Les Concerts de la Voute Soli Deo Gloria By JSB — Eglise Réformée de Monaco (1 jour(s))
 
 ■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main
    ? 12 sep 2026 · Les ateliers CycloShow
@@ -14,3 +22,5 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-08-18
      https://www.principocket.com/en/events/d2b312f5ab84d9bd9aabd0ae4728951e-Start-of-the-2026-Vuelta
    ! vu le 2026-08-11 · heure non publiée et catégorie SPECTACLE en exige une
      https://www.principocket.com/en/events/6af4173e70fe48a5d41c067f137bb200-La-Note-Bleue-Summer-Festival-2026
+   ! vu le 2026-08-11 · heure non publiée et catégorie CONCERT en exige une
+     https://www.principocket.com/en/events/210815efd426d6129ea2332b560289a1-MARINE-IN-CONCERT
