@@ -115,7 +115,17 @@ async function verdict(url) {
       if (!c.panne && c.status >= 200 && c.status < 400) return { mort: false, chaine: true };
       if (!c.panne && REFUS_ROBOT.has(c.status)) return { mort: false, robot: true };
       if (!c.panne && MORT_SUR.has(c.status)) return { mort: true, raison: "HTTP " + c.status + " — page inexistante" };
-      return { mort: true, raison: r.panne };
+      // 🚨 UN DÉLAI DÉPASSÉ N'EST PAS UNE PREUVE DE MORT.
+      // Le 18 août 2026, le CI a déclaré morts larosedesvents.com et odeonspa.com :
+      // tous deux répondent 200 depuis une vraie connexion, avec 83 et 92 Ko de page.
+      // Ces hôtes refusent simplement les adresses de centres de données comme celles
+      // de GitHub. Crier « lien mort » pour ça use l'alarme, et une alarme usée finit
+      // par ne plus être lue — c'est ainsi qu'on rate un vrai lien mort.
+      // On ne garde « mort » que pour une PREUVE : le domaine n'existe pas (DNS), la
+      // page répond 404/410, ou elle est vide (cas Jack Monaco, 663 octets).
+      const dns = /ENOTFOUND|EAI_AGAIN|getaddrinfo|ERR_INVALID_URL/i.test(String(r.panne));
+      if (dns) return { mort: true, raison: r.panne };
+      return { mort: false, injoignable: true, raison: r.panne };
     }
     // Le certificat masquait le vrai verdict : on rapporte CE QUE LA PAGE RÉPOND.
     if (MORT_SUR.has(b.status)) return { mort: true, raison: "HTTP " + b.status + " — page inexistante" };
@@ -133,12 +143,14 @@ const liens = [...fichesParLien.keys()];
 console.log(`Contrôle de ${liens.length} liens distincts (${ev.filter(e => e.link).length} fiches)…`);
 
 const morts = [], filtres = [], chaines = [];
+const injoignables = [];
 const lots = [];
 for (let i = 0; i < liens.length; i += 12) lots.push(liens.slice(i, i + 12));
 for (const lot of lots) {
   await Promise.all(lot.map(async url => {
     const v = await verdict(url);
     if (v.mort) morts.push({ url, raison: v.raison, fiches: fichesParLien.get(url) });
+    else if (v.injoignable) injoignables.push({ url, raison: v.raison, fiches: fichesParLien.get(url) });
     else if (v.robot) filtres.push(url);
     else if (v.chaine) chaines.push(url);
   }));
@@ -158,11 +170,22 @@ for (const m of morts) {
     txt += `     · [id ${f.id}] ${f.date} ${(f.title || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "")} — ${(f.subtitle || "").split(" · ")[0]}\n`;
   if (m.fiches.length > 5) txt += `     … et ${m.fiches.length - 5} autre(s)\n`;
 }
+if (injoignables.length) {
+  txt += "\n■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone\n";
+  txt += "   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve\n";
+  txt += "   de lien mort : le contenu, lui, n'a pas pu être lu.\n";
+  for (const m of injoignables)
+    txt += `     · ${m.url} — ${m.raison} — ${m.fiches.length} fiche(s)\n`;
+}
 writeFileSync(join(racine, "liens-morts.txt"), txt);
 
 console.log(`  ✅ ${liens.length - morts.length - filtres.length - chaines.length} liens répondent parfaitement`);
 console.log(`  ⏭  ${filtres.length} refusent les automates (normaux sur un téléphone)`);
 console.log(`  ⏭  ${chaines.length} ont une chaîne de certificat incomplète — Safari la répare, la page s'affiche`);
+if (injoignables.length) {
+  console.log(`  ⚠️  ${injoignables.length} injoignable(s) depuis le CI (hôtes qui refusent les centres de données) :`);
+  for (const m of injoignables) console.log(`        ${m.raison.padEnd(26)} ${m.url}`);
+}
 if (!morts.length) { console.log("\n✅ Aucun lien mort.\n"); process.exit(0); }
 console.log(`  ❌ ${morts.length} lien(s) MORT(S), sur ${touchees} fiche(s) :\n`);
 for (const m of morts) console.log(`     ${String(m.fiches.length).padStart(4)} fiches  ${m.raison.padEnd(30)} ${m.url}`);
