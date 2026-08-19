@@ -903,17 +903,17 @@ export default function App() {
           <div style={{ fontSize: 32, marginBottom: 10 }}>👯</div>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
             {auth.user
-              ? (lang === "en" ? "Invite your friends" : "Invite tes amies")
-              : (lang === "en" ? "Share with your friends" : "Partage avec tes amies")}
+              ? (lang === "en" ? "See where your friends go" : "Vois où sortent tes amis")
+              : (lang === "en" ? "See where your friends go" : "Vois où sortent tes amis")}
           </div>
           <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
             {auth.user
               ? (lang === "en"
-                ? "Monac'Out is better together: see where your friends are going, and let them see you."
-                : "Monac'Out est plus sympa à plusieurs : vois où sortent tes amies, et qu'elles voient où tu vas.")
+                ? "Invite your friends: you'll see where they go out, and they'll see where you go."
+                : "Invite tes amis : tu verras où ils sortent, et ils verront où tu vas.")
               : (lang === "en"
-                ? "Your personal link connects them to you — you'll each see where the others are going. Creating your account takes 30 seconds."
-                : "Ton lien personnel les connecte à toi : vous verrez où sortent les unes et les autres. Créer ton compte prend 30 secondes.")}
+                ? "Your personal link connects them to you — you'll see where your friends go, and they'll see where you go. Creating your account takes 30 seconds."
+                : "Ton lien personnel les connecte à toi : tu verras où sortent tes amis, et eux où tu vas. Créer ton compte prend 30 secondes.")}
           </div>
           <button
             onClick={async () => {
@@ -929,7 +929,7 @@ export default function App() {
             }}
             style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, boxSizing: "border-box" }}>
             {auth.user
-              ? (lang === "en" ? "Share with my friends" : "Partager à mes amies")
+              ? (lang === "en" ? "Share with my friends" : "Partager à mes amis")
               : (lang === "en" ? "Create my account and share" : "Créer mon compte et partager")}
           </button>
           <button onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}
