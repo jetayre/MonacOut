@@ -930,8 +930,14 @@ export default function App() {
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
            onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}>
         <div onClick={e => e.stopPropagation()}
-             style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
-          <div style={{ fontSize: 32, marginBottom: 10 }}>🙋</div>
+             style={{ position: "relative", background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <button
+            aria-label={lang === "en" ? "Close" : "Fermer"}
+            onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}
+            style={{ position: "absolute", top: 8, right: 8, width: 30, height: 30, borderRadius: "50%",
+                     background: "#fff", border: "1px solid #C9A96E", cursor: "pointer",
+                     fontSize: 17, color: "#0F1D3A", lineHeight: 1, padding: 0,
+                     display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
             {lang === "en" ? "Say you are going" : "Dis que tu y vas"}
           </div>
@@ -945,10 +951,6 @@ export default function App() {
             style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, boxSizing: "border-box" }}>
             {lang === "en" ? "Create my account" : "Créer mon compte"}
           </button>
-          <button onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}
-                  style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
-            {lang === "en" ? "Later" : "Plus tard"}
-          </button>
         </div>
       </div>
     )}
@@ -956,8 +958,14 @@ export default function App() {
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
            onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}>
         <div onClick={e => e.stopPropagation()}
-             style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
-          <div style={{ fontSize: 32, marginBottom: 10 }}>👯</div>
+             style={{ position: "relative", background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <button
+            aria-label={lang === "en" ? "Close" : "Fermer"}
+            onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}
+            style={{ position: "absolute", top: 8, right: 8, width: 30, height: 30, borderRadius: "50%",
+                     background: "#fff", border: "1px solid #C9A96E", cursor: "pointer",
+                     fontSize: 17, color: "#0F1D3A", lineHeight: 1, padding: 0,
+                     display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
             {auth.user
               ? (lang === "en" ? "See where your friends go" : "Vois où sortent tes amis")
@@ -988,10 +996,6 @@ export default function App() {
             {auth.user
               ? (lang === "en" ? "Share with my friends" : "Partager à mes amis")
               : (lang === "en" ? "Create my account and share" : "Créer mon compte et partager")}
-          </button>
-          <button onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}
-                  style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
-            {lang === "en" ? "Later" : "Plus tard"}
           </button>
         </div>
       </div>

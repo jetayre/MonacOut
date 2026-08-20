@@ -303,10 +303,18 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                   const going = social?.friendsGoingTo?.(selectedEvent.id) || [];
                   if (!going.length) return null;
                   const n = going.map(f => f.display_name).filter(Boolean);
+                  // 🚨 SUR UNE FICHE « EN COURS », LE PRESENT MENT.
+                  // La table participations ne stocke PAS de date : sur une expo ouverte
+                  // des mois, on sait qu'une amie y est allee, jamais QUAND. Ecrire « y va »
+                  // affirme « aujourd'hui » — Stephanie a vu deux fois Nadege et Toma
+                  // annonces sur le Mariage du siecle du jour alors qu'elles y etaient
+                  // allees la semaine d'avant. Le passe, lui, reste vrai quel que soit le jour.
+                  // ➜ Le vrai correctif reste la colonne `jour` (voir CLAUDE.md, § A FAIRE).
+                  const enCours = !!selectedEvent.ongoing;
                   const label = n.length === 1
-                    ? (lang === "en" ? `${n[0]} is going` : `${n[0]} y va`)
+                    ? (lang === "en" ? `${n[0]} ${enCours ? "has been" : "is going"}` : `${n[0]} ${enCours ? "y est allée" : "y va"}`)
                     : n.length === 2
-                      ? (lang === "en" ? `${n[0]} and ${n[1]} are going` : `${n[0]} et ${n[1]} y vont`)
+                      ? (lang === "en" ? `${n[0]} and ${n[1]} ${enCours ? "have been" : "are going"}` : `${n[0]} et ${n[1]} ${enCours ? "y sont allées" : "y vont"}`)
                       : (lang === "en" ? `${n[0]}, ${n[1]} +${n.length - 2} more are going` : `${n[0]}, ${n[1]} +${n.length - 2} autres y vont`);
                   return (
                     <div style={{
