@@ -329,6 +329,8 @@ export default function App() {
   const [showFavNudge, setShowFavNudge] = useState(false);
   const [showPhotoNudge, setShowPhotoNudge] = useState(false);
   const [showInviteNudge, setShowInviteNudge] = useState(false);
+  // eventId sur lequel quelqu'un a touché « J'y vais » sans être connecté
+  const [goingEnAttente, setGoingEnAttente] = useState(null);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
   const [notifConfig, setNotifConfig] = useState(null);
   const [showNotifPrompt, setShowNotifPrompt] = useState(false);
@@ -726,10 +728,9 @@ export default function App() {
   }
 
   // Invitation à créer un compte. Renvoie true si le message a été affiché.
-  function maybeAskSignup(source) {
+  function maybeAskSignup() {
     if (auth.user) return false;
     return maybeAskInvite("sans-compte");
-    return true;
   }
 
   // Affiche notre petit message maison AVANT la demande iOS.
@@ -775,7 +776,16 @@ export default function App() {
   // La base, elle, ne stocke qu'une ligne par événement — c'est ce qui permet aux
   // amies de voir « elle va à Brauner ». Le jour précis reste sur l'appareil.
   function handleGoingClick(eventId, jour, enCours) {
-    if (!auth.user) { setShowAuth(true); return; }
+    // 18 personnes ont touché « J'y vais » depuis juillet, 3 seulement ont une
+    // participation enregistrée. Celles qui n'avaient pas de compte tombaient sur
+    // l'écran « Se connecter » SANS QU'ON LEUR DISE POURQUOI, et leur geste était
+    // perdu même si elles allaient au bout. On explique, et on retient l'intention.
+    if (!auth.user) {
+      setGoingEnAttente(eventId);
+      try { localStorage.setItem("monacout_going_attente", String(eventId)); } catch { /* quota */ }
+      track("going_sans_compte", { eventId });
+      return;
+    }
     if (enCours && jour) {
       const dejaInscrite = (social.myParticipations || []).includes(eventId);
       setJoursParticipation(prev => {
@@ -835,6 +845,7 @@ export default function App() {
       auth={auth}
       social={social}
       onShowAuth={() => setShowAuth(true)}
+      onGoingSansCompte={(id) => { setGoingEnAttente(id ?? 0); try { localStorage.setItem("monacout_going_attente", String(id ?? 0)); } catch { /* quota */ } track("going_sans_compte", { source: "recap" }); }}
       pendingCount={social.pending?.length || 0}
     >
       {tab === "events" ? (
@@ -859,6 +870,7 @@ export default function App() {
           events={events}
           lang={lang}
           onShowAuth={() => setShowAuth(true)}
+      onGoingSansCompte={(id) => { setGoingEnAttente(id ?? 0); try { localStorage.setItem("monacout_going_attente", String(id ?? 0)); } catch { /* quota */ } track("going_sans_compte", { source: "recap" }); }}
           onNavEvents={() => handleTabChange("events")}
           initialInviteCode={pendingInvite}
           onInviteConsumed={() => setPendingInvite(null)}
@@ -895,6 +907,36 @@ export default function App() {
         Demande de Stéphanie, 16 août 2026. Deux issues seulement, jamais de cul-de-sac
         (leçon de l'écran noir du 7 août) : « Partager » ou « Plus tard ». Le partage
         ouvre la feuille du téléphone — pas une page web, donc aucun risque d'écran noir. */}
+    {/* ── « J'y vais » sans compte ────────────────────────────────────────────
+        On ne renvoie plus vers un écran de connexion muet : on dit ce que le compte
+        APPORTE, avec les mots de Stéphanie. Et l'intention est retenue — la sortie
+        sera cochée toute seule une fois le compte créé. */}
+    {goingEnAttente !== null && (
+      <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
+           onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}>
+        <div onClick={e => e.stopPropagation()}
+             style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+          <div style={{ fontSize: 32, marginBottom: 10 }}>🙋</div>
+          <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
+            {lang === "en" ? "Say you are going" : "Dis que tu y vas"}
+          </div>
+          <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 13, color: "#6A7080", lineHeight: 1.5, marginBottom: 20 }}>
+            {lang === "en"
+              ? "Create your account and your friends will see it — they can join you there."
+              : "Crée ton compte et tes amis le verront : ils pourront t'y rejoindre."}
+          </div>
+          <button
+            onClick={() => { track("going_nudge_vers_inscription"); setGoingEnAttente(null); setShowAuth(true); }}
+            style={{ width: "100%", padding: 12, background: "#0F1D3A", color: "#fff", border: "none", borderRadius: 3, cursor: "pointer", fontFamily: "'Josefin Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 8, boxSizing: "border-box" }}>
+            {lang === "en" ? "Create my account" : "Créer mon compte"}
+          </button>
+          <button onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}
+                  style={{ width: "100%", padding: 8, background: "none", color: "#6A7080", border: "none", cursor: "pointer", fontFamily: "'Lato', sans-serif", fontSize: 12 }}>
+            {lang === "en" ? "Later" : "Plus tard"}
+          </button>
+        </div>
+      </div>
+    )}
     {showInviteNudge && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
            onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}>

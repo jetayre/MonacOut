@@ -75,7 +75,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
+export default function Shell({ onGoingSansCompte, tab, setTab, children, lang = "fr", catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -247,7 +247,8 @@ export default function Shell({ tab, setTab, children, t, lang = "fr", setLang, 
                               )}
                               <button
                                 onClick={() => {
-                                  if (!auth?.user) { onShowAuth?.(); return; }
+                                  // Sans compte : la carte qui EXPLIQUE, pas l'écran muet.
+                                  if (!auth?.user) { (onGoingSansCompte || onShowAuth)?.(idLieu); return; }
                                   social?.toggleParticipation?.(idLieu);
                                 }}
                                 aria-pressed={jyVais}
