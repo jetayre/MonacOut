@@ -1,7 +1,7 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 20/08/2026 06:28:43
-Événements analysés : 1732
+Généré le : 20/08/2026 18:43:09
+Événements analysés : 1747
 Problèmes détectés : 17
 ========================================
 
@@ -38,7 +38,11 @@ Problèmes détectés : 17
 
 ── VÉRIFICATION LIENS (128 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (648)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (650)
+     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
+     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -188,6 +192,10 @@ Problèmes détectés : 17
      💬 Lien manquant
 
      [id:800037] LES CONCERTS DE LA VOUTE SOLI DEO GLORIA BY JSB
+     → (vide)
+     💬 Lien manquant
+
+     [id:800012] L UMIERES SUR LA LAGUNE
      → (vide)
      💬 Lien manquant
 
@@ -2641,7 +2649,7 @@ Problèmes détectés : 17
      → https://www.dessineunpapillon.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:4744,4746,4747,4748,4749,4751,4752,4753,4755] HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, MESSE VICTIMES DU CANCER
+     [id:4744,4746,4747,4748,4749,4752,4753,4755] HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, MESSE VICTIMES DU CANCER
      → https://saintcharles.diocese.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -2777,7 +2785,7 @@ Problèmes détectés : 17
      → https://lillysclub.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 59 liens OK (directs, page réservation détectée)
+  ✓ 58 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
