@@ -364,47 +364,6 @@
    }
   ]
  },
- "Mar 18 août|2026": {
-  "soir": [
-   {
-    "lieu": "Sass Café",
-    "heure": "19h00 — 01h00",
-    "tel": "+377 9325 5252"
-   },
-   {
-    "lieu": "La Rascasse",
-    "heure": "17h30 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Le Vivaldi",
-    "heure": "18h00 — 02h00",
-    "tel": "+33 6 63 07 20 20"
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102"
-   },
-   {
-    "lieu": "Sexy Tacos",
-    "heure": "15h30 — 18h30",
-    "tel": "+377 9990 7338"
-   },
-   {
-    "lieu": "Norma",
-    "heure": "17h00 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Amazónico",
-    "heure": "18h00 — 02h00",
-    "tel": "",
-    "titre": "APERO AMAZONICO MONTE-CARLO"
-   }
-  ],
-  "brunch": []
- },
  "Mer 19 août|2026": {
   "soir": [
    {
@@ -8227,5 +8186,65 @@
    }
   ],
   "brunch": []
+ },
+ "Sam 20 fév|2027": {
+  "soir": [
+   {
+    "lieu": "Castelroc",
+    "heure": "En soirée",
+    "tel": "+377 9330 3668",
+    "titre": "DINER CASTELROC PLACE DU PALAIS"
+   },
+   {
+    "lieu": "Le Vivaldi",
+    "heure": "18h00 — 02h00",
+    "tel": "+33 6 63 07 20 20",
+    "titre": "LE VIVALDI BAR A COCKTAILS PORT HERCULE"
+   },
+   {
+    "lieu": "Brasserie de Monaco",
+    "heure": "18h00 — 03h00",
+    "tel": "+377 9798 5120",
+    "titre": "BRASSERIE DE MONACO PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Amazónico",
+    "heure": "18h00 — 02h00",
+    "tel": "",
+    "titre": "APERO AMAZONICO MONTE-CARLO"
+   },
+   {
+    "lieu": "Norma",
+    "heure": "17h00 — 20h00",
+    "tel": "",
+    "titre": "APERO NORMA CONDAMINE"
+   },
+   {
+    "lieu": "Buddha-Bar",
+    "heure": "En soirée",
+    "tel": "+377 9999 8080",
+    "titre": "APERO BUDDHA-BAR MONTE-CARLO"
+   }
+  ],
+  "brunch": [
+   {
+    "lieu": "Marlow",
+    "heure": "11h30 — 15h00",
+    "tel": "",
+    "titre": "BRUNCH MARLOW MARETERRA"
+   },
+   {
+    "lieu": "Restaurant de la Société Nautique",
+    "heure": "11h00 — 15h00",
+    "tel": "+377 9350 5130",
+    "titre": "BRUNCH CLUB D AVIRON PORT HERCULE"
+   }
+  ]
  }
 }
