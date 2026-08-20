@@ -178,6 +178,15 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
         if (carte && entree) { ev = carte; lieu = entree.name }
       }
       if (!ev) continue
+      // 🚨 PAS D'EXPO « EN COURS » DANS LES SORTIES A VENIR.
+      // Une fiche ongoing porte la date DU JOUR, reecrite chaque nuit : une amie allee
+      // voir le Mariage du siecle en juillet reapparaissait donc ici tous les jours, en
+      // tete de liste, comme si elle y allait aujourd'hui. Signale trois fois par
+      // Stephanie. La table participations ne stocke aucune date, on ne peut donc pas
+      // savoir QUAND — et une date fausse repetee chaque jour est pire que rien.
+      // L'information reste visible sur la fiche elle-meme, au passe (« y est allee »).
+      // ➜ Reversible des que la colonne `jour` existera (CLAUDE.md, § A FAIRE).
+      if (ev.ongoing) continue
       const d = eventDate(ev)
       if (!d || d < today) continue
       friendsEvents.push({ event: ev, friend, date: d, lieu })
