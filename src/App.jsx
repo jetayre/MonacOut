@@ -349,6 +349,21 @@ export default function App() {
   const profileRef = useRef(null);                // idem pour le profil (a-t-elle déjà une photo ?)
 
   useEffect(() => { scheduleDigest(events, favorites, notifConfig, auth.profile?.preferred_topics); scheduleFavoriteReminders(events, favorites); scheduleHighlightsReminder(events, favorites); }, [events, favorites, notifConfig, auth.profile]);
+  // L'intention retenue quand quelqu'un touche « J'y vais » sans compte est honorée
+  // dès que le compte existe : la personne retrouve sa sortie DÉJÀ COCHÉE, au lieu d'un
+  // fil où rien n'a bougé. Sans ça, on lui aurait fait créer un compte pour rien.
+  useEffect(() => {
+    if (!auth.user || !social.myParticipations) return;
+    let id = 0;
+    try { id = Number(localStorage.getItem('monacout_going_attente')) || 0; } catch { return; }
+    if (!id) return;
+    try { localStorage.removeItem('monacout_going_attente'); } catch { /* rien */ }
+    if (!social.myParticipations.includes(id)) {
+      social.toggleParticipation(id);
+      track('going_honore_apres_inscription', { eventId: id });
+    }
+  }, [auth.user, social.myParticipations]);
+
   // ── Carte « invite tes amies » ───────────────────────────────────────────────
   // 27 personnes sur 42 n'ont AUCUNE amie : elles se sont inscrites et se retrouvent
   // devant un onglet Amies vide. La relance existante est une notification J+2, qui
