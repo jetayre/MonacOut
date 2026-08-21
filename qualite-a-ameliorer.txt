@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1739 fiches inspectées le 2026-08-21.
+1731 fiches inspectées le 2026-08-21.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ IDENTIFIANTS EN DOUBLE — deux fiches partagent un id (casse les favoris) (15)
@@ -19,9 +19,8 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · id 800024 utilisé 2× : « LIGUE 1 AS MONACO RC STRASBOURG » (Sam 17 avr) / « CONCERT JEUNE PUBLIC LE TRICORNE DE FALLA » (Mer 5 mai)
    · id 800025 utilisé 2× : « LIGUE 1 AS MONACO PARIS FC » (Dim 16 mai) / « CONCERT SYMPHONIQUE HOMMAGE AU CINÉMA AMÉRICAIN » (Dim 4 juil)
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 48 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
-   · Sam 10 oct · LIGUE 1 AS MONACO TOULOUSE FC — même lieu et même jour qu'une série de 6 fiches « AS MONACO FC LIGUE 1 » (id 800013)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
+   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 47 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
 ■ FICHES SANS CONTENU — la description répète le titre (27)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
