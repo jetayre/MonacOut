@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1731 fiches inspectées le 2026-08-21.
+1731 fiches inspectées le 2026-08-22.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ IDENTIFIANTS EN DOUBLE — deux fiches partagent un id (casse les favoris) (15)

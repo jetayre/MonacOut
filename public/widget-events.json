@@ -1,9 +1,18 @@
 {
-  "generatedAt": "2026-08-21T16:41:43.110Z",
+  "generatedAt": "2026-08-22T04:23:40.795Z",
   "events": [
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
+      "time": "En journée",
+      "title": "LA VUELTA GRAND DÉPART MONACO J1",
+      "venue": "Place du Casino",
+      "quarter": "Monte-Carlo",
+      "emoji": "🚴"
+    },
+    {
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +20,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "10h00 — 19h00",
       "title": "MARIAGE DU SIÈCLE AU PALAIS",
       "venue": "Grands Appartements",
@@ -20,8 +29,8 @@
       "emoji": "👰"
     },
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +47,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -47,8 +56,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -56,17 +65,8 @@
       "emoji": "🎬"
     },
     {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
-      "time": "10h00 — 20h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Ven 21 août",
-      "iso": "2026-08-21",
+      "date": "Sam 22 août",
+      "iso": "2026-08-22",
       "time": "10h00",
       "title": "MUSÉES 6 OUVERTS AUJOURD'HUI",
       "venue": "Musées de Monaco",
