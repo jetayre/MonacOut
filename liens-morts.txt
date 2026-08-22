@@ -1,15 +1,6 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-08-22 — 125 liens, 1721 fiches.
+Contrôle du 2026-08-22 — 125 liens, 1722 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
 ✅ Aucun lien mort.
-
-■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
-   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
-   de lien mort : le contenu, lui, n'a pas pu être lu.
-     · https://saintmartin.diocese.mc — UND_ERR_CONNECT_TIMEOUT — 79 fiche(s)
-     · https://saintcharles.diocese.mc/ — UND_ERR_CONNECT_TIMEOUT — 8 fiche(s)
-     · https://diocese.mc/evenement/journee-de-rentree-2026-des-catechistes-et-enseignants-dinstruction-religieuse — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://diocese.mc/evenement/les-ateliers-cycloshow-3 — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://saintcharles.diocese.mc/catechisme — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
