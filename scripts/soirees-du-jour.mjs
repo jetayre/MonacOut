@@ -84,7 +84,10 @@ const GENERIQUES_BRUNCH = [
   "CAFE DE PARIS BRASSERIE MONTE-CARLO",
   "BRUNCH GRAN CAFFE MONACO",
   "BRUNCH PAVYLLON HERMITAGE",
-  "BRUNCH PETIT CAFE ROBUCHON",
+  // ⚠️ RETIRÉ de la liste des génériques le 23 août 2026 : le Sunday Brunch du Petit
+  // Café Robuchon a désormais un DJ set EN LIVE (vérifié sur robuchonmonaco.com), ce
+  // n'est plus « le lieu est ouvert » mais un rendez-vous nommé — il garde donc sa
+  // fiche, comme le brunch DJ de Nikki Beach.
   "BRUNCH SMAKELIJK LARVOTTO",
   "BRUNCH CAFFE MILANO PORT HERCULE",
   "BRUNCH LAS BRISAS VUE MER",
