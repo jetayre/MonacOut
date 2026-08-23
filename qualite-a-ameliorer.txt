@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1722 fiches inspectées le 2026-08-22.
+1722 fiches inspectées le 2026-08-23.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe (1)
