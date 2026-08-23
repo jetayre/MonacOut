@@ -4,13 +4,19 @@
  * Il était écrit en dur dans FriendsScreen. La carte d'invitation d'après-inscription
  * en a besoin aussi, et deux copies d'une même adresse finissent toujours par diverger.
  *
- * ⚠️ L'hôte est **monacout.com**, jamais l'adresse technique en .vercel.app.
- * Stéphanie, 16 août 2026 : « le lien à envoyer aux amis est bizarre ».
- * « monac-out.vercel.app?invite=4750b5 » a tout d'un lien de traçage — personne ne
- * reconnaît le nom, le tiret ressemble à une faute, et « vercel » n'évoque rien.
- * Reçu par message d'une amie, ça se signale plutôt que ça ne se clique.
- * Vérifié : `monacout.com/?invite=…` sert bien l'app (200, aucune redirection) — la
- * règle du QR de juin ne vise que l'hôte `monacout.vercel.app`, pas celui-ci.
+ * ⚠️ L'hôte est **monac-out.vercel.app**, ET C'EST PROVISOIRE.
+ * Stéphanie, 23 août 2026 : « je veux que tous les liens arrivent sur l'app ».
+ * C'est le SEUL hôte déclaré dans `applinks:` côté iOS, donc le seul qui ouvre
+ * réellement l'app chez quelqu'un qui l'a installée. Un lien monacout.com ouvre
+ * Safari. Le repli est propre : quelqu'un SANS l'app charge simplement la page, où
+ * la carte d'installation l'attend — un Universal Link se dégrade en page web.
+ *
+ * ⚠️ ON REVIENDRA À monacout.com. Le 16 août, Stéphanie jugeait ce lien « bizarre »
+ * à envoyer à une amie, et elle avait raison : le tiret ressemble à une faute et
+ * « vercel » n'évoque rien. Dès que la build App Store 2.2 embarquera
+ * `applinks:monacout.com` (déjà dans App.entitlements), remettre
+ * `https://monacout.com/?invite=` ici ET `?event=` dans EventCard.jsx : le lien sera
+ * alors joli ET ouvrira l'app. C'est la décision « les deux » du 23 août.
  *
  * ⚠️ Le code DOIT rester dans l'adresse : c'est lui qui relie les deux comptes. Sans
  * lui, la personne arrive sans qu'on sache qui l'a invitée et l'amitié ne se fait pas.
@@ -21,7 +27,7 @@ import { Share } from '@capacitor/share'
 /** Un code exploitable ? (garde-fou du 7 août : un lien parti sans code est perdu en silence) */
 export const codeValide = (code) => /^[a-z0-9]{4,}$/i.test(code || '')
 
-export const lienInvitation = (code) => `https://monacout.com/?invite=${code}`
+export const lienInvitation = (code) => `https://monac-out.vercel.app/?invite=${code}`
 
 export const messageInvitation = (lang) => lang === 'en'
   ? "Join me on Monac'Out — the app for going out in Monaco! Tap the link and we'll be connected 👇"
