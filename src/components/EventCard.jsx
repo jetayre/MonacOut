@@ -541,7 +541,13 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   text: lang === 'en'
                     ? `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}. See it on Monac'Out:`
                     : `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}. À voir sur Monac'Out :`,
-                  url: `https://monac-out.vercel.app/?event=${event.id}`,
+                  // ⚠️ monacout.com, JAMAIS l'adresse technique en .vercel.app —
+                  // même raison que pour le lien d'invitation (voir lib/invite.js) :
+                  // « monac-out.vercel.app/?event=1234 » a tout d'un lien de traçage,
+                  // et personne n'ouvre ça dans un message. Signalé par Stéphanie le
+                  // 23 août 2026 : « quand je veux partager un événement ça met lien
+                  // vercel, c'est normal ? » — non, c'était un oubli.
+                  url: `https://monacout.com/?event=${event.id}`,
                   dialogTitle: lang === 'en' ? 'Share event' : 'Partager',
                 }).catch(() => {});
               }}
