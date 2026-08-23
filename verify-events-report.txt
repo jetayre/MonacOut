@@ -1,7 +1,7 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 23/08/2026 06:37:04
-Événements analysés : 1717
+Généré le : 23/08/2026 18:34:50
+Événements analysés : 1744
 Problèmes détectés : 18
 ========================================
 
@@ -37,9 +37,9 @@ Problèmes détectés : 18
 
 ✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).
 
-── VÉRIFICATION LIENS (125 URLs testées) ──────────
+── VÉRIFICATION LIENS (126 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (649)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (645)
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -130,19 +130,15 @@ Problèmes détectés : 18
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
-     💬 Inaccessible (réseau) : This operation was aborted
-
-     [id:1000381] WINE PALACE × MONACO YACHT SHOW
-     → https://www.instagram.com/wine_palace_montecarlo/
-     💬 HTTP 429
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
      → https://www.opera.mc/
@@ -188,21 +184,9 @@ Problèmes détectés : 18
      → (vide)
      💬 Lien manquant
 
-     [id:1008505,1008506,1008507,1008508,1008509,1008510] SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO
-     → https://www.instagram.com/slammers_monaco/
-     💬 HTTP 429
-
-     [id:1008511,1008512,1008513,1008514,1008515,1008516] SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO
-     → https://www.instagram.com/shipandcastlemonaco/
-     💬 HTTP 429
-
-     [id:1008517,1008518,1008519,1008520,1008521,1008522] LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT
-     → https://lillysclub.com/
-     💬 Inaccessible (réseau) : This operation was aborted
-
      [id:1008597,1008598,1008599,1008600,1008601,1008602,1008603,1008604,1008605,1008606,1008607,1008608,1008609,1008610,1008611,1008612,1008613,1008614,1008615,1008616,1008617,1008618,1008619,1008620,1008621,1008622] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
      → https://www.sunsetmonaco.com/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:1008649,1008650,1008651,1008652,1008653,1008654,1008655,1008656,1008657,1008658,1008659,1008660,1008661,1008662,1008663,1008664,1008665,1008666,1008667,1008668,1008669,1008670,1008671,1008672,1008673,1008674,1008675,1008676,1008677,1008678,1008679,1008680,1008681,1008682,1008683,1008684,1008685,1008686,1008687,1008688,1008689,1008690,1008691,1008692,1008693,1008694,1008695,1008696,1008697,1008698,1008699,1008700] ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO
      → https://www.zumba.com/fr-FR/class_detail/25717535-5178-11ee-88b0-0e028c8dc8fd
@@ -2637,7 +2621,7 @@ Problèmes détectés : 18
      💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (35)
+  💡 À VÉRIFIER MANUELLEMENT (36)
      [id:700022] LOS CHULOS SUMMER BAR COLUMBUS
      → https://www.columbushotels.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2778,7 +2762,11 @@ Problèmes détectés : 18
      → https://www.sexytacos.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 58 liens OK (directs, page réservation détectée)
+     [id:1008517,1008518,1008519,1008520,1008521,1008522] LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT, LILLY'S CLUB NIGHT
+     → https://lillysclub.com/
+     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
+
+  ✓ 62 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
