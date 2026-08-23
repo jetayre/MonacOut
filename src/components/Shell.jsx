@@ -2,6 +2,7 @@ import { useState } from "react";
 import { fichierVersAvatar } from '../lib/avatar';
 import { Capacitor } from "@capacitor/core";
 import { localizeCat, localizeTitle } from "../i18n";
+import BandeauWeb from "./BandeauWeb";
 
 const IS_NATIVE = Capacitor.isNativePlatform();
 
@@ -83,11 +84,16 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
       background: "#FFFFFF",
       ...(IS_NATIVE ? {} : {
         display: "flex",
-        alignItems: "center",
+        // `flex-start` et non `center` : le bandeau du site ajoute ~62 px en haut,
+        // et un contenu plus haut que la fenêtre se fait COUPER par le haut quand
+        // il est centré — le cadre iPhone fait déjà 852 px.
+        alignItems: "flex-start",
         justifyContent: "center",
-        padding: "20px 0",
+        padding: "78px 0 20px",
       }),
     }}>
+      {/* Bandeau du site — ne s'affiche jamais dans l'app native (voir BandeauWeb) */}
+      <BandeauWeb lang={lang} />
       <div style={IS_NATIVE ? {
         width: "100%",
         height: "100dvh",

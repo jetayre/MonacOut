@@ -12,6 +12,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/site", "destination": "/go.html?s=site" },
     { "source": "/insta", "destination": "/go.html?s=insta" },
     { "source": "/story", "destination": "/go.html?s=story" },
     { "source": "/fb", "destination": "/go.html?s=facebook" },

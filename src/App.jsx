@@ -718,6 +718,12 @@ export default function App() {
   // personne perdrait sa 1ʳᵉ fois sans avoir rien vu.
   const INVITE_OUV = "monacout_invite_ouvertures";
   function maybeAskInvite(moment) {
+    // ⚠️ SUR LE SITE, LA CARTE NE SERT PLUS À RIEN — le bandeau permanent
+    // « Regarde où vont tes amis ce soir » (BandeauWeb) dit déjà la même chose,
+    // en haut de la page, sans délai. Les deux ensemble faisaient DEUX
+    // sollicitations empilées sur l'écran de bienvenue. La carte reste entière
+    // dans l'app installée, où aucun bandeau ne peut proposer l'App Store.
+    if (!Capacitor.isNativePlatform() && moment === "sans-compte") return false;
     const n = readNum(INVITE_OUV) + 1;
     if (n > 3) return false;                       // 1ʳᵉ et 3ᵉ : c'est fini après
     if (n !== 1 && n !== 3) { writeNum(INVITE_OUV, n); return false; }  // la 2ᵉ passe
@@ -836,7 +842,7 @@ export default function App() {
   // (Les notifications continuent d'utiliser `events` brut plus haut.)
   const displayEvents = useMemo(() => collapseVenueCards(events), [events]);
 
-  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, joursParticipation, loggedIn: !!auth.user, authReady: !auth.loading, onShowAuth: () => setShowAuth(true) };
+  const sharedProps = { favorites, onToggleFav: toggleFav, onCategoryClick: navigateToCategory, lang, onCardClick: handleCardClick, events: displayEvents, social, onGoingClick: handleGoingClick, joursParticipation, loggedIn: !!auth.user, authReady: !auth.loading, onShowAuth: () => setShowAuth(true), inviteCode: auth.profile?.invite_code || "" };
 
   return (
     <>

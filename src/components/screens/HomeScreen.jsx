@@ -5,6 +5,7 @@ import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
+import { partagerInvitation } from "../../lib/invite";
 
 const NAVY = "#0F1D3A";
 const GOLD = "#C9A96E";
@@ -235,7 +236,7 @@ function HeartIcon({ active, hasFavs }) {
   );
 }
 
-export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, joursParticipation = {}, pendingFriends = 0, userName = "", avatarUrl = "", loggedIn = false, authReady = false, onShowAuth }) {
+export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, joursParticipation = {}, pendingFriends = 0, userName = "", avatarUrl = "", loggedIn = false, authReady = false, onShowAuth, inviteCode = "" }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
     ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
@@ -247,6 +248,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const [filtersVisible, setFiltersVisible] = useState(true);
   const [logoTaps, setLogoTaps] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
+  // Bandeau « Partage ton lien » : refermé pour la visite en cours seulement.
+  const [bandeauAmisFerme, setBandeauAmisFerme] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
   const tapTimer = useRef(null);
@@ -396,6 +399,21 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
 
   const hasFavs = favorites.length > 0;
 
+  // ── BANDEAU « PARTAGE TON LIEN » ─────────────────────────────────────────────
+  // Uniquement pour quelqu'un de CONNECTÉ dont le cercle est VIDE. Il s'éteint
+  // tout seul à la première amie : pas de compteur, pas de délai, pas de « 3 fois
+  // espacées de 7 jours ». Il s'arrête en réussissant, pas en lassant.
+  //
+  // Pourquoi il fallait le faire (PostHog, 17→22 août 2026) : la carte de partage
+  // a été montrée 38 fois, dont 32 à des gens SANS COMPTE — elle demandait de
+  // partager un lien à des gens qui n'en avaient pas encore. Zéro partage lancé.
+  const cercleVide = loggedIn && Array.isArray(social?.friends) && social.friends.length === 0;
+  const montreBandeauAmis = authReady && cercleVide && !bandeauAmisFerme && !!inviteCode;
+
+  useEffect(() => {
+    if (montreBandeauAmis) track("bandeau_amis_vu");
+  }, [montreBandeauAmis]);
+
   return (
     <div style={{ background: WHITE, minHeight: "100%" }}>
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
@@ -520,6 +538,54 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               ? "✨ Sign up — find your friends & favourites ›"
               : "✨ Inscris-toi — retrouve tes amis & tes favoris ›"}
           </button>
+        )}
+
+        {/* Bandeau « Partage ton lien » — connectée, aucune amie. Le bouton ouvre la
+            feuille de partage du téléphone : JAMAIS une page web (cf. écran noir du
+            7 août). Une croix discrète le referme pour la visite en cours. */}
+        {montreBandeauAmis && (
+          <div style={{
+            background: "#FFFDF7", borderTop: `1px solid ${GOLD}`, borderBottom: `1px solid ${GOLD}`,
+            padding: "10px 14px", display: "flex", alignItems: "center", gap: 12,
+          }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{
+                fontFamily: "Georgia, 'Playfair Display', serif", fontWeight: 700,
+                fontSize: 14, color: NAVY, lineHeight: 1.25,
+              }}>
+                {lang === "en"
+                  ? "Share your link so you can find each other here."
+                  : "Partage ton lien pour vous retrouver ici."}
+              </div>
+              <div style={{
+                fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY,
+                lineHeight: 1.35, marginTop: 2,
+              }}>
+                {lang === "en"
+                  ? "You'll see where your friends go, and they'll see where you go."
+                  : "Tu verras où sortent tes amis, eux où tu vas."}
+              </div>
+            </div>
+            <button
+              onClick={async () => {
+                const r = await partagerInvitation(inviteCode, lang);
+                track("bandeau_amis_partage", { resultat: r });
+              }}
+              style={{
+                flexShrink: 0, background: NAVY, color: "#fff", border: "none", cursor: "pointer",
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600,
+                letterSpacing: 1.4, textTransform: "uppercase",
+                padding: "9px 13px", borderRadius: 3, whiteSpace: "nowrap",
+              }}>
+              {lang === "en" ? "Share" : "Partager"}
+            </button>
+            <button onClick={() => { setBandeauAmisFerme(true); track("bandeau_amis_ferme"); }}
+                    aria-label={lang === "en" ? "Close" : "Fermer"}
+                    style={{
+                      flexShrink: 0, background: "none", border: "none", cursor: "pointer",
+                      color: "#B8BEC6", fontSize: 17, lineHeight: 1, padding: 3,
+                    }}>✕</button>
+          </div>
         )}
 
         {/* Barre de recherche */}
