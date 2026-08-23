@@ -541,13 +541,17 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   text: lang === 'en'
                     ? `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}. See it on Monac'Out:`
                     : `${event.title.replace(/\n/g, ' ')} — ${event.subtitle}. À voir sur Monac'Out :`,
-                  // ⚠️ monacout.com, JAMAIS l'adresse technique en .vercel.app —
-                  // même raison que pour le lien d'invitation (voir lib/invite.js) :
-                  // « monac-out.vercel.app/?event=1234 » a tout d'un lien de traçage,
-                  // et personne n'ouvre ça dans un message. Signalé par Stéphanie le
-                  // 23 août 2026 : « quand je veux partager un événement ça met lien
-                  // vercel, c'est normal ? » — non, c'était un oubli.
-                  url: `https://monacout.com/?event=${event.id}`,
+                  // ⚠️ `monac-out.vercel.app` ET NON `monacout.com`, ET C'EST VOULU —
+                  // décision de Stéphanie le 23 août 2026 : « je préfère que tu mettes
+                  // le lien de l'app ». C'est le SEUL hôte déclaré dans les
+                  // entitlements iOS (`applinks:`), donc le seul qui ouvre vraiment
+                  // l'app chez quelqu'un qui l'a installée. Un lien monacout.com
+                  // ouvrirait Safari à la place. L'adresse est moins jolie, mais un
+                  // événement partagé doit atterrir DANS l'app.
+                  // ➜ Le jour où une nouvelle build App Store embarquera
+                  //   `applinks:monacout.com` (déjà dans App.entitlements), on pourra
+                  //   repasser au joli domaine sans rien perdre.
+                  url: `https://monac-out.vercel.app/?event=${event.id}`,
                   dialogTitle: lang === 'en' ? 'Share event' : 'Partager',
                 }).catch(() => {});
               }}
