@@ -366,6 +366,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Herculis Diamond League | https://monaco.diamondleague.com/ | SPORT | |
 | Grimaldi Forum | https://www.grimaldiforum.com/ | GALA, EXPOSITION, ENCHÈRES, ATELIER | |
 | Metropole Shopping Monte-Carlo | https://metropoleshoppingmontecarlo.com/ | EXPOSITION, SALON — galerie commerçante de luxe (Carré d'Or), expositions temporaires (ex. Kenny Scharf × Opera Gallery, été 2026) et pop-up stores, 17 av. des Spélugues · Monte-Carlo ; lun-sam 10h-19h30 | +377 9216 7701 |
+| Dean & Deluca Monte-Carlo | https://deandeluca.mc/ | BRUNCH — épicerie fine et restauration rapide gourmet américaine (1ère implantation en Europe, ouverte janv. 2025), viennoiseries et plats à déguster sur place ou à emporter, 1er étage du Metropole Shopping, 17 av. des Spélugues · Monte-Carlo ; lun-ven 8h-19h30, sam 9h-19h30, fermé dimanche | +377 9992 5047 |
 | TV Festival Monte-Carlo | https://www.tvfestival.com/ | FESTIVAL | |
 | HVMC — enchères | https://hvmc.com/ventes-a-venir/ | ENCHÈRES | |
 | RM Sotheby's Monaco | https://rmsothebys.com/auctions/mc26/ | ENCHÈRES | |
