@@ -1156,5 +1156,17 @@
   "etat": "deja",
   "detail": "Ligue 1 AS MONACO ESTAC Troyes",
   "majLe": "2026-08-24"
+ },
+ "/en/events/7f70037f02bc2e69a3a97ac1f06a629d-35th-Monaco-Yacht-Show": {
+  "vuLe": "2026-08-24",
+  "etat": "deja",
+  "detail": "35th Monaco Yacht Show",
+  "majLe": "2026-08-24"
+ },
+ "/en/events/eabf02717800bb5505839cb9b11f6e33-Exhibitions-of-sculptures-bronze-and-terracotta-paintings-and-drawings": {
+  "vuLe": "2026-08-24",
+  "etat": "importe",
+  "detail": "Exhibitions of sculptures bronze and terracotta paintings and drawings",
+  "majLe": "2026-08-24"
  }
 }
