@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1728 fiches inspectées le 2026-08-24.
+1730 fiches inspectées le 2026-08-25.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe (1)
@@ -8,7 +8,7 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
    · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 44 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
-■ FICHES SANS CONTENU — la description répète le titre (27)
+■ FICHES SANS CONTENU — la description répète le titre (28)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
    · Sam 10 oct · LIGUE 1 AS MONACO TOULOUSE FC — description = titre (id 800038)
    · Jeu 22 oct · ADN — description = titre (id 800027)
@@ -18,6 +18,7 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Dim 22 nov · OPERA DE MONTE CARLO CAPE TOWN HERITAGE — description = titre (id 800028)
    · Mer 25 nov · L UMIERES SUR LA LAGUNE — description = titre (id 800012)
    · Sam 5 déc · LIGUE 1 AS MONACO ANGERS SCO — description = titre (id 800041)
+   · Jeu 17 déc · EXHIBITIONS OF SCULPTURES BRONZE AND TERRACOTTA PAINTINGS AN… — description = titre (id 800053)
    · Sam 19 déc · LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS — description = titre (id 800031)
    · Sam 2 jan · LIGUE 1 AS MONACO OGC NICE — description = titre (id 800042)
    · Sam 16 jan · LIGUE 1 AS MONACO STADE BRESTOIS 29 — description = titre (id 800043)
@@ -37,10 +38,11 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 29 mai · LIGUE 1 AS MONACO ESTAC TROYES — description = titre (id 800052)
    · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — description = titre (id 800036)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (10)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (11)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — Eglise Réformée de Monaco (id 800029)
    · Sam 24 oct · LES CONCERTS DE LA VOUTE GABRIEL DUPONT LA NATURE RETROUVEE — Eglise Réformée de Monaco (id 800030)
    · Mer 25 nov · L UMIERES SUR LA LAGUNE — Hartford Fine Art Lampronti Gallery (id 800012)
+   · Jeu 17 déc · EXHIBITIONS OF SCULPTURES BRONZE AND TERRACOTTA PAINTINGS AN… — Espace 22 (id 800053)
    · Sam 19 déc · LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS — Eglise Réformée de Monaco (id 800031)
    · Sam 23 jan · LES CONCERTS DE LA VOUTE MAKE WAY FOR THE YOUNG PEOPLE — Eglise Réformée de Monaco (id 800032)
    · Sam 20 fév · LES CONCERTS DE LA VOUTE ROMEO AND JULIET — Eglise Réformée de Monaco (id 800033)

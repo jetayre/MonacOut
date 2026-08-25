@@ -179,73 +179,6 @@
    }
   ]
  },
- "Dim 23 août|2026": {
-  "soir": [
-   {
-    "lieu": "Le Vivaldi",
-    "heure": "18h00 — 02h00",
-    "tel": "+33 6 63 07 20 20"
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102"
-   },
-   {
-    "lieu": "Amazónico",
-    "heure": "18h00 — 02h00",
-    "tel": "",
-    "titre": "APERO AMAZONICO MONTE-CARLO"
-   }
-  ],
-  "brunch": [
-   {
-    "lieu": "Nobu Monte-Carlo",
-    "heure": "12h00 — 15h30",
-    "tel": "+377 9999 3939"
-   },
-   {
-    "lieu": "Pavyllon",
-    "heure": "12h00 — 15h00",
-    "tel": "+377 98 06 98 98"
-   },
-   {
-    "lieu": "Las Brisas",
-    "heure": "12h00 — 15h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Mada One",
-    "heure": "En journée",
-    "tel": "+377 98 06 68 68"
-   },
-   {
-    "lieu": "Le Petit Café Robuchon",
-    "heure": "12h00 — 16h00",
-    "tel": "+377 9325 6666"
-   },
-   {
-    "lieu": "Smakelijk!",
-    "heure": "12h00 — 15h00",
-    "tel": "+377 9330 9880"
-   },
-   {
-    "lieu": "Café de Paris",
-    "heure": "En journée",
-    "tel": "+377 98 06 76 23"
-   },
-   {
-    "lieu": "Gran Caffè",
-    "heure": "En journée",
-    "tel": "+377 9797 7888"
-   },
-   {
-    "lieu": "Caffè Milano",
-    "heure": "12h00 — 15h00",
-    "tel": "+377 9350 7721"
-   }
-  ]
- },
  "Lun 24 août|2026": {
   "soir": [
    {
@@ -8188,6 +8121,53 @@
     "heure": "15h30 — 18h30",
     "tel": "+377 9990 7338",
     "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
+   },
+   {
+    "lieu": "Norma",
+    "heure": "17h00 — 20h00",
+    "tel": "",
+    "titre": "APERO NORMA CONDAMINE"
+   }
+  ],
+  "brunch": []
+ },
+ "Jeu 25 fév|2027": {
+  "soir": [
+   {
+    "lieu": "La Rascasse",
+    "heure": "17h30 — 20h00",
+    "tel": "",
+    "titre": "HAPPY HOUR LA RASCASSE PORT HERCULE"
+   },
+   {
+    "lieu": "Le Vivaldi",
+    "heure": "18h00 — 02h00",
+    "tel": "+33 6 63 07 20 20",
+    "titre": "LE VIVALDI BAR A COCKTAILS PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Amazónico",
+    "heure": "18h00 — 02h00",
+    "tel": "",
+    "titre": "APERO AMAZONICO MONTE-CARLO"
+   },
+   {
+    "lieu": "Sexy Tacos",
+    "heure": "15h30 — 18h30",
+    "tel": "+377 9990 7338",
+    "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
+   },
+   {
+    "lieu": "Gustave",
+    "heure": "En soirée",
+    "tel": "+377 98 06 98 98",
+    "titre": "APERO GUSTAVE HERMITAGE"
    },
    {
     "lieu": "Norma",
