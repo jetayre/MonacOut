@@ -1,12 +1,12 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1730 fiches inspectées le 2026-08-25.
+1725 fiches inspectées le 2026-08-25.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe (1)
    · Ven 28 août · LOS CHULOS SUMMER BAR COLUMBUS — annoncée « jusqu'au 28 ao » mais UNE SEULE fiche, non ongoing → invisible les autres jours (id 700022)
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
-   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 44 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
+   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 43 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
 ■ FICHES SANS CONTENU — la description répète le titre (28)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
