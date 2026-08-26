@@ -424,6 +424,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Jimmy'z Monte-Carlo | https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo | SOIRÉE | |
 | New Moods Monte-Carlo | https://www.montecarlosbm.com/en/spectacles/new-moods | CONCERT, DJ SET | |
 | The Marlow Monaco | https://www.montecarlosbm.com/en/restaurant-monaco/marlow | BRUNCH | |
+| Em Sherif Monte-Carlo | https://www.montecarlosbm.com/en/restaurant-monaco/em-sherif-monte-carlo | SOIRÉE, APÉRO — restaurant libanais/méditerranéen, DJ live le soir, Hôtel de Paris, place du Casino · Monte-Carlo | +377 9806 8875 |
+| Cedric Grolet Monte-Carlo | https://www.montecarlosbm.com/en/restaurant-monaco/cedric-grolet-monte-carlo | BRUNCH — salon de thé et boutique du pâtissier Cédric Grolet, patio de l'Hôtel de Paris, av. des Beaux-Arts · Monte-Carlo ; tous les jours 9h30-19h. Aucun événement récurrent publié au 26 août 2026 | |
 | Blue Gin Monte-Carlo Bay | https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin | APÉRO, DJ SET | |
 | Sunset Monaco | https://www.sunsetmonaco.com/ | DJ SET, SOIRÉE | |
 | Twiga Monte Carlo | https://twigaworld.com/twiga-montecarlo/ | SOIRÉE, DJ SET | |
