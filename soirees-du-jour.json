@@ -179,38 +179,6 @@
    }
   ]
  },
- "Lun 24 août|2026": {
-  "soir": [
-   {
-    "lieu": "La Rascasse",
-    "heure": "17h30 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102"
-   },
-   {
-    "lieu": "Sexy Tacos",
-    "heure": "15h30 — 18h30",
-    "tel": "+377 9990 7338"
-   },
-   {
-    "lieu": "Amazónico",
-    "heure": "18h00 — 02h00",
-    "tel": "",
-    "titre": "APERO AMAZONICO MONTE-CARLO"
-   }
-  ],
-  "brunch": [
-   {
-    "lieu": "Woo Monaco",
-    "heure": "11h00 — 15h00",
-    "tel": "+377 9797 8093"
-   }
-  ]
- },
  "Mar 25 août|2026": {
   "soir": [
    {
@@ -8168,6 +8136,65 @@
     "heure": "En soirée",
     "tel": "+377 98 06 98 98",
     "titre": "APERO GUSTAVE HERMITAGE"
+   },
+   {
+    "lieu": "Norma",
+    "heure": "17h00 — 20h00",
+    "tel": "",
+    "titre": "APERO NORMA CONDAMINE"
+   }
+  ],
+  "brunch": []
+ },
+ "Ven 26 fév|2027": {
+  "soir": [
+   {
+    "lieu": "Trinity Monaco",
+    "heure": "En soirée",
+    "tel": "",
+    "titre": "APERO TRINITY MONACO"
+   },
+   {
+    "lieu": "Castelroc",
+    "heure": "En soirée",
+    "tel": "+377 9330 3668",
+    "titre": "DINER CASTELROC PLACE DU PALAIS"
+   },
+   {
+    "lieu": "La Rascasse",
+    "heure": "17h30 — 20h00",
+    "tel": "",
+    "titre": "HAPPY HOUR LA RASCASSE PORT HERCULE"
+   },
+   {
+    "lieu": "Le Vivaldi",
+    "heure": "18h00 — 02h00",
+    "tel": "+33 6 63 07 20 20",
+    "titre": "LE VIVALDI BAR A COCKTAILS PORT HERCULE"
+   },
+   {
+    "lieu": "Brasserie de Monaco",
+    "heure": "18h00 — 03h00",
+    "tel": "+377 9798 5120",
+    "titre": "BRASSERIE DE MONACO PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Amazónico",
+    "heure": "18h00 — 02h00",
+    "tel": "",
+    "titre": "APERO AMAZONICO MONTE-CARLO"
+   },
+   {
+    "lieu": "Sexy Tacos",
+    "heure": "15h30 — 18h30",
+    "tel": "+377 9990 7338",
+    "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
    },
    {
     "lieu": "Norma",
