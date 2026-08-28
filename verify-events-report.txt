@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 28/08/2026 02:52:37
+Généré le : 28/08/2026 17:49:15
 Événements analysés : 1731
 Problèmes détectés : 18
 ========================================
@@ -39,18 +39,18 @@ Problèmes détectés : 18
 
 ── VÉRIFICATION LIENS (123 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (660)
-     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
-     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
-     💬 Inaccessible (réseau) : This operation was aborted
-
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (664)
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:700004] MARIAGE DU SIÈCLE AU PALAIS
+     → https://www.visitepalaisdemonaco.com/en/mariage-du-siecle-exposition/
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:4744,4746,4747,4748,4749,4752,4753,4755] HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, HEURE SAINTE, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, BÉNÉDICTION DES MALADES, MESSE VICTIMES DU CANCER
      → https://saintcharles.diocese.mc/
@@ -67,6 +67,10 @@ Problèmes détectés : 18
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:4762,4763,4764,4765,4766,4730,4737,4738,4739,4740,4741,4742,4793,800000,800003,800004,800005,800008,800013,800026,800028] LES ASSISES SÉCURITÉ, BNI NATIONAL CONFERENCE, BNI GLOBAL CONVENTION 2026, CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, STELLA ALMONDO PIANO, THURSDAY LIVE SESSIONS FRIEDBERG, DISNEY EN CONCERT SUIVEZ VOS RÊVES, THURSDAY LIVE SESSIONS JIMMY GNECCO, THURSDAY LIVE SESSIONS DIRTY DEEP, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, MARIAGE À MONACO L'ÉVÉNEMENT MÉDIATIQUE DE 1956, MONACO CARD SHOW GRIMALDI FORUM, LUXE PACK MONACO GRIMALDI FORUM, SPORTEL MONACO GRIMALDI FORUM, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN, SHREK\ LE MUSICAL\ GRIMALDI FORUM, OPERA DE MONTE CARLO CAPE TOWN HERITAGE
+     → https://www.grimaldiforum.com/
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
      → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
@@ -112,9 +116,25 @@ Problèmes détectés : 18
      → https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria
      💬 Inaccessible (réseau) : fetch failed
 
+     [id:3544,3546] SHREK THE MUSICAL, SHREK THE MUSICAL
+     → https://www.grimaldiforum.com
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:1361] MONACO BUSINESS 2026
+     → https://www.meb.mc/
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:61] PROCHAINE GRANDE EXPOSITION GRIMALDI FORUM
+     → https://www.grimaldiforum.com/fr/offre-culturelle-expositions
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:62] FÊTE NATIONALE DE MONACO
      → https://www.palais.mc/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:126,235,393,395,1930,1933] ATELIER PEINTURE À L'HUILE, ATELIER BRODERIE CRÉATIVE, ATELIER GRAVURE LINOGRAPHIE, ATELIER ACQUARELLE PORTRAIT, ATELIER ARTS GRAPHIQUES, ATELIER ACQUARELLE MARINE
+     → https://www.nmnm.mc/en/visit/visites-et-ateliers/
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:127,705] ATELIER DANSE CONTEMPORAINE, BALLET DE MONTE-CARLO AUTOMNE
      → https://www.balletsdemontecarlo.com/
@@ -126,7 +146,11 @@ Problèmes détectés : 18
 
      [id:242,243] LA VILLA PALOMA CET AUTOMNE DEUX EXPOSITIONS, LES EXPOSITIONS DE L'HIVER À MONACO
      → https://www.nmnm.mc/en/exhibitions/
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:3420,3469,3470,3471,3472,3473,3474,3475,3476] MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS, MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS
+     → https://www.grimaldiforum.com/en/events-schedule-monaco/monaco-and-the-automobile-from-1893-to-nowadays
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:751,752] MONACO LEGEND AUCTIONS, MONACO LEGEND AUTUMN SALE
      → https://www.monacolegendauctions.com/
@@ -146,15 +170,15 @@ Problèmes détectés : 18
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 HTTP 403
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1000381] WINE PALACE × MONACO YACHT SHOW
-     → https://www.instagram.com/wine_palace_montecarlo/
-     💬 HTTP 429
+     [id:1931] ATELIER OCÉAN DES MERVEILLES
+     → https://musee.oceano.org/
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4792] CYCLOSHOW ATELIER MÈRE-FILLE
      → https://diocese.mc/evenement/les-ateliers-cycloshow-3
@@ -162,7 +186,7 @@ Problèmes détectés : 18
 
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     💬 HTTP 403
 
      [id:4809] RENTRÉE DES CATÉCHISTES ET ENSEIGNANTS
      → https://diocese.mc/evenement/journee-de-rentree-2026-des-catechistes-et-enseignants-dinstruction-religieuse
@@ -239,14 +263,6 @@ Problèmes détectés : 18
      [id:800059] BKT EUROCUP AS MONACO KIDS AND US MANRESA
      → (vide)
      💬 Lien manquant
-
-     [id:1009891,1009892,1009893,1009894,1009895,1009896] SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO
-     → https://www.instagram.com/slammers_monaco/
-     💬 HTTP 429
-
-     [id:1009897,1009898,1009899,1009900,1009901,1009902] SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO
-     → https://www.instagram.com/shipandcastlemonaco/
-     💬 HTTP 429
 
      [id:1009986,1009987,1009988,1009989,1009990,1009991,1009992,1009993,1009994,1009995,1009996,1009997,1009998,1009999,1010000,1010001,1010002,1010003,1010004,1010005,1010006,1010007,1010008,1010009,1010010,1010011,1010012] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
      → https://www.sunsetmonaco.com/
@@ -2681,7 +2697,7 @@ Problèmes détectés : 18
      💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (34)
+  💡 À VÉRIFIER MANUELLEMENT (30)
      [id:700022] LOS CHULOS SUMMER BAR COLUMBUS
      → https://www.columbushotels.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2690,20 +2706,12 @@ Problèmes détectés : 18
      → https://www.dessineunpapillon.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:4762,4763,4764,4765,4766,4730,4737,4738,4739,4740,4741,4742,4793,800000,800003,800004,800005,800008,800013,800026,800028] LES ASSISES SÉCURITÉ, BNI NATIONAL CONFERENCE, BNI GLOBAL CONVENTION 2026, CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, STELLA ALMONDO PIANO, THURSDAY LIVE SESSIONS FRIEDBERG, DISNEY EN CONCERT SUIVEZ VOS RÊVES, THURSDAY LIVE SESSIONS JIMMY GNECCO, THURSDAY LIVE SESSIONS DIRTY DEEP, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, MARIAGE À MONACO L'ÉVÉNEMENT MÉDIATIQUE DE 1956, MONACO CARD SHOW GRIMALDI FORUM, LUXE PACK MONACO GRIMALDI FORUM, SPORTEL MONACO GRIMALDI FORUM, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN, SHREK\ LE MUSICAL\ GRIMALDI FORUM, OPERA DE MONTE CARLO CAPE TOWN HERITAGE
-     → https://www.grimaldiforum.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
      [id:4729,4731,1102,1938,1940,800001,800002] GOÛTER ZÉRO DÉCHET ECOPOLIS, LUDO MÉMO LE JEU ET LE CERVEAU, HEURE DU CONTE RENTRÉE MÉDIATHÈQUE, CONFÉRENCE MÉDIATHÈQUE JANVIER, CONFÉRENCE MÉDIATHÈQUE MARS, CAFÉ LITTÉRAIRE FONDATION PRINCE PIERRE, PICNIC MUSIC LIVE STRAY PICKS MÉDIATHÈQUE
      → https://www.mediatheque.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:4733,4734,4736,178,180,4790,4791,800027] LA RENCONTRE THIERRY LHERMITTE, SISTERS AUDREY & VICTORIA, UNE HEURE À T'ATTENDRE, TANGO ARGENTIN AUTOMNE, MILONGA DE NOËL MONACO, ART & LUXURY FAIR THÉÂTRE PSSE GRACE, ART & LUXURY FAIR THÉÂTRE PSSE GRACE, ADN
      → https://www.tpgmonaco.mc
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:3544,3546] SHREK THE MUSICAL, SHREK THE MUSICAL
-     → https://www.grimaldiforum.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:80,4831,4830] FERMETURE SAISON NOTE BLEUE, LA NOTE BLEUE SUMMER FESTIVAL 2026, DOGS & COFFEE ADOPTION SPA DE MONACO
@@ -2720,10 +2728,6 @@ Problèmes détectés : 18
 
      [id:4828] MONACO INTERNATIONAL TRIATHLON
      → https://monaco-international-triathlon.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1361] MONACO BUSINESS 2026
-     → https://www.meb.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:1362] LUXE PACK MONACO 2026
@@ -2788,10 +2792,6 @@ Problèmes détectés : 18
 
      [id:1925,1926,1927,1928] TROPHÉE VIRGINIE HERIOT, TROPHÉE GRIMALDI YCM, SPORTSBOAT WINTER SERIES ACTE I, SPORTSBOAT WINTER SERIES ACTE II
      → https://yacht-club-monaco.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1931] ATELIER OCÉAN DES MERVEILLES
-     → https://musee.oceano.org/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:3500,3501,3502,3503,3504,3505,3506,3507,3508] CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC, CANTINETTA ANTINORI LIVE MUSIC
