@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 29/08/2026 16:29:16
+Généré le : 29/08/2026 21:22:51
 Événements analysés : 1724
 Problèmes détectés : 19
 ========================================
@@ -41,10 +41,6 @@ Problèmes détectés : 19
 ── VÉRIFICATION LIENS (124 URLs testées) ──────────
 
   ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (659)
-     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
-     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
-     💬 Inaccessible (réseau) : This operation was aborted
-
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -68,6 +64,10 @@ Problèmes détectés : 19
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
+     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
@@ -143,7 +143,7 @@ Problèmes détectés : 19
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 HTTP 403
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
@@ -159,7 +159,7 @@ Problèmes détectés : 19
 
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 HTTP 403
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:4809] RENTRÉE DES CATÉCHISTES ET ENSEIGNANTS
      → https://diocese.mc/evenement/journee-de-rentree-2026-des-catechistes-et-enseignants-dinstruction-religieuse
