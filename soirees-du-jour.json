@@ -1,60 +1,4 @@
 {
- "Jeu 27 août|2026": {
-  "soir": [
-   {
-    "lieu": "Castelroc",
-    "heure": "19h00",
-    "tel": "+377 93 30 36 68"
-   },
-   {
-    "lieu": "AMU Monte-Carlo",
-    "heure": "18h00 — 22h00",
-    "tel": "+377 9315 4848"
-   },
-   {
-    "lieu": "La Rascasse",
-    "heure": "17h30 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Le Vivaldi",
-    "heure": "18h00 — 02h00",
-    "tel": "+33 6 63 07 20 20"
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102"
-   },
-   {
-    "lieu": "Sexy Tacos",
-    "heure": "15h30 — 18h30",
-    "tel": "+377 9990 7338"
-   },
-   {
-    "lieu": "COYA Monte-Carlo",
-    "heure": "En soirée",
-    "tel": ""
-   },
-   {
-    "lieu": "Gustave",
-    "heure": "En soirée",
-    "tel": "+377 98 06 98 98"
-   },
-   {
-    "lieu": "Norma",
-    "heure": "17h00 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Amazónico",
-    "heure": "18h00 — 02h00",
-    "tel": "",
-    "titre": "APERO AMAZONICO MONTE-CARLO"
-   }
-  ],
-  "brunch": []
- },
  "Ven 28 août|2026": {
   "soir": [
    {
@@ -8242,5 +8186,34 @@
     "titre": "BRUNCH CAFFE MILANO PORT HERCULE"
    }
   ]
+ },
+ "Lun 1 mar|2027": {
+  "soir": [
+   {
+    "lieu": "La Rascasse",
+    "heure": "17h30 — 20h00",
+    "tel": "",
+    "titre": "HAPPY HOUR LA RASCASSE PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Amazónico",
+    "heure": "18h00 — 02h00",
+    "tel": "",
+    "titre": "APERO AMAZONICO MONTE-CARLO"
+   },
+   {
+    "lieu": "Sexy Tacos",
+    "heure": "15h30 — 18h30",
+    "tel": "+377 9990 7338",
+    "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
+   }
+  ],
+  "brunch": []
  }
 }
