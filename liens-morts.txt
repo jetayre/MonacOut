@@ -1,6 +1,35 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-08-28 — 123 liens, 1725 fiches.
+Contrôle du 2026-08-29 — 120 liens, 1714 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://opmc.mc/en/concert/
+   HTTP 503 — serveur en panne — 50 fiche(s)
+     · [id 3512] Dim 13 sep CONCERT SYMPHONIQUE DE BILLY · MØRK — Auditorium Rainier III
+     · [id 4732] Sam 26 sep ROMA MASSENET — Auditorium Rainier III
+     · [id 3513] Mer 30 sep RÉCITAL PIANO DAVID KADOUCH — Auditorium Rainier III
+     · [id 3514] Dim 4 oct CONCERT SYMPHONIQUE MAREK JANOWSKI — Grimaldi Forum
+     · [id 3515] Dim 11 oct CONCERT SYMPHONIQUE SOLOMNISHVILI · PRATS — Auditorium Rainier III
+     … et 45 autre(s)
+
+■ https://opmc.mc/en/opera/
+   HTTP 503 — serveur en panne — 4 fiche(s)
+     · [id 236] Sam 10 oct LES CONTES D'HOFFMANN OFFENBACH — Salle Garnier
+     · [id 701] Sam 7 nov SOIRÉE OPÉRA DE MONACO — Salle Garnier
+     · [id 237] Jeu 12 nov LA BOHÈME PUCCINI SAISON — Salle Garnier
+     · [id 238] Dim 6 déc DON GIOVANNI MOZART — Salle Garnier
+
+■ https://opmc.mc/venue/eglise-saint-charles-monaco/
+   HTTP 503 — serveur en panne — 2 fiche(s)
+     · [id 3528] Mer 23 déc CONCERT DE NOËL ENTRÉE LIBRE — Église Saint-Charles
+     · [id 4774] Jeu 18 mar LES SEPT DERNIÈRES PAROLES HAYDN — Église Saint-Charles
+
+■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
+   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
+   de lien mort : le contenu, lui, n'a pas pu être lu.
+     · https://www.sunsetmonaco.com/ — UND_ERR_CONNECT_TIMEOUT — 27 fiche(s)
+     · https://lillysclub.com/ — UND_ERR_CONNECT_TIMEOUT — 6 fiche(s)
+     · https://aritual.fr/sessions/ — ETIMEDOUT — 3 fiche(s)
+     · https://yume.mc/ — UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
+     · https://aritual.fr/ — ETIMEDOUT — 3 fiche(s)
+     · https://jennalifestyle.com/ — UND_ERR_CONNECT_TIMEOUT — 2 fiche(s)
