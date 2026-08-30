@@ -1,9 +1,10 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1715 fiches inspectées le 2026-08-30.
+1711 fiches inspectées le 2026-08-30.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
-   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 39 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
+   · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 38 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
+   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 38 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
 ■ FICHES SANS CONTENU — la description répète le titre (33)
    · Sam 12 sep · MUNEGU REPAIR CAFE — description = titre (id 800055)
