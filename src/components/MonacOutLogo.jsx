@@ -40,7 +40,7 @@ export default function MonacOutLogo({ width = 220, compact = false, lang = "fr"
           </div>
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontWeight: 400, fontSize: 6, letterSpacing: 1.5,
+            fontWeight: 700, fontSize: 6.5, letterSpacing: 1.6,
             color: BLUE, textTransform: "uppercase", marginTop: 2,
           }}>{signature}</div>
         </div>
@@ -91,7 +91,7 @@ export default function MonacOutLogo({ width = 220, compact = false, lang = "fr"
         </div>
         <div style={{
           fontFamily: "'Josefin Sans', sans-serif",
-          fontWeight: 400, fontSize: 8, letterSpacing: 2.5,
+          fontWeight: 700, fontSize: 8.5, letterSpacing: 2.6,
           color: BLUE, textTransform: "uppercase", marginTop: 5,
         }}>{signature}</div>
       </div>
