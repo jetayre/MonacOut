@@ -1,6 +1,6 @@
 export const T = {
   fr: {
-    tagline: "Community & lifestyle",
+    tagline: "Monaco Ensemble",
     filters: {
       today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", calendar: "Calendrier", gratuit: "Gratuit", sport: "⚽ Sport",
       culture: "🎭 Culture", music: "🎵 Musique", cinema: "🎬 Cinéma",
@@ -26,7 +26,7 @@ export const T = {
     noEvents: "Aucun événement.", favEmpty: "Aucun favori pour l'instant.",
   },
   en: {
-    tagline: "Community & lifestyle",
+    tagline: "Monaco Together",
     filters: {
       today: "Today", week: "Week", weekend: "Weekend", calendar: "Calendar", gratuit: "Free", sport: "⚽ Sport",
       culture: "🎭 Culture", music: "🎵 Music", cinema: "🎬 Cinema",

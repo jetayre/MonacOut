@@ -239,8 +239,8 @@ function HeartIcon({ active, hasFavs }) {
 export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClick, filter = "all", onFilterChange, lang = "fr", catFilters = [], onCatFilter, onOpenMenu, onNavAgenda, onNavFriends, onCardClick, onAdminOpen, onLangChange, events = ALL_EVENTS, social, onGoingClick, joursParticipation = {}, pendingFriends = 0, userName = "", avatarUrl = "", loggedIn = false, authReady = false, onShowAuth, inviteCode = "" }) {
   const setFilter = onFilterChange || (() => {});
   const t = lang === "en"
-    ? { tagline: "Community & lifestyle", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
-    : { tagline: "Community & lifestyle", filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" }, empty: "Aucun événement pour cette période." };
+    ? { tagline: "Monaco Together", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
+    : { tagline: "Monaco Ensemble", filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" }, empty: "Aucun événement pour cette période." };
 
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
@@ -468,7 +468,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               transform: (filtersVisible || showSearch) ? "scale(1)" : "scale(0.6)",
               transformOrigin: "center", transition: "transform 0.22s ease",
             }}>
-              <MonacOutLogo compact />
+              <MonacOutLogo compact lang={lang} />
             </div>
           </div>
 

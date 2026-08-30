@@ -129,6 +129,16 @@ jobs:
         run: node scripts/check-links.mjs
         continue-on-error: true
 
+      # Les soirées de club du SBM ne sont sur AUCUN agrégateur : PrinciPocket ne les
+      # référence pas, donc rien ne les recoupait. Une date fausse mais cohérente
+      # (« Sam 26 sep » quand le 26 EST un samedi) passait tous les contrôles. Deux
+      # fiches ont vécu des mois avec un jour de décalage. Ce script lit les deux
+      # pages de programmation du SBM et compare. Il SIGNALE, il ne corrige jamais.
+      - name: "🎧 Soirées SBM (Jimmy'z & COYA) contre le programme officiel"
+        id: sbm
+        run: node scripts/check-sbm.mjs
+        continue-on-error: true
+
       - name: "💌 Chaîne d'invitation (code, garde-fou, adresse)"
         id: invitations
         run: node scripts/check-invitations.mjs
@@ -177,6 +187,9 @@ jobs:
           fi
           if [ "${{ steps.liens.outcome }}" = "failure" ]; then
             echo "::error::Des liens de fiches sont morts — voir liens-morts.txt et l étape « Liens des fiches »."
+          fi
+          if [ "${{ steps.sbm.outcome }}" = "failure" ]; then
+            echo "::error::Une soirée SBM ne porte plus la date du programme officiel — voir l étape « Soirées SBM »."
           fi
           if [ "${{ steps.invitations.outcome }}" = "failure" ]; then
             echo "::error::La chaîne d'invitation est cassée — voir l'étape « Chaîne d'invitation » ci-dessus."

@@ -165,6 +165,16 @@ const result = lines.map(line => {
   const cat       = catM[1];
   const actualDay = new Date(year, monthIdx, dayNum).getDay();
 
+  // 🚨 NE REDATER QUE CE QUE LE GÉNÉRATEUR A ÉCRIT (marqueur `nlg:1`).
+  // 30 août 2026 : la règle « une soirée au Jimmy'z, c'est le samedi » a déplacé
+  // la soirée Bob Sinclar du VENDREDI 25 septembre au samedi 26 — une date pourtant
+  // vérifiée sur deux pages officielles du SBM. Pire : elle l'a refait en silence
+  // juste après ma correction, au moment du commit. Une règle de récurrence n'a
+  // aucune autorité sur un événement nommé, ponctuel et vérifié à la main.
+  // Même leçon que le 5 août : un script ne touche pas à une ligne qu'il n'a pas écrite.
+  const estGeneree = /\bnlg:1\b/.test(line);
+  if (!estGeneree) return line;
+
   for (const rule of VENUE_DAY_RULES) {
     if (!subtitle.includes(rule.venue) || cat !== rule.cat || actualDay === rule.day) continue;
 

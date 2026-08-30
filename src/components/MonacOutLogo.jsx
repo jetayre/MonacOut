@@ -1,8 +1,14 @@
 const GOLD = "#C9A96E";
 const NAVY = "#0F1D3A";
 const CREAM = "#FFFFFF";
+// Bleu de la marque, assombri pour rester lisible en petit corps sur fond blanc.
+// Le #9FC3DC des rayures est trop pâle pour du texte de 6 à 8 px.
+const BLUE = "#3E7EA8";
 
-export default function MonacOutLogo({ width = 220, compact = false }) {
+export default function MonacOutLogo({ width = 220, compact = false, lang = "fr" }) {
+  // Signature sous le nom — demande de Stéphanie, 30 août 2026 :
+  // « Monaco Ensemble » en français, « Monaco Together » en anglais, en bleu.
+  const signature = lang === "en" ? "Monaco Together" : "Monaco Ensemble";
   if (compact) {
     return (
       <div style={{
@@ -35,8 +41,8 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
             fontWeight: 400, fontSize: 6, letterSpacing: 1.5,
-            color: GOLD, textTransform: "uppercase", marginTop: 2,
-          }}>Community &amp; lifestyle</div>
+            color: BLUE, textTransform: "uppercase", marginTop: 2,
+          }}>{signature}</div>
         </div>
       </div>
     );
@@ -86,8 +92,8 @@ export default function MonacOutLogo({ width = 220, compact = false }) {
         <div style={{
           fontFamily: "'Josefin Sans', sans-serif",
           fontWeight: 400, fontSize: 8, letterSpacing: 2.5,
-          color: GOLD, textTransform: "uppercase", marginTop: 5,
-        }}>Community &amp; lifestyle</div>
+          color: BLUE, textTransform: "uppercase", marginTop: 5,
+        }}>{signature}</div>
       </div>
     </div>
   );
