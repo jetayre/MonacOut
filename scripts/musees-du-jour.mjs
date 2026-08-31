@@ -125,7 +125,7 @@ for (let k = 0; k < HORIZON_JOURS; k++) {
     + (ouverts.length < MUSEES.length ? ` The NMNM and the Musée du Vieux Monaco close on Mondays.` : "");
   nouvelles.push(
     `  {id:${idFiche(BASE_MUSEES, d)},${an}cat:"EXPOSITION",date:"${date}",time:"10h00",`
-    + `title:"MUSÉES${NL}${ouverts.length} OUVERTS${NL}AUJOURD'HUI",subtitle:"Musées de Monaco · Principauté",`
+    + `title:"MUSÉES${NL}${ouverts.length} OUVERTS${NL}À MONACO",subtitle:"Musées de Monaco · Principauté",`
     + `desc:"${desc}",descEn:"${descEn}",free:false,hot:false,recap:true,mdj:1,directory:${annuaireJSON(ouverts)},`
     + `fallback:"linear-gradient(150deg,#1A3A5A,#2A5A8A,#0A1E38)",accent:"#A8CCF0",emoji:"🏛️",`
     + `source:"Monac'Out",quarter:"Monaco"},`

@@ -229,13 +229,20 @@ function FriendAvatars({ friends = [] }) {
   )
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null }) {
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
-  const isToday = event.date === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
+  // ⚠️ Une fiche `ongoing` ne porte QU'UNE date : celle du jour, réécrite chaque nuit.
+  // Quand on consulte une autre journée (calendrier, « ce week-end »), elle s'affichait
+  // quand même « AUJOURD'HUI » — Stéphanie, 31 août 2026 : elle a cliqué sur le 11
+  // septembre, a vu « AUJOURD'HUI » en tête de liste et en a conclu que le calendrier
+  // était cassé. Il ne l'était pas : c'est l'étiquette qui mentait.
+  // `jourAffiche` porte la journée réellement consultée ; on l'affiche à la place.
+  const dateDuJour = jourAffiche || event.date;
+  const isToday = dateDuJour === todayFrDate() && (event.year || 2026) === new Date().getFullYear();
   const dateLabel = isToday
     ? (lang === "en" ? "Today" : "Aujourd'hui")
-    : localizeDate(event.date, lang);
+    : localizeDate(dateDuJour, lang);
 
   return (
     <div

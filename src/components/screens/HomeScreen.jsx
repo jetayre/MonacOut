@@ -397,6 +397,14 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
       : `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
     : null;
 
+  // Le jour réellement consulté, quand le calendrier ne porte QU'UNE date.
+  // Sert à corriger l'étiquette des fiches `ongoing`, qui portent toujours la date
+  // du jour et affichaient « AUJOURD'HUI » même en consultant le 11 septembre.
+  const jourConsulte =
+    filter === "calendar" && rangeStart && (!rangeEnd || rangeEnd.toDateString() === rangeStart.toDateString())
+      ? `${JOURS[rangeStart.getDay()]} ${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
+      : null;
+
   const hasFavs = favorites.length > 0;
 
   // ── BANDEAU « PARTAGE TON LIEN » ─────────────────────────────────────────────
@@ -683,6 +691,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             <EventCard
               key={e.cleFil || e.id}
               event={e}
+              jourAffiche={e.ongoing ? jourConsulte : null}
               favorites={favorites}
               onToggleFav={onToggleFav}
               onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}

@@ -329,6 +329,12 @@ export default function App() {
   const [showFavNudge, setShowFavNudge] = useState(false);
   const [showPhotoNudge, setShowPhotoNudge] = useState(false);
   const [showInviteNudge, setShowInviteNudge] = useState(false);
+  // Instant d'apparition de la carte de partage. Elle s'ouvre TOUTE SEULE au
+  // lancement : si le doigt est encore sur l'écran, la fin de ce geste tombe sur
+  // le fond assombri et la referme immédiatement. Stéphanie, 31 août 2026 :
+  // « le message share s'affiche mais il reste 1 quart de seconde, donc inutile ».
+  // On ignore donc les clics sur le fond pendant les 700 premières millisecondes.
+  const nudgeOuvertA = useRef(0);
   // eventId sur lequel quelqu'un a touché « J'y vais » sans être connecté
   const [goingEnAttente, setGoingEnAttente] = useState(null);
   const [events, setEvents] = useState(BUNDLED_EVENTS);
@@ -730,6 +736,7 @@ export default function App() {
     if (promptedThisSessionRef.current) return false;                   // créneau pris
     writeNum(INVITE_OUV, n);
     promptedThisSessionRef.current = true;
+    nudgeOuvertA.current = Date.now();
     setShowInviteNudge(true);
     track("invite_nudge_shown", { moment, ouverture: n });
     return true;
@@ -962,7 +969,11 @@ export default function App() {
     )}
     {showInviteNudge && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
-           onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}>
+           onClick={() => {
+             // Fin du geste qui a lancé l'app : on ne referme pas ce qui vient d'apparaître.
+             if (Date.now() - nudgeOuvertA.current < 700) return;
+             setShowInviteNudge(false); track("invite_nudge_ferme");
+           }}>
         <div onClick={e => e.stopPropagation()}
              style={{ position: "relative", background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
           <button

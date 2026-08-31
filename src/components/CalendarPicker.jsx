@@ -38,6 +38,20 @@ export default function CalendarPicker({ onClose, onConfirm, onChange, inline = 
   function handleDay(day) {
     if (!day) return;
     const clicked = new Date(year, month, day);
+
+    // Re-cliquer sur le jour déjà choisi l'enlève — demande de Stéphanie,
+    // 31 août 2026 : « ça serait mieux de juste recliquer sur la date pour
+    // l'enlever ». Elle s'était retrouvée bloquée sur le 11 septembre sans
+    // voir le petit « Réinit. » en haut à droite. Une sélection doit toujours
+    // se défaire là où elle s'est faite.
+    const memeJour = (a, b) => a && b && a.toDateString() === b.toDateString();
+    if (memeJour(clicked, start) && !end) {
+      setStart(null);
+      setEnd(null);
+      if (inline) onChange?.(null, null);
+      return;
+    }
+
     let newStart, newEnd;
     if (!start || (start && end)) {
       newStart = clicked;
