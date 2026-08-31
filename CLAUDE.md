@@ -407,6 +407,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Automobile Club Monaco | https://acm.mc/ | RALLYE | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
 | Foyer Sainte Dévote | https://diocese.mc | ATELIER, CONFÉRENCE — 3 rue Philibert Florence, La Condamine (salle paroissiale, pas de site propre) | +377 9797 7020 |
+| Crèche de Monaco-Ville | https://www.mairie.mc/les-espaces-parents | CONFÉRENCE, ATELIER — service Petite Enfance et Familles de la Mairie, échanges/ateliers parentalité ; a déménagé au 2ᵉ étage du **Foyer Sainte Dévote**, 3 rue Philibert Florence · La Condamine (pas de site propre) | +377 9797 7035 |
+| Les Jardins d'Apolline & Allée Lazare Sauvaigo | https://www.mairie.mc/agenda | SPORT, FESTIVAL — jardin public et promenade, événements familiaux/caritatifs en plein air (ex. Monaco Trott'n'Roll, Fondation Flavien), 1 Prom. Honoré II · La Condamine (pas de site propre) | |
 | Palais Princier de Monaco | https://www.visitepalaisdemonaco.com/ | EXPOSITION, SPECTACLE — Grands Appartements, cour d'honneur (concerts d'été), Monaco-Ville | +377 9325 1831 |
 | Musée d'Anthropologie Préhistorique | https://map.gouv.mc/ | EXPOSITION, ATELIER — entrée par le Jardin Exotique, 56 bis bd du Jardin Exotique | +377 9898 8006 |
 | Institut Audiovisuel de Monaco | https://institut-audiovisuel.mc/ | CINÉMA, EXPOSITION, CONFÉRENCE — 83-85 bd du Jardin Exotique | +377 9798 4326 |
