@@ -1,9 +1,6 @@
-PrinciPocket : 187 fiches scannées.
-  + LIEU NOUVEAU « Crèche de Monaco-Ville » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+PrinciPocket : 185 fiches scannées.
   = « ÉCHANGES AUTOUR DE LA PARENTALITÉ - DISCUTONS-EN ! » [Mar 15 sep 2026] — déjà couvert par une expo en cours au même lieu
-  + LIEU NOUVEAU « Les Jardins d&#039;Apolline &amp; Allée Lazare Sauvaigo » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
   = « Monaco Trott’n’Roll #12 » [Sam 19 sep 2026] — déjà couvert par une expo en cours au même lieu
-  + LIEU NOUVEAU « Crèche de Monaco-Ville » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
   = « ÉCHANGES AUTOUR DE LA PARENTALITÉ - DISCUTONS-EN ! » [Mar 29 sep 2026] — déjà couvert par une expo en cours au même lieu
   SKIP « A wedding in Monaco. » [Ven 16 oct 2026] — heure inconnue
   SKIP « SPORTEL AWARDS » [Lun 19 oct 2026] — heure inconnue
@@ -14,5 +11,4 @@ PrinciPocket : 187 fiches scannées.
   ~ « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — heure non publiée → « En journée »
   = « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — déjà couvert par une expo en cours au même lieu
 
-AJOUTÉS : 1
-+ [Mer 16 sep 2026] Calm under Pressure: elite free diver Simona Auteri @ Restaurant de la Société Nautique (BRUNCH 18h00)
+AJOUTÉS : 0

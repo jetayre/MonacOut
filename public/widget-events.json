@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-30T19:14:40.410Z",
+  "generatedAt": "2026-08-31T10:15:36.863Z",
   "events": [
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "10h00 — 19h00",
       "title": "MARIAGE DU SIÈCLE AU PALAIS",
       "venue": "Grands Appartements",
@@ -20,8 +20,8 @@
       "emoji": "👰"
     },
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -47,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -56,22 +56,22 @@
       "emoji": "🎬"
     },
     {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
-    },
-    {
-      "date": "Dim 30 août",
-      "iso": "2026-08-30",
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
       "time": "10h00 — 20h00",
       "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
       "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
       "emoji": "🏎️"
+    },
+    {
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
+      "time": "10h00",
+      "title": "MUSÉES 4 OUVERTS AUJOURD'HUI",
+      "venue": "Musées de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
     }
   ]
 }
