@@ -1,5 +1,5 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-08-30 — 130 liens, 1712 fiches.
+Contrôle du 2026-08-31 — 130 liens, 1703 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
@@ -8,6 +8,4 @@ du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 ■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
    Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
    de lien mort : le contenu, lui, n'a pas pu être lu.
-     · https://aritual.fr/sessions/ — ETIMEDOUT — 3 fiche(s)
-     · https://aritual.fr/ — ETIMEDOUT — 3 fiche(s)
-     · https://yume.mc/ — UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
+     · https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre — UND_ERR_CONNECT_TIMEOUT — 5 fiche(s)
