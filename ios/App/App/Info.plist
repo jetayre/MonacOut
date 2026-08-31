@@ -24,10 +24,6 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Monac'Out uses your location to show events near you in Monaco.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Monac'Out uses your location to show events near you in Monaco.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>Monac'Out sends you reminders for your saved events in Monaco.</string>
 	<key>UIBackgroundModes</key>
