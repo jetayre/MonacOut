@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T21:25:22.374Z",
+  "generatedAt": "2026-09-01T05:13:29.143Z",
   "events": [
     {
       "date": "Lun 31 août",
@@ -18,6 +18,24 @@
       "venue": "Grands Appartements",
       "quarter": "Monaco-Ville",
       "emoji": "👰"
+    },
+    {
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
+      "time": "En journée",
+      "title": "ORIGAMIS GÉANTS DANS MONTE-CARLO GLOW UP",
+      "venue": "Casino, Hôtel de Paris, Hermitage, av. des Beaux-Arts",
+      "quarter": "Monte-Carlo",
+      "emoji": "🦋"
+    },
+    {
+      "date": "Lun 31 août",
+      "iso": "2026-08-31",
+      "time": "14h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Lun 31 août",
@@ -54,24 +72,6 @@
       "venue": "Institut Audiovisuel",
       "quarter": "Monaco",
       "emoji": "🎬"
-    },
-    {
-      "date": "Lun 31 août",
-      "iso": "2026-08-31",
-      "time": "10h00 — 20h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
-    },
-    {
-      "date": "Lun 31 août",
-      "iso": "2026-08-31",
-      "time": "10h00",
-      "title": "MUSÉES 4 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
     }
   ]
 }
