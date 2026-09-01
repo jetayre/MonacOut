@@ -1,5 +1,7 @@
-PrinciPocket : 185 fiches scannées.
+PrinciPocket : 190 fiches scannées.
+  ~ « BARBAGIUÀN - Démonstration & Dégustation » [Sam 5 sep 2026] — heure non publiée → « En journée »
   = « ÉCHANGES AUTOUR DE LA PARENTALITÉ - DISCUTONS-EN ! » [Mar 15 sep 2026] — déjà couvert par une expo en cours au même lieu
+  SKIP « World Cleanup Day 2026 » [Sam 19 sep 2026] — heure inconnue
   = « Monaco Trott’n’Roll #12 » [Sam 19 sep 2026] — déjà couvert par une expo en cours au même lieu
   = « ÉCHANGES AUTOUR DE LA PARENTALITÉ - DISCUTONS-EN ! » [Mar 29 sep 2026] — déjà couvert par une expo en cours au même lieu
   SKIP « A wedding in Monaco. » [Ven 16 oct 2026] — heure inconnue
@@ -10,5 +12,6 @@ PrinciPocket : 185 fiches scannées.
   = « Exhibition: Wedding of the century » [Ven 25 sep 2026] — déjà couvert par une expo en cours au même lieu
   ~ « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — heure non publiée → « En journée »
   = « Exhibition - Heritage at Risk » [Dim 4 oct 2026] — déjà couvert par une expo en cours au même lieu
+  SKIP « ONE TO ONE RETAIL E-COMMERCE » [Jeu 11 mar 2027] — heure inconnue
 
 AJOUTÉS : 0
