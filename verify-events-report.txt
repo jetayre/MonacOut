@@ -1,7 +1,7 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 01/09/2026 21:21:58
-Événements analysés : 1706
+Généré le : 02/09/2026 10:17:58
+Événements analysés : 1698
 Problèmes détectés : 21
 ========================================
 
@@ -40,13 +40,9 @@ Problèmes détectés : 21
 
 ✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).
 
-── VÉRIFICATION LIENS (131 URLs testées) ──────────
+── VÉRIFICATION LIENS (130 URLs testées) ──────────
 
   ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (648)
-     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
-     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
-     💬 Inaccessible (réseau) : This operation was aborted
-
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -123,6 +119,10 @@ Problèmes détectés : 21
      → https://www.monacolegendauctions.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
+     [id:826,827,830] COLLAGE ARTISTIQUE, MÉDITATION CRÉATIVE, PEINTURE CÉRAMIQUE
+     → https://aritual.fr/sessions/
+     💬 Inaccessible (réseau) : fetch failed
+
      [id:991,992,993] ART3F SALON D'ART CONTEMPORAIN, ART3F SALON D'ART CONTEMPORAIN, ART3F SALON D'ART CONTEMPORAIN
      → https://www.chapiteau-monaco.com/en/art-fair-art3f/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -137,7 +137,15 @@ Problèmes détectés : 21
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 HTTP 403
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1178,1184,1936] PILATES COMMUNITY DAY YUMÉ, PILATES COMMUNITY NOVEMBRE, PILATES COMMUNITY MARCH
+     → https://yume.mc/
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:1181,1189,1935] SOUND HEALING AUTOMNE, SOUND HEALING SOLSTICE, SOUND HEALING HIVER ARITUAL
+     → https://aritual.fr/
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
@@ -145,7 +153,7 @@ Problèmes détectés : 21
 
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 HTTP 403
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
      → https://www.opera.mc/
@@ -222,10 +230,6 @@ Problèmes détectés : 21
      [id:1012518,1012519,1012520,1012521,1012522,1012523,1012524,1012525,1012526,1012527,1012528,1012529,1012530,1012531,1012532,1012533,1012534,1012535,1012536,1012537,1012538,1012539,1012540,1012541,1012542,1012543,1012544,1012545,1012546,1012547,1012548,1012549,1012550,1012551,1012552,1012553,1012554,1012555,1012556,1012557,1012558,1012559,1012560,1012561,1012562,1012563,1012564,1012565,1012566,1012567,1012568,1012569] ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO
      → https://www.zumba.com/fr-FR/class_detail/25717535-5178-11ee-88b0-0e028c8dc8fd
      💬 HTTP 403
-
-     [id:950243] MUSÉES 6 OUVERTS À MONACO
-     → (vide)
-     💬 Lien manquant
 
      [id:950244] MUSÉES 6 OUVERTS À MONACO
      → (vide)
@@ -1683,11 +1687,7 @@ Problèmes détectés : 21
      → (vide)
      💬 Lien manquant
 
-     [id:930242] CE SOIR 10 TERRASSES OUVERTES
-     → (vide)
-     💬 Lien manquant
-
-     [id:940242] BRUNCH 1 ADRESSE À MONACO
+     [id:950608] MUSÉES 6 OUVERTS À MONACO
      → (vide)
      💬 Lien manquant
 
@@ -2636,7 +2636,7 @@ Problèmes détectés : 21
      💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (36)
+  💡 À VÉRIFIER MANUELLEMENT (34)
      [id:700002] CALM UNDER PRESSURE: ELITE FREE DIVER SIMONA AUTERI
      → https://www.restaurantsocietenautique.club/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -2741,15 +2741,7 @@ Problèmes détectés : 21
      → https://www.mairie.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1178,1184,1936] PILATES COMMUNITY DAY YUMÉ, PILATES COMMUNITY NOVEMBRE, PILATES COMMUNITY MARCH
-     → https://yume.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1181,1189,1935] SOUND HEALING AUTOMNE, SOUND HEALING SOLSTICE, SOUND HEALING HIVER ARITUAL
-     → https://aritual.fr/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1009876,1009877] CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE
+     [id:1009877] CINÉMA À L'AFFICHE CETTE SEMAINE
      → https://www.cinemas2monaco.com
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
@@ -2781,7 +2773,7 @@ Problèmes détectés : 21
      → https://www.sexytacos.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 66 liens OK (directs, page réservation détectée)
+  ✓ 65 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
