@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1700 fiches inspectées le 2026-09-02.
+1699 fiches inspectées le 2026-09-02.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ IDENTIFIANTS EN DOUBLE — deux fiches partagent un id (casse les favoris) (4)
@@ -9,8 +9,8 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · id 800059 utilisé 2× : « UEFA CONFERENCE LEAGUE AS MONACO NORDSJAELLAND » (Jeu 5 nov) / « BKT EUROCUP AS MONACO KIDS AND US MANRESA » (Mer 13 jan)
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 36 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
-   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 36 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
+   · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 35 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
+   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 35 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
 ■ FICHES SANS CONTENU — la description répète le titre (39)
    · Jeu 3 sep · APERO MUSIQUE LIVE — description = titre (id 800055)
