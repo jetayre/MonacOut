@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-01T19:20:16.774Z",
+  "generatedAt": "2026-09-02T08:14:35.418Z",
   "events": [
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "10h00 — 19h00",
       "title": "MARIAGE DU SIÈCLE AU PALAIS",
       "venue": "Grands Appartements",
@@ -20,8 +20,8 @@
       "emoji": "👰"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "En journée",
       "title": "ORIGAMIS GÉANTS DANS MONTE-CARLO GLOW UP",
       "venue": "Casino, Hôtel de Paris, Hermitage, av. des Beaux-Arts",
@@ -29,8 +29,8 @@
       "emoji": "🦋"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -47,8 +47,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -56,8 +56,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -65,13 +65,13 @@
       "emoji": "🎬"
     },
     {
-      "date": "Mar 1 sep",
-      "iso": "2026-09-01",
-      "time": "10h00 — 20h00",
-      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
-      "venue": "Ravel Hall",
-      "quarter": "Monte-Carlo",
-      "emoji": "🏎️"
+      "date": "Mer 2 sep",
+      "iso": "2026-09-02",
+      "time": "10h00",
+      "title": "MUSÉES 6 OUVERTS À MONACO",
+      "venue": "Musées de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
     }
   ]
 }
