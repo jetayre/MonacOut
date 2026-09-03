@@ -1,6 +1,6 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 03/09/2026 10:25:26
+Généré le : 03/09/2026 21:15:37
 Événements analysés : 1691
 Problèmes détectés : 20
 ========================================
@@ -41,7 +41,7 @@ Problèmes détectés : 20
 
 ── VÉRIFICATION LIENS (129 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (650)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (646)
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -53,10 +53,6 @@ Problèmes détectés : 20
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
-
-     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
-     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
-     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
@@ -140,19 +136,15 @@ Problèmes détectés : 20
 
      [id:1177] RECOVERY WEEKEND ODÉON SPA
      → https://odeonspa.com/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 HTTP 403
 
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:1000381] WINE PALACE × MONACO YACHT SHOW
-     → https://www.instagram.com/wine_palace_montecarlo/
-     💬 HTTP 429
-
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     💬 HTTP 403
 
      [id:800010,800023] L'ITALIANA IN ALGERI ROSSINI, RÉCITAL PIANO ANDRÁS SCHIFF
      → https://www.opera.mc/
@@ -225,14 +217,6 @@ Problèmes détectés : 20
      [id:800059] BKT EUROCUP AS MONACO KIDS AND US MANRESA
      → (vide)
      💬 Lien manquant
-
-     [id:1012373,1012374,1012375,1012376,1012377,1012378] SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO, SLAMMERS SPORTS BAR MONACO
-     → https://www.instagram.com/slammers_monaco/
-     💬 HTTP 429
-
-     [id:1012379,1012380,1012381,1012382,1012383,1012384] SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO, SHIP & CASTLE PUB NIGHT MONACO
-     → https://www.instagram.com/shipandcastlemonaco/
-     💬 HTTP 429
 
      [id:1012466,1012467,1012468,1012469,1012470,1012471,1012472,1012473,1012474,1012475,1012476,1012477,1012478,1012479,1012480,1012481,1012482,1012483,1012484,1012485,1012486,1012487,1012488,1012489,1012490,1012491] SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO, SUNSET DJ SET LARVOTTO
      → https://www.sunsetmonaco.com/
@@ -2780,7 +2764,7 @@ Problèmes détectés : 20
      → https://www.sexytacos.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 62 liens OK (directs, page réservation détectée)
+  ✓ 66 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
