@@ -330,7 +330,16 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
 
   function handleFilterChange(newFilter) {
     const el = document.getElementById("main-scroll");
-    if (filter === newFilter && newFilter !== "calendar") { setFilter("all"); if (el) el.scrollTop = 0; return; }
+    // Re-cliquer sur le filtre actif le retire — y compris le CALENDRIER, qui en
+    // était exclu : le bouton l'ouvrait mais rien ne le refermait. Stéphanie,
+    // 3 septembre 2026 : « quand j'appuie sur calendrier 1×, il apparaît, et la
+    // 2ᵉ fois il ne s'en va pas ». Un bouton qui ouvre doit refermer.
+    if (filter === newFilter) {
+      setFilter("all");
+      if (newFilter === "calendar") { setRangeStart(null); setRangeEnd(null); }
+      if (el) el.scrollTop = 0;
+      return;
+    }
     if (newFilter !== "calendar") { setRangeStart(null); setRangeEnd(null); }
     setFilter(newFilter); setFiltersVisible(true);
     if (el) el.scrollTop = 0;
