@@ -1327,7 +1327,7 @@
  },
  "/en/events/4955ca68949a6c32d222133b95a9a69d-Apero-MUSIQUE-LIVE": {
   "vuLe": "2026-09-01",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Apero MUSIQUE LIVE",
   "majLe": "2026-09-03"
  },
@@ -1339,7 +1339,7 @@
  },
  "/en/events/88f07eb0561bf72918a5ef9ddd4c5161-Animation-jeux": {
   "vuLe": "2026-09-01",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Animation jeux",
   "majLe": "2026-09-03"
  },
@@ -1363,19 +1363,19 @@
  },
  "/en/events/659270e21e9eb604b9710bf3ff1ec276-Echecs-bridge-et-backgammon": {
   "vuLe": "2026-09-01",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Echecs bridge et backgammon",
   "majLe": "2026-09-03"
  },
  "/en/events/2a439e3275526a8837a18deeef08f68e-Uefa-conference-league-AS-MONACO-SC-Fribourg": {
   "vuLe": "2026-09-01",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Uefa conference league AS MONACO SC Fribourg",
   "majLe": "2026-09-03"
  },
  "/en/events/a1a51e6fbc9db20c147e040d28a2c969-Uefa-conference-league-AS-MONACO-Nordsjaelland": {
   "vuLe": "2026-09-01",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Uefa conference league AS MONACO Nordsjaelland",
   "majLe": "2026-09-03"
  },
@@ -1387,12 +1387,24 @@
  },
  "/en/events/57471f0761f49a5c616f98d168c26d4a-Uefa-conference-league-AS-MONACO-Lincoln-Red-Imps": {
   "vuLe": "2026-09-01",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Uefa conference league AS MONACO Lincoln Red Imps",
   "majLe": "2026-09-03"
  },
  "/en/events/08aad428fd9179c343f04e9afeddccee-ONE-TO-ONE-RETAIL-E-COMMERCE": {
   "vuLe": "2026-09-01",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "majLe": "2026-09-03"
+ },
+ "/en/events/1345e1132cca60833ec0adc4d373da7f-FORGET-ME-NOT-Fashion-and-Wellness-Walk": {
+  "vuLe": "2026-09-03",
+  "etat": "deja",
+  "detail": "FORGET ME NOT Fashion and Wellness Walk",
+  "majLe": "2026-09-03"
+ },
+ "/en/events/846b35cdb63efe7c7ffe52d3116a62d9-Monaco-Moves-for-Those-Who-Forget": {
+  "vuLe": "2026-09-03",
   "etat": "ecarte",
   "detail": "heure non publiée et catégorie SPECTACLE en exige une",
   "majLe": "2026-09-03"
