@@ -6,6 +6,12 @@ export function useSocial(userId) {
   const [friends, setFriends]                   = useState([])  // [{ id, display_name, invite_code, participations: event_id[], canSeeMe: bool }]
   const [pending, setPending]                   = useState([])  // demandes reçues
   const [visibility, setVisibility]             = useState([])  // friend_id[] qui peuvent me voir
+  // 🚨 A-T-ON DÉJÀ INTERROGÉ LA BASE ? `friends` démarre à [] — sans ce drapeau, tout
+  // ce qui teste « la personne n'a aucune amie » est VRAI pendant le chargement.
+  // Le bandeau « Partage ton lien » s'affichait donc à tout le monde, puis
+  // disparaissait dès l'arrivée de la liste. Stéphanie, 3 septembre 2026 :
+  // « le petit message qui apparaît en haut de l'appli reste 1/4 de seconde ».
+  const [charge, setCharge]                     = useState(false)
 
   const load = useCallback(async () => {
     if (!supabase || !userId) return
@@ -34,7 +40,7 @@ export function useSocial(userId) {
 
     // Profils des amis et demandeurs
     const allIds = [...new Set([...friendIds, ...pendingIds])]
-    if (!allIds.length) { setFriends([]); setPending([]); setVisibility([]); return }
+    if (!allIds.length) { setFriends([]); setPending([]); setVisibility([]); setCharge(true); return }
 
     const { data: profiles } = await supabase
       .from('profiles')
@@ -95,6 +101,7 @@ export function useSocial(userId) {
       friendshipId: r.id,
       ...profileMap[r.requester_id],
     })).filter(p => p.id))
+    setCharge(true)
   }, [userId])
 
   useEffect(() => { load() }, [load])
@@ -173,7 +180,7 @@ export function useSocial(userId) {
   }
 
   return {
-    myParticipations, friends, pending, visibility,
+    myParticipations, friends, pending, visibility, charge,
     toggleParticipation, toggleVisibility,
     addFriendByCode, acceptFriend, declineFriend, removeFriend,
     friendsGoingTo, reload: load,

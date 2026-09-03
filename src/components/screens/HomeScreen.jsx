@@ -415,7 +415,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // Pourquoi il fallait le faire (PostHog, 17→22 août 2026) : la carte de partage
   // a été montrée 38 fois, dont 32 à des gens SANS COMPTE — elle demandait de
   // partager un lien à des gens qui n'en avaient pas encore. Zéro partage lancé.
-  const cercleVide = loggedIn && Array.isArray(social?.friends) && social.friends.length === 0;
+  // ⚠️ `social.charge` est indispensable : sans lui, « aucune amie » est vrai pendant
+  // le chargement et le bandeau clignote chez tout le monde (corrigé le 3 sept 2026).
+  const cercleVide = loggedIn && social?.charge === true && Array.isArray(social.friends) && social.friends.length === 0;
   const montreBandeauAmis = authReady && cercleVide && !bandeauAmisFerme && !!inviteCode;
 
   useEffect(() => {

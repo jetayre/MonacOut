@@ -324,7 +324,12 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
           </div>
           {friendsEvents.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '4px 0 8px', color: GREY, fontFamily: "'Lato', sans-serif", fontSize: 13 }}>
-              {social.friends.length === 0
+              {/* Tant que la base n'a pas répondu, on ne dit rien : `friends` vaut []
+                  au départ, et affirmer « ajoute des amis » à quelqu'un qui en a
+                  est faux pendant une fraction de seconde. */}
+              {social.charge !== true
+                ? ''
+                : social.friends.length === 0
                 ? (lang === 'en' ? "Add friends to see their plans." : "Ajoute des amis pour voir leurs sorties.")
                 : (lang === 'en' ? "None of your friends have marked events yet." : "Aucun ami n'a encore marqué de sortie.")}
             </div>
@@ -353,7 +358,9 @@ export default function FriendsScreen({ auth, social, events = [], lang = "fr", 
           <div style={{ height: 1, background: 'rgba(15,29,58,0.08)', margin: '18px 0' }} />
 
           {/* Liste des amis avec toggle visibilité */}
-          {social.friends.length === 0 ? (
+          {social.charge !== true ? (
+            <div style={{ height: 40 }} />
+          ) : social.friends.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '20px 0', color: GREY, fontFamily: "'Lato', sans-serif", fontSize: 13 }}>
               {lang === 'en' ? "No friends yet. Share your link!" : "Pas encore d'amis. Partage ton lien !"}
             </div>
