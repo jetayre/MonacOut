@@ -564,8 +564,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 fontSize: 14, color: NAVY, lineHeight: 1.25,
               }}>
                 {lang === "en"
-                  ? "Share your link so you can find each other here."
-                  : "Partage ton lien pour vous retrouver ici."}
+                  ? "Monaco Together — share your link"
+                  : "Monaco Ensemble — partage ton lien"}
               </div>
               <div style={{
                 fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY,
