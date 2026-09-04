@@ -1,7 +1,7 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 03/09/2026 21:15:37
-Événements analysés : 1691
+Généré le : 04/09/2026 10:24:46
+Événements analysés : 1688
 Problèmes détectés : 20
 ========================================
 
@@ -41,18 +41,26 @@ Problèmes détectés : 20
 
 ── VÉRIFICATION LIENS (129 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (646)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (649)
+     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
+     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
+     💬 Inaccessible (réseau) : fetch failed
+
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
+     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
+     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
+     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
@@ -142,6 +150,10 @@ Problèmes détectés : 20
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
+     [id:1012360] TAD L'EXPLORATEUR ET\ LA LAMPE MAGIQUE
+     → https://www.youtube.com/watch?time_continue=1&v=kmc10oIGZd0
+     💬 HTTP 429
+
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
      💬 HTTP 403
@@ -225,10 +237,6 @@ Problèmes détectés : 20
      [id:1012518,1012519,1012520,1012521,1012522,1012523,1012524,1012525,1012526,1012527,1012528,1012529,1012530,1012531,1012532,1012533,1012534,1012535,1012536,1012537,1012538,1012539,1012540,1012541,1012542,1012543,1012544,1012545,1012546,1012547,1012548,1012549,1012550,1012551,1012552,1012553,1012554,1012555,1012556,1012557,1012558,1012559,1012560,1012561,1012562,1012563,1012564,1012565,1012566,1012567,1012568,1012569] ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO, ZUMBA LA DIGUE MONACO
      → https://www.zumba.com/fr-FR/class_detail/25717535-5178-11ee-88b0-0e028c8dc8fd
      💬 HTTP 403
-
-     [id:950245] MUSÉES 6 OUVERTS À MONACO
-     → (vide)
-     💬 Lien manquant
 
      [id:950246] MUSÉES 6 OUVERTS À MONACO
      → (vide)
@@ -1686,7 +1694,7 @@ Problèmes détectés : 20
      → (vide)
      💬 Lien manquant
 
-     [id:930244] CE SOIR 12 TERRASSES OUVERTES
+     [id:950610] MUSÉES 6 OUVERTS À MONACO
      → (vide)
      💬 Lien manquant
 
@@ -2626,6 +2634,10 @@ Problèmes détectés : 20
      → (vide)
      💬 Lien manquant
 
+     [id:930427] CE SOIR 14 TERRASSES OUVERTES
+     → (vide)
+     💬 Lien manquant
+
 
   💡 À VÉRIFIER MANUELLEMENT (34)
      [id:700002] CALM UNDER PRESSURE: ELITE FREE DIVER SIMONA AUTERI
@@ -2764,7 +2776,7 @@ Problèmes détectés : 20
      → https://www.sexytacos.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 66 liens OK (directs, page réservation détectée)
+  ✓ 63 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
