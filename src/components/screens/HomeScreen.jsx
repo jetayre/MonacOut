@@ -427,7 +427,20 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // ⚠️ `social.charge` est indispensable : sans lui, « aucune amie » est vrai pendant
   // le chargement et le bandeau clignote chez tout le monde (corrigé le 3 sept 2026).
   const cercleVide = loggedIn && social?.charge === true && Array.isArray(social.friends) && social.friends.length === 0;
-  const montreBandeauAmis = authReady && cercleVide && !bandeauAmisFerme && !!inviteCode;
+  const conditionsReunies = authReady && cercleVide && !!inviteCode;
+
+  // 🔒 UNE FOIS AFFICHÉ, IL RESTE. Stéphanie, 4 septembre 2026, après deux tentatives
+  // de correction : « laisse-le, et les personnes le ferment en appuyant sur une croix
+  // évidente ». Elle a raison : tant que l'affichage dépend d'un état qui peut changer
+  // sous nos pieds (chargement de la base, rafraîchissement de session), il y aura
+  // toujours une course pour le faire disparaître. On verrouille donc : dès que les
+  // conditions sont réunies UNE fois, le bandeau reste jusqu'à la croix.
+  const [bandeauAmisVerrouille, setBandeauAmisVerrouille] = useState(false);
+  useEffect(() => {
+    if (conditionsReunies) setBandeauAmisVerrouille(true);
+  }, [conditionsReunies]);
+
+  const montreBandeauAmis = (bandeauAmisVerrouille || conditionsReunies) && !bandeauAmisFerme;
 
   useEffect(() => {
     if (montreBandeauAmis) track("bandeau_amis_vu");
@@ -598,11 +611,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               }}>
               {lang === "en" ? "Share" : "Partager"}
             </button>
+            {/* Croix bien visible : c'est le SEUL moyen de faire partir le bandeau. */}
             <button onClick={() => { setBandeauAmisFerme(true); track("bandeau_amis_ferme"); }}
                     aria-label={lang === "en" ? "Close" : "Fermer"}
                     style={{
-                      flexShrink: 0, background: "none", border: "none", cursor: "pointer",
-                      color: "#B8BEC6", fontSize: 17, lineHeight: 1, padding: 3,
+                      flexShrink: 0, cursor: "pointer",
+                      width: 30, height: 30, borderRadius: "50%",
+                      background: "#FFFFFF", border: `1px solid ${GOLD}`,
+                      color: NAVY, fontSize: 16, lineHeight: 1, padding: 0,
+                      display: "flex", alignItems: "center", justifyContent: "center",
                     }}>✕</button>
           </div>
         )}
