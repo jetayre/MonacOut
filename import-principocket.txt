@@ -1,6 +1,12 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-03
-192 événements lus · 0 importés (0 fiches) · 184 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-04
+192 événements lus · 0 importés (0 fiches) · 183 déjà présents
 
 ■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment
    · MARINE IN CONCERT — 17 août 2026 — PrinciPocket annonce le 27 février 2027, date FAUSSE. Vérifié sur jds.fr : le concert est le sam 13 février 2027 à 20h30 au Grimaldi Forum. Notre fiche 4741 porte la bonne date ; un doublon créé par le robot sur la fausse date a été supprimé. Ne pas réimporter.
    · Marine en concert — 18 aout 2026 — DEUXIEME entree PrinciPocket pour le meme concert, avec le meme mauvais 27 fevrier. C'est elle qui a recree la fiche 800012 dans la nuit du 17 au 18. Vraie date verifiee sur jds.fr : sam 13 fevrier 2027, 20h30, Grimaldi Forum (fiche 4741). Ne pas reimporter.
+
+■ 🚨 ÉCARTÉS DEPUIS PLUS DE 3 JOURS — demandent une décision humaine
+   ! vu le 2026-09-01 · heure non publiée et catégorie SPECTACLE en exige une
+     https://www.principocket.com/en/events/e55deb2a4a224daf296304b23fa726d2-Monaco-International-Triathlon
+   ! vu le 2026-09-01 · heure non publiée et catégorie SPECTACLE en exige une
+     https://www.principocket.com/en/events/08aad428fd9179c343f04e9afeddccee-ONE-TO-ONE-RETAIL-E-COMMERCE
