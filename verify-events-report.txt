@@ -1,7 +1,7 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 04/09/2026 10:24:46
-Événements analysés : 1688
+Généré le : 04/09/2026 20:57:42
+Événements analysés : 1689
 Problèmes détectés : 20
 ========================================
 
@@ -39,28 +39,20 @@ Problèmes détectés : 20
 
 ✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).
 
-── VÉRIFICATION LIENS (129 URLs testées) ──────────
+── VÉRIFICATION LIENS (130 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (649)
-     [id:700008] PATRIMOINE EN DANGER JARDINS SAINT-MARTIN
-     → https://www.gouv.mc/en/news/department-of-cultural-affairs-photo-exhibition-heritage-at-risk-until-4-october-2026-on-the-railings-of-the-saint-martin-gardens
-     💬 Inaccessible (réseau) : fetch failed
-
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (646)
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
 
      [id:700005,700006] DE TOUMAÏ À SAPIENS ANTHROPOLOGIE, MAGIES D'AILLEURS ANTHROPOLOGIE
      → https://map.gouv.mc/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
      [id:4757,66,248,448,800011] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT SACRÉ AUTOMNE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES
      → https://www.maitrisecathedrale.mc/fr/prochaines-dates
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
-
-     [id:4735,179,207,208,209] THE LEGEND OF THE MAGIC CRYSTAL, ATELIER LINDY HOP MONACO, OUVERTURE SAISON VARIÉTÉS, PIÈCE D'AUTOMNE VARIÉTÉS, SPECTACLE DE NOËL FAMILLE
-     → https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
-     💬 Inaccessible (réseau) : This operation was aborted
 
      [id:4700] RÉCITAL JONATHAN TETELMAN
      → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
@@ -149,10 +141,6 @@ Problèmes détectés : 20
      [id:1182,1188] NUTRITION & ÉQUILIBRE FÉMININ, COACHING BIEN-ÊTRE FIN D'ANNÉE
      → https://jennalifestyle.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
-
-     [id:1012360] TAD L'EXPLORATEUR ET\ LA LAMPE MAGIQUE
-     → https://www.youtube.com/watch?time_continue=1&v=kmc10oIGZd0
-     💬 HTTP 429
 
      [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
      → https://larosedesvents.com/the-beach/
@@ -2776,7 +2764,7 @@ Problèmes détectés : 20
      → https://www.sexytacos.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 63 liens OK (directs, page réservation détectée)
+  ✓ 67 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
