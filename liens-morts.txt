@@ -4,20 +4,3 @@ Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site off
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
 ✅ Aucun lien mort.
-
-■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
-   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
-   de lien mort : le contenu, lui, n'a pas pu être lu.
-     · https://www.fpa2.org — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/jonathan-tetelman — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/porgy-and-bess — UND_ERR_CONNECT_TIMEOUT — 2 fiche(s)
-     · https://www.opera.mc/ — UND_ERR_CONNECT_TIMEOUT — 2 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/la-vie-parisienne — UND_ERR_CONNECT_TIMEOUT — 5 fiche(s)
-     · https://www.fondationprincessecharlene.mc — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/l-italiana-in-algeri — UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/asmik-grigorian — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/rigoletto — UND_ERR_CONNECT_TIMEOUT — 4 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/fidelio — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/siegfried — UND_ERR_CONNECT_TIMEOUT — 4 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
