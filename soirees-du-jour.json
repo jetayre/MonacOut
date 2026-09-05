@@ -1386,93 +1386,6 @@
   ],
   "brunch": []
  },
- "Jeu 3 sep|2026": {
-  "soir": [
-   {
-    "lieu": "Blue Gin",
-    "heure": "En soirée",
-    "tel": ""
-   },
-   {
-    "lieu": "La Rascasse",
-    "heure": "17h30 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Le Vivaldi",
-    "heure": "18h00 — 02h00",
-    "tel": "+33 6 63 07 20 20"
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102"
-   },
-   {
-    "lieu": "Sexy Tacos",
-    "heure": "15h30 — 18h30",
-    "tel": "+377 9990 7338"
-   },
-   {
-    "lieu": "COYA Monte-Carlo",
-    "heure": "En soirée",
-    "tel": ""
-   },
-   {
-    "lieu": "Gustave",
-    "heure": "En soirée",
-    "tel": "+377 98 06 98 98"
-   },
-   {
-    "lieu": "Norma",
-    "heure": "17h00 — 20h00",
-    "tel": ""
-   },
-   {
-    "lieu": "Amazónico",
-    "heure": "18h00 — 02h00",
-    "tel": "",
-    "titre": "APERO AMAZONICO MONTE-CARLO"
-   },
-   {
-    "lieu": "Frenk",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9992 5838",
-    "titre": "APERO FRENK FONTVIEILLE"
-   },
-   {
-    "lieu": "Bistro Coe",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9992 2790",
-    "titre": "APERO BISTRO COE LARVOTTO"
-   },
-   {
-    "lieu": "Amici Miei",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9205 9214",
-    "titre": "DINER AMICI MIEI FONTVIEILLE"
-   },
-   {
-    "lieu": "Le Relais de Venise",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9990 8004",
-    "titre": "LE RELAIS DE VENISE LA CONDAMINE"
-   },
-   {
-    "lieu": "Malizia Mar",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9992 4099",
-    "titre": "APERO MALIZIA MAR QUAI ANTOINE IER"
-   },
-   {
-    "lieu": "Old Wild West",
-    "heure": "19h00 — 22h30",
-    "tel": "+377 9990 5499",
-    "titre": "OLD WILD WEST PORT HERCULE"
-   }
-  ],
-  "brunch": []
- },
  "Jeu 1 oct|2026": {
   "soir": [
    {
@@ -14640,6 +14553,95 @@
     "heure": "En soirée",
     "tel": "+377 98 06 98 98",
     "titre": "APERO GUSTAVE HERMITAGE"
+   },
+   {
+    "lieu": "Norma",
+    "heure": "17h00 — 20h00",
+    "tel": "",
+    "titre": "APERO NORMA CONDAMINE"
+   }
+  ],
+  "brunch": []
+ },
+ "Ven 5 mar|2027": {
+  "soir": [
+   {
+    "lieu": "Castelroc",
+    "heure": "En soirée",
+    "tel": "+377 9330 3668",
+    "titre": "DINER CASTELROC PLACE DU PALAIS"
+   },
+   {
+    "lieu": "La Rascasse",
+    "heure": "17h30 — 20h00",
+    "tel": "",
+    "titre": "HAPPY HOUR LA RASCASSE PORT HERCULE"
+   },
+   {
+    "lieu": "Le Vivaldi",
+    "heure": "18h00 — 02h00",
+    "tel": "+33 6 63 07 20 20",
+    "titre": "LE VIVALDI BAR A COCKTAILS PORT HERCULE"
+   },
+   {
+    "lieu": "Brasserie de Monaco",
+    "heure": "18h00 — 03h00",
+    "tel": "+377 9798 5120",
+    "titre": "BRASSERIE DE MONACO PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Frenk",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9992 5838",
+    "titre": "APERO FRENK FONTVIEILLE"
+   },
+   {
+    "lieu": "Bistro Coe",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9992 2790",
+    "titre": "APERO BISTRO COE LARVOTTO"
+   },
+   {
+    "lieu": "Amici Miei",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9205 9214",
+    "titre": "DINER AMICI MIEI FONTVIEILLE"
+   },
+   {
+    "lieu": "Le Relais de Venise",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9990 8004",
+    "titre": "LE RELAIS DE VENISE LA CONDAMINE"
+   },
+   {
+    "lieu": "Malizia Mar",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9992 4099",
+    "titre": "APERO MALIZIA MAR QUAI ANTOINE IER"
+   },
+   {
+    "lieu": "Old Wild West",
+    "heure": "19h00 — 22h30",
+    "tel": "+377 9990 5499",
+    "titre": "OLD WILD WEST PORT HERCULE"
+   },
+   {
+    "lieu": "Amazónico",
+    "heure": "18h00 — 02h00",
+    "tel": "",
+    "titre": "APERO AMAZONICO MONTE-CARLO"
+   },
+   {
+    "lieu": "Sexy Tacos",
+    "heure": "15h30 — 18h30",
+    "tel": "+377 9990 7338",
+    "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
    },
    {
     "lieu": "Norma",

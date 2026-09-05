@@ -1,16 +1,17 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1684 fiches inspectées le 2026-09-04.
+1685 fiches inspectées le 2026-09-05.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
    · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 33 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
    · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 33 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
 
-■ FICHES SANS CONTENU — la description répète le titre (39)
+■ FICHES SANS CONTENU — la description répète le titre (40)
    · Mer 9 sep · ANIMATION JEUX — description = titre (id 800061)
    · Sam 12 sep · MUNEGU REPAIR CAFE — description = titre (id 800055)
    · Mer 16 sep · CALM UNDER PRESSURE: ELITE FREE DIVER SIMONA AUTERI — description = titre (id 700002)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
+   · Ven 25 sep · L APERO DES FRENCHY AT LE MERIDIEN BEACH PLAZA MONACO — description = titre (id 800066)
    · Sam 26 sep · ECHECS BRIDGE ET BACKGAMMON — description = titre (id 800062)
    · Mar 6 oct · BKT EUROCUP AS MONACO PAOK THESSALONIKI — description = titre (id 800056)
    · Sam 10 oct · LIGUE 1 AS MONACO TOULOUSE FC — description = titre (id 800038)
