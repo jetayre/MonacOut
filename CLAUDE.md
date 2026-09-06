@@ -487,7 +487,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | MC Dance Monaco | https://www.instagram.com/mc_dance_monaco/ | DANSE contemporaine | (Instagram / email) |
 | Monaco Beaux-Arts | https://www.monacobeauxarts.com | ATELIER arts plastiques | +377 97 77 16 65 |
 | **Conférences & Business** | | | |
-| One to One Monaco | https://www.onetoone-retail-ecommerce.com/ | CONFÉRENCE retail/IA/e-commerce | |
+| One to One Retail E-Commerce | https://www.grimaldiforum.com/fr/agenda-manifestations-monaco/one-to-one-retail-e-commerce-2 | SALON / CONFÉRENCE retail, IA, e-commerce — Grimaldi Forum, av. Princesse Grace · Larvotto. ⚠️ L'ancien lien `onetoone-retail-ecommerce.com` est MORT (DNS NXDOMAIN, vérifié le 6 sep 2026) — passer par la page du Grimaldi Forum | |
 | PCD Group Monaco Conference | https://www.pcd.group/ | CONFÉRENCE finance/family office | |
 | Monaco Blue Initiative | https://www.fpa2.org/en/events/monaco-blue-initiative | CONFÉRENCE océan/environnement | |
 | Blue Economy & Finance Forum | https://www.beffmonaco.org/ | CONFÉRENCE finance durable/ESG | |

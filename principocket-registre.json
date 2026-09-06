@@ -1381,8 +1381,8 @@
  },
  "/en/events/e55deb2a4a224daf296304b23fa726d2-Monaco-International-Triathlon": {
   "vuLe": "2026-09-01",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP (fiche « MONACO INTERNATIONAL TRIATHLON », ven 6 nov, « 6 — 8 nov 2026 », plage du Larvotto). Le rapprochement automatique échoue parce que notre fiche porte une PÉRIODE dans le champ heure et non un horaire, et que le lieu est écrit différemment. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter, ce serait un doublon.",
   "majLe": "2026-09-06"
  },
  "/en/events/57471f0761f49a5c616f98d168c26d4a-Uefa-conference-league-AS-MONACO-Lincoln-Red-Imps": {
@@ -1393,8 +1393,8 @@
  },
  "/en/events/08aad428fd9179c343f04e9afeddccee-ONE-TO-ONE-RETAIL-E-COMMERCE": {
   "vuLe": "2026-09-01",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "ONE TO ONE RETAIL E COMMERCE",
   "majLe": "2026-09-06"
  },
  "/en/events/1345e1132cca60833ec0adc4d373da7f-FORGET-ME-NOT-Fashion-and-Wellness-Walk": {
@@ -1405,8 +1405,8 @@
  },
  "/en/events/846b35cdb63efe7c7ffe52d3116a62d9-Monaco-Moves-for-Those-Who-Forget": {
   "vuLe": "2026-09-03",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP, en MIEUX. C'est la semaine AMPA « Monaco Bouge Pour Ceux Qui Oublient » du 15 au 21 septembre. PrinciPocket l'annonce comme UN seul événement sans lieu précis (« Principauté de Monaco ») ; nous l'avons éclatée en 10 fiches nommées, une par activité, avec leur salle et leur horaire. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter.",
   "majLe": "2026-09-06"
  },
  "/en/events/21474c7755f4685d9c08f2ce1c89a4b9-L-apero-des-Frenchy-at-Le-Meridien-Beach-Plaza-MONACO": {
