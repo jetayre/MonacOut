@@ -316,13 +316,17 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 13, fontWeight: 700, letterSpacing: 2.6,
+            fontSize: 15, fontWeight: 700, letterSpacing: 2.2,
             textTransform: "uppercase", color: GOLD, marginBottom: 14,
           }}>{lang === "en" ? "Exhibitions" : "Expositions"}</div>
 
+          {/* Les titres des fiches arrivent en capitales depuis les données ; celui-ci
+              est écrit ici, donc c'est la feuille de style qui doit s'en charger —
+              sans quoi la carte de regroupement détonnait au milieu des autres. */}
           <div style={{
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
             fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
+            textTransform: "uppercase",
             color: "#000000", lineHeight: 1.25, marginBottom: 14,
           }}>{expos.length} {lang === "en" ? "exhibitions on view" : "expositions à voir"}</div>
 

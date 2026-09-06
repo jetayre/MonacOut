@@ -265,9 +265,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {/* Catégorie */}
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 13, fontWeight: 700, letterSpacing: 2.6,
+            fontSize: 15, fontWeight: 700, letterSpacing: 2.2,
             textTransform: "uppercase", color: GOLD,
-            marginBottom: 10,
+            marginBottom: 12,
           }}>{localizeCat(event.cat, lang)}</div>
 
           {/* Date + heure */}
