@@ -165,8 +165,34 @@ function heureDeTri(e) {
   return 9999;
 }
 
+// Une fiche du jour dont l'heure est passée n'a plus rien à proposer : à 15h48 on ne
+// veut plus voir le cours de 07h00. On se fie à l'heure de FIN quand la fiche la donne
+// (« 07h00 — 09h00 ») ; sinon au début plus deux heures, le temps qu'un concert ou un
+// dîner déjà commencé reste rejoignable.
+function finEnMinutes(e) {
+  // Les récapitulatifs (« 6 musées ouverts », « 8 brunchs ») et les annuaires ne
+  // portent qu'une heure d'ouverture : ils restent utiles toute la journée.
+  if (e.recap === true || e.pinLast === true) return 24 * 60;
+  const t = (e.time || "").replace(/\s/g, "");
+  // Le fil écrit les plages avec un tiret cadratin OU une flèche : « 09h — 18h »,
+  // « 9h30 → 18h30 ». Oublier la flèche masquait la messe du dimanche dès 11h30.
+  const plage = t.match(/^(\d{1,2})h(\d{2})?[\u2014\u2013\u2192>\-\u00e0]+(\d{1,2})h(\d{2})?/);
+  if (plage) {
+    const debut = parseInt(plage[1]) * 60 + (plage[2] ? parseInt(plage[2]) : 0);
+    const fin   = parseInt(plage[3]) * 60 + (plage[4] ? parseInt(plage[4]) : 0);
+    return fin <= debut ? 24 * 60 : fin;   // « 23h00 — 04h00 » se termine le lendemain
+  }
+  const seul = t.match(/^(\d{1,2})h(\d{2})?/);
+  if (seul) return parseInt(seul[1]) * 60 + (seul[2] ? parseInt(seul[2]) : 0) + 120;
+  const mot = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (mot === "enjournee") return 18 * 60;
+  return 24 * 60;   // « En soirée » ou horaire absent : on garde jusqu'au bout de la nuit
+}
+
 function filterByTime(events, filterId) {
   const todayStr = toFrDate(new Date()); const weekendDates = getWeekendDates();
+  const maintenant = new Date().getHours() * 60 + new Date().getMinutes();
+  const base = (() => {
   switch (filterId) {
     // Les fiches « en cours » sont déjà étalées jour par jour en amont
     // (etaleLesEnCours) : ces filtres n'ont donc rien de spécial à faire.
@@ -179,6 +205,10 @@ function filterByTime(events, filterId) {
     }
     default: return events;
   }
+  })();
+  // Le fil est une proposition de sortie, pas un journal : on masque ce qui est
+  // terminé. Les autres jours ne sont pas concernés.
+  return base.filter(e => e.date !== todayStr || finEnMinutes(e) > maintenant);
 }
 
 function matchesCatFilter(e, catId) {
