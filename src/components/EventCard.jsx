@@ -265,7 +265,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {/* Catégorie */}
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 11, fontWeight: 600, letterSpacing: 3,
+            fontSize: 13, fontWeight: 700, letterSpacing: 2.6,
             textTransform: "uppercase", color: GOLD,
             marginBottom: 10,
           }}>{localizeCat(event.cat, lang)}</div>
@@ -283,16 +283,16 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             {!sansDate && (
               <span style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: 13, fontWeight: 700, letterSpacing: 1.2,
+                fontSize: 15, fontWeight: 700, letterSpacing: 1.2,
                 textTransform: "uppercase", color: GREY,
               }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
             )}
             {event.time && (
               <span style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: sansDate ? 13 : 12,
-                fontWeight: sansDate ? 700 : 400,
-                letterSpacing: sansDate ? 1.2 : 0,
+                fontSize: sansDate ? 15 : 13,
+                fontWeight: 700,
+                letterSpacing: sansDate ? 1.2 : 0.4,
                 color: GREY,
               }}>{localizeTime(event.time, lang)}</span>
             )}

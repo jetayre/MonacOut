@@ -288,7 +288,7 @@ function IntertitreSection({ titre }) {
     <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "22px 2px 12px" }}>
       <span style={{
         fontFamily: "'Josefin Sans', sans-serif",
-        fontSize: 12, fontWeight: 600, letterSpacing: 3,
+        fontSize: 15, fontWeight: 700, letterSpacing: 2.4,
         textTransform: "uppercase", color: GOLD, whiteSpace: "nowrap",
       }}>{titre}</span>
       <span style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.45)" }} />
@@ -316,7 +316,7 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 11, fontWeight: 600, letterSpacing: 3,
+            fontSize: 13, fontWeight: 700, letterSpacing: 2.6,
             textTransform: "uppercase", color: GOLD, marginBottom: 14,
           }}>{lang === "en" ? "Exhibitions" : "Expositions"}</div>
 
