@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-05T18:03:19.356Z",
+  "generatedAt": "2026-09-06T08:13:48.075Z",
   "events": [
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
       "time": "10h00 — 19h00",
       "title": "MARIAGE DU SIÈCLE AU PALAIS",
       "venue": "Grands Appartements",
@@ -20,17 +20,26 @@
       "emoji": "👰"
     },
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
-      "time": "10h00 — 18h00",
-      "title": "SALON INTERNATIONAL DU LIVRE DE MONACO",
-      "venue": "Grimaldi Forum",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
+      "time": "10h00 — 20h00",
+      "title": "MONACO & L'AUTOMOBILE DE 1893 À NOS JOURS",
+      "venue": "Ravel Hall",
       "quarter": "Monte-Carlo",
-      "emoji": "📚"
+      "emoji": "🏎️"
     },
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
+      "time": "07h00 — 09h00",
+      "title": "RENTRÉE FITNESS MONACO",
+      "venue": "Monaco Wellness System",
+      "quarter": "Fontvieille",
+      "emoji": "💪"
+    },
+    {
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +47,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -47,8 +56,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -56,22 +65,13 @@
       "emoji": "🌵"
     },
     {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
+      "date": "Dim 6 sep",
+      "iso": "2026-09-06",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
       "quarter": "Monaco",
       "emoji": "🎬"
-    },
-    {
-      "date": "Sam 5 sep",
-      "iso": "2026-09-05",
-      "time": "10h00 — 16h00",
-      "title": "RENTRÉE DES CATÉCHISTES ET ENSEIGNANTS",
-      "venue": "Collège-Lycée FANB",
-      "quarter": "Monaco",
-      "emoji": "🙏"
     }
   ]
 }
