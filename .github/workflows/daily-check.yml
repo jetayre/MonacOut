@@ -67,6 +67,20 @@ jobs:
       # jour. L'ordre inverse laisserait 1 200 fiches d'apéro revenir deux fois par jour.
       # Rejouable par construction : reconstruit tout depuis sa config d'horaires
       # vérifiés, ne dépend d'aucune fiche existante. Même garde-fou que les autres.
+      # Programmes lus SUR LE SITE OFFICIEL à chaque passage : l'artiste change toutes
+      # les deux semaines au Bar Américain, à chaque date chez Em Sherif. Une liste
+      # figée dans le code serait fausse en un mois. Si la page devient illisible, le
+      # script sort en erreur sans rien toucher — mieux vaut aucune fiche qu'un nom périmé.
+      - name: "🎷 Live music au Bar Américain (programme officiel SBM)"
+        id: baramericain
+        run: node scripts/bar-americain.mjs
+        continue-on-error: true
+
+      - name: "🎶 Soirées Em Sherif (programme officiel SBM)"
+        id: emsherif
+        run: node scripts/em-sherif.mjs
+        continue-on-error: true
+
       - name: "🏛️ Une fiche musées par jour (nombre réellement ouvert)"
         id: musees
         run: node scripts/musees-du-jour.mjs
