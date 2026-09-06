@@ -1,6 +1,9 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2070 fiches inspectées le 2026-09-06.
+2099 fiches inspectées le 2026-09-06.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
+
+■ FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe (1)
+   · Dim 13 sep · OUVERTURE DE SAISON ORCHESTRE PHILHARMONIQUE — annoncée « jusqu'au 4 juillet » mais UNE SEULE fiche, non ongoing → invisible les autres jours (id 1100023)
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (3)
    · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 31 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
@@ -49,18 +52,27 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 29 mai · LIGUE 1 AS MONACO ESTAC TROYES — description = titre (id 800052)
    · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — description = titre (id 800036)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (17)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (26)
    · Sam 12 sep · MUNEGU REPAIR CAFE — A casa d&#039;i Soci - Maison des Associations (id 800055)
+   · Dim 13 sep · OUVERTURE DE SAISON ORCHESTRE PHILHARMONIQUE — Auditorium Rainier III (id 1100023)
+   · Mer 16 sep · VENTE PUBLIQUE CRÉDIT MOBILIER DE MONACO — Crédit Mobilier de Monaco (id 1023758)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — Eglise Réformée de Monaco (id 800029)
    · Sam 19 sep · FESTIVAL DES ÉTOILÉS DÎNER À 4 MAINS L'ABYSSE — L'Abysse Monte-Carlo (id 1015015)
+   · Lun 28 sep · JOURNÉE D'EXPERTISE JOAILLERIE HERMITAGE FINE ART — Hermitage Fine Art (id 1023759)
+   · Mar 29 sep · JOURNÉE D'EXPERTISE ARTCURIAL MONACO — Artcurial (id 1023760)
    · Mar 6 oct · BKT EUROCUP AS MONACO PAOK THESSALONIKI — Salle Gaston Médecin (id 800056)
+   · Mar 13 oct · VENTE N°19 NUMISMATIQUE MDC MONACO — Salle America (id 1023762)
+   · Ven 16 oct · COLLECTIONS DES NEUF AMATEURS GADOURY AUCTIONS — Gadoury Auctions (id 1023765)
+   · Sam 17 oct · MONNAIES D'EXCEPTION GADOURY AUCTIONS — Gadoury Auctions (id 1023766)
    · Mer 21 oct · BKT EUROCUP AS MONACO BAHCESEHIR COLLEGE ISTANBUL — Salle Gaston Médecin (id 800057)
    · Sam 24 oct · LES CONCERTS DE LA VOUTE GABRIEL DUPONT LA NATURE RETROUVEE — Eglise Réformée de Monaco (id 800030)
+   · Sam 14 nov · GALA DU FESTIVAL DES ÉTOILÉS MONTE-CARLO — Monte-Carlo Société des Bains de Mer (id 1100025)
    · Mer 25 nov · L UMIERES SUR LA LAGUNE — Hartford Fine Art Lampronti Gallery (id 800012)
    · Jeu 17 déc · EXHIBITIONS OF SCULPTURES BRONZE AND TERRACOTTA PAINTINGS AN… — Espace 22 (id 800053)
    · Sam 19 déc · LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS — Eglise Réformée de Monaco (id 800031)
    · Mer 30 déc · BKT EUROCUP AS MONACO ROMA BASKETBALL — Salle Gaston Médecin (id 800058)
    · Mer 13 jan · BKT EUROCUP AS MONACO KIDS AND US MANRESA — Salle Gaston Médecin (id 800059)
+   · Ven 22 jan · 49e FESTIVAL INTERNATIONAL DU CIRQUE DE MONTE-CARLO — Chapiteau de Fontvieille (id 1100026)
    · Sam 23 jan · LES CONCERTS DE LA VOUTE MAKE WAY FOR THE YOUNG PEOPLE — Eglise Réformée de Monaco (id 800032)
    · Sam 20 fév · LES CONCERTS DE LA VOUTE ROMEO AND JULIET — Eglise Réformée de Monaco (id 800033)
    · Sam 13 mar · LES CONCERTS DE LA VOUTE WOMAN POWER — Eglise Réformée de Monaco (id 800034)
