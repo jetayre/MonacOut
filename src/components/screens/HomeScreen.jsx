@@ -211,6 +211,145 @@ function filterByTime(events, filterId) {
   return base.filter(e => e.date !== todayStr || finEnMinutes(e) > maintenant);
 }
 
+// ── LE FIL EN SECTIONS ───────────────────────────────────────────────────────
+// Stéphanie, 6 septembre 2026 : « lorsque l'on scrolle il y a une sensation de
+// répétition ». Elle avait raison, et c'était mesurable : « AUJOURD'HUI » écrit
+// vingt fois, une fois par carte, et treize expositions qui se suivaient sans
+// rien entre elles. Trois gestes y répondent — la date passe en intertitre au
+// lieu d'être répétée, la journée en cours se découpe en moments, et les
+// expositions d'une même section se réunissent sur une seule carte.
+
+const JOURS_LONGS_FR = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+const MOIS_LONGS_FR  = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const JOURS_LONGS_EN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const MOIS_LONGS_EN  = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+// « Dim 6 sep » → « DIMANCHE 6 SEPTEMBRE »
+function titreDeJour(dateStr, lang) {
+  const p = (dateStr || "").split(" ");
+  const j = JOURS.indexOf(p[0]), m = MOIS_IDX[p[2]];
+  if (j < 0 || m === undefined) return dateStr || "";
+  return lang === "en"
+    ? `${JOURS_LONGS_EN[j]} ${p[1]} ${MOIS_LONGS_EN[m]}`
+    : `${JOURS_LONGS_FR[j]} ${p[1]} ${MOIS_LONGS_FR[m]}`;
+}
+
+function decouperEnSections(liste, lang) {
+  const now = new Date();
+  const min = now.getHours() * 60 + now.getMinutes();
+  const aujourdhui = toFrDate(now);
+  const d = new Date(now); d.setDate(d.getDate() + 1);
+  const demain = toFrDate(d);
+
+  const sections = [];
+  let courante = null;
+  const poser = (cle, titre, e) => {
+    if (!courante || courante.cle !== cle) { courante = { cle, titre, items: [] }; sections.push(courante); }
+    courante.items.push(e);
+  };
+
+  for (const e of liste) {
+    if (e.date === aujourdhui) {
+      const sansHeure = !(e.time && String(e.time).trim());
+      const debut = heureDeTri(e), fin = finEnMinutes(e);
+      // Une fiche sans horaire ne dit rien de son moment : l'annoncer « ce soir »
+      // serait affirmer un horaire qu'elle ne donne pas.
+      if (!sansHeure && debut <= min && min < fin) poser("maintenant", lang === "en" ? "Right now" : "Maintenant", e);
+      else if (!sansHeure && debut >= 18 * 60)     poser("cesoir",     lang === "en" ? "Tonight" : "Ce soir", e);
+      else                                         poser("plustard",   lang === "en" ? "Later today" : "Plus tard aujourd'hui", e);
+    } else if (e.date === demain) {
+      poser("demain", lang === "en" ? "Tomorrow" : "Demain", e);
+    } else {
+      poser(e.date, titreDeJour(e.date, lang), e);
+    }
+  }
+  return sections;
+}
+
+// Les expositions d'une même section tiennent sur une carte. En dessous de trois,
+// la carte de regroupement coûterait plus de place qu'elle n'en fait gagner.
+const estExpoDuFil = e => e.cat === "EXPOSITION" && e.recap !== true && e.pinLast !== true;
+
+function reunirLesExpos(items, deplie) {
+  const expos = items.filter(estExpoDuFil);
+  if (expos.length < 3) return items;
+  const sortie = []; let posee = false;
+  for (const e of items) {
+    if (!estExpoDuFil(e)) { sortie.push(e); continue; }
+    // La carte prend la place de la première exposition ; dépliée, les fiches
+    // reviennent juste en dessous, entières, sans quitter le jour affiché.
+    if (!posee) { posee = true; sortie.push({ groupeExpos: expos }); if (deplie) sortie.push(...expos); }
+  }
+  return sortie;
+}
+
+function IntertitreSection({ titre }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "22px 2px 12px" }}>
+      <span style={{
+        fontFamily: "'Josefin Sans', sans-serif",
+        fontSize: 12, fontWeight: 600, letterSpacing: 3,
+        textTransform: "uppercase", color: GOLD, whiteSpace: "nowrap",
+      }}>{titre}</span>
+      <span style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.45)" }} />
+    </div>
+  );
+}
+
+// La carte qui remplace la pile d'expositions. Elle ne prétend pas être un
+// événement : ni cœur, ni « J'y vais », ni téléphone. On la touche, la catégorie
+// se déplie et les fiches reviennent une par une, entières.
+function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
+  // On annonce les expositions elles-mêmes : le premier morceau du sous-titre est
+  // tantôt une salle, tantôt une adresse (« 62 bd du Jardin Exotique »), et lister
+  // des rues ne donne envie de rien.
+  const titres = [...new Set(expos.map(e => localizeTitle((e.title || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "").trim(), lang)).filter(Boolean))];
+  return (
+    <div
+      onClick={onOuvrir}
+      style={{
+        border: "1.5px solid #C9A96E", borderRadius: 2, padding: 4,
+        marginBottom: 14, background: WHITE, cursor: "pointer",
+      }}
+    >
+      <div style={{ border: "1.5px solid #9FC3DC", borderRadius: 1, background: WHITE }}>
+        <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
+          <div style={{
+            fontFamily: "'Josefin Sans', sans-serif",
+            fontSize: 11, fontWeight: 600, letterSpacing: 3,
+            textTransform: "uppercase", color: GOLD, marginBottom: 14,
+          }}>{lang === "en" ? "Exhibitions" : "Expositions"}</div>
+
+          <div style={{
+            fontFamily: "'Josefin Sans', Georgia, sans-serif",
+            fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
+            color: "#000000", lineHeight: 1.25, marginBottom: 14,
+          }}>{expos.length} {lang === "en" ? "exhibitions on view" : "expositions à voir"}</div>
+
+          {/* Les titres arrivent déjà en capitales : en serif ils pèsent autant que
+              le titre de la carte. En Lato fin, ils redeviennent ce qu'ils sont —
+              un index discret de ce qu'on trouvera dessous. */}
+          <div style={{
+            fontFamily: "'Lato', sans-serif",
+            fontSize: 11.5, fontWeight: 400, letterSpacing: 0.8,
+            color: GREY, lineHeight: 1.8, marginBottom: 18,
+          }}>{titres.slice(0, 3).join(" · ")}{titres.length > 3 ? " …" : ""}</div>
+
+          <span style={{
+            display: "inline-block", padding: "8px 18px",
+            border: "1px solid #C9A96E",
+            fontFamily: "'Lato', sans-serif", fontSize: 12,
+            fontWeight: 700, letterSpacing: 1.6,
+            textTransform: "uppercase", color: GOLD,
+          }}>{deplie
+            ? (lang === "en" ? "Close" : "Replier")
+            : (lang === "en" ? `See all ${expos.length}` : `Voir les ${expos.length}`)}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function matchesCatFilter(e, catId) {
   switch (catId) {
     case "sport":      return ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat);
@@ -280,6 +419,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const [showSearch, setShowSearch] = useState(false);
   // Bandeau « Partage ton lien » : refermé pour la visite en cours seulement.
   const [bandeauAmisFerme, setBandeauAmisFerme] = useState(false);
+  // Quelles sections ont déplié leur pile d'expositions. Une par jour, indépendantes.
+  const [exposDepliees, setExposDepliees] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
   const tapTimer = useRef(null);
@@ -429,6 +570,19 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // démarrage sur iPhone. On en pose 40, puis 40 de plus dès qu'on approche du bas.
   // Purement visuel : `filtered.length` reste la vraie longueur pour la mesure.
   const aAfficher = filtered.slice(0, nbRendues);
+
+  // Le fil se range sous des intertitres de jour (et de moment, pour aujourd'hui).
+  // En recherche on garde la liste à plat : les résultats sautent d'un mois à
+  // l'autre, un intertitre par carte n'aiderait personne.
+  const enSections = !searchQuery.trim();
+  const sections = enSections
+    ? decouperEnSections(aAfficher, lang).map(sec => ({
+        ...sec,
+        // On ne réunit les expositions que dans le fil ordinaire : dès qu'on demande
+        // explicitement la catégorie, on veut les voir une par une.
+        items: filtreCatActif ? sec.items : reunirLesExpos(sec.items, !!exposDepliees[sec.cle]),
+      }))
+    : null;
 
   const rangeLabel = rangeStart
     ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
@@ -745,10 +899,31 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             {t.empty}
           </div>
         ) : (
-          aAfficher.map((e) => (
+          enSections ? sections.map(sec => (
+            <div key={sec.cle}>
+              <IntertitreSection titre={sec.titre} />
+              {sec.items.map(e => e.groupeExpos ? (
+                <CarteGroupeExpos
+                  key={`expos-${sec.cle}`}
+                  expos={e.groupeExpos}
+                  lang={lang}
+                  deplie={!!exposDepliees[sec.cle]}
+                  onOuvrir={() => setExposDepliees(d => ({ ...d, [sec.cle]: !d[sec.cle] }))}
+                />
+              ) : renduCarte(e, true))}
+            </div>
+          )) : aAfficher.map(e => renduCarte(e, false))
+        )}
+      </div>
+    </div>
+  );
+
+  function renduCarte(e, sansDate) {
+    return (
             <EventCard
               key={e.cleFil || e.id}
               event={e}
+              sansDate={sansDate}
               jourAffiche={e.ongoing ? jourConsulte : null}
               favorites={favorites}
               onToggleFav={onToggleFav}
@@ -775,9 +950,6 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               loggedIn={loggedIn}
               onShowAuth={onShowAuth}
             />
-          ))
-        )}
-      </div>
-    </div>
-  );
+    );
+  }
 }

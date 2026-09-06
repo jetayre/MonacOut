@@ -229,7 +229,7 @@ function FriendAvatars({ friends = [] }) {
   )
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false }) {
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
   // ⚠️ Une fiche `ongoing` ne porte QU'UNE date : celle du jour, réécrite chaque nuit.
@@ -272,18 +272,28 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
 
           {/* Date + heure */}
           <div style={{
-            display: "flex", alignItems: "center", justifyContent: "space-between",
+            display: "flex", alignItems: "center",
+            justifyContent: sansDate ? "flex-start" : "space-between",
             marginBottom: 14,
           }}>
-            <span style={{
-              fontFamily: "'Lato', sans-serif",
-              fontSize: 13, fontWeight: 700, letterSpacing: 1.2,
-              textTransform: "uppercase", color: GREY,
-            }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+            {/* Quand le fil range les cartes sous un intertitre de jour, la date
+                est déjà écrite au-dessus : la répéter sur chaque carte donnait
+                « AUJOURD'HUI » vingt fois d'affilée. Il ne reste que l'heure,
+                qui elle change d'une carte à l'autre. */}
+            {!sansDate && (
+              <span style={{
+                fontFamily: "'Lato', sans-serif",
+                fontSize: 13, fontWeight: 700, letterSpacing: 1.2,
+                textTransform: "uppercase", color: GREY,
+              }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
+            )}
             {event.time && (
               <span style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: 12, fontWeight: 400, color: GREY,
+                fontSize: sansDate ? 13 : 12,
+                fontWeight: sansDate ? 700 : 400,
+                letterSpacing: sansDate ? 1.2 : 0,
+                color: GREY,
               }}>{localizeTime(event.time, lang)}</span>
             )}
           </div>
