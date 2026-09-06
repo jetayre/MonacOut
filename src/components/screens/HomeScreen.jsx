@@ -243,9 +243,22 @@ function decouperEnSections(liste, lang) {
 
   const sections = [];
   let courante = null;
-  const poser = (cle, titre, e) => {
-    if (!courante || courante.cle !== cle) { courante = { cle, titre, items: [] }; sections.push(courante); }
+  // `jour` s'affiche en gros doré, une seule fois ; `moment` en dessous, plus discret.
+  // Aujourd'hui n'a pas de jour : ses moments (Maintenant, Ce soir) tiennent la
+  // place du titre, c'est ce qu'on lit en ouvrant l'app.
+  const poser = (cle, jour, moment, e) => {
+    if (!courante || courante.cle !== cle) { courante = { cle, jour, moment, items: [] }; sections.push(courante); }
     courante.items.push(e);
+  };
+
+  // Matin / après-midi / soir, d'après l'heure de DÉBUT. La liste étant triée par
+  // cette même heure, les trois se suivent toujours dans l'ordre.
+  const momentDuJour = (e) => {
+    if (!(e.time && String(e.time).trim())) return lang === "en" ? "Afternoon" : "Après-midi";
+    const debut = heureDeTri(e);
+    if (debut < 12 * 60)      return lang === "en" ? "Morning" : "Matin";
+    if (debut < 18 * 60)      return lang === "en" ? "Afternoon" : "Après-midi";
+    return lang === "en" ? "Evening" : "Soir";
   };
 
   for (const e of liste) {
@@ -254,13 +267,13 @@ function decouperEnSections(liste, lang) {
       const debut = heureDeTri(e), fin = finEnMinutes(e);
       // Une fiche sans horaire ne dit rien de son moment : l'annoncer « ce soir »
       // serait affirmer un horaire qu'elle ne donne pas.
-      if (!sansHeure && debut <= min && min < fin) poser("maintenant", lang === "en" ? "Right now" : "Maintenant", e);
-      else if (!sansHeure && debut >= 18 * 60)     poser("cesoir",     lang === "en" ? "Tonight" : "Ce soir", e);
-      else                                         poser("plustard",   lang === "en" ? "Later today" : "Plus tard aujourd'hui", e);
-    } else if (e.date === demain) {
-      poser("demain", lang === "en" ? "Tomorrow" : "Demain", e);
+      if (!sansHeure && debut <= min && min < fin) poser("maintenant", null, lang === "en" ? "Right now" : "Maintenant", e);
+      else if (!sansHeure && debut >= 18 * 60)     poser("cesoir",     null, lang === "en" ? "Tonight" : "Ce soir", e);
+      else                                         poser("plustard",   null, lang === "en" ? "Later today" : "Plus tard aujourd'hui", e);
     } else {
-      poser(e.date, titreDeJour(e.date, lang), e);
+      const jour = e.date === demain ? (lang === "en" ? "Tomorrow" : "Demain") : titreDeJour(e.date, lang);
+      const moment = momentDuJour(e);
+      poser(`${e.date}|${moment}`, jour, moment, e);
     }
   }
   return sections;
@@ -281,6 +294,19 @@ function reunirLesExpos(items, deplie) {
     if (!posee) { posee = true; sortie.push({ groupeExpos: expos }); if (deplie) sortie.push(...expos); }
   }
   return sortie;
+}
+
+// Le moment, sous le jour : plus petit, sans filet, dans le bleu du cadre —
+// il précise, il n'annonce pas.
+function IntertitreMoment({ titre }) {
+  return (
+    <div style={{
+      fontFamily: "'Lato', sans-serif",
+      fontSize: 12, fontWeight: 700, letterSpacing: 1.6,
+      textTransform: "uppercase", color: GREY,
+      margin: "14px 2px 8px",
+    }}>{titre}</div>
+  );
 }
 
 function IntertitreSection({ titre }) {
@@ -903,9 +929,13 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             {t.empty}
           </div>
         ) : (
-          enSections ? sections.map(sec => (
+          enSections ? sections.map((sec, i) => (
             <div key={sec.cle}>
-              <IntertitreSection titre={sec.titre} />
+              {/* Le jour une seule fois, puis les moments qui le découpent. */}
+              {sec.jour && sec.jour !== sections[i - 1]?.jour && <IntertitreSection titre={sec.jour} />}
+              {sec.jour
+                ? <IntertitreMoment titre={sec.moment} />
+                : <IntertitreSection titre={sec.moment} />}
               {sec.items.map(e => e.groupeExpos ? (
                 <CarteGroupeExpos
                   key={`expos-${sec.cle}`}
