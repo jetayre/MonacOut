@@ -1,10 +1,11 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1681 fiches inspectées le 2026-09-06.
+2070 fiches inspectées le 2026-09-06.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 32 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
-   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 32 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (3)
+   · Sam 12 sep · LA SPLASH PARTY STADE NAUTIQUE — même lieu et même jour qu'une série de 31 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4840)
+   · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 31 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
+   · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 14 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
 
 ■ FICHES SANS CONTENU — la description répète le titre (40)
    · Mer 9 sep · ANIMATION JEUX — description = titre (id 800061)
@@ -48,9 +49,10 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 29 mai · LIGUE 1 AS MONACO ESTAC TROYES — description = titre (id 800052)
    · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — description = titre (id 800036)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (16)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (17)
    · Sam 12 sep · MUNEGU REPAIR CAFE — A casa d&#039;i Soci - Maison des Associations (id 800055)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — Eglise Réformée de Monaco (id 800029)
+   · Sam 19 sep · FESTIVAL DES ÉTOILÉS DÎNER À 4 MAINS L'ABYSSE — L'Abysse Monte-Carlo (id 1015015)
    · Mar 6 oct · BKT EUROCUP AS MONACO PAOK THESSALONIKI — Salle Gaston Médecin (id 800056)
    · Mer 21 oct · BKT EUROCUP AS MONACO BAHCESEHIR COLLEGE ISTANBUL — Salle Gaston Médecin (id 800057)
    · Sam 24 oct · LES CONCERTS DE LA VOUTE GABRIEL DUPONT LA NATURE RETROUVEE — Eglise Réformée de Monaco (id 800030)
