@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2088 fiches inspectées le 2026-09-08.
+2089 fiches inspectées le 2026-09-09.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe (1)
@@ -10,13 +10,14 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Ven 18 sep · MONACO BOUGE AQUAGYM STADE NAUTIQUE — même lieu et même jour qu'une série de 29 fiches « AQUAGYM & AQUABIKE STADE NAUTIQUE PORT HERCULE » (id 4817)
    · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 16 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
 
-■ FICHES SANS CONTENU — la description répète le titre (40)
+■ FICHES SANS CONTENU — la description répète le titre (41)
    · Mer 9 sep · ANIMATION JEUX — description = titre (id 800061)
    · Sam 12 sep · MUNEGU REPAIR CAFE — description = titre (id 800055)
    · Mer 16 sep · CALM UNDER PRESSURE: ELITE FREE DIVER SIMONA AUTERI — description = titre (id 700002)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
    · Ven 25 sep · L APERO DES FRENCHY AT LE MERIDIEN BEACH PLAZA MONACO — description = titre (id 800066)
    · Sam 26 sep · ECHECS BRIDGE ET BACKGAMMON — description = titre (id 800062)
+   · Dim 27 sep · ROKETHON 2026 — description = titre (id 800060)
    · Mar 6 oct · BKT EUROCUP AS MONACO PAOK THESSALONIKI — description = titre (id 800056)
    · Sam 10 oct · LIGUE 1 AS MONACO TOULOUSE FC — description = titre (id 800038)
    · Mer 21 oct · BKT EUROCUP AS MONACO BAHCESEHIR COLLEGE ISTANBUL — description = titre (id 800057)
@@ -52,12 +53,13 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 29 mai · LIGUE 1 AS MONACO ESTAC TROYES — description = titre (id 800052)
    · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — description = titre (id 800036)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (26)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (27)
    · Sam 12 sep · MUNEGU REPAIR CAFE — A casa d&#039;i Soci - Maison des Associations (id 800055)
    · Dim 13 sep · OUVERTURE DE SAISON ORCHESTRE PHILHARMONIQUE — Auditorium Rainier III (id 1100023)
    · Mer 16 sep · VENTE PUBLIQUE CRÉDIT MOBILIER DE MONACO — Crédit Mobilier de Monaco (id 1023758)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — Eglise Réformée de Monaco (id 800029)
    · Sam 19 sep · FESTIVAL DES ÉTOILÉS DÎNER À 4 MAINS L'ABYSSE — L'Abysse Monte-Carlo (id 1015015)
+   · Dim 27 sep · ROKETHON 2026 — Chapiteau de Fontvielle (id 800060)
    · Lun 28 sep · JOURNÉE D'EXPERTISE JOAILLERIE HERMITAGE FINE ART — Hermitage Fine Art (id 1023759)
    · Mar 29 sep · JOURNÉE D'EXPERTISE ARTCURIAL MONACO — Artcurial (id 1023760)
    · Mar 6 oct · BKT EUROCUP AS MONACO PAOK THESSALONIKI — Salle Gaston Médecin (id 800056)
