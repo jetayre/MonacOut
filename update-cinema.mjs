@@ -78,6 +78,7 @@ async function main() {
   });
   const page = await context.newPage();
   let films = [];
+  let seancesParFilm = {};
 
   try {
     await page.goto('https://www.cinemas2monaco.com', { waitUntil: 'networkidle', timeout: 35000 });
@@ -193,6 +194,61 @@ async function main() {
     });
 
     console.log(`  Scraping : ${films.length} film(s) trouvé(s) sur cinemas2monaco.com`);
+    // ── SÉANCES PAR JOUR ────────────────────────────────────────────────────
+    // Stéphanie, 6 septembre 2026 : « peux-tu mettre les horaires pour chaque
+    // séance sur la fiche cinéma en cliquant sur info ? »
+    //
+    // Les horaires SONT sur la page, mais au format « 16:00 » — l'ancien relevé
+    // ne cherchait que « 16h00 » et repartait donc les mains vides, en ramenant
+    // à la place les DURÉES (« 2h10 »), qui ne sont pas des séances.
+    //
+    // Le site range chaque film dans un tableau : une colonne par jour
+    // (Aujourd'hui, Lun 07, Mar 08…), une ligne par version (VF, VO), et dans
+    // chaque case une ou plusieurs séances. Une séance déjà passée porte la
+    // classe « inactive » : on l'écarte, elle n'a plus rien à proposer.
+    try {
+      seancesParFilm = await page.evaluate(() => {
+        const out = {};
+        for (const tbody of document.querySelectorAll('table tbody')) {
+          const lignes = [...tbody.querySelectorAll('tr')];
+          if (lignes.length < 2) continue;
+          const jours = [...lignes[0].querySelectorAll('th')].map(t => t.textContent.trim());
+          if (!jours.some(j => /aujourd/i.test(j))) continue;
+
+          // Le titre du film est le dernier intitulé rencontré avant ce tableau.
+          let n = tbody.closest('table'), titre = '';
+          while (n && !titre) {
+            n = n.parentElement;
+            const h = n && n.querySelector('h1,h2,h3,h4,[class*="titre"],[class*="title"]');
+            if (h) titre = h.textContent.trim();
+          }
+          if (!titre) continue;
+
+          const parJour = {};
+          for (const tr of lignes.slice(1)) {
+            const cases = [...tr.querySelectorAll('td')];
+            const version = (cases[0]?.textContent || '').trim();   // VF ou VO
+            cases.slice(1).forEach((td, i) => {
+              const jour = jours[i + 1];
+              if (!jour) return;
+              for (const div of td.querySelectorAll('div')) {
+                if (div.classList.contains('inactive')) continue;   // séance passée
+                const h = (div.querySelector('span')?.textContent || '').trim();
+                if (!/^\d{1,2}:\d{2}$/.test(h)) continue;
+                (parJour[jour] = parJour[jour] || []).push(version ? `${version} ${h}` : h);
+              }
+            });
+          }
+          if (Object.keys(parJour).length) out[titre] = parJour;
+        }
+        return out;
+      });
+      const n = Object.keys(seancesParFilm).length;
+      console.log(`  Séances : ${n} film(s) avec horaires par jour`);
+    } catch (e) {
+      console.log(`  · séances illisibles (${e.message}) — la fiche restera sans horaires`);
+    }
+
     for (const f of films) console.log(`    • ${f.title}${f.time ? ' — ' + f.time : ''}`);
   } catch (e) {
     console.log(`  ✗ Erreur scraping : ${e.message}`);
@@ -231,14 +287,40 @@ async function main() {
     const filmList    = films.map(f => f.title.replace(/[\n\r\t]+/g, ' ').trim()).join(' · ');
     const filmListEsc = filmList.replace(/\\/g,'\\\\').replace(/"/g,'\\"');
 
+    // Le tableau du site nomme ses colonnes « Aujourd'hui », « Lun 07 », « Mar 08 ».
+    // On retrouve donc la bonne colonne pour chaque fiche du jour.
+    const colonneDuJour = (d, estAujourdhui) =>
+      estAujourdhui ? "Aujourd'hui" : `${JOURS[d.getDay()]} ${String(d.getDate()).padStart(2, '0')}`;
+
+    const echapper = t => t.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+
+    // Le ⓘ de la fiche affiche « nom » puis « info » en dessous : le titre du film,
+    // puis ses séances du jour. Un film sans séance ce jour-là n'y figure pas —
+    // l'annoncer serait envoyer quelqu'un devant une salle fermée.
+    const annuaireDuJour = (col) => {
+      const lignes = [];
+      for (const film of films) {
+        const titre = film.title.replace(/[\n\r\t]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
+        const cle = Object.keys(seancesParFilm).find(k =>
+          k.toLowerCase().includes(titre.toLowerCase()) || titre.toLowerCase().includes(k.toLowerCase()));
+        const heures = cle ? (seancesParFilm[cle][col] || []) : [];
+        if (!heures.length) continue;
+        lignes.push(`{name:"${echapper(titre)}",info:"${echapper(heures.join(' · '))}"}`);
+      }
+      return lignes.length ? `,directory:[${lignes.join(',')}]` : '';
+    };
+
     // Une fiche par jour restant (aujourd'hui inclus → mardi fin de semaine)
     const d = new Date(today);
+    let premier = true;
     while (d <= endDate) {
       const dateFr = frDate(d);
       const year   = d.getFullYear();
       const yearF  = year !== 2026 ? `,year:${year}` : '';
+      const annu   = annuaireDuJour(colonneDuJour(d, premier));
+      premier = false;
       entries.push(
-        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}},`
+        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}${annu}},`
       );
       d.setDate(d.getDate() + 1);
     }

@@ -283,15 +283,39 @@ function decouperEnSections(liste, lang) {
 // la carte de regroupement coûterait plus de place qu'elle n'en fait gagner.
 const estExpoDuFil = e => e.cat === "EXPOSITION" && e.recap !== true && e.pinLast !== true;
 
-function reunirLesExpos(items, deplie) {
-  const expos = items.filter(estExpoDuFil);
-  if (expos.length < 3) return items;
-  const sortie = []; let posee = false;
-  for (const e of items) {
-    if (!estExpoDuFil(e)) { sortie.push(e); continue; }
-    // La carte prend la place de la première exposition ; dépliée, les fiches
-    // reviennent juste en dessous, entières, sans quitter le jour affiché.
-    if (!posee) { posee = true; sortie.push({ groupeExpos: expos }); if (deplie) sortie.push(...expos); }
+// ⚠️ LE REGROUPEMENT SE FAIT PAR JOUR, PAS PAR MOMENT. Stéphanie, 11 septembre
+// 2026 : « il y a 1 fois la fiche 6 expo puis après la fiche 5 expo qui apparaît
+// le même jour ». Depuis que les journées se découpent en matin / après-midi /
+// soir, les expositions tombaient dans deux moments différents — celles qui
+// ouvrent à 9h le matin, celles de 14h l'après-midi — et chaque moment
+// fabriquait SA carte de regroupement. Un jour, une carte.
+function reunirLesExposParJour(sections, estDeplie) {
+  const parJour = new Map();
+  for (const sec of sections) {
+    const cle = sec.jour || "aujourdhui";
+    if (!parJour.has(cle)) parJour.set(cle, []);
+    parJour.get(cle).push(sec);
+  }
+
+  const sortie = [];
+  for (const [cleJour, groupe] of parJour) {
+    const expos = groupe.flatMap(sec => sec.items.filter(estExpoDuFil));
+    if (expos.length < 3) { sortie.push(...groupe); continue; }
+
+    const deplie = estDeplie(cleJour);
+    let posee = false;
+    for (const sec of groupe) {
+      const items = [];
+      for (const e of sec.items) {
+        if (!estExpoDuFil(e)) { items.push(e); continue; }
+        // La carte prend la place de la PREMIÈRE exposition du jour ; dépliée,
+        // les fiches reviennent juste en dessous, entières.
+        if (!posee) { posee = true; items.push({ groupeExpos: expos, cleJour }); if (deplie) items.push(...expos); }
+      }
+      // Un moment vidé de ses expositions n'a plus rien à annoncer : on ne
+      // laisse pas un intertitre « Matin » suivi de rien.
+      if (items.length) sortie.push({ ...sec, items });
+    }
   }
   return sortie;
 }
@@ -605,13 +629,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // En recherche on garde la liste à plat : les résultats sautent d'un mois à
   // l'autre, un intertitre par carte n'aiderait personne.
   const enSections = !searchQuery.trim();
+  // On ne réunit les expositions que dans le fil ordinaire : dès qu'on demande
+  // explicitement la catégorie, on veut les voir une par une.
   const sections = enSections
-    ? decouperEnSections(aAfficher, lang).map(sec => ({
-        ...sec,
-        // On ne réunit les expositions que dans le fil ordinaire : dès qu'on demande
-        // explicitement la catégorie, on veut les voir une par une.
-        items: filtreCatActif ? sec.items : reunirLesExpos(sec.items, !!exposDepliees[sec.cle]),
-      }))
+    ? (filtreCatActif
+        ? decouperEnSections(aAfficher, lang)
+        : reunirLesExposParJour(decouperEnSections(aAfficher, lang), cle => !!exposDepliees[cle]))
     : null;
 
   const rangeLabel = rangeStart
@@ -938,11 +961,11 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 : <IntertitreSection titre={sec.moment} />}
               {sec.items.map(e => e.groupeExpos ? (
                 <CarteGroupeExpos
-                  key={`expos-${sec.cle}`}
+                  key={`expos-${e.cleJour}`}
                   expos={e.groupeExpos}
                   lang={lang}
-                  deplie={!!exposDepliees[sec.cle]}
-                  onOuvrir={() => setExposDepliees(d => ({ ...d, [sec.cle]: !d[sec.cle] }))}
+                  deplie={!!exposDepliees[e.cleJour]}
+                  onOuvrir={() => setExposDepliees(d => ({ ...d, [e.cleJour]: !d[e.cleJour] }))}
                 />
               ) : renduCarte(e, true))}
             </div>
