@@ -102,7 +102,13 @@ function inspect(events) {
         // Événement passé : nettoyé par le cron + filtré par l'app → simple avertissement,
         // sauf s'il traîne depuis > 2 jours (signe que le nettoyage ne tourne pas).
         if (d < today) {
-          if (d < STALE) fault(e, `Événement périmé depuis > 2 jours (${e.date} ${e.year}) — nettoyage à vérifier`);
+          // Une fiche « en cours » dont la date de FIN n'est pas passée est ouverte :
+          // elle n'a pas à bloquer une publication. cleanup-events.mjs la redate au
+          // passage. Bloquer là-dessus revenait à refuser une bonne correction pour
+          // un défaut que le nettoyage répare tout seul.
+          const finFuture = e.ongoing === true && e.until && new Date(e.until + 'T00:00:00') >= today;
+          if (finFuture) warn(e, `Fiche « en cours » restée au ${e.date} — redatée par le nettoyage (ouverte jusqu'au ${e.until})`);
+          else if (d < STALE) fault(e, `Événement périmé depuis > 2 jours (${e.date} ${e.year}) — nettoyage à vérifier`);
           else warn(e, `Événement d'hier encore présent (${e.date}) — sera nettoyé automatiquement`);
         }
       }

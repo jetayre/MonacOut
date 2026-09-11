@@ -50,17 +50,37 @@ function encoreOuvert(line) {
   return !isNaN(fin) && fin >= today;
 }
 
+// Une fiche « en cours » encore ouverte mais restée sur une vieille date est
+// REDATÉE ici, au lieu d'être laissée en l'état. Sans quoi le policier la
+// déclarait périmée et REFUSAIT le commit — Stéphanie, 11 septembre 2026 : « le
+// policier ne doit pas bloquer la mise à jour des bonnes infos ». Elle a raison :
+// le nettoyage disait « je la garde, elle est encore ouverte » et le policier
+// répondait « elle est périmée, je bloque tout ». Deux scripts qui se
+// contredisent ne doivent pas coûter une publication.
+const JOURS_FR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+const MOIS_FR  = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
+const dateDuJour = `${JOURS_FR[today.getDay()]} ${today.getDate()} ${MOIS_FR[today.getMonth()]}`;
+let redatees = 0;
+
 const filtered = lines.filter(line => {
   if (!line.trim().startsWith('{id:')) return true;
   if (encoreOuvert(line)) return true;
   const d = parseEventDate(line);
   if (d && d < cutoff) { removed++; return false; }
   return true;
+}).map(line => {
+  if (!encoreOuvert(line)) return line;
+  const d = parseEventDate(line);
+  if (!d || d >= today) return line;
+  redatees++;
+  return line.replace(/date:"[^"]*"/, `date:"${dateDuJour}"`)
+             .replace(/,year:\d{4}/, `,year:${today.getFullYear()}`);
 });
 
-if (removed > 0) {
+if (redatees > 0) console.log(`${redatees} fiche(s) « en cours » redatée(s) au ${dateDuJour}.`);
+if (removed > 0 || redatees > 0) {
   writeFileSync(EVENTS_FILE, filtered.join('\n'));
-  console.log(`${removed} événement(s) passé(s) supprimé(s).`);
+  if (removed > 0) console.log(`${removed} événement(s) passé(s) supprimé(s).`);
 } else {
   console.log('Aucun événement passé à supprimer.');
 }
