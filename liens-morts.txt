@@ -8,6 +8,5 @@ du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 ■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
    Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
    de lien mort : le contenu, lui, n'a pas pu être lu.
-     · https://aritual.fr/sessions/ — ETIMEDOUT — 3 fiche(s)
-     · https://yume.mc/ — UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
-     · https://aritual.fr/ — ETIMEDOUT — 3 fiche(s)
+     · https://larosedesvents.com/the-beach/ — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · https://odeonspa.com/ — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
