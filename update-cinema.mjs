@@ -330,10 +330,21 @@ async function main() {
       const dateFr = frDate(d);
       const year   = d.getFullYear();
       const yearF  = year !== 2026 ? `,year:${year}` : '';
-      const annu   = annuaireDuJour(colonneDuJour(d, premier));
+      const col    = colonneDuJour(d, premier);
+      const annu   = annuaireDuJour(col);
+      // Le texte de la carte doit annoncer CE QUI RESTE À VOIR ce jour-là, pas le
+      // programme de la semaine : aujourd'hui, les séances déjà passées sont
+      // écartées du ⓘ, et une carte qui promet cinq films quand il n'en reste
+      // que deux se contredit toute seule.
+      const duJour = Object.entries(seancesParFilm)
+        .filter(([, parJour]) => (parJour[col] || []).length)
+        .map(([titre]) => titre.replace(/[\n\r\t]+/g, ' ').trim());
+      const listeJour = duJour.length
+        ? duJour.join(' · ').replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+        : filmListEsc;
       premier = false;
       entries.push(
-        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"${annu || `,venues:${venuesStr}`}},`
+        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${listeJour}",descEn:"${listeJour}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"${annu || `,venues:${venuesStr}`}},`
       );
       d.setDate(d.getDate() + 1);
     }
