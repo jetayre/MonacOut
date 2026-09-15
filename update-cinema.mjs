@@ -81,7 +81,10 @@ async function main() {
   let seancesParFilm = {};
 
   try {
-    await page.goto('https://www.cinemas2monaco.com', { waitUntil: 'networkidle', timeout: 35000 });
+    // `networkidle` n'arrive pas de façon fiable sur ce site (publicités, sondes) :
+    // on attend le document, puis le contenu qui nous intéresse.
+    await page.goto('https://www.cinemas2monaco.com', { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await page.waitForTimeout(2500);
     await page.waitForTimeout(2500);
 
     films = await page.evaluate(() => {
@@ -207,23 +210,30 @@ async function main() {
     // chaque case une ou plusieurs séances. Une séance déjà passée porte la
     // classe « inactive » : on l'écarte, elle n'a plus rien à proposer.
     try {
+      // ⚠️ Le tableau des séances n'est PAS sur l'accueil : il est sur la page
+      // HORAIRES. Lire l'accueil renvoyait zéro séance à chaque fois.
+      // `networkidle` n'arrive jamais sur cette page (publicités, sondes) : on
+      // attend le document puis le tableau lui-même, qui est ce qui nous intéresse.
+      await page.goto('https://www.cinemas2monaco.com/index.php?page=2', { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.waitForSelector('table tbody tr th', { timeout: 20000 }).catch(() => {});
+      await page.waitForTimeout(1500);
       seancesParFilm = await page.evaluate(() => {
-        const out = {};
-        for (const tbody of document.querySelectorAll('table tbody')) {
-          const lignes = [...tbody.querySelectorAll('tr')];
+        // Parcours À PLAT du document : on retient le dernier titre rencontré,
+        // puis on rattache le prochain tableau de séances à ce titre. Remonter
+        // l'arbre depuis le tableau ne trouvait aucun titre — les deux ne sont
+        // pas imbriqués, ils se suivent.
+        const out = {}; let titre = '';
+        for (const el of document.querySelectorAll('h1,h2,h3,h4,h5,strong,b,table')) {
+          if (el.tagName !== 'TABLE') {
+            const t = (el.textContent || '').trim();
+            if (t && t.length > 2 && t.length < 70 &&
+                !/^(VF|VO|VOST|Durée|Genres|Pays|Résumé|Acteurs|Réalisateur|Date de sortie|Horaires|Public)/i.test(t)) titre = t;
+            continue;
+          }
+          const lignes = [...el.querySelectorAll('tr')];
           if (lignes.length < 2) continue;
           const jours = [...lignes[0].querySelectorAll('th')].map(t => t.textContent.trim());
           if (!jours.some(j => /aujourd/i.test(j))) continue;
-
-          // Le titre du film est le dernier intitulé rencontré avant ce tableau.
-          let n = tbody.closest('table'), titre = '';
-          while (n && !titre) {
-            n = n.parentElement;
-            const h = n && n.querySelector('h1,h2,h3,h4,[class*="titre"],[class*="title"]');
-            if (h) titre = h.textContent.trim();
-          }
-          if (!titre) continue;
-
           const parJour = {};
           for (const tr of lignes.slice(1)) {
             const cases = [...tr.querySelectorAll('td')];
@@ -232,14 +242,14 @@ async function main() {
               const jour = jours[i + 1];
               if (!jour) return;
               for (const div of td.querySelectorAll('div')) {
-                if (div.classList.contains('inactive')) continue;   // séance passée
+                if (div.classList.contains('inactive')) continue;   // séance déjà passée
                 const h = (div.querySelector('span')?.textContent || '').trim();
                 if (!/^\d{1,2}:\d{2}$/.test(h)) continue;
                 (parJour[jour] = parJour[jour] || []).push(version ? `${version} ${h}` : h);
               }
             });
           }
-          if (Object.keys(parJour).length) out[titre] = parJour;
+          if (titre && Object.keys(parJour).length) out[titre] = parJour;
         }
         return out;
       });
@@ -289,21 +299,24 @@ async function main() {
 
     // Le tableau du site nomme ses colonnes « Aujourd'hui », « Lun 07 », « Mar 08 ».
     // On retrouve donc la bonne colonne pour chaque fiche du jour.
-    const colonneDuJour = (d, estAujourdhui) =>
-      estAujourdhui ? "Aujourd'hui" : `${JOURS[d.getDay()]} ${String(d.getDate()).padStart(2, '0')}`;
+    // Le site titre ses colonnes « Aujourd'hui » puis « 12/09/2026 », « 13/09/2026 »…
+    const colonneDuJour = (d, estAujourdhui) => estAujourdhui
+      ? "Aujourd'hui"
+      : `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
 
     const echapper = t => t.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 
     // Le ⓘ de la fiche affiche « nom » puis « info » en dessous : le titre du film,
     // puis ses séances du jour. Un film sans séance ce jour-là n'y figure pas —
     // l'annoncer serait envoyer quelqu'un devant une salle fermée.
+    // ⚠️ On part du TABLEAU DES SÉANCES, pas de la liste de l'accueil. Rapprocher
+    // les deux par le titre perdait des films en route (« Tad l'explorateur »,
+    // « Mutiny » n'apparaissaient jamais). Le tableau est la source qui fait foi :
+    // s'il annonce une séance, le film passe ; sinon il ne passe pas.
     const annuaireDuJour = (col) => {
       const lignes = [];
-      for (const film of films) {
-        const titre = film.title.replace(/[\n\r\t]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
-        const cle = Object.keys(seancesParFilm).find(k =>
-          k.toLowerCase().includes(titre.toLowerCase()) || titre.toLowerCase().includes(k.toLowerCase()));
-        const heures = cle ? (seancesParFilm[cle][col] || []) : [];
+      for (const [titre, parJour] of Object.entries(seancesParFilm)) {
+        const heures = parJour[col] || [];
         if (!heures.length) continue;
         lignes.push(`{name:"${echapper(titre)}",info:"${echapper(heures.join(' · '))}"}`);
       }
@@ -320,7 +333,7 @@ async function main() {
       const annu   = annuaireDuJour(colonneDuJour(d, premier));
       premier = false;
       entries.push(
-        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo",venues:${venuesStr}${annu}},`
+        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${filmListEsc}",descEn:"${filmListEsc}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"${annu || `,venues:${venuesStr}`}},`
       );
       d.setDate(d.getDate() + 1);
     }

@@ -530,7 +530,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 textTransform: "uppercase", color: GOLD_FRAME,
               }}
             >
-              {lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`}
+              {event.cat === "CINÉMA"
+                ? (lang === "en" ? `Info · ${event.directory.length} films` : `Infos · ${event.directory.length} films`)
+                : (lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`)}
             </button>
           )}
           <button

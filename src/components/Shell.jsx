@@ -288,7 +288,12 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                               </svg>
                             </a>
                           )}
-                          <a href={mapUrl} target="_blank" rel="noopener noreferrer" title={lang === "en" ? "Map" : "Carte"} style={{ fontSize: 15, textDecoration: "none", lineHeight: 1 }}>📍</a>
+                          {/* Une épingle de carte n'a de sens que pour un LIEU. Sur la
+                              fiche cinéma, les entrées sont des FILMS : chercher
+                              « Pressure Monaco » sur une carte ne mène nulle part. */}
+                          {selectedEvent.cat !== "CINÉMA" && (
+                            <a href={mapUrl} target="_blank" rel="noopener noreferrer" title={lang === "en" ? "Map" : "Carte"} style={{ fontSize: 15, textDecoration: "none", lineHeight: 1 }}>📍</a>
+                          )}
                           {d.link && !isMapLink && <a href={d.link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, textDecoration: "none" }}>{lang === "en" ? "Visit →" : "Voir →"}</a>}
                         </span>
                       </div>

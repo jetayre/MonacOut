@@ -234,7 +234,13 @@ function titreDeJour(dateStr, lang) {
     : `${JOURS_LONGS_FR[j]} ${p[1]} ${MOIS_LONGS_FR[m]}`;
 }
 
-function decouperEnSections(liste, lang) {
+// ⚠️ `jourConsulte` : la journée réellement demandée au calendrier. Sans lui, le
+// découpage raisonnait toujours sur AUJOURD'HUI — Stéphanie, 15 septembre 2026 :
+// elle clique sur le 18, et le fil titre « Maintenant ». C'est le même mensonge
+// d'étiquette que « AUJOURD'HUI » sur les expositions, corrigé le 31 août : les
+// fiches `ongoing` ne portent que la date du jour, et le calendrier les laisse
+// passer pour toute date qu'elles couvrent.
+function decouperEnSections(liste, lang, jourConsulte = null) {
   const now = new Date();
   const min = now.getHours() * 60 + now.getMinutes();
   const aujourdhui = toFrDate(now);
@@ -261,7 +267,46 @@ function decouperEnSections(liste, lang) {
     return lang === "en" ? "Evening" : "Soir";
   };
 
-  for (const e of liste) {
+  // En consultant une date, tout s'affiche sous CETTE journée : le tri par date
+  // n'a plus de sens et cassait l'ordre des moments — les expositions « en cours »
+  // portent la date du JOUR, pas celle qu'on consulte, donc elles passaient devant
+  // et « Matin » réapparaissait après « Soir ». On retrie par heure.
+  // Rang du moment, pour que les sections se suivent toujours dans l'ordre : une
+  // fiche « en cours » commencée ce matin ne doit pas ramener « Maintenant » après
+  // « Ce soir ».
+  const rang = (e) => {
+    if (jourConsulte) return 0;
+    if (e.date !== aujourdhui) return 0;
+    const sansHeure = !(e.time && String(e.time).trim());
+    const debut = heureDeTri(e), fin = finEnMinutes(e);
+    if (!sansHeure && debut <= min && min < fin) return 0;   // maintenant
+    if (!sansHeure && debut >= 18 * 60) return 2;            // ce soir
+    return 1;                                               // plus tard aujourd'hui
+  };
+  // Comparateur COHÉRENT : la date d'abord (sauf quand tout est ramené à la même
+  // journée), puis le moment, puis l'heure. Un comparateur qui renvoie 0 pour des
+  // paires incomparables laisse Array.sort libre de rendre n'importe quel ordre.
+  // On trie sur la journée RÉELLEMENT AFFICHÉE — celle qui sert d'intertitre —
+  // et non sur la date du fichier. Une fiche « en cours » porte la date du jour ;
+  // rattachée au 18 septembre, elle doit se ranger avec le 18, pas avant tout le
+  // monde. Puis le moment, puis l'heure.
+  const jourAffiche = e => (jourConsulte && e.ongoing) ? jourConsulte : e.date;
+  const aRanger = liste.slice().sort((a, b) => {
+    const da = parseEventDate({ ...a, date: jourAffiche(a) });
+    const db = parseEventDate({ ...b, date: jourAffiche(b) });
+    if (da && db && da - db !== 0) return da - db;
+    return (rang(a) - rang(b)) || (heureDeTri(a) - heureDeTri(b));
+  });
+
+  for (const e of aRanger) {
+    // En consultant une autre journée, « Maintenant » et « Ce soir » ne veulent
+    // rien dire : on range sous la date demandée, découpée en moments.
+    if (jourConsulte) {
+      const jour = titreDeJour(e.ongoing ? jourConsulte : e.date, lang);   // en cours → jour consulté
+      const moment = momentDuJour(e);
+      poser(`${jour}|${moment}`, jour, moment, e);
+      continue;
+    }
     if (e.date === aujourdhui) {
       const sansHeure = !(e.time && String(e.time).trim());
       const debut = heureDeTri(e), fin = finEnMinutes(e);
@@ -276,7 +321,12 @@ function decouperEnSections(liste, lang) {
       poser(`${e.date}|${moment}`, jour, moment, e);
     }
   }
-  return sections;
+  // ⚠️ CLÉS UNIQUES. Deux sections pouvaient porter la même clé — « Maintenant »
+  // revenait plus bas dès que l'ordre des moments s'inversait — et React, incapable
+  // de les distinguer, laissait en place le DOM de l'affichage précédent : on
+  // voyait les intertitres d'AUJOURD'HUI au-dessus de la date consultée au
+  // calendrier, alors que la liste calculée ne contenait qu'elle.
+  return sections.map((sec, i) => ({ ...sec, cle: `${sec.cle}#${i}` }));
 }
 
 // Les expositions d'une même section tiennent sur une carte. En dessous de trois,
@@ -595,10 +645,17 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     });
   } else if (filter === "calendar" && rangeStart) {
     const endBound = rangeEnd || rangeStart;
+    // Le tri est indispensable : sans lui les fiches arrivent dans l'ordre du
+    // fichier, les clés de section alternent, et « Maintenant » réapparaissait
+    // plus bas sur d'autres cartes.
     filtered = filterByCats(events.filter(e => {
       const d = parseEventDate(e);
       return (d && d >= rangeStart && d <= endBound) || couvreLaPeriode(e, rangeStart, endBound);
-    }), catFilters);
+    }), catFilters).slice().sort((a, b) => {
+      const da = parseEventDate(a), db = parseEventDate(b);
+      if (!da || !db) return 0;
+      return (da - db) || (heureDeTri(a) - heureDeTri(b));
+    });
   } else if (filter === "calendar") {
     filtered = filterByCats(events, catFilters);
   } else {
@@ -629,19 +686,6 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // En recherche on garde la liste à plat : les résultats sautent d'un mois à
   // l'autre, un intertitre par carte n'aiderait personne.
   const enSections = !searchQuery.trim();
-  // On ne réunit les expositions que dans le fil ordinaire : dès qu'on demande
-  // explicitement la catégorie, on veut les voir une par une.
-  const sections = enSections
-    ? (filtreCatActif
-        ? decouperEnSections(aAfficher, lang)
-        : reunirLesExposParJour(decouperEnSections(aAfficher, lang), cle => !!exposDepliees[cle]))
-    : null;
-
-  const rangeLabel = rangeStart
-    ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
-      ? `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]} — ${rangeEnd.getDate()} ${MOIS_NOM_COURT[rangeEnd.getMonth()]}`
-      : `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
-    : null;
 
   // Le jour réellement consulté, quand le calendrier ne porte QU'UNE date.
   // Sert à corriger l'étiquette des fiches `ongoing`, qui portent toujours la date
@@ -650,6 +694,29 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     filter === "calendar" && rangeStart && (!rangeEnd || rangeEnd.toDateString() === rangeStart.toDateString())
       ? `${JOURS[rangeStart.getDay()]} ${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
       : null;
+
+  // Pour les SECTIONS, une plage de dates compte autant qu'une date seule : dès
+  // qu'on consulte le calendrier, « Maintenant » et « Ce soir » n'ont plus de sens.
+  // Les fiches « en cours » ne portent que la date du jour ; on les rattache au
+  // premier jour de la période consultée.
+  const jourCalendrier =
+    filter === "calendar" && rangeStart
+      ? `${JOURS[rangeStart.getDay()]} ${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
+      : null;
+
+  // On ne réunit les expositions que dans le fil ordinaire : dès qu'on demande
+  // explicitement la catégorie, on veut les voir une par une.
+  const sections = enSections
+    ? (filtreCatActif
+        ? decouperEnSections(aAfficher, lang, jourCalendrier)
+        : reunirLesExposParJour(decouperEnSections(aAfficher, lang, jourCalendrier), cle => !!exposDepliees[cle]))
+    : null;
+
+  const rangeLabel = rangeStart
+    ? rangeEnd && rangeEnd.toDateString() !== rangeStart.toDateString()
+      ? `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]} — ${rangeEnd.getDate()} ${MOIS_NOM_COURT[rangeEnd.getMonth()]}`
+      : `${rangeStart.getDate()} ${MOIS_NOM_COURT[rangeStart.getMonth()]}`
+    : null;
 
   const hasFavs = favorites.length > 0;
 
