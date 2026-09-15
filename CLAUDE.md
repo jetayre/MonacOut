@@ -351,13 +351,16 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Paroisse Sacré-Cœur Monaco | https://saintmartin.diocese.mc | CHANTS (Église du Sacré-Cœur) | +377 9330 7526 |
 | Cathédrale Saint-Nicolas | https://www.maitrisecathedrale.mc/fr/prochaines-dates | CONCERT, CHANTS (Cathédrale) | +377 9999 1400 |
 | Paroisse Saint-Charles | https://saintcharles.diocese.mc/ | CHANTS (Heure Sainte, Bénédiction des malades, messes) — Église Saint-Charles, Monte-Carlo | +377 9330 7490 |
+| Eglise Réformée de Monaco | https://menton-monaco.epudf.org/ | CHANTS, CONCERT — temple protestant (Église Protestante Unie de France, paroisse Menton-Monaco), série « Les Concerts de la Voûte », 9 rue Louis Notari · Monte-Carlo (La Rousse/Saint-Roman) ; culte dim 11h | +377 9330 2927 |
 | Paroisse Saint-Martin / Sacré-Cœur | https://saintmartin.diocese.mc | CHANTS (messes, célébrations) | +377 9330 7526 |
 | Diocèse de Monaco | https://diocese.mc | CHANTS (fêtes diocésaines, caté, service santé) | |
 | Auditorium Rainier III | https://opmc.mc/en/concert/ | CONCERT, OPÉRA (Orchestre Philharmonique, Auditorium Rainier III · Monte-Carlo) | +377 9200 1370 |
 | Soirées Musicales Estivales (Mairie) | https://www.mairie.mc/programme-estival-2026 | CONCERT gratuit en plein air (Square Gastaud · La Condamine, ~19h30, juil-août) | +377 9315 2828 |
 | La Vuelta — Grand Départ Monaco 2026 | https://www.lavuelta.es/en | SPORT cyclisme (22 août CLM Place du Casino · 23 août départ Jardin Exotique) | |
 | Espace Léo Ferré | https://www.espaceleoferre.mc/ | CONCERT, DANSE, SPECTACLE (Fontvieille) | +377 9310 1210 |
+| Chapiteau de Fontvieille | https://www.chapiteau-monaco.com/ | SPECTACLE cirque — chapiteau permanent depuis 1986, 5 av. des Ligures · Fontvieille ; accueille le Festival International du Cirque (janv) | +377 9205 2600 |
 | AS Monaco Basket | https://billetterie.asmonaco.basketball/fr | BASKET | |
+| Salle Gaston Médecin | https://www.stadelouis2.mc/en/sports-facilities/sports-hall | BASKET, SPORT — salle omnisports du Stade Louis II (AS Monaco Basket, BKT EuroCup, judo, gym), 3 av. des Castelans · Fontvieille | +377 9205 4011 |
 | AS Monaco FC | https://billetterie.asmonaco.com/ | FOOTBALL | |
 | La Note Bleue | https://lanotebleue.mc/en/ | JAZZ LIVE, DJ SET, BRUNCH, APÉRO | |
 | FIA Formula E | https://www.fiaformulae.com/ | FORMULE E | |
@@ -366,6 +369,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Herculis Diamond League | https://monaco.diamondleague.com/ | SPORT | |
 | Grimaldi Forum | https://www.grimaldiforum.com/ | GALA, EXPOSITION, ENCHÈRES, ATELIER | |
 | Metropole Shopping Monte-Carlo | https://metropoleshoppingmontecarlo.com/ | EXPOSITION, SALON — galerie commerçante de luxe (Carré d'Or), expositions temporaires (ex. Kenny Scharf × Opera Gallery, été 2026) et pop-up stores, 17 av. des Spélugues · Monte-Carlo ; lun-sam 10h-19h30 | +377 9216 7701 |
+| Espace 22 | https://www.espace22.mc/ | EXPOSITION — galerie d'art contemporain, expositions temporaires, 24 bd d'Italie · Monte-Carlo ; lun-ven 9h-18h | +377 9216 5164 |
+| Hartford Fine Art Lampronti Gallery | https://lamprontigallery.com/ | EXPOSITION — galerie d'art ancien (maîtres anciens italiens, vedute vénitiennes), ouverte avril 2026, 21 bd Princesse Charlotte · Monte-Carlo | +39 335 3333 25 |
 | Dean & Deluca Monte-Carlo | https://deandeluca.mc/ | BRUNCH — épicerie fine et restauration rapide gourmet américaine (1ère implantation en Europe, ouverte janv. 2025), viennoiseries et plats à déguster sur place ou à emporter, 1er étage du Metropole Shopping, 17 av. des Spélugues · Monte-Carlo ; lun-ven 8h-19h30, sam 9h-19h30, fermé dimanche | +377 9992 5047 |
 | TV Festival Monte-Carlo | https://www.tvfestival.com/ | FESTIVAL | |
 | HVMC — enchères | https://hvmc.com/ventes-a-venir/ | ENCHÈRES | |
@@ -373,6 +378,9 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Bonhams Monaco | https://www.bonhams.com/ | ENCHÈRES | |
 | Monaco Legend Auctions | https://www.monacolegendauctions.com/ | ENCHÈRES | |
 | Artcurial Monaco | https://www.artcurial.com/en/specialties/artcurial-monaco | ENCHÈRES | |
+| Crédit Mobilier de Monaco | https://creditmobilierdemonaco.com/ventes-aux-encheres/ | ENCHÈRES — mont-de-piété, ventes aux enchères publiques trimestrielles, 15 av. de Grande-Bretagne · Monte-Carlo | +377 9350 5208 |
+| Gadoury Auctions | https://www.gadouryauctions.com/en | ENCHÈRES numismatique — Maison Gadoury, fondée 1973, 57 rue Grimaldi · La Condamine | +377 9325 1296 |
+| Hermitage Fine Art | https://hermitagefineart.com/ | ENCHÈRES — maison de ventes (art, montres, bijoux, vins), Le Park Palace, 25 av. de la Costa · Monte-Carlo | +377 9777 3980 |
 | Théâtre Princesse Grace | https://www.tpgmonaco.mc/fr/programme | THÉÂTRE, SPECTACLE | +377 9325 3227 |
 | Théâtre des Muses Monaco | https://www.letheatredesmuses.com/ | THÉÂTRE, SPECTACLE, ATELIER | |
 | Théâtre Fort Antoine | https://www.theatrefortantoine.com/ | THÉÂTRE | |
@@ -428,6 +436,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | The Marlow Monaco | https://www.montecarlosbm.com/en/restaurant-monaco/marlow | BRUNCH | |
 | Em Sherif Monte-Carlo | https://www.montecarlosbm.com/en/restaurant-monaco/em-sherif-monte-carlo | SOIRÉE, APÉRO — restaurant libanais/méditerranéen, DJ live le soir, Hôtel de Paris, place du Casino · Monte-Carlo | +377 9806 8875 |
 | Cedric Grolet Monte-Carlo | https://www.montecarlosbm.com/en/restaurant-monaco/cedric-grolet-monte-carlo | BRUNCH — salon de thé et boutique du pâtissier Cédric Grolet, patio de l'Hôtel de Paris, av. des Beaux-Arts · Monte-Carlo ; tous les jours 9h30-19h. Aucun événement récurrent publié au 26 août 2026 | |
+| L'Abysse Monte-Carlo | https://www.montecarlosbm.com/en/restaurant/labysse-monte-carlo | SOIRÉE, GALA — restaurant japonais 2 étoiles Michelin (Yannick Alléno × Yasunari Okazaki), dîners d'exception (Festival des Étoilés), Hôtel Hermitage, 1 sq. Beaumarchais · Monte-Carlo | +377 9806 9494 |
 | Blue Gin Monte-Carlo Bay | https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin | APÉRO, DJ SET | |
 | Sunset Monaco | https://www.sunsetmonaco.com/ | DJ SET, SOIRÉE | |
 | Twiga Monte Carlo | https://twigaworld.com/twiga-montecarlo/ | SOIRÉE, DJ SET | |
