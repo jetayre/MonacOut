@@ -111,6 +111,27 @@ const today = new Date(); today.setHours(0, 0, 0, 0);
 const end   = new Date(today); end.setMonth(end.getMonth() + 6);   // fenêtre 6 mois
 const lines = [];
 
+// ── SOIRÉES NOMMÉES ──────────────────────────────────────────────────────────
+// Stéphanie, 15 septembre 2026 : « le 17/09 Twiga Shozer, 25/09 Joseph Capriati,
+// 26/09 Nomis, 24/09 Fat Joe, tu les as ? » Non : le lieu n'avait qu'une carte
+// générique, la même tous les soirs. Or ce n'est pas la même chose d'aller « au
+// Twiga » et d'aller voir Fat Joe.
+//
+// Ces entrées REMPLACENT la carte générique du soir concerné — sans quoi deux
+// cartes Twiga s'afficheraient la même nuit, l'une nommée, l'autre pas.
+// Relevées sur le calendrier officiel twigaworld.com/montecarlo/calendar.
+const NOMMEES = {
+  "Twiga Monte Carlo|Jeu 24 sep": { nom: "FAT JOE", quoi: "club",
+    desc: "Fat Joe au club du Twiga Monte-Carlo. Dîner par Vesta dès 20h, club à partir de minuit.",
+    descEn: "Fat Joe at the Twiga Monte-Carlo club. Dinner by Vesta from 8pm, club from midnight." },
+  "Twiga Monte Carlo|Ven 25 sep": { nom: "JOSEPH CAPRIATI", quoi: "club",
+    desc: "Joseph Capriati aux platines du Twiga Monte-Carlo. Le même soir, le Diamonds Dinner Show côté restaurant.",
+    descEn: "Joseph Capriati on the decks at Twiga Monte-Carlo. The same night, the Diamonds Dinner Show on the restaurant side." },
+  "Twiga Monte Carlo|Sam 26 sep": { nom: "NOMIS", quoi: "club",
+    desc: "Nomis au club du Twiga Monte-Carlo. Le même soir, Alessandro Ristori & The Portofinos côté restaurant.",
+    descEn: "Nomis at the Twiga Monte-Carlo club. The same night, Alessandro Ristori & The Portofinos on the restaurant side." },
+};
+
 for (const v of V) {
   const cur = new Date(today.getFullYear(), today.getMonth(), 1);
   while (cur <= end) {
@@ -123,7 +144,12 @@ for (const v of V) {
           const dt = nth(y, m, wd, n);
           if (dt && dt >= today && dt <= end) {
             const dateStr = `${JOURS[dt.getDay()]} ${dt.getDate()} ${MOIS[dt.getMonth()]}`;
-            lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${v.title}",subtitle:"${v.subtitle}",desc:"${v.desc}",descEn:"${v.descEn}",free:false,hot:false,nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",${v.link ? `link:"${v.link}",` : ""}${v.phone ? `phone:"${v.phone}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
+            const lieu = v.subtitle.split(" · ")[0];
+            const nommee = NOMMEES[`${lieu}|${dateStr}`];
+            const titre = nommee ? `${nommee.nom}${NL}SOIRÉE${NL}TWIGA MONTE-CARLO` : v.title;
+            const descF = nommee ? nommee.desc   : v.desc;
+            const descA = nommee ? nommee.descEn : v.descEn;
+            lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${titre}",subtitle:"${v.subtitle}",desc:"${descF}",descEn:"${descA}",free:false,hot:${nommee ? "true" : "false"},nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",${v.link ? `link:"${v.link}",` : ""}${v.phone ? `phone:"${v.phone}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
           }
         }
       }
