@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T19:37:59.504Z",
+  "generatedAt": "2026-09-16T05:10:01.482Z",
   "events": [
     {
       "date": "Mar 15 sep",
@@ -31,6 +31,24 @@
     {
       "date": "Mar 15 sep",
       "iso": "2026-09-15",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
+    },
+    {
+      "date": "Mer 16 sep",
+      "iso": "2026-09-16",
+      "time": "09h15 — 17h00",
+      "title": "VENTE PUBLIQUE CRÉDIT MOBILIER DE MONACO",
+      "venue": "Crédit Mobilier de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🔨"
+    },
+    {
+      "date": "Mar 15 sep",
+      "iso": "2026-09-15",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -54,24 +72,6 @@
       "venue": "62 bd du Jardin Exotique",
       "quarter": "Monaco",
       "emoji": "🌵"
-    },
-    {
-      "date": "Mar 15 sep",
-      "iso": "2026-09-15",
-      "time": "09h30 — 17h30",
-      "title": "UN MARIAGE SOUS LES PROJECTEURS",
-      "venue": "Institut Audiovisuel",
-      "quarter": "Monaco",
-      "emoji": "🎬"
-    },
-    {
-      "date": "Mar 15 sep",
-      "iso": "2026-09-15",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
     }
   ]
 }
