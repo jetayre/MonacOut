@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T19:29:24.985Z",
+  "generatedAt": "2026-09-17T05:12:05.173Z",
   "events": [
     {
       "date": "Mer 16 sep",
@@ -22,11 +22,20 @@
     {
       "date": "Mer 16 sep",
       "iso": "2026-09-16",
-      "time": "09h15 — 17h00",
-      "title": "VENTE PUBLIQUE CRÉDIT MOBILIER DE MONACO",
-      "venue": "Crédit Mobilier de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🔨"
+      "time": "En journée",
+      "title": "ORIGAMIS GÉANTS DANS MONTE-CARLO GLOW UP",
+      "venue": "Casino, Hôtel de Paris, Hermitage, av. des Beaux-Arts",
+      "quarter": "Monte-Carlo",
+      "emoji": "🦋"
+    },
+    {
+      "date": "Mer 16 sep",
+      "iso": "2026-09-16",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Mer 16 sep",
@@ -63,15 +72,6 @@
       "venue": "Institut Audiovisuel",
       "quarter": "Monaco",
       "emoji": "🎬"
-    },
-    {
-      "date": "Mer 16 sep",
-      "iso": "2026-09-16",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
     }
   ]
 }
