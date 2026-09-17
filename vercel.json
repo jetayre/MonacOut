@@ -17,7 +17,8 @@
     { "source": "/insta", "destination": "/go.html?s=insta" },
     { "source": "/story", "destination": "/go.html?s=story" },
     { "source": "/fb", "destination": "/go.html?s=facebook" },
-    { "source": "/app", "destination": "/go.html?s=direct" }
+    { "source": "/app", "destination": "/go.html?s=direct" },
+    { "source": "/hotel", "destination": "/go.html?s=hotel" }
   ],
   "headers": [
     {

@@ -30,11 +30,20 @@
   <div class="c">
     <div class="m">M</div>
     <div class="t">Monac'Out</div>
-    <a id="f" href="https://apps.apple.com/fr/app/monacout/id6774785049">Ouvrir dans l'App Store →</a>
+    <a id="f" href="https://monacout.com/">Ouvrir Monac'Out →</a>
   </div>
 <script>
 (function () {
-  var CIBLE = "https://apps.apple.com/fr/app/monacout/id6774785049";
+  // ⚠️ Un appareil NON-APPLE n'a rien à faire dans l'App Store : il y trouve une
+  // page qu'il ne peut pas installer. Constaté le 17 septembre 2026 en préparant
+  // la carte pour les conciergeries d'hôtel — un client sous Android scannait le
+  // QR et tombait sur une impasse. Il part donc sur le site, qui est l'app complète
+  // dans le navigateur. Les iPhone et iPad continuent vers l'App Store.
+  var APPLE = /iPad|iPhone|iPod/.test(navigator.userAgent)
+           || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var CIBLE = APPLE
+    ? "https://apps.apple.com/fr/app/monacout/id6774785049"
+    : "https://monacout.com/";
   // ⚠️ On lit le CHEMIN, pas `?s=`. La réécriture Vercel (/insta → /go.html?s=insta)
   //    se fait côté serveur : dans le navigateur l'adresse reste « /insta » et
   //    location.search est VIDE. Testé le 7 août : avec `?s=`, les quatre liens
@@ -61,6 +70,8 @@
   } catch (e) { /* mesure indisponible : on redirige quand même */ }
   // Le lien reste cliquable si la redirection est bloquée (rare, mais on ne laisse
   // jamais quelqu'un sur une page morte).
+  var secours = document.getElementById("f");
+  if (secours) secours.href = CIBLE;
   setTimeout(function () { location.replace(CIBLE); }, 150);
 })();
 </script>
