@@ -1420,5 +1420,143 @@
   "etat": "deja",
   "detail": "Rokethon 2026",
   "majLe": "2026-09-17"
+ },
+ "/en/events/352536242ec667a102fedf7fd41f3a00-Coupe-de-France-Monaco-Basket-Association-vs-La-Tronche-Meylan": {
+  "vuLe": "2026-09-17",
+  "etat": "importe",
+  "detail": "Coupe de France Monaco Basket Association vs La Tronche Meylan",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/349153675a8a0107bbae3738cebe0f50-Volley-Ball-2MA-Journee-01-ASS-SPORTIVE-DE-MONACO-CLUB-ATHLETIQUE-DE-ST-ETIENNE": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball 2MA Journee 01 ASS SPORTIVE DE MONACO CLUB ATHLETIQUE DE ST ETIENNE",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/7884224bcf3acd6c6533bf15a493462c-Volley-Ball-EFB-Journee-01-ASS-SPORTIVE-DE-MONACO-J-S-A-BORDEAUX": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 01 ASS SPORTIVE DE MONACO J S A BORDEAUX",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/7287dfeba4b69e5ec46847339256ad7c-Volley-Ball-2MA-Journee-03-ASS-SPORTIVE-DE-MONACO-LYON-CROIX-ROUSSE-VOLLEY": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball 2MA Journee 03 ASS SPORTIVE DE MONACO LYON CROIX ROUSSE VOLLEY",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/aecd3c4d9f731ffe3f6e691eb36129fc-Volley-Ball-EFB-Journee-03-ASS-SPORTIVE-DE-MONACO-US-CAGNES-VOLLEY-BALL": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/4077e640005d256f3f3e757756bd28ec-Volley-Ball-2MA-Journee-05-ASS-SPORTIVE-DE-MONACO-US-ST-EGREVOISE": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/769e02da49dbe5a2e10b5819665a084c-Volley-Ball-EFB-Journee-05-ASS-SPORTIVE-DE-MONACO-INSTITUT-FEDERAL-DE-VOLLEY-BALL": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/cd890468794dc7604feaf1a3a1926f30-Volley-Ball-EFB-Journee-07-ASS-SPORTIVE-DE-MONACO-LEVALLOIS-PARIS-SAINT-CLOUD-2-CFC": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/e923ea40c172dc0f713dd8fedadf9751-Volley-Ball-2MA-Journee-07-ASS-SPORTIVE-DE-MONACO-VOLLEY-PRADETAN-GARDEEN": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/a493de1484f108092fa93cf7fac09975-Volley-Ball-EFB-Journee-09-ASS-SPORTIVE-DE-MONACO-RACING-CLUB-DE-CANNES-2-CFC": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/f716b4304e1a3d0273308e41d0f378d0-Volley-Ball-2MA-Journee-09-ASS-SPORTIVE-DE-MONACO-AGDE-VOLLEY-BALL": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/0a63f00262825d9c3931448d57eca66c-Volley-Ball-EFB-Journee-10-ASS-SPORTIVE-DE-MONACO-ISTRES-PROVENCE-VOLLEY": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/a7567908df99387d8ee54bbda993ed19-Volley-Ball-2MA-Journee-11-ASS-SPORTIVE-DE-MONACO-ASUL-LYON-VOLLEY-BALL": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/204ff3edd72d11b41a55e8fcd57845f1-Volley-Ball-2MA-Journee-13-ASS-SPORTIVE-DE-MONACO-AS-CALUIRE-ET-CUIRE": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/e8a435efb95c511f8ba4a32426781c0b-Volley-Ball-EFB-Journee-13-ASS-SPORTIVE-DE-MONACO-VBC-CHALON-SUR-SAONE": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/835f202de571e97199a287acad6a85b3-Volley-Ball-2MA-Journee-15-ASS-SPORTIVE-DE-MONACO-MANDELIEU-LA-NAPOULE-V-B": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/6b4b189d0ce98adb303640a3bf3fdaf7-Volley-Ball-EFB-Journee-15-ASS-SPORTIVE-DE-MONACO-UNION-SPORTIVE-DE-VILLEJUIF": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/3b8763d0dc782e701d1c80ff6713b33e-Volley-Ball-EFB-Journee-17-ASS-SPORTIVE-DE-MONACO-UGS-MHSC-VB-MAUGUIO": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/11340fadb5bc1f5be58d399716dd55e3-Volley-Ball-2MA-Journee-17-ASS-SPORTIVE-DE-MONACO-U-S-PONTET-VOLLEY-AVENIR": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/0ec46979bc4187c531505cfdd8d0a052-Volley-Ball-EFB-Journee-19-ASS-SPORTIVE-DE-MONACO-VOLLEY-MULHOUSE-ALSACE-2-CFC": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/49d1046f36d00b47949a65dec798bbe5-Volley-Ball-2MA-Journee-19-ASS-SPORTIVE-DE-MONACO-MARSEILLE-VOLLEY-13": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/7e99bbf490b9e63b27a2deccadac9da9-Volley-Ball-2MA-Journee-21-ASS-SPORTIVE-DE-MONACO-AIX-UNIVERSITE-CLUB-13-VOLLEY-BALL": {
+  "vuLe": "2026-09-17",
+  "etat": "deja",
+  "detail": "Volley Ball 2MA Journee 21 ASS SPORTIVE DE MONACO AIX UNIVERSITE CLUB 13 VOLLEY BALL",
+  "majLe": "2026-09-17"
+ },
+ "/en/events/dd7d0834031875a4911454918432e5d0-Volley-Ball-EFB-Journee-22-ASS-SPORTIVE-DE-MONACO-VOLLEY-BALMA-QUINT-FONSEGRIVES": {
+  "vuLe": "2026-09-17",
+  "etat": "ecarte",
+  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "majLe": "2026-09-17"
  }
 }
