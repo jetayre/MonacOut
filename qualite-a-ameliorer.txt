@@ -1,9 +1,9 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2018 fiches inspectées le 2026-09-19.
+2010 fiches inspectées le 2026-09-19.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
-   · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 26 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
+   · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 27 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
 
 ■ FICHES SANS CONTENU — la description répète le titre (38)
    · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
