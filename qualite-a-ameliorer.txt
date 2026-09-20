@@ -1,13 +1,11 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2011 fiches inspectées le 2026-09-20.
+1994 fiches inspectées le 2026-09-20.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
-   · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 27 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
+   · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 28 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
 
-■ FICHES SANS CONTENU — la description répète le titre (39)
-   · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — description = titre (id 800029)
-   · Sam 19 sep · LIGUE 1 AS MONACO RC LENS — description = titre (id 800000)
+■ FICHES SANS CONTENU — la description répète le titre (37)
    · Ven 25 sep · L APERO DES FRENCHY AT LE MERIDIEN BEACH PLAZA MONACO — description = titre (id 800066)
    · Sam 26 sep · ECHECS BRIDGE ET BACKGAMMON — description = titre (id 800062)
    · Dim 27 sep · ROKETHON 2026 — description = titre (id 800060)
@@ -46,9 +44,7 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 29 mai · LIGUE 1 AS MONACO ESTAC TROYES — description = titre (id 800052)
    · Sam 19 juin · LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO… — description = titre (id 800036)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (24)
-   · Sam 19 sep · LES CONCERTS DE LA VOUTE A JOURNEY TO THE HEART OF OPERA — Eglise Réformée de Monaco (id 800029)
-   · Sam 19 sep · FESTIVAL DES ÉTOILÉS DÎNER À 4 MAINS L'ABYSSE — L'Abysse Monte-Carlo (id 1015015)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (22)
    · Dim 27 sep · ROKETHON 2026 — Chapiteau de Fontvielle (id 800060)
    · Lun 28 sep · JOURNÉE D'EXPERTISE JOAILLERIE HERMITAGE FINE ART — Hermitage Fine Art (id 1023759)
    · Mar 29 sep · JOURNÉE D'EXPERTISE ARTCURIAL MONACO — Artcurial (id 1023760)
