@@ -493,7 +493,7 @@
  },
  "/en/events/7bc7566cda3dfb19156fea4bbf6d365a-Piano-recital-Lucas-Debargue": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Piano recital Lucas Debargue",
   "majLe": "2026-09-21"
  },
@@ -991,7 +991,7 @@
  },
  "/en/events/302632928a796b6c9ede6b8824862722-Les-Concerts-de-la-Voute-La-Malibran": {
   "vuLe": "2026-08-18",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les Concerts de la Voute La Malibran",
   "majLe": "2026-09-21"
  },
@@ -1189,7 +1189,7 @@
  },
  "/en/events/c07b1e512068737dad56897ea0571d15-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-08-25",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-09-21"
  },
