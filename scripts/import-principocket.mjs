@@ -97,8 +97,17 @@ for (let i = 0; i < tous.length; i += 8) {
     const txt = h.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
     const dates = [...txt.matchAll(/(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/gi)]
       .map(m => new Date(+m[3], MON_EN[m[2].toLowerCase()], +m[1]));
-    const heure = (txt.match(/from\s+(\d{2}:\d{2})(?:\s+to\s+(\d{2}:\d{2}))?/i) || []);
-    fiches.push({ sl, titre, lieu, dates, h1: heure[1], h2: heure[2] });
+    // PrinciPocket écrit l'horaire de DEUX façons : « from 20:00 to 23:00 » quand il
+    // y a une plage, mais « Saturday 17 October 2026 at 18:00 » quand il n'y a qu'un
+    // coup d'envoi. On ne lisait que la première : les 22 matchs de volley de l'AS
+    // Monaco étaient écartés « heure non publiée » alors que l'heure est sur la page.
+    const heure = (txt.match(/from\s+(\d{2}:\d{2})(?:\s+to\s+(\d{2}:\d{2}))?/i)
+                || txt.match(/\bat\s+(\d{2}:\d{2})\b/i) || []);
+    // L'ADRESSE, pas seulement le nom du lieu : « Stade des Moneghetti » ne dit pas
+    // qu'il est à Beausoleil, en France. Règle 15 se juge sur l'adresse.
+    const adr = ((txt.match(/\bAddress\s+(.{0,80}?)\s+(?:Category|Url|Call|Contact)\b/i) || [])[1] || "")
+      .replace(/&#0?39;/g, "'").replace(/&amp;/g, "&").trim();
+    fiches.push({ sl, titre, lieu, adr, dates, h1: heure[1], h2: heure[2] });
   }));
   process.stdout.write(".");
 }
@@ -120,7 +129,10 @@ for (const e of ev) {
 // Victor Brauner, Heritage at Risk, Toumaï, Magies d'ailleurs, le Mariage du siècle
 // et les ateliers de cirque — tous bien présents. On les traite à part.
 const enCours = ev.filter(e => e.ongoing && e.until).map(e => ({ e, fin: new Date(e.until + "T23:59:59") }));
-const BANALS = new Set(["monaco","monte","carlo","salle","centre","hotel","place","principaute","espace","musee","grand"]);
+// « opéra » décrit un genre, pas un lieu : PrinciPocket dit « Opéra Garnier Monte-Carlo »
+// là où nos fiches disent « Salle Garnier · Monte-Carlo ». Tant qu'il comptait comme
+// mot discriminant, Rigoletto et Siegfried — déjà dans l'app — repartaient en double.
+const BANALS = new Set(["monaco","monte","carlo","salle","centre","hotel","place","principaute","espace","musee","grand","opera"]);
 const motsCles = s => norm(s).split(" ").filter(w => w.length >= 5 && !BANALS.has(w));
 
 // ── 4. Lieux connus (tableau des sources) pour lien + téléphone ──────────────────
@@ -208,7 +220,11 @@ for (const f of fiches) {
   // Une fiche de l'app correspond-elle ? (même logique qu'avant, écrite une seule fois)
   const correspond = (e) => {
     const sub = norm(e.subtitle), tit = norm(e.title.replace(/\n/g, " "));
-    const lieuOk = mlCles.length && mlCles.some(w => sub.includes(w));
+    // Un seul mot commun ne prouve rien : « Stade des Moneghetti » reconnaissait
+    // « Stade Nautique Rainier III » sur le seul mot « stade », et douze matchs de
+    // volley étaient déclarés « déjà dans l'app » alors qu'il n'y en avait aucun.
+    // On exige donc deux mots, comme pour le titre — un seul quand le lieu n'en a qu'un.
+    const lieuOk = mlCles.length && mlCles.filter(w => sub.includes(w)).length >= Math.min(2, mlCles.length);
     const titreOk = mtCles.length && mtCles.filter(w => tit.includes(w)).length >= Math.min(2, mtCles.length);
     return lieuOk || titreOk;
   };
@@ -223,6 +239,26 @@ for (const f of fiches) {
   // Grand Départ de La Vuelta, présent depuis des semaines avec ses quatre fiches.
   // On regarde donc D'ABORD si c'est déjà là ; on n'écarte que ce qui manque vraiment.
   if (DECISIONS[f.sl]) { tranches.push(`${f.titre} — ${DECISIONS[f.sl]}`); note(f.sl, "tranche", DECISIONS[f.sl]); continue; }
+
+  // ── RÈGLE 15 : Monaco uniquement, jugé sur l'ADRESSE ───────────────────────
+  // C'était seulement une ligne de rapport, APRÈS la création des fiches, et elle ne
+  // regardait que le nom du lieu. Les 22 matchs de l'AS Monaco Volley se jouent au
+  // Stade des Moneghetti, rue Jean Bouin à BEAUSOLEIL (France) : le nom ne le dit pas,
+  // l'adresse si. On écarte donc ici, avant tout, et sans faire sonner l'alerte —
+  // il n'y a rien à trancher, la règle est écrite.
+  //
+  // ⚠️ On ne teste QUE les deux derniers morceaux de l'adresse, et en égalité exacte :
+  // chercher « italie » n'importe où mettait l'Espace 22, 24 BOULEVARD D'ITALIE, en
+  // Italie. Une commune se lit à la fin d'une adresse, pas au milieu d'un nom de rue.
+  const bouts = (f.adr || "").split(",").map(x => x.trim()).filter(Boolean);
+  const HORS = /^(france|italie|italy|suisse|beausoleil|cap\s?d['\u2019\s]?ail|roquebrune(-cap-martin)?|menton|nice|cannes|la\s?turbie|[\u00e8e]ze|vintimille|ventimiglia|san\s?remo)$/i;
+  const queue = bouts.slice(-2);
+  if (queue.length && (queue.some(x => HORS.test(x)) || /\b0[6]\d{3}\b/.test(queue[queue.length - 1]))) {
+    horsMonaco.push(`${f.titre} — ${f.lieu} · ${f.adr}`);
+    note(f.sl, "horsmonaco", `hors de Monaco (règle 15) : ${f.adr}`);
+    continue;
+  }
+
   if (!heure) {
     if (dates.every(dejaLa)) { deja.push(f.titre); note(f.sl, "deja", f.titre); continue; }
     note(f.sl, "ecarte", "heure non publiée et catégorie " + cat + " en exige une");
@@ -246,7 +282,6 @@ for (const f of fiches) {
   }
   if (ajoutePour) { ajoutes.push(`${f.titre} — ${f.lieu} (${ajoutePour} jour(s))`); note(f.sl, "importe", f.titre); }
   else { deja.push(f.titre); note(f.sl, "deja", f.titre); }
-  if (/cap d.ail|roquebrune|beausoleil|nice|menton|06[0-9]{3}/i.test(f.lieu)) horsMonaco.push(`${f.titre} — ${f.lieu}`);
 }
 
 let txt = `REPRISE INTÉGRALE PRINCIPOCKET — ${new Date().toISOString().slice(0, 10)}\n`;
@@ -254,7 +289,7 @@ txt += `${slugs.size} événements lus · ${ajoutes.length} importés (${lignes.
 if (ajoutes.length) txt += `\n■ IMPORTÉS\n` + ajoutes.map(a => "   + " + a).join("\n") + "\n";
 if (sansLieu.length) txt += `\n■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main\n` + sansLieu.map(a => "   ? " + a).join("\n") + "\n";
 if (tranches.length) txt += `\n■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment\n` + tranches.map(a => "   · " + a).join("\n") + "\n";
-if (horsMonaco.length) txt += `\n■ ⚠️ HORS DE MONACO — règle 15, à trancher\n` + horsMonaco.map(a => "   ! " + a).join("\n") + "\n";
+if (horsMonaco.length) txt += `\n■ ⚠️ HORS DE MONACO — écartés d'office (règle 15)\n` + horsMonaco.map(a => "   ! " + a).join("\n") + "\n";
 // Ce qui est écarté depuis plus de 3 jours : personne ne s'en est occupé.
 const vieux = Object.entries(registre).filter(([sl, r]) => {
   if (DECISIONS[sl]) return false;          // décision prise et écrite : plus une alerte

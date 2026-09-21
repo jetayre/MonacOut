@@ -88,6 +88,22 @@ function enLignes(mots) {
   return lignes;
 }
 
+// Recolle les mots d'une même ligne qui n'en forment qu'un seul à l'écran.
+// Les PDF de la Mairie éclatent « Body Sculpt » en deux mots et « 17h30 - 18h15 »
+// en trois ; sans ce recollage aucune plage horaire n'est reconnue — c'est ce qui
+// a rendu Saint-Charles illisible à partir du 16 septembre 2026.
+const LARGEUR = 2.25; // largeur moyenne d'un caractère, mesurée sur ces PDF
+function recolle(cells) {
+  const out = [];
+  for (const c of [...cells].sort((a, b) => a.x - b.x)) {
+    const der = out[out.length - 1];
+    const ecart = der ? c.x - (der.x + der.t.length * LARGEUR) : Infinity;
+    if (ecart < 4) der.t += (ecart > 1.5 ? " " : "") + c.t;
+    else out.push({ x: c.x, t: c.t });
+  }
+  return out;
+}
+
 // ── PISCINE 1 : Stade Nautique — colonnes = JOURS, cellules = horaires ───────────
 function lireStadeNautique(mots) {
   const lignes = enLignes(mots);
@@ -116,9 +132,26 @@ function lireStadeNautique(mots) {
   return Object.keys(parJour).length >= 3 ? parJour : null;
 }
 
-// ── PISCINE 2 : Saint-Charles salle de sport — colonnes = JOURS, cellules = cours ─
+// ── PISCINE 2 : Saint-Charles salle de sport ────────────────────────────────────
+// Le libellé du cours est imprimé JUSTE AU-DESSUS de son horaire, dans la même
+// colonne (l'inverse du Stade Nautique). On ne raisonne donc plus « ligne suivante »
+// mais par position : pour chaque libellé, la plage horaire la plus proche en dessous.
+// « Pilates 17h30 » — on range dans l'ordre de la journée, pas de l'alphabet.
+const parHeure = (a, b) => (a.match(/\d{1,2}h\d{2}/) || [""])[0].localeCompare((b.match(/\d{1,2}h\d{2}/) || [""])[0]);
+
+const NOM_COURS = t => {
+  const s = t.toLowerCase();
+  if (/aqua/.test(s)) return null;                 // cours en bassin, pas en salle
+  if (/pilates/.test(s)) return "Pilates";
+  if (/oxyg/.test(s)) return "Oxygène";
+  if (/stretch|stetch/.test(s)) return "Stretching"; // la Mairie écrit « Stetching »
+  if (/sculpt/.test(s)) return "Body Sculpt";
+  if (/spinning/.test(s)) return "Spinning";
+  return null;
+};
+
 function lireSalleSport(mots) {
-  const lignes = enLignes(mots);
+  const lignes = enLignes(mots).map(l => ({ y: l.y, cells: recolle(l.cells) }));
   const entete = lignes.find(l => l.cells.some(c => /^LUNDI$/i.test(c.t)));
   if (!entete) return null;
   const colonnes = entete.cells
@@ -127,20 +160,30 @@ function lireSalleSport(mots) {
   if (colonnes.length < 4) return null;
   const jourDe = x => colonnes.reduce((best, c) => Math.abs(c.x - x) < Math.abs(best.x - x) ? c : best).j;
 
-  const parJour = {};
-  for (let i = 0; i < lignes.length; i++) {
-    const creneaux = lignes[i].cells.filter(c => /^\d{1,2}h\d{2}\s*-\s*\d{1,2}h\d{2}$/.test(c.t));
-    if (!creneaux.length) continue;
-    const suivante = lignes[i + 1];
-    if (!suivante) continue;
-    for (const h of creneaux) {
-      const lib = suivante.cells.reduce((best, c) =>
-        (!best || Math.abs(c.x - h.x) < Math.abs(best.x - h.x)) ? c : best, null);
-      if (!lib || !/pilates|oxyg|stretch|sculpt|spinning|gym/i.test(lib.t)) continue;
-      (parJour[jourDe(h.x)] ||= []).push(`${lib.t} ${h.t.split("-")[0].trim()}`);
-    }
+  // toutes les plages horaires du document, avec leur position
+  const plages = [];
+  for (const l of lignes) for (const c of l.cells) {
+    const m = c.t.match(/^(\d{1,2})h(\d{2})\s*-\s*\d{1,2}h\d{2}$/);
+    if (m) plages.push({ x: c.x, y: l.y, h: `${m[1].padStart(2, "0")}h${m[2]}` });
   }
-  return Object.keys(parJour).length >= 3 ? parJour : null;
+
+  const parJour = {}, sansHeure = [];
+  for (const l of lignes) for (const c of l.cells) {
+    const nom = NOM_COURS(c.t);
+    if (!nom) continue;
+    const j = jourDe(c.x);
+    const p = plages
+      .filter(p => p.y < l.y && l.y - p.y <= 12 && Math.abs(p.x - c.x) <= 14)
+      .sort((a, b) => b.y - a.y)[0];
+    // Un libellé sans horaire imprimé n'est PAS une erreur de lecture : la feuille
+    // « hors vacances » oublie l'heure du mercredi. On le signale pour que l'autre
+    // planning vienne la compléter, plutôt que de perdre le cours.
+    if (!p) { sansHeure.push({ j, nom }); continue; }
+    const ligne = `${nom} ${p.h}`;
+    if (!(parJour[j] ||= []).includes(ligne)) parJour[j].push(ligne);
+  }
+  for (const j of Object.keys(parJour)) parJour[j].sort(parHeure);
+  return Object.keys(parJour).length >= 3 ? { parJour, sansHeure } : null;
 }
 
 // ── Trouve le PDF de planning sur la page d'une piscine ──────────────────────────
@@ -194,30 +237,48 @@ const blocs = [];
 }
 
 // ═══ SAINT-CHARLES (salle de sport) ══════════════════════════════════════════════
+// La Mairie publie DEUX feuilles, « hors vacances scolaires » et « vacances
+// scolaires ». Pour la salle de sport elles portent les mêmes cours ; la feuille
+// hors vacances oublie simplement l'heure de l'Oxygène du mercredi. On lit donc les
+// deux : la feuille hors vacances fait foi, l'autre ne sert qu'à combler un trou.
 {
   const pdfs = await pdfsDe("https://www.mairie.mc/la-piscine-saint-charles-1");
 
-  const maintenant = new Date();
-  let planning = null, sourcePdf = null, periode = null, lisibles = 0;
+  const lectures = [];
   for (const u of pdfs) {
     const buf = await get(u, true);
     if (!buf) continue;
     const mots = motsPositionnes(buf);
     if (!mots.some(w => /pilates|spinning|body sculpt/i.test(w.t))) continue;
-    const p = lireSalleSport(mots);
-    if (!p) continue;
-    lisibles++;
-    const per = periodeDu(mots);
-    // on garde celui qui couvre aujourd'hui ; à défaut, le premier lisible
-    if (per && maintenant >= per.debut && maintenant <= per.fin) { planning = p; sourcePdf = u; periode = per; break; }
-    if (!planning) { planning = p; sourcePdf = u; periode = per; }
+    const lu = lireSalleSport(mots);
+    if (!lu) continue;
+    lectures.push({ ...lu, u, hors: /hors\s+vacances/i.test(mots.map(w => w.t).join(" ")) });
   }
+
+  const base = lectures.find(l => l.hors) || lectures[0];
+  let planning = null, sourcePdf = null, completes = 0, orphelins = 0;
+  if (base) {
+    planning = base.parJour;
+    sourcePdf = base.u;
+    for (const { j, nom } of base.sansHeure) {
+      const ailleurs = lectures
+        .filter(l => l !== base)
+        .flatMap(l => l.parJour[j] || [])
+        .find(x => x.startsWith(nom + " "));
+      if (ailleurs && !(planning[j] ||= []).includes(ailleurs)) { planning[j].push(ailleurs); completes++; }
+      else if (!ailleurs) orphelins++;
+    }
+    for (const j of Object.keys(planning)) planning[j].sort(parHeure);
+  }
+
   if (!planning) alertes.push("Saint-Charles : aucun PDF de planning lisible — fiches existantes CONSERVÉES");
   else blocs.push({ cle: "sc", planning, sourcePdf,
     titre: "PISCINE\\nSAINT-CHARLES", lieu: "Piscine Saint-Charles · Monte-Carlo",
     lien: "https://www.mairie.mc/la-piscine-saint-charles-1", tel: "+377 9315 2295", quartier: "Monte-Carlo",
-    fin: periode ? periode.fin : new Date(2026, 11, 18), debut: new Date(2026, 8, 1), periode });   // fermée en août
-  rapport.push(`Saint-Charles : ${planning ? Object.keys(planning).length + " jours lus" : "ILLISIBLE"} · ${lisibles} planning(s) trouvé(s) · période retenue : ${periode ? periode.debut.toISOString().slice(0,10) + " → " + periode.fin.toISOString().slice(0,10) : "non datée"}`);
+    fin: new Date(2026, 11, 18), debut: new Date(2026, 8, 1) });   // fermée en août
+  rapport.push(`Saint-Charles : ${planning ? Object.keys(planning).length + " jours lus" : "ILLISIBLE"} · ${lectures.length} planning(s) lu(s)` +
+    (completes ? ` · ${completes} horaire(s) complété(s) par l'autre feuille` : "") +
+    (orphelins ? ` · ${orphelins} cours sans horaire imprimé nulle part, écarté(s)` : ""));
 }
 
 // ── Écriture, seulement pour les piscines effectivement lues ─────────────────────

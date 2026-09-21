@@ -1,5 +1,10 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-20
-193 événements lus · 0 importés (0 fiches) · 170 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-21
+192 événements lus · 3 importés (3 fiches) · 154 déjà présents
+
+■ IMPORTÉS
+   + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
+   + Piano recital Lucas Debargue — Auditorium Rainier III (1 jour(s))
+   + Les Concerts de la Voute La Malibran — Eglise Réformée de Monaco (1 jour(s))
 
 ■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment
    · Monaco Moves for Those Who Forget — DÉJÀ DANS L'APP, en MIEUX. C'est la semaine AMPA « Monaco Bouge Pour Ceux Qui Oublient » du 15 au 21 septembre. PrinciPocket l'annonce comme UN seul événement sans lieu précis (« Principauté de Monaco ») ; nous l'avons éclatée en 10 fiches nommées, une par activité, avec leur salle et leur horaire. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter.
@@ -7,24 +12,26 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-20
    · MARINE IN CONCERT — 17 août 2026 — PrinciPocket annonce le 27 février 2027, date FAUSSE. Vérifié sur jds.fr : le concert est le sam 13 février 2027 à 20h30 au Grimaldi Forum. Notre fiche 4741 porte la bonne date ; un doublon créé par le robot sur la fausse date a été supprimé. Ne pas réimporter.
    · Marine en concert — 18 aout 2026 — DEUXIEME entree PrinciPocket pour le meme concert, avec le meme mauvais 27 fevrier. C'est elle qui a recree la fiche 800012 dans la nuit du 17 au 18. Vraie date verifiee sur jds.fr : sam 13 fevrier 2027, 20h30, Grimaldi Forum (fiche 4741). Ne pas reimporter.
 
-■ 🚨 ÉCARTÉS DEPUIS PLUS DE 3 JOURS — demandent une décision humaine
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/aecd3c4d9f731ffe3f6e691eb36129fc-Volley-Ball-EFB-Journee-03-ASS-SPORTIVE-DE-MONACO-US-CAGNES-VOLLEY-BALL
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/4077e640005d256f3f3e757756bd28ec-Volley-Ball-2MA-Journee-05-ASS-SPORTIVE-DE-MONACO-US-ST-EGREVOISE
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/769e02da49dbe5a2e10b5819665a084c-Volley-Ball-EFB-Journee-05-ASS-SPORTIVE-DE-MONACO-INSTITUT-FEDERAL-DE-VOLLEY-BALL
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/a7567908df99387d8ee54bbda993ed19-Volley-Ball-2MA-Journee-11-ASS-SPORTIVE-DE-MONACO-ASUL-LYON-VOLLEY-BALL
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/204ff3edd72d11b41a55e8fcd57845f1-Volley-Ball-2MA-Journee-13-ASS-SPORTIVE-DE-MONACO-AS-CALUIRE-ET-CUIRE
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/835f202de571e97199a287acad6a85b3-Volley-Ball-2MA-Journee-15-ASS-SPORTIVE-DE-MONACO-MANDELIEU-LA-NAPOULE-V-B
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/11340fadb5bc1f5be58d399716dd55e3-Volley-Ball-2MA-Journee-17-ASS-SPORTIVE-DE-MONACO-U-S-PONTET-VOLLEY-AVENIR
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/0ec46979bc4187c531505cfdd8d0a052-Volley-Ball-EFB-Journee-19-ASS-SPORTIVE-DE-MONACO-VOLLEY-MULHOUSE-ALSACE-2-CFC
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/49d1046f36d00b47949a65dec798bbe5-Volley-Ball-2MA-Journee-19-ASS-SPORTIVE-DE-MONACO-MARSEILLE-VOLLEY-13
-   ! vu le 2026-09-17 · heure non publiée et catégorie SPORT en exige une
-     https://www.principocket.com/en/events/dd7d0834031875a4911454918432e5d0-Volley-Ball-EFB-Journee-22-ASS-SPORTIVE-DE-MONACO-VOLLEY-BALMA-QUINT-FONSEGRIVES
+■ ⚠️ HORS DE MONACO — écartés d'office (règle 15)
+   ! Volley Ball 2MA Journee 01 ASS SPORTIVE DE MONACO CLUB ATHLETIQUE DE ST ETIENNE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 03 ASS SPORTIVE DE MONACO LYON CROIX ROUSSE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 01 ASS SPORTIVE DE MONACO J S A BORDEAUX — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 03 ASS SPORTIVE DE MONACO US CAGNES VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 11 ASS SPORTIVE DE MONACO ASUL LYON VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 15 ASS SPORTIVE DE MONACO MANDELIEU LA NAPOULE V B — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 19 ASS SPORTIVE DE MONACO VOLLEY MULHOUSE ALSACE 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 19 ASS SPORTIVE DE MONACO MARSEILLE VOLLEY 13 — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 21 ASS SPORTIVE DE MONACO AIX UNIVERSITE CLUB 13 VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 22 ASS SPORTIVE DE MONACO VOLLEY BALMA QUINT FONSEGRIVES — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
