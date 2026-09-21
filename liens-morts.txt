@@ -1,6 +1,12 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-09-20 — 113 liens, 1994 fiches.
+Contrôle du 2026-09-21 — 115 liens, 1989 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://www.mediatheque.mc/
+   HTTP 500 — serveur en panne — 5 fiche(s)
+     · [id 800001] Mar 22 sep CAFÉ LITTÉRAIRE FONDATION PRINCE PIERRE — Médiathèque Caroline
+     · [id 4731] Mer 23 sep LUDO MÉMO LE JEU ET LE CERVEAU — Médiathèque Caroline
+     · [id 800002] Mar 29 sep PICNIC MUSIC LIVE STRAY PICKS MÉDIATHÈQUE — Médiathèque Caroline
+     · [id 1938] Jeu 21 jan CONFÉRENCE MÉDIATHÈQUE JANVIER — Médiathèque Caroline
+     · [id 1940] Jeu 18 mar CONFÉRENCE MÉDIATHÈQUE MARS — Médiathèque Caroline
