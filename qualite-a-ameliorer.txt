@@ -1,14 +1,9 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-1990 fiches inspectées le 2026-09-21.
+1982 fiches inspectées le 2026-09-22.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ IDENTIFIANTS EN DOUBLE — deux fiches partagent un id (casse les favoris) (2)
-   · id 800056 utilisé 2× : « BKT EUROCUP AS MONACO PAOK THESSALONIKI » (Mar 6 oct) / « PIANO RECITAL LUCAS DEBARGUE » (Mer 25 nov)
-   · id 800057 utilisé 2× : « BKT EUROCUP AS MONACO BAHCESEHIR COLLEGE ISTANBUL » (Mer 21 oct) / « LES CONCERTS DE LA VOUTE LA MALIBRAN » (Sam 28 nov)
-
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
    · Mer 7 oct · DÉGUSTATION VINS D'AUTOMNE MONTE-CARLO — même lieu et même jour qu'une série de 28 fiches « LIVE MUSIC LAURA GROGGIA QUARTET BAR AMÉRICAIN » (id 412)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800000)
 
 ■ FICHES SANS CONTENU — la description répète le titre (41)
    · Ven 25 sep · L APERO DES FRENCHY AT LE MERIDIEN BEACH PLAZA MONACO — description = titre (id 800066)
@@ -26,10 +21,10 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 21 nov · LIGUE 1 AS MONACO AJ AUXERRE — description = titre (id 800040)
    · Dim 22 nov · OPERA DE MONTE CARLO CAPE TOWN HERITAGE — description = titre (id 800028)
    · Mer 25 nov · L UMIERES SUR LA LAGUNE — description = titre (id 800012)
-   · Mer 25 nov · PIANO RECITAL LUCAS DEBARGUE — description = titre (id 800056)
-   · Sam 28 nov · LES CONCERTS DE LA VOUTE LA MALIBRAN — description = titre (id 800057)
+   · Mer 25 nov · PIANO RECITAL LUCAS DEBARGUE — description = titre (id 800067)
+   · Sam 28 nov · LES CONCERTS DE LA VOUTE LA MALIBRAN — description = titre (id 800068)
+   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800000)
    · Sam 5 déc · LIGUE 1 AS MONACO ANGERS SCO — description = titre (id 800041)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800000)
    · Jeu 17 déc · EXHIBITIONS OF SCULPTURES BRONZE AND TERRACOTTA PAINTINGS AN… — description = titre (id 800053)
    · Jeu 17 déc · UEFA CONFERENCE LEAGUE AS MONACO LINCOLN RED IMPS — description = titre (id 800065)
    · Sam 19 déc · LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS — description = titre (id 800031)
