@@ -1,15 +1,6 @@
 {
-  "generatedAt": "2026-09-21T20:22:26.819Z",
+  "generatedAt": "2026-09-22T05:23:51.809Z",
   "events": [
-    {
-      "date": "Lun 21 sep",
-      "iso": "2026-09-21",
-      "time": "12h15 — 13h30",
-      "title": "MARCHE ALZHEIMER MONACO",
-      "venue": "Place Anne-Marie Campora",
-      "quarter": "Larvotto",
-      "emoji": "🚶"
-    },
     {
       "date": "Lun 21 sep",
       "iso": "2026-09-21",
@@ -36,6 +27,15 @@
       "venue": "Casino, Hôtel de Paris, Hermitage, av. des Beaux-Arts",
       "quarter": "Monte-Carlo",
       "emoji": "🦋"
+    },
+    {
+      "date": "Lun 21 sep",
+      "iso": "2026-09-21",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Lun 21 sep",
