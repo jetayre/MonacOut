@@ -1579,7 +1579,7 @@
  },
  "/en/events/585fd0c7a2a243b68e40680a32f7a419-Getting-started-with-Android-phone-Level-1": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with Android phone Level 1",
   "majLe": "2026-09-23"
  },
@@ -1609,7 +1609,7 @@
  },
  "/en/events/e5b6a2c327ef956dee8e4e1ef0e6bedc-Getting-started-with-the-Apple-TV": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with the Apple TV",
   "majLe": "2026-09-23"
  },
@@ -1633,7 +1633,7 @@
  },
  "/en/events/e1fbd85c14c2d1d02e62fb53c483e6ab-Getting-started-with-iPhone-Level-1": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with iPhone Level 1",
   "majLe": "2026-09-23"
  },
@@ -1705,7 +1705,7 @@
  },
  "/en/events/abfd4089620fe8bb07c8c692ed7ee7d2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-09-23"
  },
@@ -1795,7 +1795,7 @@
  },
  "/en/events/ab2da95f781630e09d208917571c08a0-Picnic-Music-Un-concert-sur-grand-ecran-pour-accompagner-votre-pause-dejeuner": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner",
   "majLe": "2026-09-23"
  },
@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-09-23"
  },
@@ -2101,7 +2101,7 @@
  },
  "/en/events/cd3a7b94cdca87df864846bab44742c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-09-23"
  },
@@ -2113,7 +2113,7 @@
  },
  "/en/events/a76822370ae00e57506b73fdb5e01a5a-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ma Bayadere",
   "majLe": "2026-09-23"
  },
@@ -2415,6 +2415,54 @@
   "vuLe": "2026-09-22",
   "etat": "deja",
   "detail": "Cendrillon",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/2eb456252bd2e81a09939cb7497721c9-Les-Archives-du-lundi-programme-A-d-octobre": {
+  "vuLe": "2026-09-23",
+  "etat": "deja",
+  "detail": "Les Archives du lundi programme A d octobre",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/4d6812bbffd7fa0fb674e4807b3330f4-Voyages-en-Italie-de-Sophie-Letourneur": {
+  "vuLe": "2026-09-23",
+  "etat": "importe",
+  "detail": "Voyages en Italie de Sophie Letourneur",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/3814d42ffaa1babc21d36dfebafd0cd4-Table-ronde-La-desinformation-quels-enjeux-quelles-reponses": {
+  "vuLe": "2026-09-23",
+  "etat": "deja",
+  "detail": "Table ronde La desinformation quels enjeux quelles reponses",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/d32dd95cbef8f349fbdf09d7038375c7-Les-Archives-du-lundi-programme-B-d-octobre": {
+  "vuLe": "2026-09-23",
+  "etat": "deja",
+  "detail": "Les Archives du lundi programme B d octobre",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/aafca90a1bd47c4ee75f7436e2941a24-Les-Archives-du-lundi-programme-A-d-octobre": {
+  "vuLe": "2026-09-23",
+  "etat": "deja",
+  "detail": "Les Archives du lundi programme A d octobre",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/2a058ceeca100708a1dc683339306f04-Paques-sanglantes-de-Giuseppe-De-Santis": {
+  "vuLe": "2026-09-23",
+  "etat": "importe",
+  "detail": "Paques sanglantes de Giuseppe De Santis",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/430faaf1bf19c6286dbdb1d655fb4c41-Que-le-spectacle-commence": {
+  "vuLe": "2026-09-23",
+  "etat": "deja",
+  "detail": "Que le spectacle commence",
+  "majLe": "2026-09-23"
+ },
+ "/en/events/ad847dcfd8e63d415e7f24810a34e323-Les-Archives-du-lundi-programme-B-d-octobre": {
+  "vuLe": "2026-09-23",
+  "etat": "deja",
+  "detail": "Les Archives du lundi programme B d octobre",
   "majLe": "2026-09-23"
  }
 }
