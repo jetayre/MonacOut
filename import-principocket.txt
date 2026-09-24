@@ -1,16 +1,24 @@
 REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-24
-315 événements lus · 6 importés (6 fiches) · 272 déjà présents
+326 événements lus · 13 importés (13 fiches) · 276 déjà présents
 
 ■ IMPORTÉS
    + Getting started with the Apple TV — Maison du Numérique de Monaco (1 jour(s))
-   + Paques sanglantes de Giuseppe De Santis — Théâtre des Variétés (1 jour(s))
+   + Getting started with iPhone Level 1 — Maison du Numérique de Monaco (1 jour(s))
    + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
+   + Getting started with Android phone Level 1 — Maison du Numérique de Monaco (1 jour(s))
+   + Paques sanglantes de Giuseppe De Santis — Théâtre des Variétés (1 jour(s))
+   + Pluie noire de Shohei Imamura — Théâtre des Variétés (1 jour(s))
    + Romeo et Juliette — Opéra Garnier Monte-Carlo (1 jour(s))
+   + Valeur sentimentale de Joachim Trier — Théâtre des Variétés (1 jour(s))
+   + Jour de fete de Jacques Tati — Théâtre des Variétés (1 jour(s))
+   + Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner — Médiathèque Caroline (1 jour(s))
+   + L Aventure d une nuit de Mitchell Leisen — Théâtre des Variétés (1 jour(s))
    + Bronia and Altro Canto — Grimaldi Forum Monaco (1 jour(s))
    + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
 
 ■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main
    ? 4 oct 2026 · 31eme Journees Europeennes du Patrimoine
+   ? 11 mar 2027 · Le narcissisme
 
 ■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment
    · Monaco International Triathlon — DÉJÀ DANS L'APP (fiche « MONACO INTERNATIONAL TRIATHLON », ven 6 nov, « 6 — 8 nov 2026 », plage du Larvotto). Le rapprochement automatique échoue parce que notre fiche porte une PÉRIODE dans le champ heure et non un horaire, et que le lieu est écrit différemment. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter, ce serait un doublon.
@@ -24,10 +32,10 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-24
    ! Volley Ball EFB Journee 03 ASS SPORTIVE DE MONACO US CAGNES VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 11 ASS SPORTIVE DE MONACO ASUL LYON VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France

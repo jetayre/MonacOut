@@ -1609,7 +1609,7 @@
  },
  "/en/events/e5b6a2c327ef956dee8e4e1ef0e6bedc-Getting-started-with-the-Apple-TV": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with the Apple TV",
   "majLe": "2026-09-24"
  },
@@ -1633,7 +1633,7 @@
  },
  "/en/events/e1fbd85c14c2d1d02e62fb53c483e6ab-Getting-started-with-iPhone-Level-1": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with iPhone Level 1",
   "majLe": "2026-09-24"
  },
@@ -1705,7 +1705,7 @@
  },
  "/en/events/abfd4089620fe8bb07c8c692ed7ee7d2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-09-24"
  },
@@ -1723,7 +1723,7 @@
  },
  "/en/events/f66415bf6f130a8d1deb5ad3016991e0-Getting-started-with-Android-phone-Level-1": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with Android phone Level 1",
   "majLe": "2026-09-24"
  },
@@ -1807,7 +1807,7 @@
  },
  "/en/events/92eac10770bf44a5a9f6338b389aad30-Getting-started-with-the-Apple-TV": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting started with the Apple TV",
   "majLe": "2026-09-24"
  },
@@ -1861,7 +1861,7 @@
  },
  "/en/events/319bf1f0aa4f57b26f9e5afd5668f4a2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-09-24"
  },
@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-09-24"
  },
@@ -1927,7 +1927,7 @@
  },
  "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Romeo et Juliette",
   "majLe": "2026-09-24"
  },
@@ -2047,7 +2047,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-Un-concert-sur-grand-ecran-pour-accompagner-votre-pause-dejeuner": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner",
   "majLe": "2026-09-24"
  },
@@ -2101,19 +2101,19 @@
  },
  "/en/events/cd3a7b94cdca87df864846bab44742c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-09-24"
  },
  "/en/events/6e911a163bcd520d0ccabeb787e2c2c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-09-24"
  },
  "/en/events/a76822370ae00e57506b73fdb5e01a5a-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ma Bayadere",
   "majLe": "2026-09-24"
  },
@@ -2125,7 +2125,7 @@
  },
  "/en/events/bdfaa98d5b881181bf8f974cf80620e0-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ma Bayadere",
   "majLe": "2026-09-24"
  },
@@ -2463,6 +2463,78 @@
   "vuLe": "2026-09-23",
   "etat": "deja",
   "detail": "Les Archives du lundi programme B d octobre",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/92006a72cfd8ea636d3b9b83c902fe52-De-l-Empathie": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "De l Empathie",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/e02aaf44e86cfcaccd13514ee0a952fc-Pluie-noire-de-Shohei-Imamura": {
+  "vuLe": "2026-09-24",
+  "etat": "importe",
+  "detail": "Pluie noire de Shohei Imamura",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/a141970e4b619547e76a1181c8c75908-L-amour-d-un-pere": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "L amour d un pere",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/2138c41d09eabf280a9fa52358d9b231-Valeur-sentimentale-de-Joachim-Trier": {
+  "vuLe": "2026-09-24",
+  "etat": "importe",
+  "detail": "Valeur sentimentale de Joachim Trier",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/94561049be1e58a46556b32b786f703f-Jour-de-fete-de-Jacques-Tati": {
+  "vuLe": "2026-09-24",
+  "etat": "importe",
+  "detail": "Jour de fete de Jacques Tati",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/c1441c161b4de500ff6d7c30d72033df-L-Homme-au-bras-d-or-d-Otto-Preminger": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "L Homme au bras d or d Otto Preminger",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/2d9b406630748a2b3999c6b61336a95b-Le-charme": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "Le charme",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/06db456932dbb5eca6e48c6d336e0a18-Le-Mariage-du-siecle-vu-par-la-television-et-le-cinema": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "Le Mariage du siecle vu par la television et le cinema",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/e782897515887ddff4f80ca702be4e82-L-Aventure-d-une-nuit-de-Mitchell-Leisen": {
+  "vuLe": "2026-09-24",
+  "etat": "importe",
+  "detail": "L Aventure d une nuit de Mitchell Leisen",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/59ab3b9d256087d1106d4f6cc7718e63-La-haine-et-la-vengeance": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "La haine et la vengeance",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/6c9426c698924ebb775144a760db52b3-Des-inegalites": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "Des inegalites",
+  "majLe": "2026-09-24"
+ },
+ "/en/events/b15230e6c24091cd4be16f4ba4b99363-Le-narcissisme": {
+  "vuLe": "2026-09-24",
+  "etat": "deja",
+  "detail": "Le narcissisme",
   "majLe": "2026-09-24"
  }
 }
