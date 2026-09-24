@@ -1,14 +1,10 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-23
-318 événements lus · 10 importés (10 fiches) · 270 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-24
+315 événements lus · 6 importés (6 fiches) · 272 déjà présents
 
 ■ IMPORTÉS
-   + Getting started with Android phone Level 1 — Maison du Numérique de Monaco (1 jour(s))
    + Getting started with the Apple TV — Maison du Numérique de Monaco (1 jour(s))
-   + Getting started with iPhone Level 1 — Maison du Numérique de Monaco (1 jour(s))
-   + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
-   + Voyages en Italie de Sophie Letourneur — Théâtre des Variétés (1 jour(s))
-   + Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner — Médiathèque Caroline (1 jour(s))
    + Paques sanglantes de Giuseppe De Santis — Théâtre des Variétés (1 jour(s))
+   + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
    + Romeo et Juliette — Opéra Garnier Monte-Carlo (1 jour(s))
    + Bronia and Altro Canto — Grimaldi Forum Monaco (1 jour(s))
    + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
@@ -28,18 +24,18 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-23
    ! Volley Ball EFB Journee 03 ASS SPORTIVE DE MONACO US CAGNES VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 11 ASS SPORTIVE DE MONACO ASUL LYON VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 15 ASS SPORTIVE DE MONACO MANDELIEU LA NAPOULE V B — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 19 ASS SPORTIVE DE MONACO MARSEILLE VOLLEY 13 — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 19 ASS SPORTIVE DE MONACO VOLLEY MULHOUSE ALSACE 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 21 ASS SPORTIVE DE MONACO AIX UNIVERSITE CLUB 13 VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
