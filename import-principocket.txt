@@ -1,18 +1,11 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-24
-326 événements lus · 13 importés (13 fiches) · 276 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-25
+324 événements lus · 6 importés (6 fiches) · 281 déjà présents
 
 ■ IMPORTÉS
    + Getting started with the Apple TV — Maison du Numérique de Monaco (1 jour(s))
-   + Getting started with iPhone Level 1 — Maison du Numérique de Monaco (1 jour(s))
-   + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
-   + Getting started with Android phone Level 1 — Maison du Numérique de Monaco (1 jour(s))
    + Paques sanglantes de Giuseppe De Santis — Théâtre des Variétés (1 jour(s))
-   + Pluie noire de Shohei Imamura — Théâtre des Variétés (1 jour(s))
+   + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
    + Romeo et Juliette — Opéra Garnier Monte-Carlo (1 jour(s))
-   + Valeur sentimentale de Joachim Trier — Théâtre des Variétés (1 jour(s))
-   + Jour de fete de Jacques Tati — Théâtre des Variétés (1 jour(s))
-   + Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner — Médiathèque Caroline (1 jour(s))
-   + L Aventure d une nuit de Mitchell Leisen — Théâtre des Variétés (1 jour(s))
    + Bronia and Altro Canto — Grimaldi Forum Monaco (1 jour(s))
    + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
 
@@ -60,3 +53,11 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-24
      https://www.principocket.com/en/events/a333ad3c26a0826c929560b816ccd287-Ligue-1-AS-MONACO-FC-LORIENT
    ! vu le 2026-08-20 · heure non publiée et catégorie SPECTACLE en exige une
      https://www.principocket.com/en/events/fa4d53307ee338a6b9d9cf9eef84ce84-Ligue-1-AS-MONACO-ESTAC-Troyes
+   ! vu le 2026-09-22 · heure non publiée et catégorie CONCERT en exige une
+     https://www.principocket.com/en/events/7b358afa85ef94ea51740e101db6df35-THURSDAY-LIVE-SESSIONS-THE-SPITFIRES
+   ! vu le 2026-09-22 · heure non publiée et catégorie CONCERT en exige une
+     https://www.principocket.com/en/events/586ad5154c3622b4fcd85f5dd7d05119-THURSDAY-LIVE-SESSIONS-ELEPHANZ
+   ! vu le 2026-09-22 · heure non publiée et catégorie CONCERT en exige une
+     https://www.principocket.com/en/events/548990cc9ecde940809bc45c8ddd63cd-THURSDAY-LIVE-SESSIONS-KOMODOR
+   ! vu le 2026-09-22 · heure non publiée et catégorie CONCERT en exige une
+     https://www.principocket.com/en/events/7fbae600409df4107d235452ab2d8dbd-THURSDAY-LIVE-SESSIONS-VOILAA-SOUND-SYSTEM
