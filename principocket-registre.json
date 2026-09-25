@@ -1609,7 +1609,7 @@
  },
  "/en/events/e5b6a2c327ef956dee8e4e1ef0e6bedc-Getting-started-with-the-Apple-TV": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with the Apple TV",
   "majLe": "2026-09-25"
  },
@@ -1633,7 +1633,7 @@
  },
  "/en/events/e1fbd85c14c2d1d02e62fb53c483e6ab-Getting-started-with-iPhone-Level-1": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with iPhone Level 1",
   "majLe": "2026-09-25"
  },
@@ -1705,7 +1705,7 @@
  },
  "/en/events/abfd4089620fe8bb07c8c692ed7ee7d2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-09-25"
  },
@@ -1723,7 +1723,7 @@
  },
  "/en/events/f66415bf6f130a8d1deb5ad3016991e0-Getting-started-with-Android-phone-Level-1": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting started with Android phone Level 1",
   "majLe": "2026-09-25"
  },
@@ -1807,7 +1807,7 @@
  },
  "/en/events/92eac10770bf44a5a9f6338b389aad30-Getting-started-with-the-Apple-TV": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting started with the Apple TV",
   "majLe": "2026-09-25"
  },
@@ -1861,7 +1861,7 @@
  },
  "/en/events/319bf1f0aa4f57b26f9e5afd5668f4a2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-09-25"
  },
@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-09-25"
  },
@@ -1927,7 +1927,7 @@
  },
  "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Romeo et Juliette",
   "majLe": "2026-09-25"
  },
@@ -2047,7 +2047,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-Un-concert-sur-grand-ecran-pour-accompagner-votre-pause-dejeuner": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner",
   "majLe": "2026-09-25"
  },
@@ -2101,19 +2101,19 @@
  },
  "/en/events/cd3a7b94cdca87df864846bab44742c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-09-25"
  },
  "/en/events/6e911a163bcd520d0ccabeb787e2c2c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-09-25"
  },
  "/en/events/a76822370ae00e57506b73fdb5e01a5a-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ma Bayadere",
   "majLe": "2026-09-25"
  },
@@ -2125,7 +2125,7 @@
  },
  "/en/events/bdfaa98d5b881181bf8f974cf80620e0-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ma Bayadere",
   "majLe": "2026-09-25"
  },
