@@ -2,15 +2,24 @@ import { useState, useEffect } from 'react'
 import { Capacitor } from '@capacitor/core'
 import posthog from 'posthog-js'
 import { supabase } from '../lib/supabase'
+import { empreinte, versE164 } from '../lib/phone'
 
 // URL publique https de l'app (Universal Link). En natif, window.location.origin
 // vaut "capacitor://localhost" — inutilisable comme redirection de lien magique.
 const APP_URL = 'https://monac-out.vercel.app'
 
+// Retrouver ses amies par le carnet d'adresses : construit, pas branché.
+// Passer à true le jour où la migration supabase/2026-09-23-telephone.sql est
+// passée ET où l'interface correspondante est remise dans FriendsScreen.
+const CONTACTS_ACTIF = false
+
 export function useAuth() {
   const [user, setUser]       = useState(null)
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
+  // On sait seulement OUI ou NON. L'empreinte du numéro ne redescend jamais du
+  // serveur : elle n'a aucune raison de circuler, et ce qui ne circule pas ne fuit pas.
+  const [phoneSaved, setPhoneSaved] = useState(false)
 
   useEffect(() => {
     if (!supabase) { setLoading(false); return }
@@ -41,6 +50,40 @@ export function useAuth() {
       .single()
     setProfile(data)
     setLoading(false)
+    // ⏸ EN ATTENTE. Le carnet d'adresses a été mis de côté le 23 sep 2026 pour
+    // traiter d'abord l'ouverture de `profiles`. Tant que CONTACTS_ACTIF est faux,
+    // on n'interroge pas le serveur : inutile de payer un aller-retour à chaque
+    // chargement de profil pour une fonction dont rien ne se sert encore.
+    if (CONTACTS_ACTIF) {
+      try {
+        const { data: ok } = await supabase.rpc('mon_numero_est_enregistre')
+        setPhoneSaved(ok === true)
+      } catch { setPhoneSaved(false) }
+    }
+  }
+
+  // Enregistre MON numéro sous forme d'empreinte. Le numéro lui-même ne quitte
+  // jamais le téléphone — ni vers le serveur, ni vers PostHog, ni dans un log.
+  async function savePhone(brut) {
+    if (!supabase || !user) return { error: 'Non connecté' }
+    if (!versE164(brut)) return { error: 'Numéro non reconnu — essaie 06 12 34 56 78 ou 93 15 22 95' }
+    const hash = await empreinte(brut)
+    if (!hash) return { error: 'Ton navigateur ne sait pas chiffrer ce numéro' }
+    const { error } = await supabase.rpc('enregistrer_mon_numero', { hash })
+    if (error) return { error: error.message }
+    setPhoneSaved(true)
+    try { posthog.capture('phone_saved') } catch { /* analytics indispo */ }
+    return { ok: true }
+  }
+
+  // Le retirer doit être aussi simple que le donner.
+  async function removePhone() {
+    if (!supabase || !user) return { error: 'Non connecté' }
+    const { error } = await supabase.rpc('enregistrer_mon_numero', { hash: null })
+    if (error) return { error: error.message }
+    setPhoneSaved(false)
+    try { posthog.capture('phone_removed') } catch { /* analytics indispo */ }
+    return { ok: true }
   }
 
   // Envoie un lien magique (clic = connecté) + code en secours dans le même email.
@@ -99,5 +142,6 @@ export function useAuth() {
     return { ok: true }
   }
 
-  return { user, profile, loading, sendCode, verifyCode, saveProfile, signOut, deleteAccount }
+  return { user, profile, loading, phoneSaved, sendCode, verifyCode, saveProfile,
+           savePhone, removePhone, signOut, deleteAccount }
 }

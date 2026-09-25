@@ -135,13 +135,27 @@ export function useSocial(userId) {
     }
   }
 
+  // Cherche un profil par son code d'invitation.
+  // ⚠️ DEUX CHEMINS, ET C'EST VOLONTAIRE. `profiles` a été fermée le 23 sep 2026
+  // (elle était lisible en entier par n'importe qui, codes d'invitation compris) :
+  // la lecture passe désormais par `profil_par_code`. Mais l'OTA et la migration SQL
+  // n'arrivent jamais au même instant, et tout le monde n'est pas sur le dernier
+  // bundle. On essaie donc la fonction, et on retombe sur l'ancienne lecture tant
+  // qu'elle n'existe pas. ➜ La repli pourra disparaître quand la migration sera
+  // passée depuis longtemps : à ce moment-là, elle ne rendra plus rien de toute façon.
+  async function profilParCode(code) {
+    const propre = String(code || '').trim().toLowerCase()
+    if (!propre) return null
+    const { data, error } = await supabase.rpc('profil_par_code', { code: propre })
+    if (!error && Array.isArray(data)) return data[0] || null
+    const { data: direct } = await supabase
+      .from('profiles').select('id, display_name').eq('invite_code', propre).single()
+    return direct || null
+  }
+
   async function addFriendByCode(inviteCode) {
     if (!supabase || !userId) return { error: 'Non connecté' }
-    const { data: target } = await supabase
-      .from('profiles')
-      .select('id, display_name')
-      .eq('invite_code', inviteCode.trim().toLowerCase())
-      .single()
+    const target = await profilParCode(inviteCode)
     // Message explicite : « Code introuvable » laissait croire à une panne. Le cas
     // réel le plus fréquent est un lien partagé avant que le code soit chargé.
     if (!target) return { error: 'Ce code n\'existe pas — demande à ton amie de renvoyer son lien' }
@@ -152,6 +166,33 @@ export function useSocial(userId) {
     if (error && error.code !== '23505') return { error: error.message }
     await load()
     return { name: target.display_name }
+  }
+
+  // Croise le carnet d'adresses avec les personnes qui ont donné leur numéro.
+  // On n'envoie QUE des empreintes, calculées dans le téléphone (src/lib/phone.js) :
+  // les numéros des gens du carnet — qui n'ont rien demandé, eux — ne partent jamais.
+  // Le serveur ne rend que des profils, jamais une empreinte.
+  async function matchContacts(hashes) {
+    if (!supabase || !userId) return { error: 'Non connecté', trouvees: [] }
+    if (!hashes?.length) return { trouvees: [] }
+    const { data, error } = await supabase.rpc('match_contacts', { hashes })
+    if (error) return { error: error.message, trouvees: [] }
+    // On retire celles qui sont déjà des amies ou déjà invitées : les revoir dans
+    // la liste donnerait l'impression que le bouton n'a pas marché.
+    const connues = new Set([...friends.map(f => f.id), ...pending.map(p => p.id)])
+    return { trouvees: (data || []).filter(p => !connues.has(p.id)) }
+  }
+
+  // Même effet que le code d'invitation, mais on tient déjà l'identifiant.
+  async function addFriendById(id) {
+    if (!supabase || !userId) return { error: 'Non connecté' }
+    if (id === userId) return { error: 'C\'est toi !' }
+    const { error } = await supabase
+      .from('friendships')
+      .insert({ requester_id: userId, addressee_id: id })
+    if (error && error.code !== '23505') return { error: error.message }
+    await load()
+    return { ok: true }
   }
 
   async function acceptFriend(friendshipId) {
@@ -182,7 +223,8 @@ export function useSocial(userId) {
   return {
     myParticipations, friends, pending, visibility, charge,
     toggleParticipation, toggleVisibility,
-    addFriendByCode, acceptFriend, declineFriend, removeFriend,
+    addFriendByCode, addFriendById, matchContacts,
+    acceptFriend, declineFriend, removeFriend,
     friendsGoingTo, reload: load,
   }
 }

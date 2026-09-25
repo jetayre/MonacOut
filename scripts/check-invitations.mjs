@@ -87,20 +87,47 @@ if (!ids) {
   console.log("   ⏭  identifiants Supabase introuvables — contrôle base ignoré");
 } else {
   const [URL_SB, CLE] = ids;
+  // 🚨 CE CONTRÔLE LISAIT TOUS LES PROFILS — et c'est précisément ce qui a révélé,
+  // le 23 sep 2026, que `profiles` était ouverte à tous avec la clé publique.
+  // Il n'a jamais eu besoin des noms : il compte. La fonction `controle_codes()`
+  // rend donc trois nombres et rien d'autre. Le repli sur l'ancienne lecture ne
+  // sert qu'avant le passage de la migration ; après, elle ne rendra plus rien.
+  const tete = { apikey: CLE, Authorization: `Bearer ${CLE}`, "Content-Type": "application/json" };
+  let total = null, invalides = null, doublons = null, source = "";
   try {
-    const r = await fetch(`${URL_SB}/rest/v1/profiles?select=display_name,invite_code`,
-      { headers: { apikey: CLE, Authorization: `Bearer ${CLE}` } });
-    const profils = await r.json();
-    if (!Array.isArray(profils)) throw new Error(JSON.stringify(profils).slice(0, 120));
-    const mauvais = profils.filter(p => !/^[a-z0-9]{4,}$/i.test(p.invite_code || ""));
-    const doublons = [...profils.reduce((m, p) => m.set(p.invite_code, (m.get(p.invite_code) || 0) + 1), new Map())]
-      .filter(([, n]) => n > 1);
-    if (mauvais.length) ko(`${mauvais.length} profil(s) sans code exploitable : ${mauvais.map(p => p.display_name).join(", ")} — leurs liens d'invitation ne marcheront jamais`);
-    else ok(`les ${profils.length} profils ont un code valide`);
-    if (doublons.length) ko(`codes en double : ${doublons.map(([c]) => c).join(", ")} — deux personnes s'ajouteraient le mauvais ami`);
+    const r = await fetch(`${URL_SB}/rest/v1/rpc/controle_codes`, { method: "POST", headers: tete, body: "{}" });
+    const d = await r.json();
+    const l = Array.isArray(d) ? d[0] : d;
+    if (l && l.total !== undefined) {
+      ({ total, invalides, doublons } = l);
+      total = +total; invalides = +invalides; doublons = +doublons;
+      source = "controle_codes()";
+    }
+  } catch { /* fonction absente : on tente l'ancienne lecture */ }
+
+  if (total === null) {
+    try {
+      const r = await fetch(`${URL_SB}/rest/v1/profiles?select=display_name,invite_code`, { headers: tete });
+      const profils = await r.json();
+      if (!Array.isArray(profils)) throw new Error(JSON.stringify(profils).slice(0, 120));
+      total = profils.length;
+      invalides = profils.filter(p => !/^[a-z0-9]{4,}$/i.test(p.invite_code || "")).length;
+      doublons = [...profils.reduce((m, p) => m.set(p.invite_code, (m.get(p.invite_code) || 0) + 1), new Map())]
+        .filter(([, n]) => n > 1).length;
+      source = "lecture directe (migration pas encore passée)";
+    } catch (e) {
+      // ⚠️ NE PAS retomber sur « contrôle ignoré » en silence : c'est ainsi qu'un
+      // garde-fou meurt sans que personne ne s'en aperçoive. Si ni la fonction ni
+      // la lecture ne répondent, quelque chose ne va pas et il faut le dire.
+      ko("impossible de contrôler les codes : ni controle_codes() ni la lecture directe ne répondent (" + String(e.message).slice(0, 60) + ")");
+    }
+  }
+
+  if (total !== null) {
+    if (invalides) ko(`${invalides} profil(s) sans code exploitable — leurs liens d'invitation ne marcheront jamais (voir le dashboard Supabase)`);
+    else ok(`les ${total} profils ont un code valide · ${source}`);
+    if (doublons) ko(`${doublons} code(s) en double — deux personnes s'ajouteraient le mauvais ami`);
     else ok("aucun code en double");
-  } catch (e) {
-    console.log("   ⏭  base injoignable — contrôle ignoré (" + String(e.message).slice(0, 60) + ")");
   }
 }
 

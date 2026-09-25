@@ -25,6 +25,28 @@ function track(event, props) {
   try { posthog.capture(event, props); } catch { /* analytics indisponible */ }
 }
 
+// Le prénom de qui invite, pour la carte « Fiona t'invite ». La personne n'a pas
+// encore de compte : c'est la seule lecture de profil autorisée sans connexion.
+// ⚠️ DEUX CHEMINS. `profiles` a été fermée le 23 sep 2026 — elle était lisible en
+// entier par n'importe qui, codes d'invitation compris. On passe par la fonction
+// `prenom_par_code`, qui ne rend QUE le prénom. Le repli sur l'ancienne lecture
+// couvre l'intervalle entre la publication de l'OTA et le passage de la migration ;
+// une fois celle-ci passée, il ne rend simplement plus rien.
+async function prenomParCode(code) {
+  const propre = String(code || "").trim().toLowerCase();
+  if (!propre || !supabase) return null;
+  try {
+    const { data, error } = await supabase.rpc("prenom_par_code", { code: propre });
+    if (!error && typeof data === "string" && data) return data;
+    if (!error && data === null) return null;      // code inconnu : inutile de réessayer
+  } catch { /* fonction absente : on tente l'ancienne lecture */ }
+  try {
+    const { data } = await supabase
+      .from("profiles").select("display_name").eq("invite_code", propre).single();
+    return data?.display_name || null;
+  } catch { return null; }
+}
+
 const MOIS_APP = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
 function parseForNotif(e) {
@@ -530,10 +552,7 @@ export default function App() {
     // Navigateur intégré WhatsApp/Instagram : session Supabase absente → bannière Safari
     const ua = navigator.userAgent || "";
     const isInApp = !Capacitor.isNativePlatform() && /WhatsApp|Instagram|FBAN|FBAV|Twitter|Line\//.test(ua);
-    if (supabase) {
-      supabase.from("profiles").select("display_name").eq("invite_code", inv.trim().toLowerCase()).single()
-        .then(({ data }) => { if (data?.display_name) setInviterName(data.display_name); });
-    }
+    if (supabase) prenomParCode(inv).then(n => { if (n) setInviterName(n); });
     if (isInApp) { setShowInAppBanner(true); return; }
     // ── LE LIEN D'INVITATION DOIT MENER À L'APP ──────────────────────────────────
     // Relevé du 9 août 2026 : 20 personnes ont ouvert un lien d'invitation, toutes
@@ -634,10 +653,7 @@ export default function App() {
     const inv = localStorage.getItem("monacout_pending_invite");
     if (!inv) return;
     setShowAuth(true);
-    if (supabase) {
-      supabase.from("profiles").select("display_name").eq("invite_code", inv).single()
-        .then(({ data }) => { if (data?.display_name) setInviterName(data.display_name); });
-    }
+    if (supabase) prenomParCode(inv).then(n => { if (n) setInviterName(n); });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.loading, auth.user, deepLinkTick]);
 
