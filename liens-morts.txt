@@ -1,9 +1,13 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-09-27 — 106 liens, 2040 fiches.
+Contrôle du 2026-09-27 — 107 liens, 2041 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://yume.mc/
+   HTTP 500 — serveur en panne — 3 fiche(s)
+     · [id 1178] Dim 4 oct PILATES COMMUNITY DAY YUMÉ — yumé
+     · [id 1184] Dim 15 nov PILATES COMMUNITY NOVEMBRE — yumé
+     · [id 1936] Dim 7 mar PILATES COMMUNITY MARCH — yumé
 
 ■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
    Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
