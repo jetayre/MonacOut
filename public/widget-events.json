@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-26T19:09:13.731Z",
+  "generatedAt": "2026-09-27T05:26:18.774Z",
   "events": [
     {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,26 @@
       "emoji": "🌺"
     },
     {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
+      "time": "10h00 — 18h00",
+      "title": "RECOVERY WEEKEND ODÉON SPA",
+      "venue": "Odéon Spa",
+      "quarter": "Monte-Carlo",
+      "emoji": "💎"
+    },
+    {
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
+      "time": "08h30 — 18h05",
+      "title": "ROKETHON 2026",
+      "venue": "Chapiteau de Fontvielle",
+      "quarter": "Monaco",
+      "emoji": "🎪"
+    },
+    {
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -20,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +47,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -38,8 +56,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,31 +65,13 @@
       "emoji": "🎬"
     },
     {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
-      "time": "10h00 — 18h00",
-      "title": "MONACO YACHT SHOW",
-      "venue": "Port Hercule",
-      "quarter": "Monte-Carlo",
-      "emoji": "🛥️"
-    },
-    {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
-      "time": "10h00 — 16h00",
-      "title": "LA BRADERIE",
-      "venue": "Parc Princesse Antoinette",
+      "date": "Dim 27 sep",
+      "iso": "2026-09-27",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
       "quarter": "Monaco",
-      "emoji": "🎪"
-    },
-    {
-      "date": "Sam 26 sep",
-      "iso": "2026-09-26",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
+      "emoji": "⛪"
     }
   ]
 }
