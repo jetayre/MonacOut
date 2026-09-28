@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T19:41:34.525Z",
+  "generatedAt": "2026-09-28T05:27:23.882Z",
   "events": [
     {
       "date": "Dim 27 sep",
@@ -13,20 +13,20 @@
     {
       "date": "Dim 27 sep",
       "iso": "2026-09-27",
-      "time": "10h00 — 18h00",
-      "title": "RECOVERY WEEKEND ODÉON SPA",
-      "venue": "Odéon Spa",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
       "quarter": "Monte-Carlo",
-      "emoji": "💎"
+      "emoji": "🥂"
     },
     {
-      "date": "Dim 27 sep",
-      "iso": "2026-09-27",
-      "time": "08h30 — 18h05",
-      "title": "ROKETHON 2026",
-      "venue": "Chapiteau de Fontvielle",
-      "quarter": "Monaco",
-      "emoji": "🎪"
+      "date": "Lun 28 sep",
+      "iso": "2026-09-28",
+      "time": "10h00 — 17h00",
+      "title": "JOURNÉE D'EXPERTISE JOAILLERIE HERMITAGE FINE ART",
+      "venue": "Hermitage Fine Art",
+      "quarter": "Monte-Carlo",
+      "emoji": "🔨"
     },
     {
       "date": "Dim 27 sep",
@@ -67,11 +67,11 @@
     {
       "date": "Dim 27 sep",
       "iso": "2026-09-27",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
-      "quarter": "Monaco",
-      "emoji": "⛪"
+      "time": "En journée",
+      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
+      "venue": "Grilles des Jardins Saint-Martin",
+      "quarter": "Monaco-Ville",
+      "emoji": "📷"
     }
   ]
 }
