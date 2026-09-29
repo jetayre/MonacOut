@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-28T21:46:37.583Z",
+  "generatedAt": "2026-09-29T10:15:09.637Z",
   "events": [
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,26 +11,17 @@
       "emoji": "🌺"
     },
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
-      "time": "18h00 — 20h00",
-      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
-      "venue": "Square Beaumarchais",
-      "quarter": "Monte-Carlo",
-      "emoji": "🥂"
-    },
-    {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
-      "time": "10h00 — 17h00",
-      "title": "JOURNÉE D'EXPERTISE JOAILLERIE HERMITAGE FINE ART",
-      "venue": "Hermitage Fine Art",
-      "quarter": "Monte-Carlo",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
+      "time": "En journée",
+      "title": "JOURNÉE D'EXPERTISE ARTCURIAL MONACO",
+      "venue": "Artcurial",
+      "quarter": "Monaco",
       "emoji": "🔨"
     },
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -47,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -56,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -65,13 +56,22 @@
       "emoji": "🎬"
     },
     {
-      "date": "Lun 28 sep",
-      "iso": "2026-09-28",
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
       "time": "10h00",
-      "title": "MUSÉES 4 OUVERTS À MONACO",
+      "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
       "quarter": "Monaco",
       "emoji": "🏛️"
+    },
+    {
+      "date": "Mar 29 sep",
+      "iso": "2026-09-29",
+      "time": "En journée",
+      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
+      "venue": "Grilles des Jardins Saint-Martin",
+      "quarter": "Monaco-Ville",
+      "emoji": "📷"
     }
   ]
 }

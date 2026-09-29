@@ -1,13 +1,10 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-28
-318 événements lus · 8 importés (8 fiches) · 269 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-29
+318 événements lus · 5 importés (5 fiches) · 272 déjà présents
 
 ■ IMPORTÉS
-   + Getting started with iPhone Level 1 — Maison du Numérique de Monaco (1 jour(s))
-   + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
-   + Getting started with Android phone Level 1 — Maison du Numérique de Monaco (1 jour(s))
    + Paques sanglantes de Giuseppe De Santis — Théâtre des Variétés (1 jour(s))
+   + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
    + Romeo et Juliette — Opéra Garnier Monte-Carlo (1 jour(s))
-   + Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner — Médiathèque Caroline (1 jour(s))
    + Bronia and Altro Canto — Grimaldi Forum Monaco (1 jour(s))
    + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
 
@@ -19,6 +16,11 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-28
    · Monaco International Triathlon — DÉJÀ DANS L'APP (fiche « MONACO INTERNATIONAL TRIATHLON », ven 6 nov, « 6 — 8 nov 2026 », plage du Larvotto). Le rapprochement automatique échoue parce que notre fiche porte une PÉRIODE dans le champ heure et non un horaire, et que le lieu est écrit différemment. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter, ce serait un doublon.
    · MARINE IN CONCERT — 17 août 2026 — PrinciPocket annonce le 27 février 2027, date FAUSSE. Vérifié sur jds.fr : le concert est le sam 13 février 2027 à 20h30 au Grimaldi Forum. Notre fiche 4741 porte la bonne date ; un doublon créé par le robot sur la fausse date a été supprimé. Ne pas réimporter.
    · Marine en concert — 18 aout 2026 — DEUXIEME entree PrinciPocket pour le meme concert, avec le meme mauvais 27 fevrier. C'est elle qui a recree la fiche 800012 dans la nuit du 17 au 18. Vraie date verifiee sur jds.fr : sam 13 fevrier 2027, 20h30, Grimaldi Forum (fiche 4741). Ne pas reimporter.
+   · Ligue 1 AS MONACO STADE RENNAIS FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800048, « LIGUE 1 AS MONACO STADE RENNAIS FC », Stade Louis II, sam 10 avr 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire du match, donc le rapprochement auto par date échoue — mais le match est bien présent. Un seul match domicile par adversaire et par saison. Ne pas réimporter (doublon).
+   · Ligue 1 AS MONACO RC STRASBOURG — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800049, « LIGUE 1 AS MONACO RC STRASBOURG », Stade Louis II, sam 17 avr 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
+   · Ligue 1 AS MONACO FC LORIENT — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800051, « LIGUE 1 AS MONACO FC LORIENT », Stade Louis II, sam 1 mai 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
+   · Ligue 1 AS MONACO Paris FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800050, « LIGUE 1 AS MONACO PARIS FC », Stade Louis II, dim 16 mai 2027). Match domicile de la saison 2026-2027 (Paris FC promu en Ligue 1). PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
+   · Ligue 1 AS MONACO ESTAC Troyes — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800052, « LIGUE 1 AS MONACO ESTAC TROYES », Stade Louis II, sam 29 mai 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
 
 ■ ⚠️ HORS DE MONACO — écartés d'office (règle 15)
    ! Volley Ball EFB Journee 01 ASS SPORTIVE DE MONACO J S A BORDEAUX — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
@@ -26,34 +28,24 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-09-28
    ! Volley Ball EFB Journee 03 ASS SPORTIVE DE MONACO US CAGNES VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 11 ASS SPORTIVE DE MONACO ASUL LYON VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 15 ASS SPORTIVE DE MONACO MANDELIEU LA NAPOULE V B — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 15 ASS SPORTIVE DE MONACO MANDELIEU LA NAPOULE V B — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 19 ASS SPORTIVE DE MONACO MARSEILLE VOLLEY 13 — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 19 ASS SPORTIVE DE MONACO VOLLEY MULHOUSE ALSACE 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 21 ASS SPORTIVE DE MONACO AIX UNIVERSITE CLUB 13 VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 22 ASS SPORTIVE DE MONACO VOLLEY BALMA QUINT FONSEGRIVES — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
 
 ■ 🚨 ÉCARTÉS DEPUIS PLUS DE 3 JOURS — demandent une décision humaine
-   ! vu le 2026-08-20 · heure non publiée et catégorie SPECTACLE en exige une
-     https://www.principocket.com/en/events/78b3e9c01be0e5de69c1efbfb1c8168d-Ligue-1-AS-MONACO-STADE-RENNAIS-FC
-   ! vu le 2026-08-20 · heure non publiée et catégorie SPECTACLE en exige une
-     https://www.principocket.com/en/events/fb3e84b5dabc3452ce67aa6fa2f71d4e-Ligue-1-AS-MONACO-RC-STRASBOURG
-   ! vu le 2026-08-20 · heure non publiée et catégorie SPECTACLE en exige une
-     https://www.principocket.com/en/events/cbf5ddc657400d3b6d951cd9ced3c5ac-Ligue-1-AS-MONACO-Paris-FC
-   ! vu le 2026-08-20 · heure non publiée et catégorie SPECTACLE en exige une
-     https://www.principocket.com/en/events/a333ad3c26a0826c929560b816ccd287-Ligue-1-AS-MONACO-FC-LORIENT
-   ! vu le 2026-08-20 · heure non publiée et catégorie SPECTACLE en exige une
-     https://www.principocket.com/en/events/fa4d53307ee338a6b9d9cf9eef84ce84-Ligue-1-AS-MONACO-ESTAC-Troyes
    ! vu le 2026-09-22 · heure non publiée et catégorie CONCERT en exige une
      https://www.principocket.com/en/events/7b358afa85ef94ea51740e101db6df35-THURSDAY-LIVE-SESSIONS-THE-SPITFIRES
    ! vu le 2026-09-22 · heure non publiée et catégorie CONCERT en exige une
