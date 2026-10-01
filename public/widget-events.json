@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T18:18:47.942Z",
+  "generatedAt": "2026-10-01T20:56:27.052Z",
   "events": [
     {
       "date": "Jeu 1 oct",
@@ -9,15 +9,6 @@
       "venue": "La Rose des Vents",
       "quarter": "Larvotto",
       "emoji": "🌺"
-    },
-    {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
-      "time": "18h00 — 20h00",
-      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
-      "venue": "Square Beaumarchais",
-      "quarter": "Monte-Carlo",
-      "emoji": "🥂"
     },
     {
       "date": "Jeu 1 oct",
@@ -72,6 +63,15 @@
       "venue": "Grilles des Jardins Saint-Martin",
       "quarter": "Monaco-Ville",
       "emoji": "📷"
+    },
+    {
+      "date": "Jeu 1 oct",
+      "iso": "2026-10-01",
+      "time": "11h00 — 19h00",
+      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🚩"
     }
   ]
 }
