@@ -1,25 +1,6 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-10-02 — 102 liens, 2017 fiches.
+Contrôle du 2026-10-02 — 102 liens, 2019 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-■ https://croix-rouge.mc/nos-missions/se-former/formations-et-initiations/
-   HTTP 503 — serveur en panne — 5 fiche(s)
-     · [id 1000376] Sam 10 oct PREMIERS SECOURS FORMATION ADULTES — Croix-Rouge Monégasque
-     · [id 1000377] Sam 24 oct PREMIERS SECOURS FORMATION ADULTES — Croix-Rouge Monégasque
-     · [id 1000378] Sam 14 nov PREMIERS SECOURS FORMATION ADULTES — Croix-Rouge Monégasque
-     · [id 1000379] Sam 28 nov PREMIERS SECOURS FORMATION ADULTES — Croix-Rouge Monégasque
-     · [id 1000380] Sam 12 déc PREMIERS SECOURS FORMATION ADULTES — Croix-Rouge Monégasque
-
-■ https://croix-rouge.mc/la-maison-croix-rouge/agenda-de-lannee/
-   HTTP 503 — serveur en panne — 1 fiche(s)
-     · [id 1000368] Sam 17 oct GRANDE BRADERIE DE LA CROIX-ROUGE — Croix-Rouge Monégasque
-
-■ https://childrenandfuture.com/no-finish-line/
-   HTTP 503 — serveur en panne — 1 fiche(s)
-     · [id 1000369] Sam 14 nov 27e NO FINISH LINE MONACO — Chapiteau de Fontvieille
-
-■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
-   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
-   de lien mort : le contenu, lui, n'a pas pu être lu.
-     · https://fightaidsmonaco.org/event-cat/nos-evenements/ — AbortError — 1 fiche(s)
+✅ Aucun lien mort.
