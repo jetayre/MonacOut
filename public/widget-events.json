@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-01T20:56:27.052Z",
+  "generatedAt": "2026-10-02T10:09:32.959Z",
   "events": [
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,17 @@
       "emoji": "🌺"
     },
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
+    },
+    {
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -20,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -38,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,8 +56,8 @@
       "emoji": "🎬"
     },
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
       "time": "10h00",
       "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
@@ -56,22 +65,13 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
-      "time": "En journée",
-      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
-      "venue": "Grilles des Jardins Saint-Martin",
-      "quarter": "Monaco-Ville",
-      "emoji": "📷"
-    },
-    {
-      "date": "Jeu 1 oct",
-      "iso": "2026-10-01",
-      "time": "11h00 — 19h00",
-      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
-      "venue": "Villa Paloma",
+      "date": "Ven 2 oct",
+      "iso": "2026-10-02",
+      "time": "10h30 — 11h30",
+      "title": "APPRENDRE A RECONNAITRE LES ARNAQUES EN LIGNE",
+      "venue": "Maison du Numérique de Monaco",
       "quarter": "Monaco",
-      "emoji": "🚩"
+      "emoji": "🎪"
     }
   ]
 }
