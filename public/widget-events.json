@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-03T05:24:46.259Z",
+  "generatedAt": "2026-10-03T09:32:29.406Z",
   "events": [
     {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,17 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
-      "time": "18h00 — 20h00",
-      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
-      "venue": "Square Beaumarchais",
-      "quarter": "Monte-Carlo",
-      "emoji": "🥂"
-    },
-    {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +20,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -47,8 +38,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -56,22 +47,31 @@
       "emoji": "🎬"
     },
     {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
+      "time": "10h00 — 17h00",
+      "title": "GARDEN CLUB #6 ET SI LE SOLEIL ÉTAIT BLEU ?",
+      "venue": "Pavillon Bosio",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎨"
+    },
+    {
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
+      "time": "10h00",
+      "title": "MUSÉES 6 OUVERTS À MONACO",
+      "venue": "Musées de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
       "time": "En journée",
       "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
       "venue": "Grilles des Jardins Saint-Martin",
       "quarter": "Monaco-Ville",
       "emoji": "📷"
-    },
-    {
-      "date": "Ven 2 oct",
-      "iso": "2026-10-02",
-      "time": "11h00 — 19h00",
-      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🚩"
     }
   ]
 }
