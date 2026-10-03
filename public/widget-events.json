@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T20:35:20.603Z",
+  "generatedAt": "2026-10-03T05:24:46.259Z",
   "events": [
     {
       "date": "Ven 2 oct",
@@ -58,20 +58,20 @@
     {
       "date": "Ven 2 oct",
       "iso": "2026-10-02",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
+      "time": "En journée",
+      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
+      "venue": "Grilles des Jardins Saint-Martin",
+      "quarter": "Monaco-Ville",
+      "emoji": "📷"
     },
     {
       "date": "Ven 2 oct",
       "iso": "2026-10-02",
-      "time": "10h30 — 11h30",
-      "title": "APPRENDRE A RECONNAITRE LES ARNAQUES EN LIGNE",
-      "venue": "Maison du Numérique de Monaco",
+      "time": "11h00 — 19h00",
+      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
+      "venue": "Villa Paloma",
       "quarter": "Monaco",
-      "emoji": "🎪"
+      "emoji": "🚩"
     }
   ]
 }
