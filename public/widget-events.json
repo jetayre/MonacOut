@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T19:08:23.897Z",
+  "generatedAt": "2026-10-04T05:23:48.134Z",
   "events": [
     {
       "date": "Sam 3 oct",
@@ -9,6 +9,24 @@
       "venue": "La Rose des Vents",
       "quarter": "Larvotto",
       "emoji": "🌺"
+    },
+    {
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
+      "time": "10h00 — 12h30",
+      "title": "PILATES COMMUNITY DAY YUMÉ",
+      "venue": "yumé",
+      "quarter": "Monte-Carlo",
+      "emoji": "💫"
+    },
+    {
+      "date": "Sam 3 oct",
+      "iso": "2026-10-03",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Sam 3 oct",
@@ -45,24 +63,6 @@
       "venue": "Institut Audiovisuel",
       "quarter": "Monaco",
       "emoji": "🎬"
-    },
-    {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
-      "time": "10h00 — 17h00",
-      "title": "GARDEN CLUB #6 ET SI LE SOLEIL ÉTAIT BLEU ?",
-      "venue": "Pavillon Bosio",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎨"
-    },
-    {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
     },
     {
       "date": "Sam 3 oct",
