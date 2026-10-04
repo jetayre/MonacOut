@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-04T05:23:48.134Z",
+  "generatedAt": "2026-10-04T10:18:51.937Z",
   "events": [
     {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -20,17 +20,8 @@
       "emoji": "💫"
     },
     {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
-      "time": "18h00 — 20h00",
-      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
-      "venue": "Square Beaumarchais",
-      "quarter": "Monte-Carlo",
-      "emoji": "🥂"
-    },
-    {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -47,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -56,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -65,13 +56,22 @@
       "emoji": "🎬"
     },
     {
-      "date": "Sam 3 oct",
-      "iso": "2026-10-03",
-      "time": "En journée",
-      "title": "PATRIMOINE EN DANGER JARDINS SAINT-MARTIN",
-      "venue": "Grilles des Jardins Saint-Martin",
-      "quarter": "Monaco-Ville",
-      "emoji": "📷"
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 4 oct",
+      "iso": "2026-10-04",
+      "time": "10h00 — 17h00",
+      "title": "GARDEN CLUB #6 ET SI LE SOLEIL ÉTAIT BLEU ?",
+      "venue": "Pavillon Bosio",
+      "quarter": "Monte-Carlo",
+      "emoji": "🎨"
     }
   ]
 }
