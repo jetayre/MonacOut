@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T19:24:08.848Z",
+  "generatedAt": "2026-10-05T05:29:48.254Z",
   "events": [
     {
       "date": "Dim 4 oct",
@@ -13,11 +13,11 @@
     {
       "date": "Dim 4 oct",
       "iso": "2026-10-04",
-      "time": "10h00 — 12h30",
-      "title": "PILATES COMMUNITY DAY YUMÉ",
-      "venue": "yumé",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
       "quarter": "Monte-Carlo",
-      "emoji": "💫"
+      "emoji": "🥂"
     },
     {
       "date": "Dim 4 oct",
@@ -58,20 +58,20 @@
     {
       "date": "Dim 4 oct",
       "iso": "2026-10-04",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
+      "time": "11h00 — 19h00",
+      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
+      "venue": "Villa Paloma",
       "quarter": "Monaco",
-      "emoji": "⛪"
+      "emoji": "🚩"
     },
     {
       "date": "Dim 4 oct",
       "iso": "2026-10-04",
-      "time": "10h00 — 17h00",
-      "title": "GARDEN CLUB #6 ET SI LE SOLEIL ÉTAIT BLEU ?",
-      "venue": "Pavillon Bosio",
-      "quarter": "Monte-Carlo",
-      "emoji": "🎨"
+      "time": "11h00 — 19h00",
+      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🖼️"
     }
   ]
 }
