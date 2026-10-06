@@ -1,9 +1,12 @@
 REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-06
-292 événements lus · 4 importés (4 fiches) · 253 déjà présents
+292 événements lus · 7 importés (7 fiches) · 250 déjà présents
 
 ■ IMPORTÉS
+   + Heure Sainte — Eglise Saint-Charles (1 jour(s))
+   + Getting started with Android phone Level 1 — Maison du Numérique de Monaco (1 jour(s))
    + Paques sanglantes de Giuseppe De Santis — Théâtre des Variétés (1 jour(s))
    + Romeo et Juliette — Opéra Garnier Monte-Carlo (1 jour(s))
+   + Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner — Médiathèque Caroline (1 jour(s))
    + Bronia and Altro Canto — Grimaldi Forum Monaco (1 jour(s))
    + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
 
@@ -23,10 +26,10 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-06
 ■ ⚠️ HORS DE MONACO — écartés d'office (règle 15)
    ! Volley Ball 2MA Journee 03 ASS SPORTIVE DE MONACO LYON CROIX ROUSSE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 03 ASS SPORTIVE DE MONACO US CAGNES VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
