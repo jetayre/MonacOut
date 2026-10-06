@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-06T05:25:50.023Z",
+  "generatedAt": "2026-10-06T05:26:50.708Z",
   "events": [
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "18h00 — 20h00",
       "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
       "venue": "Square Beaumarchais",
@@ -20,8 +20,8 @@
       "emoji": "🥂"
     },
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -38,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -47,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -56,22 +56,22 @@
       "emoji": "🎬"
     },
     {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
+      "time": "10h00",
+      "title": "MUSÉES 6 OUVERTS À MONACO",
+      "venue": "Musées de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Mar 6 oct",
+      "iso": "2026-10-06",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🚩"
-    },
-    {
-      "date": "Lun 5 oct",
-      "iso": "2026-10-05",
-      "time": "11h00 — 19h00",
-      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🖼️"
     }
   ]
 }
