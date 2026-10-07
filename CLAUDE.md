@@ -460,6 +460,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | AMU Monte-Carlo | https://amu-montecarlo.com/ | APÉRO, SOIRÉE | +377 9315 4848 |
 | Nikki Beach Monte Carlo | https://nikkibeach.com/monte-carlo/ | BRUNCH, SOIRÉE | +377 9330 0700 |
 | Le Méridien Beach Plaza | https://www.marriott.com/en-us/hotels/mcmmd-le-meridien-beach-plaza/dining/ | BRUNCH, SOIRÉE, BIEN-ÊTRE (Larvotto) | +377 93 30 98 80 |
+| Sen Monaco | https://senmonaco.com/ | SOIRÉE — restaurant japonais gastronomique confidentiel façon speakeasy (ouvert 2026, chef Hiroki Hiyama, famille Kodera), Le Méridien Beach Plaza, 22 av. Princesse Grace · Larvotto ; mar-sam 12h-15h / 19h-23h, fermé dim et lun | +377 3770 4347 |
 | Lilly's Club | https://lillysclub.com/ | SOIRÉE, DJ SET | |
 | Amber Lounge Monaco | https://www.amberlounge.com/events/monaco-2026/ | SOIRÉE, GALA | |
 | Nobu Monte-Carlo | https://www.fairmont.com/en/hotels/monte-carlo/fairmont-monte-carlo/dining/nobu.restaurant.html | SOIRÉE | |
