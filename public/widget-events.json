@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T21:13:39.061Z",
+  "generatedAt": "2026-10-09T05:28:44.512Z",
   "events": [
     {
       "date": "Jeu 8 oct",
@@ -58,20 +58,20 @@
     {
       "date": "Jeu 8 oct",
       "iso": "2026-10-08",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Jeu 8 oct",
-      "iso": "2026-10-08",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🚩"
+    },
+    {
+      "date": "Jeu 8 oct",
+      "iso": "2026-10-08",
+      "time": "11h00 — 19h00",
+      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🖼️"
     }
   ]
 }
