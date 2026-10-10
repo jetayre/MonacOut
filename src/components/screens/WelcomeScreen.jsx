@@ -1,6 +1,6 @@
 const NAVY = "#0F1D3A";
-const GOLD = "#C4A241";
-const GOLD_FRAME = "#C9A96E";
+const GOLD = "#7B2D26";
+const GOLD_FRAME = "#7B2D26";
 const BLUE = "#9FC3DC";
 
 // Écran d'accueil au 1er lancement. Invite à se connecter, SANS jamais forcer :

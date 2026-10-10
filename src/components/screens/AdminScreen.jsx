@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const NAVY = "#0F1D3A";
-const GOLD = "#C9A96E";
+const GOLD = "#7B2D26";
 const IVORY = "#FDFAF5";
 const PROJECT_ID = "182674";
 const STORAGE_KEY = "monacout_admin_key";

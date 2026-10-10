@@ -10,7 +10,7 @@ function PhoneIcon() {
 }
 
 const NAVY = "#0F1D3A";
-const GOLD = "#C4A241";
+const GOLD = "#7B2D26";
 const GOLD2 = "#FFFFFF";
 const GREY = "#6A6860";
 const WHITE = "#FFFFFF";

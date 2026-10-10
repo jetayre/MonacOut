@@ -2,13 +2,14 @@ import { useState } from "react";
 import { fichierVersAvatar } from '../lib/avatar';
 import { Capacitor } from "@capacitor/core";
 import { localizeCat, localizeTitle } from "../i18n";
+import { couleurCat } from "../lib/couleurs";
 import BandeauWeb from "./BandeauWeb";
 
 const IS_NATIVE = Capacitor.isNativePlatform();
 
 const NAVY = "#0F1D3A";
-const GOLD = "#C4A241";
-const GOLD_FRAME = "#C9A96E";
+const GOLD = "#7B2D26";
+const GOLD_FRAME = "#7B2D26";
 const BLUE = "#9FC3DC";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
@@ -203,8 +204,8 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                 {/* Catégorie */}
                 <div style={{
                   fontFamily: "'Josefin Sans', sans-serif",
-                  fontSize: 10, fontWeight: 600, letterSpacing: 3,
-                  textTransform: "uppercase", color: GOLD,
+                  fontSize: 13, fontWeight: 700, letterSpacing: 3,
+                  textTransform: "uppercase", color: couleurCat(selectedEvent.cat),
                   marginBottom: 6, textAlign: "center",
                 }}>{localizeCat(selectedEvent.cat, lang)}</div>
 

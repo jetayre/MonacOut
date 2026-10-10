@@ -739,6 +739,7 @@ export default function App() {
   // message est déjà passé dans la visite, on ne consomme pas l'occasion, sinon la
   // personne perdrait sa 1ʳᵉ fois sans avoir rien vu.
   const INVITE_OUV = "monacout_invite_ouvertures";
+  const INVITE_DERNIER = "monacout_invite_dernier";
   function maybeAskInvite(moment) {
     // ⚠️ SUR LE SITE, LA CARTE NE SERT PLUS À RIEN — le bandeau permanent
     // « Regarde où vont tes amis ce soir » (BandeauWeb) dit déjà la même chose,
@@ -746,15 +747,34 @@ export default function App() {
     // sollicitations empilées sur l'écran de bienvenue. La carte reste entière
     // dans l'app installée, où aucun bandeau ne peut proposer l'App Store.
     if (!Capacitor.isNativePlatform() && moment === "sans-compte") return false;
+    // ── LA CARTE NE S'ÉTEINT PLUS JAMAIS (10 oct 2026) ──────────────────────────
+    // Avant : `if (n > 3) return false` la coupait DÉFINITIVEMENT après la 3ᵉ
+    // ouverture, sur cet appareil, pour toujours. La règle supposait un flux de
+    // nouveaux venus ; avec une audience fidèle elle se condamne elle-même en
+    // quelques jours. Mesuré : carte montrée à 44 personnes la semaine du 16 août,
+    // 7 celle du 13 septembre, alors que les ouvertures d'app n'avaient baissé
+    // que de moitié. Part des ouvreurs qui la voyaient : 63 % → 18 %.
+    //
+    // Demande de Stéphanie, 10 oct 2026 : « 2× par mois », sans fin.
+    // ⚠️ MAIS PAS une règle purement calendaire : en août, « 2 fois espacées de
+    // 14 jours » rendait la carte invisible deux semaines après un seul « Plus
+    // tard », et Stéphanie a rouvert l'app quatre fois sans la revoir. On garde
+    // donc les OUVERTURES pour le premier contact — c'est ce qu'elle avait
+    // demandé le 17 août — et on ne passe au rythme mensuel qu'ensuite.
     const n = readNum(INVITE_OUV) + 1;
-    if (n > 3) return false;                       // 1ʳᵉ et 3ᵉ : c'est fini après
-    if (n !== 1 && n !== 3) { writeNum(INVITE_OUV, n); return false; }  // la 2ᵉ passe
-    if (promptedThisSessionRef.current) return false;                   // créneau pris
     writeNum(INVITE_OUV, n);
+    const premierContact = (n === 1 || n === 3);
+    if (!premierContact) {
+      // Ensuite : deux fois par mois, soit au plus une fois tous les 15 jours.
+      const last = readNum(INVITE_DERNIER);
+      if (last && Date.now() - last < 15 * DAY_MS) return false;
+    }
+    if (promptedThisSessionRef.current) return false;                   // créneau pris
     promptedThisSessionRef.current = true;
+    writeNum(INVITE_DERNIER, Date.now());
     nudgeOuvertA.current = Date.now();
     setShowInviteNudge(true);
-    track("invite_nudge_shown", { moment, ouverture: n });
+    track("invite_nudge_shown", { moment, ouverture: n, rythme: premierContact ? "premier-contact" : "mensuel" });
     return true;
   }
 
@@ -959,12 +979,12 @@ export default function App() {
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}
            onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}>
         <div onClick={e => e.stopPropagation()}
-             style={{ position: "relative", background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+             style={{ position: "relative", background: "#FFFDF7", border: "1px solid #7B2D26", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
           <button
             aria-label={lang === "en" ? "Close" : "Fermer"}
             onClick={() => { setGoingEnAttente(null); track("going_nudge_ferme"); }}
             style={{ position: "absolute", top: 8, right: 8, width: 30, height: 30, borderRadius: "50%",
-                     background: "#fff", border: "1px solid #C9A96E", cursor: "pointer",
+                     background: "#fff", border: "1px solid #7B2D26", cursor: "pointer",
                      fontSize: 17, color: "#0F1D3A", lineHeight: 1, padding: 0,
                      display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
@@ -991,12 +1011,12 @@ export default function App() {
              setShowInviteNudge(false); track("invite_nudge_ferme");
            }}>
         <div onClick={e => e.stopPropagation()}
-             style={{ position: "relative", background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+             style={{ position: "relative", background: "#FFFDF7", border: "1px solid #7B2D26", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
           <button
             aria-label={lang === "en" ? "Close" : "Fermer"}
             onClick={() => { setShowInviteNudge(false); track("invite_nudge_ferme"); }}
             style={{ position: "absolute", top: 8, right: 8, width: 30, height: 30, borderRadius: "50%",
-                     background: "#fff", border: "1px solid #C9A96E", cursor: "pointer",
+                     background: "#fff", border: "1px solid #7B2D26", cursor: "pointer",
                      fontSize: 17, color: "#0F1D3A", lineHeight: 1, padding: 0,
                      display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
@@ -1035,7 +1055,7 @@ export default function App() {
     )}
     {showPhotoNudge && auth.user && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
-        <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+        <div style={{ background: "#FFFDF7", border: "1px solid #7B2D26", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
           <label htmlFor="mo-avatar-nudge" style={{ display: "block", width: 72, margin: "0 auto 12px", cursor: "pointer" }}>
             <div style={{
               width: 72, height: 72, borderRadius: "50%", border: "1px solid rgba(15,29,58,0.25)",
@@ -1076,7 +1096,7 @@ export default function App() {
 
     {showFavNudge && !auth.user && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
-        <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+        <div style={{ background: "#FFFDF7", border: "1px solid #7B2D26", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
           <div style={{ fontSize: 32, marginBottom: 10 }}>❤️</div>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, letterSpacing: 0.5 }}>
             {lang === "en" ? "Keep your favourites" : "Garde tes favoris"}
@@ -1099,7 +1119,7 @@ export default function App() {
     {/* Petit message maison AVANT la demande iOS de notifications (meilleure acceptation) */}
     {showNotifPrompt && (
       <div style={{ position: "fixed", inset: 0, zIndex: 3000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(15,29,58,0.45)" }}>
-        <div style={{ background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
+        <div style={{ background: "#FFFDF7", border: "1px solid #7B2D26", borderRadius: 8, maxWidth: 300, margin: 20, padding: "26px 22px", textAlign: "center", boxShadow: "0 12px 44px rgba(0,0,0,0.28)" }}>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 16, color: "#0F1D3A", marginBottom: 8, marginTop: 4, letterSpacing: 0.5 }}>
             {lang === "en" ? "Never miss a great outing" : "Ne rate aucune belle sortie"}
           </div>
@@ -1124,7 +1144,7 @@ export default function App() {
         affiché en clair pour qu'elle puisse le saisir après installation. */}
     {showInstallInvite && (
       <div style={{ position: "fixed", inset: 0, zIndex: 4000, background: "rgba(15,29,58,0.55)", display: "flex", alignItems: "flex-end" }}>
-        <div style={{ position: "relative", width: "100%", background: "#FFFDF7", borderRadius: "16px 16px 0 0", padding: "26px 24px 34px", textAlign: "center", borderTop: "1px solid #C9A96E" }}>
+        <div style={{ position: "relative", width: "100%", background: "#FFFDF7", borderRadius: "16px 16px 0 0", padding: "26px 24px 34px", textAlign: "center", borderTop: "1px solid #7B2D26" }}>
           <div style={{ fontFamily: "Georgia, 'Playfair Display', serif", fontWeight: 700, fontSize: 40, color: "#0F1D3A", lineHeight: 1 }}>M</div>
           <div style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 15, fontWeight: 600, letterSpacing: 1, color: "#0F1D3A", marginTop: 12, marginBottom: 8 }}>
             {inviterName
@@ -1143,7 +1163,7 @@ export default function App() {
           </a>
           <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12, color: "#6A7080", marginTop: 14, lineHeight: 1.6 }}>
             {lang === "en" ? "Your invite code:" : "Ton code d'invitation :"}{" "}
-            <b style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 15, letterSpacing: 3, color: "#C4A241" }}>{codeInvitation.toUpperCase()}</b>
+            <b style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 15, letterSpacing: 3, color: "#7B2D26" }}>{codeInvitation.toUpperCase()}</b>
             <br />
             {lang === "en" ? "Enter it in My Circle after installing." : "À saisir dans Mon Cercle après l'installation."}
           </div>
@@ -1192,7 +1212,7 @@ export default function App() {
 
     {/* Bandeau discret « mise à jour disponible » (piloté par notif-config.json) */}
     {updateAvailable && (
-      <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 3200, display: "flex", alignItems: "center", gap: 12, background: "#FFFDF7", border: "1px solid #C9A96E", borderRadius: 8, padding: "10px 12px 10px 16px", boxShadow: "0 8px 30px rgba(0,0,0,0.22)", maxWidth: "88%" }}>
+      <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 3200, display: "flex", alignItems: "center", gap: 12, background: "#FFFDF7", border: "1px solid #7B2D26", borderRadius: 8, padding: "10px 12px 10px 16px", boxShadow: "0 8px 30px rgba(0,0,0,0.22)", maxWidth: "88%" }}>
         <div style={{ fontFamily: "'Lato', sans-serif", fontSize: 12.5, color: "#0F1D3A", lineHeight: 1.4 }}>
           {lang === "en" ? "A new version is available." : "Une nouvelle version est disponible."}
         </div>

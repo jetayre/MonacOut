@@ -17,7 +17,7 @@ import { track } from "../lib/track";
 // visite en cours et il revient à la suivante. On propose, on n'enferme personne.
 
 const NAVY = "#0F1D3A";
-const GOLD_FRAME = "#C9A96E";
+const GOLD_FRAME = "#7B2D26";
 const IVORY = "#FFFDF7";
 const GREY = "#6A7080";
 const SLATE = "#4A5568";

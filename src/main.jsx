@@ -25,7 +25,7 @@ class ErrorBoundary extends Component {
       <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", height:"100dvh", fontFamily:"sans-serif", color:"#0F1D3A", gap:16 }}>
         <div style={{ fontSize:32 }}>⚠️</div>
         <div style={{ fontWeight:600 }}>Une erreur est survenue</div>
-        <button onClick={() => window.location.reload()} style={{ padding:"10px 24px", background:"#C4A241", color:"#fff", border:"none", borderRadius:8, cursor:"pointer" }}>Recharger</button>
+        <button onClick={() => window.location.reload()} style={{ padding:"10px 24px", background:"#7B2D26", color:"#fff", border:"none", borderRadius:8, cursor:"pointer" }}>Recharger</button>
       </div>
     );
     return this.props.children;

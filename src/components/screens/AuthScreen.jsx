@@ -3,8 +3,8 @@ import { fichierVersAvatar, avatarMonogramme, MONOGRAMMES } from '../../lib/avat
 import { prenomDepuisEmail } from '../../lib/prenom'
 
 const NAVY = "#0F1D3A"
-const GOLD = "#C4A241"
-const GOLD_FRAME = "#C9A96E"
+const GOLD = "#7B2D26"
+const GOLD_FRAME = "#7B2D26"
 const BLUE = "#9FC3DC"
 
 const PENDING_KEY = 'monacout_pending_login_email'

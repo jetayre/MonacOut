@@ -5,8 +5,8 @@ import { Share } from '@capacitor/share'
 import AuthScreen from './AuthScreen'
 
 const NAVY = "#0F1D3A"
-const GOLD = "#C4A241"
-const GOLD_FRAME = "#C9A96E"
+const GOLD = "#7B2D26"
+const GOLD_FRAME = "#7B2D26"
 const BLUE = "#9FC3DC"
 const GREY = "#6A7080"
 

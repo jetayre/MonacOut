@@ -8,12 +8,16 @@ import { track } from "../../lib/track";
 import { partagerInvitation } from "../../lib/invite";
 
 const NAVY = "#0F1D3A";
-const GOLD = "#C9A96E";
+const GOLD = "#7B2D26";
 const GREY = "#6A7080";
 const WHITE = "#FFFFFF";
 const CREAM = "#FFFFFF";
 const BORDER = "rgba(15,29,58,0.12)";
-const STRIPE_BG = "repeating-linear-gradient(-45deg, #9FC3DC 0px, #9FC3DC 40px, #FFFFFF 40px, #FFFFFF 80px)";
+// Les rayures bleues sont retirées (10 oct 2026, décision de Stéphanie sur
+// maquette : « on enlève les rayures on met juste le nom »). Le bleu #9FC3DC
+// était la dernière note froide de l'écran, orpheline depuis le passage au
+// Rouge H. L'en-tête est maintenant blanc, le nom porte seul.
+const STRIPE_BG = "#FFFFFF";
 
 // Met un texte à plat pour la recherche : minuscules, sans accents, et toute
 // ponctuation (tirets, points médians, apostrophes…) remplacée par une espace.
@@ -408,7 +412,7 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
     <div
       onClick={onOuvrir}
       style={{
-        border: "1.5px solid #C9A96E", borderRadius: 2, padding: 4,
+        border: "1.5px solid #7B2D26", borderRadius: 2, padding: 4,
         marginBottom: 14, background: WHITE, cursor: "pointer",
       }}
     >
@@ -441,7 +445,7 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
 
           <span style={{
             display: "inline-block", padding: "8px 18px",
-            border: "1px solid #C9A96E",
+            border: "1px solid #7B2D26",
             fontFamily: "'Lato', sans-serif", fontSize: 12,
             fontWeight: 700, letterSpacing: 1.6,
             textTransform: "uppercase", color: GOLD,
@@ -462,7 +466,21 @@ function matchesCatFilter(e, catId) {
     case "musee":      return ["EXPOSITION","MARCHÉ","SALON"].includes(e.cat);
     case "conference": return e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true;
     case "cinema":     return e.cat === "CINÉMA";
-    case "famille":    return e.free === true || ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat) || /enfant|famille|junior|jeune|parent|kid/i.test(e.subtitle + " " + (e.desc || ""));
+    case "famille": {
+      // 🚨 La règle commençait par `e.free === true ||` : TOUT événement gratuit
+      // devenait « Famille ». Mesuré le 10 oct 2026 : 152 fiches sur 362 passaient
+      // le filtre, dont 30 récapitulatifs « CE SOIR N TERRASSES OUVERTES », 10
+      // brunchs et 10 messes. Une mère qui cherchait quoi faire avec ses enfants
+      // tombait sur des terrasses de bars. La gratuité n'a jamais voulu dire
+      // « pour les enfants » — c'est le filtre Famille, pas le filtre Gratuit.
+      const txt = `${e.title} ${e.subtitle} ${e.desc || ""}`;
+      // 1. Ce qui se dit explicitement l'emporte, quelle que soit la catégorie.
+      if (/enfant|famille|junior|jeune public|jeunesse|parent|kid|b[ée]b[ée]|d[èe]s \d+\s*ans/i.test(txt)) return true;
+      // 2. Ce qui n'est jamais pour les enfants, même gratuit.
+      if (["APÉRO","SOIRÉE","DJ SET","JAZZ LIVE","BRUNCH","ENCHÈRES","CHANTS","BIEN-ÊTRE"].includes(e.cat)) return false;
+      // 3. Le reste : les catégories où une famille a sa place.
+      return ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat);
+    }
     case "ateliers":   return ["ATELIER","DANSE"].includes(e.cat);
     case "bienetre":   return ["BIEN-ÊTRE"].includes(e.cat);
     case "foody":      return ["FOODY","BRUNCH","APÉRO"].includes(e.cat);
@@ -481,7 +499,7 @@ function filterByCats(events, catFilters) {
 function SearchIcon({ active }) {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-      stroke={active ? "#C9A96E" : "#0F1D3A"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      stroke={active ? "#7B2D26" : "#0F1D3A"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="11" cy="11" r="7"/>
       <line x1="16.5" y1="16.5" x2="22" y2="22"/>
     </svg>
@@ -501,8 +519,8 @@ function HamburgerIcon() {
 function HeartIcon({ active, hasFavs }) {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24"
-      fill={hasFavs ? "#C4A241" : "none"}
-      stroke={hasFavs ? "#C4A241" : "#0F1D3A"}
+      fill={hasFavs ? "#7B2D26" : "none"}
+      stroke={hasFavs ? "#7B2D26" : "#0F1D3A"}
       strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
@@ -602,6 +620,22 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // rendu, donc la dépendance changerait sans arrêt et remettrait le fil à 40 cartes
   // en boucle — le défilement infini n'avancerait jamais.
   useEffect(() => { setNbRendues(40); }, [filter, searchQuery, groupFilter, rangeStart, rangeEnd, catFilters.join(",")]);
+
+  // ── MESURER LA RECHERCHE ────────────────────────────────────────────────────
+  // Elle ne l'était PAS. Le 10 oct 2026, à la question « les gens utilisent-ils
+  // les filtres et la recherche ? », PostHog répondait « 0 personne » pour la
+  // recherche — non parce que personne ne cherche, mais parce que rien n'était
+  // envoyé. Une absence de mesure se lit comme une absence d'usage : c'est le
+  // pire des deux mondes, on en tire une conclusion fausse.
+  // On attend 1,2 s après la dernière frappe pour n'envoyer que la requête
+  // terminée, et non une mesure par lettre tapée.
+  useEffect(() => {
+    const q = searchQuery.trim();
+    if (q.length < 3) return;
+    const t = setTimeout(() => track("search_used", { longueur: q.length, resultats: filtered.length }), 1200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
 
   function handleFilterChange(newFilter) {
     const el = document.getElementById("main-scroll");
@@ -788,7 +822,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 <span style={{
                   position: "absolute", top: 0, right: 0,
                   width: 8, height: 8, borderRadius: "50%",
-                  background: "#C4A241", border: "1.5px solid #fff",
+                  background: "#7B2D26", border: "1.5px solid #fff",
                 }} />
               )}
             </button>
@@ -819,7 +853,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   letterSpacing: 1, textTransform: "uppercase",
                   color: lang === l ? "#0F1D3A" : "#6A7080",
                   padding: "1px 3px",
-                  borderBottom: lang === l ? "1.5px solid #C9A96E" : "1.5px solid transparent",
+                  borderBottom: lang === l ? "1.5px solid #7B2D26" : "1.5px solid transparent",
                 }}>{l}</button>
               ))}
             </div>
@@ -856,7 +890,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             )}
             <span>
               {lang === "en" ? "Hi, " : "Bonjour, "}
-              <span style={{ color: "#C4A241", fontWeight: 600 }}>{userName}</span>
+              <span style={{ color: "#7B2D26", fontWeight: 600 }}>{userName}</span>
             </span>
           </div>
         )}

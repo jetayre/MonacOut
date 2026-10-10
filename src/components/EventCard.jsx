@@ -4,8 +4,12 @@ import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
 
-const GOLD = "#a88421";
-const GOLD_FRAME = "#C9A96E";
+import { ROUGE_H, couleurCat } from "../lib/couleurs";
+// Refonte du 10 oct 2026 : l'or disparaît (3,45:1 sur l'ivoire, sous la norme).
+// Le Rouge H tient toute l'ossature ; la couleur de la famille ne porte QUE le
+// mot de catégorie. Voir src/lib/couleurs.js pour le pourquoi de chaque teinte.
+const GOLD = ROUGE_H;
+const GOLD_FRAME = ROUGE_H;
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
 function addToCalendar(event) {
@@ -248,9 +252,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
     <div
       onClick={() => onCardClick?.(event)}
       style={{
-        border: `1.5px solid ${GOLD_FRAME}`,
+        border: `3px solid ${ROUGE_H}`,
         borderRadius: 2,
-        padding: 4,
+        padding: 0,
         marginBottom: 14,
         background: WHITE,
         cursor: "pointer",
@@ -258,16 +262,17 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       }}
     >
       {/* Inner blue frame */}
-      <div style={{ border: `1.5px solid ${BLUE}`, borderRadius: 1, background: CREAM }}>
+      {/* Le filet bleu intérieur est retiré : un seul trait, demandé par Stéphanie. */}
+      <div style={{ background: CREAM }}>
 
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
 
           {/* Catégorie */}
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 15, fontWeight: 700, letterSpacing: 2.2,
-            textTransform: "uppercase", color: GOLD,
-            marginBottom: 12,
+            fontSize: 20, fontWeight: 700, letterSpacing: 3,
+            textTransform: "uppercase", color: couleurCat(event.cat),
+            marginBottom: 13, lineHeight: 1.15,
           }}>{localizeCat(event.cat, lang)}</div>
 
           {/* Date + heure */}
@@ -301,8 +306,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {/* Titre */}
           <div style={{
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
-            color: "#000000", lineHeight: 1.25, marginTop: 22, marginBottom: 14,
+            fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
+            color: "#000000", lineHeight: 1.3, marginTop: 15, marginBottom: 12,
           }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
 
           {/* Lieu */}
@@ -327,10 +332,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {event.free && (
             <div style={{ marginBottom: 14 }}>
               <span style={{
-                border: "1px solid #2A6A3A", padding: "3px 14px",
+                border: "1px solid #0F1D3A", padding: "3px 14px",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 10, fontWeight: 600, letterSpacing: 2,
-                textTransform: "uppercase", color: "#1A4A2A",
+                textTransform: "uppercase", color: "#0F1D3A",
               }}>{lang === "en" ? "FREE ENTRY" : "ENTRÉE LIBRE"}</span>
             </div>
           )}
@@ -446,10 +451,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             {friendsGoing.length > 0 ? (
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 6,
-                background: "#FFF8EC", border: `1px solid ${GOLD_FRAME}`,
+                background: "#FBF2F0", border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 20, padding: "3px 10px 3px 5px",
               }}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#C4A241" style={{ flexShrink: 0 }} aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#7B2D26" style={{ flexShrink: 0 }} aria-hidden="true">
                   <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                 </svg>
                 <FriendAvatars friends={friendsGoing} />
@@ -465,13 +470,13 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 title={lang === "en" ? "See which friends are going" : "Vois quels amis y vont"}
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 5,
-                  background: "#FFF8EC", border: `1px solid ${GOLD_FRAME}`,
+                  background: "#FBF2F0", border: `1px solid ${GOLD_FRAME}`,
                   borderRadius: 20, padding: "3px 10px 3px 7px", cursor: "pointer",
                 }}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#C4A241" style={{ flexShrink: 0 }} aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#7B2D26" style={{ flexShrink: 0 }} aria-hidden="true">
                   <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                 </svg>
-                <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, color: "#C4A241", letterSpacing: 0.3, whiteSpace: "nowrap" }}>
+                <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 600, color: "#7B2D26", letterSpacing: 0.3, whiteSpace: "nowrap" }}>
                   {lang === "en" ? "Friends?" : "Amis ?"}
                 </span>
               </button>
@@ -490,7 +495,17 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 background: "none", border: "none",
                 cursor: "pointer", fontSize: 20, lineHeight: 1, padding: 0, flexShrink: 0,
               }}
-            >{isFav ? "❤️" : "🤍"}</button>
+              aria-label={isFav ? (lang === "en" ? "Remove from favourites" : "Retirer des favoris")
+                                : (lang === "en" ? "Add to favourites" : "Ajouter aux favoris")}
+            >
+              {/* Contour Rouge H, rempli quand c'est un favori. L'émoji 🤍 ne se
+                  teintait pas et s'affichait différemment selon les iPhone. */}
+              <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"
+                   fill={isFav ? ROUGE_H : "none"} stroke={ROUGE_H} strokeWidth="1.8"
+                   strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/>
+              </svg>
+            </button>
             </div>
           </div>
 
@@ -505,7 +520,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 padding: "6px 12px",
                 border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 1, cursor: "pointer",
-                background: isGoing ? "#FFF8EC" : "none",
+                background: isGoing ? "#FBF2F0" : "none",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
                 textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#0F1D3A",
@@ -524,7 +539,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 display: "inline-flex", alignItems: "center", gap: 5,
                 padding: "6px 12px",
                 border: `1px solid ${GOLD_FRAME}`,
-                borderRadius: 1, background: "#FFF8EC", cursor: "pointer",
+                borderRadius: 1, background: "#FBF2F0", cursor: "pointer",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
                 textTransform: "uppercase", color: GOLD_FRAME,

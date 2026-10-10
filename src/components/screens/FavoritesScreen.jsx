@@ -2,7 +2,7 @@ import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
 
 const NAVY = "#0F1D3A";
-const GOLD = "#C9A96E";
+const GOLD = "#7B2D26";
 const GREY = "#6A7080";
 const WHITE = "#FDFAF5";
 
