@@ -130,15 +130,20 @@ const result = lines.map(line => {
     const eventD = new Date(year, monthIdx, dayNum);
     const diff   = Math.abs((eventD - exact) / 86400000);
     if (diff > margin) {
-      const newDay  = JOURS[exact.getDay()];
-      const newNum  = exact.getDate();
-      const newMois = MOIS_ARR[exact.getMonth()];
-      const newDate = `${newDay} ${newNum} ${newMois}`;
-      fixes.push(`  [id:${id}] "${label}" ${year} : "${dateStr}" → "${newDate}" (écart ${Math.round(diff)}j — corrigé automatiquement)`);
-      fixed++;
-      line = line.replace(`date:"${dateStr}"`, `date:"${newDate}"`);
-      // Mettre à jour dateStr pour la suite
-      parts[0] = newDay; parts[1] = String(newNum); parts[2] = newMois;
+      // 🚨 ON NE REDATE PLUS — ON SIGNALE. Le 10 oct 2026, cette règle a déplacé
+      // « PÂQUES SANGLANTES de Giuseppe De Santis » — un film projeté au Théâtre
+      // des Variétés le mar 20 octobre — au lundi de Pâques, soit le 6 avril,
+      // DANS LE PASSÉ. Le mot « Pâques » était dans le TITRE D'UNE ŒUVRE, pas
+      // une fête. La date corrigée à la main était réécrite à chaque passage du
+      // Policier, en silence : seule la source trahissait l'erreur.
+      // Noël et Toussaint avaient déjà été retirés pour cette raison exacte ;
+      // le problème n'était pas ces deux mots-là, c'était de réécrire une date.
+      // Une date fausse mais cohérente est invisible. On laisse donc la fiche
+      // intacte et on demande une vérification humaine.
+      const attendu = `${JOURS[exact.getDay()]} ${exact.getDate()} ${MOIS_ARR[exact.getMonth()]}`;
+      skips.push(`  [id:${id}] "${dateStr}" contient « ${label} » mais tombe ${Math.round(diff)} j après ${attendu} — `
+               + `soit la date est fausse, soit le mot fait partie d'un titre. À vérifier à la source, RIEN n'a été modifié.`);
+      skipped++;
     }
     break;
   }

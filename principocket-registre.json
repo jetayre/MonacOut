@@ -1927,7 +1927,7 @@
  },
  "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-10"
  },
@@ -2107,7 +2107,7 @@
  },
  "/en/events/6e911a163bcd520d0ccabeb787e2c2c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-10-10"
  },
@@ -2125,7 +2125,7 @@
  },
  "/en/events/bdfaa98d5b881181bf8f974cf80620e0-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-10"
  },
@@ -2161,8 +2161,8 @@
  },
  "/en/events/7b358afa85ef94ea51740e101db6df35-THURSDAY-LIVE-SESSIONS-THE-SPITFIRES": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "deja",
+  "detail": "THURSDAY LIVE SESSIONS THE SPITFIRES",
   "majLe": "2026-10-10"
  },
  "/en/events/78e8d08b93784df657842e8389a9a7ea-En-therapie": {
@@ -2233,8 +2233,8 @@
  },
  "/en/events/586ad5154c3622b4fcd85f5dd7d05119-THURSDAY-LIVE-SESSIONS-ELEPHANZ": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "deja",
+  "detail": "THURSDAY LIVE SESSIONS ELEPHANZ",
   "majLe": "2026-10-10"
  },
  "/en/events/b549ea2d76c32aebdbb9ba4d4ae26834-Rose-Royal": {
@@ -2245,8 +2245,8 @@
  },
  "/en/events/548990cc9ecde940809bc45c8ddd63cd-THURSDAY-LIVE-SESSIONS-KOMODOR": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "deja",
+  "detail": "THURSDAY LIVE SESSIONS KOMODOR",
   "majLe": "2026-10-10"
  },
  "/en/events/87ac19761993b97daf51ff63bb136346-Le-mal-de-mere": {
@@ -2335,8 +2335,8 @@
  },
  "/en/events/7fbae600409df4107d235452ab2d8dbd-THURSDAY-LIVE-SESSIONS-VOILAA-SOUND-SYSTEM": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "deja",
+  "detail": "THURSDAY LIVE SESSIONS VOILAA SOUND SYSTEM",
   "majLe": "2026-10-10"
  },
  "/en/events/15b179b2360aa5adc93d14b35937e6df-Festival-jeunesse-On-ne-nait-pas-femme": {
@@ -2449,7 +2449,7 @@
  },
  "/en/events/2a058ceeca100708a1dc683339306f04-Paques-sanglantes-de-Giuseppe-De-Santis": {
   "vuLe": "2026-09-23",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Paques sanglantes de Giuseppe De Santis",
   "majLe": "2026-10-10"
  },

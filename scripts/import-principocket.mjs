@@ -181,6 +181,17 @@ const PAL = {
 // ── 6. Import ────────────────────────────────────────────────────────────────────
 const usedIds = new Set([...src.matchAll(/\{id:(\d+),/g)].map(m => +m[1]));
 let nextId = 800000; while (usedIds.has(nextId)) nextId++;
+// 🚨 `nextId++` ne suffisait QUE tant que la bande 800000+ était contiguë. Dès qu'un
+// TROU y apparaît — une fiche retirée à la main, un événement annulé — le compteur
+// démarre dans le trou puis repasse SUR des ids déjà attribués. Le 10 oct 2026,
+// quatre fiches ont ainsi reçu les ids 800030-800033 que portait déjà la série
+// « Les Concerts de la Voûte ». Deux fiches qui partagent un id cassent les
+// favoris et les participations (règle 6). On vérifie donc à CHAQUE attribution.
+function idLibre() {
+  while (usedIds.has(nextId)) nextId++;
+  usedIds.add(nextId);
+  return nextId++;
+}
 const auj = new Date(); auj.setHours(0, 0, 0, 0);
 const horizon = new Date(auj); horizon.setMonth(horizon.getMonth() + 12);
 
@@ -274,7 +285,7 @@ for (const f of fiches) {
       continue;
     }
     const [bg, ac, emo] = PAL[cat] || PAL.SPECTACLE;
-    const id = nextId++;
+    const id = idLibre();
     const an = d.getFullYear() !== 2026 ? `year:${d.getFullYear()},` : "";
     const titre = f.titre.length > 62 ? f.titre.slice(0, 60) + "…" : f.titre;
     lignes.push(`  {id:${id},${an}cat:"${cat}",date:"${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}",time:"${heure}",title:"${esc(titre.toUpperCase())}",subtitle:"${esc(f.lieu)} · Monaco",desc:"${esc(f.titre)} — ${esc(f.lieu)}.",descEn:"${esc(f.titre)} — ${esc(f.lieu)}.",free:false,hot:false,fallback:"${bg}",accent:"${ac}",emoji:"${emo}",${v && v.link ? `link:"${v.link}",` : ""}${v && v.phone ? `phone:"${v.phone}",` : ""}source:"${esc(f.lieu)}",quarter:"${v ? v.quarter : "Monaco"}"},`);
