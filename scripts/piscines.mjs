@@ -205,12 +205,39 @@ function periodeDu(mots) {
   if (moisDeb === undefined || moisFin === undefined) return null;
   return { debut: new Date(an, moisDeb, +m[1]), fin: new Date(an, moisFin, +m[3], 23, 59) };
 }
+// ── LA SAISON DU STADE NAUTIQUE, LUE SUR LA PAGE ────────────────────────────────
+// Le bassin est en PLEIN AIR et ferme l'hiver : « ouvert du vendredi 1er mai 2026
+// à 9h au mercredi 7 octobre 2026 inclus ». Hors saison il n'existe aucun planning
+// courant — et le script criait « aucun PDF ne couvre aujourd'hui », tous les jours,
+// pour une piscine simplement fermée. Le 10 octobre 2026, trois jours après la
+// fermeture, c'est ce qui faisait rougir le passage quotidien.
+// On lit la phrase sur la page plutôt que d'écrire les dates en dur : la saison
+// change chaque année.
+function saisonDe(html) {
+  if (!html) return null;
+  const t = html.replace(/<[^>]+>/g, " ").replace(/&agrave;/g, "à").replace(/\s+/g, " ");
+  const m = t.match(/ouvert\s+du\s+\w+\s+(\d{1,2})(?:er)?\s+([a-zéû]+)\s+(\d{4}).{0,20}?au\s+\w+\s+(\d{1,2})(?:er)?\s+([a-zéû]+)\s+(\d{4})/i);
+  if (!m) return null;
+  const d = MOIS_FR[m[2].toLowerCase()], f = MOIS_FR[m[5].toLowerCase()];
+  if (d === undefined || f === undefined) return null;
+  return { debut: new Date(+m[3], d, +m[1]), fin: new Date(+m[6], f, +m[4], 23, 59) };
+}
+
 const rapport = [];
 const blocs = [];
 
 // ═══ STADE NAUTIQUE ══════════════════════════════════════════════════════════════
 {
-  const pdfs = await pdfsDe("https://www.mairie.mc/le-stade-nautique-rainier-iii");
+  const PAGE = "https://www.mairie.mc/le-stade-nautique-rainier-iii";
+  const html = await get(PAGE);
+  const saison = saisonDe(html);
+  const auj = new Date();
+  // Hors saison : rien à lire, rien à écrire, et surtout RIEN à signaler.
+  if (saison && (auj < saison.debut || auj > saison.fin)) {
+    const fmt = x => `${x.getDate()} ${MOIS[x.getMonth()]}`;
+    rapport.push(`Stade Nautique : FERMÉ pour la saison (rouvre le ${fmt(saison.debut)}) · bassin plein air, saison ${fmt(saison.debut)} → ${fmt(saison.fin)}`);
+  } else {
+  const pdfs = await pdfsDe(PAGE);
 
   const maintenant = new Date();
   let planning = null, sourcePdf = null, periode = null, lisibles = 0;
@@ -234,6 +261,7 @@ const blocs = [];
     fin: periode ? periode.fin : new Date(2026, 9, 7), periode });
   rapport.push(`Stade Nautique : ${planning ? Object.keys(planning).length + " jours lus" : "ILLISIBLE"} · ${lisibles} planning(s) trouvé(s) · période retenue : ${periode ? periode.debut.toISOString().slice(0,10) + " → " + periode.fin.toISOString().slice(0,10) : "inconnue"}`);
   if (planning && periode && (maintenant < periode.debut || maintenant > periode.fin)) alertes.push("Stade Nautique : aucun PDF ne couvre aujourd'hui — planning peut-être périmé");
+  }
 }
 
 // ═══ SAINT-CHARLES (salle de sport) ══════════════════════════════════════════════
