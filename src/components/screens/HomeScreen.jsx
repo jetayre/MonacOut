@@ -177,7 +177,16 @@ function heureDeTri(e) {
 function finEnMinutes(e) {
   // Les récapitulatifs (« 6 musées ouverts », « 8 brunchs ») et les annuaires ne
   // portent qu'une heure d'ouverture : ils restent utiles toute la journée.
-  if (e.recap === true || e.pinLast === true) return 24 * 60;
+  //
+  // 🚨 LES FICHES « EN COURS » AUSSI (ajouté le 10 oct 2026, Stéphanie : « il
+  // manque les expositions »). Une exposition ouverte jusqu'en janvier n'est pas
+  // TERMINÉE à 18h : elle est FERMÉE POUR LA NUIT, et elle rouvre demain. La règle
+  // de la v0.0.106 — ne plus montrer ce qui est fini — vaut pour un concert, qui
+  // n'aura pas lieu deux fois ; pas pour une expo. Résultat constaté un samedi à
+  // 19h41 : les SEPT expositions du jour avaient disparu du fil, au moment précis
+  // où l'on prépare sa sortie du lendemain. Leurs horaires restent écrits sur la
+  // carte (« 09h00 — 18h00 ») : la personne voit bien que c'est fermé maintenant.
+  if (e.recap === true || e.pinLast === true || e.ongoing === true) return 24 * 60;
   const t = (e.time || "").replace(/\s/g, "");
   // Le fil écrit les plages avec un tiret cadratin OU une flèche : « 09h — 18h »,
   // « 9h30 → 18h30 ». Oublier la flèche masquait la messe du dimanche dès 11h30.
