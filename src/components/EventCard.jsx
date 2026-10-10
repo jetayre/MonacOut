@@ -239,13 +239,16 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   // expositions arrivent toutes d'un coup et se confondent avec le reste du fil.
   // En plus petit, on voit d'un coup d'œil qu'elles appartiennent au groupe
   // qu'on vient d'ouvrir. Rien n'est retiré : les boutons restent tous là.
-  const C = compact
-    ? { trait: 1.5, padding: "9px 13px 9px", cat: 11, catLs: 1.6, catBas: 5,
-        titre: 15, titreHaut: 6, titreBas: 5, lieu: 12, lieuBas: 8, marge: 7,
-        bouton: "3px 8px", boutonTexte: 8, coeur: 16, dateTxt: 11, heureTxt: 10 }
-    : { trait: 3, padding: "18px 22px 20px", cat: 20, catLs: 3, catBas: 13,
-        titre: 20, titreHaut: 15, titreBas: 12, lieu: 16, lieuBas: 18, marge: 14,
-        bouton: "6px 12px", boutonTexte: 9, coeur: 21, dateTxt: 15, heureTxt: 13 };
+  // ⚠️ Premier essai : on avait tout rapetissé — textes, boutons, marges. Mauvaise
+  // lecture. Stéphanie, 10 oct 2026 : « pas en épaisseur mais plutôt moins large
+  // sur les côtés ». Le contenu garde donc EXACTEMENT sa taille habituelle ; seule
+  // la largeur se resserre, pour que les expositions dépliées se lisent comme les
+  // filles de la carte qu'on vient d'ouvrir, et non comme des cartes du fil.
+  const C = { trait: 3, padding: "18px 22px 20px", cat: 20, catLs: 3, catBas: 13,
+              titre: 20, titreHaut: 15, titreBas: 12, lieu: 16, lieuBas: 18, marge: 14,
+              bouton: "6px 12px", boutonTexte: 9, coeur: 21, dateTxt: 15, heureTxt: 13,
+              // le seul effet du mode compact : un retrait de 22 px de chaque côté
+              retrait: compact ? 22 : 0 };
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
   // ⚠️ Une fiche `ongoing` ne porte QU'UNE date : celle du jour, réécrite chaque nuit.
@@ -268,6 +271,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
         borderRadius: 2,
         padding: 0,
         marginBottom: C.marge,
+        marginLeft: C.retrait, marginRight: C.retrait,
         background: WHITE,
         cursor: "pointer",
         position: "relative",
