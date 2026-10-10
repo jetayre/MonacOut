@@ -91,6 +91,24 @@ function inspect(events) {
     // 1. NOM : titre obligatoire
     if (!e.title || e.title.trim().length < 2) fault(e, 'Nom (titre) manquant');
 
+    // 1 bis. LES FICHES FABRIQUÉES PAR UN SCRAPER QUI A MAL LU SA PAGE.
+    // Trois familles trouvées le 10 oct 2026, toutes publiées sans que personne
+    // ne les voie — c'est Stéphanie qui les a signalées en ouvrant l'app :
+    //   · « MATCH À VENIR », libellé d'un lien de billetterie pris pour un
+    //     événement : aucune heure, description qui répète le titre ;
+    //   · SIX courses de Formule E à Mexico, São Paulo, Zandvoort, Shanghai et
+    //     Sanya, annoncées « Circuit de Monaco » — le calendrier mondial de la
+    //     discipline recopié comme s'il se tenait ici (règle 15) ;
+    //   · deux films dont l'« heure » était la DURÉE (« 2h31 », « 26h18 ») et
+    //     le lien une bande-annonce YouTube (règle 16).
+    // Une heure au-delà de 23h est impossible : c'est une durée, pas un horaire.
+    const _h = String(e.time || '').match(/^(\d{1,2})h/);
+    if (_h && +_h[1] > 23) fault(e, `Heure impossible « ${e.time} » — c'est une durée, pas un horaire`);
+    if (/youtube\.com|youtu\.be/i.test(e.link || '')) fault(e, 'Lien vers YouTube : le lien doit être celui du lieu (règle 16)');
+    const _t = (e.title || '').replace(/\n/g, ' ').replace(/\s*ⓘ\s*$/, '').trim().toLowerCase();
+    const _d = (e.desc || '').trim().replace(/\.$/, '').toLowerCase();
+    if (_t && _d === _t && !e.time) fault(e, 'Fiche vide : pas d\'heure, et la description ne fait que répéter le titre');
+
     // 2. DATE : jour de la semaine correct (hors plages "4 — 8 juil")
     if (e.date && !e.date.includes('—')) {
       const d = eventDate(e);

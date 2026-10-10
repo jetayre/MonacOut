@@ -240,10 +240,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   // En plus petit, on voit d'un coup d'œil qu'elles appartiennent au groupe
   // qu'on vient d'ouvrir. Rien n'est retiré : les boutons restent tous là.
   const C = compact
-    ? { trait: 2, padding: "12px 16px 13px", cat: 15, catLs: 2.2, catBas: 9,
-        titre: 17, titreHaut: 11, titreBas: 9, lieu: 13, lieuBas: 11, marge: 9 }
+    ? { trait: 1.5, padding: "9px 13px 9px", cat: 11, catLs: 1.6, catBas: 5,
+        titre: 15, titreHaut: 6, titreBas: 5, lieu: 12, lieuBas: 8, marge: 7,
+        bouton: "3px 8px", boutonTexte: 8, coeur: 16, dateTxt: 11, heureTxt: 10 }
     : { trait: 3, padding: "18px 22px 20px", cat: 20, catLs: 3, catBas: 13,
-        titre: 20, titreHaut: 15, titreBas: 12, lieu: 16, lieuBas: 18, marge: 14 };
+        titre: 20, titreHaut: 15, titreBas: 12, lieu: 16, lieuBas: 18, marge: 14,
+        bouton: "6px 12px", boutonTexte: 9, coeur: 21, dateTxt: 15, heureTxt: 13 };
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
   // ⚠️ Une fiche `ongoing` ne porte QU'UNE date : celle du jour, réécrite chaque nuit.
@@ -298,14 +300,14 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             {!sansDate && (
               <span style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: 15, fontWeight: 700, letterSpacing: 1.2,
+                fontSize: C.dateTxt, fontWeight: 700, letterSpacing: 1.2,
                 textTransform: "uppercase", color: GREY,
               }}>{dateLabel}{!isToday && ` ${event.year || 2026}`}</span>
             )}
             {event.time && (
               <span style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: sansDate ? 15 : 13,
+                fontSize: sansDate ? C.dateTxt : C.heureTxt,
                 fontWeight: 700,
                 letterSpacing: sansDate ? 1.2 : 0.4,
                 color: GREY,
@@ -510,7 +512,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             >
               {/* Contour Rouge H, rempli quand c'est un favori. L'émoji 🤍 ne se
                   teintait pas et s'affichait différemment selon les iPhone. */}
-              <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"
+              <svg width={C.coeur} height={C.coeur} viewBox="0 0 24 24" aria-hidden="true"
                    fill={isFav ? ROUGE_H : "none"} stroke={ROUGE_H} strokeWidth="1.8"
                    strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
                 <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/>
@@ -527,12 +529,12 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               style={{
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
-                padding: "6px 12px",
+                padding: C.bouton,
                 border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 1, cursor: "pointer",
                 background: isGoing ? "#FBF2F0" : "none",
                 fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+                fontSize: C.boutonTexte, fontWeight: 600, letterSpacing: 1.5,
                 textTransform: "uppercase", color: isGoing ? GOLD_FRAME : "#0F1D3A",
               }}
             >
@@ -547,11 +549,11 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               style={{
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
-                padding: "6px 12px",
+                padding: C.bouton,
                 border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 1, background: "#FBF2F0", cursor: "pointer",
                 fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+                fontSize: C.boutonTexte, fontWeight: 600, letterSpacing: 1.5,
                 textTransform: "uppercase", color: GOLD_FRAME,
               }}
             >
@@ -565,11 +567,11 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             style={{
               alignSelf: "flex-start", marginLeft: -1,
               display: "inline-flex", alignItems: "center", gap: 5,
-              padding: "6px 12px",
+              padding: C.bouton,
               border: `1px solid ${GOLD_FRAME}`,
               borderRadius: 1, background: "none", cursor: "pointer",
               fontFamily: "'Josefin Sans', sans-serif",
-              fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+              fontSize: C.boutonTexte, fontWeight: 600, letterSpacing: 1.5,
               textTransform: "uppercase", color: "#0F1D3A",
             }}
           >
@@ -602,11 +604,11 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               style={{
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
-                padding: "6px 12px",
+                padding: C.bouton,
                 border: `1px solid ${GOLD_FRAME}`,
                 borderRadius: 1, background: "none", cursor: "pointer",
                 fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 9, fontWeight: 600, letterSpacing: 1.5,
+                fontSize: C.boutonTexte, fontWeight: 600, letterSpacing: 1.5,
                 textTransform: "uppercase", color: "#0F1D3A",
               }}
             >
