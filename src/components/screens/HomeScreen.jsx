@@ -5,6 +5,7 @@ import MonacOutLogo from "../MonacOutLogo";
 import EventCard from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
+import { couleurCat } from "../../lib/couleurs";
 import { partagerInvitation } from "../../lib/invite";
 
 const NAVY = "#0F1D3A";
@@ -412,16 +413,20 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
     <div
       onClick={onOuvrir}
       style={{
-        border: "1.5px solid #7B2D26", borderRadius: 2, padding: 4,
+        border: "3px solid #7B2D26", borderRadius: 2, padding: 0,
         marginBottom: 14, background: WHITE, cursor: "pointer",
       }}
     >
-      <div style={{ border: "1.5px solid #9FC3DC", borderRadius: 1, background: WHITE }}>
+      {/* Un seul trait, comme toutes les autres cartes depuis le 10 oct 2026.
+          Le filet bleu intérieur avait été oublié ici : les expositions
+          affichaient deux couleurs de ligne. */}
+      <div style={{ background: WHITE }}>
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 15, fontWeight: 700, letterSpacing: 2.2,
-            textTransform: "uppercase", color: GOLD, marginBottom: 14,
+            fontSize: 20, fontWeight: 700, letterSpacing: 3,
+            textTransform: "uppercase", color: couleurCat("EXPOSITION"),
+            marginBottom: 13, lineHeight: 1.15,
           }}>{lang === "en" ? "Exhibitions" : "Expositions"}</div>
 
           {/* Les titres des fiches arrivent en capitales depuis les données ; celui-ci
@@ -429,9 +434,9 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
               sans quoi la carte de regroupement détonnait au milieu des autres. */}
           <div style={{
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: 26, letterSpacing: 0.3,
+            fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
             textTransform: "uppercase",
-            color: "#000000", lineHeight: 1.25, marginBottom: 14,
+            color: "#000000", lineHeight: 1.3, marginBottom: 13,
           }}>{expos.length} {lang === "en" ? "exhibitions on view" : "expositions à voir"}</div>
 
           {/* Les titres arrivent déjà en capitales : en serif ils pèsent autant que

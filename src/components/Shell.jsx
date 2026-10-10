@@ -184,12 +184,11 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
               zIndex: 601,
               border: `1.5px solid ${GOLD_FRAME}`,
               borderRadius: 2,
-              padding: 4,
+              padding: 0,
               background: WHITE,
             }}>
               <div style={{
                 position: "relative",
-                border: `1.5px solid ${BLUE}`,
                 borderRadius: 1,
                 background: CREAM,
                 padding: "22px 20px 20px",

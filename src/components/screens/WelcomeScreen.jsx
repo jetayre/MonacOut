@@ -41,8 +41,9 @@ const overlay = {
   background: "rgba(15,29,58,0.55)",
   display: "flex", alignItems: "center", justifyContent: "center", padding: 18,
 };
-const card = { width: 310, border: `1.5px solid ${GOLD_FRAME}`, borderRadius: 2, padding: 4, background: "#fff" };
-const inner = { border: `1.5px solid ${BLUE}`, borderRadius: 1, padding: "32px 26px 24px", textAlign: "center" };
+const card = { width: 310, border: `3px solid ${GOLD_FRAME}`, borderRadius: 2, padding: 0, background: "#fff" };
+// Plus de filet bleu intérieur : un seul trait, comme les cartes du fil.
+const inner = { borderRadius: 1, padding: "32px 26px 24px", textAlign: "center" };
 const title = { fontFamily: "'Josefin Sans', sans-serif", fontSize: 19, fontWeight: 600, color: NAVY, letterSpacing: 0.5, marginBottom: 10 };
 const sub = { fontFamily: "'Lato', sans-serif", fontSize: 13.5, color: "#555", lineHeight: 1.55, marginBottom: 24 };
 const btnPrimary = {

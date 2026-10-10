@@ -30,8 +30,11 @@ export const FAMILLES = [
   { nom: "Vert Bengale",   couleur: "#44581C", cats: ["SPECTACLE", "THÉÂTRE", "DANSE", "CINÉMA", "FESTIVAL", "FÊTE NATIONALE", "ATELIER"] },
   { nom: "Vert Cyprès",    couleur: "#1A4F3C", cats: ["BIEN-ÊTRE"] },
   { nom: "Bleu Jean",      couleur: "#22607A", cats: ["SPORT", "FOOTBALL", "BASKET", "FORMULE 1", "FORMULE E", "TENNIS", "RALLYE"] },
-  { nom: "Bleu Encre",     couleur: "#27306B", cats: ["CONCERT", "OPÉRA", "MUSICAL", "CHANTS"] },
-  { nom: "Violet Anémone", couleur: "#58275C", cats: ["JAZZ LIVE", "DJ SET", "SOIRÉE"] },
+  { nom: "Bleu Encre",     couleur: "#27306B", cats: ["CONCERT", "OPÉRA", "MUSICAL", "CHANTS", "JAZZ LIVE"] },
+  // Stéphanie, 10 oct 2026 : « jazz live ça devrait être musique comme catégorie ».
+  // Elle a raison — un concert de jazz est un concert. Violet Anémone ne garde que
+  // ce qui relève vraiment de la nuit.
+  { nom: "Violet Anémone", couleur: "#58275C", cats: ["DJ SET", "SOIRÉE"] },
   { nom: "Rouge Grenat",   couleur: "#6E2340", cats: ["ENCHÈRES", "SALON", "GALA", "CONFÉRENCE"] },
 ];
 

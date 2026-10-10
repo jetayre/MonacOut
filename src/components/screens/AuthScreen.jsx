@@ -305,13 +305,13 @@ const overlay = {
 }
 const card = {
   width: 300,
-  border: `1.5px solid ${GOLD_FRAME}`,
-  borderRadius: 2, padding: 4,
+  border: `3px solid ${GOLD_FRAME}`,
+  borderRadius: 2, padding: 0,
   background: '#fff',
 }
+// Plus de filet bleu intérieur : un seul trait.
 const inner = {
   position: 'relative',
-  border: `1.5px solid ${BLUE}`,
   borderRadius: 1,
   padding: '28px 24px 24px',
   textAlign: 'center',
