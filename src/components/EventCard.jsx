@@ -233,7 +233,17 @@ function FriendAvatars({ friends = [] }) {
   )
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false, compact = false }) {
+  // ── MODE COMPACT ────────────────────────────────────────────────────────────
+  // Demandé par Stéphanie le 10 oct 2026 : quand on déplie « Voir les 7 », les
+  // expositions arrivent toutes d'un coup et se confondent avec le reste du fil.
+  // En plus petit, on voit d'un coup d'œil qu'elles appartiennent au groupe
+  // qu'on vient d'ouvrir. Rien n'est retiré : les boutons restent tous là.
+  const C = compact
+    ? { trait: 2, padding: "12px 16px 13px", cat: 15, catLs: 2.2, catBas: 9,
+        titre: 17, titreHaut: 11, titreBas: 9, lieu: 13, lieuBas: 11, marge: 9 }
+    : { trait: 3, padding: "18px 22px 20px", cat: 20, catLs: 3, catBas: 13,
+        titre: 20, titreHaut: 15, titreBas: 12, lieu: 16, lieuBas: 18, marge: 14 };
   const isFav = favorites?.includes(event.id);
   const [showPhone, setShowPhone] = useState(false);
   // ⚠️ Une fiche `ongoing` ne porte QU'UNE date : celle du jour, réécrite chaque nuit.
@@ -252,10 +262,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
     <div
       onClick={() => onCardClick?.(event)}
       style={{
-        border: `3px solid ${ROUGE_H}`,
+        border: `${C.trait}px solid ${ROUGE_H}`,
         borderRadius: 2,
         padding: 0,
-        marginBottom: 14,
+        marginBottom: C.marge,
         background: WHITE,
         cursor: "pointer",
         position: "relative",
@@ -265,14 +275,14 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       {/* Le filet bleu intérieur est retiré : un seul trait, demandé par Stéphanie. */}
       <div style={{ background: CREAM }}>
 
-        <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
+        <div style={{ padding: C.padding, textAlign: "center" }}>
 
           {/* Catégorie */}
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 20, fontWeight: 700, letterSpacing: 3,
+            fontSize: C.cat, fontWeight: 700, letterSpacing: C.catLs,
             textTransform: "uppercase", color: couleurCat(event.cat),
-            marginBottom: 13, lineHeight: 1.15,
+            marginBottom: C.catBas, lineHeight: 1.15,
           }}>{localizeCat(event.cat, lang)}</div>
 
           {/* Date + heure */}
@@ -306,16 +316,16 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {/* Titre */}
           <div style={{
             fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
-            color: "#000000", lineHeight: 1.3, marginTop: 15, marginBottom: 12,
+            fontWeight: 400, fontSize: C.titre, letterSpacing: 0.3,
+            color: "#000000", lineHeight: 1.3, marginTop: C.titreHaut, marginBottom: C.titreBas,
           }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
 
           {/* Lieu */}
           {event.subtitle && (
             <div style={{
               fontFamily: "'Lato', sans-serif",
-              fontSize: 16, fontWeight: 400,
-              color: NAVY, marginBottom: 18, letterSpacing: 0.2,
+              fontSize: C.lieu, fontWeight: 400,
+              color: NAVY, marginBottom: C.lieuBas, letterSpacing: 0.2,
             }}>{event.subtitle}</div>
           )}
 

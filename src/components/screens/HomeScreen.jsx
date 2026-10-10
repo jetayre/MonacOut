@@ -374,7 +374,7 @@ function reunirLesExposParJour(sections, estDeplie) {
         if (!estExpoDuFil(e)) { items.push(e); continue; }
         // La carte prend la place de la PREMIÈRE exposition du jour ; dépliée,
         // les fiches reviennent juste en dessous, entières.
-        if (!posee) { posee = true; items.push({ groupeExpos: expos, cleJour }); if (deplie) items.push(...expos); }
+        if (!posee) { posee = true; items.push({ groupeExpos: expos, cleJour }); if (deplie) items.push(...expos.map(x => ({ ...x, _depliee: true }))); }
       }
       // Un moment vidé de ses expositions n'a plus rien à annoncer : on ne
       // laisse pas un intertitre « Matin » suivi de rien.
@@ -1082,7 +1082,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   deplie={!!exposDepliees[e.cleJour]}
                   onOuvrir={() => setExposDepliees(d => ({ ...d, [e.cleJour]: !d[e.cleJour] }))}
                 />
-              ) : renduCarte(e, true))}
+              ) : renduCarte(e, true, !!e._depliee))}
             </div>
           )) : aAfficher.map(e => renduCarte(e, false))
         )}
@@ -1090,12 +1090,13 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     </div>
   );
 
-  function renduCarte(e, sansDate) {
+  function renduCarte(e, sansDate, compact = false) {
     return (
             <EventCard
               key={e.cleFil || e.id}
               event={e}
               sansDate={sansDate}
+              compact={compact}
               jourAffiche={e.ongoing ? jourConsulte : null}
               favorites={favorites}
               onToggleFav={onToggleFav}
