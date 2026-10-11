@@ -59,6 +59,8 @@ const GENERIQUES_SOIR = [
   "HAPPY HOUR SEXY TACOS LARVOTTO",
   "APERO NORMA CONDAMINE",
   "HAPPY HOUR LA RASCASSE PORT HERCULE",
+  "HAPPY HOUR STARS OF MONACO QUAI ANTOINE IER",
+  "HAPPY HOUR MONACO BREWERY PORT HERCULE",
   "BRASSERIE DE MONACO PORT HERCULE",         // DJ résident TOUS les soirs = permanent
   // 🚨 « DINER CASTELROC » A ÉTÉ RETIRÉ D'ICI le 11 oct 2026. Stéphanie :
   // « le soir il est fermé ». Tant que ces deux titres figuraient parmi les
