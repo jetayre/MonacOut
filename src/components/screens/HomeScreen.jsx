@@ -185,6 +185,34 @@ function heureDeTri(e) {
 // à trier en dernier, jamais à décider d'un moment de la journée.
 const SANS_HEURE = 9999;
 
+// 🚨 DEUX FINS DIFFÉRENTES, ET IL FAUT LES DISTINGUER. Stéphanie, 11 oct 2026,
+// 21h45 : « j'ai la fiche petit déj or il est 21.45 », rangée sous MAINTENANT.
+// `finEnMinutes` rend 24h pour les annuaires et les fiches « en cours », et c'est
+// VOULU : elles doivent rester visibles le soir, quand on prépare sa sortie du
+// lendemain (les sept expositions avaient disparu à 19h41, Stéphanie l'avait
+// signalé). Mais cette même valeur servait aussi à décider « ça a lieu en ce
+// moment » — et un petit-déjeuner n'a pas lieu à 21h45.
+// `finReelle` ne sert QU'À ÇA : dire si c'est en cours. Elle ignore le 24h
+// d'affichage et se fie à ce que la fiche annonce vraiment.
+function finReelle(e) {
+  const t = (e.time || "").replace(/\s/g, "");
+  const plage = t.match(/^(\d{1,2})h(\d{2})?[\u2014\u2013\u2192>\-\u00e0]+(\d{1,2})h(\d{2})?/);
+  if (plage) {
+    const d = parseInt(plage[1]) * 60 + (plage[2] ? parseInt(plage[2]) : 0);
+    const f = parseInt(plage[3]) * 60 + (plage[4] ? parseInt(plage[4]) : 0);
+    return f <= d ? 24 * 60 : f;
+  }
+  const mot = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (mot === "lematin" || mot === "matin") return 12 * 60;
+  if (mot === "lemidi" || mot === "amidi" || mot === "midi") return 15 * 60;
+  if (mot === "enjournee" || mot === "toutelajournee") return 18 * 60;
+  if (mot === "lapresmidi" || mot === "enapresmidi" || mot === "apresmidi") return 19 * 60;
+  if (mot === "ensoiree" || mot === "lesoir" || mot === "soir") return 24 * 60;
+  const seul = t.match(/^(\d{1,2})h(\d{2})?/);
+  if (seul) return parseInt(seul[1]) * 60 + (seul[2] ? parseInt(seul[2]) : 0) + 120;
+  return 24 * 60;
+}
+
 // Une fiche du jour dont l'heure est passée n'a plus rien à proposer : à 15h48 on ne
 // veut plus voir le cours de 07h00. On se fie à l'heure de FIN quand la fiche la donne
 // (« 07h00 — 09h00 ») ; sinon au début plus deux heures, le temps qu'un concert ou un
@@ -310,7 +338,7 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
     if (jourConsulte) return 0;
     if (e.date !== aujourdhui) return 0;
     const sansHeure = !(e.time && String(e.time).trim());
-    const debut = heureDeTri(e), fin = finEnMinutes(e);
+    const debut = heureDeTri(e), fin = finReelle(e);
     if (!sansHeure && debut <= min && min < fin) return 0;   // maintenant
     if (!sansHeure && debut >= 18 * 60) return 2;            // ce soir
     return 1;                                               // plus tard aujourd'hui
@@ -341,7 +369,10 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
     }
     if (e.date === aujourdhui) {
       const sansHeure = !(e.time && String(e.time).trim());
-      const debut = heureDeTri(e), fin = finEnMinutes(e);
+      // ⚠️ `finReelle` et NON `finEnMinutes` : la seconde rend 24h pour les
+      // annuaires afin qu'ils restent affichés le soir, ce qui faisait annoncer
+      // « MAINTENANT » un petit-déjeuner à 21h45.
+      const debut = heureDeTri(e), fin = finReelle(e);
       // Une fiche sans horaire ne dit rien de son moment : l'annoncer « ce soir »
       // serait affirmer un horaire qu'elle ne donne pas.
       if (!sansHeure && debut <= min && min < fin) poser("maintenant", null, lang === "en" ? "Right now" : "Maintenant", e);
