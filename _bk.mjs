@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const p = await b.newPage();
+await p.goto('https://asmonaco.basketball/calendar/monthcalendar.php', { waitUntil: 'networkidle', timeout: 45000 });
+await p.waitForTimeout(3500);
+const t = await p.evaluate(() => document.body.innerText);
+const L = t.split('\n').map(x=>x.trim()).filter(Boolean);
+console.log('--- contenu du calendrier ---');
+console.log(L.slice(0, 80).join('\n'));
+await b.close();
