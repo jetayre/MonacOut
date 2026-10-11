@@ -411,7 +411,6 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Huit et Demi | https://www.huit-et-demi-restaurant-italien-monaco.com/ | APÉRO cocktails & cuisine italienne (restaurant à thème cinéma, terrasse, service continu midi et soir) — 4 rue Langlé, La Condamine | +377 9350 9702 |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
 | Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE (Quai Antoine 1er, rouvert juin 2026) | +377 9797 9595 |
-| Woo Monaco | https://woo.mc/ | BRUNCH | |
 | NMNM (Villa Paloma + Villa Sauber) | https://www.nmnm.mc/en/visit/visites-et-ateliers/ | ATELIER, EXPOSITION | |
 | Académie de Musique Prince Rainier III | https://academierainier3.mc/en | ATELIER | |
 | Ballet de Monte-Carlo | https://www.balletsdemontecarlo.com/ | DANSE | |
@@ -419,7 +418,6 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Médiathèque de Monaco | https://www.mediatheque.mc/ | CONFÉRENCE, MUSICAL | +377 9898 8008 |
 | Cinémas 2 Monaco | https://www.cinemas2monaco.com | CINÉMA | +377 9325 3681 |
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
-| Automobile Club Monaco | https://acm.mc/ | RALLYE | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
 | Foyer Sainte Dévote | https://diocese.mc | ATELIER, CONFÉRENCE — 3 rue Philibert Florence, La Condamine (salle paroissiale, pas de site propre) | +377 9797 7020 |
 | Crèche de Monaco-Ville | https://www.mairie.mc/les-espaces-parents | CONFÉRENCE, ATELIER — service Petite Enfance et Familles de la Mairie, échanges/ateliers parentalité ; a déménagé au 2ᵉ étage du **Foyer Sainte Dévote**, 3 rue Philibert Florence · La Condamine (pas de site propre) | +377 9797 7035 |
@@ -471,7 +469,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Castelroc Monaco | https://www.castelrocmonaco.com/ | BRUNCH, APÉRO (Place du Palais, Monaco-Ville) | +377 93 30 36 68 |
 | Étoile de Monaco (gym & trampoline) | https://www.etoiledemonaco.com | ATELIER, SPORT enfants — club de gymnastique et trampoline depuis 1890, Vallon Sainte-Dévote (parking gare) · La Condamine ; stages vacances 10h-12h, inscription `etoile@monaco.mc` | +377 9770 3320 |
 | Maison du Numérique de Monaco | https://www.maisondunumerique.mc/agenda | ATELIER numérique **GRATUIT sur réservation** (WhatsApp, iPhone, ChatGPT, MConnect, Monaco Telecom TV…) — Les Jardins d'Apolline, 1 Prom. Honoré II · Monaco ; mar→ven 10h-18h30, sam 10h-14h30 | +377 9226 9226 |
-| La Rose des Vents (beach club) | https://larosedesvents.com/the-beach/ | BRUNCH, APÉRO, EXPOSITION — plage du Larvotto, av. Princesse Grace ; saison mars→octobre 9h30-18h30, restaurant midi et soir, transats **sur réservation téléphonique** ; prise de contrôle **Gucci** été 2026 (motif Flora) | +377 9990 6440 |
+| La Rose des Vents (beach club) | https://larosedesvents.com/the-beach/ | BRUNCH, APÉRO, EXPOSITION — plage du Larvotto, av. Princesse Grace ; saison mars→octobre 9h30-18h30, restaurant midi et soir, transats **sur réservation téléphonique** ; prise de contrôle **Gucci** été 2026 (motif Flora) | +377 9990 6440 ⚠️ LE MÊME SITE PORTE **The Caffè**, wellness caffè & juice bar ouvert TOUS LES JOURS 8h30-19h (matcha, smoothies spiruline/collagène, pancakes protéinés, bowls) : il ne suit donc PAS la saison mars→octobre de la plage. Le site a aussi une page EVENTS à surveiller. ⚠️ Déclaré « mort » à tort par le CI en août 2026 : il répond bien, il refuse les adresses de centres de données |
 | Le Fernet | https://www.lefernet.com/ | BRUNCH, APÉRO, SOIRÉE — brasserie française, 1 av. Saint-Charles · Monte-Carlo ; **service continu 12h-23h du lundi au samedi, fermé le dimanche**. Aucun événement récurrent publié au 9 août 2026 | +377 9330 8006 |
 | Amici Miei | https://amicimiei.mc/en/ | APÉRO — restaurant italien depuis 1994, cocktails et apéritifs, terrasse vue sur le Rocher, 42 quai Jean-Charles Rey · Port de Fontvieille ; service continu tous les jours 12h-15h / 19h-23h. Aucun événement récurrent publié au 10 août 2026 | +377 9205 9214 |
 | Le Relais de Venise | https://relaisdevenise.com/locations/monaco.php | SOIRÉE — bistrot français, entrecôte signature depuis 1959, 4 rue Suffren Reymond · La Condamine ; ouvert tous les jours 12h-14h30 / 19h-23h. Aucun événement récurrent publié au 10 août 2026 | +377 9990 8004 |
@@ -526,6 +524,20 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | SPORTEL Monaco | https://www.sportelworld.com/ | CONFÉRENCE sport business | |
 | EVER Monaco | https://www.ever-monaco.com/ | CONFÉRENCE mobilité/smart city | |
 | Ready For IT | https://www.grimaldiforum.com/ | CONFÉRENCE cybersécurité/IT | |
+| **Wellness bars & jus** _(ajoutés le 11 oct 2026)_ | | | |
+| Bubble Bar Monaco | https://bubblebar.mc/ | BIEN-ÊTRE — smoothies, matcha latte, bubble tea et plats healthy, 17 av. des Spélugues · Métropole Shopping ; lun-sam 10h-19h30, dim 10h-19h | +377 9777 3336 |
+| Woo Cantine Bio Monaco | https://woo.mc/ | BIEN-ÊTRE, BRUNCH — cantine 100 % bio, bar à jus pressés à froid à l'extracteur, buddha bowls, petits-déjeuners, 4 rue Princesse Caroline · La Condamine ; **lun-sam 7h-17h** d'après le site officiel. ⚠️ Les annuaires tiers annonçaient lun-ven 7h30-17h : c'est woo.mc qui fait foi. ⚠️ Le site ne publie pas de téléphone, seulement un email | +377 9798 0933 |
+| seaside juicery | https://www.happycow.net/reviews/seaside-juicery-monaco-341167 | BIEN-ÊTRE — jus pressés à froid, smoothie bowls, végan et sans gluten, 12 rue des Açores · Fontvieille ; lun-ven 8h-17h, sam 9h-16h, fermé dim. ⚠️ Pas de site officiel ni de FIXE monégasque trouvé — publiée SANS téléphone plutôt qu'avec un portable d'annuaire tiers | |
+| Tenka Matcha | https://monacoeditorial.com/places/tenka-matcha/ | BIEN-ÊTRE — coffee shop spécialisé matcha, av. des Spélugues ; tous les jours 10h-18h30. ⚠️ Numéro de rue incertain (2 ou 12 selon les sources) : non publié tant qu'il n'est pas tranché. Pas de téléphone trouvé | |
+| ~~Eola~~ | https://www.eolamc.com | ⛔ ÉCARTÉ — café lifestyle, 11 Place d'Armes, poke et açaí bowls, SIGNALÉ FERMÉ depuis juillet 2026. Ne pas remettre de fiche sans avoir vérifié la réouverture : une fiche ne doit pas envoyer quelqu'un devant une porte close | |
+| **Spas & thalasso** _(ajoutés le 11 oct 2026 — pas encore de fiches)_ | | | |
+| Thermes Marins Monte-Carlo | https://www.montecarlosbm.com/fr/spa-monaco/thermes-marins-monte-carlo | BIEN-ÊTRE — thalassothérapie, spa, cryothérapie, fitness et restaurant L'Hirondelle, 2 av. de Monte-Carlo. Journée wellness annoncée à 160 € en semaine / 200 € le week-end (carte 2026, à revérifier) | +377 9806 6900 |
+| Monte-Carlo Bay Hotel & Resort | https://www.montecarlosbm.com/fr/hotel-monaco/monte-carlo-bay | BIEN-ÊTRE — spa Clarins & myBlend, soins beauté, fitness, piscine intérieure-extérieure, 40 av. Princesse Grace · Larvotto | +377 9806 0200 |
+| Spa Guerlain Hôtel Métropole | https://www.metropole.com/ | BIEN-ÊTRE — spa Guerlain, beauté et soins, 4 av. de la Madone · Monte-Carlo | +377 9315 1515 |
+| Monte-Carlo Beach Roquebrune | https://www.montecarlosbm.com/fr/hotel-monaco/monte-carlo-beach | BIEN-ÊTRE — spa, yoga, sport, piscine olympique. ⚠️ Établissement situé à Roquebrune-Cap-Martin (France), pas en Principauté : à traiter comme Cap-d'Ail | +377 9806 2525 |
+| **Clubs & associations** _(complété le 11 oct 2026)_ | | | |
+| Automobile Club de Monaco | https://acm.mc/ | SPORT, RALLYE, FORMULE 1, FORMULE E — Rallye Monte-Carlo (janvier), Rallye Historique (jan-fév), E-Prix (printemps), Grand Prix de Monaco (mai-juin), 23 bd Albert 1er. ⚠️ Les épreuves sont PUBLIQUES, pas réservées aux membres : le club a un espace membres à part (club-acm.com). ⚠️ Les dates publiées sont « sous réserve de validation FIA » — le dire sur chaque fiche | +377 9315 2600 |
+| Garden Club de Monaco | https://www.gardenclub-monaco.com/ | SALON, ATELIER — association d'art floral fondée en 1968 par la Princesse Grace, Foyer Sainte Dévote, 3 rue Philibert Florence. Concours International de Bouquets chaque printemps au Yacht Club. ⚠️ AUCUN AGENDA EN LIGNE : le site ne publie que la date du prochain concours, le reste du programme se demande à gardenclub@monaco.mc | +377 9330 0204 |
 | **Bars à vin & œnologie** | | | |
 | Caves & Gourmandises | https://www.caves-gourmandises.com/ | APÉRO — œnothèque et épicerie fine, dégustation de vins et spiritueux, 25 bd Albert 1er · La Condamine (Port Hercule) ; lun-sam 10h-19h30, fermé dimanche. Aucun événement récurrent publié au 11 août 2026 | +377 9770 5494 |
 | Wine Palace Monte-Carlo | https://www.instagram.com/wine_palace_montecarlo/ | dégustation, œnologie (pic pdt Monaco Yacht Show, sep) | |

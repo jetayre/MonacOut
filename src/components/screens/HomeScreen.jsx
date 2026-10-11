@@ -437,7 +437,26 @@ function reunirLesFamillesParJour(sections, estDeplie) {
             if (estAnnuaire(x)) {
               items.push(...x.directory.map((d, i) => ({ _lieu: d, _fiche: x, _rang: i })));
             } else {
-              items.push({ ...x, _depliee: true });
+              // 🚨 UN VRAI RENDEZ-VOUS DEVIENT UNE SOUS-FICHE COMME LES AUTRES.
+              // Stéphanie, 11 oct 2026 : « y a toujours la fiche robuchon
+              // différente des autres », puis « pareil pour apéro met la fiche
+              // hermitage comme les autres ». Avant, le Sunday Brunch de Robuchon
+              // et le Jardin Belle Époque sortaient en carte pleine au milieu de
+              // sous-fiches sobres : on ne comprenait pas qu'ils étaient du même
+              // ensemble. Ils gardent leur « J'y vais » — sur LEUR identifiant,
+              // pas un identifiant composé, puisque ce sont de vrais événements.
+              items.push({
+                _lieu: {
+                  name: (x.title || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "").trim(),
+                  // L'heure seule : le lieu est déjà dans l'adresse juste en
+                  // dessous, l'écrire deux fois ne renseigne personne.
+                  info: x.time,
+                  adr: x.subtitle,
+                  desc: x.desc,
+                  tel: x.phone,
+                },
+                _fiche: x, _rang: `ev-${x.id}`, _evenement: true,
+              });
             }
           }
         }
@@ -561,8 +580,11 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
 // ⚠️ L'IDENTIFIANT « J'y vais » EST COMPOSÉ : id de la fiche du jour × 1000 +
 // numéro du lieu. C'est exactement le calcul de Shell.jsx — il DOIT rester
 // identique, sinon un « J'y vais » posé ici n'est pas celui posé dans la fiche.
-function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir }) {
-  const idLieu = lieu.vid > 0 ? fiche.id * 1000 + lieu.vid : null;
+function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, evenement = false }) {
+  // Un vrai événement répond de son propre identifiant ; un lieu d'annuaire, de
+  // l'identifiant composé. Les confondre ferait pointer deux « J'y vais »
+  // différents sur la même ligne de la base.
+  const idLieu = evenement ? fiche.id : (lieu.vid > 0 ? fiche.id * 1000 + lieu.vid : null);
   const jyVais = idLieu ? (social?.myParticipations || []).includes(idLieu) : false;
   const amies  = idLieu ? (social?.friendsGoingTo?.(idLieu) || []) : [];
 
@@ -587,6 +609,14 @@ function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir
           fontFamily: "'Lato', sans-serif", fontSize: 13,
           color: GREY, marginTop: 5,
         }}>{lieu.info}</div>
+      )}
+
+      {/* L'adresse, quand on la connaît : une sous-fiche doit suffire à s'y rendre. */}
+      {lieu.adr && lieu.adr !== lieu.info && (
+        <div style={{
+          fontFamily: "'Lato', sans-serif", fontSize: 12,
+          color: GREY, marginTop: 3,
+        }}>{lieu.adr}</div>
       )}
 
       {/* Un film, lui, a un genre, une durée, une note et un résumé. Ces champs
@@ -1271,6 +1301,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   loggedIn={loggedIn}
                   onGoingClick={onGoingClick}
                   onOuvrir={() => onCardClick?.(e._fiche)}
+                  evenement={!!e._evenement}
                 />
               ) : e.groupeFamille ? (
                 <CarteGroupeFamille
@@ -1293,7 +1324,12 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // fenêtre. Stéphanie, 11 oct 2026 : « je veux que cela soit cohérent partout ».
   function renduCarte(e, sansDate, compact = false) {
     const annuaire = Array.isArray(e.directory) && e.directory.length > 0;
-    const cleInfos = `infos-${e.id}`;
+    // 🚨 LA CLÉ DOIT PORTER LE JOUR. Une fiche `ongoing` (wellness bars, musées,
+    // cinéma…) revient chaque jour AVEC LE MÊME IDENTIFIANT : avec `infos-${e.id}`
+    // seul, toucher « Infos » sur la fiche d'aujourd'hui dépliait aussi celle de
+    // demain et d'après-demain. Stéphanie, 11 oct 2026 : « y a un bug dans la
+    // fiche des bars bien-être quand on clique sur info ».
+    const cleInfos = `infos-${e.cleFil || `${e.id}-${e.date}`}`;
     const ouvert = annuaire && !!exposDepliees[cleInfos];
     const carte = (
             <EventCard
@@ -1332,11 +1368,11 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     );
     if (!ouvert) return carte;
     return (
-      <div key={`annu-${e.id}`}>
+      <div key={`annu-${cleInfos}`}>
         {carte}
         {e.directory.map((d, k) => (
           <CarteLieu
-            key={`lieu-${e.id}-${k}`}
+            key={`lieu-${cleInfos}-${k}`}
             lieu={d}
             fiche={e}
             lang={lang}
