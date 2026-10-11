@@ -111,6 +111,34 @@ function inspect(events) {
     const _h = String(e.time || '').match(/^(\d{1,2})h/);
     if (_h && +_h[1] > 23) fault(e, `Heure impossible « ${e.time} » — c'est une durée, pas un horaire`);
     if (/youtube\.com|youtu\.be/i.test(e.link || '')) fault(e, 'Lien vers YouTube : le lien doit être celui du lieu (règle 16)');
+
+    // 1 ter. UNE PLAGE QUI FINIT AVANT DE COMMENCER, ajoutée le 11 oct 2026.
+    // Stéphanie a ouvert la fiche « Bollywood Boulevard » : elle annonçait
+    // « 20h00 — 18h00 ». Quatre fiches du Théâtre des Muses portaient ce défaut.
+    // L'origine : PrinciPocket donne UNE plage pour TOUTE la série de
+    // représentations — 20h en semaine, 18h le dimanche — et l'importeur la
+    // recopiait telle quelle sur chaque date. Personne ne l'avait vu en trois
+    // semaines ; un horaire faux est muet, il faut une règle pour l'entendre.
+    //
+    // ⚠️ UNE FIN APRÈS MINUIT EST NORMALE et ne doit JAMAIS être signalée :
+    // « 19h00 — 01h30 » au Bar Américain, « 20h00 — 05h00 » au Twiga,
+    // « 23h00 — 05h00 » au Lilly's. Un premier jet sans ce garde-fou criait sur
+    // 287 fiches parfaitement justes. On n'accuse donc que si la fin tombe en
+    // PLEINE JOURNÉE — après 10h du matin. Le seuil est volontairement haut :
+    // ce défaut-ci produit toujours une heure de SÉANCE (16h30, 18h, 20h30),
+    // jamais une heure de fermeture, et `fault()` BLOQUE la publication — un
+    // faux positif coûterait plus cher que le défaut qu'on cherche.
+    const _plage = String(e.time || '').replace(/→/g, '—')
+      .match(/^(\d{1,2})h(\d{2})\s*[—–-]\s*(\d{1,2})h(\d{2})$/);
+    if (_plage) {
+      const _deb = +_plage[1] * 60 + +_plage[2];
+      const _fin = +_plage[3] * 60 + +_plage[4];
+      if (_fin < _deb && _fin > 10 * 60) {
+        fault(e, `Horaire impossible « ${e.time} » : la fin précède le début. `
+          + `Souvent une plage recopiée sur TOUTE une série (20h en semaine, 18h le dimanche) — `
+          + `mettre l'heure DE CETTE DATE, vérifiée à la source`);
+      }
+    }
     const _t = (e.title || '').replace(/\n/g, ' ').replace(/\s*ⓘ\s*$/, '').trim().toLowerCase();
     const _d = (e.desc || '').trim().replace(/\.$/, '').toLowerCase();
     if (_t && _d === _t && !e.time) fault(e, 'Fiche vide : pas d\'heure, et la description ne fait que répéter le titre');

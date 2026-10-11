@@ -60,8 +60,11 @@ const GENERIQUES_SOIR = [
   "APERO NORMA CONDAMINE",
   "HAPPY HOUR LA RASCASSE PORT HERCULE",
   "BRASSERIE DE MONACO PORT HERCULE",         // DJ résident TOUS les soirs = permanent
-  "DINER CASTELROC PLACE DU PALAIS",
-  "DINER CASTELROC",
+  // 🚨 « DINER CASTELROC » A ÉTÉ RETIRÉ D'ICI le 11 oct 2026. Stéphanie :
+  // « le soir il est fermé ». Tant que ces deux titres figuraient parmi les
+  // génériques du SOIR, chaque passage de nuit remettait le Castel Roc dans la
+  // fiche « CE SOIR » — on l'en sortait, il revenait. Il vit désormais dans la
+  // fiche « EN APRÈS-MIDI » (clé `midi` du registre), et nulle part ailleurs.
   "APERO GUSTAVE HERMITAGE",
   "APERO BUDDHA-BAR MONTE-CARLO",
   "APERO COYA PISCO BAR",

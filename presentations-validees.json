@@ -89,5 +89,20 @@
     "adr": "1 place du Palais · Monaco-Ville",
     "texte": "« Chic et gourmand au cœur de la vieille ville » : une cuisine inspirée de la gastronomie monégasque traditionnelle et des tendances d'aujourd'hui, face au Palais princier.",
     "source": "castelrocmonaco.com (site officiel, donné par Stéphanie le 11 oct 2026) — ⚠️ le site n'affiche NI téléphone NI horaires précis : il dit seulement « ouvert tous les jours au déjeuner » et « carte réduite toute journée ». Le +377 9330 3668 vient des annuaires, pas du site."
+  },
+  "L'Oliverai": {
+    "adr": "45 place des Moulins · Monte-Carlo",
+    "texte": "Café de quartier en terrasse sur la place des Moulins, cuisine méditerranéenne et prix doux. On y vient le matin pour un café comme le soir pour un verre.",
+    "source": "⚠️ Aucun site officiel trouvé — adresse et téléphone recoupés sur monaco-co.com et Tripadvisor. Horaires NON publiés."
+  },
+  "Tavolo — Columbus Monte-Carlo": {
+    "adr": "23 av. des Papalins · Fontvieille",
+    "texte": "La table et le bar à cocktails de l'hôtel Columbus, en terrasse face à la roseraie Princesse Grace. Carte méditerranéenne de saison, produits frais et locaux.",
+    "source": "columbushotels.com et tavolomc.com"
+  },
+  "La Pampa": {
+    "adr": "8 place du Palais · Monaco-Ville",
+    "texte": "Snack-bar créé en 1957, face au Palais princier, sur l'une des plus belles places de la Principauté. Terrasse au soleil, du café du matin au verre de l'après-midi.",
+    "source": "⚠️ Pas de site officiel — adresse, téléphone et horaires recoupés sur monaco-welcome.mc (label de l'État), pagesjaunes et Tripadvisor."
   }
 }
