@@ -371,8 +371,14 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     textAlign: "left", paddingRight: 8,
                   }}>{v.name}</span>
                   <div style={{ display: "inline-flex", gap: 4, flexShrink: 0 }}>
+                    {/* ⚠️ PLUS DE target="_blank" : sur iPhone il ouvre un onglet vide
+                        et l'app affiche un écran noir (voir « Rester dans l'app »).
+                        Ce bloc `venues` est de toute façon le dernier d'un ancien
+                        affichage : depuis le 11 oct 2026 les annuaires passent par
+                        `directory`, qui se déplie en sous-fiches sans lien sortant.
+                        On le laisse en repli, corrigé, plutôt qu'armé. */}
                     {v.link && (
-                      <a href={v.link} target="_blank" rel="noopener noreferrer"
+                      <a href={v.link} rel="noopener noreferrer"
                          onClick={e => e.stopPropagation()}
                          style={{
                            display: "flex", alignItems: "center", justifyContent: "center",
