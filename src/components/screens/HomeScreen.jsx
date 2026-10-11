@@ -354,7 +354,16 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
   // donc « même id » laissait passer deux fois « Les films au cinéma cette
   // semaine ». Deux fiches de même catégorie et de même titre, à deux dates,
   // sont la même chose répétée.
-  const signature = e => `${e.cat}|${(e.title || "").replace(/\s+/g, " ").trim()}`;
+  // ⚠️ POUR UNE FICHE QUI SE REFABRIQUE CHAQUE JOUR, LE TITRE NE VA PAS NON PLUS :
+  // il porte un COMPTE qui change. « MUSÉES 6 OUVERTS À MONACO » aujourd'hui et
+  // « MUSÉES 4 OUVERTS À MONACO » demain sont la même fiche, et les deux se
+  // retrouvaient dans la même journée — quatre musées affichés en double au
+  // dépliage des expositions, et un total annoncé trop gros. Stéphanie, 11 oct
+  // 2026 : « corrige les expo il y a des doublons il n'y a en vrai pas 26 expo ».
+  // Le SOUS-TITRE, lui, ne bouge pas : c'est lui qui identifie ces fiches-là.
+  const signature = e => (e.recap === true || e.ongoing === true) && e.subtitle
+    ? `${e.cat}|${String(e.subtitle).replace(/\s+/g, " ").trim()}`
+    : `${e.cat}|${(e.title || "").replace(/\s+/g, " ").trim()}`;
   const dejaApresAujourdhui = new Set(
     liste.filter(e => e.date !== aujourdhui).map(signature));
   const aDejaSaFicheDemain = (e) => dejaApresAujourdhui.has(signature(e));
