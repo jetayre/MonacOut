@@ -229,6 +229,28 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                         <span style={{ textAlign: "left", minWidth: 0 }}>
                           <span style={{ display: "block", fontFamily: "'Josefin Sans', sans-serif", fontSize: 13, color: NAVY, fontWeight: 600 }}>{d.name}</span>
                           {d.info && <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 2 }}>{d.info}</span>}
+                          {/* Le film : genre, durée, note, puis le résumé. Stéphanie,
+                              11 oct 2026 : « met plutôt dans la fiche ». Un titre et une
+                              heure ne disent pas si le film vous tente. Ces champs
+                              n'existent que pour la carte cinéma — ailleurs, rien ne
+                              s'affiche, donc rien ne bouge. */}
+                          {(d.genre || d.duree || typeof d.rt === "number") && (
+                            <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 11, color: GREY, marginTop: 3 }}>
+                              {[d.genre, d.duree].filter(Boolean).join(" · ")}
+                              {typeof d.rt === "number" && (
+                                // 🍅 au-dessus de 60 %, 🤢 en dessous : la convention
+                                // de Rotten Tomatoes lui-même (« fresh » / « rotten »).
+                                <span style={{ fontWeight: 700, marginLeft: (d.genre || d.duree) ? 6 : 0,
+                                               color: d.rt >= 60 ? "#44581C" : "#7B2D26" }}>
+                                  {d.rt >= 60 ? "🍅" : "🤢"} {d.rt} %
+                                </span>
+                              )}
+                            </span>
+                          )}
+                          {d.desc && (
+                            <span style={{ display: "block", fontFamily: "'Lato', sans-serif", fontSize: 12,
+                                           color: "#555", lineHeight: 1.55, marginTop: 6, maxWidth: 420 }}>{d.desc}</span>
+                          )}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
                           {/* « J'y vais » lieu par lieu, VISIBLE PAR LES AMIES.
