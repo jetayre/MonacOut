@@ -125,8 +125,21 @@ const result = lines.map(line => {
   const titleM = line.match(/title:"([^"]*)"/);
   const descM  = line.match(/desc:"([^"]*)"/);
   const eventText = ((titleM?.[1] || '') + ' ' + (descM?.[1] || '')).toLowerCase();
+  // 🔇 UNE ŒUVRE N'EST PAS UNE FÊTE. « Pâques sanglantes » de Giuseppe De Santis
+  // est un film ; « Jour de fête » de Tati aussi. Tant que la règle se contentait
+  // du mot, elle criait à CHAQUE passage du CI sur une fiche parfaitement juste —
+  // et une alerte qui sonne tous les jours pour rien apprend à ne plus lire les
+  // alertes. La date du 20 octobre a été confirmée par le programme du Théâtre
+  // des Variétés le 11 oct 2026.
+  // On n'applique donc la règle qu'aux fiches qui pourraient VRAIMENT parler
+  // d'une fête : un spectacle, un film ou un concert porte un TITRE.
+  const CULTUREL = ['CINÉMA', 'SPECTACLE', 'THÉÂTRE', 'CONCERT', 'OPÉRA', 'MUSICAL', 'DANSE', 'FESTIVAL'];
+  const catFete = line.match(/cat:"([^"]*)"/);
+  const estCulturel = CULTUREL.includes(catFete?.[1] || '');
+
   for (const { key, label, exact, margin } of holidayRules(year)) {
     if (!key.test(eventText)) continue;
+    if (estCulturel) break;   // le mot est dans un titre d'œuvre, pas une date
     const eventD = new Date(year, monthIdx, dayNum);
     const diff   = Math.abs((eventD - exact) / 86400000);
     if (diff > margin) {
