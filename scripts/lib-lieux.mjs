@@ -35,6 +35,11 @@ const REGISTRE_LIEUX = join(__dirname, "..", "lieux-ids.json");
 export const BASE_SOIR = 930000;
 export const BASE_BRUNCH = 940000;
 export const BASE_MUSEES = 950000;
+// L'apéro du midi, ajouté le 11 oct 2026. Stéphanie : « met apéro du midi ».
+// ⚠️ Sa propre plage, pas celle du soir : deux cartes du même jour doivent avoir
+// deux identifiants, sinon le « J'y vais » de midi et celui du soir se marchent
+// dessus (l'identifiant d'un lieu vaut id_fiche × 1000 + numéro du lieu).
+export const BASE_MIDI = 960000;
 
 const ORIGINE = new Date(2026, 0, 1);
 

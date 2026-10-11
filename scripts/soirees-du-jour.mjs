@@ -31,7 +31,7 @@
  * Usage : node scripts/soirees-du-jour.mjs [--dry]
  */
 import { existsSync, readFileSync, writeFileSync } from "fs";
-import { BASE_SOIR, BASE_BRUNCH, idFiche, chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
+import { BASE_SOIR, BASE_BRUNCH, BASE_MIDI, idFiche, chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -143,7 +143,7 @@ lignes.forEach((l, i) => {
   // moitié des lieux. Repéré à l'essai : le 11 août n'affichait que le Sass Café.
   const annee = String((l.match(/year:(\d+)/) || [])[1] || ANNEE_COURANTE);
   const cle = `${date}|${annee}`;
-  if (!parJour.has(cle)) parJour.set(cle, { soir: [], brunch: [] });
+  if (!parJour.has(cle)) parJour.set(cle, { soir: [], brunch: [], midi: [] });
 
   const lieu = (champ(l, "subtitle").split(" · ")[0] || "").trim();
   const entree = { lieu, heure: champ(l, "time"), tel: champ(l, "phone"), titre: plat(titre) };
@@ -182,7 +182,7 @@ const union = (a = [], b = []) => {
 // sinon un lieu reste dans le fil sans que personne le remarque (cas Club d'Aviron).
 registre.__titresFondus = Array.isArray(registre.__titresFondus) ? registre.__titresFondus : [];
 for (const [, v] of parJour) {
-  for (const e of [...(v.soir || []), ...(v.brunch || [])]) {
+  for (const e of [...(v.soir || []), ...(v.brunch || []), ...(v.midi || [])]) {
     if (e.titre && !registre.__titresFondus.includes(e.titre)) registre.__titresFondus.push(e.titre);
   }
 }
@@ -193,6 +193,10 @@ for (const [cle, v] of parJour) {
   registre[cle] = {
     soir: union(registre[cle]?.soir, v.soir),
     brunch: union(registre[cle]?.brunch, v.brunch),
+    // ⚠️ `midi` n'est JAMAIS alimenté par l'extraction : aucun titre générique ne
+    // le désigne. Il vient du registre seul, où on l'écrit à la main. L'union le
+    // préserve donc d'un passage à l'autre.
+    midi: union(registre[cle]?.midi, v.midi),
   };
 }
 
@@ -220,9 +224,42 @@ const listeLieux = arr => {
 // de l'autre avec l'icône tel qu'on peut cliquer, pas leur tél » — donc le numéro ne
 // s'écrit plus dans le texte, il devient un bouton d'appel.
 const regLieux = chargerRegistreLieux();
+// ── L'adresse et la phrase de présentation ───────────────────────────────────
+// Stéphanie, 11 octobre 2026 : « rajoute adresse et phrase dans chaque fiche
+// apéro et brunch ». Depuis que « Infos » déplie l'annuaire en sous-fiches,
+// chaque terrasse a SA fiche dans le fil : elle doit suffire à savoir où aller.
+//
+// 🚨 POURQUOI UN FICHIER ÉCRIT À LA MAIN, ET PAS LE SCRIPT AUTOMATIQUE.
+// scripts/presentations-lieux.mjs lit le site de chaque lieu, mais la moitié de
+// sa récolte était fausse À CET ENDROIT : un avis de client pour le Bistro Coe,
+// un bandeau promotionnel pour le Café de Paris, des mots-clés pour La Rose des
+// Vents. Ces phrases-ci ont été lues une par une sur la source citée dans le
+// fichier, puis réécrites. Un lieu absent sort SANS phrase — on ne devine pas.
+//
+// ⚠️ ET SURTOUT : CE N'EST PAS ÉCRIT DANS events.js À LA MAIN. Les annuaires
+// sont REFABRIQUÉS à chaque passage de ce script ; une phrase posée directement
+// dans events.js disparaîtrait à la nuit suivante, sans bruit.
+let presentations = {};
+try {
+  presentations = JSON.parse(readFileSync(join(__dirname, "..", "presentations-validees.json"), "utf8")) || {};
+} catch { /* pas de fichier, pas de phrases : le reste fonctionne */ }
+
+const platNom = t => (t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, " ").trim();
+// ⚠️ Correspondance STRICTE sur le nom aplati, pas par inclusion. L'inclusion
+// avait attribué à 872 entrées le texte d'un autre lieu (essai du 11 oct) :
+// « Café de Paris » et « Caffè Milano » se ressemblent assez pour se confondre.
+const PRESENTATIONS = new Map(
+  Object.entries(presentations)
+    .filter(([k, v]) => !k.startsWith("_") && v && typeof v === "object")
+    .map(([k, v]) => [platNom(k), v]));
+
 const annuaireJSON = lieux => "[" + lieux.map(e => {
   const bouts = [`name:"${(e.lieu || "").replace(/"/g, "")}"`, `vid:${numeroLieu(regLieux, e.lieu)}`];
   if (e.heure) bouts.push(`info:"${e.heure.replace(/"/g, "")}"`);
+  const p = PRESENTATIONS.get(platNom(e.lieu));
+  if (p?.adr)   bouts.push(`adr:"${p.adr.replace(/"/g, "")}"`);
+  if (p?.texte) bouts.push(`desc:"${p.texte.replace(/"/g, "")}"`);
   if (e.tel) bouts.push(`tel:"${e.tel.replace(/"/g, "")}"`);
   return "{" + bouts.join(",") + "}";
 }).join(",") + "]";
@@ -257,9 +294,28 @@ function carteBrunch(id, date, annee, lieux) {
     + `source:"Monac'Out",quarter:"Monaco"},`;
 }
 
+// L'apéro du midi. Stéphanie, 11 octobre 2026 : « met apéro du midi », après avoir
+// constaté pour le Castel Roc que « le soir il est fermé ». Des adresses servent à
+// midi et ferment avant l'apéritif : les annoncer « ce soir » envoyait quelqu'un
+// devant une porte close.
+function carteMidi(id, date, annee, lieux) {
+  const noms = lieux.map(e => e.heure && /^\d/.test(e.heure) ? `${e.lieu} (${e.heure})` : e.lieu);
+  const desc = `Où prendre un verre ou déjeuner en terrasse à midi : ${noms.join(" · ")}.`
+    + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
+    + ` Les adresses du soir ont leur propre fiche.`;
+  const descEn = `Where to have a drink or lunch on a terrace at midday: ${noms.join(" · ")}.`
+    + ` Tap the card to see them one by one and call in a single move.`
+    + ` Evening spots have their own card.`;
+  return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"APÉRO",date:"${date}",time:"12h00",`
+    + `title:"À MIDI${NL}${lieux.length} ADRESSE${lieux.length > 1 ? "S" : ""}${NL}OUVERTE${lieux.length > 1 ? "S" : ""}",subtitle:"Terrasses du midi · Principauté",`
+    + `desc:"${desc}",descEn:"${descEn}",free:true,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
+    + `fallback:"linear-gradient(150deg,#2A3A1A,#5A6A2A,#141C08)",accent:"#D8E8A0",emoji:"🥂",`
+    + `source:"Monac'Out",quarter:"Monaco"},`;
+}
+
 // Les ids 93xxxx sont réservés à ce script (aucune autre plage ne les utilise).
 const nouvelles = [];
-let nbSoir = 0, nbBrunch = 0;
+let nbSoir = 0, nbBrunch = 0, nbMidi = 0;
 // On génère depuis le REGISTRE, pas depuis la seule extraction : c'est ce qui rend le
 // script rejouable. Tri par date pour que les ids restent stables d'un passage à l'autre.
 for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a, b) => (dateDeLaCle(a) || 0) - (dateDeLaCle(b) || 0))) {
@@ -267,7 +323,7 @@ for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a
   const [date, an] = cle.split("|");
   // Même convention que le reste du fichier : pas de `year` pour l'année courante.
   const annee = Number(an) === ANNEE_COURANTE ? "" : an;
-  const s = listeLieux(v.soir || []), b = listeLieux(v.brunch || []);
+  const s = listeLieux(v.soir || []), b = listeLieux(v.brunch || []), m = listeLieux(v.midi || []);
   // ⚠️ Identifiant DÉDUIT DE LA DATE, jamais d'un compteur : une amie qui coche
   // « J'y vais » ce soir doit retrouver le même identifiant demain, après que le CI a
   // purgé les journées passées. Un compteur ferait glisser la participation d'un jour.
@@ -275,6 +331,7 @@ for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a
   if (!d) continue;
   if (s.length) { nouvelles.push(carteSoir(idFiche(BASE_SOIR, d), date, annee, s)); nbSoir++; }
   if (b.length) { nouvelles.push(carteBrunch(idFiche(BASE_BRUNCH, d), date, annee, b)); nbBrunch++; }
+  if (m.length) { nouvelles.push(carteMidi(idFiche(BASE_MIDI, d), date, annee, m)); nbMidi++; }
 }
 
 // ── Écriture ──────────────────────────────────────────────────────────────────

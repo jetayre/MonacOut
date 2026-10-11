@@ -362,9 +362,12 @@ const FAMILLES_REUNIES = [
   { cat: "BRUNCH", seuil: 2,
     fr: "Brunchs", en: "Brunch",
     nomFr: n => `${n} brunchs ce jour-là`,  nomEn: n => `${n} brunches that day` },
+  // ⚠️ « ce jour-là », pas « ce soir-là » : depuis le 11 oct 2026 la famille APÉRO
+  // contient AUSSI la fiche du midi (Stéphanie : « met apéro du midi »), et
+  // annoncer le soir au-dessus d'adresses de midi était faux.
   { cat: "APÉRO", seuil: 2,
     fr: "Apéro", en: "Drinks",
-    nomFr: n => `${n} adresses ce soir-là`, nomEn: n => `${n} places that evening` },
+    nomFr: n => `${n} adresses ce jour-là`, nomEn: n => `${n} places that day` },
   // ⚠️ PAS DE FAMILLE « CINÉMA ». Elle a existé une heure, le 11 oct 2026, puis
   // a été retirée : depuis que le bouton « Infos » déplie partout, la carte
   // cinéma déplie ses films toute seule. En faire un groupe la REMPLAÇAIT par

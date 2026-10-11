@@ -1,0 +1,93 @@
+{
+  "_lisez_moi": [
+    "PRÉSENTATIONS ÉCRITES ET VÉRIFIÉES À LA MAIN — 11 octobre 2026.",
+    "Stéphanie : « rajoute adresse et phrase dans chaque fiche apéro et brunch ».",
+    "",
+    "🚨 CE FICHIER EXISTE PARCE QUE L'AUTOMATIQUE A ÉCHOUÉ. scripts/presentations-lieux.mjs",
+    "lit le site de chaque lieu, mais la moitié de sa récolte était fausse À CET ENDROIT :",
+    "un avis de client pour le Bistro Coe, le bandeau « Join My Monte-Carlo for free » pour",
+    "le Café de Paris, une suite de mots-clés pour La Rose des Vents. Et son rapprochement",
+    "de noms attribuait à 872 entrées le texte d'un AUTRE lieu. Ces phrases-ci ont donc été",
+    "lues une par une sur la source citée, puis réécrites.",
+    "",
+    "⚠️ `source` dit D'OÙ vient la phrase. Quand ce n'est pas le site du lieu, c'est écrit.",
+    "⚠️ Un lieu absent de ce fichier sort SANS phrase. On ne devine pas.",
+    "⚠️ La clé doit être le nom EXACT tel qu'il apparaît dans l'annuaire (`directory`),",
+    "   pas le nom du tableau des sources : c'est sur lui que se fait la correspondance."
+  ],
+  "Pavyllon": {
+    "adr": "Hôtel Hermitage · Square Beaumarchais",
+    "texte": "Le brunch dominical de Yannick Alléno à l'Hôtel Hermitage, servi de 12h à 15h : recettes originales dont son « œuf à la turque » signature. Une salle pour les enfants reste ouverte pendant tout le service.",
+    "source": "montecarlosbm.com — page brunch Pavyllon"
+  },
+  "Mada One": {
+    "adr": "Promenade Princesse Charlène · One Monte-Carlo",
+    "texte": "Le « snackonomy » de Marcel Ravin à One Monte-Carlo : entre café, bistrot et pâtisserie, une carte inspirée des saveurs des Caraïbes.",
+    "source": "montecarlosbm.com"
+  },
+  "Smakelijk!": {
+    "adr": "22 av. Princesse Grace · Le Méridien Beach Plaza",
+    "texte": "Brasserie belge qui réinvente les classiques du plat pays avec des touches françaises. Le dimanche, brunch en buffet avec fontaine de chocolat belge et bar à fruits de mer.",
+    "source": "monacolife.net + visitmonaco.com (le restaurant n'a pas de site propre)"
+  },
+  "Café de Paris": {
+    "adr": "Place du Casino · Monte-Carlo",
+    "texte": "La brasserie la plus aimée de Monaco, place du Casino depuis 150 ans : cuisine française de tradition, du simple café au repas partagé.",
+    "source": "montecarlosbm.com"
+  },
+  "Gran Caffè": {
+    "adr": "57 rue Grimaldi · La Condamine",
+    "texte": "Cuisine italienne rue Grimaldi : pâtes, risottos et poissons, une carte des vins soignée et des desserts maison.",
+    "source": "grancaffe.mc"
+  },
+  "Caffè Milano": {
+    "adr": "1 quai Albert Ier · Port Hercule",
+    "texte": "Restaurant italien authentique — « des saveurs traditionnelles à partager » — dans une ambiance méditerranéenne, avec vue sur le port Hercule.",
+    "source": "caffemilano.mc"
+  },
+  "Marlow": {
+    "adr": "5 place Princesse Gabriella · Mareterra",
+    "texte": "Café-lounge aux influences britanniques, où la cuisine anglo-saxonne est « réinventée avec malice ». Brunch, afternoon tea et cocktails face à la mer.",
+    "source": "montecarlosbm.com"
+  },
+  "99 Sushi Bar": {
+    "adr": "16 quai du Petit Portier · Mareterra",
+    "texte": "Haute cuisine japonaise à Mareterra : sushis et poissons travaillés avec des produits de première qualité, dans un cadre raffiné.",
+    "source": "99sushibar.com"
+  },
+  "Amazónico": {
+    "adr": "Place du Casino · Monte-Carlo",
+    "texte": "Cuisine tropicale et latino-américaine — sushis, fruits de mer, viandes grillées — dans une ambiance de forêt amazonienne, avec musique live et DJ.",
+    "source": "montecarlosbm.com"
+  },
+  "Bistro Coe": {
+    "adr": "Complexe balnéaire du Larvotto · Promenade L14",
+    "texte": "Cuisine raffinée du petit-déjeuner au dîner, dans un cadre mêlant charme rétro et modernité. Terrasse panoramique sur la mer et le Larvotto.",
+    "source": "bistrocoe.mc"
+  },
+  "Amici Miei": {
+    "adr": "42 quai Jean-Charles Rey · Fontvieille",
+    "texte": "Installé à Monaco depuis 1994, il sert les spécialités vénitiennes — foie de veau à la vénitienne, sardines en saor — et promet « tous les parfums d'une Venise d'une autre époque ».",
+    "source": "amicimiei.mc"
+  },
+  "Le Relais de Venise": {
+    "adr": "4 rue Suffren Reymond · La Condamine",
+    "texte": "Un menu unique depuis 1959 : contre-filet de bœuf grillé et sa sauce, desserts maison et une sélection de vins français.",
+    "source": "relaisdevenise.com"
+  },
+  "Old Wild West": {
+    "adr": "30 route de la Piscine · Darse Sud, quai Albert Ier",
+    "texte": "Grill d'inspiration Far West sur la darse sud du port : viandes grillées et ambiance western.",
+    "source": "oldwildwest.mc"
+  },
+  "Gustave": {
+    "adr": "Hôtel Hermitage · Square Beaumarchais",
+    "texte": "Le bar à vins de l'Hôtel Hermitage : grands crus au verre et spiritueux rares, ouvert tous les jours de midi à 1h du matin.",
+    "source": "montecarlosbm.com"
+  },
+  "Castel Roc": {
+    "adr": "1 place du Palais · Monaco-Ville",
+    "texte": "« Chic et gourmand au cœur de la vieille ville » : une cuisine inspirée de la gastronomie monégasque traditionnelle et des tendances d'aujourd'hui, face au Palais princier.",
+    "source": "castelrocmonaco.com (site officiel, donné par Stéphanie le 11 oct 2026) — ⚠️ le site n'affiche NI téléphone NI horaires précis : il dit seulement « ouvert tous les jours au déjeuner » et « carte réduite toute journée ». Le +377 9330 3668 vient des annuaires, pas du site."
+  }
+}
