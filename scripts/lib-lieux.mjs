@@ -41,6 +41,15 @@ export const BASE_MUSEES = 950000;
 // dessus (l'identifiant d'un lieu vaut id_fiche × 1000 + numéro du lieu).
 export const BASE_MIDI = 960000;
 
+// Le bien-être du jour, ajouté le 11 oct 2026. Stéphanie : « on doit faire une
+// fiche bien être et de là ressort aquagym et lamartine ». Sa propre plage,
+// comme les autres : deux cartes du même jour ne peuvent pas partager un id,
+// sinon les « J'y vais » se marchent dessus.
+export const BASE_BIENETRE = 970000;
+
+// Les ateliers du jour, même raison : leur propre plage d'identifiants.
+export const BASE_ATELIERS = 980000;
+
 const ORIGINE = new Date(2026, 0, 1);
 
 /** Numéro de la journée depuis le 1er janvier 2026 (identique pour une même date). */

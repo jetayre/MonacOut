@@ -334,8 +334,37 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
   // Rang du moment, pour que les sections se suivent toujours dans l'ordre : une
   // fiche « en cours » commencée ce matin ne doit pas ramener « Maintenant » après
   // « Ce soir ».
+  // 🚨 « Cette fiche a fini sa journée ». CE PRÉDICAT DOIT SERVIR AU TRI ET AU
+  // PLACEMENT, sinon les deux se contredisent : le placement rangeait la fiche
+  // sous « Demain » pendant que le tri la laissait avec aujourd'hui, et on
+  // obtenait DEUX blocs « Demain », le second avec « Après-midi » avant
+  // « Matin ». Stéphanie, 11 oct 2026 : « vérifie les sous fiches des
+  // expositions y a un bug ».
+  const finie = (e) => {
+    if (jourConsulte || e.date !== aujourdhui) return false;
+    if (!(e.time && String(e.time).trim())) return false;
+    return finReelle(e) <= min;
+  };
+  // ⚠️ Et si DEMAIN A DÉJÀ SA FICHE, on ne remonte pas celle d'aujourd'hui :
+  // une fiche « en cours » (petit-déj, musées, expositions) existe à toutes les
+  // dates de sa période, donc la rattacher à demain la ferait apparaître DEUX
+  // FOIS dans le même bloc. Constaté en vérifiant le fil le 11 oct 2026.
+  // La comparaison se fait sur le TITRE, pas sur l'identifiant : la fiche cinéma
+  // et les fiches d'annuaire sont REFABRIQUÉES chaque jour avec un id différent,
+  // donc « même id » laissait passer deux fois « Les films au cinéma cette
+  // semaine ». Deux fiches de même catégorie et de même titre, à deux dates,
+  // sont la même chose répétée.
+  const signature = e => `${e.cat}|${(e.title || "").replace(/\s+/g, " ").trim()}`;
+  const dejaApresAujourdhui = new Set(
+    liste.filter(e => e.date !== aujourdhui).map(signature));
+  const aDejaSaFicheDemain = (e) => dejaApresAujourdhui.has(signature(e));
   const rang = (e) => {
     if (jourConsulte) return 0;
+    // Une fiche terminée a quitté l'échelle d'aujourd'hui : elle est affichée
+    // sous DEMAIN. Lui laisser un rang de « plus tard » / « ce soir » la plaçait
+    // APRÈS les vraies fiches de demain, et la journée affichait deux fois ses
+    // moments — matin, après-midi, soir, puis matin à nouveau.
+    if (finie(e)) return 0;
     if (e.date !== aujourdhui) return 0;
     const sansHeure = !(e.time && String(e.time).trim());
     const debut = heureDeTri(e), fin = finReelle(e);
@@ -350,7 +379,7 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
   // et non sur la date du fichier. Une fiche « en cours » porte la date du jour ;
   // rattachée au 18 septembre, elle doit se ranger avec le 18, pas avant tout le
   // monde. Puis le moment, puis l'heure.
-  const jourAffiche = e => (jourConsulte && e.ongoing) ? jourConsulte : e.date;
+  const jourAffiche = e => (jourConsulte && e.ongoing) ? jourConsulte : (finie(e) ? demain : e.date);
   const aRanger = liste.slice().sort((a, b) => {
     const da = parseEventDate({ ...a, date: jourAffiche(a) });
     const db = parseEventDate({ ...b, date: jourAffiche(b) });
@@ -381,11 +410,15 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
       // volontairement affichées le soir — c'est le moment où l'on prépare sa
       // sortie — mais leur journée est finie. Ce n'est donc pas d'aujourd'hui
       // qu'elles parlent, c'est de DEMAIN, et c'est ce qu'elles doivent annoncer.
-      const terminee = !sansHeure && fin <= min;
       if (!sansHeure && debut <= min && min < fin) poser("maintenant", null, lang === "en" ? "Right now" : "Maintenant", e);
-      else if (terminee) {
+      else if (finie(e)) {
+        // Sa journée est faite. Si la même fiche existe déjà pour un jour suivant,
+        // on la laisse tomber — c'est l'autre qui parle de demain.
+        if (aDejaSaFicheDemain(e)) continue;
+        // ⚠️ LA MÊME CLÉ que les vraies fiches de demain (`${demain}|${moment}`).
+        // Une clé à part (`demain|…`) ouvrait un SECOND bloc « Demain ».
         const moment = momentDuJour(e);
-        poser(`demain|${moment}`, lang === "en" ? "Tomorrow" : "Demain", moment, e);
+        poser(`${demain}|${moment}`, lang === "en" ? "Tomorrow" : "Demain", moment, e);
       }
       else if (!sansHeure && debut >= 18 * 60)     poser("cesoir",     null, lang === "en" ? "Tonight" : "Ce soir", e);
       else                                         poser("plustard",   null, lang === "en" ? "Later today" : "Plus tard aujourd'hui", e);
