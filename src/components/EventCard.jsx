@@ -233,7 +233,7 @@ function FriendAvatars({ friends = [] }) {
   )
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false, compact = false }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false, compact = false, onInfos = null, infosDepliees = false }) {
   // ── MODE COMPACT ────────────────────────────────────────────────────────────
   // Demandé par Stéphanie le 10 oct 2026 : quand on déplie « Voir les 7 », les
   // expositions arrivent toutes d'un coup et se confondent avec le reste du fil.
@@ -546,10 +546,16 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </button>
           )}
           {/* Fiche récapitulative (« ce soir : n terrasses ») : rien n'indiquait qu'il
-              fallait la toucher pour voir les lieux. On le dit explicitement. */}
+              fallait la toucher pour voir les lieux. On le dit explicitement.
+              ⚠️ DEPUIS LE 11 OCT 2026, CE BOUTON DÉPLIE AU LIEU D'OUVRIR une
+              fenêtre. Stéphanie : « garde pour toute l'app quand on clique sur
+              infos on a le système de sous-fiche qui apparaît dessous comme pour
+              apéro et expo, je veux que cela soit cohérent partout ». Le fil ne
+              doit avoir qu'UNE façon de montrer un annuaire.
+              `onInfos` absent (écran Agenda, Favoris…) → ancien comportement. */}
           {Array.isArray(event.directory) && event.directory.length > 0 && (
             <button
-              onClick={e => { e.stopPropagation(); onCardClick?.(event); }}
+              onClick={e => { e.stopPropagation(); onInfos ? onInfos(event) : onCardClick?.(event); }}
               style={{
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 5,
@@ -561,7 +567,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 textTransform: "uppercase", color: GOLD_FRAME,
               }}
             >
-              {event.cat === "CINÉMA"
+              {infosDepliees
+                ? (lang === "en" ? "Close" : "Replier")
+                : event.cat === "CINÉMA"
                 ? (lang === "en" ? `Info · ${event.directory.length} films` : `Infos · ${event.directory.length} films`)
                 : (lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`)}
             </button>

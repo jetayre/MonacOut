@@ -365,17 +365,28 @@ const FAMILLES_REUNIES = [
   { cat: "APÉRO", seuil: 2,
     fr: "Apéro", en: "Drinks",
     nomFr: n => `${n} adresses ce soir-là`, nomEn: n => `${n} places that evening` },
+  // ⚠️ PAS DE FAMILLE « CINÉMA ». Elle a existé une heure, le 11 oct 2026, puis
+  // a été retirée : depuis que le bouton « Infos » déplie partout, la carte
+  // cinéma déplie ses films toute seule. En faire un groupe la REMPLAÇAIT par
+  // une carte de regroupement, et lui faisait perdre son téléphone et son
+  // « Mon agenda » pour rien.
 ];
 const FAMILLE_DE = Object.fromEntries(FAMILLES_REUNIES.map(f => [f.cat, f]));
 
-// ⚠️ `pinLast` reste DEHORS : cette fiche-là demande expressément à finir la
-// journée, l'absorber dans un groupe lui ferait perdre sa place.
-const estGroupable = e => e.pinLast !== true;
+// ⚠️ `pinLast` reste DEHORS par défaut : cette fiche-là demande expressément à
+// finir la journée, l'absorber dans un groupe lui ferait perdre sa place. Une
+// famille peut lever la règle (`pinLastOk`) quand sa carte de groupe prend
+// exactement la place de la fiche — c'est le cas du cinéma, seul de son jour.
+const estGroupable = (e, fam) => fam?.pinLastOk === true || e.pinLast !== true;
+
+// Une fiche qui n'est qu'un annuaire : elle ne se déplie pas en elle-même, mais
+// en ses entrées. Les terrasses du soir, les brunchs, les films de la semaine.
+const estAnnuaire = e =>
+  (e.recap === true || e.weeklyFilms === true) && Array.isArray(e.directory) && e.directory.length > 0;
 
 // Ce qu'une fiche représente VRAIMENT. Une fiche recap tient à elle seule tout un
 // annuaire : la compter pour 1 donnerait « Voir les 2 » au-dessus de huit brunchs.
-const poidsFiche = e =>
-  (e.recap === true && Array.isArray(e.directory) && e.directory.length) || 1;
+const poidsFiche = e => (estAnnuaire(e) && e.directory.length) || 1;
 
 // ⚠️ LE REGROUPEMENT SE FAIT PAR JOUR, PAS PAR MOMENT. Stéphanie, 11 septembre
 // 2026 : « il y a 1 fois la fiche 6 expo puis après la fiche 5 expo qui apparaît
@@ -397,7 +408,7 @@ function reunirLesFamillesParJour(sections, estDeplie) {
     const aReunir = new Map();
     for (const fam of FAMILLES_REUNIES) {
       const fiches = groupe.flatMap(sec =>
-        sec.items.filter(e => e.cat === fam.cat && estGroupable(e)));
+        sec.items.filter(e => e.cat === fam.cat && estGroupable(e, fam)));
       if (fiches.length >= fam.seuil) aReunir.set(fam.cat, fiches);
     }
     if (!aReunir.size) { sortie.push(...groupe); continue; }
@@ -407,14 +418,29 @@ function reunirLesFamillesParJour(sections, estDeplie) {
       const items = [];
       for (const e of sec.items) {
         const fiches = aReunir.get(e.cat);
-        if (!fiches || !estGroupable(e)) { items.push(e); continue; }
+        if (!fiches || !estGroupable(e, FAMILLE_DE[e.cat])) { items.push(e); continue; }
         // La carte prend la place de la PREMIÈRE fiche de la famille ; dépliée,
         // les fiches reviennent juste en dessous, entières.
         if (posees.has(e.cat)) continue;
         posees.add(e.cat);
         const cleGroupe = `${cleJour}|${e.cat}`;
         items.push({ groupeFamille: fiches, catGroupe: e.cat, cleGroupe });
-        if (estDeplie(cleGroupe)) items.push(...fiches.map(x => ({ ...x, _depliee: true })));
+        if (estDeplie(cleGroupe)) {
+          for (const x of fiches) {
+            // 🚨 UNE FICHE RECAP SE DÉPLIE EN SES LIEUX, PAS EN ELLE-MÊME.
+            // Stéphanie, 11 octobre 2026 : « quand je clique sur apéro les fiches
+            // se déclinent mais il y a la 2e qui dit les ce soir 10 terrasses…
+            // elle doit disparaître celle-là car justement les terrasses
+            // apparaissent dans ces sous-fiches ». Elle a raison : rouvrir la
+            // fiche-annuaire au milieu de son propre dépliage, c'est répéter le
+            // titre du chapitre au milieu du chapitre.
+            if (estAnnuaire(x)) {
+              items.push(...x.directory.map((d, i) => ({ _lieu: d, _fiche: x, _rang: i })));
+            } else {
+              items.push({ ...x, _depliee: true });
+            }
+          }
+        }
       }
       // Un moment vidé de ses fiches n'a plus rien à annoncer : on ne laisse pas
       // un intertitre « Matin » suivi de rien.
@@ -524,6 +550,111 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
             : (lang === "en" ? `See all ${total}` : `Voir les ${total}`)}</span>
         </div>
       </div>
+    </div>
+  );
+}
+
+// Un lieu d'annuaire, devenu une fiche à part entière dans le fil quand on
+// déplie sa famille. Il garde TOUT ce que la fiche-annuaire lui donnait :
+// « J'y vais » nominatif, les amies qui y vont, et le téléphone.
+//
+// ⚠️ L'IDENTIFIANT « J'y vais » EST COMPOSÉ : id de la fiche du jour × 1000 +
+// numéro du lieu. C'est exactement le calcul de Shell.jsx — il DOIT rester
+// identique, sinon un « J'y vais » posé ici n'est pas celui posé dans la fiche.
+function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir }) {
+  const idLieu = lieu.vid > 0 ? fiche.id * 1000 + lieu.vid : null;
+  const jyVais = idLieu ? (social?.myParticipations || []).includes(idLieu) : false;
+  const amies  = idLieu ? (social?.friendsGoingTo?.(idLieu) || []) : [];
+
+  return (
+    <div style={{
+      border: `3px solid ${GOLD}`, borderRadius: 2, background: WHITE,
+      // Le même retrait de 22 px que les expositions dépliées : on voit d'un
+      // coup d'œil que ces fiches appartiennent à celle du dessus.
+      margin: "0 22px 14px", padding: "16px 20px 18px",
+    }}>
+      <div
+        onClick={onOuvrir}
+        style={{
+          fontFamily: "'Josefin Sans', Georgia, sans-serif",
+          fontWeight: 400, fontSize: 18, letterSpacing: 0.3,
+          textTransform: "uppercase", color: "#000000",
+          lineHeight: 1.3, cursor: "pointer",
+        }}>{lieu.name}</div>
+
+      {lieu.info && (
+        <div style={{
+          fontFamily: "'Lato', sans-serif", fontSize: 13,
+          color: GREY, marginTop: 5,
+        }}>{lieu.info}</div>
+      )}
+
+      {/* Un film, lui, a un genre, une durée, une note et un résumé. Ces champs
+          n'existent que dans l'annuaire du cinéma : pour une terrasse ou un
+          brunch, rien ne s'affiche et la fiche est exactement la même qu'avant. */}
+      {(lieu.genre || lieu.duree || typeof lieu.rt === "number") && (
+        <div style={{
+          fontFamily: "'Lato', sans-serif", fontSize: 12,
+          color: GREY, marginTop: 5,
+          display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap",
+        }}>
+          {[lieu.genre, lieu.duree].filter(Boolean).map((x, i) => <span key={i}>{x}</span>)}
+          {typeof lieu.rt === "number" && (
+            // 🍅 au-dessus de 60 %, 🤢 en dessous : la convention de Rotten
+            // Tomatoes lui-même (« fresh » / « rotten »).
+            <span style={{ fontWeight: 700, color: lieu.rt >= 60 ? "#44581C" : GOLD }}>
+              {lieu.rt >= 60 ? "🍅" : "🤢"} {lieu.rt} %
+            </span>
+          )}
+        </div>
+      )}
+
+      {lieu.desc && (
+        <div style={{
+          fontFamily: "'Lato', sans-serif", fontSize: 13,
+          color: "#555", lineHeight: 1.6, marginTop: 9,
+        }}>{lieu.desc}</div>
+      )}
+
+      {(idLieu || lieu.tel) && (
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
+          {amies.length > 0 && (
+            <span title={amies.map(f => f.display_name).filter(Boolean).join(", ")}
+                  style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10,
+                           fontWeight: 600, color: GOLD, whiteSpace: "nowrap" }}>
+              {amies.map(f => (f.display_name || "").split(" ")[0]).filter(Boolean).slice(0, 2).join(", ")}
+              {amies.length > 2 ? ` +${amies.length - 2}` : ""}
+            </span>
+          )}
+          {idLieu && (
+            <button
+              onClick={() => onGoingClick?.({ ...fiche, id: idLieu })}
+              aria-pressed={jyVais}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 3,
+                padding: "6px 12px", cursor: "pointer",
+                border: `1px solid ${jyVais ? GOLD : "rgba(15,29,58,0.18)"}`,
+                borderRadius: 1, background: jyVais ? "#FFF8EC" : "none",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 600, letterSpacing: 1,
+                textTransform: "uppercase",
+                color: jyVais ? GOLD : NAVY, whiteSpace: "nowrap",
+              }}
+            >{jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}</button>
+          )}
+          {lieu.tel && (
+            // ⚠️ `tel:` et non un lien web : on ne sort jamais de l'app.
+            <a href={`tel:${lieu.tel.replace(/\s/g, "")}`}
+               style={{
+                 padding: "6px 12px", textDecoration: "none",
+                 border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1,
+                 fontFamily: "'Josefin Sans', sans-serif",
+                 fontSize: 9, fontWeight: 600, letterSpacing: 1,
+                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
+               }}>{lang === "en" ? "Call" : "Appeler"}</a>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -1130,7 +1261,18 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               {sec.jour
                 ? <IntertitreMoment titre={sec.moment} />
                 : <IntertitreSection titre={sec.moment} />}
-              {sec.items.map(e => e.groupeFamille ? (
+              {sec.items.map(e => e._lieu ? (
+                <CarteLieu
+                  key={`lieu-${e._fiche.id}-${e._rang}`}
+                  lieu={e._lieu}
+                  fiche={e._fiche}
+                  lang={lang}
+                  social={social}
+                  loggedIn={loggedIn}
+                  onGoingClick={onGoingClick}
+                  onOuvrir={() => onCardClick?.(e._fiche)}
+                />
+              ) : e.groupeFamille ? (
                 <CarteGroupeFamille
                   key={`groupe-${e.cleGroupe}`}
                   fiches={e.groupeFamille}
@@ -1147,10 +1289,17 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     </div>
   );
 
+  // Toute fiche qui porte un annuaire se déplie SOUS elle, jamais dans une
+  // fenêtre. Stéphanie, 11 oct 2026 : « je veux que cela soit cohérent partout ».
   function renduCarte(e, sansDate, compact = false) {
-    return (
+    const annuaire = Array.isArray(e.directory) && e.directory.length > 0;
+    const cleInfos = `infos-${e.id}`;
+    const ouvert = annuaire && !!exposDepliees[cleInfos];
+    const carte = (
             <EventCard
               key={e.cleFil || e.id}
+              onInfos={annuaire ? () => setExposDepliees(d => ({ ...d, [cleInfos]: !d[cleInfos] })) : null}
+              infosDepliees={ouvert}
               event={e}
               sansDate={sansDate}
               compact={compact}
@@ -1180,6 +1329,24 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               loggedIn={loggedIn}
               onShowAuth={onShowAuth}
             />
+    );
+    if (!ouvert) return carte;
+    return (
+      <div key={`annu-${e.id}`}>
+        {carte}
+        {e.directory.map((d, k) => (
+          <CarteLieu
+            key={`lieu-${e.id}-${k}`}
+            lieu={d}
+            fiche={e}
+            lang={lang}
+            social={social}
+            loggedIn={loggedIn}
+            onGoingClick={onGoingClick}
+            onOuvrir={() => onCardClick?.(e)}
+          />
+        ))}
+      </div>
     );
   }
 }
