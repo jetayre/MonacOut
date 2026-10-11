@@ -375,7 +375,18 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
       const debut = heureDeTri(e), fin = finReelle(e);
       // Une fiche sans horaire ne dit rien de son moment : l'annoncer « ce soir »
       // serait affirmer un horaire qu'elle ne donne pas.
+      // 🚨 UNE FICHE TERMINÉE N'EST PAS « PLUS TARD AUJOURD'HUI ». Stéphanie,
+      // 11 oct 2026, 22h : « mais j'ai plus tard aujourd'hui petit déj..ça va pas ».
+      // Les fiches « en cours » (petit-déj, musées, expositions) restent
+      // volontairement affichées le soir — c'est le moment où l'on prépare sa
+      // sortie — mais leur journée est finie. Ce n'est donc pas d'aujourd'hui
+      // qu'elles parlent, c'est de DEMAIN, et c'est ce qu'elles doivent annoncer.
+      const terminee = !sansHeure && fin <= min;
       if (!sansHeure && debut <= min && min < fin) poser("maintenant", null, lang === "en" ? "Right now" : "Maintenant", e);
+      else if (terminee) {
+        const moment = momentDuJour(e);
+        poser(`demain|${moment}`, lang === "en" ? "Tomorrow" : "Demain", moment, e);
+      }
       else if (!sansHeure && debut >= 18 * 60)     poser("cesoir",     null, lang === "en" ? "Tonight" : "Ce soir", e);
       else                                         poser("plustard",   null, lang === "en" ? "Later today" : "Plus tard aujourd'hui", e);
     } else {
