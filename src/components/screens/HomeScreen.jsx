@@ -416,15 +416,35 @@ function reunirLesFamillesParJour(sections, estDeplie) {
     }
     if (!aReunir.size) { sortie.push(...groupe); continue; }
 
+    // 🚨 OÙ POSER LA CARTE DE GROUPE : SUR SA FICHE LA PLUS LOURDE, pas sur la
+    // première. Stéphanie, 11 oct 2026 : « castel roc apparaît petit puis une
+    // fiche apéro après-midi… plusieurs fois ». En ajoutant le Castel Roc —
+    // UNE adresse, à 16h — toute la famille APÉRO remontait dans « PLUS TARD
+    // AUJOURD'HUI », et les dix terrasses du soir étaient annoncées avant
+    // « CE SOIR », qui se retrouvait sans apéro. Une seule petite fiche tirait
+    // le groupe entier hors de son moment.
+    // La fiche la plus lourde (son annuaire le plus fourni) décide du moment ;
+    // en cas d'égalité, la première l'emporte, donc rien ne bouge pour les
+    // familles dont les fiches se valent.
+    const ancre = new Map();
+    for (const [cat, fiches] of aReunir) {
+      let meilleure = null, poidsMax = -1;
+      for (const f of fiches) {
+        const w = poidsFiche(f);
+        if (w > poidsMax) { poidsMax = w; meilleure = f; }
+      }
+      ancre.set(cat, meilleure);
+    }
+
     const posees = new Set();
     for (const sec of groupe) {
       const items = [];
       for (const e of sec.items) {
         const fiches = aReunir.get(e.cat);
         if (!fiches || !estGroupable(e, FAMILLE_DE[e.cat])) { items.push(e); continue; }
-        // La carte prend la place de la PREMIÈRE fiche de la famille ; dépliée,
-        // les fiches reviennent juste en dessous, entières.
-        if (posees.has(e.cat)) continue;
+        // Les autres fiches de la famille disparaissent du fil : elles ne
+        // reviennent qu'au dépliage, sous la carte.
+        if (posees.has(e.cat) || e !== ancre.get(e.cat)) continue;
         posees.add(e.cat);
         const cleGroupe = `${cleJour}|${e.cat}`;
         items.push({ groupeFamille: fiches, catGroupe: e.cat, cleGroupe });
