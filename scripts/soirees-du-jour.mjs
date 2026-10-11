@@ -294,20 +294,24 @@ function carteBrunch(id, date, annee, lieux) {
     + `source:"Monac'Out",quarter:"Monaco"},`;
 }
 
-// L'apéro du midi. Stéphanie, 11 octobre 2026 : « met apéro du midi », après avoir
-// constaté pour le Castel Roc que « le soir il est fermé ». Des adresses servent à
-// midi et ferment avant l'apéritif : les annoncer « ce soir » envoyait quelqu'un
-// devant une porte close.
+// L'apéro de l'après-midi. Stéphanie, 11 octobre 2026 : d'abord « met apéro du
+// midi », après avoir constaté pour le Castel Roc que « le soir il est fermé » ;
+// puis, devant l'imprécision des sources, « sinon tu mets castel roc apéro de
+// 16-17h ». La fiche couvre donc le CREUX ENTRE LE DÉJEUNER ET LE SOIR — des
+// adresses ouvertes l'après-midi, qui ferment avant l'apéritif et qu'annoncer
+// « ce soir » enverrait devant une porte close.
+// ⚠️ La clé du registre reste `midi` : la renommer casserait les entrées déjà
+// écrites. C'est le titre et l'heure de la fiche qui disent l'après-midi.
 function carteMidi(id, date, annee, lieux) {
   const noms = lieux.map(e => e.heure && /^\d/.test(e.heure) ? `${e.lieu} (${e.heure})` : e.lieu);
-  const desc = `Où prendre un verre ou déjeuner en terrasse à midi : ${noms.join(" · ")}.`
+  const desc = `Où prendre un verre en terrasse l'après-midi, avant l'heure de l'apéritif : ${noms.join(" · ")}.`
     + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
     + ` Les adresses du soir ont leur propre fiche.`;
-  const descEn = `Where to have a drink or lunch on a terrace at midday: ${noms.join(" · ")}.`
+  const descEn = `Where to have a drink on a terrace in the afternoon, before the evening crowd: ${noms.join(" · ")}.`
     + ` Tap the card to see them one by one and call in a single move.`
     + ` Evening spots have their own card.`;
-  return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"APÉRO",date:"${date}",time:"12h00",`
-    + `title:"À MIDI${NL}${lieux.length} ADRESSE${lieux.length > 1 ? "S" : ""}${NL}OUVERTE${lieux.length > 1 ? "S" : ""}",subtitle:"Terrasses du midi · Principauté",`
+  return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"APÉRO",date:"${date}",time:"16h00",`
+    + `title:"EN APRÈS-MIDI${NL}${lieux.length} ADRESSE${lieux.length > 1 ? "S" : ""}${NL}OUVERTE${lieux.length > 1 ? "S" : ""}",subtitle:"Terrasses de l'après-midi · Principauté",`
     + `desc:"${desc}",descEn:"${descEn}",free:true,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
     + `fallback:"linear-gradient(150deg,#2A3A1A,#5A6A2A,#141C08)",accent:"#D8E8A0",emoji:"🥂",`
     + `source:"Monac'Out",quarter:"Monaco"},`;
