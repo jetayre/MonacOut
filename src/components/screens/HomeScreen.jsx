@@ -167,10 +167,23 @@ function heureDeTri(e) {
   const m = t.match(/^(\d{1,2})h(\d{2})?/);
   if (m) return parseInt(m[1]) * 60 + (m[2] ? parseInt(m[2]) : 0);
   const mot = t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-  if (mot === "enjournee") return 11 * 60;
-  if (mot === "ensoiree") return 21 * 60;
-  return 9999;
+  // 🚨 LE VOCABULAIRE DOIT SUIVRE LES FICHES. Stéphanie, 11 oct 2026 : « y a un
+  // bug dans liste petit déj ». La fiche « PETIT-DÉJ & CAFÉ » porte l'heure
+  // « Le matin » — un mot que cette fonction ne connaissait pas. Elle retombait
+  // donc sur 9999, et 9999 vaut « après 18h » : un petit-déjeuner était annoncé
+  // sous « CE SOIR », puis trié en dernier. Toute heure écrite en toutes lettres
+  // doit avoir sa minute, sinon elle finit à la nuit.
+  if (mot === "lematin" || mot === "matin") return 8 * 60;
+  if (mot === "enjournee" || mot === "toutelajournee") return 11 * 60;
+  if (mot === "lemidi" || mot === "amidi" || mot === "midi") return 12 * 60;
+  if (mot === "lapresmidi" || mot === "enapresmidi" || mot === "apresmidi") return 15 * 60;
+  if (mot === "ensoiree" || mot === "lesoir" || mot === "soir") return 21 * 60;
+  return SANS_HEURE;
 }
+
+// ⚠️ La valeur de repli n'est PAS une heure : c'est l'absence d'heure. Elle sert
+// à trier en dernier, jamais à décider d'un moment de la journée.
+const SANS_HEURE = 9999;
 
 // Une fiche du jour dont l'heure est passée n'a plus rien à proposer : à 15h48 on ne
 // veut plus voir le cours de 07h00. On se fie à l'heure de FIN quand la fiche la donne
@@ -278,6 +291,9 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
   const momentDuJour = (e) => {
     if (!(e.time && String(e.time).trim())) return lang === "en" ? "Afternoon" : "Après-midi";
     const debut = heureDeTri(e);
+    // Une heure illisible ne dit rien du moment : on la traite comme une fiche
+    // sans heure plutôt que de l'annoncer « ce soir ».
+    if (debut === SANS_HEURE) return lang === "en" ? "Afternoon" : "Après-midi";
     if (debut < 12 * 60)      return lang === "en" ? "Morning" : "Matin";
     if (debut < 18 * 60)      return lang === "en" ? "Afternoon" : "Après-midi";
     return lang === "en" ? "Evening" : "Soir";
