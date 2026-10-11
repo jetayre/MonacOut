@@ -433,7 +433,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Quai Albert Ier (espace public) | https://www.mairie.mc/les-soirees-feux-dartifice-au-quai-albert-1er | SPECTACLE, SOIRÉE — feux d'artifice, animations enfants, soirées DJ de la Mairie | +377 9315 2828 |
 | Société Nautique de Monaco — restaurant | https://www.restaurantsocietenautique.club/ | BRUNCH samedi 11h-15h, déjeuners en semaine — club d'aviron, Port Hercule, **ouvert à tous** (pas réservé aux membres) | +377 9350 5130 |
 | Monaco Classic Week (YCM) | https://monacoclassicweek.com/ | SPORT voile classique — biennale années impaires (2027, 2029…) | +377 9310 6300 |
-| CREM Monaco | https://www.crem.mc/ | APÉRO, GALA — Club des Résidents Étrangers de Monaco | |
+| CREM Monaco | https://www.club-residents-etrangers-monaco.com/ | APÉRO, GALA — Club des Résidents Étrangers de Monaco. ⚠️ **L adresse crem.mc est PÉRIMÉE** (vérifié le 11 oct 2026 : elle ne répond plus en HTTPS, et en HTTP elle redirige vers le nouveau domaine). Agenda en ligne, mais SANS horaires ni salles — donc inexploitable tel quel par un script | |
 | Monaco Energy Boat Challenge | https://energyboatchallenge.com/ | SPORT nautique — énergie alternative | +377 9315 2600 |
 | Monaco Yacht Show | https://www.monacoyachtshow.com/ | SALON | |
 | Jimmy'z Monte-Carlo | https://www.montecarlosbm.com/en/nightlife/jimmyz-monte-carlo | SOIRÉE | |
