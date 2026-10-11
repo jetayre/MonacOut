@@ -276,6 +276,75 @@ async function main() {
     return t.length >= 2;
   });
 
+  // ── 2 bis. Le synopsis, et la note Rotten Tomatoes ────────────────────────
+  // Stéphanie, 11 octobre 2026 : « fait des fiches dessous avec resume des films
+  // par fiche comme le systeme des expo », puis « rajoute le pourcentage de
+  // rotten tomatoes ». Un titre et des horaires ne disent pas si le film vous
+  // tente ; deux lignes de synopsis et une note, si.
+  //
+  // ⚠️ LE SITE NE MET PAS LE SYNOPSIS SUR L'ACCUEIL, seulement sur la page du
+  // film (?page=12&film=N). Il faut donc une visite par film — c'est 5 à 12
+  // pages une fois par semaine, pas de quoi s'inquiéter.
+  const plat = t => (t || '')
+    .toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ').trim();
+
+  // Titre → page du film, d'après les liens relevés sur l'accueil.
+  const pageDuFilm = new Map();
+  for (const f of films) if (f.link && /[?&]film=\d+/.test(f.link)) pageDuFilm.set(plat(f.title), f.link);
+
+  // La note Rotten Tomatoes passe par OMDb, qui la republie.
+  // ⚠️ SANS CLÉ, ON NE BLOQUE RIEN : pas de clé → pas de note, le reste sort
+  // normalement. La clé est gratuite (omdbapi.com) et se pose dans les secrets
+  // GitHub sous le nom OMDB_API_KEY.
+  const CLE_OMDB = process.env.OMDB_API_KEY || '';
+  if (!CLE_OMDB) console.log('  · OMDB_API_KEY absente → les fiches sortiront SANS note Rotten Tomatoes');
+
+  async function noteRT(titre) {
+    if (!CLE_OMDB) return null;
+    try {
+      const r = await fetch(`https://www.omdbapi.com/?apikey=${CLE_OMDB}&t=${encodeURIComponent(titre)}`);
+      const j = await r.json();
+      if (j?.Response !== 'True') return null;
+      const rt = (j.Ratings || []).find(x => x.Source === 'Rotten Tomatoes');
+      const pct = rt && /^(\d{1,3})%$/.exec(rt.Value);
+      return pct ? Number(pct[1]) : null;
+    } catch { return null; }
+  }
+
+  // name → { synopsis, duree, genre, rt }
+  const fiches = new Map();
+  const titresAChercher = [...new Set([...Object.keys(seancesParFilm), ...films.map(f => f.title)])];
+  for (const titre of titresAChercher) {
+    const url = pageDuFilm.get(plat(titre));
+    let synopsis = '', duree = '', genre = '';
+    if (url) {
+      try {
+        const html = await (await fetch(url)).text();
+        const texte = html
+          .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+          .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+          .replace(/<[^>]+>/g, '\n')
+          .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+          .replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"')
+          .replace(/&eacute;/g, 'é').replace(/&egrave;/g, 'è').replace(/&agrave;/g, 'à')
+          .replace(/&ccedil;/g, 'ç').replace(/&ocirc;/g, 'ô').replace(/&ecirc;/g, 'ê');
+        const lignes = texte.split('\n').map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
+        // Le synopsis est la plus longue ligne de prose de la page : les autres
+        // lignes sont des libellés, des horaires ou des noms d'acteurs.
+        const prose = lignes.filter(l => l.length >= 90 && /[.!?]/.test(l) && !/cookie|newsletter|©/i.test(l));
+        synopsis = prose.sort((a, b) => b.length - a.length)[0] || '';
+        duree = (texte.match(/\b(\d{1,2}h\d{2})\b/) || [])[1] || '';
+        const g = lignes.find(l => /^(genre\s*:)?\s*(comédie|drame|action|animation|thriller|horreur|documentaire|aventure|famille|romance|science|policier|biopic|guerre|western|fantastique)/i.test(l) && l.length < 60);
+        genre = g ? g.replace(/^genre\s*:\s*/i, '').trim() : '';
+      } catch { /* une page illisible ne doit pas emporter le film */ }
+    }
+    const rt = await noteRT(titre);
+    if (synopsis || duree || genre || rt !== null) fiches.set(titre, { synopsis, duree, genre, rt });
+  }
+  console.log(`  Fiches film : ${fiches.size} enrichie(s) sur ${titresAChercher.length}` +
+              (CLE_OMDB ? ` · notes RT : ${[...fiches.values()].filter(f => f.rt !== null).length}` : ''));
+
   // ── 3. Créer UNE fiche par jour restant de la semaine cinéma ───────────────
   // (mercredi → mardi) pour que le filtre "Aujourd'hui" fonctionne chaque jour
   const today   = new Date(); today.setHours(0,0,0,0);
@@ -318,7 +387,15 @@ async function main() {
       for (const [titre, parJour] of Object.entries(seancesParFilm)) {
         const heures = parJour[col] || [];
         if (!heures.length) continue;
-        lignes.push(`{name:"${echapper(titre)}",info:"${echapper(heures.join(' · '))}"}`);
+        // Le synopsis et la note viennent de la page du film. Un champ vide n'est
+        // PAS écrit : mieux vaut pas de ligne du tout qu'une ligne « null % ».
+        const f = fiches.get(titre) || {};
+        const sup =
+          (f.synopsis ? `,desc:"${echapper(f.synopsis.slice(0, 420))}"` : '') +
+          (f.duree    ? `,duree:"${echapper(f.duree)}"`                 : '') +
+          (f.genre    ? `,genre:"${echapper(f.genre)}"`                 : '') +
+          (typeof f.rt === 'number' ? `,rt:${f.rt}` : '');
+        lignes.push(`{name:"${echapper(titre)}",info:"${echapper(heures.join(' · '))}"${sup}}`);
       }
       return lignes.length ? `,directory:[${lignes.join(',')}]` : '';
     };

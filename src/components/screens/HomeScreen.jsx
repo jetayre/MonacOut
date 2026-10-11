@@ -528,6 +528,89 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
   );
 }
 
+// Les films de la semaine, un par fiche, sous la carte cinéma. Stéphanie,
+// 11 octobre 2026 : « pour cinema fait des fiches dessous avec resume des films
+// par fiche comme le systeme des expo », puis « rajoute le pourcentage de rotten
+// tomatoes ». Un titre et une heure ne disent pas si le film vous tente.
+//
+// ⚠️ LA CARTE CINÉMA RESTE INTACTE AU-DESSUS : elle porte le ⓘ, le téléphone de
+// la salle et « Mon agenda ». Ce bloc s'ajoute, il ne remplace rien.
+function BlocFilms({ films, lang, deplie, onOuvrir }) {
+  if (!films?.length) return null;
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div
+        onClick={onOuvrir}
+        style={{
+          textAlign: "center", cursor: "pointer",
+          margin: "-4px 22px 0",
+          padding: "9px 0",
+          border: "1px solid #7B2D26", borderTop: "none", background: WHITE,
+        }}
+      >
+        <span style={{
+          fontFamily: "'Lato', sans-serif", fontSize: 12,
+          fontWeight: 700, letterSpacing: 1.6,
+          textTransform: "uppercase", color: GOLD,
+        }}>{deplie
+          ? (lang === "en" ? "Close" : "Replier")
+          : (lang === "en" ? `See the ${films.length} films` : `Voir les ${films.length} films`)}</span>
+      </div>
+
+      {deplie && films.map((f, i) => (
+        // Un retrait de 22 px de chaque côté, comme les expositions dépliées :
+        // on voit d'un coup d'œil que ces fiches appartiennent à celle du dessus.
+        <div key={i} style={{
+          border: "3px solid #7B2D26", borderRadius: 2, background: WHITE,
+          margin: "14px 22px 0", padding: "16px 20px 18px",
+        }}>
+          <div style={{
+            fontFamily: "'Josefin Sans', Georgia, sans-serif",
+            fontWeight: 400, fontSize: 18, letterSpacing: 0.3,
+            textTransform: "uppercase", color: "#000000",
+            lineHeight: 1.3, marginBottom: 8,
+          }}>{f.name}</div>
+
+          {/* Genre, durée et note sur une seule ligne : trois petites choses qui
+              ne méritent pas trois lignes. */}
+          {(f.genre || f.duree || typeof f.rt === "number") && (
+            <div style={{
+              fontFamily: "'Lato', sans-serif", fontSize: 12,
+              color: GREY, marginBottom: 9,
+              display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap",
+            }}>
+              {f.genre && <span>{f.genre}</span>}
+              {f.duree && <span>{f.duree}</span>}
+              {typeof f.rt === "number" && (
+                // 🍅 au-dessus de 60 %, 🤢 en dessous : c'est la convention de
+                // Rotten Tomatoes lui-même (« fresh » / « rotten »).
+                <span style={{
+                  fontWeight: 700,
+                  color: f.rt >= 60 ? "#44581C" : "#7B2D26",
+                }}>{f.rt >= 60 ? "🍅" : "🤢"} {f.rt} %</span>
+              )}
+            </div>
+          )}
+
+          {f.desc && (
+            <div style={{
+              fontFamily: "'Lato', sans-serif", fontSize: 13.5,
+              color: "#555", lineHeight: 1.6, marginBottom: 10,
+            }}>{f.desc}</div>
+          )}
+
+          {f.info && (
+            <div style={{
+              fontFamily: "'Josefin Sans', sans-serif", fontSize: 14,
+              fontWeight: 600, letterSpacing: 1, color: NAVY,
+            }}>{f.info}</div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function matchesCatFilter(e, catId) {
   switch (catId) {
     case "sport":      return ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","SPORT","RALLYE","TENNIS"].includes(e.cat);
@@ -1139,6 +1222,17 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   deplie={!!exposDepliees[e.cleGroupe]}
                   onOuvrir={() => setExposDepliees(d => ({ ...d, [e.cleGroupe]: !d[e.cleGroupe] }))}
                 />
+              ) : e.weeklyFilms && e.directory?.length ? (
+                // La carte cinéma, puis ses films juste dessous.
+                <div key={`cine-${e.id}`}>
+                  {renduCarte(e, true, !!e._depliee)}
+                  <BlocFilms
+                    films={e.directory}
+                    lang={lang}
+                    deplie={!!exposDepliees[`cine-${e.id}`]}
+                    onOuvrir={() => setExposDepliees(d => ({ ...d, [`cine-${e.id}`]: !d[`cine-${e.id}`] }))}
+                  />
+                </div>
               ) : renduCarte(e, true, !!e._depliee))}
             </div>
           )) : aAfficher.map(e => renduCarte(e, false))
