@@ -369,6 +369,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Herculis Diamond League | https://monaco.diamondleague.com/ | SPORT | |
 | Grimaldi Forum | https://www.grimaldiforum.com/ | GALA, EXPOSITION, ENCHÈRES, ATELIER | |
 | Metropole Shopping Monte-Carlo | https://metropoleshoppingmontecarlo.com/ | EXPOSITION, SALON — galerie commerçante de luxe (Carré d'Or), expositions temporaires (ex. Kenny Scharf × Opera Gallery, été 2026) et pop-up stores, 17 av. des Spélugues · Monte-Carlo ; lun-sam 10h-19h30 | +377 9216 7701 |
+| Francis Bacon MB Art Foundation | https://www.mbartfoundation.com/activities/exhibitions/ | EXPOSITION — fondation privée dédiée à Francis Bacon, 21 bd d'Italie · Monte-Carlo. ⚠️ Ne publie NI horaires NI dates de fin d'exposition : borner court un `until` et revérifier, et dire dans la fiche d'appeler avant de se déplacer | +377 9330 3033 |
+| Café de Paris Monte-Carlo | https://www.montecarlosbm.com/en/restaurant-monaco/cafe-de-paris-monte-carlo | BRUNCH, APÉRO, SOIRÉE — brasserie SBM de la Place du Casino · Monte-Carlo ; brunch le dimanche, et l'OKTOBERFEST chaque automne (9-18 oct en 2026) | +377 9806 7623 |
 | Espace 22 | https://www.espace22.mc/ | EXPOSITION — galerie d'art contemporain, expositions temporaires, 24 bd d'Italie · Monte-Carlo ; lun-ven 9h-18h | +377 9216 5164 |
 | Hartford Fine Art Lampronti Gallery | https://lamprontigallery.com/ | EXPOSITION — galerie d'art ancien (maîtres anciens italiens, vedute vénitiennes), ouverte avril 2026, 21 bd Princesse Charlotte · Monte-Carlo | +39 335 3333 25 |
 | Hauser & Wirth Monaco | https://www.hauserwirth.com/monaco/ | EXPOSITION — galerie d'art contemporain internationale (depuis juin 2021), Place du Casino · Monte-Carlo ; mar-sam 10h-19h, visite sur rendez-vous | +377 9200 0420 |
@@ -528,8 +530,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Caves & Gourmandises | https://www.caves-gourmandises.com/ | APÉRO — œnothèque et épicerie fine, dégustation de vins et spiritueux, 25 bd Albert 1er · La Condamine (Port Hercule) ; lun-sam 10h-19h30, fermé dimanche. Aucun événement récurrent publié au 11 août 2026 | +377 9770 5494 |
 | Wine Palace Monte-Carlo | https://www.instagram.com/wine_palace_montecarlo/ | dégustation, œnologie (pic pdt Monaco Yacht Show, sep) | |
 | Le Rouge et le Blanc (22 Quai J-C Rey) | réseaux sociaux _(pas d'agenda officiel)_ | dégustation, accords mets-vins | |
-| Quai des Artistes (4 Quai Antoine Ier) | réseaux sociaux | dîners œnologiques | |
-| Bar des Artistes (4 Quai Antoine Ier) | réseaux sociaux | concerts live + carte des vins | |
+| Quai des Artistes | https://quaidesartistes.com/ | BRUNCH, APÉRO, SOIRÉE — brasserie du Port Hercule, dîners œnologiques, 4 Quai Antoine Ier · La Condamine | +377 9797 9777 |
+| Bar des Artistes | https://quaidesartistes.com/en/bar-des-artistes/ | APÉRO, SOIRÉE, CONCERT — le bar du Quai des Artistes (ex-Bar du Quai), concerts live, vue sur le port, 4 Quai Antoine Ier · La Condamine ; ouvert tous les jours 18h-3h. ⚠️ AUCUN agenda en ligne : ses soirées ne se trouvent que par Stéphanie ou par les associations qui y organisent leurs rendez-vous. ⚠️ Sa page affiche un PORTABLE français (+33 6 40 61 25 90) — utiliser le fixe monégasque de l'établissement (règle 14). ⚠️ Le robot l'ÉCARTE volontairement : « Bar des Artistes » n'a aucun mot distinctif face à « Quai des Artistes », donc venues-from-sources refuse de deviner plutôt que de confondre les deux. Ses événements s'ajoutent À LA MAIN | +377 9797 9777 |
 | Gustave (Hôtel Hermitage) | https://www.montecarlosbm.com/en/agenda | grands crus & spiritueux (SBM) | |
 | Les Grands Chais Monégasques | _contact direct (sur invitation)_ | masterclass pro, dégustations importateurs | |
 | **Associations & Fondations monégasques** (URLs vérifiées — veille Stéphanie) | | | |

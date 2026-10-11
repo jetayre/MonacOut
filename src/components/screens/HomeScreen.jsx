@@ -343,9 +343,39 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
   return sections.map((sec, i) => ({ ...sec, cle: `${sec.cle}#${i}` }));
 }
 
-// Les expositions d'une même section tiennent sur une carte. En dessous de trois,
-// la carte de regroupement coûterait plus de place qu'elle n'en fait gagner.
-const estExpoDuFil = e => e.cat === "EXPOSITION" && e.recap !== true && e.pinLast !== true;
+// Les familles qu'on réunit sur UNE carte, et à partir de combien de fiches ça
+// vaut la peine. En dessous du seuil, la carte de regroupement coûterait plus de
+// place qu'elle n'en fait gagner.
+//
+// 🚨 LA FICHE RECAP FAIT PARTIE DU GROUPE, et c'est tout le correctif du 11 octobre
+// 2026. L'ancien prédicat l'écartait (`e.recap !== true`) : elle restait donc POSÉE
+// À CÔTÉ de la carte de regroupement, et la même journée annonçait deux fois ses
+// sorties. Stéphanie l'a signalé trois fois, sans qu'on voie que c'était le même
+// défaut : « il y a une fiche qui dit 7 expo et une fiche qui dit musées ouverts »,
+// puis « il y a 1ère fiche brunch dj live robuchon et une autre brunch 8 adresses »,
+// puis « idem pour apéro y a hermitage et en dessous 10 terrasses ouvertes ».
+// Une famille, un jour, UNE carte.
+const FAMILLES_REUNIES = [
+  { cat: "EXPOSITION", seuil: 3,
+    fr: "Expositions", en: "Exhibitions",
+    nomFr: n => `${n} expositions à voir`,  nomEn: n => `${n} exhibitions on view` },
+  { cat: "BRUNCH", seuil: 2,
+    fr: "Brunchs", en: "Brunch",
+    nomFr: n => `${n} brunchs ce jour-là`,  nomEn: n => `${n} brunches that day` },
+  { cat: "APÉRO", seuil: 2,
+    fr: "Apéro", en: "Drinks",
+    nomFr: n => `${n} adresses ce soir-là`, nomEn: n => `${n} places that evening` },
+];
+const FAMILLE_DE = Object.fromEntries(FAMILLES_REUNIES.map(f => [f.cat, f]));
+
+// ⚠️ `pinLast` reste DEHORS : cette fiche-là demande expressément à finir la
+// journée, l'absorber dans un groupe lui ferait perdre sa place.
+const estGroupable = e => e.pinLast !== true;
+
+// Ce qu'une fiche représente VRAIMENT. Une fiche recap tient à elle seule tout un
+// annuaire : la compter pour 1 donnerait « Voir les 2 » au-dessus de huit brunchs.
+const poidsFiche = e =>
+  (e.recap === true && Array.isArray(e.directory) && e.directory.length) || 1;
 
 // ⚠️ LE REGROUPEMENT SE FAIT PAR JOUR, PAS PAR MOMENT. Stéphanie, 11 septembre
 // 2026 : « il y a 1 fois la fiche 6 expo puis après la fiche 5 expo qui apparaît
@@ -353,7 +383,7 @@ const estExpoDuFil = e => e.cat === "EXPOSITION" && e.recap !== true && e.pinLas
 // soir, les expositions tombaient dans deux moments différents — celles qui
 // ouvrent à 9h le matin, celles de 14h l'après-midi — et chaque moment
 // fabriquait SA carte de regroupement. Un jour, une carte.
-function reunirLesExposParJour(sections, estDeplie) {
+function reunirLesFamillesParJour(sections, estDeplie) {
   const parJour = new Map();
   for (const sec of sections) {
     const cle = sec.jour || "aujourdhui";
@@ -363,21 +393,31 @@ function reunirLesExposParJour(sections, estDeplie) {
 
   const sortie = [];
   for (const [cleJour, groupe] of parJour) {
-    const expos = groupe.flatMap(sec => sec.items.filter(estExpoDuFil));
-    if (expos.length < 3) { sortie.push(...groupe); continue; }
+    // Ce qui se réunit ce jour-là, famille par famille.
+    const aReunir = new Map();
+    for (const fam of FAMILLES_REUNIES) {
+      const fiches = groupe.flatMap(sec =>
+        sec.items.filter(e => e.cat === fam.cat && estGroupable(e)));
+      if (fiches.length >= fam.seuil) aReunir.set(fam.cat, fiches);
+    }
+    if (!aReunir.size) { sortie.push(...groupe); continue; }
 
-    const deplie = estDeplie(cleJour);
-    let posee = false;
+    const posees = new Set();
     for (const sec of groupe) {
       const items = [];
       for (const e of sec.items) {
-        if (!estExpoDuFil(e)) { items.push(e); continue; }
-        // La carte prend la place de la PREMIÈRE exposition du jour ; dépliée,
+        const fiches = aReunir.get(e.cat);
+        if (!fiches || !estGroupable(e)) { items.push(e); continue; }
+        // La carte prend la place de la PREMIÈRE fiche de la famille ; dépliée,
         // les fiches reviennent juste en dessous, entières.
-        if (!posee) { posee = true; items.push({ groupeExpos: expos, cleJour }); if (deplie) items.push(...expos.map(x => ({ ...x, _depliee: true }))); }
+        if (posees.has(e.cat)) continue;
+        posees.add(e.cat);
+        const cleGroupe = `${cleJour}|${e.cat}`;
+        items.push({ groupeFamille: fiches, catGroupe: e.cat, cleGroupe });
+        if (estDeplie(cleGroupe)) items.push(...fiches.map(x => ({ ...x, _depliee: true })));
       }
-      // Un moment vidé de ses expositions n'a plus rien à annoncer : on ne
-      // laisse pas un intertitre « Matin » suivi de rien.
+      // Un moment vidé de ses fiches n'a plus rien à annoncer : on ne laisse pas
+      // un intertitre « Matin » suivi de rien.
       if (items.length) sortie.push({ ...sec, items });
     }
   }
@@ -410,14 +450,30 @@ function IntertitreSection({ titre }) {
   );
 }
 
-// La carte qui remplace la pile d'expositions. Elle ne prétend pas être un
-// événement : ni cœur, ni « J'y vais », ni téléphone. On la touche, la catégorie
-// se déplie et les fiches reviennent une par une, entières.
-function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
-  // On annonce les expositions elles-mêmes : le premier morceau du sous-titre est
+// La carte qui remplace la pile du jour. Elle ne prétend pas être un événement :
+// ni cœur, ni « J'y vais », ni téléphone. On la touche, la famille se déplie et les
+// fiches reviennent une par une, ENTIÈRES — avec tous leurs « J'y vais » et leurs
+// annuaires, puisque ce sont les mêmes fiches qu'avant.
+function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
+  const fam = FAMILLE_DE[cat] || FAMILLES_REUNIES[0];
+  const total = fiches.reduce((n, e) => n + poidsFiche(e), 0);
+
+  // On annonce les sorties elles-mêmes : le premier morceau du sous-titre est
   // tantôt une salle, tantôt une adresse (« 62 bd du Jardin Exotique »), et lister
-  // des rues ne donne envie de rien.
-  const titres = [...new Set(expos.map(e => localizeTitle((e.title || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "").trim(), lang)).filter(Boolean))];
+  // des rues ne donne envie de rien. Pour une fiche recap, son titre à elle ne dit
+  // rien non plus (« MUSÉES 6 ADRESSES À MONACO ») : ce sont les noms de son
+  // annuaire qui renseignent.
+  const noms = [];
+  for (const e of fiches) {
+    if (e.recap === true && Array.isArray(e.directory)) {
+      for (const d of e.directory) if (d?.name) noms.push(d.name);
+    } else {
+      const t = localizeTitle((e.title || "").replace(/\n/g, " ").replace(/\s*ⓘ\s*$/, "").trim(), lang);
+      if (t) noms.push(t);
+    }
+  }
+  const titres = [...new Set(noms)];
+
   return (
     <div
       onClick={onOuvrir}
@@ -434,9 +490,9 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
           <div style={{
             fontFamily: "'Josefin Sans', sans-serif",
             fontSize: 20, fontWeight: 700, letterSpacing: 3,
-            textTransform: "uppercase", color: couleurCat("EXPOSITION"),
+            textTransform: "uppercase", color: couleurCat(cat),
             marginBottom: 13, lineHeight: 1.15,
-          }}>{lang === "en" ? "Exhibitions" : "Expositions"}</div>
+          }}>{lang === "en" ? fam.en : fam.fr}</div>
 
           {/* Les titres des fiches arrivent en capitales depuis les données ; celui-ci
               est écrit ici, donc c'est la feuille de style qui doit s'en charger —
@@ -446,7 +502,7 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
             fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
             textTransform: "uppercase",
             color: "#000000", lineHeight: 1.3, marginBottom: 13,
-          }}>{expos.length} {lang === "en" ? "exhibitions on view" : "expositions à voir"}</div>
+          }}>{lang === "en" ? fam.nomEn(total) : fam.nomFr(total)}</div>
 
           {/* Les titres arrivent déjà en capitales : en serif ils pèsent autant que
               le titre de la carte. En Lato fin, ils redeviennent ce qu'ils sont —
@@ -465,7 +521,7 @@ function CarteGroupeExpos({ expos, lang, deplie, onOuvrir }) {
             textTransform: "uppercase", color: GOLD,
           }}>{deplie
             ? (lang === "en" ? "Close" : "Replier")
-            : (lang === "en" ? `See all ${expos.length}` : `Voir les ${expos.length}`)}</span>
+            : (lang === "en" ? `See all ${total}` : `Voir les ${total}`)}</span>
         </div>
       </div>
     </div>
@@ -757,7 +813,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const sections = enSections
     ? (filtreCatActif
         ? decouperEnSections(aAfficher, lang, jourCalendrier)
-        : reunirLesExposParJour(decouperEnSections(aAfficher, lang, jourCalendrier), cle => !!exposDepliees[cle]))
+        : reunirLesFamillesParJour(decouperEnSections(aAfficher, lang, jourCalendrier), cle => !!exposDepliees[cle]))
     : null;
 
   const rangeLabel = rangeStart
@@ -1074,13 +1130,14 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               {sec.jour
                 ? <IntertitreMoment titre={sec.moment} />
                 : <IntertitreSection titre={sec.moment} />}
-              {sec.items.map(e => e.groupeExpos ? (
-                <CarteGroupeExpos
-                  key={`expos-${e.cleJour}`}
-                  expos={e.groupeExpos}
+              {sec.items.map(e => e.groupeFamille ? (
+                <CarteGroupeFamille
+                  key={`groupe-${e.cleGroupe}`}
+                  fiches={e.groupeFamille}
+                  cat={e.catGroupe}
                   lang={lang}
-                  deplie={!!exposDepliees[e.cleJour]}
-                  onOuvrir={() => setExposDepliees(d => ({ ...d, [e.cleJour]: !d[e.cleJour] }))}
+                  deplie={!!exposDepliees[e.cleGroupe]}
+                  onOuvrir={() => setExposDepliees(d => ({ ...d, [e.cleGroupe]: !d[e.cleGroupe] }))}
                 />
               ) : renduCarte(e, true, !!e._depliee))}
             </div>
