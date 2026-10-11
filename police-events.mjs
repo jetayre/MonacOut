@@ -59,6 +59,12 @@ function parseEvents(src) {
       time: get('time'),
       title: get('title'),
       subtitle: get('subtitle'),
+      // ⚠️ `desc` n'était PAS extrait — seulement `descEn`. Tout contrôle portant
+      // sur la description française comparait donc le titre à une chaîne vide et
+      // ne pouvait jamais se déclencher. Trouvé le 11 oct 2026 : le garde-fou contre
+      // les fiches vides, ajouté la veille, laissait passer les quatre trophées du
+      // Yacht Club sans heure ni description.
+      desc: get('desc'),
       descEn: get('descEn'),
       link: get('link'),
       quarter: get('quarter'),
