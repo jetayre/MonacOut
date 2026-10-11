@@ -410,7 +410,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Baretto Monte-Carlo | https://www.barettomontecarlo.com/ | APÉRO aperitivo & cocktails (restaurant italien chic, service continu lun-ven 8h30-22h, sam 9h30-22h) — 24 bd Princesse Charlotte, Monte-Carlo | +377 9992 4422 |
 | Huit et Demi | https://www.huit-et-demi-restaurant-italien-monaco.com/ | APÉRO cocktails & cuisine italienne (restaurant à thème cinéma, terrasse, service continu midi et soir) — 4 rue Langlé, La Condamine | +377 9350 9702 |
 | Sass Café | https://www.sasscafe.com/ | APÉRO | |
-| Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE (Quai Antoine 1er, rouvert juin 2026) | +377 9797 9595 |
+| Stars of Monaco | https://starsofmonaco.com | APÉRO, JAZZ LIVE, SOIRÉE — 6 quai Antoine Ier · La Condamine, rouvert juin 2026. **Happy hour lun→ven 17h30-19h30, hors jours fériés** (liste vérifiée par Stéphanie le 11 oct 2026). ⚠️ L'établissement annonce aussi une soirée à thème le mardi et de la musique live le vendredi, **sans publier d'horaire** : rien n'est publiable pour ces soirs-là (règle 18) | +377 9797 9595 |
 | NMNM (Villa Paloma + Villa Sauber) | https://www.nmnm.mc/en/visit/visites-et-ateliers/ | ATELIER, EXPOSITION | |
 | Académie de Musique Prince Rainier III | https://academierainier3.mc/en | ATELIER | |
 | Ballet de Monte-Carlo | https://www.balletsdemontecarlo.com/ | DANSE | |
@@ -453,7 +453,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | U Tapu | https://www.google.com/maps/search/U+Tapu+Marche+Condamine+Monaco | APÉRO (tapas corses-basques, marché Condamine) | +33 6 61 93 89 36 |
 | Slammers Monaco | https://www.instagram.com/slammers_monaco/ | APÉRO, SOIRÉE (sports bar) | |
 | Ship & Castle Monaco | https://www.instagram.com/shipandcastlemonaco/ | APÉRO (pub britannique, jeudi) | |
-| Monaco Brewery (= La Brasserie de Monaco, même établissement) | https://brasseriedemonaco.com | APÉRO (craft beer) | +377 9798 5120 |
+| Monaco Brewery (= La Brasserie de Monaco, même établissement) | https://brasseriedemonaco.com | APÉRO craft beer — **happy hour TOUS LES JOURS 18h-20h** (vérifié le 11 oct 2026), bières brassées sur place, afterwork, écrans sportifs et DJ en soirée, route de la Piscine · Port Hercule | +377 9798 5120 |
 | La Brasserie de Monaco | https://brasseriedemonaco.com | SOIRÉE, APÉRO, BRUNCH — microbrasserie, 36 route de la Piscine, darse sud du **Port Hercule / La Condamine** (⚠️ PAS Fontvieille, erreur corrigée le 1er août 2026), DJ résident tous les soirs dès 18h, service jusqu'à 3h ven/sam | +377 9798 5120 |
 | Panino Club Monaco | https://panino-club.com/ | APÉRO (vendredi, Blvd des Moulins) | |
 | Buddha-Bar Monte-Carlo | https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/ | APÉRO, SOIRÉE | +377 9999 8080 |
@@ -1011,7 +1011,7 @@ Ces lieux ont des événements récurrents générés jusqu'à mai 2027. Ne pas 
 | **Café de Paris** (Place du Casino) | Chaque dimanche | Dim | BRUNCH brasserie |
 | **Gran Caffè** (rue Grimaldi) | Chaque dimanche | Dim | BRUNCH italien |
 | **Caffè Milano** (Quai Albert 1er) | Chaque dimanche | Dim | BRUNCH italien |
-| **La Rascasse** (happy hour) | **Lun→Ven** | Lun-Ven | APÉRO HH 17h30-20h |
+| **La Rascasse** (happy hour) | **Mar→Ven** + **Sam** | Mar-Ven, Sam | APÉRO HH **17h30-22h** en semaine, **19h-22h le samedi** (corrigé le 11 oct 2026 — c'était « lun→ven 17h30-20h », faux sur les deux bouts, et le samedi manquait) |
 | **Sexy Tacos** (Larvotto) | **Lun→Ven** | Lun-Ven | APÉRO HH 15h30-18h30 |
 | **COYA Monte-Carlo** | Chaque jeudi, **été** (avr→oct) | Jeu | APÉRO pisco bar / Clásico |
 | **Gustave** (Hôtel Hermitage) | Chaque jeudi | Jeu | APÉRO chic (pas de HH à jour fixe) |
