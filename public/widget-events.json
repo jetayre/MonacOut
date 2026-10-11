@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T19:56:40.317Z",
+  "generatedAt": "2026-10-11T05:23:58.970Z",
   "events": [
     {
       "date": "Sam 10 oct",
@@ -9,6 +9,15 @@
       "venue": "La Rose des Vents",
       "quarter": "Larvotto",
       "emoji": "🌺"
+    },
+    {
+      "date": "Sam 10 oct",
+      "iso": "2026-10-10",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Sam 10 oct",
@@ -45,15 +54,6 @@
       "venue": "Institut Audiovisuel",
       "quarter": "Monaco",
       "emoji": "🎬"
-    },
-    {
-      "date": "Sam 10 oct",
-      "iso": "2026-10-10",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
     },
     {
       "date": "Sam 10 oct",
