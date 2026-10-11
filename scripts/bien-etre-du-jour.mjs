@@ -80,7 +80,7 @@ const LAMARTINE_ADR = "Espace Lamartine · 19 bd Princesse Charlotte · Monte-Ca
 const LAMARTINE_TEL = "+377 9315 2863";
 const LAMARTINE_HEURES = { 1: "9h-20h", 2: "9h-20h", 3: "9h-20h", 4: "9h-20h", 5: "9h-20h", 6: "10h-18h" };
 const LAMARTINE_RAPPEL = " Gratuit, ouvert aux Monégasques, résidents et élèves scolarisés à Monaco, à partir de 16 ans."
-  + " Le programme change chaque semaine : appeler pour l'horaire d'un cours précis.";
+  + " ⚠️ L'heure exacte de chaque cours n'est publiée que dans le programme hebdomadaire affiché sur place et sur mairie.mc : appeler avant de se déplacer.";
 const LAMARTINE_THEMES = [
   { filtre: "bienetre", nom: "Sport et remise en forme",
     desc: "Pilates, yoga, stretching, gym douce, cardio rythmé, renforcement, gainage, équilibre, coordination motrice, taiso, cardio drum, circuit training." },
@@ -161,7 +161,7 @@ function carte(id, date, annee, lieux, debut) {
     + ` Tap the card to see them one by one and call in a single move.`
     + ` Named sessions — yoga and sound baths, sound healing, wellness days — keep their own cards.`;
   return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"BIEN-ÊTRE",date:"${date}",time:"${debut}",`
-    + `title:"BIEN-ÊTRE${NL}${lieux.length} ADRESSE${lieux.length > 1 ? "S" : ""}${NL}AUJOURD'HUI",subtitle:"Bien-être · Principauté",`
+    + `title:"BIEN-ÊTRE${NL}${lieux.length} ACTIVITÉ${lieux.length > 1 ? "S" : ""}${NL}AUJOURD'HUI",subtitle:"Bien-être · Principauté",`
     + `desc:"${desc}",descEn:"${descEn}",free:false,hot:false,recap:true,bdj:1,directory:${annuaireJSON(lieux)},`
     + `fallback:"linear-gradient(150deg,#14322A,#2A6A52,#08201A)",accent:"#A8E0C8",emoji:"🧘",`
     + `link:"https://www.mairie.mc",source:"Monac'Out",quarter:"Monaco"},`;
@@ -173,7 +173,7 @@ function carte(id, date, annee, lieux, debut) {
 // « Lamartine ».
 function carteAteliers(id, date, annee, themes, h) {
   const noms = themes.map(t => t.lieu);
-  const desc = `Les ateliers gratuits de la Mairie, à l'Espace Lamartine ce jour-là (${h}) : ${noms.join(" · ")}.`
+  const desc = `Les ateliers gratuits de la Mairie, à l'Espace Lamartine ce jour-là : ${noms.join(" · ")}. Le lieu est ouvert ${h} ; l'heure de chaque atelier change chaque semaine et n'est publiée que dans le programme hebdomadaire.`
     + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
     + ` Le sport, la marche, la danse et le chant sont dans la fiche Bien-être.`;
   const descEn = `The Town Hall's free workshops at Espace Lamartine that day (${h}): ${noms.join(" · ")}.`
@@ -212,8 +212,16 @@ for (const cle of [...parJour.keys()].sort((a, b) => {
   }));
 
   const h = LAMARTINE_HEURES[d.getDay()];
+  // ⚠️ `h` est l'heure d'OUVERTURE DU LIEU, pas celle d'un cours. Affichée seule,
+  // « 9h-20h » se lisait comme un créneau — Stéphanie, 11 oct 2026 : « les horaires
+  // des ateliers sont très larges peux-tu préciser ? ». Les horaires de cours ne
+  // sont publiés que dans le PDF hebdomadaire de la Mairie, dont la police est
+  // encodée sur mesure : le texte en sort illisible (essayé le 11 oct, la méthode
+  // des piscines ne marche pas dessus). Plutôt qu'une heure fausse, on dit ce
+  // qu'on sait — c'est l'ouverture — et on renvoie au programme de la semaine.
   const themes = h ? LAMARTINE_THEMES.map(t => ({
-    lieu: t.nom, info: h, adr: LAMARTINE_ADR, desc: t.desc + LAMARTINE_RAPPEL, tel: LAMARTINE_TEL, filtre: t.filtre,
+    lieu: t.nom, info: `Lieu ouvert ${h}`, adr: LAMARTINE_ADR,
+    desc: t.desc + LAMARTINE_RAPPEL, tel: LAMARTINE_TEL, filtre: t.filtre,
   })) : [];
   lieux.push(...themes.filter(t => t.filtre === "bienetre"));
   const ateliers = themes.filter(t => t.filtre === "atelier");
