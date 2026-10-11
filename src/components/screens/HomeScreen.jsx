@@ -38,13 +38,15 @@ const EVENT_GROUPS = [
   { id: "foodnight", label: "Food/Nightlife", labelEn: "Food/Nightlife", cats: ["BRUNCH","APÉRO","FOODY","SOIRÉE","DJ SET","GALA"] },
   { id: "musique",   label: "Concert/Ballet/Opéra", labelEn: "Concert/Ballet/Opera", cats: ["CONCERT","OPÉRA","MUSICAL","DANSE","JAZZ LIVE","CHANTS"] },
   { id: "sport",     label: "Sport",     labelEn: "Sport",     cats: ["FOOTBALL","BASKET","FORMULE 1","FORMULE E","TENNIS","RALLYE","SPORT"] },
+  // Stéphanie, 11 oct 2026 : « on va créer un filtre breakfast café ».
+  { id: "petitdej",  label: "Petit-déj & café", labelEn: "Breakfast & coffee", cats: ["PETIT-DÉJ"] },
 ];
 
 const CAT_TO_FILTER = {
   FOOTBALL: "sport", BASKET: "sport", "FORMULE 1": "sport", "FORMULE E": "sport",
   SPORT: "sport", RALLYE: "sport", TENNIS: "sport",
   CONCERT: "concert", "OPÉRA": "concert", MUSICAL: "theatre", "JAZZ LIVE": "concert",
-  "DJ SET": "soiree", CHANTS: "messe",
+  "DJ SET": "soiree", CHANTS: "messe", "PETIT-DÉJ": "petitdej",
   THÉÂTRE: "theatre", "CONFÉRENCE": "conference", EXPOSITION: "musee", FESTIVAL: "theatre",
   GALA: "theatre", "FÊTE NATIONALE": "theatre", MARCHÉ: "musee", SALON: "conference",
   SPECTACLE: "theatre", CINÉMA: "cinema",
@@ -720,6 +722,7 @@ function matchesCatFilter(e, catId) {
     case "musee":      return ["EXPOSITION","MARCHÉ","SALON"].includes(e.cat);
     case "conference": return e.cat === "CONFÉRENCE" || e.cat === "SALON" || e.conf === true;
     case "cinema":     return e.cat === "CINÉMA";
+    case "petitdej":   return e.cat === "PETIT-DÉJ";
     case "famille": {
       // 🚨 La règle commençait par `e.free === true ||` : TOUT événement gratuit
       // devenait « Famille ». Mesuré le 10 oct 2026 : 152 fiches sur 362 passaient
@@ -731,7 +734,7 @@ function matchesCatFilter(e, catId) {
       // 1. Ce qui se dit explicitement l'emporte, quelle que soit la catégorie.
       if (/enfant|famille|junior|jeune public|jeunesse|parent|kid|b[ée]b[ée]|d[èe]s \d+\s*ans/i.test(txt)) return true;
       // 2. Ce qui n'est jamais pour les enfants, même gratuit.
-      if (["APÉRO","SOIRÉE","DJ SET","JAZZ LIVE","BRUNCH","ENCHÈRES","CHANTS","BIEN-ÊTRE"].includes(e.cat)) return false;
+      if (["APÉRO","SOIRÉE","DJ SET","JAZZ LIVE","BRUNCH","ENCHÈRES","CHANTS","BIEN-ÊTRE","PETIT-DÉJ"].includes(e.cat)) return false;
       // 3. Le reste : les catégories où une famille a sa place.
       return ["ATELIER","SPECTACLE","CINÉMA","MARCHÉ","FESTIVAL","EXPOSITION","DANSE"].includes(e.cat);
     }

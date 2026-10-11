@@ -25,7 +25,10 @@ export const GRIS    = "#6A7080";
 
 // Les huit familles. La 1ʳᵉ catégorie citée donne son nom à la famille.
 export const FAMILLES = [
-  { nom: "Rouge H",        couleur: "#7B2D26", cats: ["APÉRO", "BRUNCH", "FOODY"] },
+  // « PETIT-DÉJ » (11 oct 2026) rejoint la famille de la table plutôt que
+  // d'ouvrir une 9ᵉ couleur : l'écart de 25° entre teintes, qui les rend
+  // vraiment distinguables, ne survivrait pas à une de plus.
+  { nom: "Rouge H",        couleur: "#7B2D26", cats: ["APÉRO", "BRUNCH", "FOODY", "PETIT-DÉJ"] },
   { nom: "Havane",         couleur: "#6E4B1C", cats: ["EXPOSITION", "MARCHÉ"] },
   { nom: "Vert Bengale",   couleur: "#44581C", cats: ["SPECTACLE", "THÉÂTRE", "DANSE", "CINÉMA", "FESTIVAL", "FÊTE NATIONALE", "ATELIER"] },
   { nom: "Vert Cyprès",    couleur: "#1A4F3C", cats: ["BIEN-ÊTRE"] },

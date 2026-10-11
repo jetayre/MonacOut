@@ -24,6 +24,9 @@ const CAT_FILTERS = [
   { id: "encheres",   label: "Enchères",    labelEn: "Auctions" },
   { id: "famille",    label: "Famille",     labelEn: "Family" },
   { id: "foody",      label: "Brunch · Apéro", labelEn: "Brunch · Apéro" },
+  // Stéphanie, 11 oct 2026 : « on va créer un filtre breakfast café ».
+  // Le menu latéral doit proposer les mêmes entrées que la barre du haut.
+  { id: "petitdej",   label: "Petit-déj · Café", labelEn: "Breakfast · Coffee" },
   { id: "messe",      label: "Messe",       labelEn: "Mass" },
   { id: "musee",      label: "Musée",       labelEn: "Museum" },
   { id: "soiree",     label: "Soirée",      labelEn: "Nightlife" },
