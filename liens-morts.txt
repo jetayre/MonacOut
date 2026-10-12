@@ -1,6 +1,18 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-10-11 — 103 liens, 2146 fiches.
+Contrôle du 2026-10-12 — 115 liens, 2321 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://www.mayamia.mc/fr/actualites/
+   HTTP 404 — page inexistante — 10 fiche(s)
+     · [id 1306300] Mer 14 oct SOIRÉE ITALIENNE DU MERCREDI MAYA MIA — Maya Mia
+     · [id 1306301] Mer 21 oct SOIRÉE ITALIENNE DU MERCREDI MAYA MIA — Maya Mia
+     · [id 1306302] Mer 28 oct SOIRÉE ITALIENNE DU MERCREDI MAYA MIA — Maya Mia
+     · [id 1306303] Mer 4 nov SOIRÉE ITALIENNE DU MERCREDI MAYA MIA — Maya Mia
+     · [id 1306304] Mer 11 nov SOIRÉE ITALIENNE DU MERCREDI MAYA MIA — Maya Mia
+     … et 5 autre(s)
+
+■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
+   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
+   de lien mort : le contenu, lui, n'a pas pu être lu.
+     · https://en.afce-monaco.org/agenda — ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE — 2 fiche(s)
