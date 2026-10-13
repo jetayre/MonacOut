@@ -42,35 +42,35 @@ const HORIZON_JOURS = 365;
 // `heures(mois)` : horaires affichés, mois de 0 à 11.
 const MUSEES = [
   {
-    nom: "Musée Océanographique", tel: "+377 9315 3600", adr: "Avenue Saint-Martin · Monaco-Ville", presentation: "Le musée-palais voulu par le Prince Albert Ier, accroché à la falaise depuis 1910 : aquariums méditerranéens et tropicaux, lagon aux requins, salles d'histoire naturelle et terrasse panoramique sur la mer.", presentationEn: "The cliff-side palace-museum created by Prince Albert I in 1910: Mediterranean and tropical aquariums, a shark lagoon, natural-history galleries and a panoramic sea terrace.", ferme: [],
+    nom: "Musée Océanographique", tel: "+377 9315 3600", lien: "https://musee.oceano.org/", adr: "Avenue Saint-Martin · Monaco-Ville", presentation: "Le musée-palais voulu par le Prince Albert Ier, accroché à la falaise depuis 1910 : aquariums méditerranéens et tropicaux, lagon aux requins, salles d'histoire naturelle et terrasse panoramique sur la mer.", presentationEn: "The cliff-side palace-museum created by Prince Albert I in 1910: Mediterranean and tropical aquariums, a shark lagoon, natural-history galleries and a panoramic sea terrace.", ferme: [],
     // musee.oceano.org/practical-info : ouvert tous les jours sauf le 25 décembre et
     // le week-end du Grand Prix. Horaires par saison.
     heures: m => (m === 6 || m === 7) ? "09h30 — 20h00" : (m >= 3 && m <= 8) ? "10h00 — 19h00" : "10h00 — 18h00",
     fermetures: ["12-25"],
   },
   {
-    nom: "NMNM — Villa Paloma & Villa Sauber", tel: "+377 9898 1826", adr: "Villa Paloma 56 bd du Jardin Exotique · Villa Sauber 17 av. Princesse Grace", presentation: "Le Nouveau Musée National de Monaco, en deux villas Belle Époque : expositions d'art moderne et contemporain à la Villa Paloma, arts du spectacle et patrimoine à la Villa Sauber. Fermé le lundi.", presentationEn: "Monaco's New National Museum, across two Belle Époque villas: modern and contemporary art at Villa Paloma, performing arts and heritage at Villa Sauber. Closed on Mondays.", ferme: [1],
+    nom: "NMNM — Villa Paloma & Villa Sauber", tel: "+377 9898 1826", lien: "https://www.nmnm.mc/", adr: "Villa Paloma 56 bd du Jardin Exotique · Villa Sauber 17 av. Princesse Grace", presentation: "Le Nouveau Musée National de Monaco, en deux villas Belle Époque : expositions d'art moderne et contemporain à la Villa Paloma, arts du spectacle et patrimoine à la Villa Sauber. Fermé le lundi.", presentationEn: "Monaco's New National Museum, across two Belle Époque villas: modern and contemporary art at Villa Paloma, performing arts and heritage at Villa Sauber. Closed on Mondays.", ferme: [1],
     // nmnm.mc : ouvert tous les jours SAUF LUNDI. 11h-19h en juillet-août.
     heures: m => (m === 6 || m === 7) ? "11h00 — 19h00" : "10h00 — 18h00",
   },
   {
-    nom: "Musée d'Anthropologie Préhistorique", tel: "+377 9315 0640", adr: "56 bis bd du Jardin Exotique · entrée par le Jardin Exotique", presentation: "Les collections préhistoriques de la Principauté, réunies depuis 1902 : ossements, outils de pierre et parures trouvés dans les grottes de la région. Entrée 1 €, gratuit pour les Monégasques.", presentationEn: "The Principality's prehistoric collections, gathered since 1902: bones, stone tools and ornaments found in the region's caves. Entry €1, free for Monegasques.", ferme: [],
+    nom: "Musée d'Anthropologie Préhistorique", tel: "+377 9315 0640", lien: "https://map.gouv.mc/", adr: "56 bis bd du Jardin Exotique · entrée par le Jardin Exotique", presentation: "Les collections préhistoriques de la Principauté, réunies depuis 1902 : ossements, outils de pierre et parures trouvés dans les grottes de la région. Entrée 1 €, gratuit pour les Monégasques.", presentationEn: "The Principality's prehistoric collections, gathered since 1902: bones, stone tools and ornaments found in the region's caves. Entry €1, free for Monegasques.", ferme: [],
     // map.gouv.mc : tous les jours 9h-18h.
     heures: () => "09h00 — 18h00",
   },
   {
-    nom: "Musée Naval", ferme: [], adr: "Terrasses de Fontvieille · Fontvieille", presentation: "Plus de 250 maquettes de navires réunies par le Prince Rainier III, de la galère antique au porte-avions, dont des pièces offertes par des chefs d'État.", presentationEn: "Over 250 ship models collected by Prince Rainier III, from ancient galleys to aircraft carriers, including pieces gifted by heads of state.",
+    nom: "Musée Naval", ferme: [], lien: "https://www.monte-carlo.mc/fr/sorties/visites/musee-naval", adr: "Terrasses de Fontvieille · Fontvieille", presentation: "Plus de 250 maquettes de navires réunies par le Prince Rainier III, de la galère antique au porte-avions, dont des pièces offertes par des chefs d'État.", presentationEn: "Over 250 ship models collected by Prince Rainier III, from ancient galleys to aircraft carriers, including pieces gifted by heads of state.",
     // Terrasses de Fontvieille : tous les jours 10h-18h, fermé le 25 déc et le 1er jan.
     heures: () => "10h00 — 18h00",
     fermetures: ["12-25", "01-01"],
   },
   {
-    nom: "Musée des Timbres & Monnaies", tel: "+377 9898 4144", adr: "Terrasses de Fontvieille · Fontvieille", presentation: "L'histoire de la Principauté racontée par ses timbres et ses monnaies, depuis les premières émissions de 1885 : planches originales, épreuves et frappes rares.", presentationEn: "The Principality's history told through its stamps and coins since the first 1885 issues: original plates, proofs and rare strikes.", ferme: [],
+    nom: "Musée des Timbres & Monnaies", tel: "+377 9898 4144", lien: "https://www.mtm-monaco.mc/", adr: "Terrasses de Fontvieille · Fontvieille", presentation: "L'histoire de la Principauté racontée par ses timbres et ses monnaies, depuis les premières émissions de 1885 : planches originales, épreuves et frappes rares.", presentationEn: "The Principality's history told through its stamps and coins since the first 1885 issues: original plates, proofs and rare strikes.", ferme: [],
     // mtm-monaco.mc : tous les jours. 10h-18h de juillet à septembre, 10h-17h sinon.
     heures: m => (m >= 6 && m <= 8) ? "10h00 — 18h00" : "10h00 — 17h00",
   },
   {
-    nom: "Musée du Vieux Monaco", tel: "+377 9350 5728", adr: "2 rue Émile de Loth · Monaco-Ville", presentation: "Le musée du Comité National des Traditions Monégasques : costumes, objets du quotidien, photographies et souvenirs de la vie monégasque d'autrefois. Fermé le lundi.", presentationEn: "The museum of the National Committee for Monegasque Traditions: costumes, everyday objects, photographs and mementos of Monegasque life in times past.", ferme: [1],
+    nom: "Musée du Vieux Monaco", tel: "+377 9350 5728", lien: "https://www.traditions-monaco.com/", adr: "2 rue Émile de Loth · Monaco-Ville", presentation: "Le musée du Comité National des Traditions Monégasques : costumes, objets du quotidien, photographies et souvenirs de la vie monégasque d'autrefois. Fermé le lundi.", presentationEn: "The museum of the National Committee for Monegasque Traditions: costumes, everyday objects, photographs and mementos of Monegasque life in times past.", ferme: [1],
     // traditions-monaco.com : « tous les jours sauf les lundis de 10h30 à 17h ».
     heures: () => "10h30 — 17h00",
   },
@@ -110,6 +110,7 @@ const annuaireJSON = lst => "[" + lst.map(m => {
   if (m.adr) b.push(`adr:"${m.adr.replace(/"/g, "")}"`);
   if (m.presentation) b.push(`desc:"${m.presentation.replace(/"/g, "")}"`);
   if (m.tel) b.push(`tel:"${m.tel}"`);
+  if (m.lien) b.push(`lien:"${m.lien}"`);
   return "{" + b.join(",") + "}";
 }).join(",") + "]";
 

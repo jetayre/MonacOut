@@ -149,6 +149,7 @@ const annuaireJSON = lieux => "[" + lieux.map(e => {
   if (e.adr) b.push(`adr:"${e.adr.replace(/"/g, "")}"`);
   if (e.desc) b.push(`desc:"${e.desc.replace(/"/g, "")}"`);
   if (e.tel) b.push(`tel:"${e.tel.replace(/"/g, "")}"`);
+  if (e.lien) b.push(`lien:"${e.lien.replace(/"/g, "")}"`);
   return "{" + b.join(",") + "}";
 }).join(",") + "]";
 
@@ -206,6 +207,7 @@ for (const cle of [...parJour.keys()].sort((a, b) => {
     lieu: p.lieu,
     info: p.cours || p.heure,
     adr: "Piscine Saint-Charles · Monte-Carlo",
+    lien: "https://www.mairie.mc/la-piscine-saint-charles-1",
     desc: "Cours collectifs de 45 minutes en bassin couvert 28-32 °C et en salle de sport."
       + " Réservation obligatoire sur sports.mairie.mc — toute séance non annulée 4 h avant est débitée.",
     tel: p.tel,
@@ -221,6 +223,7 @@ for (const cle of [...parJour.keys()].sort((a, b) => {
   // qu'on sait — c'est l'ouverture — et on renvoie au programme de la semaine.
   const themes = h ? LAMARTINE_THEMES.map(t => ({
     lieu: t.nom, info: `Lieu ouvert ${h}`, adr: LAMARTINE_ADR,
+    lien: "https://www.mairie.mc/salles-de-lespace-lamartine",
     desc: t.desc + LAMARTINE_RAPPEL, tel: LAMARTINE_TEL, filtre: t.filtre,
   })) : [];
   lieux.push(...themes.filter(t => t.filtre === "bienetre"));

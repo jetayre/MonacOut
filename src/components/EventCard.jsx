@@ -230,7 +230,7 @@ function todayFrDate() {
 const AVATAR_COLORS = ['#0F1D3A','#882830','#1A4A5A','#3A1870','#1A4A2A','#4A2010','#1A2A4A']
 function avatarColor(id=''){let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))&0xFFFFFF;return AVATAR_COLORS[Math.abs(h)%AVATAR_COLORS.length]}
 
-function FriendAvatars({ friends = [] }) {
+export function FriendAvatars({ friends = [] }) {
   if (!friends.length) return null
   const shown = friends.slice(0, 3)
   const extra = friends.length - 3
@@ -377,7 +377,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 ? (lang === "en" ? "Close" : "Replier")
                 : event.cat === "CINÉMA"
                 ? (lang === "en" ? `See the ${event.directory.length} films` : `Voir les ${event.directory.length} films`)
-                : (lang === "en" ? `See the ${event.directory.length} places` : `Voir les ${event.directory.length} lieux`)}
+                : (lang === "en" ? `See the ${event.directory.length}` : `Voir les ${event.directory.length}`)}
             </button>
           )}
 
@@ -464,7 +464,11 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             </div>
           )}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            {(event.link || event.phone) && !event.venues ? (
+            {/* 🚫 Sur une fiche-annuaire, le site et le téléphone ne veulent rien dire :
+                lequel des 12 lieux appelle-t-on ? Stéphanie, 13 oct 2026 : « enlève
+                les icônes et mets-les sur chaque sous-fiche ». Chaque sous-fiche
+                porte désormais SON site et SON numéro. */}
+            {(event.link || event.phone) && !event.venues && !estAnnuaire ? (
               <div style={{
                 display: "inline-flex",
                 alignItems: "stretch",

@@ -151,7 +151,7 @@ lignes.forEach((l, i) => {
   if (!parJour.has(cle)) parJour.set(cle, { soir: [], brunch: [], midi: [] });
 
   const lieu = (champ(l, "subtitle").split(" · ")[0] || "").trim();
-  const entree = { lieu, heure: champ(l, "time"), tel: champ(l, "phone"), titre: plat(titre) };
+  const entree = { lieu, heure: champ(l, "time"), tel: champ(l, "phone"), lien: champ(l, "link"), titre: plat(titre) };
   parJour.get(cle)[soir ? "soir" : "brunch"].push(entree);
   aSupprimer.add(i);
 });
@@ -176,10 +176,21 @@ function dateDeLaCle(cle) {
   return new Date(Number(an) || ANNEE_COURANTE, m, parseInt(p[1]));
 }
 
+// ⚠️ L'ANCIENNE ENTRÉE NE DOIT PAS BLOQUER LA NOUVELLE. Première version : le
+// premier vu gagnait, et le registre passant en premier, une entrée écrite avant
+// qu'un champ existe restait éternellement incomplète. Constaté le 13 oct 2026 en
+// ajoutant `lien` : les 17 terrasses du soir sortaient sans lien alors que la
+// lecture fraîche en portait un. On garde donc l'ordre du registre, mais chaque
+// champ ABSENT se laisse compléter par la lecture du jour.
 const union = (a = [], b = []) => {
-  const vus = new Set(); const out = [];
-  for (const e of [...a, ...b]) if (e && e.lieu && !vus.has(e.lieu)) { vus.add(e.lieu); out.push(e); }
-  return out;
+  const parLieu = new Map();
+  for (const e of [...a, ...b]) {
+    if (!e || !e.lieu) continue;
+    const vieux = parLieu.get(e.lieu);
+    if (!vieux) { parLieu.set(e.lieu, { ...e }); continue; }
+    for (const [k, val] of Object.entries(e)) if (val && !vieux[k]) vieux[k] = val;
+  }
+  return [...parLieu.values()];
 };
 
 // Mémoire des titres réellement reconnus, tous passages confondus. Une entrée de la
@@ -266,6 +277,8 @@ const annuaireJSON = lieux => "[" + lieux.map(e => {
   if (p?.adr)   bouts.push(`adr:"${p.adr.replace(/"/g, "")}"`);
   if (p?.texte) bouts.push(`desc:"${p.texte.replace(/"/g, "")}"`);
   if (e.tel) bouts.push(`tel:"${e.tel.replace(/"/g, "")}"`);
+  // Le site DU LIEU, pour que la sous-fiche se suffise à elle-même (13 oct 2026).
+  if (e.lien) bouts.push(`lien:"${e.lien.replace(/"/g, "")}"`);
   return "{" + bouts.join(",") + "}";
 }).join(",") + "]";
 

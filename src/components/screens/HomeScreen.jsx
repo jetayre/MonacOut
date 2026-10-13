@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import { localizeTitle, localizeCat } from "../../i18n";
 import MonacOutLogo from "../MonacOutLogo";
-import EventCard, { addToCalendar, partagerEvenement } from "../EventCard";
+import EventCard, { addToCalendar, partagerEvenement, FriendAvatars } from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
@@ -791,14 +791,23 @@ function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir
 
       {(idLieu || lieu.tel) && (
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
-          {amies.length > 0 && (
+          {/* 👥 L'INDICATEUR D'AMIS, comme sur une fiche normale. Stéphanie,
+              13 oct 2026 : « rajoute indicateur amis ». Les prénoms en toutes
+              lettres restent en infobulle ; ce sont les visages qu'on repère
+              en faisant défiler. */}
+          {amies.length > 0 ? (
             <span title={amies.map(f => f.display_name).filter(Boolean).join(", ")}
-                  style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 10,
-                           fontWeight: 600, color: GOLD, whiteSpace: "nowrap" }}>
-              {amies.map(f => (f.display_name || "").split(" ")[0]).filter(Boolean).slice(0, 2).join(", ")}
-              {amies.length > 2 ? ` +${amies.length - 2}` : ""}
+                  style={{ display: "inline-flex", alignItems: "center" }}>
+              <FriendAvatars friends={amies} />
             </span>
-          )}
+          ) : idLieu ? (
+            <span title={lang === "en" ? "No friends going yet" : "Aucun ami inscrit pour l'instant"}
+                  style={{ display: "inline-flex", alignItems: "center" }}>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#C7C1B4" aria-hidden="true" style={{ display: "block" }}>
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+            </span>
+          ) : null}
           {idLieu && (
             <button
               onClick={() => onGoingClick?.({ ...fiche, id: idLieu })}
@@ -836,6 +845,27 @@ function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir
                 fontSize: 9, fontWeight: 600, letterSpacing: 1,
                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
               }}>{lang === "en" ? "Diary" : "Agenda"}</button>
+          )}
+          {/* 🌐 Le site DU LIEU. Pas d'icône téléphone : « Appeler » est déjà là,
+              en toutes lettres — Stéphanie, 13 oct 2026 : « icône tel pas besoin
+              il y a le mot appeler ». Un lieu d'annuaire n'a de lien que si le
+              script qui l'écrit lui en a donné un ; sinon rien ne s'affiche,
+              on n'invente pas d'adresse. */}
+          {(lieu.lien || (evenement && fiche.link)) && (
+            <a href={lieu.lien || fiche.link} target="_blank" rel="noopener noreferrer"
+               onClick={e => e.stopPropagation()}
+               aria-label={lang === "en" ? "Website" : "Site web"}
+               style={{
+                 display: "inline-flex", alignItems: "center", justifyContent: "center",
+                 padding: "5px 11px", textDecoration: "none",
+                 border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1,
+               }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={NAVY}
+                   strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </a>
           )}
           {idLieu && Capacitor.isNativePlatform() && (
             <button
