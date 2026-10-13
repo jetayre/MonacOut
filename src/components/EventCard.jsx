@@ -326,6 +326,36 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             color: "#000000", lineHeight: 1.3, marginTop: C.titreHaut, marginBottom: C.titreBas,
           }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
 
+          {/* 📍 LE BOUTON « INFOS » EST SOUS LE TITRE, ET PLUS GRAND.
+              Stéphanie, 13 oct 2026 : « laisse le rectangle info et les sous-fiches.
+              Met ce rectangle en plus gros sous le titre de chaque fiche ». Il était
+              perdu en bas, dans la rangée de « J'y vais » / « Appeler » / « Mon
+              agenda », à la même taille qu'eux — alors que c'est lui qui ouvre le
+              contenu de la fiche. Le petit « ⓘ » collé au titre, qui tenait ce rôle
+              sur les vieux iPhone, est supprimé : il était posé sur TOUS les titres,
+              y compris ceux qui n'ont rien à déplier. */}
+          {Array.isArray(event.directory) && event.directory.length > 0 && (
+            <button
+              onClick={e => { e.stopPropagation(); onInfos ? onInfos(event) : onCardClick?.(event); }}
+              style={{
+                alignSelf: "flex-start",
+                display: "inline-flex", alignItems: "center", gap: 7,
+                padding: "11px 20px", marginBottom: 12,
+                border: `2px solid ${GOLD_FRAME}`,
+                borderRadius: 2, background: "#FBF2F0", cursor: "pointer",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 14, fontWeight: 700, letterSpacing: 1.8,
+                textTransform: "uppercase", color: GOLD_FRAME,
+              }}
+            >
+              {infosDepliees
+                ? (lang === "en" ? "Close" : "Replier")
+                : event.cat === "CINÉMA"
+                ? (lang === "en" ? `Info · ${event.directory.length} films` : `Infos · ${event.directory.length} films`)
+                : (lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`)}
+            </button>
+          )}
+
           {/* Lieu */}
           {event.subtitle && (
             <div style={{
@@ -559,27 +589,6 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               apéro et expo, je veux que cela soit cohérent partout ». Le fil ne
               doit avoir qu'UNE façon de montrer un annuaire.
               `onInfos` absent (écran Agenda, Favoris…) → ancien comportement. */}
-          {Array.isArray(event.directory) && event.directory.length > 0 && (
-            <button
-              onClick={e => { e.stopPropagation(); onInfos ? onInfos(event) : onCardClick?.(event); }}
-              style={{
-                alignSelf: "flex-start",
-                display: "inline-flex", alignItems: "center", gap: 5,
-                padding: C.bouton,
-                border: `1px solid ${GOLD_FRAME}`,
-                borderRadius: 1, background: "#FBF2F0", cursor: "pointer",
-                fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: C.boutonTexte, fontWeight: 600, letterSpacing: 1.5,
-                textTransform: "uppercase", color: GOLD_FRAME,
-              }}
-            >
-              {infosDepliees
-                ? (lang === "en" ? "Close" : "Replier")
-                : event.cat === "CINÉMA"
-                ? (lang === "en" ? `Info · ${event.directory.length} films` : `Infos · ${event.directory.length} films`)
-                : (lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`)}
-            </button>
-          )}
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{

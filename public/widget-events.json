@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T11:53:58.499Z",
+  "generatedAt": "2026-10-13T09:30:57.903Z",
   "events": [
     {
       "date": "Lun 12 oct",
@@ -31,6 +31,24 @@
     {
       "date": "Lun 12 oct",
       "iso": "2026-10-12",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
+    },
+    {
+      "date": "Lun 12 oct",
+      "iso": "2026-10-12",
+      "time": "En soirée",
+      "title": "OKTOBERFEST CAFÉ DE PARIS",
+      "venue": "Café de Paris Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍺"
+    },
+    {
+      "date": "Lun 12 oct",
+      "iso": "2026-10-12",
       "time": "09h00 — 18h00",
       "title": "DE TOUMAÏ À SAPIENS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -54,24 +72,6 @@
       "venue": "62 bd du Jardin Exotique",
       "quarter": "Monaco",
       "emoji": "🌵"
-    },
-    {
-      "date": "Lun 12 oct",
-      "iso": "2026-10-12",
-      "time": "09h30 — 17h30",
-      "title": "UN MARIAGE SOUS LES PROJECTEURS",
-      "venue": "Institut Audiovisuel",
-      "quarter": "Monaco",
-      "emoji": "🎬"
-    },
-    {
-      "date": "Lun 12 oct",
-      "iso": "2026-10-12",
-      "time": "10h00",
-      "title": "MUSÉES 4 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
     }
   ]
 }

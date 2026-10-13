@@ -16,9 +16,18 @@ const ROOT = join(__dirname, '..');
 
 const { ALL_EVENTS } = await import('../src/data/events.js');
 
-// Garde l'indice « ⓘ » au bout du titre servi (donnée → visible sur iPhone sans v1.7).
+// 🚫 L'indice « ⓘ » collé au bout de CHAQUE titre est retiré (13 oct 2026).
+// C'était un dépannage pour les iPhone d'avant la v1.7, qui n'avaient pas encore
+// le bouton « Infos » : le glyphe signalait qu'une fiche cachait quelque chose.
+// Depuis, le bouton existe et il est explicite. Stéphanie : « enlève le i de info
+// et les infos qui sont liées à ce i, laisse le rectangle info et les sous-fiches ».
+// Il était posé sur tous les titres, y compris ceux qui n'ont rien à déplier.
 const HINT = " ⓘ";
-const events = ALL_EVENTS.map(e => ({ ...e, title: e.title.endsWith(HINT) ? e.title : e.title + HINT }));
+const events = ALL_EVENTS.map(e => ({
+  ...e,
+  title: e.title.replace(/\s*ⓘ\s*$/, ""),
+  titleEn: e.titleEn ? e.titleEn.replace(/\s*ⓘ\s*$/, "") : e.titleEn,
+}));
 
 const payload = {
   generatedAt: new Date().toISOString(),
