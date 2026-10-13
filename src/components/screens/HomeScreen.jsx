@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import { localizeTitle, localizeCat } from "../../i18n";
 import MonacOutLogo from "../MonacOutLogo";
-import EventCard from "../EventCard";
+import EventCard, { addToCalendar } from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
@@ -705,13 +705,30 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
 // ⚠️ L'IDENTIFIANT « J'y vais » EST COMPOSÉ : id de la fiche du jour × 1000 +
 // numéro du lieu. C'est exactement le calcul de Shell.jsx — il DOIT rester
 // identique, sinon un « J'y vais » posé ici n'est pas celui posé dans la fiche.
-function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, evenement = false }) {
+function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, evenement = false,
+                     favorites = [], onToggleFav }) {
   // Un vrai événement répond de son propre identifiant ; un lieu d'annuaire, de
   // l'identifiant composé. Les confondre ferait pointer deux « J'y vais »
   // différents sur la même ligne de la base.
   const idLieu = evenement ? fiche.id : (lieu.vid > 0 ? fiche.id * 1000 + lieu.vid : null);
   const jyVais = idLieu ? (social?.myParticipations || []).includes(idLieu) : false;
   const amies  = idLieu ? (social?.friendsGoingTo?.(idLieu) || []) : [];
+
+  // ❤️📅 LE CŒUR ET « MON CALENDRIER » VIVENT ICI, PAS SUR LA FICHE DU DESSUS.
+  // Stéphanie, 13 oct 2026 : « met mon calendrier et cœur sur les sous-fiches,
+  // idem pour expo ». On ne met pas « 12 adresses » à son agenda ni en favori :
+  // on choisit UNE adresse. Un vrai événement répond de son propre identifiant,
+  // un lieu d'annuaire de l'identifiant composé — le même que « J'y vais », pour
+  // que le favori et la participation désignent bien la même chose.
+  const estFav = idLieu ? favorites.includes(idLieu) : false;
+  const pourAgenda = evenement ? fiche : {
+    ...fiche,
+    id: idLieu,
+    title: lieu.name,
+    subtitle: lieu.adr || fiche.subtitle,
+    time: lieu.info || fiche.time,
+    desc: lieu.desc || fiche.desc,
+  };
 
   return (
     <div style={{
@@ -807,6 +824,31 @@ function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir
                  fontSize: 9, fontWeight: 600, letterSpacing: 1,
                  textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
                }}>{lang === "en" ? "Call" : "Appeler"}</a>
+          )}
+          {idLieu && (
+            <button
+              onClick={e => { e.stopPropagation(); addToCalendar(pourAgenda); }}
+              style={{
+                padding: "6px 12px", cursor: "pointer",
+                border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1, background: "none",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 600, letterSpacing: 1,
+                textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
+              }}>{lang === "en" ? "Diary" : "Agenda"}</button>
+          )}
+          {idLieu && onToggleFav && (
+            <button
+              onClick={e => { e.stopPropagation(); onToggleFav(idLieu); }}
+              aria-label={estFav
+                ? (lang === "en" ? "Remove from favourites" : "Retirer des favoris")
+                : (lang === "en" ? "Add to favourites" : "Ajouter aux favoris")}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 1, flexShrink: 0 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"
+                   fill={estFav ? GOLD : "none"} stroke={GOLD} strokeWidth="1.8"
+                   strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/>
+              </svg>
+            </button>
           )}
         </div>
       )}
@@ -1428,6 +1470,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   onGoingClick={onGoingClick}
                   onOuvrir={() => onCardClick?.(e._fiche)}
                   evenement={!!e._evenement}
+                  favorites={favorites}
+                  onToggleFav={onToggleFav}
                 />
               ) : e.groupeFamille ? (
                 <CarteGroupeFamille
@@ -1506,6 +1550,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             loggedIn={loggedIn}
             onGoingClick={onGoingClick}
             onOuvrir={() => onCardClick?.(e)}
+            favorites={favorites}
+            onToggleFav={onToggleFav}
           />
         ))}
       </div>

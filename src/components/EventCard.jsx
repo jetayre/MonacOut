@@ -12,7 +12,7 @@ const GOLD = ROUGE_H;
 const GOLD_FRAME = ROUGE_H;
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
-function addToCalendar(event) {
+export function addToCalendar(event) {
   const parts = (event.date || '').split(' ');
   const day   = parseInt(parts[1]);
   const month = MOIS_ICS[parts[2]];
@@ -234,6 +234,12 @@ function FriendAvatars({ friends = [] }) {
 }
 
 export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false, compact = false, onInfos = null, infosDepliees = false }) {
+  // 🚨 UNE FICHE-ANNUAIRE N'EST PAS UN ÉVÉNEMENT où l'on se rend.
+  // Stéphanie, 13 oct 2026 : « retire j'y vais calendrier sur la fiche petit déj
+  // 12 adresses ; met mon calendrier et cœur sur les sous-fiches ». On ne va pas
+  // à « 12 adresses » et on ne met pas « 12 adresses » à son agenda : on choisit
+  // UNE adresse. Ces deux gestes descendent donc sur les sous-fiches.
+  const estAnnuaire = Array.isArray(event.directory) && event.directory.length > 0;
   // ── MODE COMPACT ────────────────────────────────────────────────────────────
   // Demandé par Stéphanie le 10 oct 2026 : quand on déplie « Voir les 7 », les
   // expositions arrivent toutes d'un coup et se confondent avec le reste du fil.
@@ -351,8 +357,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               {infosDepliees
                 ? (lang === "en" ? "Close" : "Replier")
                 : event.cat === "CINÉMA"
-                ? (lang === "en" ? `Info · ${event.directory.length} films` : `Infos · ${event.directory.length} films`)
-                : (lang === "en" ? `Info · ${event.directory.length} places` : `Infos · ${event.directory.length} lieux`)}
+                ? (lang === "en" ? `See the ${event.directory.length} films` : `Voir les ${event.directory.length} films`)
+                : (lang === "en" ? `See the ${event.directory.length} places` : `Voir les ${event.directory.length} lieux`)}
             </button>
           )}
 
@@ -563,7 +569,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
 
           <div style={{ display: "flex", gap: 0, flexWrap: "wrap" }}>
           {/* J'y vais */}
-          {onGoingClick && (
+          {onGoingClick && !estAnnuaire && (
             <button
               onClick={e => { e.stopPropagation(); onGoingClick(event.id, event.date, !!event.ongoing); }}
               style={{
@@ -589,6 +595,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               apéro et expo, je veux que cela soit cohérent partout ». Le fil ne
               doit avoir qu'UNE façon de montrer un annuaire.
               `onInfos` absent (écran Agenda, Favoris…) → ancien comportement. */}
+          {!estAnnuaire && (
           <button
             onClick={e => { e.stopPropagation(); addToCalendar(event); }}
             style={{
@@ -604,6 +611,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           >
             {lang === "en" ? "My calendar" : "Mon calendrier"}
           </button>
+          )}
           {Capacitor.isNativePlatform() && (
             <button
               onClick={async e => {
