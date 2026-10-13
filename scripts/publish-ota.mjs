@@ -33,7 +33,18 @@ mkdirSync(CAPGO_DIR, { recursive: true });
 for (const f of readdirSync(CAPGO_DIR)) { if (f.endsWith('.zip')) rmSync(join(CAPGO_DIR, f)); }
 const zip = `monacout-${version}.zip`;
 console.log('→ zip…');
-execSync(`cd "${ROOT}/dist" && zip -qr "${join(CAPGO_DIR, zip)}" .`, { stdio: 'inherit' });
+// 🚨 EXCLURE `capgo/` DU ZIP — SINON CHAQUE OTA CONTIENT LA PRÉCÉDENTE.
+// Découvert le 13 oct 2026 : la v0.0.134 pesait 93 Mo, dont 97 Mo (décompressés)
+// pour un seul fichier, `capgo/monacout-0.0.133.zip`. Vite recopie tout `public/`
+// dans `dist/`, donc l'ancien zip s'y retrouvait et était rezippé dans le nouveau :
+// une poupée russe qui enflait d'environ 1 Mo par publication. Le vrai contenu
+// de l'interface fait 5 Mo de JavaScript et 5 Mo de données.
+// Conséquence concrète : l'app devait télécharger 93 Mo au lancement pour une
+// correction d'affichage — sur un réseau mobile, ça n'arrivait pas. C'est pour ça
+// que Stéphanie ne voyait pas les mises à jour sur son téléphone.
+// ⚠️ `latest.json` est exclu pour la même raison : le manifeste est servi par
+// Vercel, il n'a rien à faire DANS le paquet.
+execSync(`cd "${ROOT}/dist" && zip -qr "${join(CAPGO_DIR, zip)}" . -x 'capgo/*'`, { stdio: 'inherit' });
 
 // 4) Manifeste
 writeFileSync(MANIFEST, JSON.stringify({ version, url: `${BASE_URL}/${zip}` }, null, 2) + '\n');
