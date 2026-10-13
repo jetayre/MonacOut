@@ -12,6 +12,25 @@ const GOLD = ROUGE_H;
 const GOLD_FRAME = ROUGE_H;
 const MOIS_ICS = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
+// Le partage, extrait pour que les sous-fiches s'en servent aussi.
+// ⚠️ L'hôte reste `monac-out.vercel.app` ET C'EST VOULU (voir le commentaire du
+// bouton Partager) : c'est le seul déclaré dans `applinks:` côté iOS, donc le
+// seul qui ouvre vraiment l'app. `idPartage` permet à une sous-fiche de partager
+// SON lieu plutôt que la fiche-annuaire qui la contient.
+export async function partagerEvenement(event, lang, idPartage = null) {
+  const titre = (event.title || "").replace(/\n/g, " ");
+  const id = idPartage ?? event.id;
+  try { Haptics.impact({ style: ImpactStyle.Light }).catch(() => {}); } catch {}
+  await Share.share({
+    title: titre,
+    text: lang === "en"
+      ? `${titre} — ${event.subtitle}. See it on Monac'Out:`
+      : `${titre} — ${event.subtitle}. À voir sur Monac'Out :`,
+    url: `https://monac-out.vercel.app/?event=${id}`,
+    dialogTitle: lang === "en" ? "Share event" : "Partager",
+  }).catch(() => {});
+}
+
 export function addToCalendar(event) {
   const parts = (event.date || '').split(' ');
   const day   = parseInt(parts[1]);
@@ -547,6 +566,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               </div>
             )}
 
+            {!estAnnuaire && (
             <button
               onClick={e => { e.stopPropagation(); onToggleFav(event.id); }}
               style={{
@@ -564,6 +584,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/>
               </svg>
             </button>
+            )}
             </div>
           </div>
 
@@ -612,7 +633,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             {lang === "en" ? "My calendar" : "Mon calendrier"}
           </button>
           )}
-          {Capacitor.isNativePlatform() && (
+          {Capacitor.isNativePlatform() && !estAnnuaire && (
             <button
               onClick={async e => {
                 e.stopPropagation();

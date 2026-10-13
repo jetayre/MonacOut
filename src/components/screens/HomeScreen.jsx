@@ -2,10 +2,11 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import { localizeTitle, localizeCat } from "../../i18n";
 import MonacOutLogo from "../MonacOutLogo";
-import EventCard, { addToCalendar } from "../EventCard";
+import EventCard, { addToCalendar, partagerEvenement } from "../EventCard";
 import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
+import { Capacitor } from "@capacitor/core";
 import { partagerInvitation } from "../../lib/invite";
 
 const NAVY = "#0F1D3A";
@@ -835,6 +836,17 @@ function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir
                 fontSize: 9, fontWeight: 600, letterSpacing: 1,
                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
               }}>{lang === "en" ? "Diary" : "Agenda"}</button>
+          )}
+          {idLieu && Capacitor.isNativePlatform() && (
+            <button
+              onClick={e => { e.stopPropagation(); partagerEvenement(pourAgenda, lang, idLieu); }}
+              style={{
+                padding: "6px 12px", cursor: "pointer",
+                border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1, background: "none",
+                fontFamily: "'Josefin Sans', sans-serif",
+                fontSize: 9, fontWeight: 600, letterSpacing: 1,
+                textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
+              }}>{lang === "en" ? "Share" : "Partager"}</button>
           )}
           {idLieu && onToggleFav && (
             <button
