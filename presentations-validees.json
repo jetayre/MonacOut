@@ -104,5 +104,10 @@
     "adr": "8 place du Palais · Monaco-Ville",
     "texte": "Snack-bar créé en 1957, face au Palais princier, sur l'une des plus belles places de la Principauté. Terrasse au soleil, du café du matin au verre de l'après-midi.",
     "source": "⚠️ Pas de site officiel — adresse, téléphone et horaires recoupés sur monaco-welcome.mc (label de l'État), pagesjaunes et Tripadvisor."
+  },
+  "Blue Gin": {
+    "adr": "Monte-Carlo Bay Hotel & Resort · 40 av. Princesse Grace · Larvotto",
+    "texte": "Le bar du Monte-Carlo Bay, ouvert tous les jours dès 18h : cocktails et carte signée Marcel Ravin, DJ résident Nicolas Saad du jeudi au samedi. Le bar diffuse aussi en direct les matches de l'UEFA Champions League 2026-2027.",
+    "source": "montecarlosbm.com — page The Blue Gin, lue le 14 oct 2026"
   }
 }
