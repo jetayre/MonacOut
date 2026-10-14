@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-10-13T10:28:57.177Z",
+  "generatedAt": "2026-10-14T10:49:18.556Z",
   "events": [
+    {
+      "date": "Mar 13 oct",
+      "iso": "2026-10-13",
+      "time": "14h00 — 23h00",
+      "title": "FOIRE ATTRACTIONS PORT HERCULE",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🎡"
+    },
     {
       "date": "Mar 13 oct",
       "iso": "2026-10-13",
@@ -13,11 +22,29 @@
     {
       "date": "Mar 13 oct",
       "iso": "2026-10-13",
-      "time": "08h45 — 09h45",
-      "title": "CAFÉ-RENCONTRE AFCEM CHEZ WOO",
-      "venue": "Woo Monaco",
-      "quarter": "La Condamine",
-      "emoji": "☕"
+      "time": "En journée",
+      "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
+      "venue": "Francis Bacon MB Art Foundation",
+      "quarter": "Monte-Carlo",
+      "emoji": "🖼️"
+    },
+    {
+      "date": "Mar 13 oct",
+      "iso": "2026-10-13",
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
+    },
+    {
+      "date": "Mar 13 oct",
+      "iso": "2026-10-13",
+      "time": "En soirée",
+      "title": "OKTOBERFEST CAFÉ DE PARIS",
+      "venue": "Café de Paris Monte-Carlo",
+      "quarter": "Monte-Carlo",
+      "emoji": "🍺"
     },
     {
       "date": "Mar 13 oct",
@@ -45,33 +72,6 @@
       "venue": "62 bd du Jardin Exotique",
       "quarter": "Monaco",
       "emoji": "🌵"
-    },
-    {
-      "date": "Mar 13 oct",
-      "iso": "2026-10-13",
-      "time": "09h30 — 17h30",
-      "title": "UN MARIAGE SOUS LES PROJECTEURS",
-      "venue": "Institut Audiovisuel",
-      "quarter": "Monaco",
-      "emoji": "🎬"
-    },
-    {
-      "date": "Mar 13 oct",
-      "iso": "2026-10-13",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Mar 13 oct",
-      "iso": "2026-10-13",
-      "time": "11h00 — 19h00",
-      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🚩"
     }
   ]
 }
