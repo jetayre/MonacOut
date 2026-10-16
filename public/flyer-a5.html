@@ -15,6 +15,15 @@
   }
   @media print { html, body { background: #FFFDF7; } .feuille { margin: 0; } }
 
+  /* A4 PAYSAGE : 297 × 210 mm = exactement deux A5 portrait côte à côte. */
+  .planche { width: 297mm; height: 210mm; margin: 0 auto; display: flex;
+             background: #FFFDF7; position: relative; }
+  .planche .feuille { margin: 0; }
+  /* Le trait de coupe : pointillé très clair, il se voit pour couper et
+     disparaît à l'œil une fois le flyer séparé. */
+  .coupe { position: absolute; left: 50%; top: 0; bottom: 0; width: 0;
+           border-left: 0.5px dashed #c9c3b6; }
+
   /* Un filet Rouge H en haut et en bas : c'est tout ce qui reste du cadre. */
   .filet { width: 100%; height: 1.4mm; background: #7B2D26; flex-shrink: 0; }
 
@@ -50,7 +59,7 @@
              margin-top: 3mm; }
 </style></head>
 <body>
-  <div class="feuille">
+    <div class="feuille">
     <div class="filet"></div>
 
     <div class="logo">

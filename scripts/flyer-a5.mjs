@@ -22,8 +22,14 @@
  * ⚠️ Ne pas écrire « vercel » ni « Principauté » sur le flyer : décision de
  * Stéphanie pour le flyer A4, elle vaut ici aussi.
  *
- * Usage : node scripts/flyer-a5.mjs            → public/flyer-a5.html
- *         node scripts/flyer-a5.mjs --pdf      → + ~/Desktop/Flyer A5 Monac'Out.pdf
+ * Usage : node scripts/flyer-a5.mjs            → public/flyer-a5.html (A5 seul)
+ *         node scripts/flyer-a5.mjs --pdf      → + le PDF et un aperçu sur le Bureau
+ *         node scripts/flyer-a5.mjs --a4 --pdf → DEUX A5 sur une A4 paysage, avec
+ *                                                 un trait de coupe au milieu.
+ *
+ * ⚠️ Pourquoi l'A4 est en PAYSAGE : une A4 fait 297 × 210 mm et une A5 148 × 210.
+ * Deux A5 portrait tiennent donc EXACTEMENT côte à côte sur une A4 couchée, sans
+ * réduction ni marge perdue. En A4 portrait il aurait fallu rogner ou rapetisser.
  */
 import { writeFileSync, mkdirSync } from "fs";
 import { fileURLToPath } from "url";
@@ -51,6 +57,40 @@ const qr = await QRCode.toString(CIBLE, {
 });
 const qrInline = qr.replace(/<\?xml[^>]*\?>/, "").replace(/<svg /, '<svg class="qr" ');
 
+const A4 = process.argv.includes("--a4");
+
+// Le contenu d'UNE feuille A5. Posé une fois en A5, deux fois en A4 paysage.
+const UNE = `  <div class="feuille">
+    <div class="filet"></div>
+
+    <div class="logo">
+      <div class="nom"><span class="a">MONAC'</span><span class="b">OUT</span></div>
+      <div class="signature">Monaco Ensemble</div>
+      <div class="trait"></div>
+    </div>
+
+    <p class="accroche">Tout ce qu'il y a à faire<br>à Monaco <strong>aujourd'hui</strong></p>
+
+    <div class="liste">
+      <span>Petit-déj</span><span class="pt">·</span><span>Brunch</span><span class="pt">·</span><span>Apéro</span><br>
+      <span>Expos</span><span class="pt">·</span><span>Concerts</span><span class="pt">·</span><span>Soirées</span><br>
+      <span>Bien-être</span><span class="pt">·</span><span>Sport</span><span class="pt">·</span><span>Enfants</span>
+    </div>
+
+    <div class="bloc-qr">
+      <div class="cadre-qr">${qrInline}</div>
+      <div class="mode">Scannez pour installer</div>
+      <div class="gratuit">Gratuit</div>
+    </div>
+
+    <div class="filet" style="margin-top:9mm"></div>
+  </div>`;
+
+// En A4, deux exemplaires côte à côte séparés d'un trait de coupe pointillé.
+const corps = A4
+  ? `<div class="planche">${UNE}<div class="coupe"></div>${UNE}</div>`
+  : UNE;
+
 const html = `<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <title>Flyer A5 Monac'Out</title>
@@ -58,7 +98,7 @@ const html = `<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  @page { size: A5 portrait; margin: 0; }
+  @page { size: ${A4 ? 'A4 landscape' : 'A5 portrait'}; margin: 0; }
   * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body { margin: 0; padding: 0; background: #e9e6df; }
   .feuille {
@@ -67,6 +107,22 @@ const html = `<!doctype html>
     padding: 15mm 13mm 11mm; position: relative; overflow: hidden;
   }
   @media print { html, body { background: ${IVOIRE}; } .feuille { margin: 0; } }
+
+  /* A4 PAYSAGE : 297 × 210 mm = exactement deux A5 portrait côte à côte. */
+  .planche { width: 297mm; height: 210mm; margin: 0 auto; display: flex;
+             background: ${IVOIRE}; position: relative; }
+  .planche .feuille { margin: 0; }
+  /* Le trait de coupe : pointillé très clair, il se voit pour couper et
+     disparaît à l'œil une fois le flyer séparé. */
+  .coupe { position: absolute; left: 50%; top: 0; bottom: 0; width: 0;
+           border-left: 0.8px dashed #a8a194; }
+  /* Deux repères d'angle, pour viser au massicot sans tracer sur le flyer. */
+  .planche::before, .planche::after {
+    content: ""; position: absolute; left: 50%; width: 0; height: 6mm;
+    border-left: 1px solid ${ROUGE_H};
+  }
+  .planche::before { top: 0; }
+  .planche::after { bottom: 0; }
 
   /* Un filet Rouge H en haut et en bas : c'est tout ce qui reste du cadre. */
   .filet { width: 100%; height: 1.4mm; background: ${ROUGE_H}; flex-shrink: 0; }
@@ -103,35 +159,11 @@ const html = `<!doctype html>
              margin-top: 3mm; }
 </style></head>
 <body>
-  <div class="feuille">
-    <div class="filet"></div>
-
-    <div class="logo">
-      <div class="nom"><span class="a">MONAC'</span><span class="b">OUT</span></div>
-      <div class="signature">Monaco Ensemble</div>
-      <div class="trait"></div>
-    </div>
-
-    <p class="accroche">Tout ce qu'il y a à faire<br>à Monaco <strong>aujourd'hui</strong></p>
-
-    <div class="liste">
-      <span>Petit-déj</span><span class="pt">·</span><span>Brunch</span><span class="pt">·</span><span>Apéro</span><br>
-      <span>Expos</span><span class="pt">·</span><span>Concerts</span><span class="pt">·</span><span>Soirées</span><br>
-      <span>Bien-être</span><span class="pt">·</span><span>Sport</span><span class="pt">·</span><span>Enfants</span>
-    </div>
-
-    <div class="bloc-qr">
-      <div class="cadre-qr">${qrInline}</div>
-      <div class="mode">Scannez pour installer</div>
-      <div class="gratuit">Gratuit</div>
-    </div>
-
-    <div class="filet" style="margin-top:9mm"></div>
-  </div>
+  ${corps}
 </body></html>`;
 
 mkdirSync(join(RACINE, "public"), { recursive: true });
-const sortie = join(RACINE, "public", "flyer-a5.html");
+const sortie = join(RACINE, "public", A4 ? "flyer-a5-sur-a4.html" : "flyer-a5.html");
 writeFileSync(sortie, html, "utf8");
 console.log(`✓ ${sortie}`);
 console.log(`  QR → ${CIBLE}`);
@@ -145,12 +177,12 @@ if (process.argv.includes("--pdf")) {
   // sort en Times : on attend qu'elles soient prêtes.
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(900);
-  const pdf = join(homedir(), "Desktop", "Flyer A5 Monac'Out.pdf");
-  await page.pdf({ path: pdf, format: "A5", printBackground: true,
+  const pdf = join(homedir(), "Desktop", A4 ? "Flyer Monac'Out - 2 par page A4.pdf" : "Flyer A5 Monac'Out.pdf");
+  await page.pdf({ path: pdf, format: A4 ? "A4" : "A5", landscape: A4, printBackground: true,
                    margin: { top: 0, right: 0, bottom: 0, left: 0 } });
-  const png = join(homedir(), "Desktop", "Flyer A5 Monac'Out.png");
-  await page.setViewportSize({ width: 560, height: 794 });
-  await page.locator(".feuille").screenshot({ path: png, scale: "device" });
+  const png = join(homedir(), "Desktop", A4 ? "Flyer Monac'Out - 2 par page A4.png" : "Flyer A5 Monac'Out.png");
+  await page.setViewportSize(A4 ? { width: 1123, height: 794 } : { width: 560, height: 794 });
+  await page.locator(A4 ? ".planche" : ".feuille").screenshot({ path: png, scale: "device" });
   await nav.close();
   console.log(`✓ ${pdf}`);
   console.log(`✓ ${png}`);
