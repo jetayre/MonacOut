@@ -225,8 +225,21 @@ for (const f of fiches) {
   if (!dates.length) continue;
   const v = trouveLieu(f.lieu);
   const cat = categorie(f.titre);
-  const heure = f.h1 ? (f.h2 ? `${f.h1.replace(":", "h")} — ${f.h2.replace(":", "h")}` : f.h1.replace(":", "h"))
-                     : (SANS_HEURE[cat] || null);
+  // ⚠️ PLAGE IMPOSSIBLE (fin ≤ début) : PrinciPocket recopie parfois l'horaire de
+  // semaine sur l'occurrence du DIMANCHE d'une série de plusieurs jours — « from 20:00
+  // to 18:30 » — où le dimanche est en réalité une matinée. La fin précède alors le
+  // début : l'horaire est faux, et on ne peut PAS savoir lequel des deux bouts est le
+  // bon (le 20:00 du soir de semaine, ou la fin 18:30 de la matinée). On NE PUBLIE
+  // AUCUNE heure plutôt qu'une heure fausse (un événement manquant vaut mieux qu'un
+  // faux) : la logique « sans heure » prend le relais — « En soirée/journée » pour les
+  // apéros, mise à l'écart pour les catégories qui exigent une heure. Les 3 pièces du
+  // Théâtre des Muses (Letters to Anne 15 nov, If a story… 22 nov, Win Win 29 nov)
+  // bloquaient ainsi TOUT le pipeline, le policier refusant « 20h00 — 18h30 » à chaque
+  // passage depuis le 14 oct 2026. HH:MM zéro-padé → l'ordre lexical est chronologique.
+  const plageImpossible = f.h1 && f.h2 && f.h2 <= f.h1;
+  const heure = (f.h1 && !plageImpossible)
+    ? (f.h2 ? `${f.h1.replace(":", "h")} — ${f.h2.replace(":", "h")}` : f.h1.replace(":", "h"))
+    : (SANS_HEURE[cat] || null);
   const mtCles = motsCles(f.titre), mlCles = motsCles(f.lieu);
   // Une fiche de l'app correspond-elle ? (même logique qu'avant, écrite une seule fois)
   const correspond = (e) => {
