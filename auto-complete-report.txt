@@ -1,31 +1,16 @@
-PrinciPocket : 272 fiches scannées.
-  = « Les Archives du lundi - programme B d'octobre » [Lun 12 oct 2026] — déjà couvert par une expo en cours au même lieu
-  + LIEU NOUVEAU « Port Hercule de Monaco » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
-  = « Monaco Fair and Attractions » [Ven 16 oct 2026] — déjà couvert par une expo en cours au même lieu
+PrinciPocket : 268 fiches scannées.
   = « Les Archives du lundi - programme A d'octobre » [Lun 19 oct 2026] — déjà couvert par une expo en cours au même lieu
+  ~ « Club Oceano - Discovery course on the Ocean » [Ven 30 oct 2026] — heure non publiée → « En journée »
   ~ « Invente ton spectacle de lanterne magique » [Ven 23 oct 2026] — heure non publiée → « En journée »
   = « Invente ton spectacle de lanterne magique » [Ven 23 oct 2026] — déjà couvert par une expo en cours au même lieu
   = « Que le spectacle commence ! » [Ven 23 oct 2026] — déjà couvert par une expo en cours au même lieu
   = « Les Archives du lundi - programme B d'octobre » [Lun 26 oct 2026] — déjà couvert par une expo en cours au même lieu
+  SKIP « LETTERS TO ANNE » [Dim 15 nov 2026] — heure inconnue
+  SKIP « IF A STORY KNOCKS AT YOUR DOOR » [Dim 22 nov 2026] — heure inconnue
+  SKIP « WIN-WIN » [Dim 29 nov 2026] — heure inconnue
   = « Le « Mariage du siècle » vu par la télévision et le cinéma » [Jeu 10 déc 2026] — déjà couvert par une expo en cours au même lieu
   ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
   = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
 
-AJOUTÉS : 17
-+ [Jeu 29 oct 2026] Le dernier cèdre du Liban @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Mar 3 nov 2026] Une vie sur mesure @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Mar 17 nov 2026] La Misérable @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Mar 24 nov 2026] La Crise @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Ven 27 nov 2026] La Cathédrale engloutie @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Jeu 3 déc 2026] Les marchands d'étoiles @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Jeu 17 déc 2026] Numéro deux @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Mar 5 jan 2027] Les gros patinent bien @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Mar 12 jan 2027] Deburau @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Ven 15 jan 2027] En thérapie @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Jeu 21 jan 2027] La haine et la vengeance @ Théâtre Princesse Grace (THÉÂTRE 19h00)
-+ [Mar 2 fév 2027] Brûlez-la @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Jeu 11 fév 2027] Dans le couloir @ Théâtre Princesse Grace (THÉÂTRE 20h19)
-+ [Jeu 18 fév 2027] Potiche @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Jeu 4 mar 2027] L'affaire Christian Ranucci @ Théâtre Princesse Grace (THÉÂTRE 20h00)
-+ [Mar 9 mar 2027] Zone d'attente @ Théâtre Princesse Grace (THÉÂTRE 20h59)
-+ [Mer 17 mar 2027] Toute la famille que j'aime @ Théâtre Princesse Grace (THÉÂTRE 20h00)
+AJOUTÉS : 1
++ [Ven 30 oct 2026] Club Oceano - Discovery course on the Ocean @ Musée Océanographique (ATELIER En journée)
