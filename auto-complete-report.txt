@@ -1,6 +1,5 @@
 PrinciPocket : 268 fiches scannées.
   = « Les Archives du lundi - programme A d'octobre » [Lun 19 oct 2026] — déjà couvert par une expo en cours au même lieu
-  ~ « Club Oceano - Discovery course on the Ocean » [Ven 30 oct 2026] — heure non publiée → « En journée »
   ~ « Invente ton spectacle de lanterne magique » [Ven 23 oct 2026] — heure non publiée → « En journée »
   = « Invente ton spectacle de lanterne magique » [Ven 23 oct 2026] — déjà couvert par une expo en cours au même lieu
   = « Que le spectacle commence ! » [Ven 23 oct 2026] — déjà couvert par une expo en cours au même lieu
@@ -12,5 +11,4 @@ PrinciPocket : 268 fiches scannées.
   ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
   = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
 
-AJOUTÉS : 1
-+ [Ven 30 oct 2026] Club Oceano - Discovery course on the Ocean @ Musée Océanographique (ATELIER En journée)
+AJOUTÉS : 0
