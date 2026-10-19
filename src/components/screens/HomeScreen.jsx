@@ -706,7 +706,7 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
 // ⚠️ L'IDENTIFIANT « J'y vais » EST COMPOSÉ : id de la fiche du jour × 1000 +
 // numéro du lieu. C'est exactement le calcul de Shell.jsx — il DOIT rester
 // identique, sinon un « J'y vais » posé ici n'est pas celui posé dans la fiche.
-function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, evenement = false,
+export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, evenement = false,
                      favorites = [], onToggleFav }) {
   // Un vrai événement répond de son propre identifiant ; un lieu d'annuaire, de
   // l'identifiant composé. Les confondre ferait pointer deux « J'y vais »

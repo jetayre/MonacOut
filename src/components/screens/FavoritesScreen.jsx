@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
 import EventCard from "../EventCard";
+import { CarteLieu } from "./HomeScreen";
 
 const NAVY = "#0F1D3A";
 const GOLD = "#7B2D26";
@@ -24,8 +26,17 @@ function ArrowLeft() {
   );
 }
 
-export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick, events = ALL_EVENTS, loggedIn = false, onShowAuth }) {
+export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClick, lang = "fr", onNavEvents, onCardClick, events = ALL_EVENTS, loggedIn = false, onShowAuth, social, onGoingClick }) {
   const favEvents = events.filter(e => favorites.includes(e.id));
+
+  // 🚨 ICI AUSSI « INFOS » DÉPLIE. Stéphanie, 19 oct 2026 : « si on clique sur la
+  // fiche la liste s'affiche comme avant et pas en sous-fiche ». C'était vrai sur
+  // cet écran : faute de recevoir `onInfos`, le bouton retombait sur l'ancien
+  // comportement et rouvrait la fenêtre. Le fil et les favoris se comportent
+  // maintenant pareil — c'est la demande du 11 octobre, « je veux que cela soit
+  // cohérent partout », qui n'avait été appliquée qu'au fil.
+  const [deplie, setDeplie] = useState({});
+  const estAnnuaire = e => Array.isArray(e.directory) && e.directory.length > 0;
 
   return (
     <div style={{ background: WHITE, minHeight: "100%" }}>
@@ -93,17 +104,42 @@ export default function FavoritesScreen({ favorites, onToggleFav, onCategoryClic
             </div>
           </div>
         ) : (
-          favEvents.map(e => (
-            <EventCard
-              key={e.id}
-              event={e}
-              favorites={favorites}
-              onToggleFav={onToggleFav}
-              onCategoryClick={onCategoryClick}
-              onCardClick={onCardClick}
-              lang={lang}
-            />
-          ))
+          favEvents.map(e => {
+            const cle = `${e.id}-${e.date}`;
+            const ouvert = estAnnuaire(e) && !!deplie[cle];
+            return (
+              <div key={e.id}>
+                <EventCard
+                  event={e}
+                  favorites={favorites}
+                  onToggleFav={onToggleFav}
+                  onCategoryClick={onCategoryClick}
+                  onCardClick={onCardClick}
+                  lang={lang}
+                  social={social}
+                  onGoingClick={onGoingClick}
+                  loggedIn={loggedIn}
+                  onShowAuth={onShowAuth}
+                  onInfos={estAnnuaire(e) ? () => setDeplie(d => ({ ...d, [cle]: !d[cle] })) : null}
+                  infosDepliees={ouvert}
+                />
+                {ouvert && e.directory.map((d, k) => (
+                  <CarteLieu
+                    key={`lieu-${cle}-${k}`}
+                    lieu={d}
+                    fiche={e}
+                    lang={lang}
+                    social={social}
+                    loggedIn={loggedIn}
+                    onGoingClick={onGoingClick}
+                    onOuvrir={() => onCardClick?.(e)}
+                    favorites={favorites}
+                    onToggleFav={onToggleFav}
+                  />
+                ))}
+              </div>
+            );
+          })
         )}
       </div>
     </div>
