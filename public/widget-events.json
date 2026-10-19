@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-10-18T18:33:38.936Z",
+  "generatedAt": "2026-10-19T05:14:48.042Z",
   "events": [
+    {
+      "date": "Dim 18 oct",
+      "iso": "2026-10-18",
+      "time": "14h00 — 23h00",
+      "title": "FOIRE ATTRACTIONS PORT HERCULE",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🎡"
+    },
     {
       "date": "Dim 18 oct",
       "iso": "2026-10-18",
@@ -22,20 +31,11 @@
     {
       "date": "Dim 18 oct",
       "iso": "2026-10-18",
-      "time": "En journée",
-      "title": "TROPHÉE ADALBERTO MIANI YACHT CLUB",
-      "venue": "Yacht Club de Monaco",
-      "quarter": "La Condamine",
-      "emoji": "⛵"
-    },
-    {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
-      "time": "En journée",
-      "title": "TROPHÉE VIRGINIE HÉRIOT YACHT CLUB",
-      "venue": "Yacht Club de Monaco",
-      "quarter": "La Condamine",
-      "emoji": "⛵"
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Dim 18 oct",
@@ -67,11 +67,11 @@
     {
       "date": "Dim 18 oct",
       "iso": "2026-10-18",
-      "time": "9h30 → 18h30",
-      "title": "MESSE DIMANCHE",
-      "venue": "9 paroisses",
+      "time": "11h00 — 19h00",
+      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
+      "venue": "Villa Paloma",
       "quarter": "Monaco",
-      "emoji": "⛪"
+      "emoji": "🚩"
     }
   ]
 }
