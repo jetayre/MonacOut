@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-19T05:14:48.042Z",
+  "generatedAt": "2026-10-19T09:26:12.063Z",
   "events": [
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "14h00 — 23h00",
       "title": "FOIRE ATTRACTIONS PORT HERCULE",
       "venue": "Port Hercule",
@@ -11,8 +11,8 @@
       "emoji": "🎡"
     },
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -20,8 +20,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "En journée",
       "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
       "venue": "Francis Bacon MB Art Foundation",
@@ -29,17 +29,8 @@
       "emoji": "🖼️"
     },
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
-      "time": "18h00 — 20h00",
-      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
-      "venue": "Square Beaumarchais",
-      "quarter": "Monte-Carlo",
-      "emoji": "🥂"
-    },
-    {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -47,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -56,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -65,8 +56,17 @@
       "emoji": "🎬"
     },
     {
-      "date": "Dim 18 oct",
-      "iso": "2026-10-18",
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
+      "time": "10h00",
+      "title": "MUSÉES 4 OUVERTS À MONACO",
+      "venue": "Musées de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🏛️"
+    },
+    {
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
