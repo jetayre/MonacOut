@@ -1,15 +1,6 @@
 {
-  "generatedAt": "2026-10-19T14:52:56.443Z",
+  "generatedAt": "2026-10-19T20:57:51.148Z",
   "events": [
-    {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
-      "time": "14h00 — 23h00",
-      "title": "FOIRE ATTRACTIONS PORT HERCULE",
-      "venue": "Port Hercule",
-      "quarter": "La Condamine",
-      "emoji": "🎡"
-    },
     {
       "date": "Lun 19 oct",
       "iso": "2026-10-19",
@@ -72,6 +63,15 @@
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🚩"
+    },
+    {
+      "date": "Lun 19 oct",
+      "iso": "2026-10-19",
+      "time": "11h00 — 19h00",
+      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🖼️"
     }
   ]
 }
