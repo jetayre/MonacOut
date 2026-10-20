@@ -385,7 +385,7 @@
  },
  "/en/events/781864ef4185b47ceb519812a883a7de-Symphonic-Concert-L-Kuokman-R-Goosby": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Symphonic Concert L Kuokman R Goosby",
   "majLe": "2026-10-20"
  },
@@ -427,7 +427,7 @@
  },
  "/en/events/34871cd88213f633fb9ccfc6edba1d05-Piano-recital-Piotr-Anderszewski": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Piano recital Piotr Anderszewski",
   "majLe": "2026-10-20"
  },
@@ -445,13 +445,13 @@
  },
  "/en/events/133a4285827d6b5f789f0a5fc3421593-Jonathan-Tetelman-Recital": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Jonathan Tetelman Recital",
   "majLe": "2026-10-20"
  },
  "/en/events/2d128ee7544ab85e185b549945b6ae9c-Piano-recital-Dmitry-Shishkin": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Piano recital Dmitry Shishkin",
   "majLe": "2026-10-20"
  },
@@ -493,7 +493,7 @@
  },
  "/en/events/7bc7566cda3dfb19156fea4bbf6d365a-Piano-recital-Lucas-Debargue": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Piano recital Lucas Debargue",
   "majLe": "2026-10-20"
  },
@@ -553,7 +553,7 @@
  },
  "/en/events/2c4058fea3f5b05df09e06747f692152-Piano-Recital-Mao-Fujita": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Piano Recital Mao Fujita",
   "majLe": "2026-10-20"
  },
@@ -577,7 +577,7 @@
  },
  "/en/events/9c0065265f8e36959dc64970bac74c4f-Piano-Recital-Grigory-Sokolov": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Piano Recital Grigory Sokolov",
   "majLe": "2026-10-20"
  },
@@ -601,7 +601,7 @@
  },
  "/en/events/32c9a3a176dd50f2860d6e727e2832b2-Symphonic-Concert-C-Macelaru-C-Putz": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Symphonic Concert C Macelaru C Putz",
   "majLe": "2026-10-20"
  },
@@ -625,7 +625,7 @@
  },
  "/en/events/448a1c984a7a44cc3035280b4a1841b2-Piano-Recital-Jorge-Luis-Prats": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Piano Recital Jorge Luis Prats",
   "majLe": "2026-10-20"
  },
@@ -649,13 +649,13 @@
  },
  "/en/events/0acffc99ea145d7fd0c8cf6ece9178f2-Concert-symphonique-J-P-Saraste-M-Helmchen": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Concert symphonique J P Saraste M Helmchen",
   "majLe": "2026-10-20"
  },
  "/en/events/83a55cb28b8f4e04835c9fa6698ac57f-Symphonic-Concert-D-Ceretta-A-Dovgan": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Symphonic Concert D Ceretta A Dovgan",
   "majLe": "2026-10-20"
  },
@@ -697,7 +697,7 @@
  },
  "/en/events/c5f4b75e65f0993443e411497d6b3646-L-italiana-in-Algeri": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "L italiana in Algeri",
   "majLe": "2026-10-20"
  },
@@ -1075,43 +1075,43 @@
  },
  "/en/events/48088d4a82c4837d85874a98027649f6-Ligue-1-AS-MONACO-Lille-OSC": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO Lille OSC",
   "majLe": "2026-10-20"
  },
  "/en/events/da92b1bd7a4fecf455a0ec0d8bd8d6fe-Ligue-1-AS-MONACO-AJ-AUXERRE": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO AJ AUXERRE",
   "majLe": "2026-10-20"
  },
  "/en/events/8cef6829790c57bdf70cff11f1387700-Ligue-1-AS-MONACO-ANGERS-SCO": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO ANGERS SCO",
   "majLe": "2026-10-20"
  },
  "/en/events/11a43f8cd292bb535fc31c10cc5514bb-Ligue-1-AS-MONACO-OGC-Nice": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO OGC Nice",
   "majLe": "2026-10-20"
  },
  "/en/events/e776a26dd61a5b1931a39fd338b30361-Ligue-1-AS-MONACO-STADE-BRESTOIS-29": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO STADE BRESTOIS 29",
   "majLe": "2026-10-20"
  },
  "/en/events/afa8e3656edbe887b086ed30c15f86d5-Ligue-1-AS-MONACO-PARIS-SAINT-GERMAIN": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO PARIS SAINT GERMAIN",
   "majLe": "2026-10-20"
  },
  "/en/events/ddf5bbe3d8fbb4169c2f1b62a7a08974-Ligue-1-AS-MONACO-Le-Mans-FC": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO Le Mans FC",
   "majLe": "2026-10-20"
  },
@@ -1123,7 +1123,7 @@
  },
  "/en/events/f34849020e3bfcab8f5942f2e0b4714c-Ligue-1-AS-MONACO-O-LYONNAIS": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO O LYONNAIS",
   "majLe": "2026-10-20"
  },
@@ -1369,13 +1369,13 @@
  },
  "/en/events/2a439e3275526a8837a18deeef08f68e-Uefa-conference-league-AS-MONACO-SC-Fribourg": {
   "vuLe": "2026-09-01",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Uefa conference league AS MONACO SC Fribourg",
   "majLe": "2026-10-20"
  },
  "/en/events/a1a51e6fbc9db20c147e040d28a2c969-Uefa-conference-league-AS-MONACO-Nordsjaelland": {
   "vuLe": "2026-09-01",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Uefa conference league AS MONACO Nordsjaelland",
   "majLe": "2026-10-20"
  },
@@ -1387,7 +1387,7 @@
  },
  "/en/events/57471f0761f49a5c616f98d168c26d4a-Uefa-conference-league-AS-MONACO-Lincoln-Red-Imps": {
   "vuLe": "2026-09-01",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Uefa conference league AS MONACO Lincoln Red Imps",
   "majLe": "2026-10-20"
  },
@@ -1831,15 +1831,15 @@
  },
  "/en/events/356cd9f017b7230db383da4b8a994ccb-Sieste-Musicale-Instant-detente-pendant-la-pause-dejeuner": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Sieste Musicale Instant detente pendant la pause dejeuner",
-  "majLe": "2026-10-19"
+  "majLe": "2026-10-20"
  },
  "/en/events/330ec01a5b91ace255d00b57d82795b7-Rencontre-dedicace-avec-Georges-Vigarello-historien-autour-de-son-dernier-ouvrage-Le-corps-en-mouvement-dans-la-peinture": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Rencontre dedicace avec Georges Vigarello historien autour de son dernier ouvrage Le corps en mouvement dans la peinture",
-  "majLe": "2026-10-19"
+  "majLe": "2026-10-20"
  },
  "/en/events/5660e50a372747c89bf0c60a65b77d3b-Getting-started-with-iPhone-Level-2": {
   "vuLe": "2026-09-22",
@@ -1861,7 +1861,7 @@
  },
  "/en/events/319bf1f0aa4f57b26f9e5afd5668f4a2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-20"
  },
@@ -1891,7 +1891,7 @@
  },
  "/en/events/4571bd3ec36ca05fa10317653700e5ba-Picnic-Music-Live-avec-le-duo-ALMA-Pop-and-Soul": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music Live avec le duo ALMA Pop and Soul",
   "majLe": "2026-10-20"
  },
@@ -1921,7 +1921,7 @@
  },
  "/en/events/03653c7635417ab0132c320fd707a377-Discovering-social-networks": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Discovering social networks",
   "majLe": "2026-10-20"
  },
@@ -1969,13 +1969,13 @@
  },
  "/en/events/281c654e8c60ffb089ef17c0c6c2f663-La-philo-pour-les-jeunes-C-est-qui-papa-anime-par-Alicia-Polzella-Gauduel": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "La philo pour les jeunes C est qui papa anime par Alicia Polzella Gauduel",
   "majLe": "2026-10-20"
  },
  "/en/events/c6df5f51f9c9fc5c653020d6ab8a59db-Cafe-Litteraire-Venez-echanger-sur-vos-coups-de-coeur": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Cafe Litteraire Venez echanger sur vos coups de coeur",
   "majLe": "2026-10-20"
  },
@@ -2059,7 +2059,7 @@
  },
  "/en/events/18dbfd5d75fb7ceb5904c36f2c5dc9cf-La-Traversee-de-Florence-Miailhe": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "La Traversee de Florence Miailhe",
   "majLe": "2026-10-20"
  },
@@ -2083,7 +2083,7 @@
  },
  "/en/events/59d352ff237caca5c1912d3407399fb2-Symphonic-concert-J-Sirvend-L-Petrova": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Symphonic concert J Sirvend L Petrova",
   "majLe": "2026-10-20"
  },
@@ -2197,7 +2197,7 @@
  },
  "/en/events/d1ee1f7c5f7125526b6e06ae7a29261d-Asmik-Grigorian-Recital": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Asmik Grigorian Recital",
   "majLe": "2026-10-20"
  },
@@ -2449,9 +2449,9 @@
  },
  "/en/events/2a058ceeca100708a1dc683339306f04-Paques-sanglantes-de-Giuseppe-De-Santis": {
   "vuLe": "2026-09-23",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Paques sanglantes de Giuseppe De Santis",
-  "majLe": "2026-10-19"
+  "majLe": "2026-10-20"
  },
  "/en/events/430faaf1bf19c6286dbdb1d655fb4c41-Que-le-spectacle-commence": {
   "vuLe": "2026-09-23",
@@ -2473,7 +2473,7 @@
  },
  "/en/events/e02aaf44e86cfcaccd13514ee0a952fc-Pluie-noire-de-Shohei-Imamura": {
   "vuLe": "2026-09-24",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Pluie noire de Shohei Imamura",
   "majLe": "2026-10-20"
  },
@@ -2485,13 +2485,13 @@
  },
  "/en/events/2138c41d09eabf280a9fa52358d9b231-Valeur-sentimentale-de-Joachim-Trier": {
   "vuLe": "2026-09-24",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Valeur sentimentale de Joachim Trier",
   "majLe": "2026-10-20"
  },
  "/en/events/94561049be1e58a46556b32b786f703f-Jour-de-fete-de-Jacques-Tati": {
   "vuLe": "2026-09-24",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Jour de fete de Jacques Tati",
   "majLe": "2026-10-20"
  },
@@ -2515,7 +2515,7 @@
  },
  "/en/events/e782897515887ddff4f80ca702be4e82-L-Aventure-d-une-nuit-de-Mitchell-Leisen": {
   "vuLe": "2026-09-24",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "L Aventure d une nuit de Mitchell Leisen",
   "majLe": "2026-10-20"
  },
@@ -2659,13 +2659,13 @@
  },
  "/en/events/47c1238db613284eb736802ab3ea2f21-Spectacle-Droles-de-poesies-avec-Chantal-Bertrand-Helene-Gastaud-Patrick-Megevand-et-la-complicite-de-Jacques-Burnouf": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Spectacle Droles de poesies avec Chantal Bertrand Helene Gastaud Patrick Megevand et la complicite de Jacques Burnouf",
   "majLe": "2026-10-20"
  },
  "/en/events/a35d7c9c0436551085b7732f6801aad4-Animation-demonstration-and-degustation-Petits-farcis": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Animation demonstration and degustation Petits farcis",
   "majLe": "2026-10-20"
  },
@@ -2677,19 +2677,19 @@
  },
  "/en/events/80c11d49984e75b48cd56176349af4eb-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-10-20"
  },
  "/en/events/88d4543c764fe0fe08ef72e170eb3879-Atelier-Halloween": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Atelier Halloween",
   "majLe": "2026-10-20"
  },
  "/en/events/fc88d3c17c8b0e239e81e01c2d599810-Ateliers-jeunesse-Peinture-murale-6-9-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Peinture murale 6 9 ans",
   "majLe": "2026-10-20"
  },
@@ -2719,13 +2719,13 @@
  },
  "/en/events/acd6c678a1c71e967e273adcc31cd90d-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
  "/en/events/ed2d20a1051cd38c0110a5a747b5ea84-Halloween-au-Parc-Princesse-Antoinette": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Halloween au Parc Princesse Antoinette",
   "majLe": "2026-10-20"
  },
@@ -2755,25 +2755,25 @@
  },
  "/en/events/3b65e20b769737e05fb049c34a4d503d-Concert-de-l-Orchestre-des-Carabiniers-du-Prince": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Concert de l Orchestre des Carabiniers du Prince",
   "majLe": "2026-10-20"
  },
  "/en/events/42bf5f57c88962c8e6af341534cd9211-Conference-Pierre-Leguillon": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Conference Pierre Leguillon",
   "majLe": "2026-10-20"
  },
  "/en/events/02c7323217a1015c16496b3114c45436-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
  "/en/events/83cc1b1d70d0e2b0b4335ddc01ec4995-Colloque-Mon-nom-est-personne-Journee-consacree-a-l-oeuvre-de-Boris-de-Schloezer": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Colloque Mon nom est personne Journee consacree a l oeuvre de Boris de Schloezer",
   "majLe": "2026-10-20"
  },
@@ -2785,7 +2785,7 @@
  },
  "/en/events/fe399efc12d64d821cb652b3cefffca5-Exposition-Mon-nom-est-personne-Boris-de-Schloezer-les-archives-d-un-penseur-des-arts-au-XXe-siecle": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Exposition Mon nom est personne Boris de Schloezer les archives d un penseur des arts au XXe siecle",
   "majLe": "2026-10-20"
  },
@@ -2797,7 +2797,7 @@
  },
  "/en/events/a3f40bf4d1f2d857ff18cf7877feb938-Stand-up-Monaco": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Stand up Monaco",
   "majLe": "2026-10-20"
  },
@@ -2809,7 +2809,7 @@
  },
  "/en/events/fcb68909b55d7c7cb19272452a2530fe-Stand-up-Monaco": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Stand up Monaco",
   "majLe": "2026-10-20"
  },
@@ -2827,7 +2827,7 @@
  },
  "/en/events/a0e5395713ba14688334d138be18026b-Spectacle-PYJAMAS": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Spectacle PYJAMAS",
   "majLe": "2026-10-20"
  },
@@ -2845,13 +2845,13 @@
  },
  "/en/events/1fd5a22947ece481aa9bec422285f189-Anne-Roumanoff-L-age-libre": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Anne Roumanoff L age libre",
   "majLe": "2026-10-20"
  },
  "/en/events/61f586999cd4679577afda4add00d806-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
@@ -2869,7 +2869,7 @@
  },
  "/en/events/7ff5c74acb72623e6f573a3a8161b92d-Cine-Famille-Le-Petit-Prince-de-Mark-Osborne-2015": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Cine Famille Le Petit Prince de Mark Osborne 2015",
   "majLe": "2026-10-20"
  },
@@ -2887,7 +2887,7 @@
  },
  "/en/events/ef9d983c22a8097ec96b3242c5e31fc3-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
@@ -2899,7 +2899,7 @@
  },
  "/en/events/9cf65ab3c3cc69717a1746cd4b42886a-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
@@ -2941,7 +2941,7 @@
  },
  "/en/events/9c904b4845aafa6c0291e714f08fec46-D-ou-vient-le-desir-de-vengeance": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "D ou vient le desir de vengeance",
   "majLe": "2026-10-20"
  },
@@ -2983,7 +2983,7 @@
  },
  "/en/events/1cea11fe1f202cb1bc331eb1ff807c36-Festival-Jeunesse-la-nuit-sans-fin": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Festival Jeunesse la nuit sans fin",
   "majLe": "2026-10-20"
  },
@@ -3001,7 +3001,7 @@
  },
  "/en/events/1d7185b288c693abcddc54dd0dade5c4-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Gala de l Academie",
   "majLe": "2026-10-20"
  },
@@ -3039,6 +3039,60 @@
   "vuLe": "2026-10-20",
   "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/45e600d51ced42f95990a08170784825-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "deja",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/a890f895c9a97732d5a48baf95fae87d-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "ChatGPT Plongez dans le monde de l IA",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/cbd8738490e5b6367fa98e63e62ea001-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/a9064f9d4a885b79b90275bc5d2e3f31-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Getting Started with a Mac Computer Level 1",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/e74e9449331bfc1ef40b6382b086856d-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/8ec1b4def9246b90a23bde2c8d11b5c7-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/45330e20d5cbf91229410b984df2b017-Getting-Started-with-a-Mac-Computer-Level-1": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Getting Started with a Mac Computer Level 1",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-20"
  }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T15:48:48.749Z",
+  "generatedAt": "2026-10-20T19:57:39.057Z",
   "events": [
     {
       "date": "Mar 20 oct",
@@ -9,6 +9,15 @@
       "venue": "La Rose des Vents",
       "quarter": "Larvotto",
       "emoji": "🌺"
+    },
+    {
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
+      "time": "En journée",
+      "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
+      "venue": "Francis Bacon MB Art Foundation",
+      "quarter": "Monte-Carlo",
+      "emoji": "🖼️"
     },
     {
       "date": "Mar 20 oct",
@@ -54,15 +63,6 @@
       "venue": "Musées de Monaco",
       "quarter": "Monaco",
       "emoji": "🏛️"
-    },
-    {
-      "date": "Mar 20 oct",
-      "iso": "2026-10-20",
-      "time": "10h30 — 11h30",
-      "title": "GETTING STARTED WITH ANDROID PHONE LEVEL 1",
-      "venue": "Maison du Numérique de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🎪"
     },
     {
       "date": "Mar 20 oct",
