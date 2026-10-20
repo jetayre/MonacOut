@@ -1,25 +1,5 @@
 REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-20
-318 événements lus · 18 importés (18 fiches) · 266 déjà présents
-
-■ IMPORTÉS
-   + BRADERIE DU SACRE COEUR — Eglise du Sacré-Cœur (1 jour(s))
-   + Romeo et Juliette — Opéra Garnier Monte-Carlo (1 jour(s))
-   + STAGE D ICONES — Agora - Maison Diocésaine (1 jour(s))
-   + Ateliers jeunesse Histoire contee 3 5 ans — Salle d&#039;Exposition du Quai Antoine Ier (1 jour(s))
-   + 19TH CONFERENCE OF MINISTERS RESPONSIBLE FOR SPORT — Grimaldi Forum Monaco (1 jour(s))
-   + The Gershwins R Porgy and Bess R opera — Grimaldi Forum Monaco (1 jour(s))
-   + Appels indesirables des solutions gratuites pour les bloquer — Maison du Numérique de Monaco (1 jour(s))
-   + Appels indesirables des solutions gratuites pour les bloquer — Maison du Numérique de Monaco (1 jour(s))
-   + Prise en main d un ordinateur Mac niveau 2 — Maison du Numérique de Monaco (1 jour(s))
-   + Challenge Prince Albert II Coastal Rowing — Port Hercule de Monaco (1 jour(s))
-   + Prise en main d un ordinateur Mac niveau 2 — Maison du Numérique de Monaco (1 jour(s))
-   + MonacoPhil — Centre de Conférences - One Monte-Carlo (1 jour(s))
-   + Musical Happy Hour — Auditorium Rainier III (1 jour(s))
-   + La vie parisienne Opera — Opéra Garnier Monte-Carlo (1 jour(s))
-   + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
-   + L italiana in Algeri Opera — Opéra Garnier Monte-Carlo (1 jour(s))
-   + THE SUMMIT FORBES TRAVEL GUIDE — Grimaldi Forum Monaco (1 jour(s))
-   + Rigoletto Opera — Opéra Garnier Monte-Carlo (1 jour(s))
+318 événements lus · 0 importés (0 fiches) · 284 déjà présents
 
 ■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main
    ? 1 nov 2026 · Vepres de la Toussaint et benediction des tombes
@@ -34,8 +14,8 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-20
    · MARINE IN CONCERT — 17 août 2026 — PrinciPocket annonce le 27 février 2027, date FAUSSE. Vérifié sur jds.fr : le concert est le sam 13 février 2027 à 20h30 au Grimaldi Forum. Notre fiche 4741 porte la bonne date ; un doublon créé par le robot sur la fausse date a été supprimé. Ne pas réimporter.
    · Marine en concert — 18 aout 2026 — DEUXIEME entree PrinciPocket pour le meme concert, avec le meme mauvais 27 fevrier. C'est elle qui a recree la fiche 800012 dans la nuit du 17 au 18. Vraie date verifiee sur jds.fr : sam 13 fevrier 2027, 20h30, Grimaldi Forum (fiche 4741). Ne pas reimporter.
    · THURSDAY LIVE SESSIONS ELEPHANZ — DÉJÀ DANS L'APP (fiche 4854, jeu 25 mar 2027, 18h30, Espace Indigo). Même cas que The Spitfires. Ne pas réimporter.
-   · THURSDAY LIVE SESSIONS KOMODOR — DÉJÀ DANS L'APP (fiche 4855, jeu 8 avr 2027, 18h30, Espace Indigo). Même cas que The Spitfires. Ne pas réimporter.
    · Ligue 1 AS MONACO STADE RENNAIS FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800048, « LIGUE 1 AS MONACO STADE RENNAIS FC », Stade Louis II, sam 10 avr 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire du match, donc le rapprochement auto par date échoue — mais le match est bien présent. Un seul match domicile par adversaire et par saison. Ne pas réimporter (doublon).
+   · THURSDAY LIVE SESSIONS KOMODOR — DÉJÀ DANS L'APP (fiche 4855, jeu 8 avr 2027, 18h30, Espace Indigo). Même cas que The Spitfires. Ne pas réimporter.
    · Ligue 1 AS MONACO RC STRASBOURG — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800049, « LIGUE 1 AS MONACO RC STRASBOURG », Stade Louis II, sam 17 avr 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
    · Ligue 1 AS MONACO FC LORIENT — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800051, « LIGUE 1 AS MONACO FC LORIENT », Stade Louis II, sam 1 mai 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
    · Ligue 1 AS MONACO Paris FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800050, « LIGUE 1 AS MONACO PARIS FC », Stade Louis II, dim 16 mai 2027). Match domicile de la saison 2026-2027 (Paris FC promu en Ligue 1). PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
@@ -44,18 +24,18 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-20
 ■ ⚠️ HORS DE MONACO — écartés d'office (règle 15)
    ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 09 ASS SPORTIVE DE MONACO AGDE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 10 ASS SPORTIVE DE MONACO ISTRES PROVENCE VOLLEY — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 11 ASS SPORTIVE DE MONACO ASUL LYON VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 15 ASS SPORTIVE DE MONACO MANDELIEU LA NAPOULE V B — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 19 ASS SPORTIVE DE MONACO VOLLEY MULHOUSE ALSACE 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 19 ASS SPORTIVE DE MONACO MARSEILLE VOLLEY 13 — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 21 ASS SPORTIVE DE MONACO AIX UNIVERSITE CLUB 13 VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France

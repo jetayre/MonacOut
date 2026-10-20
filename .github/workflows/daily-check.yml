@@ -96,6 +96,11 @@ jobs:
         run: node scripts/bien-etre-du-jour.mjs
         continue-on-error: true
 
+      - name: "🎭 La saison du Théâtre des Muses"
+        id: muses
+        run: node scripts/theatre-des-muses.mjs
+        continue-on-error: true
+
       - name: 🚓 LE POLICIER — autofix + contrôle (dates, géo, liens, noms, traduction)
         id: police
         run: node police-events.mjs

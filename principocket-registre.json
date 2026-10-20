@@ -409,7 +409,7 @@
  },
  "/en/events/1a4d83364a9bdf4f6607aca50657d7ec-19TH-CONFERENCE-OF-MINISTERS-RESPONSIBLE-FOR-SPORT": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "19TH CONFERENCE OF MINISTERS RESPONSIBLE FOR SPORT",
   "majLe": "2026-10-20"
  },
@@ -535,7 +535,7 @@
  },
  "/en/events/699f5061f460482242b3bb67728069d8-Musical-Happy-Hour": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Musical Happy Hour",
   "majLe": "2026-10-20"
  },
@@ -607,7 +607,7 @@
  },
  "/en/events/f0e85cd4711d2ac21265b9554707bf2e-La-vie-parisienne-Opera": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "La vie parisienne Opera",
   "majLe": "2026-10-20"
  },
@@ -661,7 +661,7 @@
  },
  "/en/events/766bca44e84013d0980d738459e31ca8-L-italiana-in-Algeri-Opera": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "L italiana in Algeri Opera",
   "majLe": "2026-10-20"
  },
@@ -769,7 +769,7 @@
  },
  "/en/events/0339f3f91dc731529ea61d9c61788417-THE-SUMMIT-FORBES-TRAVEL-GUIDE": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "THE SUMMIT FORBES TRAVEL GUIDE",
   "majLe": "2026-10-20"
  },
@@ -793,7 +793,7 @@
  },
  "/en/events/b4735d778ade3ea11c975ee8645fcdc8-Rigoletto-Opera": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Rigoletto Opera",
   "majLe": "2026-10-20"
  },
@@ -1927,7 +1927,7 @@
  },
  "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-20"
  },
@@ -2005,7 +2005,7 @@
  },
  "/en/events/70607512cafd167a5f292cb57f5b6a61-The-Gershwins-R-Porgy-and-Bess-R-opera": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "The Gershwins R Porgy and Bess R opera",
   "majLe": "2026-10-20"
  },
@@ -2125,7 +2125,7 @@
  },
  "/en/events/bdfaa98d5b881181bf8f974cf80620e0-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-20"
  },
@@ -2671,7 +2671,7 @@
  },
  "/en/events/23a5df1270679fc382768e752a92a6dc-BRADERIE-DU-SACRE-COEUR": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "BRADERIE DU SACRE COEUR",
   "majLe": "2026-10-20"
  },
@@ -2719,7 +2719,7 @@
  },
  "/en/events/acd6c678a1c71e967e273adcc31cd90d-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
@@ -2731,7 +2731,7 @@
  },
  "/en/events/fdba7d33ade65730295702269f3ccd3f-STAGE-D-ICONES": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "STAGE D ICONES",
   "majLe": "2026-10-20"
  },
@@ -2875,13 +2875,13 @@
  },
  "/en/events/ed30078b765102d52a9e2e25a07adfd2-Challenge-Prince-Albert-II-Coastal-Rowing": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Challenge Prince Albert II Coastal Rowing",
   "majLe": "2026-10-20"
  },
  "/en/events/6f6269c54f11ba2e7cb8470db6c3767f-MonacoPhil": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "MonacoPhil",
   "majLe": "2026-10-20"
  },
@@ -3013,7 +3013,7 @@
  },
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-20"
  },
@@ -3025,19 +3025,19 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-20"
  },
  "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-20"
  },
  "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-20"
  }
