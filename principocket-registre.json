@@ -409,7 +409,7 @@
  },
  "/en/events/1a4d83364a9bdf4f6607aca50657d7ec-19TH-CONFERENCE-OF-MINISTERS-RESPONSIBLE-FOR-SPORT": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "19TH CONFERENCE OF MINISTERS RESPONSIBLE FOR SPORT",
   "majLe": "2026-10-20"
  },
@@ -535,7 +535,7 @@
  },
  "/en/events/699f5061f460482242b3bb67728069d8-Musical-Happy-Hour": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Musical Happy Hour",
   "majLe": "2026-10-20"
  },
@@ -607,7 +607,7 @@
  },
  "/en/events/f0e85cd4711d2ac21265b9554707bf2e-La-vie-parisienne-Opera": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "La vie parisienne Opera",
   "majLe": "2026-10-20"
  },
@@ -661,7 +661,7 @@
  },
  "/en/events/766bca44e84013d0980d738459e31ca8-L-italiana-in-Algeri-Opera": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "L italiana in Algeri Opera",
   "majLe": "2026-10-20"
  },
@@ -769,7 +769,7 @@
  },
  "/en/events/0339f3f91dc731529ea61d9c61788417-THE-SUMMIT-FORBES-TRAVEL-GUIDE": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "THE SUMMIT FORBES TRAVEL GUIDE",
   "majLe": "2026-10-20"
  },
@@ -793,7 +793,7 @@
  },
  "/en/events/b4735d778ade3ea11c975ee8645fcdc8-Rigoletto-Opera": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Rigoletto Opera",
   "majLe": "2026-10-20"
  },
@@ -1867,7 +1867,7 @@
  },
  "/en/events/8f9de0936be7bc12f776ebe9d7cc7b69-Disney-in-concert-follow-your-dreams": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Disney in concert follow your dreams",
   "majLe": "2026-10-20"
  },
@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-20"
  },
@@ -1927,7 +1927,7 @@
  },
  "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-20"
  },
@@ -2005,7 +2005,7 @@
  },
  "/en/events/70607512cafd167a5f292cb57f5b6a61-The-Gershwins-R-Porgy-and-Bess-R-opera": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "The Gershwins R Porgy and Bess R opera",
   "majLe": "2026-10-20"
  },
@@ -2071,7 +2071,7 @@
  },
  "/en/events/c95dc82447ea7b1f2d343e9104514e05-Thursday-Live-Sessions-Dirty-Deep": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Thursday Live Sessions Dirty Deep",
   "majLe": "2026-10-20"
  },
@@ -2101,7 +2101,7 @@
  },
  "/en/events/cd3a7b94cdca87df864846bab44742c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-10-20"
  },
@@ -2125,7 +2125,7 @@
  },
  "/en/events/bdfaa98d5b881181bf8f974cf80620e0-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-20"
  },
@@ -2137,7 +2137,7 @@
  },
  "/en/events/ed776f67c76535cf5d786cf3f30b7ecb-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-20"
  },
@@ -2161,8 +2161,8 @@
  },
  "/en/events/7b358afa85ef94ea51740e101db6df35-THURSDAY-LIVE-SESSIONS-THE-SPITFIRES": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP (fiche 4853, mer 13 jan 2027, 18h30, Espace Indigo, Grimaldi Forum). Les Thursday Live Sessions sont GRATUITES sur réservation au +377 9999 3000 : apéro-mix 18h30, concert 20h30. PrinciPocket ne publie pas l'horaire, donc le rapprochement automatique échoue — mais la séance est bien là. Ne pas réimporter.",
   "majLe": "2026-10-20"
  },
  "/en/events/78e8d08b93784df657842e8389a9a7ea-En-therapie": {
@@ -2233,8 +2233,8 @@
  },
  "/en/events/586ad5154c3622b4fcd85f5dd7d05119-THURSDAY-LIVE-SESSIONS-ELEPHANZ": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP (fiche 4854, jeu 25 mar 2027, 18h30, Espace Indigo). Même cas que The Spitfires. Ne pas réimporter.",
   "majLe": "2026-10-20"
  },
  "/en/events/b549ea2d76c32aebdbb9ba4d4ae26834-Rose-Royal": {
@@ -2245,8 +2245,8 @@
  },
  "/en/events/548990cc9ecde940809bc45c8ddd63cd-THURSDAY-LIVE-SESSIONS-KOMODOR": {
   "vuLe": "2026-09-22",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie CONCERT en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP (fiche 4855, jeu 8 avr 2027, 18h30, Espace Indigo). Même cas que The Spitfires. Ne pas réimporter.",
   "majLe": "2026-10-20"
  },
  "/en/events/87ac19761993b97daf51ff63bb136346-Le-mal-de-mere": {
@@ -2587,8 +2587,8 @@
  },
  "/en/events/7c3fb2c7073d294c9cde633b20a86288-Club-Oceano-Discovery-course-on-the-Ocean": {
   "vuLe": "2026-10-17",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPORT en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP (fiche 700023, ATELIER, « En journée »). Le Musée Océanographique ne publie aucun horaire pour ce cours : « En journée » est la mention honnête prévue par la règle 18. Ne pas réimporter.",
   "majLe": "2026-10-20"
  },
  "/en/events/34eb88a1ec717e7da7d92f360d2a5e17-Extraordinary-Concert-at-the-Cathedral-of-Monaco-29-October-2026": {
@@ -2611,26 +2611,26 @@
  },
  "/en/events/d350d3bfac63c2c622543815da542ce7-Children-and-Future-presents-The-27th-No-Finish-Line-Monaco-14-22-November-2026-Every-step-counts": {
   "vuLe": "2026-10-17",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "tranche",
+  "detail": "DÉJÀ DANS L'APP (fiche 1000369, sam 14 nov, Chapiteau de Fontvieille). La No Finish Line est une course NON-STOP sur 8 jours : elle n'a pas d'heure de début unique, d'où « En journée ». Ne pas réimporter.",
   "majLe": "2026-10-20"
  },
  "/en/events/e4d5adbb1a41f0f844fa7ea0568c92ab-LETTERS-TO-ANNE": {
   "vuLe": "2026-10-17",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "LETTERS TO ANNE",
   "majLe": "2026-10-20"
  },
  "/en/events/86a07bce23a78131939c2412f6037786-IF-A-STORY-KNOCKS-AT-YOUR-DOOR": {
   "vuLe": "2026-10-17",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "IF A STORY KNOCKS AT YOUR DOOR",
   "majLe": "2026-10-20"
  },
  "/en/events/9a1f4c0d17a73b340845e3f4e75f4221-WIN-WIN": {
   "vuLe": "2026-10-17",
-  "etat": "ecarte",
-  "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "etat": "deja",
+  "detail": "WIN WIN",
   "majLe": "2026-10-20"
  },
  "/en/events/0ccb224f64f0281557c4b3719accb1a8-Soiree-de-priere": {
@@ -2671,7 +2671,7 @@
  },
  "/en/events/23a5df1270679fc382768e752a92a6dc-BRADERIE-DU-SACRE-COEUR": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "BRADERIE DU SACRE COEUR",
   "majLe": "2026-10-20"
  },
@@ -2719,7 +2719,7 @@
  },
  "/en/events/acd6c678a1c71e967e273adcc31cd90d-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-20"
  },
@@ -2731,7 +2731,7 @@
  },
  "/en/events/fdba7d33ade65730295702269f3ccd3f-STAGE-D-ICONES": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "STAGE D ICONES",
   "majLe": "2026-10-20"
  },
@@ -2821,7 +2821,7 @@
  },
  "/en/events/85d4fbd298475bc3c9d36211063d05ed-Behind-the-Scenes-of-Culture-in-Monaco": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Behind the Scenes of Culture in Monaco",
   "majLe": "2026-10-20"
  },
@@ -2875,13 +2875,13 @@
  },
  "/en/events/ed30078b765102d52a9e2e25a07adfd2-Challenge-Prince-Albert-II-Coastal-Rowing": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Challenge Prince Albert II Coastal Rowing",
   "majLe": "2026-10-20"
  },
  "/en/events/6f6269c54f11ba2e7cb8470db6c3767f-MonacoPhil": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "MonacoPhil",
   "majLe": "2026-10-20"
  },
@@ -3003,6 +3003,42 @@
   "vuLe": "2026-10-19",
   "etat": "deja",
   "detail": "Gala de l Academie",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/c69c6485ed5ee4e52087b295dcc8d1af-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "deja",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/ae64e979bfaf090602b03c54d1e115e6-Feu-d-artifice-de-Fete-Nationale-2026": {
+  "vuLe": "2026-10-20",
+  "etat": "deja",
+  "detail": "Feu d artifice de Fete Nationale 2026",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Prise en main d un ordinateur Mac niveau 2",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "majLe": "2026-10-20"
+ },
+ "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
+  "vuLe": "2026-10-20",
+  "etat": "importe",
+  "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-20"
  }
 }
