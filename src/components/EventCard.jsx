@@ -290,7 +290,15 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
 
   return (
     <div
-      onClick={() => onCardClick?.(event)}
+      // 🚨 UNE FICHE-ANNUAIRE NE S'OUVRE PAS EN FENÊTRE. Stéphanie, 20 oct 2026 :
+      // « le dépliage est ok mais quand je clique au hasard sur la fiche il y a
+      // tout qui s'affiche… comme avec le i d'avant ». Le bouton dépliait bien,
+      // mais le cadre entier restait cliquable et rouvrait l'ancienne fenêtre —
+      // on avait donc DEUX façons de voir la même liste, ce que la refonte du
+      // 11 octobre voulait justement supprimer. Sur ces fiches, seul le bouton
+      // agit ; `onInfos` absent (écran sans dépliage), on garde l'ancien geste
+      // plutôt que de rendre la liste inaccessible.
+      onClick={() => { if (estAnnuaire && onInfos) return; onCardClick?.(event); }}
       style={{
         border: `${C.trait}px solid ${ROUGE_H}`,
         borderRadius: 2,
