@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-19T20:57:51.148Z",
+  "generatedAt": "2026-10-20T05:18:10.636Z",
   "events": [
     {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,17 +11,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
-      "time": "En journée",
-      "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
-      "venue": "Francis Bacon MB Art Foundation",
-      "quarter": "Monte-Carlo",
-      "emoji": "🖼️"
-    },
-    {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +20,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -38,8 +29,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,31 +38,40 @@
       "emoji": "🎬"
     },
     {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
+      "time": "09h30 — 10h30",
+      "title": "GETTING STARTED WITH ANDROID PHONE LEVEL 2",
+      "venue": "Maison du Numérique de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🎪"
+    },
+    {
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
       "time": "10h00",
-      "title": "MUSÉES 4 OUVERTS À MONACO",
+      "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
       "quarter": "Monaco",
       "emoji": "🏛️"
     },
     {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
+      "time": "10h30 — 11h30",
+      "title": "GETTING STARTED WITH ANDROID PHONE LEVEL 1",
+      "venue": "Maison du Numérique de Monaco",
+      "quarter": "Monaco",
+      "emoji": "🎪"
+    },
+    {
+      "date": "Mar 20 oct",
+      "iso": "2026-10-20",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🚩"
-    },
-    {
-      "date": "Lun 19 oct",
-      "iso": "2026-10-19",
-      "time": "11h00 — 19h00",
-      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🖼️"
     }
   ]
 }
