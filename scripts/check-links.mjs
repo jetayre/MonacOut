@@ -17,8 +17,9 @@
  *  · 403 / 401 / 429 = le site refuse les automates, PAS une erreur : il s'ouvre
  *    normalement sur un téléphone (zumba.com, hvmc.com, marriott.com…)
  *  · deuxième essai avant de condamner — un serveur peut hoqueter
+ *  · 5xx = le serveur est en panne ou en maintenance, PAS la page : signalé, sans échec
  *  · seules les pannes SÛRES comptent : DNS introuvable, poignée de main TLS
- *    refusée, connexion impossible, 404, 410
+ *    refusée, connexion impossible, 404, 410, page vide
  *
  * Écrit `liens-morts.txt` et sort en échec (code 1) s'il en trouve. Le remplacement
  * reste HUMAIN : un script ne sait pas deviner la bonne adresse, et inventer un lien
@@ -36,6 +37,15 @@ const IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebK
                "(KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1";
 const REFUS_ROBOT = new Set([401, 403, 405, 429]);   // le site filtre les automates, pas une panne
 const MORT_SUR = new Set([404, 410]);                 // la page n'existe pas / a été supprimée
+// 🚨 UN 5xx N'EST PAS UNE MORT (21 oct 2026). Le site de la Mairie de Monaco est passé
+// en maintenance — une vraie page qui annonce « Site en cours de maintenance » et répond
+// 503. Le contrôleur l'a comptée MORTE, avec 108 fiches derrière (Espace Lamartine,
+// bien-être, Maison du Numérique), et a fait échouer le passage. Or 404 dit « cette page
+// n'existe pas », 503 dit « revenez plus tard » : ce n'est pas le même verdict.
+// C'est la règle du 18 août appliquée jusqu'au bout — « mort » exige une PREUVE, et un
+// serveur en panne n'en est pas une. Ces liens sont signalés, sans faire échouer : une
+// alarme qui sonne à chaque maintenance d'un site officiel finit par ne plus être lue.
+const PANNE_SERVEUR = new Set([500, 502, 503, 504, 507, 508, 509, 521, 522, 523, 524]);
 
 let ev = [];
 try {
@@ -129,12 +139,12 @@ async function verdict(url) {
     }
     // Le certificat masquait le vrai verdict : on rapporte CE QUE LA PAGE RÉPOND.
     if (MORT_SUR.has(b.status)) return { mort: true, raison: "HTTP " + b.status + " — page inexistante" };
-    if (b.status >= 500) return { mort: true, raison: "HTTP " + b.status + " — serveur en panne" };
+    if (PANNE_SERVEUR.has(b.status) || b.status >= 500) return { mort: false, injoignable: true, raison: "HTTP " + b.status + " — serveur momentanément indisponible" };
     if (REFUS_ROBOT.has(b.status)) return { mort: false, robot: true };
     return { mort: false, chaine: true };   // joignable : Safari l'affichera
   }
   if (MORT_SUR.has(r.status)) return { mort: true, raison: "HTTP " + r.status + " — page inexistante" };
-  if (r.status >= 500) return { mort: true, raison: "HTTP " + r.status + " — serveur en panne" };
+  if (PANNE_SERVEUR.has(r.status) || r.status >= 500) return { mort: false, injoignable: true, raison: "HTTP " + r.status + " — serveur momentanément indisponible" };
   if (REFUS_ROBOT.has(r.status)) return { mort: false, robot: true };
   return { mort: false };
 }
@@ -171,9 +181,11 @@ for (const m of morts) {
   if (m.fiches.length > 5) txt += `     … et ${m.fiches.length - 5} autre(s)\n`;
 }
 if (injoignables.length) {
-  txt += "\n■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone\n";
-  txt += "   Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve\n";
-  txt += "   de lien mort : le contenu, lui, n'a pas pu être lu.\n";
+  txt += "\n■ INJOIGNABLES POUR LE MOMENT — probablement vivants, à revérifier\n";
+  txt += "   Soit l'hôte refuse les adresses de centres de données, soit son serveur est en\n";
+  txt += "   panne ou en maintenance (5xx). Ce n'est PAS une preuve de lien mort : la page\n";
+  txt += "   n'a pas pu être lue, c'est tout. Si la même adresse revient plusieurs jours de\n";
+  txt += "   suite, il faut aller voir.\n";
   for (const m of injoignables)
     txt += `     · ${m.url} — ${m.raison} — ${m.fiches.length} fiche(s)\n`;
 }
@@ -183,7 +195,7 @@ console.log(`  ✅ ${liens.length - morts.length - filtres.length - chaines.leng
 console.log(`  ⏭  ${filtres.length} refusent les automates (normaux sur un téléphone)`);
 console.log(`  ⏭  ${chaines.length} ont une chaîne de certificat incomplète — Safari la répare, la page s'affiche`);
 if (injoignables.length) {
-  console.log(`  ⚠️  ${injoignables.length} injoignable(s) depuis le CI (hôtes qui refusent les centres de données) :`);
+  console.log(`  ⚠️  ${injoignables.length} injoignable(s) pour le moment (refus d\'automate, ou serveur en panne) :`);
   for (const m of injoignables) console.log(`        ${m.raison.padEnd(26)} ${m.url}`);
 }
 if (!morts.length) { console.log("\n✅ Aucun lien mort.\n"); process.exit(0); }

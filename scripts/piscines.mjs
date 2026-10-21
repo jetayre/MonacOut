@@ -42,11 +42,24 @@ const MOIS  = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct",
 const JOUR_NOM = { lundi:1, mardi:2, mercredi:3, jeudi:4, vendredi:5, samedi:6, dimanche:0 };
 
 const alertes = [];
+
+// 🚨 LE SITE DE LA SOURCE PEUT ÊTRE EN MAINTENANCE, ET CE N'EST PAS NOTRE PANNE
+// (21 oct 2026). mairie.mc est passé en maintenance — une page qui l'annonce et répond
+// 503. Les PDF de planning étant hébergés là, le script n'a rien pu lire et a fait
+// échouer le passage quotidien. Le garde-fou avait pourtant bien joué : les fiches
+// existantes ont été CONSERVÉES, personne n'a rien perdu.
+// On distingue donc deux choses : « je n'arrive pas à lire le PDF » (vrai problème, il
+// faut regarder) et « le site est éteint » (rien à faire, il faut attendre). Le second
+// est signalé sans faire échouer — sinon le rouge reste allumé des jours durant pour une
+// maintenance qui ne nous concerne pas, et un rouge permanent ne se lit plus.
+let hoteEnPanne = false;
+
 async function get(u, bin = false) {
   for (let i = 0; i < 3; i++) {
     try {
       const r = await fetch(u, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(40000) });
       if (r.ok) return bin ? Buffer.from(await r.arrayBuffer()) : await r.text();
+      if (r.status >= 500) hoteEnPanne = true;
     } catch { /* réseau */ }
     await new Promise(s => setTimeout(s, 1200));
   }
@@ -343,4 +356,11 @@ writeFileSync(RAPPORT, txt);
 console.log(rapport.join("\n"));
 if (!DRY && total) writeFileSync(FICHIER, src);
 console.log(DRY ? "\n(--dry : rien n'écrit)" : `\n✓ ${total} fiches piscines à jour`);
+if (alertes.length && hoteEnPanne) {
+  alertes.forEach(a => console.log("⚠️  " + a));
+  console.log("⚠️  mairie.mc répond en 5xx (panne ou maintenance) : rien n'a pu être lu,");
+  console.log("    les fiches existantes sont conservées. Pas d'échec — on réessaiera au");
+  console.log("    prochain passage. Si cela dure plusieurs jours, aller voir.");
+  process.exit(0);
+}
 if (alertes.length) { alertes.forEach(a => console.log("🚨 " + a)); process.exit(1); }
