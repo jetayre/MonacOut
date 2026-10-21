@@ -1,11 +1,97 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-10-21 — 119 liens, 2526 fiches.
+Contrôle du 2026-10-21 — 119 liens, 2533 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
-✅ Aucun lien mort.
+■ https://www.mairie.mc/salles-de-lespace-lamartine
+   HTTP 503 — serveur en panne — 44 fiche(s)
+     · [id 980293] Mer 21 oct ATELIERS 4 THÈMES ESPACE LAMARTINE — Ateliers de la Mairie
+     · [id 980294] Jeu 22 oct ATELIERS 4 THÈMES ESPACE LAMARTINE — Ateliers de la Mairie
+     · [id 980295] Ven 23 oct ATELIERS 4 THÈMES ESPACE LAMARTINE — Ateliers de la Mairie
+     · [id 1306123] Ven 23 oct BAL D’HALLOWEEN ESPACE LAMARTINE — 19 bd Princesse Charlotte
+     · [id 980298] Lun 26 oct ATELIERS 4 THÈMES ESPACE LAMARTINE — Ateliers de la Mairie
+     … et 39 autre(s)
+
+■ https://www.mairie.mc
+   HTTP 503 — serveur en panne — 43 fiche(s)
+     · [id 970293] Mer 21 oct BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI — Bien-être
+     · [id 970294] Jeu 22 oct BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI — Bien-être
+     · [id 970295] Ven 23 oct BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI — Bien-être
+     · [id 970298] Lun 26 oct BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI — Bien-être
+     · [id 970299] Mar 27 oct BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI — Bien-être
+     … et 38 autre(s)
+
+■ https://www.maisondunumerique.mc/agenda
+   HTTP 503 — serveur en panne — 21 fiche(s)
+     · [id 800124] Mer 21 oct GETTING STARTED WITH ANDROID PHONE LEVEL 1 — Maison du Numérique de Monaco
+     · [id 800152] Mer 21 oct GETTING STARTED WITH ANDROID PHONE LEVEL 2 — Maison du Numérique de Monaco
+     · [id 800066] Jeu 22 oct PRISE EN MAIN D UN ORDINATEUR WINDOWS NIVEAU 2 — Maison du Numérique de Monaco
+     · [id 800128] Jeu 22 oct GETTING STARTED WITH IPHONE LEVEL 1 — Maison du Numérique de Monaco
+     · [id 800151] Jeu 22 oct GETTING STARTED WITH IPHONE LEVEL 2 — Maison du Numérique de Monaco
+     … et 16 autre(s)
+
+■ https://www.mairie.mc/le-stade-nautique-rainier-iii
+   HTTP 503 — serveur en panne — 12 fiche(s)
+     · [id 800108] Mer 21 oct UEFA CONFERENCE LEAGUE AS MONACO SC FRIBOURG — Stade Louis II
+     · [id 800135] Sam 24 oct LIGUE 1 AS MONACO LILLE OSC — Stade Louis II
+     · [id 800170] Mer 4 nov UEFA CONFERENCE LEAGUE AS MONACO NORDSJAELLAND — Stade Louis II
+     · [id 800198] Ven 20 nov LIGUE 1 AS MONACO AJ AUXERRE — Stade Louis II
+     · [id 800211] Ven 4 déc LIGUE 1 AS MONACO ANGERS SCO — Stade Louis II
+     … et 7 autre(s)
+
+■ https://www.espaceleoferre.mc/
+   HTTP 503 — serveur en panne — 3 fiche(s)
+     · [id 800188] Sam 14 nov SPECTACLE PYJAMAS — Espace Léo Ferré
+     · [id 800193] Mer 18 nov PIAF LE SPECTACLE — Espace Léo Ferré
+     · [id 800196] Jeu 19 nov ANNE ROUMANOFF L AGE LIBRE — Espace Léo Ferré
+
+■ https://monservicepublic.gouv.mc/en/themes/free-time/culture/institutions/variety-theatre
+   HTTP 503 — serveur en panne — 3 fiche(s)
+     · [id 208] Sam 21 nov PIÈCE D'AUTOMNE VARIÉTÉS — Théâtre des Variétés
+     · [id 179] Sam 28 nov ATELIER LINDY HOP MONACO — Théâtre des Variétés
+     · [id 209] Sam 19 déc SPECTACLE DE NOËL FAMILLE — Théâtre des Variétés
+
+■ https://www.mairie.mc/la-fete-nationale
+   HTTP 503 — serveur en panne — 2 fiche(s)
+     · [id 442] Mer 18 nov CONCERT VEILLE FÊTE NATIONALE — Place du Casino
+     · [id 441] Mer 18 nov FEU D'ARTIFICE FÊTE NATIONALE — Port Hercule
+
+■ https://www.mairie.mc/agenda
+   HTTP 503 — serveur en panne — 2 fiche(s)
+     · [id 800205] Sam 28 nov CHALLENGE PRINCE ALBERT II COASTAL ROWING — Port Hercule de Monaco
+     · [id 800194] Dim 29 nov CHALLENGE PRINCE ALBERT II COASTAL ROWING — Port Hercule de Monaco
+
+■ https://www.mairie.mc/le-village-de-noel
+   HTTP 503 — serveur en panne — 2 fiche(s)
+     · [id 65] Mar 1 déc MARCHÉ DE NOËL MONACO — Place du Casino
+     · [id 708] Sam 5 déc MARCHÉ DE NOËL MONACO — Place du Casino
+
+■ https://map.gouv.mc/
+   HTTP 503 — serveur en panne — 1 fiche(s)
+     · [id 700006] Mer 21 oct MAGIES D'AILLEURS ANTHROPOLOGIE — Musée d'Anthropologie Préhistorique
+
+■ https://www.mairie.mc/la-foire-attractions
+   HTTP 503 — serveur en panne — 1 fiche(s)
+     · [id 1306101] Mer 21 oct FOIRE ATTRACTIONS PORT HERCULE — Port Hercule
+
+■ https://www.mairie.mc/les-espaces-parents
+   HTTP 503 — serveur en panne — 1 fiche(s)
+     · [id 800130] Ven 23 oct ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville
+
+■ https://www.mairie.mc/le-marche-de-la-condamine
+   HTTP 503 — serveur en panne — 1 fiche(s)
+     · [id 800126] Sam 24 oct ANIMATION DEMONSTRATION AND DEGUSTATION PETITS FARCIS — Marché de La Condamine
+
+■ https://www.mairie.mc/la-soiree-du-31-decembre
+   HTTP 503 — serveur en panne — 1 fiche(s)
+     · [id 4772] Jeu 31 déc RÉVEILLON FEU D'ARTIFICE PORT HERCULE — Village de Noël
 
 ■ INJOIGNABLES DEPUIS LE CI — probablement vivants, à vérifier depuis un téléphone
    Ces hôtes refusent les adresses de centres de données. Ce n'est PAS une preuve
    de lien mort : le contenu, lui, n'a pas pu être lu.
+     · https://www.jardin-exotique.mc/ — ECONNREFUSED — 1 fiche(s)
+     · https://saintmartin.diocese.mc — UND_ERR_CONNECT_TIMEOUT — 61 fiche(s)
      · https://en.afce-monaco.org/agenda — ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE — 1 fiche(s)
+     · https://diocese.mc — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · https://saintcharles.diocese.mc/catechisme — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
+     · https://saintcharles.diocese.mc/ — UND_ERR_CONNECT_TIMEOUT — 3 fiche(s)
