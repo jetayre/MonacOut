@@ -481,7 +481,7 @@
  },
  "/en/events/53fff9e8bed6b8ff1a82a4638e7f70e9-Heure-Sainte": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Heure Sainte",
   "majLe": "2026-10-21"
  },
@@ -589,7 +589,7 @@
  },
  "/en/events/b6ea7d83f6e5a069b14a2d05f4a89c32-Benediction-des-Malades": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Benediction des Malades",
   "majLe": "2026-10-21"
  },
@@ -663,7 +663,7 @@
   "vuLe": "2026-08-11",
   "etat": "deja",
   "detail": "L italiana in Algeri Opera",
-  "majLe": "2026-10-20"
+  "majLe": "2026-10-21"
  },
  "/en/events/65be5cfbc522560944aacf801afa17c6-La-vie-parisienne-Opera": {
   "vuLe": "2026-08-11",
@@ -705,7 +705,7 @@
   "vuLe": "2026-08-11",
   "etat": "deja",
   "detail": "Musical Happy Hour",
-  "majLe": "2026-10-20"
+  "majLe": "2026-10-21"
  },
  "/en/events/0e91d812c959e3d6a0fd4a2e5550018b-L-italiana-in-Algeri-Opera": {
   "vuLe": "2026-08-11",
@@ -1861,7 +1861,7 @@
  },
  "/en/events/319bf1f0aa4f57b26f9e5afd5668f4a2-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-21"
  },
@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-21"
  },
@@ -2101,7 +2101,7 @@
  },
  "/en/events/cd3a7b94cdca87df864846bab44742c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-10-21"
  },
@@ -2113,7 +2113,7 @@
  },
  "/en/events/a76822370ae00e57506b73fdb5e01a5a-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-21"
  },
@@ -2707,7 +2707,7 @@
  },
  "/en/events/c6de81585522d3cf96a0cc967ae84a53-Understanding-digital-identity-with-Mconnect": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Understanding digital identity with Mconnect",
   "majLe": "2026-10-21"
  },
@@ -2767,7 +2767,7 @@
  },
  "/en/events/02c7323217a1015c16496b3114c45436-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-21"
  },
@@ -2785,7 +2785,7 @@
  },
  "/en/events/fe399efc12d64d821cb652b3cefffca5-Exposition-Mon-nom-est-personne-Boris-de-Schloezer-les-archives-d-un-penseur-des-arts-au-XXe-siecle": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Exposition Mon nom est personne Boris de Schloezer les archives d un penseur des arts au XXe siecle",
   "majLe": "2026-10-21"
  },
@@ -2857,7 +2857,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-a-big-screen-concert-for-your-lunch-break": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music a big screen concert for your lunch break",
   "majLe": "2026-10-21"
  },
@@ -2877,7 +2877,7 @@
   "vuLe": "2026-10-19",
   "etat": "deja",
   "detail": "Challenge Prince Albert II Coastal Rowing",
-  "majLe": "2026-10-20"
+  "majLe": "2026-10-21"
  },
  "/en/events/6f6269c54f11ba2e7cb8470db6c3767f-MonacoPhil": {
   "vuLe": "2026-10-19",
@@ -3007,13 +3007,13 @@
  },
  "/en/events/c69c6485ed5ee4e52087b295dcc8d1af-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-21"
  },
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-21"
  },
@@ -3031,7 +3031,7 @@
  },
  "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-21"
  },
@@ -3039,11 +3039,11 @@
   "vuLe": "2026-10-20",
   "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
-  "majLe": "2026-10-20"
+  "majLe": "2026-10-21"
  },
  "/en/events/45e600d51ced42f95990a08170784825-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-21"
  },
@@ -3067,7 +3067,7 @@
  },
  "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-21"
  },
@@ -3097,13 +3097,13 @@
  },
  "/en/events/a5b3cd5a0976524d5429de6623f89009-NOS-DIABLOTINS-SONT-DE-SORTIE-Trick-or-Treat": {
   "vuLe": "2026-10-21",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "NOS DIABLOTINS SONT DE SORTIE Trick or Treat",
   "majLe": "2026-10-21"
  },
  "/en/events/425ace8a192663d083758e755fbe37e4-L-apero-des-Frenchy-at-Meridien-Beach-Plaza": {
   "vuLe": "2026-10-21",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "L apero des Frenchy at Meridien Beach Plaza",
   "majLe": "2026-10-21"
  }
