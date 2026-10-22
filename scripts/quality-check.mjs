@@ -71,8 +71,17 @@ for (const [cle, groupe] of parTitre) {
   //    des dates de fin sans être elle-même un événement. Sans cette exemption,
   //    elle restait signalée à chaque passage — et un rapport qui crie pour rien
   //    est un rapport qu'on cesse de lire.
-  const periode = (e.desc || "").match(/jusqu'au\s+(\d{1,2}\s+\w+)/i);
-  if (groupe.length === 1 && periode && !e.ongoing && !e.recap) {
+  // ⚠️ DEUX APOSTROPHES EXISTENT DANS LES DONNÉES (22 oct 2026) : la droite ' et la
+  // typographique '. La règle ne cherchait que la première et laissait donc passer une
+  // partie des cas, en silence — un contrôle qui ne voit qu'une moitié est pire qu'aucun.
+  const periode = (e.desc || "").match(/jusqu['\u2019]au\s+(\d{1,2}\s+\w+)/i);
+  // ⚠️ « TOUS LES MERCREDIS JUSQU'AU 28 OCTOBRE » N'EST PAS UNE PÉRIODE CONTINUE : c'est
+  // une série, et sa dernière fiche tombe légitimement le dernier jour annoncé. Le
+  // Rituel des 5 Éléments du Blue Bay était signalé pour ça alors qu'il était JUSTE.
+  // Un rapport qui crie pour rien finit par ne plus être lu, et c'est ainsi qu'on rate
+  // un vrai défaut — voir le même raisonnement sur les 5xx du 21 octobre.
+  const serie = /tous les\s+(lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)/i.test(e.desc || "");
+  if (groupe.length === 1 && periode && !serie && !e.ongoing && !e.recap) {
     pb.invisible.push(`${e.date} · ${titre(e)} — annoncée « jusqu'au ${periode[1]} » mais UNE SEULE fiche, non ongoing → invisible les autres jours (id ${e.id})`);
   }
 
