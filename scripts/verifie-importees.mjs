@@ -65,11 +65,15 @@ lignes.forEach((l, i) => {
   const m = l.match(/^\s*\{id:(\d+),/);
   if (!m) return;
   toutes.push({ id: +m[1], titre: (champ(l, "title") || "").replace(/\\n/g, " ").trim(),
-                date: champ(l, "date"), lieu: (champ(l, "subtitle") || "").split(" · ")[0],
+                date: champ(l, "date"), time: champ(l, "time"),
+                lieu: (champ(l, "subtitle") || "").split(" · ")[0],
                 annee: +((l.match(/year:(\d{4})/) || [])[1] || 2026) });
 });
+// ⚠️ L'HEURE FAIT PARTIE DE LA PLACE. Une médiathèque accueille une conférence
+// à 18h30 et un atelier d'écriture à 14h30 le même jour : ce n'est pas une
+// collision. Sans l'heure, le garde-fou bloquait des corrections justes.
 const occupe = new Map();
-for (const t of toutes) occupe.set(`${t.date}|${t.annee}|${t.lieu}`, t.id);
+for (const t of toutes) occupe.set(`${t.date}|${t.annee}|${t.time}|${t.lieu}`, t.id);
 
 const fiches = [];
 lignes.forEach((l, i) => {
@@ -125,10 +129,10 @@ for (const f of fiches) {
   // Princesse Grace jouent LUNDI ET MARDI : déplacer la fiche du lundi sur le
   // mardi écraserait la représentation du mardi et ferait disparaître celle du
   // lundi. Une correction qui supprime une date n'est pas une correction.
-  const place = `${v.date}|${v.annee}|${(f.lieu || "").split(" · ")[0]}`;
+  const place = `${v.date}|${v.annee}|${v.time || f.time}|${(f.lieu || "").split(" · ")[0]}`;
   const pris = occupe.get(place);
   if (pris !== undefined && pris !== f.id) {
-    signales.push(`PLACE PRISE · ${f.titre.slice(0, 40)} resterait ${f.date} ${f.annee} : le ${v.date} ${v.annee} est déjà la fiche ${pris}`);
+    signales.push(`PLACE PRISE · ${f.titre.slice(0, 40)} resterait ${f.date} ${f.annee} ${f.time} : le ${v.date} ${v.annee} ${v.time || f.time} est déjà la fiche ${pris}`);
     continue;
   }
   corrections.push({ ...f, v });
