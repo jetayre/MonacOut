@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
+import { ouvrirItineraire } from "../lib/itineraire";
 import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
@@ -476,7 +477,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 lequel des 12 lieux appelle-t-on ? Stéphanie, 13 oct 2026 : « enlève
                 les icônes et mets-les sur chaque sous-fiche ». Chaque sous-fiche
                 porte désormais SON site et SON numéro. */}
-            {(event.link || event.phone) && !event.venues && !estAnnuaire ? (
+            {(event.subtitle || event.phone) && !event.venues && !estAnnuaire ? (
               <div style={{
                 display: "inline-flex",
                 alignItems: "stretch",
@@ -485,24 +486,21 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 height: 34,
                 overflow: "hidden",
               }}>
-                {event.link ? (
-                  <a
-                    href={event.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
+                {event.subtitle ? (
+                  <button
+                    onClick={e => { e.stopPropagation(); ouvrirItineraire(event.subtitle); }}
                     style={{
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      padding: "0 16px",
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                      padding: "0 16px", background: "none", border: "none", cursor: "pointer",
                       fontFamily: "'Josefin Sans', sans-serif",
                       fontSize: 10, fontWeight: 600, letterSpacing: 2,
                       textTransform: "uppercase", color: "#000000",
-                      textDecoration: "none",
                     }}
-                    aria-label={lang === "en" ? "Website" : "Site web"}
+                    aria-label={lang === "en" ? "Directions" : "Itinéraire"}
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                  </a>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {lang === "en" ? "Directions" : "Direction"}
+                  </button>
                 ) : (
                   <button
                     onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}
@@ -514,7 +512,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     }}
                   >{showPhone ? event.phone : <PhoneIcon />}</button>
                 )}
-                {event.link && event.phone && (
+                {event.subtitle && event.phone && (
                   <>
                     <div style={{ width: 1, background: GOLD_FRAME, flexShrink: 0 }} />
                     <button

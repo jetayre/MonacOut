@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fichierVersAvatar } from '../lib/avatar';
 import { Capacitor } from "@capacitor/core";
+import { ouvrirItineraire } from "../lib/itineraire";
 import { localizeCat, localizeTitle } from "../i18n";
 import { couleurCat } from "../lib/couleurs";
 import BandeauWeb from "./BandeauWeb";
@@ -317,9 +318,14 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                               fiche cinéma, les entrées sont des FILMS : chercher
                               « Pressure Monaco » sur une carte ne mène nulle part. */}
                           {selectedEvent.cat !== "CINÉMA" && (
-                            <a href={mapUrl} target="_blank" rel="noopener noreferrer" title={lang === "en" ? "Map" : "Carte"} style={{ fontSize: 15, textDecoration: "none", lineHeight: 1 }}>📍</a>
+                            <button onClick={() => ouvrirItineraire(d.name)}
+                              title={lang === "en" ? "Directions" : "Itinéraire"}
+                              style={{ background: "none", border: "none", cursor: "pointer", padding: 0,
+                                       fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+                                       color: GOLD, letterSpacing: 1 }}>
+                              {lang === "en" ? "Directions →" : "Direction →"}
+                            </button>
                           )}
-                          {d.link && !isMapLink && <a href={d.link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600, color: GOLD, letterSpacing: 1, textDecoration: "none" }}>{lang === "en" ? "Visit →" : "Voir →"}</a>}
                         </span>
                       </div>
                       );
@@ -375,26 +381,24 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                 </div>
 
                 {/* Je réserve + téléphone */}
-                {(selectedEvent.link || selectedEvent.phone) && (
+                {(selectedEvent.subtitle || selectedEvent.phone) && (
                   <div style={{ display: "flex", gap: 8, alignItems: "stretch", justifyContent: "center" }}>
-                    {selectedEvent.link && (
-                      <a
-                        href={selectedEvent.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {selectedEvent.subtitle && (
+                      <button
+                        onClick={() => ouvrirItineraire(selectedEvent.subtitle)}
                         style={{
                           flex: selectedEvent.phone ? 1 : "0 0 auto",
                           display: "flex", alignItems: "center", justifyContent: "center",
                           fontFamily: "'Josefin Sans', sans-serif",
                           fontSize: 11, fontWeight: 600, letterSpacing: 2,
                           textTransform: "uppercase", color: WHITE,
-                          background: NAVY, padding: "11px 24px",
-                          textDecoration: "none", borderRadius: 1,
+                          background: NAVY, padding: "11px 24px", border: "none",
+                          cursor: "pointer", borderRadius: 1,
                         }}
                       ><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                        {selectedEvent.free ? (lang === "en" ? "Info" : "Infos") : (lang === "en" ? "Book" : "Réserver")}
-                      </span></a>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        {lang === "en" ? "Directions" : "Direction"}
+                      </span></button>
                     )}
                     {selectedEvent.phone && (
                       <button

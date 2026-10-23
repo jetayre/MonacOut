@@ -7,6 +7,7 @@ import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
 import { Capacitor } from "@capacitor/core";
+import { ouvrirItineraire } from "../../lib/itineraire";
 import { partagerInvitation } from "../../lib/invite";
 
 const NAVY = "#0F1D3A";
@@ -846,26 +847,27 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
               }}>{lang === "en" ? "Diary" : "Agenda"}</button>
           )}
-          {/* 🌐 Le site DU LIEU. Pas d'icône téléphone : « Appeler » est déjà là,
-              en toutes lettres — Stéphanie, 13 oct 2026 : « icône tel pas besoin
-              il y a le mot appeler ». Un lieu d'annuaire n'a de lien que si le
-              script qui l'écrit lui en a donné un ; sinon rien ne s'affiche,
-              on n'invente pas d'adresse. */}
-          {(lieu.lien || (evenement && fiche.link)) && (
-            <a href={lieu.lien || fiche.link} target="_blank" rel="noopener noreferrer"
-               onClick={e => e.stopPropagation()}
-               aria-label={lang === "en" ? "Website" : "Site web"}
+          {/* 📍 DIRECTION. Stéphanie, 23 oct 2026 : « au lieu de mettre le site
+              du lieu, mets le lien Google Maps partout, mets le mot Direction ».
+              Le site d'un restaurant n'aide pas à y aller ; l'itinéraire, si.
+              Pas d'icône téléphone à côté : « Appeler » est déjà écrit en toutes
+              lettres. Ouverture SANS target="_blank" — voir lib/itineraire.js. */}
+          {(lieu.nom || fiche.subtitle) && (
+            <button onClick={e => { e.stopPropagation(); ouvrirItineraire(lieu.nom || fiche.subtitle); }}
+               aria-label={lang === "en" ? "Directions" : "Itinéraire"}
                style={{
-                 display: "inline-flex", alignItems: "center", justifyContent: "center",
-                 padding: "5px 11px", textDecoration: "none",
+                 display: "inline-flex", alignItems: "center", gap: 4,
+                 padding: "5px 11px", background: "none", cursor: "pointer",
                  border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1,
+                 fontFamily: "'Josefin Sans', sans-serif", fontSize: 9, fontWeight: 600,
+                 letterSpacing: 1, textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
                }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={NAVY}
-                   strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
-                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={NAVY}
+                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
               </svg>
-            </a>
+              {lang === "en" ? "Directions" : "Direction"}
+            </button>
           )}
           {idLieu && Capacitor.isNativePlatform() && (
             <button
