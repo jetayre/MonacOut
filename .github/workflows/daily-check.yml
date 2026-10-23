@@ -111,6 +111,11 @@ jobs:
         run: node scripts/verifie-importees.mjs --ecris
         continue-on-error: true
 
+      - name: "👯 La même soirée existe-t-elle deux fois, sous deux noms ?"
+        id: doublons
+        run: node scripts/detecte-doublons.mjs
+        continue-on-error: true
+
       - name: 🚓 LE POLICIER — autofix + contrôle (dates, géo, liens, noms, traduction)
         id: police
         run: node police-events.mjs
