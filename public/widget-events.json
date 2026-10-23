@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T19:54:13.209Z",
+  "generatedAt": "2026-10-23T05:15:25.403Z",
   "events": [
     {
       "date": "Jeu 22 oct",
@@ -31,11 +31,11 @@
     {
       "date": "Jeu 22 oct",
       "iso": "2026-10-22",
-      "time": "08h00 — 10h00",
-      "title": "BRADERIE DU SACRE COEUR",
-      "venue": "Eglise du Sacré-Cœur",
-      "quarter": "Monaco",
-      "emoji": "🎪"
+      "time": "18h00 — 20h00",
+      "title": "JARDIN BELLE ÉPOQUE BY PERRIER-JOUËT HERMITAGE",
+      "venue": "Square Beaumarchais",
+      "quarter": "Monte-Carlo",
+      "emoji": "🥂"
     },
     {
       "date": "Jeu 22 oct",
@@ -67,11 +67,11 @@
     {
       "date": "Jeu 22 oct",
       "iso": "2026-10-22",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
+      "time": "11h00 — 19h00",
+      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
+      "venue": "Villa Paloma",
       "quarter": "Monaco",
-      "emoji": "🏛️"
+      "emoji": "🚩"
     }
   ]
 }
