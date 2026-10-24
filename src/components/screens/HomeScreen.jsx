@@ -324,6 +324,13 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
     // Une heure illisible ne dit rien du moment : on la traite comme une fiche
     // sans heure plutôt que de l'annoncer « ce soir ».
     if (debut === SANS_HEURE) return lang === "en" ? "Afternoon" : "Après-midi";
+    // 🥐 LE BRUNCH FERME LA MATINÉE. Stéphanie, 24 oct 2026 : « la fiche brunch
+    // doit apparaître juste avant l'après-midi ». Un brunch commence à midi, donc
+    // il tombait dans « Après-midi », au milieu des apéros. Or c'est le repas du
+    // matin : on le range en fin de matinée, où le tri par heure le place
+    // naturellement en dernier — juste avant l'après-midi. L'heure affichée ne
+    // change pas, c'est la SECTION qui change.
+    if (e.cat === "BRUNCH" && debut < 14 * 60) return lang === "en" ? "Morning" : "Matin";
     if (debut < 12 * 60)      return lang === "en" ? "Morning" : "Matin";
     if (debut < 18 * 60)      return lang === "en" ? "Afternoon" : "Après-midi";
     return lang === "en" ? "Evening" : "Soir";
@@ -722,6 +729,9 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
   // on choisit UNE adresse. Un vrai événement répond de son propre identifiant,
   // un lieu d'annuaire de l'identifiant composé — le même que « J'y vais », pour
   // que le favori et la participation désignent bien la même chose.
+  // Une sous-fiche de cinéma ne rouvre pas sa fiche-mère : voir plus bas.
+  const ouvrableDepuisLaSousFiche = !!onOuvrir && fiche.cat !== "CINÉMA" && !fiche.weeklyFilms;
+
   const estFav = idLieu ? favorites.includes(idLieu) : false;
   const pourAgenda = evenement ? fiche : {
     ...fiche,
@@ -739,13 +749,19 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
       // coup d'œil que ces fiches appartiennent à celle du dessus.
       margin: "0 22px 14px", padding: "16px 20px 18px",
     }}>
+      {/* 🎬 PAS DE CLIC SUR UNE SOUS-FICHE DE CINÉMA. Stéphanie, 24 oct 2026 :
+          « supprime sur les sous-fiches cinéma le clic sur la fiche qui donne
+          tous les films ». Toucher le titre d'un film rouvrait la fiche-mère,
+          c'est-à-dire la liste des douze films — on croyait ouvrir CE film et
+          on se retrouvait au point de départ. Ailleurs le geste a du sens : la
+          fiche-mère d'un annuaire de terrasses dit quelque chose de plus. */}
       <div
-        onClick={onOuvrir}
+        onClick={ouvrableDepuisLaSousFiche ? onOuvrir : undefined}
         style={{
           fontFamily: "'Josefin Sans', Georgia, sans-serif",
           fontWeight: 400, fontSize: 18, letterSpacing: 0.3,
           textTransform: "uppercase", color: "#000000",
-          lineHeight: 1.3, cursor: "pointer",
+          lineHeight: 1.3, cursor: ouvrableDepuisLaSousFiche ? "pointer" : "default",
         }}>{lieu.name}</div>
 
       {lieu.info && (

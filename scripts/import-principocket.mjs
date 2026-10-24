@@ -154,14 +154,23 @@ function categorie(t) {
   if (/cinema|projection|film|screening|nocturne/.test(s)) return "CINÉMA";
   if (/recital|concert|symphoni|philharmon|quatuor|jazz|musical|chambre|live/.test(s)) return "CONCERT";
   if (/conference|rencontre|colloque|debat|cafe litteraire|talk/.test(s)) return "CONFÉRENCE";
-  if (/atelier|stage|workshop|cycloshow/.test(s)) return "ATELIER";
+  // ⚠️ UN ATELIER NE DIT PAS TOUJOURS « ATELIER » (24 oct 2026). Stéphanie :
+  // « animation démonstration dégustation petits farcis c'est un atelier pas un
+  // spectacle, idem pour ChatGPT plongez dans le monde de l'IA ». Ces titres ne
+  // contenaient aucun des mots attendus et tombaient dans le fourre-tout.
+  if (/atelier|stage|workshop|cycloshow|animation|demonstration|degustation|initiation|prise en main|plongez|decouvrir|decouverte|apprendre|cours de/.test(s)) return "ATELIER";
   if (/theatre|piece|comedy|comedie|spectacle|bourgeois/.test(s)) return "THÉÂTRE";
   if (/exposition|exhibition/.test(s)) return "EXPOSITION";
   if (/salon|fair|show|convention|summit|pack|sportel/.test(s)) return "SALON";
   if (/danse|ballet/.test(s)) return "DANSE";
   if (/vuelta|course|run|marathon|tennis|football|athletics|sport/.test(s)) return "SPORT";
   if (/loto|bingo|fete|festival/.test(s)) return "SPECTACLE";
-  return "SPECTACLE";
+  // 🚨 ON NE DEVINE PLUS « SPECTACLE » : on rend la main. Le titre n'a rien dit,
+  // mais LE LIEU, lui, parle — la Maison du Numérique ne fait que des ateliers,
+  // une église que des célébrations. Le tableau des sources donne déjà cette
+  // catégorie par défaut, et l'importeur l'ignorait. C'est bien plus solide que
+  // d'ajouter des mots à cette liste indéfiniment.
+  return null;
 }
 const PAL = {
   CHANTS:["linear-gradient(150deg,#5A4A2A,#7A6A3A,#3A2E18)","#E8D8A8","🙏"],
@@ -224,7 +233,8 @@ for (const f of fiches) {
     .map(t => new Date(t)).sort((a, b) => a - b);
   if (!dates.length) continue;
   const v = trouveLieu(f.lieu);
-  const cat = categorie(f.titre);
+  // Le titre d'abord, le lieu ensuite, « SPECTACLE » en tout dernier recours.
+  const cat = categorie(f.titre) || (v && v.cat) || "SPECTACLE";
   // ⚠️ PLAGE IMPOSSIBLE (fin ≤ début) : PrinciPocket recopie parfois l'horaire de
   // semaine sur l'occurrence du DIMANCHE d'une série de plusieurs jours — « from 20:00
   // to 18:30 » — où le dimanche est en réalité une matinée. La fin précède alors le

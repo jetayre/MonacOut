@@ -13,6 +13,98 @@ App de sorties Monaco. React + Vite. Déployée automatiquement sur Vercel via g
 
 Et une règle de méthode, apprise le 11 août 2026 : **vérifier l'affichage ailleurs que sur le fil du jour.** Les expositions étaient toutes présentes dans les données et pourtant invisibles dans « Ce week-end » et dans le calendrier. Une donnée correcte mais inaccessible est une donnée absente.
 
+## Journal — 21-24 oct 2026 (les dates fausses, et ce qui les empêche de revenir)
+
+**🚨 LE PLUS GROS DÉFAUT TROUVÉ À CE JOUR : plus de 80 horaires faux.** Une ancienne
+version de `import-principocket.mjs` lisait l'heure LOCALE comme du TEMPS UNIVERSEL.
+Résultat : **une heure trop tôt**, et **un jour trop tôt** dès que l'événement commençait
+tôt dans la soirée.
+
+| | Affiché | Réel |
+|---|---|---|
+| Grigory Sokolov | mer 16 déc 18h30 | **jeu 17 déc 19h30** |
+| AS Monaco–PSG | ven 29 jan 20h00 | **sam 30 jan 21h00** |
+| Siegfried | 4, 7, 10, 14 avr | **5, 8, 11, 15 avr** |
+| Ligue 1, tous les matchs | 20h00 | **21h00** |
+
+⚠️ **Une fiche fausse ne lève AUCUNE alerte** : elle fait simplement venir quelqu'un la
+veille, et personne ne le dit jamais. C'est le pire genre de défaut. Et les doublons
+restaient invisibles tant que la copie fautive portait une date d'un jour plus tôt —
+les corriger les a révélés d'un coup : **une cinquantaine de fiches fantômes retirées**.
+
+### Les cinq contrôles qui tournent désormais chaque jour
+
+| Script | Ce qu'il empêche |
+|---|---|
+| `verifie-importees.mjs` | rouvre LA PAGE SOURCE de chaque fiche importée et compare date + heure |
+| `detecte-doublons.mjs` | la même soirée deux fois, **même sous deux libellés de lieu différents** |
+| `fiches-en-periode.mjs` | une fiche qui annonce « jusqu'au X » sans s'afficher pendant cette période |
+| `theatre-des-muses.mjs` | la saison du TPG régénérée depuis sa table, jamais perdue |
+| `check-links.mjs` | un lien mort — **mais un 5xx n'en est pas un**, voir plus bas |
+
+**🚨 LES QUATRE GARDE-FOUS DE `verifie-importees`, tous appris en les voyant manquer :**
+1. **Un titre porté par plusieurs fiches ne se recale pas.** « Musical Happy Hour »
+   revient 7 fois dans la saison : on ne sait pas quelle page va à quelle fiche.
+2. **LA PLACE VISÉE DOIT ÊTRE LIBRE** — *date + heure + lieu*. Le Théâtre des Muses et le
+   TPG jouent **lundi ET mardi** : déplacer le lundi sur le mardi écrasait une
+   représentation et en faisait disparaître une autre. *Une correction qui supprime une
+   date n'est pas une correction.* ⚠️ Et l'HEURE fait partie de la place : une
+   médiathèque accueille un atelier à 14h30 et une conférence à 18h30 le même jour.
+3. **Il ne supprime JAMAIS seul.** Une date se défait, une suppression non.
+4. **Au-delà de 40 corrections d'un coup, il n'écrit rien** : c'est le script qui déraille.
+
+### Les règles de contenu posées ces jours-là
+
+**19. Un 5xx n'est PAS un lien mort.** Le site de la Mairie est passé en maintenance et
+répondait 503 : le contrôle a déclaré **108 fiches mortes** et fait échouer le CI. Un 404
+dit « cette page n'existe pas », un 503 dit « revenez plus tard ». Les 5xx sont désormais
+« injoignables pour le moment », signalés sans faire échouer. Seuls DNS introuvable, 404,
+410 et page vide restent des morts. *Une alarme qui sonne à chaque maintenance d'un site
+officiel finit par ne plus être lue.*
+
+**20. Les données contiennent les DEUX apostrophes** — la droite `'` et la typographique
+`’`. Un contrôle qui ne cherche que la première ne voit qu'une partie des cas, **en
+silence**. Toujours écrire `/['\u2019]/`.
+
+**21. « Tous les mercredis jusqu'au 28 octobre » n'est PAS une période continue.** C'est
+une série, dont la dernière fiche tombe légitimement le dernier jour annoncé. La rendre
+`ongoing` l'afficherait **tous les jours**, donc à de fausses dates. Avant de corriger un
+signalement, vérifier qu'il décrit un vrai défaut.
+
+**22. La description ne doit pas recommencer par le titre.** « Titre. Lieu. Téléphone. »
+n'apprend rien : le titre dit DE QUOI il s'agit, la description doit dire OÙ et CE QU'IL
+FAUT SAVOIR — que l'atelier est gratuit sur réservation, que l'entrée est libre, qu'il
+faut venir en avance. **Et on ne recopie JAMAIS le français dans `descEn`** : un
+anglophone préfère une ligne courte en anglais à un paragraphe qu'il ne lit pas.
+
+**23. 🎬 CHAQUE FILM A SON RÉSUMÉ.** Réalisateur, année, et de quoi ça parle en une ou
+deux phrases — pas « Projection au Théâtre des Variétés ». Stéphanie, 24 oct : « rajoute
+un résumé pour chaque fiche de film, tu le faisais avant ». Les projections de l'Institut
+Audiovisuel au Théâtre des Variétés sont des **CINÉMA**, pas des SPECTACLE.
+
+**24. 🏷️ UN ATELIER NE DIT PAS TOUJOURS « ATELIER ».** « Animation démonstration
+dégustation petits farcis » et « ChatGPT plongez dans le monde de l'IA » tombaient dans le
+fourre-tout SPECTACLE. `categorie()` reconnaît désormais *animation, démonstration,
+dégustation, initiation, prise en main, plongez, découverte, apprendre, cours de* — et
+surtout, **quand le titre ne dit rien, elle rend la main et l'importeur prend la catégorie
+du LIEU** (le tableau des sources la donne déjà). Plus solide que d'allonger la liste de
+mots indéfiniment.
+
+**25. 📍 « DIRECTION » REMPLACE LE SITE DU LIEU.** Le site d'un restaurant n'aide pas à
+s'y rendre ; l'itinéraire, si. ⚠️ Ouvert **comme le téléphone**, par `window.location.href`,
+jamais avec `target="_blank"` — voir l'écran noir du 7 août. Et vers **`maps.apple.com` sur
+iPhone**, pas Google Maps : Google Maps n'est pas toujours installé, et la page s'ouvrirait
+alors DANS la vue web de l'app. Sur navigateur, Google Maps. Voir `src/lib/itineraire.js`.
+
+**26. 🎬 Une sous-fiche de cinéma ne rouvre pas sa fiche-mère.** Toucher le titre d'un film
+ramenait à la liste des douze films. Ailleurs le geste garde du sens.
+
+⚠️ **APRÈS `npm run ota`, COMMITTER `public/capgo` EN ENTIER** — le zip ET `latest.json`.
+Le 23 octobre, un `git reset --hard` avant le commit a annulé la mise à jour de
+`latest.json` : le paquet était en ligne, le pointeur annonçait encore l'ancienne version,
+et **les téléphones n'auraient jamais pris la mise à jour**. Même piège que le 15 août.
+Toujours vérifier que le fichier servi bascule vraiment.
+
 ## Journal — 13 août 2026 (Jack Monaco a fermé — retiré partout)
 
 **🔒 JACK MONACO EST DÉFINITIVEMENT FERMÉ** (Stéphanie, 13 août 2026 : « c'est
