@@ -21,7 +21,7 @@ const SOURCES = [
   { name: 'Grimaldi Forum',        url: 'https://www.grimaldiforum.com/en/events-schedule-monaco',  cat: 'Spectacles · Galas · Expos · Ateliers',  emoji: '🎪' },
   { name: 'Culture Monaco',        url: 'https://culture.mc/en/what-s-on',                          cat: 'Théâtre · Concerts · Danse',             emoji: '🎨' },
   { name: 'Mairie de Monaco',      url: 'https://www.mairie.mc/agenda',                             cat: 'Sport · Fêtes · Marchés · Danse',        emoji: '🏛️' },
-  { name: 'La Note Bleue',         url: 'https://lanotebleue.mc/en/',                               cat: 'Jazz Live · DJ Set · Brunch',            emoji: '🎷' },
+  { name: 'La Note Bleue',         url: 'https://lanotebleue.mc/en/',                               cat: 'Jazz Live · Petit-déj · Restaurant de plage',            emoji: '🎷' },
   { name: 'HVMC — Enchères',       url: 'https://hvmc.com/ventes-a-venir/',                         cat: 'Enchères · Mobilier · Art · Bijoux',      emoji: '🔨' },
   { name: 'Cinémas 2 Monaco',      url: 'https://www.cinemas2monaco.com',                           cat: 'Films VF · VO',                          emoji: '🎬' },
   { name: 'NMNM',                  url: 'https://www.nmnm.mc/',                                     cat: 'Expositions · Ateliers',                 emoji: '🖼️' },

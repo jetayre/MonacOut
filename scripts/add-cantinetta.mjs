@@ -1,3 +1,10 @@
+// ⛔️ SCRIPT NEUTRALISÉ le 24 oct 2026. Il ne plantait pas : il semait des
+// fiches « ven + sam » alors que cantinettaantinori.mc annonce un apéritivo
+// avec musique live TOUS LES SOIRS dès 18h, et il n'est pas branché dans
+// daily-check — donc ses fiches expiraient sans que rien ne les remplace.
+// La Cantinetta vit désormais dans restore-nightlife-monthly.mjs.
+process.exit(0);
+
 // Ajoute Cantinetta Antinori (bar à vin + live music, Larvotto) — apéritivo live
 // vendredi + samedi soir, sur 12 semaines. Jours calculés → jamais d'erreur de date.
 import { readFileSync, writeFileSync } from "fs";
