@@ -289,9 +289,56 @@ async function main() {
     .toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-z0-9]+/g, ' ').trim();
 
-  // Titre → page du film, d'après les liens relevés sur l'accueil.
+  // Titre → page du film.
+  //
+  // 🚨 24 oct 2026 — AUCUNE SOUS-FICHE DE FILM N'AVAIT DE RÉSUMÉ. Stéphanie :
+  // « tu n'as pas mis les résumés des films sur les fiches cinéma ». La cause
+  // n'était ni l'extraction ni la source : le site publie bien un résumé sur
+  // chaque page de film. C'était ce rapprochement-ci. On indexait les pages par
+  // le titre tel qu'écrit SUR L'ACCUEIL, alors que `annuaireDuJour` interroge
+  // `fiches` avec le titre tel qu'écrit DANS LE TABLEAU DES SÉANCES — et on
+  // dépendait d'un `f.link` capté par Playwright, qui ne porte plus `film=N`.
+  // Deux maillons fragiles pour un seul chaînon. Désormais on relève les liens
+  // `film=N` DANS LE HTML de l'accueil et on lit le titre SUR LA PAGE DU FILM
+  // elle-même : la page est la seule source qui connaisse à la fois son titre
+  // et son résumé. Un champ vide n'est jamais écrit (règle : pas de ligne
+  // plutôt qu'une ligne fausse).
   const pageDuFilm = new Map();
   for (const f of films) if (f.link && /[?&]film=\d+/.test(f.link)) pageDuFilm.set(plat(f.title), f.link);
+
+  // Repli — et en pratique la voie principale.
+  //
+  // ⚠️ DEUX ANCRES ESSAYÉES ET ÉCARTÉES avant de trouver la bonne. « le titre
+  // suit A l'affiche / Prochainement » attrape l'entrée du MENU de navigation,
+  // qui porte les mêmes mots : on récoltait « Tarifs & Abonnements ». Prendre la
+  // dernière occurrence ne marche pas mieux. L'invariant réel : la page affiche
+  // le titre, puis la VERSION (VF, VO STF, VF & VO STF), puis le bloc
+  // Public / Durée / Genres. On part donc de « Durée », on remonte jusqu'à la
+  // ligne de version, et le titre est juste avant. Vérifié sur 11 pages :
+  // 7 films sur 7 à l'affiche, titre + résumé + durée.
+  const VERSION = /^(VF|VO|VO STF|VF & VO|VF & VO STF|VOSTF)$/i;
+  try {
+    const accueil = await (await fetch('https://www.cinemas2monaco.com', {
+      headers: { 'User-Agent': 'Mozilla/5.0' } })).text();
+    const ids = [...new Set([...accueil.matchAll(/href="[^"]*[?&]film=(\d+)/g)].map(m => m[1]))];
+    console.log(`  · ${ids.length} page(s) de film relevée(s) sur l'accueil`);
+    for (const id of ids) {
+      const url = `https://www.cinemas2monaco.com/index.php?page=12&film=${id}`;
+      try {
+        const html = await (await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } })).text();
+        const lignes = html
+          .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+          .replace(/<[^>]+>/g, '\n')
+          .split('\n').map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
+        const iD = lignes.findIndex(l => /^Durée$/i.test(l));
+        let titre = '';
+        if (iD > 2) for (let k = iD - 1; k >= Math.max(0, iD - 8); k--) {
+          if (VERSION.test(lignes[k])) { titre = lignes[k - 1] || ''; break; }
+        }
+        if (titre && titre.length < 80) pageDuFilm.set(plat(titre), url);
+      } catch { /* une page illisible ne doit pas emporter les autres */ }
+    }
+  } catch { /* accueil injoignable : on garde ce que Playwright a pu capter */ }
 
   // La note Rotten Tomatoes passe par OMDb, qui la republie.
   // ⚠️ SANS CLÉ, ON NE BLOQUE RIEN : pas de clé → pas de note, le reste sort
@@ -332,9 +379,22 @@ async function main() {
         const lignes = texte.split('\n').map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
         // Le synopsis est la plus longue ligne de prose de la page : les autres
         // lignes sont des libellés, des horaires ou des noms d'acteurs.
-        const prose = lignes.filter(l => l.length >= 90 && /[.!?]/.test(l) && !/cookie|newsletter|©/i.test(l));
-        synopsis = prose.sort((a, b) => b.length - a.length)[0] || '';
-        duree = (texte.match(/\b(\d{1,2}h\d{2})\b/) || [])[1] || '';
+        // Le site écrit le résumé sous un libellé « Résumé » : c'est une ancre,
+        // pas une devinette. L'ancienne méthode — « la plus longue ligne de
+        // prose » — ramassait aussi l'avertissement « veuillez noter que les
+        // horaires indiqués sont ceux de la séance », qui n'apprend rien d'un film.
+        const iR = lignes.findIndex(l => /^Résumé\s*:?$/i.test(l));
+        const apresAncre = iR >= 0
+          ? lignes.slice(iR + 1).find(l => l.length >= 60 && /[.!?]/.test(l))
+          : '';
+        const prose = lignes.filter(l => l.length >= 90 && /[.!?]/.test(l)
+          && !/cookie|newsletter|©|horaires indiqués/i.test(l));
+        synopsis = apresAncre || prose.sort((a, b) => b.length - a.length)[0] || '';
+        // ⚠️ PAS le premier « 2h59 » de la page : une page de film contient aussi
+        // des HORAIRES de séance (« 20h50 »), et on affichait donc parfois une
+        // heure de séance comme durée du film. La durée suit le libellé « Durée ».
+        const iDur = lignes.findIndex(l => /^Durée$/i.test(l));
+        duree = (iDur >= 0 && /^\d{1,2}h\d{2}$/.test(lignes[iDur + 1] || '')) ? lignes[iDur + 1] : '';
         const g = lignes.find(l => /^(genre\s*:)?\s*(comédie|drame|action|animation|thriller|horreur|documentaire|aventure|famille|romance|science|policier|biopic|guerre|western|fantastique)/i.test(l) && l.length < 60);
         genre = g ? g.replace(/^genre\s*:\s*/i, '').trim() : '';
       } catch { /* une page illisible ne doit pas emporter le film */ }
