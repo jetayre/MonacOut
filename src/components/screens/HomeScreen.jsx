@@ -739,7 +739,7 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
     title: lieu.name,
     subtitle: lieu.adr || fiche.subtitle,
     time: lieu.info || fiche.time,
-    desc: lieu.desc || fiche.desc,
+    desc: (lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc) || fiche.desc,
   };
 
   return (
@@ -799,11 +799,14 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
         </div>
       )}
 
-      {lieu.desc && (
+      {/* 🇬🇧 En anglais on prend descEn, et on retombe sur le français s'il
+           n'existe pas — un texte français vaut mieux que pas de texte, mais on
+           ne le met JAMAIS dans descEn côté données (règle de la maison). */}
+      {(lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc) && (
         <div style={{
           fontFamily: "'Lato', sans-serif", fontSize: 13,
           color: "#555", lineHeight: 1.6, marginTop: 9,
-        }}>{lieu.desc}</div>
+        }}>{lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc}</div>
       )}
 
       {(idLieu || lieu.tel) && (

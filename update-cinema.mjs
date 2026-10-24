@@ -399,8 +399,43 @@ async function main() {
         genre = g ? g.replace(/^genre\s*:\s*/i, '').trim() : '';
       } catch { /* une page illisible ne doit pas emporter le film */ }
     }
+    // 🇬🇧 LE RÉSUMÉ ANGLAIS. Stéphanie, 24 oct 2026 : « en anglais aussi ? ».
+    // Le site publie sa PROPRE version anglaise (?changeLang=en), sous le libellé
+    // « Overview » : ce n'est pas une traduction automatique, c'est le texte du
+    // distributeur. On ne fabrique donc rien.
+    //
+    // ⚠️ LA PAGE ANGLAISE DONNE LE TITRE ANGLAIS — « Yugly » pour « Mochy »,
+    // « The Phantom of the Opera » pour « Le Fantôme de l'Opéra ». Rapprocher les
+    // deux langues PAR LE TITRE ne marche donc pas, et c'est ce qui n'a d'abord
+    // ramené que 2 films sur 7. On interroge la même URL en ajoutant
+    // `&changeLang=en` : l'identifiant `film=N` est le seul lien fiable entre les
+    // deux langues.
+    let synopsisEn = '';
+    if (url) {
+      try {
+        const htmlEn = await (await fetch(url + '&changeLang=en',
+          { headers: { 'User-Agent': 'Mozilla/5.0' } })).text();
+        const lg = htmlEn
+          .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+          .replace(/<[^>]+>/g, '\n')
+          .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+          .replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"')
+          .split('\n').map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
+        const iO = lg.findIndex(l => /^(Overview|Summary|Synopsis)\s*:?$/i.test(l));
+        if (iO >= 0) synopsisEn = lg.slice(iO + 1).find(l => l.length >= 60 && /[.!?]/.test(l)) || '';
+      } catch { /* la page anglaise peut manquer : on sort alors sans descEn */ }
+    }
+    // ⚠️ UN « ANGLAIS » QUI EST DU FRANÇAIS NE VAUT RIEN — règle de la maison, et
+    // erreur déjà commise sur 173 fiches. Si le texte ne porte aucun mot anglais
+    // courant mais des articles français, on le REFUSE plutôt que de le publier.
+    const sentFrancais = t =>
+      /\b(le|la|les|des|une|dans|avec|pour|qui|que|elle|ils|son|sa|ses|est|sont)\b/i.test(t)
+      && !/\b(the|and|her|his|they|with|from|after|who|that|she|he|is|are)\b/i.test(t);
+    if (synopsisEn && sentFrancais(synopsisEn)) synopsisEn = '';
+
     const rt = await noteRT(titre);
-    if (synopsis || duree || genre || rt !== null) fiches.set(titre, { synopsis, duree, genre, rt });
+    if (synopsis || synopsisEn || duree || genre || rt !== null)
+      fiches.set(titre, { synopsis, synopsisEn, duree, genre, rt });
   }
   console.log(`  Fiches film : ${fiches.size} enrichie(s) sur ${titresAChercher.length}` +
               (CLE_OMDB ? ` · notes RT : ${[...fiches.values()].filter(f => f.rt !== null).length}` : ''));
@@ -451,7 +486,8 @@ async function main() {
         // PAS écrit : mieux vaut pas de ligne du tout qu'une ligne « null % ».
         const f = fiches.get(titre) || {};
         const sup =
-          (f.synopsis ? `,desc:"${echapper(f.synopsis.slice(0, 420))}"` : '') +
+          (f.synopsis   ? `,desc:"${echapper(f.synopsis.slice(0, 420))}"`     : '') +
+          (f.synopsisEn ? `,descEn:"${echapper(f.synopsisEn.slice(0, 420))}"` : '') +
           (f.duree    ? `,duree:"${echapper(f.duree)}"`                 : '') +
           (f.genre    ? `,genre:"${echapper(f.genre)}"`                 : '') +
           (typeof f.rt === 'number' ? `,rt:${f.rt}` : '');
