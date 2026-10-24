@@ -1,9 +1,9 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2440 fiches inspectées le 2026-10-23.
+2429 fiches inspectées le 2026-10-24.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (3)
-   · Ven 30 oct · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — même lieu et même jour qu'une série de 7 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 800003)
+   · Ven 30 oct · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — même lieu et même jour qu'une série de 6 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 800003)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990027)
    · Sam 23 jan · ATELIERS JEUNESSE CERAMIQUE HOMMAGE A ALBERT DIATO A PARTIR … — même lieu et même jour qu'une série de 3 fiches « EXHIBITION MEMORY OF PLACES » (id 800245)
 
@@ -12,8 +12,8 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Jeu 31 déc · EXHIBITION MEMORY OF PLACES (id 800184)
 
 ■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (5)
-   · Ven 23 oct · WELLNESS BARS 5 ADRESSES À MONACO — Jus, matcha & bowls (id 1304420)
-   · Ven 23 oct · PETIT-DÉJ & CAFÉ 12 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
+   · Sam 24 oct · WELLNESS BARS 5 ADRESSES À MONACO — Jus, matcha & bowls (id 1304420)
+   · Sam 24 oct · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
    · Sam 31 oct · NOS DIABLOTINS SONT DE SORTIE TRICK OR TREAT — Rue Princesse Caroline (id 800004)
    · Dim 1 nov · EXHIBITION OF PAINTINGS BY DENISE SOLOMON AND BEATRICE DARDY — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 800055)
    · Sam 14 nov · GALA DU FESTIVAL DES ÉTOILÉS MONTE-CARLO — Monte-Carlo Société des Bains de Mer (id 1100025)
