@@ -1361,3 +1361,33 @@ node verify-events.mjs          # rapport qualité → verify-events-report.txt
 node cleanup-events.mjs         # supprime événements passés
 node autofix-events.mjs         # corrige jours de semaine
 ```
+
+## 24 oct 2026 — un lieu qui disparaît ne déclenche aucune alerte
+
+**Règle 27 — un script à usage unique ne tient pas un lieu récurrent.**
+`add-foody-recurrences.mjs` et `add-cantinetta.mjs` semaient N semaines de
+fiches pour La Note Bleue et la Cantinetta Antinori. Ils ne sont pas branchés
+dans `daily-check.yml`. Les semaines ont expiré, le nettoyage de nuit a emporté
+les fiches, et **plus rien ne les a remplacées**. Les deux lieux étaient absents
+de l'app depuis des semaines sans qu'un seul contrôle s'en plaigne : tous nos
+détecteurs cherchent des fiches FAUSSES, aucun ne cherche une fiche MANQUANTE.
+C'est la même famille que « un script qui retire sans pouvoir reconstruire ne
+doit pas écrire ». Un lieu qui revient chaque semaine vit dans
+`restore-nightlife-monthly.mjs`, le registre régénéré chaque nuit, et nulle part
+ailleurs. Un script à usage unique qui a fait son travail se neutralise, avec la
+raison écrite dedans.
+
+**Règle 28 — le brunch ferme la matinée, il n'ouvre pas l'après-midi.**
+`momentDuJour` rangeait une fiche de 12h00 dans « Après-midi », donc le brunch
+s'affichait au milieu des apéros de 16h. Une fiche `cat:"BRUNCH"` qui part avant
+14h appartient à « Matin », où le tri par heure la place en dernier — juste avant
+l'après-midi. L'heure affichée ne change pas, c'est la SECTION qui change.
+
+**Ce que la vérification de ces trois lieux a donné.** Aucun des trois ne fait de
+brunch — ni la Cantinetta (petit-déj 7h–11h), ni La Note Bleue (petit-déj dès
+9h), ni La Rose des Vents (Le Caffè 8h30–19h). On annonçait pourtant un « brunch
+du samedi » à La Note Bleue dans DEUX scripts, et un « sunset apéro du vendredi
+19h00 — 22h00 » dont le jour et l'horaire étaient inventés de bout en bout. Son
+téléphone était faux aussi (`+377 93 500 502`, pas `+377 9315 2265`). Avant
+d'ajouter un rendez-vous à un lieu, lire ce que SON site annonce, et si l'heure
+n'y est pas, écrire « En soirée » (règle 18).
