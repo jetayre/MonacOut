@@ -1,5 +1,5 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-10-24 — 127 liens, 2441 fiches.
+Contrôle du 2026-10-25 — 124 liens, 2415 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
@@ -10,21 +10,21 @@ du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
    panne ou en maintenance (5xx). Ce n'est PAS une preuve de lien mort : la page
    n'a pas pu être lue, c'est tout. Si la même adresse revient plusieurs jours de
    suite, il faut aller voir.
-     · https://saintmartin.diocese.mc — UND_ERR_CONNECT_TIMEOUT — 62 fiche(s)
-     · https://www.balletsdemontecarlo.com/fr — HTTP 503 — serveur momentanément indisponible — 3 fiche(s)
+     · https://saintmartin.diocese.mc — UND_ERR_CONNECT_TIMEOUT — 61 fiche(s)
      · https://diocese.mc — UND_ERR_CONNECT_TIMEOUT — 5 fiche(s)
+     · https://www.balletsdemontecarlo.com/fr — HTTP 503 — serveur momentanément indisponible — 3 fiche(s)
      · https://saintcharles.diocese.mc/ — UND_ERR_CONNECT_TIMEOUT — 15 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/jonathan-tetelman — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
-     · https://en.afce-monaco.org/agenda — ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE — 1 fiche(s)
      · https://www.balletsdemontecarlo.com/ — HTTP 503 — serveur momentanément indisponible — 2 fiche(s)
+     · https://en.afce-monaco.org/agenda — ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE — 1 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/porgy-and-bess — HTTP 503 — serveur momentanément indisponible — 2 fiche(s)
      · https://www.opera.mc/ — HTTP 503 — serveur momentanément indisponible — 13 fiche(s)
      · https://saintcharles.diocese.mc/catechisme — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/la-vie-parisienne — HTTP 503 — serveur momentanément indisponible — 5 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/rigoletto — HTTP 503 — serveur momentanément indisponible — 4 fiche(s)
+     · https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/l-italiana-in-algeri — HTTP 503 — serveur momentanément indisponible — 2 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/fidelio — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
-     · https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/asmik-grigorian — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
+     · https://www.opera.mc/en/seasons/26-27/rigoletto — HTTP 503 — serveur momentanément indisponible — 4 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/siegfried — HTTP 503 — serveur momentanément indisponible — 4 fiche(s)
      · https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
