@@ -1,15 +1,16 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2434 fiches inspectées le 2026-10-24.
+2410 fiches inspectées le 2026-10-25.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (4)
-   · Ven 30 oct · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — même lieu et même jour qu'une série de 7 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 800003)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800063)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (3)
+   · Ven 30 oct · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — même lieu et même jour qu'une série de 8 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 800003)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990027)
    · Sam 23 jan · ATELIERS JEUNESSE CERAMIQUE HOMMAGE A ALBERT DIATO A PARTIR … — même lieu et même jour qu'une série de 3 fiches « EXHIBITION MEMORY OF PLACES » (id 800245)
 
-■ FICHES SANS CONTENU — la description répète le titre (1)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800063)
+■ FICHES SANS CONTENU — la description répète le titre (3)
+   · Sam 7 nov · GETTING STARTED WITH A MAC COMPUTER LEVEL 1 — description = titre (id 800027)
+   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800063)
+   · Dim 20 déc · BRONIA AND ALTRO CANTO — description = titre (id 800129)
 
 ■ TITRES EN ANGLAIS — jamais retraduits depuis la source (2)
    · Dim 1 nov · EXHIBITION OF PAINTINGS BY DENISE SOLOMON AND BEATRICE DARDY (id 800055)
