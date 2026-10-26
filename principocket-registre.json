@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-26"
  },
@@ -1927,7 +1927,7 @@
  },
  "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-26"
  },
@@ -2719,7 +2719,7 @@
  },
  "/en/events/acd6c678a1c71e967e273adcc31cd90d-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-26"
  },
@@ -2767,7 +2767,7 @@
  },
  "/en/events/02c7323217a1015c16496b3114c45436-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-26"
  },
@@ -2857,7 +2857,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-a-big-screen-concert-for-your-lunch-break": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music a big screen concert for your lunch break",
   "majLe": "2026-10-26"
  },
@@ -3025,7 +3025,7 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-26"
  },
@@ -3037,7 +3037,7 @@
  },
  "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-26"
  },
@@ -3049,7 +3049,7 @@
  },
  "/en/events/a890f895c9a97732d5a48baf95fae87d-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-26"
  },
@@ -3067,7 +3067,7 @@
  },
  "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-26"
  },
@@ -3085,13 +3085,13 @@
  },
  "/en/events/45330e20d5cbf91229410b984df2b017-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-26"
  },
  "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-26"
  },
@@ -3105,6 +3105,12 @@
   "vuLe": "2026-10-21",
   "etat": "deja",
   "detail": "L apero des Frenchy at Meridien Beach Plaza",
+  "majLe": "2026-10-26"
+ },
+ "/en/events/184e6b4cf680583c0d1da14fbdd5ec84-Concert-Handel-s-Messiah-Saturday-28th-November-2026": {
+  "vuLe": "2026-10-26",
+  "etat": "importe",
+  "detail": "Concert Handel s Messiah Saturday 28th November 2026",
   "majLe": "2026-10-26"
  }
 }
