@@ -91,6 +91,11 @@ jobs:
         run: node scripts/soirees-du-jour.mjs
         continue-on-error: true
 
+      - name: "🏷️ SPECTACLE n'est pas une poubelle - reclassement par le lieu"
+        id: categories
+        run: node scripts/corrige-categories.mjs --ecris
+        continue-on-error: true
+
       - name: "🎟️ Lien de réservation sur les spectacles - billetterie de Monaco"
         id: billetterie
         run: node scripts/billetterie-monaco.mjs

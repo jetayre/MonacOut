@@ -94,7 +94,10 @@ async function catalogue() {
       const mo = MOIS_EUX[m[2].slice(0, 4)] ?? MOIS_EUX[m[2].slice(0, 3)];
       if (mo !== undefined) dates.add(iso(+m[1], mo, m[3]));
     }
-    if (titre && dates.size) out.push({ id, titre, dates, m: mots(titre) });
+    // La salle est écrite en toutes lettres sur la ligne : AUDITORIUM RAINIER III,
+    // THEATRE PRINCESSE GRACE, GRIMALDI FORUM… C'est une deuxième clé solide.
+    const salle = lignes.find(x => /AUDITORIUM|TH[EÉ][AÂ]TRE|GRIMALDI|OP[EÉ]RA|SALLE|CHAPITEAU/i.test(x) && x.length < 60) || "";
+    if (titre && dates.size) out.push({ id, titre, dates, salle: plat(salle), m: mots(titre) });
   }
   return out;
 }
@@ -156,8 +159,21 @@ for (let i = 0; i < lignes.length; i++) {
   }
   if (!best || bs < 0.6) continue;
 
-  // 🚨 LA DATE TRANCHE. Sans elle, pas de lien.
-  if (!best.dates.has(d)) {
+  // 🚨 LA DATE TRANCHE — mais une SÉRIE n'est pas une fausse date.
+  // Stéphanie, 26 oct 2026 : « une vie sur mesure […] y a pas réserver ». Le
+  // spectacle se joue LUNDI ET MARDI au Théâtre Princesse Grace, et la page de
+  // liste de la billetterie n'annonce qu'UNE séance par spectacle : la fiche du
+  // lundi restait donc sans bouton. Le widget, lui, est par SPECTACLE et non par
+  // séance — il liste toutes les dates. On accepte donc un écart de 3 jours À
+  // CONDITION QUE LA SALLE CORRESPONDE AUSSI. Sans cette seconde clé, l'écart
+  // rouvrirait la porte aux faux mariages du genre « Harry Potter ».
+  const salleFiche = plat((l.match(/subtitle:"([^"]*)"/) || [])[1] || "");
+  const memeSalle = best.salle && salleFiche &&
+    best.salle.split(" ").filter(w => w.length > 4).some(w => salleFiche.includes(w));
+  const JOUR = 86400000;
+  const proche = [...best.dates].some(x =>
+    Math.abs(new Date(x) - new Date(d)) <= 3 * JOUR);
+  if (!best.dates.has(d) && !(proche && memeSalle)) {
     refuses++;
     if (rejets.length < 8) rejets.push(`      ${d} « ${titre.replace(/\\n/g, " ").slice(0, 38)} » ≠ « ${best.titre.slice(0, 32)} » (${[...best.dates].join(", ")})`);
     continue;
