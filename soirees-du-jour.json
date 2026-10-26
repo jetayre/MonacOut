@@ -2407,171 +2407,6 @@
    }
   ]
  },
- "Sam 24 oct|2026": {
-  "soir": [
-   {
-    "lieu": "Le Vivaldi",
-    "heure": "18h00 — 02h00",
-    "tel": "+33 6 63 07 20 20",
-    "lien": "https://www.instagram.com/vivaldi_monaco/",
-    "titre": "LE VIVALDI BAR A COCKTAILS PORT HERCULE"
-   },
-   {
-    "lieu": "Brasserie de Monaco",
-    "heure": "18h00 — 03h00",
-    "tel": "+377 9798 5120",
-    "lien": "https://brasseriedemonaco.com",
-    "titre": "BRASSERIE DE MONACO PORT HERCULE"
-   },
-   {
-    "lieu": "99 Sushi Bar",
-    "heure": "18h00 — 19h00",
-    "tel": "+377 9992 5102",
-    "lien": "https://www.99sushibar.com/en/99-sushi-bar-monaco/",
-    "titre": "AFTERLIGHT BY 99 MARETERRA"
-   },
-   {
-    "lieu": "Norma",
-    "heure": "17h00 — 20h00",
-    "tel": "",
-    "lien": "https://norma.mc/",
-    "titre": "APERO NORMA CONDAMINE"
-   },
-   {
-    "lieu": "Buddha-Bar",
-    "heure": "En soirée",
-    "tel": "+377 9999 8080",
-    "lien": "https://www.buddhabar.com/en/restaurants/buddha-bar-monte-carlo/",
-    "titre": "APERO BUDDHA-BAR MONTE-CARLO"
-   },
-   {
-    "lieu": "Amazónico",
-    "heure": "18h00 — 02h00",
-    "tel": "+377 9806 1414",
-    "titre": "APERO AMAZONICO MONTE-CARLO",
-    "lien": "https://www.montecarlosbm.com/en/restaurant-monaco/amazonico-monte-carlo"
-   },
-   {
-    "lieu": "Frenk",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9992 5838",
-    "titre": "APERO FRENK FONTVIEILLE",
-    "lien": "https://www.instagram.com/frenk.mc/"
-   },
-   {
-    "lieu": "Bistro Coe",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9992 2790",
-    "titre": "APERO BISTRO COE LARVOTTO",
-    "lien": "https://bistrocoe.mc/"
-   },
-   {
-    "lieu": "Amici Miei",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9205 9214",
-    "titre": "DINER AMICI MIEI FONTVIEILLE",
-    "lien": "https://amicimiei.mc/en/"
-   },
-   {
-    "lieu": "Le Relais de Venise",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9990 8004",
-    "titre": "LE RELAIS DE VENISE LA CONDAMINE",
-    "lien": "https://relaisdevenise.com/locations/monaco.php"
-   },
-   {
-    "lieu": "Malizia Mar",
-    "heure": "19h00 — 23h00",
-    "tel": "+377 9992 4099",
-    "titre": "APERO MALIZIA MAR QUAI ANTOINE IER",
-    "lien": "https://www.instagram.com/malizia_mar_monaco/"
-   },
-   {
-    "lieu": "Old Wild West",
-    "heure": "19h00 — 22h30",
-    "tel": "+377 9990 5499",
-    "titre": "OLD WILD WEST PORT HERCULE",
-    "lien": "https://oldwildwest.mc/"
-   },
-   {
-    "lieu": "Gustave",
-    "heure": "12h00 — 01h00",
-    "tel": "+377 98 06 98 98",
-    "titre": "APERO GUSTAVE HERMITAGE",
-    "lien": "https://www.montecarlosbm.com/en/nightlife/gustave-new-bar-hotel-hermitage-monte-carlo"
-   },
-   {
-    "lieu": "L’Oliverai",
-    "heure": "En terrasse",
-    "tel": "+377 9330 8096",
-    "titre": "APERO L OLIVERAI PLACE DES MOULINS"
-   },
-   {
-    "lieu": "Tavolo — Columbus Monte-Carlo",
-    "heure": "Terrasse & bar à cocktails",
-    "tel": "+377 9205 8235",
-    "titre": "APERO TERRASSE TAVOLO COLUMBUS"
-   },
-   {
-    "lieu": "La Rascasse",
-    "heure": "19h00 — 22h00",
-    "tel": "+377 9806 1616",
-    "titre": "HAPPY HOUR LA RASCASSE PORT HERCULE",
-    "lien": "https://www.montecarlosbm.com/en/bar-nightclub-monaco/la-rascasse"
-   },
-   {
-    "lieu": "Blue Gin",
-    "heure": "18h00",
-    "tel": "+377 9806 0200",
-    "lien": "https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin",
-    "titre": "APERO BLUE GIN MC BAY"
-   },
-   {
-    "lieu": "La Note Bleue",
-    "heure": "En soirée",
-    "tel": "+377 93 500 502",
-    "lien": "https://lanotebleue.mc/",
-    "titre": "LIVE JAZZ LA NOTE BLEUE LARVOTTO"
-   },
-   {
-    "lieu": "Cantinetta Antinori",
-    "heure": "18h00 — 23h30",
-    "tel": "+377 9777 0880",
-    "lien": "https://www.cantinettaantinori.mc/fr/",
-    "titre": "APERITIVO LIVE CANTINETTA ANTINORI"
-   }
-  ],
-  "brunch": [
-   {
-    "lieu": "Marlow",
-    "heure": "11h30 — 15h00",
-    "tel": "+377 98 06 14 00",
-    "lien": "https://www.montecarlosbm.com/en/restaurant-monaco/marlow",
-    "titre": "BRUNCH MARLOW MARETERRA"
-   },
-   {
-    "lieu": "Restaurant de la Société Nautique",
-    "heure": "11h00 — 15h00",
-    "tel": "+377 9350 5130",
-    "titre": "BRUNCH CLUB D AVIRON PORT HERCULE",
-    "lien": "https://www.restaurantsocietenautique.club/"
-   }
-  ],
-  "midi": [
-   {
-    "lieu": "Castel Roc",
-    "heure": "16h00 — 17h00",
-    "tel": "+377 9330 3668",
-    "lien": "https://www.castelrocmonaco.com/"
-   },
-   {
-    "lieu": "La Pampa",
-    "heure": "Lun-ven 7h30 — 18h30, sam-dim 8h30 — 18h30",
-    "tel": "+377 9330 3375",
-    "titre": "APERO LA PAMPA PLACE DU PALAIS"
-   }
-  ]
- },
  "Sam 31 oct|2026": {
   "soir": [
    {
@@ -29211,6 +29046,117 @@
     "titre": "BRUNCH CAFFE MILANO PORT HERCULE"
    }
   ],
+  "midi": []
+ },
+ "Lun 26 avr|2027": {
+  "soir": [
+   {
+    "lieu": "Blue Gin",
+    "heure": "18h00",
+    "tel": "+377 9806 0200",
+    "lien": "https://www.montecarlosbm.com/en/bar-nightclub-monaco/the-blue-gin",
+    "titre": "APERO BLUE GIN MC BAY"
+   },
+   {
+    "lieu": "La Note Bleue",
+    "heure": "En soirée",
+    "tel": "+377 93 500 502",
+    "lien": "https://lanotebleue.mc/",
+    "titre": "LIVE JAZZ LA NOTE BLEUE LARVOTTO"
+   },
+   {
+    "lieu": "Cantinetta Antinori",
+    "heure": "18h00 — 23h30",
+    "tel": "+377 9777 0880",
+    "lien": "https://www.cantinettaantinori.mc/fr/",
+    "titre": "APERITIVO LIVE CANTINETTA ANTINORI"
+   },
+   {
+    "lieu": "Stars of Monaco",
+    "heure": "17h30 — 19h30",
+    "tel": "+377 9797 9595",
+    "lien": "https://www.starsofmonaco.com/",
+    "titre": "HAPPY HOUR STARS OF MONACO QUAI ANTOINE IER"
+   },
+   {
+    "lieu": "Monaco Brewery",
+    "heure": "18h00 — 20h00",
+    "tel": "+377 9798 5120",
+    "lien": "https://brasseriedemonaco.com",
+    "titre": "HAPPY HOUR MONACO BREWERY PORT HERCULE"
+   },
+   {
+    "lieu": "99 Sushi Bar",
+    "heure": "18h00 — 19h00",
+    "tel": "+377 9992 5102",
+    "lien": "https://www.99sushibar.com/en/99-sushi-bar-monaco/",
+    "titre": "AFTERLIGHT BY 99 MARETERRA"
+   },
+   {
+    "lieu": "Frenk",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9992 5838",
+    "lien": "https://www.instagram.com/frenk.mc/",
+    "titre": "APERO FRENK FONTVIEILLE"
+   },
+   {
+    "lieu": "Bistro Coe",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9992 2790",
+    "lien": "https://bistrocoe.mc/",
+    "titre": "APERO BISTRO COE LARVOTTO"
+   },
+   {
+    "lieu": "Amici Miei",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9205 9214",
+    "lien": "https://amicimiei.mc/en/",
+    "titre": "DINER AMICI MIEI FONTVIEILLE"
+   },
+   {
+    "lieu": "Le Relais de Venise",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9990 8004",
+    "lien": "https://relaisdevenise.com/locations/monaco.php",
+    "titre": "LE RELAIS DE VENISE LA CONDAMINE"
+   },
+   {
+    "lieu": "Malizia Mar",
+    "heure": "19h00 — 23h00",
+    "tel": "+377 9992 4099",
+    "lien": "https://www.instagram.com/malizia_mar_monaco/",
+    "titre": "APERO MALIZIA MAR QUAI ANTOINE IER"
+   },
+   {
+    "lieu": "Old Wild West",
+    "heure": "19h00 — 22h30",
+    "tel": "+377 9990 5499",
+    "lien": "https://oldwildwest.mc/",
+    "titre": "OLD WILD WEST PORT HERCULE"
+   },
+   {
+    "lieu": "Amazónico",
+    "heure": "18h00 — 02h00",
+    "tel": "",
+    "lien": "https://www.montecarlosbm.com/en/restaurant-monaco/amazonico-monte-carlo",
+    "titre": "APERO AMAZONICO MONTE-CARLO"
+   },
+   {
+    "lieu": "Sexy Tacos",
+    "heure": "15h30 — 18h30",
+    "tel": "+377 9990 7338",
+    "lien": "https://www.sexytacos.mc/",
+    "titre": "HAPPY HOUR SEXY TACOS LARVOTTO"
+   },
+   {
+    "lieu": "Gustave",
+    "heure": "12h00 — 01h00",
+    "tel": "+377 98 06 98 98",
+    "lien": "https://www.montecarlosbm.com/en/nightlife/gustave-new-bar-hotel-hermitage-monte-carlo",
+    "titre": "APERO GUSTAVE HERMITAGE"
+   }
+  ],
+  "brunch": [],
   "midi": []
  }
 }
