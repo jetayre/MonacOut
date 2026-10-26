@@ -24,6 +24,18 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+// 🎟️ LA RÉSERVATION DU BAR AMÉRICAIN. Stéphanie, 26 oct 2026 : « jazz live il
+// manque des boutons ». Les 70 fiches sans bouton étaient TOUTES le Bar
+// Américain : il a son propre script et échappait donc au registre, qui est la
+// seule source que lisait la réservation.
+//
+// ⚠️ C'EST L'ADRESSE FINALE QU'IL FAUT ÉCRIRE, PAS LA COURTE.
+// eu.sevenrooms.com/reservations/lebaramericain répond 200 mais avec
+// « X-Frame-Options: DENY » : c'est une étape de redirection, et elle resterait
+// BLANCHE dans l'app. L'adresse d'arrivée, /explore/.../reservations/create/
+// search, accepte le cadre. Vérifié le 26 oct 2026.
+const RESA = "https://eu.sevenrooms.com/explore/lebaramericain/reservations/create/search";
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FILE = join(ROOT, 'src/data/events.js');
 const PAGE = 'https://www.montecarlosbm.com/fr/agenda/programmation-musicale-bar-americain-live-music';
@@ -109,7 +121,7 @@ for (const p of periodes) {
     const titre = `LIVE MUSIC\\n${echappe(majuscule(p.artiste))}\\nBAR AMÉRICAIN`;
     const desc = `Groupe live à partir de 19h au Bar Américain de l'Hôtel de Paris Monte-Carlo : ${echappe(p.artiste)}. Jazz, swing, blues, soul et chanson dans le bar le plus mythique de Monaco. Ouvert tous les jours de 12h à 1h30. Tenue casual chic.`;
     const descEn = `Live band from 7pm at the Bar Américain, Hôtel de Paris Monte-Carlo: ${echappe(p.artiste)}. Jazz, swing, blues, soul and chanson in Monaco's most legendary bar. Open daily from noon to 1.30am. Casual chic dress code.`;
-    lignes.push(`  {id:${id++},year:${d.getFullYear()},cat:"JAZZ LIVE",date:"${date}",time:"19h00 — 01h30",title:"${titre}",subtitle:"Bar Américain · Hôtel de Paris · Monte-Carlo",desc:"${desc}",descEn:"${descEn}",free:false,hot:false,bam:1,fallback:"linear-gradient(150deg,#2A1A08,#5A3A18,#180C00)",accent:"#E8C088",emoji:"🎷",link:"${PAGE}",source:"Monte-Carlo SBM",quarter:"Monte-Carlo"},`);
+    lignes.push(`  {id:${id++},year:${d.getFullYear()},cat:"JAZZ LIVE",date:"${date}",time:"19h00 — 01h30",title:"${titre}",subtitle:"Bar Américain · Hôtel de Paris · Monte-Carlo",desc:"${desc}",descEn:"${descEn}",free:false,hot:false,bam:1,fallback:"linear-gradient(150deg,#2A1A08,#5A3A18,#180C00)",accent:"#E8C088",emoji:"🎷",link:"${PAGE}",resa:"${RESA}",phone:"+377 98 06 38 38",source:"Monte-Carlo SBM",quarter:"Monte-Carlo"},`);
   }
 }
 
