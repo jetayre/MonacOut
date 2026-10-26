@@ -70,3 +70,34 @@ export function lienDuSite(objet) {
   const u = (objet && objet.siteResa) || "";
   return /^https:\/\//.test(u) ? u : null;
 }
+
+/**
+ * UN SEUL BOUTON, SUR TOUTES LES FICHES.
+ *
+ * Stéphanie, 26 oct 2026 : « au lieu du téléphone et site il faudrait en fait
+ * ce bouton réserver sur toutes les fiches ».
+ *
+ * Le bouton dit toujours « Réserver », et fait le mieux disponible :
+ *   1. un VRAI formulaire (SevenRooms, Zenchef, billetterie)  → on l'ouvre ;
+ *   2. sinon le site du lieu, s'il accepte d'être affiché      → on l'ouvre ;
+ *   3. sinon le téléphone                                      → on appelle.
+ *
+ * ⚠️ LE TÉLÉPHONE N'EST PAS UN PIS-ALLER. Pour la moitié des lieux de Monaco
+ * c'est LE moyen de réserver, et c'est le seul qui marche à coup sûr. Il est
+ * donc le troisième choix, jamais un échec : un bouton qui appelle vaut mieux
+ * qu'un bouton absent.
+ *
+ * ⚠️ ET LE MOT RESTE HONNÊTE. Au cas 1 on précise « une table » ou « une
+ * place » ; aux cas 2 et 3 on dit seulement « Réserver », sans promettre un
+ * formulaire qu'on n'a pas.
+ */
+export function actionDeReservation(objet, cat, lang) {
+  const form = lienDeReservation(objet);
+  if (form) return { mode: "form", url: form, mot: motDeReservation(cat, lang) };
+  const site = lienDuSite(objet);
+  if (site) return { mode: "site", url: site, mot: lang === "en" ? "Book" : "Réserver" };
+  const tel = (objet && (objet.tel || objet.phone)) || "";
+  if (tel) return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""),
+                    mot: lang === "en" ? "Book by phone" : "Réserver par téléphone" };
+  return null;
+}

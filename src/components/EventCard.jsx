@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../lib/itineraire";
-import { motDeReservation, lienDeReservation, motDuSite, lienDuSite } from "../lib/reservation";
+import { actionDeReservation } from "../lib/reservation";
 import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
@@ -481,55 +481,41 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
               ))}
             </div>
           )}
-          {/* 🎟️ RÉSERVER UNE PLACE. Stéphanie, 26 oct 2026 : « fais le lien avec
-              leur système de résa en ouvrant une vue dans l'app ». Sur une fiche
-              de spectacle, le lien vient de la billetterie commune de Monaco
-              (scripts/billetterie-monaco.mjs) ; sur un film, de la séance.
-              Pleine largeur et au-dessus de Direction : on réserve d'abord, on
-              cherche son chemin ensuite. Pas de lien → pas de bouton, jamais un
-              cadre vide — voir lib/reservation.js. */}
-          {lienDeReservation(event) && (
-            <button
-              onClick={e => { e.stopPropagation();
-                onReserver?.(lienDeReservation(event), (event.title || "").replace(/\n/g, " ")); }}
-              style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
-                width: "100%", height: 38, marginBottom: 10, cursor: "pointer",
-                border: "1px solid #7B2D26", borderRadius: 1, background: "#7B2D26",
-                fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 700,
-                letterSpacing: 2, textTransform: "uppercase", color: "#FFFDF8",
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFDF8"
-                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                   style={{ display: "block", flexShrink: 0 }}>
-                <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
-              </svg>
-              {motDeReservation(event.cat, lang)}
-            </button>
-          )}
-          {/* 🌐 À défaut de formulaire, leur site — barre plus sobre, elle promet
-              moins. Jamais les deux à la fois. */}
-          {!lienDeReservation(event) && lienDuSite(event) && (
-            <button
-              onClick={e => { e.stopPropagation();
-                onReserver?.(lienDuSite(event), (event.title || "").replace(/\n/g, " ")); }}
-              style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
-                width: "100%", height: 36, marginBottom: 10, cursor: "pointer",
-                border: "1px solid #7B2D26", borderRadius: 1, background: "#FFF6F4",
-                fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 700,
-                letterSpacing: 1.6, textTransform: "uppercase", color: "#7B2D26",
-              }}
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B2D26"
-                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                   style={{ display: "block", flexShrink: 0 }}>
-                <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
-              </svg>
-              {motDuSite(lang)}
-            </button>
-          )}
+          {/* 🎟️ UN SEUL BOUTON, SUR TOUTES LES FICHES. Stéphanie, 26 oct 2026.
+              Il dit toujours « Réserver » et fait le mieux disponible : le vrai
+              formulaire, sinon le site du lieu, sinon le téléphone. Le téléphone
+              n'est pas un pis-aller — pour la moitié des lieux de Monaco c'est
+              LE moyen de réserver. Voir lib/reservation.js. */}
+          {!estAnnuaire && (() => {
+            const a = actionDeReservation(event, event.cat, lang);
+            if (!a) return null;
+            const plein = a.mode === "form";
+            return (
+              <button
+                onClick={e => { e.stopPropagation();
+                  if (a.mode === "tel") window.location.href = `tel:${a.tel}`;
+                  else onReserver?.(a.url, (event.title || "").replace(/\n/g, " ")); }}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+                  width: "100%", height: plein ? 38 : 36, marginBottom: 10, cursor: "pointer",
+                  border: "1px solid #7B2D26", borderRadius: 1,
+                  background: plein ? "#7B2D26" : "#FFF6F4",
+                  fontFamily: "'Josefin Sans', sans-serif", fontSize: plein ? 11 : 10,
+                  fontWeight: 700, letterSpacing: plein ? 2 : 1.6,
+                  textTransform: "uppercase", color: plein ? "#FFFDF8" : "#7B2D26",
+                }}
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                     stroke={plein ? "#FFFDF8" : "#7B2D26"} strokeWidth="2"
+                     strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}>
+                  {a.mode === "tel"
+                    ? <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
+                    : <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>}
+                </svg>
+                {a.mot}
+              </button>
+            );
+          })()}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             {/* 🚫 Sur une fiche-annuaire, le site et le téléphone ne veulent rien dire :
                 lequel des 12 lieux appelle-t-on ? Stéphanie, 13 oct 2026 : « enlève

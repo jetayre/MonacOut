@@ -8,7 +8,7 @@ import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../../lib/itineraire";
-import { motDeReservation, lienDeReservation, motDuSite, lienDuSite } from "../../lib/reservation";
+import { lienDeReservation, lienDuSite, actionDeReservation } from "../../lib/reservation";
 import VueReservation from "../VueReservation";
 import { partagerInvitation } from "../../lib/invite";
 
@@ -811,52 +811,39 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
         }}>{lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc}</div>
       )}
 
-      {/* 🎟️ LA GRANDE BARRE ROUGE. Stéphanie, 26 oct 2026 : « j'aime bien le
-          réserver une place avec la barre rouge sur le théâtre, fais comme ça
-          pour tout y compris pour les restaux ». C'était un petit bouton
-          encadré noyé au milieu de la rangée ; c'est désormais la même barre
-          pleine largeur que sur une fiche de spectacle, au-dessus de tout le
-          reste. Un seul geste à faire, il doit sauter aux yeux. */}
-      {lienDeReservation(lieu) && (
-        <button onClick={e => { e.stopPropagation();
-                  onReserver?.(lienDeReservation(lieu), lieu.nom || lieu.name); }}
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
-            width: "100%", height: 38, marginTop: 12, cursor: "pointer",
-            border: "1px solid #7B2D26", borderRadius: 1, background: "#7B2D26",
-            fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 700,
-            letterSpacing: 2, textTransform: "uppercase", color: "#FFFDF8",
-          }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFDF8"
-               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-               style={{ display: "block", flexShrink: 0 }}>
-            <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
-          </svg>
-          {motDeReservation(fiche.cat, lang)}
-        </button>
-      )}
-
-      {/* 🌐 À DÉFAUT DE FORMULAIRE, LEUR SITE. Barre plus sobre que la rouge :
-          elle promet moins, parce qu'elle donne moins. Jamais les deux à la
-          fois — voir lib/reservation.js. */}
-      {!lienDeReservation(lieu) && lienDuSite(lieu) && (
-        <button onClick={e => { e.stopPropagation();
-                  onReserver?.(lienDuSite(lieu), lieu.nom || lieu.name); }}
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
-            width: "100%", height: 36, marginTop: 12, cursor: "pointer",
-            border: "1px solid #7B2D26", borderRadius: 1, background: "#FFF6F4",
-            fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: 1.6, textTransform: "uppercase", color: "#7B2D26",
-          }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B2D26"
-               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-               style={{ display: "block", flexShrink: 0 }}>
-            <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
-          </svg>
-          {motDuSite(lang)}
-        </button>
-      )}
+      {/* 🎟️ UN SEUL BOUTON, SUR TOUTES LES FICHES. Stéphanie, 26 oct 2026 :
+          « au lieu du téléphone et site il faudrait en fait ce bouton réserver
+          sur toutes les fiches ». Il dit toujours « Réserver » et fait le mieux
+          disponible : le vrai formulaire, sinon le site, sinon le téléphone.
+          Voir lib/reservation.js — le mot reste honnête dans les trois cas. */}
+      {(() => {
+        const a = actionDeReservation(lieu, fiche.cat, lang);
+        if (!a) return null;
+        const plein = a.mode === "form";
+        return (
+          <button onClick={e => { e.stopPropagation();
+                    if (a.mode === "tel") window.location.href = `tel:${a.tel}`;
+                    else onReserver?.(a.url, lieu.nom || lieu.name); }}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+              width: "100%", height: plein ? 38 : 36, marginTop: 12, cursor: "pointer",
+              border: "1px solid #7B2D26", borderRadius: 1,
+              background: plein ? "#7B2D26" : "#FFF6F4",
+              fontFamily: "'Josefin Sans', sans-serif", fontSize: plein ? 11 : 10,
+              fontWeight: 700, letterSpacing: plein ? 2 : 1.6,
+              textTransform: "uppercase", color: plein ? "#FFFDF8" : "#7B2D26",
+            }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                 stroke={plein ? "#FFFDF8" : "#7B2D26"} strokeWidth="2"
+                 strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}>
+              {a.mode === "tel"
+                ? <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
+                : <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>}
+            </svg>
+            {a.mot}
+          </button>
+        );
+      })()}
 
       {/* 🚨 LA RANGÉE NE DOIT PAS DÉPENDRE DU SEUL `vid`. Stéphanie, 26 oct 2026 :
           « toujours pas je réserve sur les fiches de cinéma ». Une sous-fiche de

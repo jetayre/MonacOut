@@ -18,12 +18,16 @@
   "Pavyllon": {
     "adr": "Hôtel Hermitage · Square Beaumarchais",
     "texte": "Le brunch dominical de Yannick Alléno à l'Hôtel Hermitage, servi de 12h à 15h : recettes originales dont son « œuf à la turque » signature. Une salle pour les enfants reste ouverte pendant tout le service.",
-    "source": "montecarlosbm.com — page brunch Pavyllon"
+    "source": "montecarlosbm.com — page brunch Pavyllon",
+    "resa": "https://eu.sevenrooms.com/explore/pavyllonyannickalleno/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Mada One": {
     "adr": "Promenade Princesse Charlène · One Monte-Carlo",
     "texte": "Le « snackonomy » de Marcel Ravin à One Monte-Carlo : entre café, bistrot et pâtisserie, une carte inspirée des saveurs des Caraïbes.",
-    "source": "montecarlosbm.com"
+    "source": "montecarlosbm.com",
+    "resa": "https://eu.sevenrooms.com/explore/madaone/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Smakelijk!": {
     "adr": "22 av. Princesse Grace · Le Méridien Beach Plaza",
@@ -33,7 +37,9 @@
   "Café de Paris": {
     "adr": "Place du Casino · Monte-Carlo",
     "texte": "La brasserie la plus aimée de Monaco, place du Casino depuis 150 ans : cuisine française de tradition, du simple café au repas partagé.",
-    "source": "montecarlosbm.com"
+    "source": "montecarlosbm.com",
+    "resa": "https://eu.sevenrooms.com/explore/cafedeparismontecarlo/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Gran Caffè": {
     "adr": "57 rue Grimaldi · La Condamine",
@@ -51,7 +57,7 @@
     "adr": "5 place Princesse Gabriella · Mareterra",
     "texte": "Café-lounge aux influences britanniques, où la cuisine anglo-saxonne est « réinventée avec malice ». Brunch, afternoon tea et cocktails face à la mer.",
     "source": "montecarlosbm.com",
-    "resa": "https://www.sevenrooms.com/explore/marlow/reservations/create/search",
+    "resa": "https://eu.sevenrooms.com/explore/marlow/reservations/create/search",
     "resa_source": "SevenRooms"
   },
   "99 Sushi Bar": {
@@ -64,7 +70,9 @@
   "Amazónico": {
     "adr": "Place du Casino · Monte-Carlo",
     "texte": "Cuisine tropicale et latino-américaine — sushis, fruits de mer, viandes grillées — dans une ambiance de forêt amazonienne, avec musique live et DJ.",
-    "source": "montecarlosbm.com"
+    "source": "montecarlosbm.com",
+    "resa": "https://eu.sevenrooms.com/explore/amazonicomontecarlo/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Bistro Coe": {
     "adr": "Complexe balnéaire du Larvotto · Promenade L14",
@@ -91,7 +99,9 @@
   "Gustave": {
     "adr": "Hôtel Hermitage · Square Beaumarchais",
     "texte": "Le bar à vins de l'Hôtel Hermitage : grands crus au verre et spiritueux rares, ouvert tous les jours de midi à 1h du matin.",
-    "source": "montecarlosbm.com"
+    "source": "montecarlosbm.com",
+    "resa": "https://eu.sevenrooms.com/explore/gustave/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Castel Roc": {
     "adr": "1 place du Palais · Monaco-Ville",
@@ -116,7 +126,9 @@
   "Blue Gin": {
     "adr": "Monte-Carlo Bay Hotel & Resort · 40 av. Princesse Grace · Larvotto",
     "texte": "Le bar du Monte-Carlo Bay, ouvert tous les jours dès 18h : cocktails et carte signée Marcel Ravin, DJ résident Nicolas Saad du jeudi au samedi. Le bar diffuse aussi en direct les matches de l'UEFA Champions League 2026-2027.",
-    "source": "montecarlosbm.com — page The Blue Gin, lue le 14 oct 2026"
+    "source": "montecarlosbm.com — page The Blue Gin, lue le 14 oct 2026",
+    "resa": "https://eu.sevenrooms.com/explore/bluegin/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Restaurant de la Société Nautique": {
     "adr": "Quai Louis II · Port Hercule",
@@ -149,7 +161,9 @@
   "La Rascasse": {
     "adr": "1 quai Antoine 1er · Port Hercule",
     "texte": "Sur le virage mythique du Grand Prix, au port : concept sports bar, musique house, cocktails et finger food à partager. Ouvert dès 17h30, jusqu'à 3h ou 4h selon les soirs.",
-    "source": "montecarlosbm.com"
+    "source": "montecarlosbm.com",
+    "resa": "https://eu.sevenrooms.com/explore/larascasse/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Stars of Monaco": {
     "adr": "6 quai Antoine 1er · Port Hercule",
@@ -172,7 +186,9 @@
   "Buddha-Bar": {
     "adr": "Place du Casino · Monte-Carlo",
     "texte": "Au cœur du Casino de Monte-Carlo depuis 2010 : dorures, sculptures anciennes et atmosphère asiatique coloniale, dans un décor inspiré de l'Opéra Garnier.",
-    "source": "buddhabar.com"
+    "source": "buddhabar.com",
+    "resa": "https://eu.sevenrooms.com/explore/buddhabarmontecarlo/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Panino Club": {
     "adr": "46 bd des Moulins · Monte-Carlo",
@@ -208,5 +224,13 @@
   },
   "Sunset Monaco": {
     "site_resa": "https://www.sunsetmonaco.com/"
+  },
+  "Las Brisas": {
+    "resa": "https://eu.sevenrooms.com/explore/lasbrisas/reservations/create/search",
+    "resa_source": "SevenRooms"
+  },
+  "COYA Monte-Carlo": {
+    "resa": "https://eu.sevenrooms.com/explore/coyamontecarlo/reservations/create/search",
+    "resa_source": "SevenRooms"
   }
 }
