@@ -84,6 +84,8 @@ if (Capacitor.isNativePlatform()) {
   CapacitorUpdater.notifyAppReady().catch(() => {});
   // 2) Cherche une nouvelle interface ; si dispo, la télécharge et l'applique (auto-appliquant).
   const OTA_MANIFEST = 'https://monac-out.vercel.app/capgo/latest.json';
+  // L'instant du lancement : il décide si l'on peut appliquer sans déranger.
+  const DEBUT = Date.now();
   window.addEventListener('load', () => {
     (async () => {
       try {
@@ -94,9 +96,34 @@ if (Capacitor.isNativePlatform()) {
         const cur = await CapacitorUpdater.current();
         if (cur?.bundle?.version === version) return;         // déjà à jour
         const bundle = await CapacitorUpdater.download({ version, url });
-        // Applique au PROCHAIN démarrage à froid, en fond → JAMAIS de reload() à l'écran :
-        // plus de page blanche ni de saut à l'ouverture (l'app démarre direct, comme ce matin).
-        await CapacitorUpdater.next({ id: bundle.id });
+
+        // ⏱️ APPLIQUER TOUT DE SUITE, MAIS SEULEMENT SI PERSONNE N'A ENCORE LU.
+        //
+        // Stéphanie, 26 oct 2026 : « ok fais ça, comme ça tout le monde aura la
+        // dernière version ». Mesuré le même jour : 98 appareils répartis sur
+        // 19 versions d'interface, dont 48 % sur des versions de la mi-octobre.
+        // La cause n'était pas une panne — c'est que l'application se faisait
+        // au PROCHAIN démarrage à froid, et que l'app se consulte 1 à 2 fois par
+        // semaine. Un OTA mettait donc une à deux semaines à se répandre.
+        //
+        // ⚠️ POURQUOI PAS « TOUJOURS TOUT DE SUITE ». Appliquer, c'est recharger
+        // la vue web. Quelqu'un en train de lire le fil verrait l'écran sauter —
+        // c'est exactement ce qu'on avait écarté en écrivant `next()`. Et ce
+        // n'est pas théorique : cette semaine a vu CINQ OTA, donc une personne
+        // qui ouvre deux fois trouverait du nouveau presque à chaque fois.
+        //
+        // Le compromis : on applique immédiatement TANT QU'ON EST DANS LES
+        // PREMIÈRES SECONDES du lancement, pendant que l'écran de démarrage est
+        // encore là ou vient de s'effacer. La personne voit une seconde de
+        // chargement en plus, et rien d'autre. Passé ce délai — connexion lente,
+        // zip plus lourd — on retombe sur l'ancien comportement : au prochain
+        // démarrage, sans jamais interrompre une lecture en cours.
+        const AVANT_LECTURE_MS = 6000;
+        if (Date.now() - DEBUT < AVANT_LECTURE_MS) {
+          await CapacitorUpdater.set({ id: bundle.id });   // recharge aussitôt
+        } else {
+          await CapacitorUpdater.next({ id: bundle.id });  // au prochain démarrage
+        }
       } catch { /* hors-ligne ou erreur → on garde la version intégrée */ }
     })();
   });
