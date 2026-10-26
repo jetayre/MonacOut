@@ -1391,3 +1391,51 @@ du samedi » à La Note Bleue dans DEUX scripts, et un « sunset apéro du vendr
 téléphone était faux aussi (`+377 93 500 502`, pas `+377 9315 2265`). Avant
 d'ajouter un rendez-vous à un lieu, lire ce que SON site annonce, et si l'heure
 n'y est pas, écrire « En soirée » (règle 18).
+
+## 26 oct 2026 — « Réserver une place », et ce qu'on ne réserve jamais
+
+**Règle 29 — on n'écrit « confirmé » que si quelqu'un a confirmé.**
+Monac'Out ne réserve pas à la place des gens : on les emmène sur la VRAIE
+réservation du lieu, affichée dans une vue à l'intérieur de l'app. La vue porte
+toujours la phrase « La réservation est faite par le système du lieu. Monac'Out
+ne réserve pas à votre place. » Un email envoyé à un restaurant est une
+**demande**, jamais une réservation — et tant qu'aucun lieu n'a donné son accord
+pour recevoir nos demandes, on n'en envoie pas.
+
+**Règle 30 — pas de bouton sans page vérifiée cadrable.**
+Une page qui refuse le cadre (`X-Frame-Options`, `frame-ancestors`) reste
+**blanche sans lever d'erreur** : l'app ne peut pas le détecter. Le champ `resa`
+n'est donc écrit que pour une page testée — adresse finale après redirection,
+nom du lieu présent dedans, en-têtes vérifiés. Pas de champ → pas de bouton, et
+le téléphone reste là. `grimaldiforum.com` refuse (SAMEORIGIN) ; sa billetterie
+`montecarloticket.com` accepte. Hôtes autorisés à ce jour :
+`montecarloticket.com`, `www.sevenrooms.com`, `bookings.zenchef.com`,
+`www.cinemas2monaco.com`.
+
+**Règle 31 — un lien de billet se rapproche par le TITRE *et* LA DATE.**
+Par le titre seul, « CONCERT FAMILLE HARRY POTTER EN MUSIQUE » se collait sur
+« HARRY POTTER ET LA SORCELLERIE ». Un lien qui vend le **mauvais billet** est
+pire que pas de lien : la personne paie, se déplace, et c'est l'app qu'elle
+accuse. `billetterie-monaco.mjs` exige la concordance de date : 61 liens posés,
+33 refusés. Et il **ne redate rien** — leur page de liste n'annonce qu'une
+séance par spectacle, et le TPG joue lundi ET mardi (voir règle « un script ne
+redate pas »).
+
+**⚠️ `\w` ne parle pas français.** `/\w{3,5}/` ne reconnaît ni le « é » de
+« déc. » ni le « û » de « août » : en JavaScript `\w` vaut `[A-Za-z0-9_]`.
+19 spectacles sur 80 étaient écartés **en silence** alors que leur date était
+bien écrite. Dans tout motif qui lit une date ou un mois français, déplier les
+accents d'abord (`normalize("NFD")`) ou écrire `[^\s.]`. Même famille que
+l'apostrophe typographique : un faux négatif muet.
+
+**Ce que la billetterie commune a révélé.** `montecarloticket.com` sert **six
+institutions** — Ballets de Monte-Carlo, Opéra de Monte-Carlo, Grimaldi Forum,
+Orchestre Philharmonique, Printemps des Arts, Théâtre Princesse Grace. Une seule
+intégration couvre toute la scène monégasque, et le lien `EventId=N` fonctionne
+**sans le jeton `request=`**, donc il ne périme pas. Côté restaurants, deux
+systèmes dominent : **SevenRooms** et **Zenchef**.
+
+**⚠️ Un plugin natif n'est pas livrable en OTA.** `@capacitor/browser` ouvrirait
+un vrai SFSafariViewController, mais il n'est pas installé et l'ajouter exige une
+**build App Store**. La vue est donc un cadre dans l'app. Et `target="_blank"`
+reste exclu : écran noir iPhone (7 août 2026).
