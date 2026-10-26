@@ -811,6 +811,31 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
         }}>{lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc}</div>
       )}
 
+      {/* 🎟️ LA GRANDE BARRE ROUGE. Stéphanie, 26 oct 2026 : « j'aime bien le
+          réserver une place avec la barre rouge sur le théâtre, fais comme ça
+          pour tout y compris pour les restaux ». C'était un petit bouton
+          encadré noyé au milieu de la rangée ; c'est désormais la même barre
+          pleine largeur que sur une fiche de spectacle, au-dessus de tout le
+          reste. Un seul geste à faire, il doit sauter aux yeux. */}
+      {lienDeReservation(lieu) && (
+        <button onClick={e => { e.stopPropagation();
+                  onReserver?.(lienDeReservation(lieu), lieu.nom || lieu.name); }}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+            width: "100%", height: 38, marginTop: 12, cursor: "pointer",
+            border: "1px solid #7B2D26", borderRadius: 1, background: "#7B2D26",
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 700,
+            letterSpacing: 2, textTransform: "uppercase", color: "#FFFDF8",
+          }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFDF8"
+               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+               style={{ display: "block", flexShrink: 0 }}>
+            <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
+          </svg>
+          {motDeReservation(fiche.cat, lang)}
+        </button>
+      )}
+
       {/* 🚨 LA RANGÉE NE DOIT PAS DÉPENDRE DU SEUL `vid`. Stéphanie, 26 oct 2026 :
           « toujours pas je réserve sur les fiches de cinéma ». Une sous-fiche de
           FILM n'a ni `vid` ni `tel` — elle porte un titre, des horaires et un
@@ -873,31 +898,6 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
                 fontSize: 9, fontWeight: 600, letterSpacing: 1,
                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
               }}>{lang === "en" ? "Diary" : "Agenda"}</button>
-          )}
-          {/* 🎟️ RÉSERVER. Stéphanie, 26 oct 2026 : « fais le lien avec leur
-              système de résa en ouvrant une vue dans l'app de leur système, et
-              mets réserver une place… une table… ». Le mot change selon la
-              catégorie — une PLACE pour un spectacle, une TABLE pour un repas.
-              Le bouton n'existe QUE si la sous-fiche porte un `resa`, c'est-à-dire
-              une page vérifiée cadrable : voir lib/reservation.js. Placé avant
-              Direction, parce qu'on réserve avant de chercher son chemin. */}
-          {lienDeReservation(lieu) && (
-            <button onClick={e => { e.stopPropagation();
-                      onReserver?.(lienDeReservation(lieu), lieu.nom || lieu.name); }}
-               style={{
-                 display: "inline-flex", alignItems: "center", gap: 4,
-                 padding: "5px 11px", cursor: "pointer",
-                 border: "1px solid #7B2D26", borderRadius: 1, background: "#FFF6F4",
-                 fontFamily: "'Josefin Sans', sans-serif", fontSize: 9, fontWeight: 700,
-                 letterSpacing: 1, textTransform: "uppercase", color: "#7B2D26",
-                 whiteSpace: "nowrap",
-               }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7B2D26"
-                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
-                <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
-              </svg>
-              {motDeReservation(fiche.cat, lang)}
-            </button>
           )}
           {/* 📍 DIRECTION. Stéphanie, 23 oct 2026 : « au lieu de mettre le site
               du lieu, mets le lien Google Maps partout, mets le mot Direction ».
