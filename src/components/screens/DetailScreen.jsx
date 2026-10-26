@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ALL_EVENTS } from "../../data/events";
+import VueReservation from "../VueReservation";
 
 function PhoneIcon() {
   return (
@@ -68,6 +69,8 @@ function handleShare(event, lang) {
 
 export default function DetailScreen({ event, onBack, favorites, onToggleFav, onSelectEvent, onCategoryClick, lang = "fr" }) {
   const [showPhone, setShowPhone] = useState(false);
+  // La vue intégrée qui remplace le lien sortant (voir plus bas).
+  const [siteOuvert, setSiteOuvert] = useState(null);
   if (!event) return null;
   const isFav = favorites?.includes(event.id);
 
@@ -253,12 +256,17 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
         }}>{lang === "en" ? "Source: " : "Source : "}{event.source}</div>
 
         <div style={{ display: "flex", gap: 10, alignItems: "stretch" }}>
+          {/* 🚨 ON NE SORT PLUS DE L'APP. Stéphanie, 26 oct 2026 : « en restant
+              sur l'app, je ne veux pas qu'ils partent sur les sites ». Ce bouton
+              était le DERNIER `target="_blank"` encore actif sur une fiche : il
+              envoyait sur le site du lieu, hors de Monac'Out — et sur iPhone,
+              dans l'écran noir du 7 août. Le site s'ouvre désormais dans la même
+              vue intégrée que les réservations, avec une croix pour revenir. */}
           {event.link && (
-            <a
-              href={event.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setSiteOuvert(event.link)}
               style={{
+                border: "none", cursor: "pointer",
                 flex: 1,
                 display: "flex",
                 alignItems: "center",
@@ -279,7 +287,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
               {event.free
                 ? (lang === "en" ? "More info →" : "Plus d'infos →")
                 : (lang === "en" ? "Book →" : "Réserver →")}
-            </a>
+            </button>
           )}
           {event.phone && (
             <button
@@ -398,6 +406,16 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
             ))}
           </div>
         </div>
+      )}
+
+      {/* 🌐 Le site du lieu, DANS l'app. Même vue que les réservations. */}
+      {siteOuvert && (
+        <VueReservation
+          url={siteOuvert}
+          titre={(event.title || "").replace(/\n/g, " ")}
+          lang={lang}
+          onFermer={() => setSiteOuvert(null)}
+        />
       )}
     </div>
   );

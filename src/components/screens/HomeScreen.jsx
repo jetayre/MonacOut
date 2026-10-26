@@ -8,7 +8,7 @@ import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../../lib/itineraire";
-import { motDeReservation, lienDeReservation } from "../../lib/reservation";
+import { motDeReservation, lienDeReservation, motDuSite, lienDuSite } from "../../lib/reservation";
 import VueReservation from "../VueReservation";
 import { partagerInvitation } from "../../lib/invite";
 
@@ -836,13 +836,35 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
         </button>
       )}
 
+      {/* 🌐 À DÉFAUT DE FORMULAIRE, LEUR SITE. Barre plus sobre que la rouge :
+          elle promet moins, parce qu'elle donne moins. Jamais les deux à la
+          fois — voir lib/reservation.js. */}
+      {!lienDeReservation(lieu) && lienDuSite(lieu) && (
+        <button onClick={e => { e.stopPropagation();
+                  onReserver?.(lienDuSite(lieu), lieu.nom || lieu.name); }}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+            width: "100%", height: 36, marginTop: 12, cursor: "pointer",
+            border: "1px solid #7B2D26", borderRadius: 1, background: "#FFF6F4",
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 700,
+            letterSpacing: 1.6, textTransform: "uppercase", color: "#7B2D26",
+          }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B2D26"
+               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+               style={{ display: "block", flexShrink: 0 }}>
+            <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
+          </svg>
+          {motDuSite(lang)}
+        </button>
+      )}
+
       {/* 🚨 LA RANGÉE NE DOIT PAS DÉPENDRE DU SEUL `vid`. Stéphanie, 26 oct 2026 :
           « toujours pas je réserve sur les fiches de cinéma ». Une sous-fiche de
           FILM n'a ni `vid` ni `tel` — elle porte un titre, des horaires et un
           résumé. `idLieu` était donc nul, et toute la rangée (Réserver ET
           Direction) disparaissait en silence. Un bouton doit suffire à faire
           exister la rangée qui le porte. */}
-      {(idLieu || lieu.tel || lienDeReservation(lieu)) && (
+      {(idLieu || lieu.tel || lienDeReservation(lieu) || lienDuSite(lieu)) && (
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
           {/* 👥 L'INDICATEUR D'AMIS, comme sur une fiche normale. Stéphanie,
               13 oct 2026 : « rajoute indicateur amis ». Les prénoms en toutes

@@ -287,6 +287,14 @@ const annuaireJSON = lieux => "[" + lieux.map(e => {
   // BLANCHE sans erreur, et l'app ne peut pas le savoir — donc pas de champ
   // sans vérification, et pas de bouton sans champ. Voir src/lib/reservation.js.
   if (p?.resa) bouts.push(`resa:"${p.resa.replace(/"/g, "")}"`);
+  // 🌐 À DÉFAUT DE FORMULAIRE, LEUR SITE. Stéphanie, 26 oct 2026 : « pour apéro
+  // et soirées on peut mettre le bouton je réserve ? il mène au site du restau
+  // ou syst de résa ». Oui, mais le mot doit dire ce qu'il fait : un vrai
+  // formulaire donne « Réserver une table », un simple site donne « Réserver
+  // sur leur site ». Ce champ-ci ne sert qu'au second cas, et seulement pour un
+  // site VÉRIFIÉ cadrable — 17 sur 42 le sont, les 24 autres refusent (tous les
+  // établissements SBM répondent SAMEORIGIN) et gardent leur téléphone.
+  else if (p?.site_resa) bouts.push(`siteResa:"${p.site_resa.replace(/"/g, "")}"`);
   return "{" + bouts.join(",") + "}";
 }).join(",") + "]";
 

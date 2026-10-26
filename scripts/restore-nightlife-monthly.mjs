@@ -155,9 +155,11 @@ const NOMMEES = {
 // des deux. Les deux chemins lisent la MÊME source, presentations-validees.json,
 // où chaque adresse a été vérifiée à la main. Voir src/lib/reservation.js.
 const RESA = new Map();
+const SITE = new Map();
 try {
   const pv = JSON.parse(readFileSync(join(__dirname, "..", "presentations-validees.json"), "utf8"));
   for (const [nom, e] of Object.entries(pv)) if (e && e.resa) RESA.set(nom, e.resa);
+  for (const [nom, e] of Object.entries(pv)) if (e && e.site_resa && !e.resa) SITE.set(nom, e.site_resa);
   console.log(`  · ${RESA.size} lieu(x) avec une adresse de réservation vérifiée`);
 } catch { /* fichier absent : aucun bouton, et c'est sans gravité */ }
 
@@ -178,7 +180,7 @@ for (const v of V) {
             const titre = nommee ? `${nommee.nom}${NL}SOIRÉE${NL}TWIGA MONTE-CARLO` : v.title;
             const descF = nommee ? nommee.desc   : v.desc;
             const descA = nommee ? nommee.descEn : v.descEn;
-            lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${titre}",subtitle:"${v.subtitle}",desc:"${descF}",descEn:"${descA}",free:false,hot:${nommee ? "true" : "false"},nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",${v.link ? `link:"${v.link}",` : ""}${v.phone ? `phone:"${v.phone}",` : ""}${RESA.get(v.subtitle.split(" · ")[0]) ? `resa:"${RESA.get(v.subtitle.split(" · ")[0])}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
+            lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${titre}",subtitle:"${v.subtitle}",desc:"${descF}",descEn:"${descA}",free:false,hot:${nommee ? "true" : "false"},nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",${v.link ? `link:"${v.link}",` : ""}${v.phone ? `phone:"${v.phone}",` : ""}${RESA.get(v.subtitle.split(" · ")[0]) ? `resa:"${RESA.get(v.subtitle.split(" · ")[0])}",` : ""}${!RESA.get(v.subtitle.split(" · ")[0]) && SITE.get(v.subtitle.split(" · ")[0]) ? `siteResa:"${SITE.get(v.subtitle.split(" · ")[0])}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
           }
         }
       }

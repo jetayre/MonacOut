@@ -44,3 +44,29 @@ export function lienDeReservation(objet) {
   const u = (objet && objet.resa) || "";
   return /^https:\/\//.test(u) ? u : null;
 }
+
+/**
+ * À DÉFAUT DE FORMULAIRE, LEUR SITE. Stéphanie, 26 oct 2026 : « pour apéro et
+ * soirées on peut mettre le bouton je réserve ? il mène au site du restau ou
+ * syst de résa ».
+ *
+ * ⚠️ LE MOT DOIT DIRE CE QU'IL FAIT. Un bouton « Réserver une table » qui ouvre
+ * la PAGE D'ACCUEIL d'un restaurant ment : on tombe sur une présentation, pas
+ * sur un formulaire. D'où deux boutons distincts — « Réserver une table » pour
+ * un vrai système (SevenRooms, Zenchef), « Réserver sur leur site » pour un
+ * simple site, où l'on trouvera leur propre bouton ou leur numéro. Le second
+ * est volontairement plus sobre : il promet moins.
+ *
+ * Mesuré le 26 oct 2026 : 17 sites de lieu sur 42 acceptent le cadre. Les 24
+ * autres le refusent — dont TOUS les établissements SBM, qui répondent
+ * SAMEORIGIN — et n'ont donc aucun bouton : leur téléphone reste.
+ */
+export function motDuSite(lang) {
+  return lang === "en" ? "Book on their site" : "Réserver sur leur site";
+}
+
+/** L'adresse du site d'un lieu, quand elle a été vérifiée cadrable. */
+export function lienDuSite(objet) {
+  const u = (objet && objet.siteResa) || "";
+  return /^https:\/\//.test(u) ? u : null;
+}

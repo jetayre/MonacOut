@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../lib/itineraire";
-import { motDeReservation, lienDeReservation } from "../lib/reservation";
+import { motDeReservation, lienDeReservation, motDuSite, lienDuSite } from "../lib/reservation";
 import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
@@ -506,6 +506,28 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
               </svg>
               {motDeReservation(event.cat, lang)}
+            </button>
+          )}
+          {/* 🌐 À défaut de formulaire, leur site — barre plus sobre, elle promet
+              moins. Jamais les deux à la fois. */}
+          {!lienDeReservation(event) && lienDuSite(event) && (
+            <button
+              onClick={e => { e.stopPropagation();
+                onReserver?.(lienDuSite(event), (event.title || "").replace(/\n/g, " ")); }}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+                width: "100%", height: 36, marginBottom: 10, cursor: "pointer",
+                border: "1px solid #7B2D26", borderRadius: 1, background: "#FFF6F4",
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 10, fontWeight: 700,
+                letterSpacing: 1.6, textTransform: "uppercase", color: "#7B2D26",
+              }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7B2D26"
+                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                   style={{ display: "block", flexShrink: 0 }}>
+                <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
+              </svg>
+              {motDuSite(lang)}
             </button>
           )}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

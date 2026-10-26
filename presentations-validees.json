@@ -38,12 +38,14 @@
   "Gran Caffè": {
     "adr": "57 rue Grimaldi · La Condamine",
     "texte": "Cuisine italienne rue Grimaldi : pâtes, risottos et poissons, une carte des vins soignée et des desserts maison.",
-    "source": "grancaffe.mc"
+    "source": "grancaffe.mc",
+    "site_resa": "https://grancaffe.mc/en/"
   },
   "Caffè Milano": {
     "adr": "1 quai Albert Ier · Port Hercule",
     "texte": "Restaurant italien authentique — « des saveurs traditionnelles à partager » — dans une ambiance méditerranéenne, avec vue sur le port Hercule.",
-    "source": "caffemilano.mc"
+    "source": "caffemilano.mc",
+    "site_resa": "https://www.caffemilano.mc/"
   },
   "Marlow": {
     "adr": "5 place Princesse Gabriella · Mareterra",
@@ -67,7 +69,8 @@
   "Bistro Coe": {
     "adr": "Complexe balnéaire du Larvotto · Promenade L14",
     "texte": "Cuisine raffinée du petit-déjeuner au dîner, dans un cadre mêlant charme rétro et modernité. Terrasse panoramique sur la mer et le Larvotto.",
-    "source": "bistrocoe.mc"
+    "source": "bistrocoe.mc",
+    "site_resa": "https://bistrocoe.mc/"
   },
   "Amici Miei": {
     "adr": "42 quai Jean-Charles Rey · Fontvieille",
@@ -77,7 +80,8 @@
   "Le Relais de Venise": {
     "adr": "4 rue Suffren Reymond · La Condamine",
     "texte": "Un menu unique depuis 1959 : contre-filet de bœuf grillé et sa sauce, desserts maison et une sélection de vins français.",
-    "source": "relaisdevenise.com"
+    "source": "relaisdevenise.com",
+    "site_resa": "https://relaisdevenise.com/locations/monaco.php"
   },
   "Old Wild West": {
     "adr": "30 route de la Piscine · Darse Sud, quai Albert Ier",
@@ -150,17 +154,20 @@
   "Stars of Monaco": {
     "adr": "6 quai Antoine 1er · Port Hercule",
     "texte": "Restaurant-bar face au Port Hercule : cuisine généreuse entièrement faite maison, cocktails signature et ambiance musicale. Ouvert 7 jours sur 7 de 11h30 à minuit, sans interruption.",
-    "source": "starsofmonaco.com"
+    "source": "starsofmonaco.com",
+    "site_resa": "https://www.starsofmonaco.com/"
   },
   "Brasserie de Monaco": {
     "adr": "Route de la Piscine · Port Hercule",
     "texte": "La brasserie artisanale du port, qui brasse sa bière sur place — blonde, blanche, ambrée — et sert une cuisine maison aux accents régionaux. Ouvert tous les jours de midi à 2h.",
-    "source": "brasseriedemonaco.com"
+    "source": "brasseriedemonaco.com",
+    "site_resa": "https://brasseriedemonaco.com/"
   },
   "Monaco Brewery": {
     "adr": "Route de la Piscine · Port Hercule",
     "texte": "La brasserie artisanale du port, qui brasse sa bière sur place — blonde, blanche, ambrée — et sert une cuisine maison aux accents régionaux. Ouvert tous les jours de midi à 2h.",
-    "source": "brasseriedemonaco.com"
+    "source": "brasseriedemonaco.com",
+    "site_resa": "https://brasseriedemonaco.com/"
   },
   "Buddha-Bar": {
     "adr": "Place du Casino · Monte-Carlo",
@@ -170,12 +177,14 @@
   "Panino Club": {
     "adr": "46 bd des Moulins · Monte-Carlo",
     "texte": "Le comptoir du boulevard des Moulins : paninis, café et bar, du matin au soir. Ouvert du lundi au samedi de 7h à 21h.",
-    "source": "panino-club.com"
+    "source": "panino-club.com",
+    "site_resa": "https://panino-club.com/"
   },
   "Sexy Tacos": {
     "adr": "Av. Princesse Grace · Plage du Larvotto",
     "texte": "Cuisine mexicaine sur la plage du Larvotto, avenue Princesse Grace.",
-    "source": "sexytacos.mc"
+    "source": "sexytacos.mc",
+    "site_resa": "https://www.sexytacos.mc/"
   },
   "Le Petit Café Robuchon": {
     "adr": "Hôtel Métropole · 4 av. de la Madone · Monte-Carlo",
@@ -190,5 +199,14 @@
     "source": "twigaworld.com",
     "resa": "https://www.sevenrooms.com/explore/vestamontecarlo/reservations/create/search",
     "resa_source": "SevenRooms"
+  },
+  "Lilly's Club": {
+    "site_resa": "https://lillysclub.com/"
+  },
+  "Équivoque Rooftop": {
+    "site_resa": "https://www.equivoquemc.com/"
+  },
+  "Sunset Monaco": {
+    "site_resa": "https://www.sunsetmonaco.com/"
   }
 }
