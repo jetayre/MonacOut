@@ -811,7 +811,13 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
         }}>{lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc}</div>
       )}
 
-      {(idLieu || lieu.tel) && (
+      {/* 🚨 LA RANGÉE NE DOIT PAS DÉPENDRE DU SEUL `vid`. Stéphanie, 26 oct 2026 :
+          « toujours pas je réserve sur les fiches de cinéma ». Une sous-fiche de
+          FILM n'a ni `vid` ni `tel` — elle porte un titre, des horaires et un
+          résumé. `idLieu` était donc nul, et toute la rangée (Réserver ET
+          Direction) disparaissait en silence. Un bouton doit suffire à faire
+          exister la rangée qui le porte. */}
+      {(idLieu || lieu.tel || lienDeReservation(lieu)) && (
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
           {/* 👥 L'INDICATEUR D'AMIS, comme sur une fiche normale. Stéphanie,
               13 oct 2026 : « rajoute indicateur amis ». Les prénoms en toutes

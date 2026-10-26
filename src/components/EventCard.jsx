@@ -261,6 +261,14 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
   // à « 12 adresses » et on ne met pas « 12 adresses » à son agenda : on choisit
   // UNE adresse. Ces deux gestes descendent donc sur les sous-fiches.
   const estAnnuaire = Array.isArray(event.directory) && event.directory.length > 0;
+  // 📍 UN ANNUAIRE D'UN SEUL LIEU GARDE SON « DIRECTION ». Stéphanie, 26 oct
+  // 2026 : « rajoute sur la fiche première du cinéma direction ». Depuis
+  // v0.0.134 une fiche-annuaire se vide au profit de ses sous-fiches, parce
+  // qu'on ne sait pas lequel des 12 lieux la personne vise. Le cinéma est
+  // l'exception : les 6 films sont dans LA MÊME salle, donc l'itinéraire de la
+  // fiche-mère n'a aucune ambiguïté. Même raisonnement pour toute famille
+  // dont les sous-fiches n'ont pas d'adresse propre.
+  const annuaireDUnSeulLieu = estAnnuaire && !!event.weeklyFilms;
   // ── MODE COMPACT ────────────────────────────────────────────────────────────
   // Demandé par Stéphanie le 10 oct 2026 : quand on déplie « Voir les 7 », les
   // expositions arrivent toutes d'un coup et se confondent avec le reste du fil.
@@ -505,7 +513,7 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 lequel des 12 lieux appelle-t-on ? Stéphanie, 13 oct 2026 : « enlève
                 les icônes et mets-les sur chaque sous-fiche ». Chaque sous-fiche
                 porte désormais SON site et SON numéro. */}
-            {(event.subtitle || event.phone) && !event.venues && !estAnnuaire ? (
+            {(event.subtitle || event.phone) && !event.venues && (!estAnnuaire || annuaireDUnSeulLieu) ? (
               <div style={{
                 display: "inline-flex",
                 alignItems: "stretch",
