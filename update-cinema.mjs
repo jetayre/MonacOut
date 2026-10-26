@@ -234,7 +234,7 @@ async function main() {
           if (lignes.length < 2) continue;
           const jours = [...lignes[0].querySelectorAll('th')].map(t => t.textContent.trim());
           if (!jours.some(j => /aujourd/i.test(j))) continue;
-          const parJour = {};
+          const parJour = {}, resaJour = {};
           for (const tr of lignes.slice(1)) {
             const cases = [...tr.querySelectorAll('td')];
             const version = (cases[0]?.textContent || '').trim();   // VF ou VO
@@ -246,10 +246,19 @@ async function main() {
                 const h = (div.querySelector('span')?.textContent || '').trim();
                 if (!/^\d{1,2}:\d{2}$/.test(h)) continue;
                 (parJour[jour] = parJour[jour] || []).push(version ? `${version} ${h}` : h);
+                // 🎟️ LE LIEN DE PRÉCOMMANDE. Stéphanie, 26 oct 2026 : « fais le
+                // lien avec leur système de résa en ouvrant une vue dans l'app ».
+                // Quand une séance est précommandable, le site ENVELOPPE l'heure
+                // dans un <a href="…horaire=N">. Quand elle ne l'est pas, l'heure
+                // est nue. Sur 13 liens pour bien plus de séances, l'immense
+                // majorité n'est PAS précommandable : on ne peut donc pas déduire
+                // le lien, il faut le relever séance par séance.
+                const a = div.querySelector('a[href*="horaire="]');
+                if (a) (resaJour[jour] = resaJour[jour] || []).push(a.href);
               }
             });
           }
-          if (titre && Object.keys(parJour).length) out[titre] = parJour;
+          if (titre && Object.keys(parJour).length) out[titre] = { parJour, resaJour };
         }
         return out;
       });
@@ -479,9 +488,19 @@ async function main() {
     // s'il annonce une séance, le film passe ; sinon il ne passe pas.
     const annuaireDuJour = (col) => {
       const lignes = [];
-      for (const [titre, parJour] of Object.entries(seancesParFilm)) {
-        const heures = parJour[col] || [];
+      for (const [titre, sf] of Object.entries(seancesParFilm)) {
+        const heures = (sf.parJour || {})[col] || [];
         if (!heures.length) continue;
+        // 🎟️ LE LIEN « RÉSERVER UNE PLACE ». Une seule séance précommandable ce
+        // jour-là → on y va directement. Plusieurs → on ouvre la page du film,
+        // qui les liste toutes sous « Précommandez votre séance » : choisir à la
+        // place de quelqu'un serait pire que de le laisser choisir. Aucune → pas
+        // de champ, donc pas de bouton. Les deux destinations acceptent la vue
+        // intégrée (ni X-Frame-Options ni frame-ancestors, vérifié le 26 oct).
+        const liens = (sf.resaJour || {})[col] || [];
+        const resa = liens.length === 1 ? liens[0]
+                   : liens.length > 1   ? (pageDuFilm.get(plat(titre)) || '')
+                   : '';
         // Le synopsis et la note viennent de la page du film. Un champ vide n'est
         // PAS écrit : mieux vaut pas de ligne du tout qu'une ligne « null % ».
         const f = fiches.get(titre) || {};
@@ -490,7 +509,8 @@ async function main() {
           (f.synopsisEn ? `,descEn:"${echapper(f.synopsisEn.slice(0, 420))}"` : '') +
           (f.duree    ? `,duree:"${echapper(f.duree)}"`                 : '') +
           (f.genre    ? `,genre:"${echapper(f.genre)}"`                 : '') +
-          (typeof f.rt === 'number' ? `,rt:${f.rt}` : '');
+          (typeof f.rt === 'number' ? `,rt:${f.rt}` : '') +
+          (resa ? `,resa:"${echapper(resa)}"` : '');
         lignes.push(`{name:"${echapper(titre)}",info:"${echapper(heures.join(' · '))}"${sup}}`);
       }
       return lignes.length ? `,directory:[${lignes.join(',')}]` : '';
@@ -510,7 +530,7 @@ async function main() {
       // écartées du ⓘ, et une carte qui promet cinq films quand il n'en reste
       // que deux se contredit toute seule.
       const duJour = Object.entries(seancesParFilm)
-        .filter(([, parJour]) => (parJour[col] || []).length)
+        .filter(([, sf]) => ((sf.parJour || {})[col] || []).length)
         .map(([titre]) => titre.replace(/[\n\r\t]+/g, ' ').trim());
       const listeJour = duJour.length
         ? duJour.join(' · ').replace(/\\/g, '\\\\').replace(/"/g, '\\"')

@@ -279,6 +279,14 @@ const annuaireJSON = lieux => "[" + lieux.map(e => {
   if (e.tel) bouts.push(`tel:"${e.tel.replace(/"/g, "")}"`);
   // Le site DU LIEU, pour que la sous-fiche se suffise à elle-même (13 oct 2026).
   if (e.lien) bouts.push(`lien:"${e.lien.replace(/"/g, "")}"`);
+  // 🎟️ L'ADRESSE DE RÉSERVATION. Stéphanie, 26 oct 2026 : « fais le lien avec
+  // leur système de résa en ouvrant une vue dans l'app de leur système ». Elle
+  // vient de presentations-validees.json, où elle a été VÉRIFIÉE à la main :
+  // adresse finale après redirection, nom du lieu présent dedans, et page qui
+  // accepte d'être affichée dans l'app. Une page qui refuse le cadre reste
+  // BLANCHE sans erreur, et l'app ne peut pas le savoir — donc pas de champ
+  // sans vérification, et pas de bouton sans champ. Voir src/lib/reservation.js.
+  if (p?.resa) bouts.push(`resa:"${p.resa.replace(/"/g, "")}"`);
   return "{" + bouts.join(",") + "}";
 }).join(",") + "]";
 

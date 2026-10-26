@@ -109,5 +109,68 @@
     "adr": "Monte-Carlo Bay Hotel & Resort · 40 av. Princesse Grace · Larvotto",
     "texte": "Le bar du Monte-Carlo Bay, ouvert tous les jours dès 18h : cocktails et carte signée Marcel Ravin, DJ résident Nicolas Saad du jeudi au samedi. Le bar diffuse aussi en direct les matches de l'UEFA Champions League 2026-2027.",
     "source": "montecarlosbm.com — page The Blue Gin, lue le 14 oct 2026"
+  },
+  "Restaurant de la Société Nautique": {
+    "adr": "Quai Louis II · Port Hercule",
+    "texte": "Le restaurant de la Société Nautique, au cœur du port, face aux yachts et au Rocher : cuisine méditerranéenne. Déjeuner du lundi au vendredi, brunch le samedi, fermé le dimanche.",
+    "source": "restaurantsocietenautique.club",
+    "resa": "https://bookings.zenchef.com/results?rid=371258&pid=1001",
+    "resa_source": "Zenchef"
+  },
+  "La Note Bleue": {
+    "adr": "Plage du Larvotto · Larvotto",
+    "texte": "Le restaurant de plage du Larvotto, les pieds dans le sable. Petit-déjeuner dès 9h, puis concerts live de jazz, soul, funk et musiques brésiliennes en soirée. Ouvert tous les jours de 9h à 22h.",
+    "source": "lanotebleue.mc",
+    "resa": "https://bookings.zenchef.com/results?rid=371949&pid=1001",
+    "resa_source": "Zenchef"
+  },
+  "Cantinetta Antinori": {
+    "adr": "11 av. Princesse Grace · Larvotto",
+    "texte": "La maison florentine ouverte en 1957, face au Grimaldi Forum : petit-déjeuner de 7h à 11h, apéritivo dès 18h avec les vins Antinori, musique live tous les soirs, dîner jusqu'à 23h30.",
+    "source": "cantinettaantinori.mc",
+    "resa": "https://www.sevenrooms.com/explore/cantinettaantinori/reservations/create/search",
+    "resa_source": "SevenRooms"
+  },
+  "Norma": {
+    "adr": "1er étage du Marché de la Condamine · La Condamine",
+    "texte": "Table italienne au premier étage du Marché de la Condamine : pizzas, vitello tonnato, spaghettoni alle vongole et desserts maison. Ouvert tous les jours sauf le dimanche et le lundi soir.",
+    "source": "norma.mc",
+    "resa": "https://www.sevenrooms.com/reservations/normamonaco",
+    "resa_source": "SevenRooms"
+  },
+  "La Rascasse": {
+    "adr": "1 quai Antoine 1er · Port Hercule",
+    "texte": "Sur le virage mythique du Grand Prix, au port : concept sports bar, musique house, cocktails et finger food à partager. Ouvert dès 17h30, jusqu'à 3h ou 4h selon les soirs.",
+    "source": "montecarlosbm.com"
+  },
+  "Stars of Monaco": {
+    "adr": "6 quai Antoine 1er · Port Hercule",
+    "texte": "Restaurant-bar face au Port Hercule : cuisine généreuse entièrement faite maison, cocktails signature et ambiance musicale. Ouvert 7 jours sur 7 de 11h30 à minuit, sans interruption.",
+    "source": "starsofmonaco.com"
+  },
+  "Brasserie de Monaco": {
+    "adr": "Route de la Piscine · Port Hercule",
+    "texte": "La brasserie artisanale du port, qui brasse sa bière sur place — blonde, blanche, ambrée — et sert une cuisine maison aux accents régionaux. Ouvert tous les jours de midi à 2h.",
+    "source": "brasseriedemonaco.com"
+  },
+  "Monaco Brewery": {
+    "adr": "Route de la Piscine · Port Hercule",
+    "texte": "La brasserie artisanale du port, qui brasse sa bière sur place — blonde, blanche, ambrée — et sert une cuisine maison aux accents régionaux. Ouvert tous les jours de midi à 2h.",
+    "source": "brasseriedemonaco.com"
+  },
+  "Buddha-Bar": {
+    "adr": "Place du Casino · Monte-Carlo",
+    "texte": "Au cœur du Casino de Monte-Carlo depuis 2010 : dorures, sculptures anciennes et atmosphère asiatique coloniale, dans un décor inspiré de l'Opéra Garnier.",
+    "source": "buddhabar.com"
+  },
+  "Panino Club": {
+    "adr": "46 bd des Moulins · Monte-Carlo",
+    "texte": "Le comptoir du boulevard des Moulins : paninis, café et bar, du matin au soir. Ouvert du lundi au samedi de 7h à 21h.",
+    "source": "panino-club.com"
+  },
+  "Sexy Tacos": {
+    "adr": "Av. Princesse Grace · Plage du Larvotto",
+    "texte": "Cuisine mexicaine sur la plage du Larvotto, avenue Princesse Grace.",
+    "source": "sexytacos.mc"
   }
 }

@@ -8,6 +8,8 @@ import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../../lib/itineraire";
+import { motDeReservation, lienDeReservation } from "../../lib/reservation";
+import VueReservation from "../VueReservation";
 import { partagerInvitation } from "../../lib/invite";
 
 const NAVY = "#0F1D3A";
@@ -714,7 +716,7 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
 // ⚠️ L'IDENTIFIANT « J'y vais » EST COMPOSÉ : id de la fiche du jour × 1000 +
 // numéro du lieu. C'est exactement le calcul de Shell.jsx — il DOIT rester
 // identique, sinon un « J'y vais » posé ici n'est pas celui posé dans la fiche.
-export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, evenement = false,
+export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, onReserver, evenement = false,
                      favorites = [], onToggleFav }) {
   // Un vrai événement répond de son propre identifiant ; un lieu d'annuaire, de
   // l'identifiant composé. Les confondre ferait pointer deux « J'y vais »
@@ -866,6 +868,31 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
               }}>{lang === "en" ? "Diary" : "Agenda"}</button>
           )}
+          {/* 🎟️ RÉSERVER. Stéphanie, 26 oct 2026 : « fais le lien avec leur
+              système de résa en ouvrant une vue dans l'app de leur système, et
+              mets réserver une place… une table… ». Le mot change selon la
+              catégorie — une PLACE pour un spectacle, une TABLE pour un repas.
+              Le bouton n'existe QUE si la sous-fiche porte un `resa`, c'est-à-dire
+              une page vérifiée cadrable : voir lib/reservation.js. Placé avant
+              Direction, parce qu'on réserve avant de chercher son chemin. */}
+          {lienDeReservation(lieu) && (
+            <button onClick={e => { e.stopPropagation();
+                      onReserver?.(lienDeReservation(lieu), lieu.nom || lieu.name); }}
+               style={{
+                 display: "inline-flex", alignItems: "center", gap: 4,
+                 padding: "5px 11px", cursor: "pointer",
+                 border: "1px solid #7B2D26", borderRadius: 1, background: "#FFF6F4",
+                 fontFamily: "'Josefin Sans', sans-serif", fontSize: 9, fontWeight: 700,
+                 letterSpacing: 1, textTransform: "uppercase", color: "#7B2D26",
+                 whiteSpace: "nowrap",
+               }}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7B2D26"
+                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+                <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
+              </svg>
+              {motDeReservation(fiche.cat, lang)}
+            </button>
+          )}
           {/* 📍 DIRECTION. Stéphanie, 23 oct 2026 : « au lieu de mettre le site
               du lieu, mets le lien Google Maps partout, mets le mot Direction ».
               Le site d'un restaurant n'aide pas à y aller ; l'itinéraire, si.
@@ -994,6 +1021,13 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const t = lang === "en"
     ? { tagline: "Monaco Together", filters: { today: "Today", week: "This week", weekend: "Weekend", agenda: "Calendar" }, empty: "No events for this period." }
     : { tagline: "Monaco Ensemble", filters: { today: "Aujourd'hui", week: "Semaine", weekend: "Week-end", agenda: "Agenda" }, empty: "Aucun événement pour cette période." };
+
+  // 🎟️ LA VUE DE RÉSERVATION. Stéphanie, 26 oct 2026 : « en ouvrant une vue
+  // dans l'app de leur système ». On garde l'adresse et le nom du lieu ; la vue
+  // s'affiche par-dessus le fil et se referme sur la croix. Voir
+  // components/VueReservation.jsx et lib/reservation.js.
+  const [resaOuverte, setResaOuverte] = useState(null);
+  const ouvrirReservation = (url, nom) => setResaOuverte({ url, nom });
 
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
@@ -1532,6 +1566,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   loggedIn={loggedIn}
                   onGoingClick={onGoingClick}
                   onOuvrir={() => onCardClick?.(e._fiche)}
+                  onReserver={ouvrirReservation}
                   evenement={!!e._evenement}
                   favorites={favorites}
                   onToggleFav={onToggleFav}
@@ -1550,6 +1585,19 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           )) : aAfficher.map(e => renduCarte(e, false))
         )}
       </div>
+
+      {/* 🎟️ La vue de réservation, par-dessus le fil. Posée ICI, dans le div
+          racine de HomeScreen — une première tentative l'avait mise dans une
+          fonction auxiliaire, à côté d'un </div> déjà fermé : deux frères JSX
+          sans fragment, et le build refuse sans dire où. */}
+      {resaOuverte && (
+        <VueReservation
+          url={resaOuverte.url}
+          titre={resaOuverte.nom}
+          lang={lang}
+          onFermer={() => setResaOuverte(null)}
+        />
+      )}
     </div>
   );
 
@@ -1615,9 +1663,11 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             onOuvrir={() => onCardClick?.(e)}
             favorites={favorites}
             onToggleFav={onToggleFav}
+            onReserver={ouvrirReservation}
           />
         ))}
       </div>
+
     );
   }
 }
