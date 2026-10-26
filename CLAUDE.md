@@ -1439,3 +1439,100 @@ systèmes dominent : **SevenRooms** et **Zenchef**.
 un vrai SFSafariViewController, mais il n'est pas installé et l'ajouter exige une
 **build App Store**. La vue est donc un cadre dans l'app. Et `target="_blank"`
 reste exclu : écran noir iPhone (7 août 2026).
+
+## 26 oct 2026 — « Réserver » partout, et six pièges qui m'ont eue
+
+Journée des boutons de réservation : **0 → 1 032**, sur 94 % des fiches. Mais ce
+qui mérite d'être noté, ce sont les erreurs, parce qu'elles reviendront.
+
+### Les six pièges, dans l'ordre où ils m'ont eue
+
+**1. `www.sevenrooms.com` n'est pas `eu.sevenrooms.com`.** Testés sur `www`, les
+37 identifiants SBM répondaient 404 et j'ai conclu qu'aucun n'existait — donc
+« les établissements SBM n'ont pas de formulaire ». Faux : sur `eu.`, **31 sur
+37** répondent. Blue Gin, Amazónico, La Rascasse, Pavyllon, Café de Paris, COYA,
+Gustave, Buddha-Bar en dépendaient.
+
+**2. L'adresse courte est une étape de redirection qui REFUSE le cadre.**
+`eu.sevenrooms.com/reservations/lebaramericain` répond 200 **avec
+`X-Frame-Options: DENY`** ; l'adresse d'arrivée
+`/explore/…/reservations/create/search` l'accepte. Écrire la courte aurait donné
+une page blanche. **Toujours enregistrer `r.url` après redirection, jamais
+l'adresse de départ.**
+
+**3. Un widget de pied de page se colle à tout le site.** Le lien SevenRooms lu
+sur n'importe quelle page de `montecarlosbm.com` est celui de **Marlow**.
+Réserver au COYA aurait réservé chez Marlow. La seule règle qui tienne : **le nom
+du lieu doit être dans l'adresse finale**. Elle a aussi rejeté Smakelijk (dont le
+site propose « cafelacostemcmmd ») et Amici Miei (TheFork répond 403).
+
+**4. `\w` ne parle pas français.** `/\w{3,5}/` ne reconnaît ni le « é » de
+« déc. » ni le « û » de « août » : en JavaScript `\w` vaut `[A-Za-z0-9_]`.
+**19 spectacles sur 80** étaient écartés en silence. Déplier les accents
+(`normalize("NFD")`) avant de lire un mois français.
+
+**5. Mars s'écrit « mar », pas « mars ».** Le tableau `MOIS` de l'app est
+`["jan","fév","mar",…]`. Écrit « mars », `gen-events-json` **écarte la fiche** —
+silencieusement, mais à raison. Deux concerts manquaient.
+
+**6. Un lieu qui a son propre script échappe au registre.** Les 70 fiches jazz
+sans bouton étaient **toutes le Bar Américain** : `bar-americain.mjs` ne lit pas
+`presentations-validees.json`. Même famille que [le lieu disparu en silence].
+Et la fiche **petit-déj est écrite à la main** dans `events.js`, donc elle ne
+recevait aucun lien non plus.
+
+### Règle 32 — un seul bouton, et le mot dit ce qu'il fait
+
+`actionDeReservation()` (`src/lib/reservation.js`) rend toujours un bouton
+« Réserver », qui fait le mieux disponible :
+1. un **vrai formulaire** → « Réserver une table / une place » (barre rouge pleine) ;
+2. sinon **le site du lieu**, s'il accepte le cadre → « Réserver » (barre sobre) ;
+3. sinon **le téléphone** → « Réserver par téléphone ».
+
+⚠️ **Le téléphone n'est pas un pis-aller** : pour la moitié des lieux de Monaco
+c'est *le* moyen de réserver, et le seul qui marche à coup sûr. ⚠️ Et on ne dit
+« une table » que quand il y a un formulaire : un bouton qui ouvre une page
+d'accueil en promettant une table **ment**.
+
+### Règle 33 — on ne sort jamais de l'app
+
+`DetailScreen` portait encore un `<a target="_blank">` vers le site du lieu : le
+dernier encore actif sur une fiche. Tout passe désormais par `VueReservation`,
+un cadre à l'intérieur de l'app, avec une croix et la phrase « La réservation
+est faite par le système du lieu. Monac'Out ne réserve pas à votre place. »
+
+### Ce qui a été réparé côté données
+
+- **SPECTACLE n'est plus une poubelle** : 116 → 32 fiches. `corrige-categories.mjs`
+  reclasse **par le lieu** (un titre ment, un lieu beaucoup moins) : la Maison du
+  Numérique ne fait que des ateliers, la Salle Gaston Médecin que du basket.
+  ⚠️ L'essai à blanc a rattrapé mes propres règles — « CINE FAMILLE LE PETIT
+  PRINCE » partait en atelier. **Toujours lire la sortie avant d'écrire.**
+- **🏀 Le basket n'était pas absent, il était caché** en SPECTACLE.
+- **⚽ Une fiche de foot fantôme** (712) annonçait un match le 19 déc sans
+  adversaire ; le calendrier officiel n'en annonce aucun ce jour-là. Le vrai
+  dernier match de 2026 est le 17 déc, Conference League.
+- **🏐 Le volley n'est pas un trou** : ses matchs « à domicile » se jouent au
+  Stade des Moneghetti, à **Beausoleil, en France**. Règle 15. Ne pas les ajouter.
+- **6 spectacles manquants** ajoutés, relevés sur montecarloticket.com.
+
+### Où il n'y a pas de bouton, et pourquoi
+
+- **Football** : `billetterie.asmonaco.com` répond `SAMEORIGIN` et le club gère
+  sa billetterie sans prestataire. Pas de contournement honnête.
+- **Grimaldi Forum** : son site refuse le cadre, mais ses spectacles passent par
+  `montecarloticket.com`, qui l'accepte.
+- **Basket** : `basket-monaco.mjs` surveille 12 mois au navigateur. Le 26 oct, le
+  calendrier du club était **vide**, sa billetterie disait « aucun évènement » et
+  l'EuroLeague ne rendait rien. Le script ajoutera dès publication.
+
+### Règle 34 — un OTA met une à deux semaines à se répandre
+
+Mesuré : **98 appareils sur 19 versions d'interface**, 48 % sur des versions de
+la mi-octobre, un seul sur la dernière. Ce n'était pas une panne : l'application
+se faisait au prochain démarrage à froid, et l'app se consulte 1 à 2 fois par
+semaine. Depuis la v0.0.146, on applique **immédiatement dans les six premières
+secondes** du lancement, et seulement là — recharger pendant une lecture ferait
+sauter l'écran. ⚠️ **Conséquence pratique : privilégier toujours les données à
+l'interface.** Les données sont lues en direct et arrivent chez tout le monde le
+jour même, y compris chez les 43 % qui passent par le site.
