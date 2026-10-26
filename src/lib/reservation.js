@@ -46,23 +46,20 @@ export function lienDeReservation(objet) {
 }
 
 /**
- * À DÉFAUT DE FORMULAIRE, LEUR SITE. Stéphanie, 26 oct 2026 : « pour apéro et
- * soirées on peut mettre le bouton je réserve ? il mène au site du restau ou
- * syst de résa ».
+ * 🪑 IL N'Y A QU'UN MOT, ET C'EST « RÉSERVER ».
  *
- * ⚠️ LE MOT DOIT DIRE CE QU'IL FAIT. Un bouton « Réserver une table » qui ouvre
- * la PAGE D'ACCUEIL d'un restaurant ment : on tombe sur une présentation, pas
- * sur un formulaire. D'où deux boutons distincts — « Réserver une table » pour
- * un vrai système (SevenRooms, Zenchef), « Réserver sur leur site » pour un
- * simple site, où l'on trouvera leur propre bouton ou leur numéro. Le second
- * est volontairement plus sobre : il promet moins.
+ * Stéphanie, 26 oct 2026 : « je ne veux pas "réserver sur le site" — on est
+ * toujours sur leur site quand on réserve ». Elle a raison, et mon libellé
+ * « Réserver sur leur site » décrivait un détail technique qui ne regarde pas
+ * la personne : qu'on ouvre un formulaire SevenRooms, la page du lieu ou le
+ * composeur, elle réserve une table. Le libellé ne dépend donc QUE de la
+ * catégorie — voir motDeReservation() et actionDeReservation().
  *
- * Mesuré le 26 oct 2026 : 17 sites de lieu sur 42 acceptent le cadre. Les 24
- * autres le refusent — dont TOUS les établissements SBM, qui répondent
- * SAMEORIGIN — et n'ont donc aucun bouton : leur téléphone reste.
+ * `motDuSite` est conservée pour ne pas casser un import oublié, mais elle rend
+ * désormais le même mot que partout ailleurs.
  */
-export function motDuSite(lang) {
-  return lang === "en" ? "Book on their site" : "Réserver sur leur site";
+export function motDuSite(lang, cat) {
+  return motDeReservation(cat, lang);
 }
 
 /** L'adresse du site d'un lieu, quand elle a été vérifiée cadrable. */
@@ -92,12 +89,25 @@ export function lienDuSite(objet) {
  * formulaire qu'on n'a pas.
  */
 export function actionDeReservation(objet, cat, lang) {
+  // 🪑 LE MÊME MOT DANS LES TROIS CAS. Stéphanie, 26 oct 2026 : « mets le même
+  // bouton pour les restaus, réserver une table ».
+  //
+  // J'avais d'abord inventé trois libellés — « Réserver une table » pour un
+  // formulaire, « Réserver » pour un site, « Réserver par téléphone » sinon —
+  // par crainte de promettre une table qu'on n'ouvrirait pas. C'était une
+  // prudence mal placée : APPELER UN RESTAURANT, C'EST RÉSERVER UNE TABLE, et
+  // c'est même la façon dont on réserve dans la moitié des lieux de Monaco.
+  // Le mot est donc juste dans les trois cas, et trois libellés différents
+  // pour un même geste brouillaient la lecture.
+  //
+  // Le mot ne dépend plus que de la CATÉGORIE : une table pour un repas, une
+  // place pour un spectacle. Seul le mode change ce qui se passe au toucher.
+  const mot = motDeReservation(cat, lang);
   const form = lienDeReservation(objet);
-  if (form) return { mode: "form", url: form, mot: motDeReservation(cat, lang) };
+  if (form) return { mode: "form", url: form, mot };
   const site = lienDuSite(objet);
-  if (site) return { mode: "site", url: site, mot: lang === "en" ? "Book" : "Réserver" };
+  if (site) return { mode: "site", url: site, mot };
   const tel = (objet && (objet.tel || objet.phone)) || "";
-  if (tel) return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""),
-                    mot: lang === "en" ? "Book by phone" : "Réserver par téléphone" };
+  if (tel) return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""), mot };
   return null;
 }

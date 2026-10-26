@@ -489,7 +489,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {!estAnnuaire && (() => {
             const a = actionDeReservation(event, event.cat, lang);
             if (!a) return null;
-            const plein = a.mode === "form";
+            // Même geste, même aspect : la barre est pleine dans les trois cas.
+            const plein = true;
             return (
               <button
                 onClick={e => { e.stopPropagation();

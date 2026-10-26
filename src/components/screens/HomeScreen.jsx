@@ -819,7 +819,8 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
       {(() => {
         const a = actionDeReservation(lieu, fiche.cat, lang);
         if (!a) return null;
-        const plein = a.mode === "form";
+        // Même geste, même aspect : la barre est pleine dans les trois cas.
+            const plein = true;
         return (
           <button onClick={e => { e.stopPropagation();
                     if (a.mode === "tel") window.location.href = `tel:${a.tel}`;
