@@ -148,6 +148,19 @@ const NOMMEES = {
     descEn: "Nomis at the Twiga Monte-Carlo club. The same night, Alessandro Ristori & The Portofinos on the restaurant side." },
 };
 
+// 🎟️ LES ADRESSES DE RÉSERVATION, pour les lieux qui ont LEUR PROPRE FICHE.
+// Stéphanie, 26 oct 2026 : « et boutons sur restaux soirées apéro ». Un lieu
+// absorbé dans la fiche « CE SOIR » reçoit son lien par soirees-du-jour ; un
+// lieu qui garde sa fiche (Twiga, Le Petit Café Robuchon) ne passait par aucun
+// des deux. Les deux chemins lisent la MÊME source, presentations-validees.json,
+// où chaque adresse a été vérifiée à la main. Voir src/lib/reservation.js.
+const RESA = new Map();
+try {
+  const pv = JSON.parse(readFileSync(join(__dirname, "..", "presentations-validees.json"), "utf8"));
+  for (const [nom, e] of Object.entries(pv)) if (e && e.resa) RESA.set(nom, e.resa);
+  console.log(`  · ${RESA.size} lieu(x) avec une adresse de réservation vérifiée`);
+} catch { /* fichier absent : aucun bouton, et c'est sans gravité */ }
+
 for (const v of V) {
   const cur = new Date(today.getFullYear(), today.getMonth(), 1);
   while (cur <= end) {
@@ -165,7 +178,7 @@ for (const v of V) {
             const titre = nommee ? `${nommee.nom}${NL}SOIRÉE${NL}TWIGA MONTE-CARLO` : v.title;
             const descF = nommee ? nommee.desc   : v.desc;
             const descA = nommee ? nommee.descEn : v.descEn;
-            lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${titre}",subtitle:"${v.subtitle}",desc:"${descF}",descEn:"${descA}",free:false,hot:${nommee ? "true" : "false"},nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",${v.link ? `link:"${v.link}",` : ""}${v.phone ? `phone:"${v.phone}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
+            lines.push(`  {id:${id++},year:${dt.getFullYear()},cat:"${v.cat}",date:"${dateStr}",time:"${v.time}",title:"${titre}",subtitle:"${v.subtitle}",desc:"${descF}",descEn:"${descA}",free:false,hot:${nommee ? "true" : "false"},nlg:1,fallback:"${v.fb}",accent:"${v.ac}",emoji:"${v.emoji}",${v.link ? `link:"${v.link}",` : ""}${v.phone ? `phone:"${v.phone}",` : ""}${RESA.get(v.subtitle.split(" · ")[0]) ? `resa:"${RESA.get(v.subtitle.split(" · ")[0])}",` : ""}source:"${v.subtitle.split(" · ")[0]}",quarter:"${v.quarter}"},`);
           }
         }
       }

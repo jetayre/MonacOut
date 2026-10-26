@@ -48,12 +48,16 @@
   "Marlow": {
     "adr": "5 place Princesse Gabriella · Mareterra",
     "texte": "Café-lounge aux influences britanniques, où la cuisine anglo-saxonne est « réinventée avec malice ». Brunch, afternoon tea et cocktails face à la mer.",
-    "source": "montecarlosbm.com"
+    "source": "montecarlosbm.com",
+    "resa": "https://www.sevenrooms.com/explore/marlow/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "99 Sushi Bar": {
     "adr": "16 quai du Petit Portier · Mareterra",
     "texte": "Haute cuisine japonaise à Mareterra : sushis et poissons travaillés avec des produits de première qualité, dans un cadre raffiné.",
-    "source": "99sushibar.com"
+    "source": "99sushibar.com",
+    "resa": "https://www.sevenrooms.com/explore/99sushibarmonaco/reservations/create/search",
+    "resa_source": "SevenRooms"
   },
   "Amazónico": {
     "adr": "Place du Casino · Monte-Carlo",
@@ -172,5 +176,19 @@
     "adr": "Av. Princesse Grace · Plage du Larvotto",
     "texte": "Cuisine mexicaine sur la plage du Larvotto, avenue Princesse Grace.",
     "source": "sexytacos.mc"
+  },
+  "Le Petit Café Robuchon": {
+    "adr": "Hôtel Métropole · 4 av. de la Madone · Monte-Carlo",
+    "texte": "Le comptoir de Joël Robuchon à l'Hôtel Métropole : cuisine de bistrot raffinée, et un brunch le dimanche avec DJ set.",
+    "source": "robuchonmonaco.com",
+    "resa": "https://www.sevenrooms.com/explore/robuchon/reservations/create/search",
+    "resa_source": "SevenRooms"
+  },
+  "Twiga Monte Carlo": {
+    "adr": "Av. Princesse Grace · Larvotto",
+    "texte": "Dîner par Vesta à partir de 20h, puis club à partir de minuit et jusqu'à 5h : musique internationale, rythmes afro et deep house. Du mardi au dimanche, fermé le lundi.",
+    "source": "twigaworld.com",
+    "resa": "https://www.sevenrooms.com/explore/vestamontecarlo/reservations/create/search",
+    "resa_source": "SevenRooms"
   }
 }
