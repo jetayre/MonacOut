@@ -1625,6 +1625,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               onToggleFav={onToggleFav}
               onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
               onCardClick={onCardClick}
+              onReserver={ouvrirReservation}
               lang={lang}
               onGoingClick={onGoingClick}
               isGoing={

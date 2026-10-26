@@ -91,6 +91,11 @@ jobs:
         run: node scripts/soirees-du-jour.mjs
         continue-on-error: true
 
+      - name: "🎟️ Lien de réservation sur les spectacles - billetterie de Monaco"
+        id: billetterie
+        run: node scripts/billetterie-monaco.mjs
+        continue-on-error: true
+
       - name: "🧘 Une fiche bien-être et une fiche ateliers par jour"
         id: bienetre
         run: node scripts/bien-etre-du-jour.mjs

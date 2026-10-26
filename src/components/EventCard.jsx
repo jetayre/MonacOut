@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../lib/itineraire";
+import { motDeReservation, lienDeReservation } from "../lib/reservation";
 import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
@@ -253,7 +254,7 @@ export function FriendAvatars({ friends = [] }) {
   )
 }
 
-export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false, compact = false, onInfos = null, infosDepliees = false }) {
+export default function EventCard({ event, favorites, onToggleFav, onCategoryClick, onCardClick, lang = "fr", onGoingClick, isGoing = false, friendsGoing = [], loggedIn = false, onShowAuth, jourAffiche = null, sansDate = false, compact = false, onInfos = null, infosDepliees = false, onReserver = null }) {
   // 🚨 UNE FICHE-ANNUAIRE N'EST PAS UN ÉVÉNEMENT où l'on se rend.
   // Stéphanie, 13 oct 2026 : « retire j'y vais calendrier sur la fiche petit déj
   // 12 adresses ; met mon calendrier et cœur sur les sous-fiches ». On ne va pas
@@ -471,6 +472,33 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 </div>
               ))}
             </div>
+          )}
+          {/* 🎟️ RÉSERVER UNE PLACE. Stéphanie, 26 oct 2026 : « fais le lien avec
+              leur système de résa en ouvrant une vue dans l'app ». Sur une fiche
+              de spectacle, le lien vient de la billetterie commune de Monaco
+              (scripts/billetterie-monaco.mjs) ; sur un film, de la séance.
+              Pleine largeur et au-dessus de Direction : on réserve d'abord, on
+              cherche son chemin ensuite. Pas de lien → pas de bouton, jamais un
+              cadre vide — voir lib/reservation.js. */}
+          {lienDeReservation(event) && (
+            <button
+              onClick={e => { e.stopPropagation();
+                onReserver?.(lienDeReservation(event), (event.title || "").replace(/\n/g, " ")); }}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
+                width: "100%", height: 38, marginBottom: 10, cursor: "pointer",
+                border: "1px solid #7B2D26", borderRadius: 1, background: "#7B2D26",
+                fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 700,
+                letterSpacing: 2, textTransform: "uppercase", color: "#FFFDF8",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFDF8"
+                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                   style={{ display: "block", flexShrink: 0 }}>
+                <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>
+              </svg>
+              {motDeReservation(event.cat, lang)}
+            </button>
           )}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             {/* 🚫 Sur une fiche-annuaire, le site et le téléphone ne veulent rien dire :
