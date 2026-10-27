@@ -110,34 +110,37 @@ export function actionDeReservation(objet, cat, lang) {
   const tel = (objet && (objet.tel || objet.phone)) || "";
   if (!tel) return null;
 
-  // 🎡 ON NE RÉSERVE PAS UNE FOIRE — MAIS ON RÉSERVE PRESQUE TOUT LE RESTE.
+  // 🎡 CE QUI NE SE RÉSERVE PAS N'A PAS DE BOUTON — ET TOUT LE RESTE A LE MÊME.
   //
-  // Stéphanie, 27 oct 2026 : « la foire, y a rien à réserver, tu as mis un
-  // numéro ». Elle avait raison. Mais ma première correction renvoyait
-  // « Appeler » sur TOUT ce qui n'est pas un repas — 4 466 fiches — et défaisait
-  // sa demande de la veille : « met le même bouton, réserver une table ou une
-  // place, et même couleur ». Deux instructions justes, une seule bonne réponse :
-  // garder « Réserver » partout, et ne faire exception QUE là où il n'y a
-  // vraiment rien à réserver.
+  // Stéphanie, 27 oct 2026 : « tout doit être pareil, et on n'indique pas le
+  // moyen de résa mais ce que le client réserve : une place ou une table ».
   //
-  // La liste est donc COURTE et explicite : une foire, un marché, une messe, un
-  // feu d'artifice, une procession, une brocante. On y entre à sa guise, le
-  // téléphone sert à se renseigner, pas à réserver.
+  // 🚨 J'AI MIS TROIS ESSAIS À COMPRENDRE, ET CHACUN AJOUTAIT UNE EXCEPTION :
+  //   · « Réserver par téléphone » / « Réserver sur leur site » → ça nommait le
+  //     MOYEN, qui ne regarde pas la personne ;
+  //   · une barre pleine pour un formulaire, une barre pâle sinon → deux
+  //     apparences pour un même geste ;
+  //   · puis « Appeler » sur tout ce qui n'est pas un repas → 4 466 fiches.
+  // La règle est plus simple que toutes mes nuances : UN SEUL MOT, UNE SEULE
+  // COULEUR, et il dit CE QU'ON RÉSERVE. Formulaire, site ou téléphone : la
+  // personne s'en moque, elle veut une place ou une table.
   //
-  // ⚠️ ON NE SE FIE PAS À `free` : les Thursday Live Sessions du Grimaldi Forum
+  // La seule exception légitime n'est pas un autre libellé, c'est l'ABSENCE de
+  // bouton : on ne réserve pas une foire, une messe, un feu d'artifice, un
+  // marché ni la fête nationale. On y entre, voilà tout.
+  //
+  // ⚠️ On ne se fie pas à `free` : les Thursday Live Sessions du Grimaldi Forum
   // sont GRATUITES SUR RÉSERVATION, 200 places. Gratuit ne veut pas dire ouvert.
-  const texte = `${(objet && (objet.name || objet.title)) || ""} ${cat || ""}`
+  // ⚠️ Et « marche » n'est pas « marché » : accents dépliés, les deux s'écrivent
+  // pareil, et « Marche et sorties nature » se réserve très bien. C'est la
+  // CATÉGORIE qui tranche, jamais le mot seul.
+  const texte = `${(objet && (objet.name || objet.title)) || ""}`
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  // ⚠️ « MARCHE » N'EST PAS « MARCHÉ ». Une fois les accents dépliés, les deux
-  // s'écrivent pareil — et « Marche et sorties nature », une randonnée guidée
-  // qui se réserve très bien, tombait dans l'exception. On ne cherche donc plus
-  // le mot dans le texte : la CATÉGORIE tranche, elle ne confond rien.
-  const SANS_RESERVATION = /\bfoire\b|\bbrocante\b|\bmesse\b|feu d.artifice|procession|vide.grenier/;
+  const RIEN_A_RESERVER = /\bfoire\b|\bbrocante\b|\bmesse\b|feu d.artifice|procession|vide.grenier/;
   const CAT_OUVERTE = new Set(["MARCHÉ", "CHANTS", "FÊTE NATIONALE"]);
-  if (SANS_RESERVATION.test(texte) || CAT_OUVERTE.has(String(cat || "").toUpperCase()))
-    return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""),
-             mot: lang === "en" ? "Call" : "Appeler" };
+  if (RIEN_A_RESERVER.test(texte) || CAT_OUVERTE.has(String(cat || "").toUpperCase()))
+    return null;
 
-  // Partout ailleurs : le même mot, la même couleur, comme demandé.
   return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""), mot };
+
 }
