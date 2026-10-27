@@ -823,6 +823,14 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
             const plein = true;
         return (
           <button onClick={e => { e.stopPropagation();
+                    // 📊 SANS CETTE LIGNE, LE BOUTON EST MUET. Stéphanie, 27 oct
+                    // 2026 : « dis-moi s'ils utilisent les nouveaux boutons
+                    // réserver ». 9 030 boutons posés la veille, et AUCUN
+                    // n'envoyait de signal — impossible de répondre. Le mode
+                    // (formulaire, site ou téléphone) est enregistré : c'est lui
+                    // qui dira si un vrai formulaire convertit mieux qu'un appel.
+                    track("reservation_clic", { mode: a.mode, cat: fiche.cat,
+                                                lieu: lieu.nom || lieu.name });
                     if (a.mode === "tel") window.location.href = `tel:${a.tel}`;
                     else onReserver?.(a.url, lieu.nom || lieu.name); }}
             style={{

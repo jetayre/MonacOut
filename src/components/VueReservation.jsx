@@ -12,6 +12,7 @@
  * — « Ça ne s'affiche pas ? » — pour qui tomberait malgré tout sur du blanc.
  */
 import { useEffect, useState } from "react";
+import { track } from "../lib/track";
 
 export default function VueReservation({ url, titre, lang, onFermer }) {
   const [charge, setCharge] = useState(false);
@@ -29,6 +30,19 @@ export default function VueReservation({ url, titre, lang, onFermer }) {
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = avant; };
   }, []);
+
+  // 📊 COMBIEN DE TEMPS LA VUE RESTE OUVERTE. Un clic ne dit pas grand-chose :
+  // une page de réservation refermée en deux secondes, c'est un échec (cadre
+  // blanc, page illisible sur petit écran). Quelques dizaines de secondes, c'est
+  // quelqu'un qui remplit vraiment un formulaire. Stéphanie, 27 oct 2026.
+  useEffect(() => {
+    const debut = Date.now();
+    const hote = (() => { try { return new URL(url).hostname; } catch { return "?"; } })();
+    track("reservation_vue_ouverte", { hote });
+    return () => track("reservation_vue_fermee", {
+      hote, secondes: Math.round((Date.now() - debut) / 1000),
+    });
+  }, [url]);
 
   if (!url) return null;
 

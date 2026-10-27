@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../lib/itineraire";
 import { actionDeReservation } from "../lib/reservation";
+import { track } from "../lib/track";
 import { Share } from "@capacitor/share";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
@@ -494,6 +495,10 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
             return (
               <button
                 onClick={e => { e.stopPropagation();
+                  // 📊 Voir HomeScreen : sans cette mesure, on ne sait pas si
+                  // le bouton sert à quelque chose.
+                  track("reservation_clic", { mode: a.mode, cat: event.cat,
+                                              lieu: event.source || event.subtitle });
                   if (a.mode === "tel") window.location.href = `tel:${a.tel}`;
                   else onReserver?.(a.url, (event.title || "").replace(/\n/g, " ")); }}
                 style={{
