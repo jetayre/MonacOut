@@ -289,31 +289,7 @@ export default function DetailScreen({ event, onBack, favorites, onToggleFav, on
                 : (lang === "en" ? "Book →" : "Réserver →")}
             </button>
           )}
-          {event.phone && (
-            <button
-              onClick={() => {
-                if (showPhone) window.location.href = `tel:${event.phone}`;
-                else setShowPhone(true);
-              }}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: showPhone ? "auto" : 52,
-                padding: showPhone ? "0 14px" : 0,
-                flexShrink: 0,
-                border: `1.5px solid ${GOLD}`,
-                borderRadius: 16,
-                background: "none",
-                cursor: "pointer",
-                color: GOLD,
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 12,
-              }}
-            >
-              {showPhone ? event.phone : <PhoneIcon />}
-            </button>
-          )}
+          {/* 🗑️ Bouton téléphone retiré : « Réserver » s'en charge. */}
         </div>
 
       </div>

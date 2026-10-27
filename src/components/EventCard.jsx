@@ -440,9 +440,14 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                   padding: "5px 0",
                   borderBottom: i < event.venues.length - 1 ? "1px solid rgba(201,169,110,0.2)" : "none",
                 }}>
+                  {/* 🎯 Stéphanie, 27 oct 2026 : « tous les titres des sous-fiches
+                      doivent être centrés ». Ce bloc `venues` est l'ancien format,
+                      mais il reste affiché sur quelques fiches : il suit la même
+                      règle que CarteLieu, sinon deux sous-fiches voisines ne se
+                      ressembleraient pas. */}
                   <span style={{
                     fontFamily: "'Lato', sans-serif", fontSize: 12, color: NAVY, flex: 1,
-                    textAlign: "left", paddingRight: 8,
+                    textAlign: "center", paddingRight: 8,
                   }}>{v.name}</span>
                   <div style={{ display: "inline-flex", gap: 4, flexShrink: 0 }}>
                     {/* ⚠️ PLUS DE target="_blank" : sur iPhone il ouvre un onglet vide
@@ -466,17 +471,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                         </svg>
                       </a>
                     )}
-                    {v.phone && (
-                      <button
-                        onClick={e => { e.stopPropagation(); window.location.href = `tel:${v.phone.replace(/[\s()]/g, '')}`; }}
-                        style={{
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          width: 28, height: 28, border: `1px solid ${GOLD_FRAME}`, borderRadius: 1,
-                          background: "none", cursor: "pointer", color: GOLD,
-                        }}>
-                        <PhoneIcon />
-                      </button>
-                    )}
+                    {/* 🗑️ Plus d'icône téléphone : « Réserver » compose déjà le
+                        numéro quand c'est le seul moyen. Stéphanie, 27 oct 2026 :
+                        « retire tous les appeler, qui sont du coup inutiles ». */}
                   </div>
                 </div>
               ))}
@@ -552,30 +549,9 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                     {lang === "en" ? "Directions" : "Direction"}
                   </button>
                 ) : (
-                  <button
-                    onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      padding: showPhone ? "0 10px" : "0 16px",
-                      background: "none", border: "none", cursor: "pointer",
-                      color: GOLD, fontFamily: "'Lato', sans-serif", fontSize: 11,
-                    }}
-                  >{showPhone ? event.phone : <PhoneIcon />}</button>
-                )}
-                {event.subtitle && event.phone && (
-                  <>
-                    <div style={{ width: 1, background: GOLD_FRAME, flexShrink: 0 }} />
-                    <button
-                      onClick={e => { e.stopPropagation(); if (showPhone) window.location.href = `tel:${event.phone}`; else setShowPhone(true); }}
-                      style={{
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        width: showPhone ? "auto" : 36, padding: showPhone ? "0 10px" : 0,
-                        flexShrink: 0, background: "none", border: "none",
-                        cursor: "pointer", color: GOLD,
-                        fontFamily: "'Lato', sans-serif", fontSize: 11,
-                      }}
-                    >{showPhone ? event.phone : <PhoneIcon />}</button>
-                  </>
+                  /* 🗑️ Plus de bouton téléphone ici non plus : « Réserver »
+                     compose le numéro quand c'est le seul moyen. */
+                  <span />
                 )}
               </div>
             ) : (

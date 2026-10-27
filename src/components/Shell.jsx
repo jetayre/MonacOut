@@ -400,20 +400,7 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                         {lang === "en" ? "Directions" : "Direction"}
                       </span></button>
                     )}
-                    {selectedEvent.phone && (
-                      <button
-                        onClick={() => { if (showPhone) window.location.href = `tel:${selectedEvent.phone}`; else setShowPhone(true); }}
-                        style={{
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          width: showPhone ? "auto" : 44, padding: showPhone ? "0 10px" : 0,
-                          flexShrink: 0,
-                          border: `1.5px solid ${GOLD}`,
-                          borderRadius: 1,
-                          background: "none", cursor: "pointer", color: GOLD,
-                          fontFamily: "'Lato', sans-serif", fontSize: 11,
-                        }}
-                      >{showPhone ? selectedEvent.phone : <PhoneIcon />}</button>
-                    )}
+                    {/* 🗑️ Bouton téléphone retiré : « Réserver » s'en charge. */}
                   </div>
                 )}
 
