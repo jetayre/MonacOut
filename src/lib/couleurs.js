@@ -23,22 +23,38 @@ export const NAVY    = "#0F1D3A";   // tous les textes
 export const IVOIRE  = "#FFFDF7";
 export const GRIS    = "#6A7080";
 
+// 🎨 PALETTE RAVIVÉE LE 27 OCT 2026. Stéphanie : « met des couleurs plus
+// distinctes, change le contraste, là je ne vois que légèrement les couleurs
+// des cadres ». Le diagnostic, mesuré avant de toucher à quoi que ce soit : les
+// teintes étaient DÉJÀ bien séparées (29° au minimum), mais les huit étaient
+// toutes SOMBRES — de 6,8:1 à 12:1 de contraste. Sur un trait de 3 px, l'œil ne
+// lit que « foncé » et ne distingue pas le Havane du Vert Bengale.
+//
+// Les nouvelles valeurs montent à 95 % de saturation pour un contraste ramené
+// à 5,6:1 — au-dessus de la norme de 4,5:1, mais assez clair pour que la TEINTE
+// se voie enfin. Chaque valeur a été calculée, pas choisie à l'œil : on cherche
+// la saturation maximale qui tienne dans la fourchette de contraste voulue.
+//
+// ⚠️ ROUGE_H, LUI, NE CHANGE PAS. C'est le fil conducteur — logo, bouton
+// « Réserver », cœur des favoris — et le passer à #CE0C05 ferait virer
+// l'identité au rouge postal. Seule la FAMILLE de la table prend le rouge vif.
+//
 // Les huit familles. La 1ʳᵉ catégorie citée donne son nom à la famille.
 export const FAMILLES = [
   // « PETIT-DÉJ » (11 oct 2026) rejoint la famille de la table plutôt que
   // d'ouvrir une 9ᵉ couleur : l'écart de 25° entre teintes, qui les rend
   // vraiment distinguables, ne survivrait pas à une de plus.
-  { nom: "Rouge H",        couleur: "#7B2D26", cats: ["APÉRO", "BRUNCH", "FOODY", "PETIT-DÉJ"] },
-  { nom: "Havane",         couleur: "#6E4B1C", cats: ["EXPOSITION", "MARCHÉ"] },
-  { nom: "Vert Bengale",   couleur: "#44581C", cats: ["SPECTACLE", "THÉÂTRE", "DANSE", "CINÉMA", "FESTIVAL", "FÊTE NATIONALE", "ATELIER"] },
-  { nom: "Vert Cyprès",    couleur: "#1A4F3C", cats: ["BIEN-ÊTRE"] },
-  { nom: "Bleu Jean",      couleur: "#22607A", cats: ["SPORT", "FOOTBALL", "BASKET", "FORMULE 1", "FORMULE E", "TENNIS", "RALLYE"] },
-  { nom: "Bleu Encre",     couleur: "#27306B", cats: ["CONCERT", "OPÉRA", "MUSICAL", "CHANTS", "JAZZ LIVE"] },
+  { nom: "Rouge H",        couleur: "#CE0C05", cats: ["APÉRO", "BRUNCH", "FOODY", "PETIT-DÉJ"] },
+  { nom: "Havane",         couleur: "#9F5204", cats: ["EXPOSITION", "MARCHÉ"] },
+  { nom: "Vert Bengale",   couleur: "#327503", cats: ["SPECTACLE", "THÉÂTRE", "DANSE", "CINÉMA", "FESTIVAL", "FÊTE NATIONALE", "ATELIER"] },
+  { nom: "Vert Cyprès",    couleur: "#03754F", cats: ["BIEN-ÊTRE"] },
+  { nom: "Bleu Jean",      couleur: "#046DA2", cats: ["SPORT", "FOOTBALL", "BASKET", "FORMULE 1", "FORMULE E", "TENNIS", "RALLYE"] },
+  { nom: "Bleu Encre",     couleur: "#3A3FDF", cats: ["CONCERT", "OPÉRA", "MUSICAL", "CHANTS", "JAZZ LIVE"] },
   // Stéphanie, 10 oct 2026 : « jazz live ça devrait être musique comme catégorie ».
   // Elle a raison — un concert de jazz est un concert. Violet Anémone ne garde que
   // ce qui relève vraiment de la nuit.
-  { nom: "Violet Anémone", couleur: "#58275C", cats: ["DJ SET", "SOIRÉE"] },
-  { nom: "Rouge Grenat",   couleur: "#6E2340", cats: ["ENCHÈRES", "SALON", "GALA", "CONFÉRENCE"] },
+  { nom: "Violet Anémone", couleur: "#AF05C9", cats: ["DJ SET", "SOIRÉE"] },
+  { nom: "Rouge Grenat",   couleur: "#C90561", cats: ["ENCHÈRES", "SALON", "GALA", "CONFÉRENCE"] },
 ];
 
 const PAR_CAT = {};
