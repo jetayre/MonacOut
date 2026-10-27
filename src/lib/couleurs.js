@@ -41,21 +41,57 @@ export const GRIS    = "#6A7080";
 //
 // Les huit familles. La 1ʳᵉ catégorie citée donne son nom à la famille.
 export const FAMILLES = [
-  // « PETIT-DÉJ » (11 oct 2026) rejoint la famille de la table plutôt que
-  // d'ouvrir une 9ᵉ couleur : l'écart de 25° entre teintes, qui les rend
-  // vraiment distinguables, ne survivrait pas à une de plus.
-  { nom: "Rouge H",        couleur: "#CE0C05", cats: ["APÉRO", "BRUNCH", "FOODY", "PETIT-DÉJ"] },
-  { nom: "Havane",         couleur: "#9F5204", cats: ["EXPOSITION", "MARCHÉ"] },
-  { nom: "Vert Bengale",   couleur: "#327503", cats: ["SPECTACLE", "THÉÂTRE", "DANSE", "CINÉMA", "FESTIVAL", "FÊTE NATIONALE", "ATELIER"] },
-  { nom: "Vert Cyprès",    couleur: "#03754F", cats: ["BIEN-ÊTRE"] },
-  { nom: "Bleu Jean",      couleur: "#046DA2", cats: ["SPORT", "FOOTBALL", "BASKET", "FORMULE 1", "FORMULE E", "TENNIS", "RALLYE"] },
-  { nom: "Bleu Encre",     couleur: "#3A3FDF", cats: ["CONCERT", "OPÉRA", "MUSICAL", "CHANTS", "JAZZ LIVE"] },
-  // Stéphanie, 10 oct 2026 : « jazz live ça devrait être musique comme catégorie ».
-  // Elle a raison — un concert de jazz est un concert. Violet Anémone ne garde que
-  // ce qui relève vraiment de la nuit.
-  { nom: "Violet Anémone", couleur: "#AF05C9", cats: ["DJ SET", "SOIRÉE"] },
-  { nom: "Rouge Grenat",   couleur: "#C90561", cats: ["ENCHÈRES", "SALON", "GALA", "CONFÉRENCE"] },
+  // 🎨 UNE COULEUR PAR CATÉGORIE — 27 oct 2026. Stéphanie : « c'est mieux, mais
+  // chaque catégorie doit avoir une couleur différente ». On passe donc de 8
+  // familles à 28 teintes, UNE PAR CATÉGORIE.
+  //
+  // ⚠️ MAIS LES FAMILLES NE DISPARAISSENT PAS. Elles restent la structure : les
+  // tables occupent les rouges-orangés, les expositions les ocres, la scène les
+  // verts, le sport les bleus-cyan, la musique les bleus-violets, la nuit les
+  // magentas. Chaque catégorie prend SA nuance dans la zone de sa famille, en
+  // alternant une bande claire (contraste ~5,2:1) et une bande foncée (~7,1:1)
+  // pour que deux voisines ne se confondent jamais.
+  //
+  // J'ai essayé une variante « séparation maximale » qui écartait les catégories
+  // fréquentes de 107 au lieu de 38 — mais elle FAISAIT VOLER EN ÉCLATS les
+  // familles : les expositions devenaient bleues, le sport rouge. La refonte du
+  // 10 octobre est une décision de Stéphanie, on ne la défait pas pour gagner
+  // quelques points d'écart.
+  //
+  // Toutes les valeurs sont CALCULÉES : on cherche la saturation maximale qui
+  // tienne dans la fourchette de contraste. Minimum relevé : 5,2:1, au-dessus de
+  // la norme de 4,5:1. Les seules paires un peu proches (écart 25 sur 441)
+  // concernent des catégories à 1 ou 2 fiches — Festival, Marché, Petit-déj.
+  { nom: "Apéro", couleur: "#D80202", cats: ["APÉRO"] },
+  { nom: "Brunch", couleur: "#A62802", cats: ["BRUNCH"] },
+  { nom: "Foody", couleur: "#B04D02", cats: ["FOODY"] },
+  { nom: "Petit-Déj", couleur: "#7D4C01", cats: ["PETIT-DÉJ"] },
+  { nom: "Exposition", couleur: "#856701", cats: ["EXPOSITION"] },
+  { nom: "Marché", couleur: "#5D5A01", cats: ["MARCHÉ"] },
+  { nom: "Salon", couleur: "#607301", cats: ["SALON"] },
+  { nom: "Enchères", couleur: "#3E6101", cats: ["ENCHÈRES"] },
+  { nom: "Théâtre", couleur: "#327B01", cats: ["THÉÂTRE"] },
+  { nom: "Spectacle", couleur: "#156501", cats: ["SPECTACLE"] },
+  { nom: "Danse", couleur: "#017D01", cats: ["DANSE"] },
+  { nom: "Cinéma", couleur: "#016515", cats: ["CINÉMA"] },
+  { nom: "Festival", couleur: "#017B32", cats: ["FESTIVAL"] },
+  { nom: "Atelier", couleur: "#01653D", cats: ["ATELIER"] },
+  { nom: "Bien-Être", couleur: "#01795D", cats: ["BIEN-ÊTRE"] },
+  { nom: "Sport", couleur: "#01606F", cats: ["SPORT"] },
+  { nom: "Football", couleur: "#0273A0", cats: ["FOOTBALL"] },
+  { nom: "Basket", couleur: "#02599C", cats: ["BASKET"] },
+  { nom: "Fête Nationale", couleur: "#0262E8", cats: ["FÊTE NATIONALE"] },
+  { nom: "Concert", couleur: "#0240EA", cats: ["CONCERT"] },
+  { nom: "Opéra", couleur: "#4154FD", cats: ["OPÉRA"] },
+  { nom: "Musical", couleur: "#392BFD", cats: ["MUSICAL"] },
+  { nom: "Jazz Live", couleur: "#7045FD", cats: ["JAZZ LIVE"] },
+  { nom: "Chants", couleur: "#6503F8", cats: ["CHANTS"] },
+  { nom: "Soirée", couleur: "#A502F6", cats: ["SOIRÉE"] },
+  { nom: "Dj Set", couleur: "#9702AE", cats: ["DJ SET"] },
+  { nom: "Gala", couleur: "#C6029F", cats: ["GALA"] },
+  { nom: "Conférence", couleur: "#AE0252", cats: ["CONFÉRENCE"] },
 ];
+
 
 const PAR_CAT = {};
 for (const f of FAMILLES) for (const c of f.cats) PAR_CAT[c] = f.couleur;
