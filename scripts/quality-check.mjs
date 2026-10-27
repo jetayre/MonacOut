@@ -118,7 +118,12 @@ for (const [cle, groupe] of parTitre) {
   // Une fiche `recap:true` (« ce soir : 6 terrasses ouvertes », « les expositions de
   // l'hiver ») résume PLUSIEURS lieux : il n'existe aucun lien unique à mettre, et
   // les noms + téléphones sont dans sa description. On ne la signale donc pas.
-  if (!e.link && !e.recap) pb.sansLien.push(`${e.date} · ${titre(e)} — ${(e.subtitle || "").split(" · ")[0]} (id ${e.id})`);
+  // ⚠️ UN TÉLÉPHONE SUFFIT À SE RENSEIGNER. Corrigé le 27 oct 2026 : ce contrôle
+  // ne regardait que `link`, alors que son propre libellé dit « impossible de
+  // réserver ou de se renseigner ». Les 20 fiches de la Salle d'Exposition du
+  // Quai Antoine Ier venaient de recevoir le numéro de la Direction des Affaires
+  // Culturelles — et restaient signalées. Un contrôle qui crie à tort s'use.
+  if (!e.link && !e.phone && !e.resa && !e.recap) pb.sansLien.push(`${e.date} · ${titre(e)} — ${(e.subtitle || "").split(" · ")[0]} (id ${e.id})`);
 
   // ── 5. Doublon d'une série : même LIEU + même période, mais un titre différent
   //    et une seule occurrence, alors qu'une série couvre déjà ces dates.

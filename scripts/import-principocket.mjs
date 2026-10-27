@@ -93,7 +93,13 @@ for (let i = 0; i < tous.length; i += 8) {
   await Promise.all(tous.slice(i, i + 8).map(async sl => {
     const h = await get("https://www.principocket.com" + sl);
     const titre = decodeURIComponent(sl.replace(/^\/en\/events\/[0-9a-f]{32}-/, "")).replace(/-/g, " ").trim();
-    const lieu = ((h.match(/href="\/en\/places\/[^"]*"[^>]*>([^<]+)</) || [])[1] || "").replace(/&amp;/g, "&").trim();
+    // 🔤 LE LIEU SE DÉCODE COMME LE TITRE. Corrigé le 27 oct 2026 : cette ligne
+    // ne décodait que &amp;, alors que la ligne du titre décode aussi &#039;.
+    // Résultat : 38 fiches affichaient « St Paul&#039;s Anglican Church » ou
+    // « Salle d&#039;Exposition du Quai Antoine Ier ». Visible à l'écran.
+    const lieu = ((h.match(/href="\/en\/places\/[^"]*"[^>]*>([^<]+)</) || [])[1] || "")
+      .replace(/&#0?39;|&rsquo;/g, "'").replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"').replace(/&nbsp;/g, " ").trim();
     const txt = h.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
     const dates = [...txt.matchAll(/(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/gi)]
       .map(m => new Date(+m[3], MON_EN[m[2].toLowerCase()], +m[1]));

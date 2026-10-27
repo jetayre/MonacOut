@@ -38,6 +38,14 @@ const VENUES = [
   { match:/grimaldi/i,                     name:'Grimaldi Forum',                 quarter:'Larvotto',     link:'https://www.grimaldiforum.com/', phone:'+377 9999 2000', cat:'CONCERT' },
   { match:/princesse grace|princess grace/i,name:'Théâtre Princesse Grace',        quarter:'Monte-Carlo',  link:'https://www.tpgmonaco.mc', phone:'+377 9325 3227', cat:'THÉÂTRE' },
   { match:/vari[ée]t[ée]s/i,               name:'Théâtre des Variétés',           quarter:'Monte-Carlo',  link:'', phone:'+377 9330 1861', cat:'SPECTACLE' },
+  // 🔗 LA SALLE D'EXPOSITION DU QUAI ANTOINE IER N'EST PAS LE THÉÂTRE FORT
+  // ANTOINE. Deux lieux différents, deux « Antoine ». Le 27 oct 2026, DIX-SEPT
+  // fiches de la Salle d'Exposition pointaient vers theatrefortantoine.com :
+  // « Réserver » y ouvrait le mauvais lieu. On déclare donc la salle AVANT, et
+  // SANS lien — elle dépend de la Direction des Affaires Culturelles et n'a pas
+  // de site propre joignable (gouv.mc répond 403 depuis un centre de données).
+  // Un lien qui mène ailleurs est pire qu'un lien absent.
+  { match:/quai antoine/i,                 name:"Salle d'Exposition du Quai Antoine Ier", quarter:'La Condamine', link:'', phone:'', cat:'EXPOSITION' },
   { match:/fort antoine/i,                 name:'Théâtre Fort Antoine',           quarter:'Monaco-Ville', link:'https://www.theatrefortantoine.com/', phone:'', cat:'THÉÂTRE' },
   { match:/muses/i,                        name:'Théâtre des Muses',              quarter:'Monte-Carlo',  link:'https://www.letheatredesmuses.com/', phone:'', cat:'THÉÂTRE' },
   { match:/rainier iii|auditorium/i,       name:'Auditorium Rainier III',         quarter:'Monte-Carlo',  link:'https://opmc.mc/en/concert/', phone:'+377 9200 1370', cat:'CONCERT' },
