@@ -1,5 +1,5 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2400 fiches inspectées le 2026-10-27.
+2399 fiches inspectées le 2026-10-27.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (4)
@@ -8,8 +8,9 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990027)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (5)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (6)
    · Mar 27 oct · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
+   · Sam 31 oct · HALLOWEEN AU PARC PRINCESSE ANTOINETTE — Parc Princesse Antoinette (id 800161)
    · Sam 31 oct · NOS DIABLOTINS SONT DE SORTIE TRICK OR TREAT — Rue Princesse Caroline (id 800004)
    · Dim 1 nov · EXPOSITION DE PEINTURES DENISE SOLOMON & BEATRICE DARDY — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 800055)
    · Sam 7 nov · EXPOSITION DE PEINTURES\nDENISE SOLOMON\n& BEATRICE DARDY — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 800070)

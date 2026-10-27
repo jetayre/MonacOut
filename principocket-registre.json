@@ -481,7 +481,7 @@
  },
  "/en/events/53fff9e8bed6b8ff1a82a4638e7f70e9-Heure-Sainte": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Heure Sainte",
   "majLe": "2026-10-27"
  },
@@ -535,7 +535,7 @@
  },
  "/en/events/699f5061f460482242b3bb67728069d8-Musical-Happy-Hour": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Musical Happy Hour",
   "majLe": "2026-10-27"
  },
@@ -589,7 +589,7 @@
  },
  "/en/events/b6ea7d83f6e5a069b14a2d05f4a89c32-Benediction-des-Malades": {
   "vuLe": "2026-08-11",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Benediction des Malades",
   "majLe": "2026-10-27"
  },
@@ -1909,7 +1909,7 @@
  },
  "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-et-Juliette": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Romeo et Juliette",
   "majLe": "2026-10-27"
  },
@@ -2719,7 +2719,7 @@
  },
  "/en/events/acd6c678a1c71e967e273adcc31cd90d-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-27"
  },
@@ -2767,7 +2767,7 @@
  },
  "/en/events/02c7323217a1015c16496b3114c45436-Ateliers-jeunesse-Histoire-contee-3-5-ans": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ateliers jeunesse Histoire contee 3 5 ans",
   "majLe": "2026-10-27"
  },
@@ -2857,7 +2857,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-a-big-screen-concert-for-your-lunch-break": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music a big screen concert for your lunch break",
   "majLe": "2026-10-27"
  },
@@ -3013,7 +3013,7 @@
  },
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-27"
  },
@@ -3025,19 +3025,19 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-27"
  },
  "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-27"
  },
  "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-27"
  },
@@ -3049,7 +3049,7 @@
  },
  "/en/events/a890f895c9a97732d5a48baf95fae87d-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-27"
  },
@@ -3067,7 +3067,7 @@
  },
  "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-27"
  },
@@ -3085,13 +3085,13 @@
  },
  "/en/events/45330e20d5cbf91229410b984df2b017-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-27"
  },
  "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-27"
  },
