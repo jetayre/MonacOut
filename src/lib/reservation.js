@@ -108,6 +108,36 @@ export function actionDeReservation(objet, cat, lang) {
   const site = lienDuSite(objet);
   if (site) return { mode: "site", url: site, mot };
   const tel = (objet && (objet.tel || objet.phone)) || "";
-  if (tel) return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""), mot };
-  return null;
+  if (!tel) return null;
+
+  // 🎡 ON NE RÉSERVE PAS UNE FOIRE — MAIS ON RÉSERVE PRESQUE TOUT LE RESTE.
+  //
+  // Stéphanie, 27 oct 2026 : « la foire, y a rien à réserver, tu as mis un
+  // numéro ». Elle avait raison. Mais ma première correction renvoyait
+  // « Appeler » sur TOUT ce qui n'est pas un repas — 4 466 fiches — et défaisait
+  // sa demande de la veille : « met le même bouton, réserver une table ou une
+  // place, et même couleur ». Deux instructions justes, une seule bonne réponse :
+  // garder « Réserver » partout, et ne faire exception QUE là où il n'y a
+  // vraiment rien à réserver.
+  //
+  // La liste est donc COURTE et explicite : une foire, un marché, une messe, un
+  // feu d'artifice, une procession, une brocante. On y entre à sa guise, le
+  // téléphone sert à se renseigner, pas à réserver.
+  //
+  // ⚠️ ON NE SE FIE PAS À `free` : les Thursday Live Sessions du Grimaldi Forum
+  // sont GRATUITES SUR RÉSERVATION, 200 places. Gratuit ne veut pas dire ouvert.
+  const texte = `${(objet && (objet.name || objet.title)) || ""} ${cat || ""}`
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  // ⚠️ « MARCHE » N'EST PAS « MARCHÉ ». Une fois les accents dépliés, les deux
+  // s'écrivent pareil — et « Marche et sorties nature », une randonnée guidée
+  // qui se réserve très bien, tombait dans l'exception. On ne cherche donc plus
+  // le mot dans le texte : la CATÉGORIE tranche, elle ne confond rien.
+  const SANS_RESERVATION = /\bfoire\b|\bbrocante\b|\bmesse\b|feu d.artifice|procession|vide.grenier/;
+  const CAT_OUVERTE = new Set(["MARCHÉ", "CHANTS", "FÊTE NATIONALE"]);
+  if (SANS_RESERVATION.test(texte) || CAT_OUVERTE.has(String(cat || "").toUpperCase()))
+    return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""),
+             mot: lang === "en" ? "Call" : "Appeler" };
+
+  // Partout ailleurs : le même mot, la même couleur, comme demandé.
+  return { mode: "tel", tel: String(tel).replace(/[\s()]/g, ""), mot };
 }

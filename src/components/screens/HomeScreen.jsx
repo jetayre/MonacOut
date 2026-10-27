@@ -1094,11 +1094,35 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     if (!el) return;
     let lastY = 0;
     let enAttente = false;
+
+    // 🚨 L'EN-TÊTE S'OUVRAIT ET SE REFERMAIT SANS FIN. Stéphanie, 27 oct 2026 :
+    // « quand je scrolle et que je laisse, avec Monac'Out en petit, ça bouge
+    // non stop ». C'était une boucle, et elle se referme toute seule :
+    //   1. on descend → l'en-tête se replie et ~96 px disparaissent
+    //      (filtres 52 px + catégories 44 px, plus le logo qui rétrécit) ;
+    //   2. le contenu remonte donc TOUT SEUL : scrollTop change sans que
+    //      personne n'ait bougé le doigt ;
+    //   3. l'app lit ce déplacement comme « elle remonte » et ROUVRE l'en-tête ;
+    //   4. ce qui redescend le contenu, et on repart à l'étape 1.
+    // Le seuil de 6 px ne pouvait rien contre un saut de 96 px.
+    //
+    // On verrouille donc le basculement pendant 320 ms après chaque changement —
+    // un peu plus que la transition CSS de 0,22 s — et on reprend la mesure à
+    // partir de la NOUVELLE position. Un geste volontaire dure bien plus
+    // longtemps que ça : rien n'est perdu pour la personne.
+    let verrouJusqua = 0;
+    const basculer = (ouvert) => {
+      verrouJusqua = Date.now() + 320;
+      setFiltersVisible(ouvert);
+    };
+
     const handler = () => {
       const y = el.scrollTop;
-      if (y < 10) setFiltersVisible(true);
-      else if (y > lastY + 6) setFiltersVisible(false);
-      else if (y < lastY - 6) setFiltersVisible(true);
+      if (Date.now() >= verrouJusqua) {
+        if (y < 10) basculer(true);
+        else if (y > lastY + 6) basculer(false);
+        else if (y < lastY - 6) basculer(true);
+      }
       lastY = y;
 
       // Rendu progressif : on pose 40 cartes de plus dès qu'on arrive à deux écrans
