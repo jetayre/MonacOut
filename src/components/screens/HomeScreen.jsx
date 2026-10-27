@@ -764,12 +764,18 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
           fontWeight: 400, fontSize: 18, letterSpacing: 0.3,
           textTransform: "uppercase", color: "#000000",
           lineHeight: 1.3, cursor: ouvrableDepuisLaSousFiche ? "pointer" : "default",
+          // 🎯 Stéphanie, 27 oct 2026 : « met les noms des cafés au centre des
+          // sous-fiches ». Le nom du lieu est ce qu'on cherche en faisant
+          // défiler : centré, il se repère d'un coup d'œil, et il s'aligne avec
+          // la barre « Réserver » qui occupe toute la largeur juste en dessous.
+          textAlign: "center",
         }}>{lieu.name}</div>
 
       {lieu.info && (
         <div style={{
           fontFamily: "'Lato', sans-serif", fontSize: 13,
           color: GREY, marginTop: 5,
+        textAlign: "center",
         }}>{lieu.info}</div>
       )}
 
@@ -778,6 +784,7 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
         <div style={{
           fontFamily: "'Lato', sans-serif", fontSize: 12,
           color: GREY, marginTop: 3,
+        textAlign: "center",
         }}>{lieu.adr}</div>
       )}
 
@@ -895,28 +902,11 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
               }}
             >{jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}</button>
           )}
-          {lieu.tel && (
-            // ⚠️ `tel:` et non un lien web : on ne sort jamais de l'app.
-            <a href={`tel:${lieu.tel.replace(/\s/g, "")}`}
-               style={{
-                 padding: "6px 12px", textDecoration: "none",
-                 border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1,
-                 fontFamily: "'Josefin Sans', sans-serif",
-                 fontSize: 9, fontWeight: 600, letterSpacing: 1,
-                 textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
-               }}>{lang === "en" ? "Call" : "Appeler"}</a>
-          )}
-          {idLieu && (
-            <button
-              onClick={e => { e.stopPropagation(); addToCalendar(pourAgenda); }}
-              style={{
-                padding: "6px 12px", cursor: "pointer",
-                border: "1px solid rgba(15,29,58,0.18)", borderRadius: 1, background: "none",
-                fontFamily: "'Josefin Sans', sans-serif",
-                fontSize: 9, fontWeight: 600, letterSpacing: 1,
-                textTransform: "uppercase", color: NAVY, whiteSpace: "nowrap",
-              }}>{lang === "en" ? "Diary" : "Agenda"}</button>
-          )}
+          {/* 🗑️ « APPELER » ET « AGENDA » RETIRÉS. Stéphanie, 27 oct 2026 :
+              « et retire appeler et agenda ». « Appeler » faisait double emploi
+              avec « Réserver », qui compose déjà le numéro quand c'est le seul
+              moyen — et nommer le moyen est précisément ce qu'elle ne veut pas.
+              La rangée n'a plus que ce qui sert : J'y vais, Direction, Partager. */}
           {/* 📍 DIRECTION. Stéphanie, 23 oct 2026 : « au lieu de mettre le site
               du lieu, mets le lien Google Maps partout, mets le mot Direction ».
               Le site d'un restaurant n'aide pas à y aller ; l'itinéraire, si.

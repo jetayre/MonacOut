@@ -59,7 +59,7 @@ const MUSEES = [
     heures: () => "09h00 — 18h00",
   },
   {
-    nom: "Musée Naval", ferme: [], lien: "https://www.monte-carlo.mc/fr/sorties/visites/musee-naval", adr: "Terrasses de Fontvieille · Fontvieille", presentation: "Plus de 250 maquettes de navires réunies par le Prince Rainier III, de la galère antique au porte-avions, dont des pièces offertes par des chefs d'État.", presentationEn: "Over 250 ship models collected by Prince Rainier III, from ancient galleys to aircraft carriers, including pieces gifted by heads of state.",
+    nom: "Musée Naval", tel: "+377 92 05 28 48", ferme: [], lien: "https://www.monte-carlo.mc/fr/sorties/visites/musee-naval", adr: "Terrasses de Fontvieille · Fontvieille", presentation: "Plus de 250 maquettes de navires réunies par le Prince Rainier III, de la galère antique au porte-avions, dont des pièces offertes par des chefs d'État.", presentationEn: "Over 250 ship models collected by Prince Rainier III, from ancient galleys to aircraft carriers, including pieces gifted by heads of state.",
     // Terrasses de Fontvieille : tous les jours 10h-18h, fermé le 25 déc et le 1er jan.
     heures: () => "10h00 — 18h00",
     fermetures: ["12-25", "01-01"],
