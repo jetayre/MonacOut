@@ -393,11 +393,13 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
                 alignSelf: "flex-start",
                 display: "inline-flex", alignItems: "center", gap: 7,
                 padding: "11px 20px", marginBottom: 12,
-                border: `2px solid ${GOLD_FRAME}`,
+                // 🎨 La famille, comme le cadre — sinon un cadre Havane
+                // encadrait un bouton Rouge H.
+                border: `2px solid ${couleurCat(event.cat)}`,
                 borderRadius: 2, background: "#FBF2F0", cursor: "pointer",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontSize: 14, fontWeight: 700, letterSpacing: 1.8,
-                textTransform: "uppercase", color: GOLD_FRAME,
+                textTransform: "uppercase", color: couleurCat(event.cat),
               }}
             >
               {infosDepliees

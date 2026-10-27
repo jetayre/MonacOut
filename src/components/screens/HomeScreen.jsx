@@ -697,12 +697,20 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
             color: GREY, lineHeight: 1.8, marginBottom: 18,
           }}>{titres.slice(0, 3).join(" · ")}{titres.length > 3 ? " …" : ""}</div>
 
+          {/* 🔘 LE MÊME BOUTON QUE SUR LES AUTRES CARTES. Stéphanie, 27 oct
+              2026 : « expo voir les 13 n'est pas comme les autres ». Elle avait
+              raison, et sur cinq points à la fois : cette carte-ci écrivait son
+              bouton en Lato 12 avec un trait de 1 px et aucun fond, quand toutes
+              les autres l'écrivent en Josefin Sans 14, trait de 2 px, fond
+              #FBF2F0. Il reprend donc le style commun — et la couleur de la
+              famille, comme le cadre, au lieu du Rouge H codé en dur. */}
           <span style={{
-            display: "inline-block", padding: "8px 18px",
-            border: "1px solid #7B2D26",
-            fontFamily: "'Lato', sans-serif", fontSize: 12,
-            fontWeight: 700, letterSpacing: 1.6,
-            textTransform: "uppercase", color: GOLD,
+            display: "inline-flex", alignItems: "center",
+            padding: "11px 20px", borderRadius: 2,
+            border: `2px solid ${couleurCat(cat)}`, background: "#FBF2F0",
+            fontFamily: "'Josefin Sans', sans-serif", fontSize: 14,
+            fontWeight: 700, letterSpacing: 1.8,
+            textTransform: "uppercase", color: couleurCat(cat),
           }}>{deplie
             ? (lang === "en" ? "Close" : "Replier")
             : (lang === "en" ? `See all ${total}` : `Voir les ${total}`)}</span>
