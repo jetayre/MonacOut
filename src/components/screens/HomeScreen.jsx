@@ -659,7 +659,10 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
     <div
       onClick={onOuvrir}
       style={{
-        border: "3px solid #7B2D26", borderRadius: 2, padding: 0,
+        // 🎨 La carte d'annuaire prend la couleur de sa famille, comme les
+        // fiches : sans ça, les expositions groupées restaient rouges au milieu
+        // de leurs voisines Havane.
+        border: `3px solid ${couleurCat(cat)}`, borderRadius: 2, padding: 0,
         marginBottom: 14, background: WHITE, cursor: "pointer",
       }}
     >
@@ -746,7 +749,8 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
 
   return (
     <div style={{
-      border: `3px solid ${GOLD}`, borderRadius: 2, background: WHITE,
+      // 🎨 La sous-fiche porte la couleur de la famille de sa fiche-mère.
+      border: `3px solid ${couleurCat(fiche.cat)}`, borderRadius: 2, background: WHITE,
       // Le même retrait de 22 px que les expositions dépliées : on voit d'un
       // coup d'œil que ces fiches appartiennent à celle du dessus.
       margin: "0 22px 14px", padding: "16px 20px 18px",
@@ -826,6 +830,12 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
       {(() => {
         const a = actionDeReservation(lieu, fiche.cat, lang);
         if (!a) return null;
+        // 🎨 LE BOUTON RESTE UNIFORME, C'EST LE CADRE QUI PORTE LA FAMILLE.
+        // Stéphanie, 27 oct 2026 : « nous avions prévu des couleurs différentes,
+        // là tout semble identique », puis « le bouton doit rester comme ça,
+        // mais les cadres ». J'avais d'abord teinté la barre : erreur. Le geste
+        // « Réserver » est le même partout, il garde donc le Rouge H, fil
+        // conducteur de la maison. La couleur de famille vit dans le CADRE.
         // Même geste, même aspect : la barre est pleine dans les trois cas.
             const plein = true;
         return (

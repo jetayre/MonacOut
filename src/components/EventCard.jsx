@@ -311,7 +311,15 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       // plutôt que de rendre la liste inaccessible.
       onClick={() => { if (estAnnuaire && onInfos) return; onCardClick?.(event); }}
       style={{
-        border: `${C.trait}px solid ${ROUGE_H}`,
+        // 🎨 LE CADRE PORTE LA COULEUR DE SA FAMILLE. Stéphanie, 27 oct 2026 :
+        // « nous avions prévu des couleurs différentes, là tout semble
+        // identique », puis « le bouton doit rester comme ça, mais les cadres
+        // doivent être de couleurs différentes ». Le cadre était codé en dur en
+        // Rouge H : toutes les fiches se ressemblaient, et la palette du
+        // 10 octobre — Havane pour les expos, Vert Bengale pour la scène, Bleu
+        // Encre pour les concerts — ne se voyait nulle part. Le Rouge H reste
+        // le fil conducteur (logo, bouton Réserver, cœur) ; la famille vit ici.
+        border: `${C.trait}px solid ${couleurCat(event.cat)}`,
         borderRadius: 2,
         padding: 0,
         marginBottom: C.marge,
@@ -487,6 +495,8 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           {!estAnnuaire && (() => {
             const a = actionDeReservation(event, event.cat, lang);
             if (!a) return null;
+            // 🎨 Voir HomeScreen : le bouton reste uniforme, c'est le cadre
+            // de la carte qui porte la couleur de la famille.
             // Même geste, même aspect : la barre est pleine dans les trois cas.
             const plein = true;
             return (
