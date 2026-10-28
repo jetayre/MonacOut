@@ -144,7 +144,7 @@ function BoutonResa({ event, lang, onReserver, compact = false }) {
  * ⚠️ Rien ne sort de l'app : c'est la feuille de partage du système, pas une
  * page web — aucun risque de l'écran noir du 7 août.
  */
-function InviteTesAmis({ event, lang, inviteCode, onShowAuth, petit = false }) {
+export function InviteTesAmis({ event, lang, inviteCode, onShowAuth, petit = false }) {
   const pret = codeValide(inviteCode);
   const toucher = async (e) => {
     e.stopPropagation();
@@ -439,11 +439,17 @@ export function TitreSection({ titre, onToutVoir, lang }) {
 /* ══════════════════════════════════════════════════════════════════════════
    6 · LA CARTE ILLUSTRÉE — 4:3, deux par rangée (173 pt en largeur 390).
    ══════════════════════════════════════════════════════════════════════════ */
-function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null }) {
+function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, onInfos = null, infosDepliees = false, nbLieux = 0 }) {
   const fav = favorites?.includes(event.id);
   const lieu = String(event.subtitle || "").split("·")[0].trim();
   return (
-    <div onClick={() => onCardClick?.(event)} style={{
+    /* 🗂️ UNE FICHE À ANNUAIRE SE DÉPLIE, ELLE N'OUVRE PAS DE FENÊTRE.
+       Stéphanie, 28 oct 2026 : « quand je clique sur Ateliers 4 thèmes Espace
+       Lamartine j'ai une fenêtre qui s'ouvre comme avant, pas en sous-fiche ».
+       C'est la règle posée le 11 oct (« INFOS déplie partout ») : toucher la
+       carte doit poser ses lieux SOUS elle. J'avais laissé le clic de la carte
+       sur `onCardClick`, donc la fenêtre revenait malgré le bouton « Voir les N ». */
+    <div onClick={() => (onInfos ? onInfos() : onCardClick?.(event))} style={{
       background: BLANC, borderRadius: RAYON.sm, overflow: "hidden",
       boxShadow: OMBRE.carte, cursor: "pointer", border: FILET,
       display: "flex", flexDirection: "column", height: "100%",
@@ -483,7 +489,18 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
           <InviteTesAmis event={event} lang={lang} inviteCode={inviteCode} onShowAuth={onShowAuth} petit />
         )}
         <div style={{ marginTop: "auto" }}>
-          <BoutonResa event={event} lang={lang} onReserver={onReserver} compact />
+          {onInfos ? (
+            <button onClick={e => { e.stopPropagation(); onInfos(); }} style={{
+              background: "none", border: "none", padding: "2px 0", cursor: "pointer",
+              fontFamily: SANS, fontSize: 11, fontWeight: 700, color: BORDEAU, whiteSpace: "nowrap",
+            }}>
+              {infosDepliees
+                ? (lang === "en" ? "Close" : "Replier")
+                : (lang === "en" ? `See the ${nbLieux} →` : `Voir les ${nbLieux} →`)}
+            </button>
+          ) : (
+            <BoutonResa event={event} lang={lang} onReserver={onReserver} compact />
+          )}
         </div>
       </div>
     </div>
@@ -507,6 +524,7 @@ export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCar
         <CarteIllustree key={e.cleFil || e.id} event={e} lang={lang} media={medias[i]}
                         favorites={favorites} onToggleFav={onToggleFav} onCardClick={onCardClick}
                         onReserver={onReserver} inviteCode={inviteCode} onShowAuth={onShowAuth}
+                        onInfos={e._onInfos || null} infosDepliees={!!e._deplie} nbLieux={e._nbLieux || 0}
                         amis={social && !e.ongoing ? social.friendsGoingTo(e.id) : []} />
       ))}
     </div>

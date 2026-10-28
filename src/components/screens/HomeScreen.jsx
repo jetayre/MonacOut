@@ -10,7 +10,7 @@ import { NUIT, BORDEAU, CREME, FOND_PAGE, BLANC, OR, GRIS, GRIS_LISIBLE, BORDURE
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../../lib/itineraire";
 import { lienDeReservation, lienDuSite, actionDeReservation } from "../../lib/reservation";
-import { CarrouselHero, TitreSection, GrilleDeuxColonnes, CarteRangee, BandeRegroupement } from "../AccueilMaquette";
+import { CarrouselHero, TitreSection, GrilleDeuxColonnes, InviteTesAmis } from "../AccueilMaquette";
 import { mediaDeLaFiche } from "../../lib/mediatheque";
 import VueReservation from "../VueReservation";
 import { partagerInvitation } from "../../lib/invite";
@@ -718,15 +718,15 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
       {/* Un seul trait, comme toutes les autres cartes depuis le 10 oct 2026.
           Le filet bleu intérieur avait été oublié ici : les expositions
           affichaient deux couleurs de ligne. */}
-      <div style={{ background: WHITE }}>
+      <div style={{ background: BLANC }}>
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
           <div style={{ marginBottom: 12 }}>
             <span style={{
               display: "inline-block", padding: "5px 12px",
-              borderRadius: RAYON.pastille, background: `${couleurCat(cat)}14`,
+              borderRadius: RAYON.pastille, background: "rgba(135,55,47,0.08)",
               fontFamily: SANS, fontSize: 10.5, fontWeight: 700,
               letterSpacing: 1.1, textTransform: "uppercase",
-              color: couleurCat(cat), lineHeight: 1.2,
+              color: BORDEAU, lineHeight: 1.2,
             }}>{lang === "en" ? fam.en : fam.fr}</span>
           </div>
 
@@ -779,7 +779,7 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
 // ⚠️ L'IDENTIFIANT « J'y vais » EST COMPOSÉ : id de la fiche du jour × 1000 +
 // numéro du lieu. C'est exactement le calcul de Shell.jsx — il DOIT rester
 // identique, sinon un « J'y vais » posé ici n'est pas celui posé dans la fiche.
-export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, onReserver, evenement = false,
+export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, onOuvrir, onReserver, evenement = false, inviteCode, onShowAuth,
                      favorites = [], onToggleFav }) {
   // Un vrai événement répond de son propre identifiant ; un lieu d'annuaire, de
   // l'identifiant composé. Les confondre ferait pointer deux « J'y vais »
@@ -809,11 +809,21 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
 
   return (
     <div style={{
-      // 🎨 La sous-fiche porte la couleur de la famille de sa fiche-mère.
-      border: `3px solid ${couleurCat(fiche.cat)}`, borderRadius: 2, background: WHITE,
-      // Le même retrait de 22 px que les expositions dépliées : on voit d'un
-      // coup d'œil que ces fiches appartiennent à celle du dessus.
-      margin: "0 22px 14px", padding: "16px 20px 18px",
+      // 🎨 PALETTE UNIQUE (28 oct 2026). La sous-fiche portait la couleur de la
+      // famille de sa mère — d'où un cadre VERT de 3 px au milieu d'un écran
+      // ivoire et bordeaux. Stéphanie : « les fonds violet vif, vert foncé,
+      // rouge et jaune donnent un effet catalogue de catégories ». Elle prend
+      // maintenant le même filet bordeaux fin que toutes les autres cartes.
+      border: `1px solid ${BORDEAU}`, borderRadius: RAYON.sm, background: BLANC,
+      // 📏 RESSERRÉE LE 28 OCT AU SOIR. Stéphanie : « loisirs créatifs, c'est
+      // énorme, non ? ». Elle avait raison : titre de 18 px centré, 16-20 px de
+      // marge intérieure, interligne 1,6 — une sous-fiche prenait plus de place
+      // que la carte qui la contient. Tout est ramené à l'échelle des autres
+      // cartes du fil.
+      // Le retrait latéral de 16 px reste : on voit d'un coup d'œil que ces
+      // fiches appartiennent à celle du dessus.
+      margin: "0 16px 8px", padding: "10px 13px 12px",
+      display: "flex", flexDirection: "column",
     }}>
       {/* 🎬 PAS DE CLIC SUR UNE SOUS-FICHE DE CINÉMA. Stéphanie, 24 oct 2026 :
           « supprime sur les sous-fiches cinéma le clic sur la fiche qui donne
@@ -824,10 +834,10 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
       <div
         onClick={ouvrableDepuisLaSousFiche ? onOuvrir : undefined}
         style={{
-          fontFamily: "'Josefin Sans', Georgia, sans-serif",
-          fontWeight: 400, fontSize: 18, letterSpacing: 0.3,
-          textTransform: "uppercase", color: "#000000",
-          lineHeight: 1.3, cursor: ouvrableDepuisLaSousFiche ? "pointer" : "default",
+          fontFamily: SERIF,
+          fontWeight: 600, fontSize: 15, letterSpacing: 0,
+          color: NUIT,
+          lineHeight: 1.25, cursor: ouvrableDepuisLaSousFiche ? "pointer" : "default",
           // 🎯 Stéphanie, 27 oct 2026 : « met les noms des cafés au centre des
           // sous-fiches ». Le nom du lieu est ce qu'on cherche en faisant
           // défiler : centré, il se repère d'un coup d'œil, et il s'aligne avec
@@ -837,8 +847,8 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
 
       {lieu.info && (
         <div style={{
-          fontFamily: "'Lato', sans-serif", fontSize: 13,
-          color: GREY, marginTop: 5,
+          fontFamily: SANS, fontSize: 11.5,
+          color: GREY, marginTop: 3,
         textAlign: "center",
         }}>{lieu.info}</div>
       )}
@@ -846,8 +856,8 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
       {/* L'adresse, quand on la connaît : une sous-fiche doit suffire à s'y rendre. */}
       {lieu.adr && lieu.adr !== lieu.info && (
         <div style={{
-          fontFamily: "'Lato', sans-serif", fontSize: 12,
-          color: GREY, marginTop: 3,
+          fontFamily: SANS, fontSize: 11,
+          color: GREY, marginTop: 2,
         textAlign: "center",
         }}>{lieu.adr}</div>
       )}
@@ -877,8 +887,10 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
            ne le met JAMAIS dans descEn côté données (règle de la maison). */}
       {(lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc) && (
         <div style={{
-          fontFamily: "'Lato', sans-serif", fontSize: 13,
-          color: "#555", lineHeight: 1.6, marginTop: 9,
+          fontFamily: SANS, fontSize: 11.5,
+          color: GREY, lineHeight: 1.45, marginTop: 6,
+          // Trois lignes suffisent : le détail complet est dans la fiche.
+          display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{lang === "en" ? (lieu.descEn || lieu.desc) : lieu.desc}</div>
       )}
 
@@ -911,16 +923,22 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
                     if (a.mode === "tel") window.location.href = `tel:${a.tel}`;
                     else onReserver?.(a.url, lieu.nom || lieu.name); }}
             style={{
-              display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
-              width: "100%", height: plein ? 38 : 36, marginTop: 12, cursor: "pointer",
-              border: "1px solid #7B2D26", borderRadius: 1,
-              background: plein ? BORDEAU : "#FFF6F4",
-              fontFamily: "'Josefin Sans', sans-serif", fontSize: plein ? 11 : 10,
-              fontWeight: 700, letterSpacing: plein ? 2 : 1.6,
-              textTransform: "uppercase", color: plein ? "#FFFDF8" : BORDEAU,
+              // 📏 RESSERRÉ LE 28 OCT AU SOIR (« loisirs créatifs, c'est énorme,
+              // non ? »). La barre faisait 38 px de haut sur toute la largeur,
+              // avec 2 px d'interlettrage : elle pesait plus lourd que le nom du
+              // lieu. Elle passe à 32 px, s'arrête à sa propre largeur et prend
+              // les coins arrondis de la maison.
+              display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+              height: 32, marginTop: 9, cursor: "pointer", alignSelf: "center",
+              padding: "0 16px",
+              border: `1px solid ${BORDEAU}`, borderRadius: RAYON.pastille,
+              background: BORDEAU,
+              fontFamily: SANS, fontSize: 11,
+              fontWeight: 700, letterSpacing: 0.4,
+              color: "#FFFCF8",
             }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                 stroke={plein ? "#FFFDF8" : BORDEAU} strokeWidth="2"
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                 stroke="#FFFCF8" strokeWidth="2"
                  strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}>
               {a.mode === "tel"
                 ? <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
@@ -938,7 +956,7 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
           Direction) disparaissait en silence. Un bouton doit suffire à faire
           exister la rangée qui le porte. */}
       {(idLieu || lieu.tel || lienDeReservation(lieu) || lienDuSite(lieu)) && (
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
           {/* 👥 L'INDICATEUR D'AMIS, comme sur une fiche normale. Stéphanie,
               13 oct 2026 : « rajoute indicateur amis ». Les prénoms en toutes
               lettres restent en infobulle ; ce sont les visages qu'on repère
@@ -948,14 +966,19 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
                   style={{ display: "inline-flex", alignItems: "center" }}>
               <FriendAvatars friends={amies} />
             </span>
-          ) : idLieu ? (
-            <span title={lang === "en" ? "No friends going yet" : "Aucun ami inscrit pour l'instant"}
-                  style={{ display: "inline-flex", alignItems: "center" }}>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="#C7C1B4" aria-hidden="true" style={{ display: "block" }}>
-                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-              </svg>
-            </span>
-          ) : null}
+          ) : (
+            /* 🤝 « INVITE TES AMIS » SUR CHAQUE SOUS-FICHE. Stéphanie, 28 oct
+               2026. À la place de la silhouette grise, qui ne disait que
+               « personne » sans rien proposer.
+               ⚠️ LE LIEN PORTE L'IDENTIFIANT DE LA FICHE-MÈRE, pas celui du
+               lieu. Un identifiant composé (`id × 1000 + vid`) n'ouvre aucune
+               fiche dans l'app : l'amie serait tombée sur une page vide. Le
+               titre du message, lui, nomme bien le LIEU — on arrive donc sur la
+               bonne carte, en sachant de quoi on parle. */
+            <InviteTesAmis
+              event={{ id: fiche.id, title: lieu.name }}
+              lang={lang} inviteCode={inviteCode} onShowAuth={onShowAuth} petit />
+          )}
           {idLieu && (
             <button
               onClick={() => onGoingClick?.({ ...fiche, id: idLieu })}
@@ -1881,13 +1904,28 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
    * chronologie — et une app de sorties qui désordonne les heures ne sert plus
    * à rien.
    */
+  /**
+   * 🧱 LE FIL EN DEUX COLONNES — Stéphanie, 28 oct 2026 : « quand je scrolle
+   * ça repart sur une colonne, mais 2 colonnes c'est mieux », puis le soir :
+   * « les fiches générales, laisse-les tout de même en 2 colonnes et pas en
+   * longs rectangles ».
+   *
+   * TOUT passe donc en grille : les sorties ordinaires, les regroupements
+   * (« 7 expositions ») et les fiches à annuaire (« Musées · 6 ouverts »).
+   * Seules les SOUS-fiches d'un annuaire déplié gardent la pleine largeur —
+   * elles portent leurs propres actions et ne tiendraient pas dans 173 pt.
+   *
+   * ⚠️ L'ORDRE EST PRÉSERVÉ : on accumule les fiches qui se SUIVENT et on les
+   * pose en grille ; dès qu'un dépliage arrive, on vide le paquet avant de
+   * poser ses lieux. Sans ça, la chronologie partirait en morceaux — et une app
+   * de sorties qui désordonne les heures ne sert plus à rien.
+   */
   function rendreItems(items, sansDate) {
     const sortie = [];
     let paquet = [];
     // 🔁 UN SEUL registre de photos récentes pour TOUTES les grilles de ce
-    // passage : sinon deux vues identiques se retrouvent de part et d'autre
-    // d'une bande de regroupement, et c'est exactement ce que Stéphanie ne veut
-    // plus voir (« ne remets pas les mêmes photos à côté »).
+    // passage, sinon deux vues identiques se retrouvent de part et d'autre
+    // d'un dépliage.
     const recents = [];
     const viderLePaquet = () => {
       if (!paquet.length) return;
@@ -1911,6 +1949,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     };
 
     for (const e of items) {
+      // Une SOUS-fiche de lieu : pleine largeur, elle porte ses propres actions.
       if (e._lieu) {
         viderLePaquet();
         sortie.push(
@@ -1920,93 +1959,77 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             loggedIn={loggedIn} onGoingClick={onGoingClick}
             onOuvrir={() => onCardClick?.(e._fiche)} onReserver={ouvrirReservation}
             evenement={!!e._evenement} favorites={favorites} onToggleFav={onToggleFav}
+            inviteCode={inviteCode} onShowAuth={onShowAuth}
           />
         );
-      } else if (e.groupeFamille) {
-        viderLePaquet();
+        continue;
+      }
+
+      // Un REGROUPEMENT (« 7 expositions ») : une carte de grille qui se déplie.
+      if (e.groupeFamille) {
         const cle = e.cleGroupe;
         const deplie = !!exposDepliees[cle];
-        sortie.push(
-          <BandeRegroupement
-            key={`groupe-${cle}`}
-            fiches={e.groupeFamille} cat={e.catGroupe} lang={lang} deplie={deplie} recents={recents}
-            onBasculer={() => setExposDepliees(d => ({ ...d, [cle]: !d[cle] }))}
-          />
-        );
-        // Déplié, le groupe pose SES fiches — en deux colonnes, comme le reste.
+        const tete = e.groupeFamille.find(f => f) || e;
+        paquet.push({
+          ...tete,
+          cleFil: `groupe-${cle}`,
+          title: `${e.catGroupe}\n${e.groupeFamille.length} ${lang === "en" ? "to see" : "à voir"}`,
+          _onInfos: () => setExposDepliees(d => ({ ...d, [cle]: !d[cle] })),
+          _deplie: deplie,
+          _nbLieux: e.groupeFamille.length,
+        });
         if (deplie) {
+          viderLePaquet();
           sortie.push(
             <div key={`groupe-ouvert-${cle}`} style={{ marginBottom: 12 }}>
               <GrilleDeuxColonnes
                 fiches={e.groupeFamille} recents={recents} lang={lang}
                 favorites={favorites} onToggleFav={onToggleFav}
                 onCardClick={onCardClick} onReserver={ouvrirReservation} social={social}
+                inviteCode={inviteCode} onShowAuth={onShowAuth}
               />
             </div>
           );
         }
-      } else if (Array.isArray(e.directory) && e.directory.length > 0) {
-        viderLePaquet();
-        sortie.push(renduCarte(e, sansDate, !!e._depliee, recents));
-      } else {
-        paquet.push(e);
+        continue;
       }
+
+      // Une FICHE À ANNUAIRE : carte de grille elle aussi, qui pose ses lieux
+      // SOUS elle une fois dépliée — jamais dans une fenêtre (règle du 11 oct).
+      if (Array.isArray(e.directory) && e.directory.length > 0) {
+        const cleInfos = `infos-${e.cleFil || `${e.id}-${e.date}`}`;
+        const ouvert = !!exposDepliees[cleInfos];
+        paquet.push({
+          ...e,
+          _onInfos: () => setExposDepliees(d => ({ ...d, [cleInfos]: !d[cleInfos] })),
+          _deplie: ouvert,
+          _nbLieux: e.directory.length,
+        });
+        if (ouvert) {
+          viderLePaquet();
+          sortie.push(
+            <div key={`annu-${cleInfos}`}>
+              {e.directory.map((d, k) => (
+                <CarteLieu
+                  key={`lieu-${cleInfos}-${k}`}
+                  lieu={d} fiche={e} lang={lang} social={social}
+                  loggedIn={loggedIn} onGoingClick={onGoingClick}
+                  onOuvrir={() => onCardClick?.(e)}
+                  favorites={favorites} onToggleFav={onToggleFav}
+                  onReserver={ouvrirReservation}
+                  inviteCode={inviteCode} onShowAuth={onShowAuth}
+                />
+              ))}
+            </div>
+          );
+        }
+        continue;
+      }
+
+      paquet.push(e);
     }
     viderLePaquet();
     return sortie;
   }
 
-  // Toute fiche qui porte un annuaire se déplie SOUS elle, jamais dans une
-  // fenêtre. Stéphanie, 11 oct 2026 : « je veux que cela soit cohérent partout ».
-  /**
-   * LA FICHE-MÈRE D'UN ANNUAIRE — « MUSÉES · 6 OUVERTS », « CE SOIR : 7
-   * TERRASSES », la semaine de cinéma. Elle se déplie EN SOUS-FICHES sous elle,
-   * jamais dans une fenêtre (règle posée le 11 oct 2026).
-   *
-   * 🪶 Stéphanie, 28 oct 2026 : « la carte "7 expositions à voir" est trop
-   * grande et déséquilibre la page ». Elle passe donc en bande compacte (~86 pt
-   * au lieu d'une carte pleine), avec sa vignette, son titre, son compte et son
-   * bouton « Voir les N ». Le dépliage et les sous-fiches ne changent pas.
-   */
-  function renduCarte(e, sansDate, compact = false, recentsCourants = []) {
-    // 🚨 LA CLÉ DOIT PORTER LE JOUR. Une fiche `ongoing` revient chaque jour
-    // AVEC LE MÊME IDENTIFIANT : avec `infos-${e.id}` seul, toucher « Infos »
-    // sur la fiche d'aujourd'hui dépliait aussi celle de demain.
-    const cleInfos = `infos-${e.cleFil || `${e.id}-${e.date}`}`;
-    const ouvert = !!exposDepliees[cleInfos];
-    const carte = (
-      <CarteRangee
-        key={e.cleFil || e.id}
-        event={e}
-        lang={lang}
-        favorites={favorites}
-        onToggleFav={onToggleFav}
-        onCardClick={onCardClick}
-        social={social}
-        onReserver={ouvrirReservation}
-        recents={recentsCourants}
-        inviteCode={inviteCode}
-        onShowAuth={onShowAuth}
-        onInfos={() => setExposDepliees(d => ({ ...d, [cleInfos]: !d[cleInfos] }))}
-        infosDepliees={ouvert}
-        nbLieux={e.directory.length}
-      />
-    );
-    if (!ouvert) return carte;
-    return (
-      <div key={`annu-${cleInfos}`}>
-        {carte}
-        {e.directory.map((d, k) => (
-          <CarteLieu
-            key={`lieu-${cleInfos}-${k}`}
-            lieu={d} fiche={e} lang={lang} social={social}
-            loggedIn={loggedIn} onGoingClick={onGoingClick}
-            onOuvrir={() => onCardClick?.(e)}
-            favorites={favorites} onToggleFav={onToggleFav}
-            onReserver={ouvrirReservation}
-          />
-        ))}
-      </div>
-    );
-  }
 }
