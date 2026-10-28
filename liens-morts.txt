@@ -1,5 +1,5 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-10-27 — 125 liens, 2401 fiches.
+Contrôle du 2026-10-28 — 125 liens, 2395 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
