@@ -6,18 +6,21 @@ import EventCard, { addToCalendar, partagerEvenement, FriendAvatars } from "../E
 import CalendarPicker from "../CalendarPicker";
 import { track } from "../../lib/track";
 import { couleurCat } from "../../lib/couleurs";
+import { NUIT, BORDEAU, CREME, FOND_PAGE, BLANC, OR, GRIS, GRIS_LISIBLE, BORDURE, SAUGE, RAYON, OMBRE, SERIF, SANS, casseNaturelle, apprendreLesNomsPropres } from "../../lib/theme";
 import { Capacitor } from "@capacitor/core";
 import { ouvrirItineraire } from "../../lib/itineraire";
 import { lienDeReservation, lienDuSite, actionDeReservation } from "../../lib/reservation";
+import { CarrouselHero, TitreSection, GrilleDeuxColonnes, CarteRangee, BandeRegroupement } from "../AccueilMaquette";
+import { mediaDeLaFiche } from "../../lib/mediatheque";
 import VueReservation from "../VueReservation";
 import { partagerInvitation } from "../../lib/invite";
 
-const NAVY = "#0F1D3A";
-const GOLD = "#7B2D26";
-const GREY = "#6A7080";
+const NAVY = NUIT;            // charte du 28 oct 2026 : bleu nuit #15263B
+const GOLD = BORDEAU;         // le « doré » historique est en fait le bordeaux d'action
+const GREY = GRIS_LISIBLE;    // gris doux assombri d'un cran pour rester lisible
 const WHITE = "#FFFFFF";
-const CREAM = "#FFFFFF";
-const BORDER = "rgba(15,29,58,0.12)";
+const CREAM = FOND_PAGE;      // fond de page blanc (28 oct 2026)
+const BORDER = BORDURE;       // bordures légères #E8E2DA
 // Les rayures bleues sont retirées (10 oct 2026, décision de Stéphanie sur
 // maquette : « on enlève les rayures on met juste le nom »). Le bleu #9FC3DC
 // était la dernière note froide de l'écran, orpheline depuis le passage au
@@ -301,6 +304,49 @@ function titreDeJour(dateStr, lang) {
 // d'étiquette que « AUJOURD'HUI » sur les expositions, corrigé le 31 août : les
 // fiches `ongoing` ne portent que la date du jour, et le calendrier les laisse
 // passer pour toute date qu'elles couvrent.
+
+/**
+ * 🕐 LE MOMENT D'UNE FICHE — la MÊME règle que les intertitres du fil.
+ *
+ * Stéphanie, 28 oct 2026 : « la section "Ce matin" contient actuellement des
+ * événements à 19h et 19h30. Ce n'est pas correct. »
+ *
+ * 🚨 D'OÙ VENAIT LA FAUTE, ET ELLE ÉTAIT À MOI. La vitrine classait ses fiches
+ * en mettant d'abord CELLES QUI ONT UNE PHOTO, pour que le hero soit beau. Le
+ * titre, lui, lisait l'heure de la PREMIÈRE fiche de ce classement — donc une
+ * fiche choisie pour sa photo, pas pour son heure. Un cours de 9 h en tête, et
+ * « Ce matin » se retrouvait au-dessus de concerts de 19 h 30.
+ *
+ * La règle est maintenant la même partout : le moment se lit sur l'HEURE, la
+ * vitrine ne mélange plus deux moments, et son titre décrit ce qu'elle montre.
+ * Les heures sont celles des fiches, à l'heure de Monaco — on ne touche pas aux
+ * données pour arranger l'affichage.
+ */
+function momentDeLaFiche(e, lang, min) {
+  const debut = heureDeTri(e);
+  const sansHeure = !(e.time && String(e.time).trim()) || debut === SANS_HEURE;
+  if (sansHeure) return { cle: "apresmidi", titre: lang === "en" ? "This afternoon" : "Cet après-midi" };
+  // En cours : commencé et pas encore fini. C'est le seul « Maintenant » honnête.
+  if (typeof min === "number" && debut <= min && finReelle(e) > min) {
+    return { cle: "maintenant", titre: lang === "en" ? "Right now" : "Maintenant" };
+  }
+  // 🖼️ CE QUI DURE TOUTE LA JOURNÉE N'EST PAS « CE MATIN ».
+  // Une exposition « 09h00 — 18h00 » commence le matin, mais l'annoncer sous
+  // « Ce matin » est faux : on peut y aller à 15 h. Et à 18 h 18, c'était même
+  // absurde — Stéphanie l'a vu. Une plage qui dépasse quatre heures et franchit
+  // midi s'annonce donc simplement « Aujourd'hui ».
+  const fin = finReelle(e);
+  if (fin - debut >= 4 * 60 && debut < 13 * 60 && fin > 14 * 60) {
+    return { cle: "journee", titre: lang === "en" ? "Today" : "Aujourd'hui" };
+  }
+
+  // Le brunch ferme la matinée (règle 28), même arbitrage que dans le fil.
+  if (e.cat === "BRUNCH" && debut < 14 * 60) return { cle: "matin", titre: lang === "en" ? "This morning" : "Ce matin" };
+  if (debut < 12 * 60) return { cle: "matin",      titre: lang === "en" ? "This morning"   : "Ce matin" };
+  if (debut < 18 * 60) return { cle: "apresmidi",  titre: lang === "en" ? "This afternoon" : "Cet après-midi" };
+  return { cle: "soir", titre: lang === "en" ? "Tonight" : "Ce soir" };
+}
+
 function decouperEnSections(liste, lang, jourConsulte = null) {
   const now = new Date();
   const min = now.getHours() * 60 + now.getMinutes();
@@ -659,11 +705,14 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
     <div
       onClick={onOuvrir}
       style={{
-        // 🎨 La carte d'annuaire prend la couleur de sa famille, comme les
-        // fiches : sans ça, les expositions groupées restaient rouges au milieu
-        // de leurs voisines Havane.
-        border: `3px solid ${couleurCat(cat)}`, borderRadius: 2, padding: 0,
-        marginBottom: 14, background: WHITE, cursor: "pointer",
+        // 🎨 REFONTE DU 28 OCT : même traitement que les cartes ordinaires —
+        // plus de cadre épais, une ombre douce et des coins arrondis. Cette
+        // carte-ci avait été oubliée à la première passe : elle gardait son
+        // trait de 3 px au milieu de voisines devenues lisses, et ça se voyait
+        // tout de suite sur la capture.
+        border: "1px solid rgba(23,36,60,0.06)", borderRadius: RAYON.lg,
+        boxShadow: OMBRE.carte, padding: 0,
+        marginBottom: 14, background: BLANC, cursor: "pointer",
       }}
     >
       {/* Un seul trait, comme toutes les autres cartes depuis le 10 oct 2026.
@@ -671,30 +720,33 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
           affichaient deux couleurs de ligne. */}
       <div style={{ background: WHITE }}>
         <div style={{ padding: "18px 22px 20px", textAlign: "center" }}>
-          <div style={{
-            fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: 20, fontWeight: 700, letterSpacing: 3,
-            textTransform: "uppercase", color: couleurCat(cat),
-            marginBottom: 13, lineHeight: 1.15,
-          }}>{lang === "en" ? fam.en : fam.fr}</div>
+          <div style={{ marginBottom: 12 }}>
+            <span style={{
+              display: "inline-block", padding: "5px 12px",
+              borderRadius: RAYON.pastille, background: `${couleurCat(cat)}14`,
+              fontFamily: SANS, fontSize: 10.5, fontWeight: 700,
+              letterSpacing: 1.1, textTransform: "uppercase",
+              color: couleurCat(cat), lineHeight: 1.2,
+            }}>{lang === "en" ? fam.en : fam.fr}</span>
+          </div>
 
           {/* Les titres des fiches arrivent en capitales depuis les données ; celui-ci
               est écrit ici, donc c'est la feuille de style qui doit s'en charger —
               sans quoi la carte de regroupement détonnait au milieu des autres. */}
           <div style={{
-            fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: 20, letterSpacing: 0.3,
-            textTransform: "uppercase",
-            color: "#000000", lineHeight: 1.3, marginBottom: 13,
-          }}>{lang === "en" ? fam.nomEn(total) : fam.nomFr(total)}</div>
+            fontFamily: SERIF, fontWeight: 600, fontSize: 22, letterSpacing: 0,
+            textTransform: "none",
+            color: NUIT, lineHeight: 1.25, marginBottom: 12,
+          }}>{casseNaturelle(lang === "en" ? fam.nomEn(total) : fam.nomFr(total))}</div>
 
           {/* Les titres arrivent déjà en capitales : en serif ils pèsent autant que
               le titre de la carte. En Lato fin, ils redeviennent ce qu'ils sont —
               un index discret de ce qu'on trouvera dessous. */}
           <div style={{
-            fontFamily: "'Lato', sans-serif",
-            fontSize: 11.5, fontWeight: 400, letterSpacing: 0.8,
-            color: GREY, lineHeight: 1.8, marginBottom: 18,
+            fontFamily: SANS,
+            fontSize: 12.5, fontWeight: 400, letterSpacing: 0,
+            textTransform: "none",
+            color: GRIS, lineHeight: 1.6, marginBottom: 18,
           }}>{titres.slice(0, 3).join(" · ")}{titres.length > 3 ? " …" : ""}</div>
 
           {/* 🔘 LE MÊME BOUTON QUE SUR LES AUTRES CARTES. Stéphanie, 27 oct
@@ -706,11 +758,11 @@ function CarteGroupeFamille({ fiches, cat, lang, deplie, onOuvrir }) {
               famille, comme le cadre, au lieu du Rouge H codé en dur. */}
           <span style={{
             display: "inline-flex", alignItems: "center",
-            padding: "11px 20px", borderRadius: 2,
-            border: `2px solid ${couleurCat(cat)}`, background: "#FBF2F0",
-            fontFamily: "'Josefin Sans', sans-serif", fontSize: 14,
-            fontWeight: 700, letterSpacing: 1.8,
-            textTransform: "uppercase", color: couleurCat(cat),
+            padding: "11px 22px", borderRadius: RAYON.pastille,
+            border: "none", background: BORDEAU,
+            fontFamily: SANS, fontSize: 13,
+            fontWeight: 700, letterSpacing: 0.4,
+            textTransform: "none", color: "#FFFFFF",
           }}>{deplie
             ? (lang === "en" ? "Close" : "Replier")
             : (lang === "en" ? `See all ${total}` : `Voir les ${total}`)}</span>
@@ -862,13 +914,13 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
               display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
               width: "100%", height: plein ? 38 : 36, marginTop: 12, cursor: "pointer",
               border: "1px solid #7B2D26", borderRadius: 1,
-              background: plein ? "#7B2D26" : "#FFF6F4",
+              background: plein ? BORDEAU : "#FFF6F4",
               fontFamily: "'Josefin Sans', sans-serif", fontSize: plein ? 11 : 10,
               fontWeight: 700, letterSpacing: plein ? 2 : 1.6,
-              textTransform: "uppercase", color: plein ? "#FFFDF8" : "#7B2D26",
+              textTransform: "uppercase", color: plein ? "#FFFDF8" : BORDEAU,
             }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                 stroke={plein ? "#FFFDF8" : "#7B2D26"} strokeWidth="2"
+                 stroke={plein ? "#FFFDF8" : BORDEAU} strokeWidth="2"
                  strokeLinecap="round" strokeLinejoin="round" style={{ display: "block", flexShrink: 0 }}>
               {a.mode === "tel"
                 ? <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
@@ -1020,7 +1072,7 @@ function filterByCats(events, catFilters) {
 function SearchIcon({ active }) {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-      stroke={active ? "#7B2D26" : "#0F1D3A"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      stroke={active ? BORDEAU : NUIT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="11" cy="11" r="7"/>
       <line x1="16.5" y1="16.5" x2="22" y2="22"/>
     </svg>
@@ -1030,9 +1082,9 @@ function SearchIcon({ active }) {
 function HamburgerIcon() {
   return (
     <svg width="18" height="13" viewBox="0 0 18 13" fill="none">
-      <rect y="0" width="18" height="1.8" rx="0.9" fill="#0F1D3A"/>
-      <rect y="5.6" width="18" height="1.8" rx="0.9" fill="#0F1D3A"/>
-      <rect y="11.2" width="18" height="1.8" rx="0.9" fill="#0F1D3A"/>
+      <rect y="0" width="18" height="1.8" rx="0.9" fill={NUIT}/>
+      <rect y="5.6" width="18" height="1.8" rx="0.9" fill={NUIT}/>
+      <rect y="11.2" width="18" height="1.8" rx="0.9" fill={NUIT}/>
     </svg>
   );
 }
@@ -1040,8 +1092,8 @@ function HamburgerIcon() {
 function HeartIcon({ active, hasFavs }) {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24"
-      fill={hasFavs ? "#7B2D26" : "none"}
-      stroke={hasFavs ? "#7B2D26" : "#0F1D3A"}
+      fill={hasFavs ? BORDEAU : "none"}
+      stroke={hasFavs ? BORDEAU : NUIT}
       strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
@@ -1060,6 +1112,11 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // components/VueReservation.jsx et lib/reservation.js.
   const [resaOuverte, setResaOuverte] = useState(null);
   const ouvrirReservation = (url, nom) => setResaOuverte({ url, nom });
+
+  // ✒️ Le dictionnaire des noms propres se construit UNE FOIS, à partir des
+  // sous-titres : c'est lui qui empêche « Monaco » de devenir « monaco » quand
+  // on remet les titres en casse de phrase. Voir lib/theme.js.
+  useEffect(() => { apprendreLesNomsPropres(events); }, [events]);
 
   const [rangeStart, setRangeStart] = useState(null);
   const [rangeEnd, setRangeEnd] = useState(null);
@@ -1266,7 +1323,104 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // les expositions jour par jour il en compte ~900 de plus, ce qui se sentirait au
   // démarrage sur iPhone. On en pose 40, puis 40 de plus dès qu'on approche du bas.
   // Purement visuel : `filtered.length` reste la vraie longueur pour la mesure.
-  const aAfficher = filtered.slice(0, nbRendues);
+  // 🌟 LA VITRINE — les premières sorties, en DEUX COLONNES, juste sous la photo
+  // de Monaco. Stéphanie, 28 oct 2026 : « sur un même écran iPhone, on puisse
+  // déjà voir une belle photo de Monaco et deux ou trois propositions de
+  // sorties, au lieu d'un seul grand bloc d'expositions ».
+  //
+  // ⚠️ Les fiches de la vitrine sont RETIRÉES du fil en dessous — sans ça on les
+  //    verrait deux fois, ce qui est exactement le défaut des doublons d'annuaire
+  //    corrigé le 11 oct.
+  // ⚠️ La vitrine ne s'affiche QUE dans le fil ordinaire. Dès qu'une catégorie,
+  //    une recherche ou le calendrier est demandé, on rend la liste telle quelle :
+  //    le brief interdit de toucher au comportement des filtres.
+  // ⚠️ Les fiches à annuaire en sont exclues : un regroupement se déplie, il n'a
+  //    rien à faire dans une case de 173 pt.
+  const vitrineActive = !searchQuery.trim() && !filtreCatActif && filter !== "calendar";
+  // Les fiches à annuaire sont écartées de la vitrine : un regroupement se
+  // déplie, il n'a rien à faire dans un hero ni dans une case de 173 pt.
+  const candidats = vitrineActive
+    ? filtered.filter(e => !(Array.isArray(e.directory) && e.directory.length > 0))
+    : [];
+  // 🚨 DÉDOUBLONNER PAR `id`, PAS PAR `cleFil`. Une fiche `ongoing` — la Foire,
+  // une exposition — est répétée JOUR PAR JOUR : même `id`, `cleFil` différent.
+  // En dédoublonnant par `cleFil`, la Foire s'affichait en hero ET dans la
+  // grille juste en dessous, avec un jour d'écart invisible à l'œil. Même
+  // famille que les doublons d'annuaire du 11 oct.
+  const vus = new Set();
+  const uniques = candidats.filter(e => (vus.has(e.id) ? false : (vus.add(e.id), true)));
+
+  // 📷 LE HERO PRÉFÈRE LES FICHES QUI ONT UNE VRAIE PHOTO DE LEUR LIEU.
+  // La maquette montre une grande photo ; un dégradé en pleine page ferait pâle
+  // figure. Le tri est STABLE (`index` en second critère), donc à égalité
+  // l'ordre chronologique tient. Un hero est une MISE EN AVANT, il n'affirme
+  // aucun moment de la journée — c'est pourquoi lui seul peut se réordonner.
+  // ⚠️ On ne fabrique aucune photo pour autant : s'il n'y en a aucune, le hero
+  //    prend simplement l'habillage graphique.
+  const heros = vitrineActive
+    ? uniques
+        .map((e, index) => ({ e, index, photo: mediaDeLaFiche(e) ? 0 : 1 }))
+        .sort((a, b) => (a.photo - b.photo) || (a.index - b.index))
+        .slice(0, 4).map(x => x.e)
+    : [];
+  const idsHero = new Set(heros.map(e => e.id));
+
+  // 🕐 LA GRILLE RESTE CHRONOLOGIQUE ET NE MÉLANGE PAS DEUX MOMENTS.
+  // C'est ce qui garantit que son titre dit vrai : « Ce soir » ne chapeaute que
+  // des fiches du soir. Sans cette règle, une fiche de 9 h et un concert de
+  // 19 h 30 se retrouvaient sous le même intertitre.
+  const maintenantDate = new Date();
+  const minMaintenant = maintenantDate.getHours() * 60 + maintenantDate.getMinutes();
+  const jourAujourdhui = toFrDate(maintenantDate);
+  const jourDemain = (() => { const d = new Date(maintenantDate); d.setDate(d.getDate() + 1); return toFrDate(d); })();
+  const restants = uniques.filter(e => !idsHero.has(e.id));
+
+  // 🚨 LA VITRINE NE MÉLANGE NI DEUX MOMENTS NI DEUX JOURS.
+  // Stéphanie, 28 oct 2026 : « la section "Ce matin" contient actuellement des
+  // événements à 19h et 19h30 ». Deux fautes se cumulaient :
+  //   1. le titre lisait l'heure d'une fiche choisie pour sa PHOTO, pas pour son
+  //      heure (corrigé plus haut, la grille reste chronologique) ;
+  //   2. la grille piochait dans TOUTE la liste, jours suivants compris — à
+  //      18h18, l'exposition de 9h-18h du LENDEMAIN remontait sous « Ce matin ».
+  //      Une fiche `ongoing` existe en une copie par jour, le piège était donc
+  //      permanent.
+  // On fixe donc d'abord le JOUR (celui de la première fiche restante), puis le
+  // moment à l'intérieur de ce jour. Les données ne sont pas touchées.
+  const jourVitrine = restants.length ? restants[0].date : null;
+  const duJour = jourVitrine ? restants.filter(e => e.date === jourVitrine) : [];
+  const momentVitrine = vitrineActive && duJour.length
+    ? momentDeLaFiche(duJour[0], lang, jourVitrine === jourAujourdhui ? minMaintenant : null)
+    : null;
+  const misEnAvant = momentVitrine
+    ? duJour.filter(e => momentDeLaFiche(e, lang, jourVitrine === jourAujourdhui ? minMaintenant : null).cle === momentVitrine.cle).slice(0, 4)
+    : [];
+
+  // Le fil, lui, est purgé de TOUTES les occurrences de ces fiches — donc par id.
+  const idsVitrine = new Set([...heros, ...misEnAvant].map(e => e.id));
+
+  // 🏷️ LE TITRE DIT CE QUE LA GRILLE CONTIENT, puisqu'elle ne contient qu'un
+  // seul moment. Sur « Semaine » ou « Week-end », parler de « ce soir » n'aurait
+  // aucun sens : on annonce simplement ce qui est à l'affiche.
+  // Le moment (« Ce soir ») ne vaut que pour AUJOURD'HUI. Demain, on dit
+  // « Demain soir » ; au-delà, on nomme le jour — « Ce matin » au-dessus d'une
+  // fiche de jeudi n'aurait aucun sens.
+  const titreVitrine = (() => {
+    const repli = lang === "en" ? "Coming up" : "À l'affiche";
+    if (filter === "week" || filter === "weekend") return repli;
+    if (!momentVitrine) return repli;
+    if (jourVitrine === jourAujourdhui) return momentVitrine.titre;
+    if (jourVitrine === jourDemain) {
+      return momentVitrine.cle === "soir"
+        ? (lang === "en" ? "Tomorrow evening" : "Demain soir")
+        : (lang === "en" ? "Tomorrow" : "Demain");
+    }
+    return jourVitrine || repli;
+  })();
+
+  const aAfficher = (idsVitrine.size
+    ? filtered.filter(e => !idsVitrine.has(e.id))
+    : filtered
+  ).slice(0, nbRendues);
 
   // Le fil se range sous des intertitres de jour (et de moment, pour aujourd'hui).
   // En recherche on garde la liste à plat : les résultats sautent d'un mois à
@@ -1337,7 +1491,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   }, [montreBandeauAmis]);
 
   return (
-    <div style={{ background: WHITE, minHeight: "100%" }}>
+    // 🎨 Fond crème de la refonte : les cartes blanches s'y détachent.
+    <div style={{ background: FOND_PAGE, minHeight: "100%" }}>
       {/* Sticky header — z-index très élevé, toujours au-dessus des cartes */}
       <div style={{ position: "sticky", top: 0, zIndex: 999, background: WHITE, borderBottom: `1px solid ${BORDER}` }}>
 
@@ -1364,7 +1519,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               <SearchIcon active={showSearch} />
             </button>
             <button onClick={onNavFriends} style={{ background: "none", border: "none", cursor: "pointer", padding: 4, position: "relative" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F1D3A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={NUIT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -1374,7 +1529,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 <span style={{
                   position: "absolute", top: 0, right: 0,
                   width: 8, height: 8, borderRadius: "50%",
-                  background: "#7B2D26", border: "1.5px solid #fff",
+                  background: BORDEAU, border: "1.5px solid #fff",
                 }} />
               )}
             </button>
@@ -1403,7 +1558,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                   fontFamily: "'Josefin Sans', sans-serif",
                   fontSize: 10, fontWeight: lang === l ? 700 : 400,
                   letterSpacing: 1, textTransform: "uppercase",
-                  color: lang === l ? "#0F1D3A" : "#6A7080",
+                  color: lang === l ? NUIT : GRIS_LISIBLE,
                   padding: "1px 3px",
                   borderBottom: lang === l ? "1.5px solid #7B2D26" : "1.5px solid transparent",
                 }}>{l}</button>
@@ -1442,18 +1597,23 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             )}
             <span>
               {lang === "en" ? "Hi, " : "Bonjour, "}
-              <span style={{ color: "#7B2D26", fontWeight: 600 }}>{userName}</span>
+              <span style={{ color: BORDEAU, fontWeight: 600 }}>{userName}</span>
             </span>
           </div>
         )}
 
         {/* Barre « Inscris-toi » pleine largeur, bien en haut (en-tête fixe) — UNIQUEMENT si pas connectée (additif) */}
         {authReady && !loggedIn && onShowAuth && (
+          /* 🎨 PLUS DE BLEU NUIT ICI. Stéphanie, 28 oct 2026 : « mets le
+             "inscris-toi" dans les mêmes tons, enlève le bleu ». La bande
+             reprend donc le bordeaux de la refonte — celui du bouton « Voir
+             l'événement » — au lieu du navy, qui était le seul aplat froid de
+             l'écran et cassait l'accord crème/bordeaux/or. */
           <button onClick={onShowAuth} style={{
             display: "block", width: "100%", border: "none", cursor: "pointer",
-            background: NAVY, color: "#fff",
+            background: BORDEAU, color: "#FFFFFF",
             padding: "11px 16px", textAlign: "center",
-            fontFamily: "'Josefin Sans', sans-serif", fontSize: 12.5, fontWeight: 600, letterSpacing: 0.8,
+            fontFamily: SANS, fontSize: 12.5, fontWeight: 700, letterSpacing: 0.4,
             borderTop: `1px solid ${BORDER}`,
           }}>
             {lang === "en"
@@ -1544,22 +1704,36 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         {/* Filtres temps — disparaissent au scroll */}
         <div style={{
           background: WHITE, borderTop: `1px solid ${BORDER}`,
-          maxHeight: filtersVisible ? "52px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
+          maxHeight: filtersVisible ? "44px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
         }}>
-          <div style={{ display: "flex", gap: 6, padding: "8px 10px", justifyContent: "center" }}>
+          {/* 🫧 LES BULLES TIENNENT DANS L'ÉCRAN. Stéphanie, 28 oct 2026 :
+              « mets bien les bulles du menu en haut dans l'écran, il faut
+              peut-être les diminuer de taille ». Elles débordaient des deux
+              côtés et la première était coupée.
+              ⚠️ `justifyContent: center` était le piège : sur une rangée qui
+              défile, centrer un contenu plus large que l'écran le fait démarrer
+              AU MILIEU — « Aujourd'hui » n'était donc plus visible à l'ouverture.
+              On part désormais du bord, et la rangée reste balayable. */}
+          <div style={{ display: "flex", gap: 7, padding: "8px 12px", justifyContent: "flex-start", overflowX: "auto", overscrollBehaviorX: "contain", touchAction: "pan-x", scrollbarWidth: "none" }}>
             {TIME_FILTERS.map(f => {
               const active = filter === f.id;
               const label = f.id === "calendar" && rangeStart ? rangeLabel : (t.filters[f.id] || f.label);
               return (
+                /* 🔘 CHIPS DE LA REFONTE — 28 oct 2026. Le brief : « filtres
+                   temporels en chips avec sélection clairement visible ». Le
+                   choisi passe en bordeaux plein, les autres sur un gris très
+                   pâle sans contour dur. La hauteur monte à 36 px pour tenir la
+                   cible tactile de 44 px avec le pas vertical. */
                 <button key={f.id} onClick={() => handleFilterChange(f.id)} style={{
-                  flexShrink: 0, padding: "7px 16px", borderRadius: 20,
-                  border: `1.5px solid ${active ? NAVY : "rgba(15,29,58,0.2)"}`,
-                  background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
-                  fontFamily: "'Jost', -apple-system, sans-serif", fontSize: 12, fontWeight: 600,
-                  cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.3,
+                  flexShrink: 0, padding: "7px 14px", minHeight: 34,
+                  borderRadius: RAYON.pastille, border: "none",
+                  background: active ? BORDEAU : "rgba(23,36,60,0.05)",
+                  color: active ? "#FFFFFF" : GRIS,
+                  fontFamily: SANS, fontSize: 12.5, fontWeight: 600,
+                  cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.1,
                 }}>{f.id === "calendar" ? (
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={active ? "#FFFFFF" : GREY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={active ? "#FFFFFF" : GRIS} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
                     {rangeStart && rangeLabel}
                   </span>
                 ) : label}</button>
@@ -1571,26 +1745,83 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         {/* Catégories groupées — disparaissent au scroll */}
         <div style={{
           background: WHITE, borderTop: `1px solid ${BORDER}`,
-          maxHeight: filtersVisible ? "44px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
+          maxHeight: filtersVisible ? "50px" : "0px", overflow: "hidden", transition: "max-height 0.22s ease",
         }}>
           {/* `touchAction: pan-x` : le conteneur parent verrouille le geste horizontal
               (l'app glissait de côté). Cette rangée-ci, elle, doit rester balayable
               latéralement — on lui rend explicitement le droit. */}
-          <div style={{ display: "flex", gap: 5, justifyContent: "center", padding: "5px 8px 7px", overflowX: "auto", overscrollBehaviorX: "contain", touchAction: "pan-x", scrollbarWidth: "none" }}>
+          <div style={{ display: "flex", gap: 6, justifyContent: "flex-start", padding: "5px 12px 9px", overflowX: "auto", overscrollBehaviorX: "contain", touchAction: "pan-x", scrollbarWidth: "none" }}>
             {EVENT_GROUPS.map(g => {
               const active = groupFilter === g.id;
               return (
                 <button key={g.id} onClick={() => { setGroupFilter(active ? null : g.id); const el = document.getElementById("main-scroll"); if (el) el.scrollTop = 0; }} style={{
-                  flexShrink: 0, padding: "4px 10px", borderRadius: 20,
-                  border: `1px solid ${active ? NAVY : "rgba(15,29,58,0.18)"}`,
-                  background: active ? NAVY : "#FFFFFF", color: active ? WHITE : GREY,
-                  fontFamily: "'Jost', sans-serif", fontSize: 11, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.4,
+                  flexShrink: 0, padding: "6px 11px", minHeight: 30,
+                  borderRadius: RAYON.pastille, border: "none",
+                  background: active ? BORDEAU : "rgba(23,36,60,0.05)",
+                  color: active ? "#FFFFFF" : GRIS,
+                  fontFamily: SANS, fontSize: 11.5, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", letterSpacing: 0.1,
                 }}>{lang === "en" ? g.labelEn : g.label}</button>
               );
             })}
           </div>
         </div>
       </div>
+
+      {/* 🎯 LE HERO + « CE SOIR » — la composition exacte de la maquette.
+          Stéphanie, 28 oct 2026 : « tu peux faire exactement comme ça, à 100 %
+          pareil ». Ordre du téléphone de gauche : grande carte photo avec le
+          titre et le bouton POSÉS DESSUS, les points du carrousel, le titre
+          « Ce soir » avec son filet et « Tout voir », puis DEUX COLONNES.
+
+          ⚠️ L'ancien bandeau d'ambiance est retiré d'ici : ses quatre images
+          étaient GÉNÉRÉES, et la maquette demande une vraie photo. Le hero
+          montre une photo du LIEU (étiquetée comme telle) quand la médiathèque
+          en a une, et un habillage graphique sinon — jamais une image inventée.
+
+          ⚠️ Ce bloc ne s'affiche que dans le fil ordinaire : avec une catégorie,
+          une recherche ou le calendrier, la liste reste telle qu'elle est. */}
+      {vitrineActive && heros.length > 0 && (
+        <>
+          <CarrouselHero
+            fiches={heros}
+            lang={lang}
+            favorites={favorites}
+            onToggleFav={onToggleFav}
+            onCardClick={onCardClick}
+            onReserver={ouvrirReservation}
+            social={social}
+            inviteCode={inviteCode}
+            onShowAuth={onShowAuth}
+          />
+
+          {misEnAvant.length > 0 && (
+            <>
+              {/* Le titre reprend le MOMENT réellement affiché (« Ce soir »,
+                  « Maintenant »…), il n'est pas écrit en dur : à 10 h du matin,
+                  « Ce soir » au-dessus d'une expo ouverte serait un mensonge. */}
+              <TitreSection
+                titre={titreVitrine}
+                lang={lang}
+                onToutVoir={() => {
+                  const el = document.getElementById("main-scroll");
+                  if (el) el.scrollTo({ top: el.scrollTop + 320, behavior: "smooth" });
+                }}
+              />
+              <GrilleDeuxColonnes
+                fiches={misEnAvant}
+                lang={lang}
+                favorites={favorites}
+                onToggleFav={onToggleFav}
+                onCardClick={onCardClick}
+                onReserver={ouvrirReservation}
+                social={social}
+                inviteCode={inviteCode}
+                onShowAuth={onShowAuth}
+              />
+            </>
+          )}
+        </>
+      )}
 
       {/* Calendrier inline */}
       {filter === "calendar" && (
@@ -1612,33 +1843,9 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
               {sec.jour
                 ? <IntertitreMoment titre={sec.moment} />
                 : <IntertitreSection titre={sec.moment} />}
-              {sec.items.map(e => e._lieu ? (
-                <CarteLieu
-                  key={`lieu-${e._fiche.id}-${e._rang}`}
-                  lieu={e._lieu}
-                  fiche={e._fiche}
-                  lang={lang}
-                  social={social}
-                  loggedIn={loggedIn}
-                  onGoingClick={onGoingClick}
-                  onOuvrir={() => onCardClick?.(e._fiche)}
-                  onReserver={ouvrirReservation}
-                  evenement={!!e._evenement}
-                  favorites={favorites}
-                  onToggleFav={onToggleFav}
-                />
-              ) : e.groupeFamille ? (
-                <CarteGroupeFamille
-                  key={`groupe-${e.cleGroupe}`}
-                  fiches={e.groupeFamille}
-                  cat={e.catGroupe}
-                  lang={lang}
-                  deplie={!!exposDepliees[e.cleGroupe]}
-                  onOuvrir={() => setExposDepliees(d => ({ ...d, [e.cleGroupe]: !d[e.cleGroupe] }))}
-                />
-              ) : renduCarte(e, true, !!e._depliee))}
+              {rendreItems(sec.items, true)}
             </div>
-          )) : aAfficher.map(e => renduCarte(e, false))
+          )) : rendreItems(aAfficher, false)
         )}
       </div>
 
@@ -1657,52 +1864,133 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     </div>
   );
 
+  /**
+   * 🧱 LE FIL EN DEUX COLONNES — Stéphanie, 28 oct 2026 : « quand je scrolle
+   * ça repart sur une colonne, mais 2 colonnes c'est mieux ».
+   *
+   * Les fiches ordinaires s'empilent donc par deux, exactement comme la grille
+   * sous le hero. Ce qui NE PEUT PAS tenir dans une case de 173 pt garde la
+   * pleine largeur :
+   *   · une sous-fiche de lieu (`_lieu`), qui porte ses propres actions ;
+   *   · un regroupement (« 7 expositions »), qui se déplie ;
+   *   · une fiche à annuaire, qui se déplie elle aussi.
+   *
+   * ⚠️ L'ORDRE EST PRÉSERVÉ. On accumule les fiches ordinaires qui se SUIVENT
+   * et on les pose en grille ; dès qu'une pleine largeur arrive, on vide le
+   * paquet avant. Sans ça, regrouper toutes les grilles d'abord mélangerait la
+   * chronologie — et une app de sorties qui désordonne les heures ne sert plus
+   * à rien.
+   */
+  function rendreItems(items, sansDate) {
+    const sortie = [];
+    let paquet = [];
+    // 🔁 UN SEUL registre de photos récentes pour TOUTES les grilles de ce
+    // passage : sinon deux vues identiques se retrouvent de part et d'autre
+    // d'une bande de regroupement, et c'est exactement ce que Stéphanie ne veut
+    // plus voir (« ne remets pas les mêmes photos à côté »).
+    const recents = [];
+    const viderLePaquet = () => {
+      if (!paquet.length) return;
+      sortie.push(
+        <div key={`grille-${sortie.length}`} style={{ marginBottom: 12 }}>
+          <GrilleDeuxColonnes
+            fiches={paquet}
+            recents={recents}
+            lang={lang}
+            favorites={favorites}
+            onToggleFav={onToggleFav}
+            onCardClick={onCardClick}
+            onReserver={ouvrirReservation}
+            social={social}
+            inviteCode={inviteCode}
+            onShowAuth={onShowAuth}
+          />
+        </div>
+      );
+      paquet = [];
+    };
+
+    for (const e of items) {
+      if (e._lieu) {
+        viderLePaquet();
+        sortie.push(
+          <CarteLieu
+            key={`lieu-${e._fiche.id}-${e._rang}`}
+            lieu={e._lieu} fiche={e._fiche} lang={lang} social={social}
+            loggedIn={loggedIn} onGoingClick={onGoingClick}
+            onOuvrir={() => onCardClick?.(e._fiche)} onReserver={ouvrirReservation}
+            evenement={!!e._evenement} favorites={favorites} onToggleFav={onToggleFav}
+          />
+        );
+      } else if (e.groupeFamille) {
+        viderLePaquet();
+        const cle = e.cleGroupe;
+        const deplie = !!exposDepliees[cle];
+        sortie.push(
+          <BandeRegroupement
+            key={`groupe-${cle}`}
+            fiches={e.groupeFamille} cat={e.catGroupe} lang={lang} deplie={deplie} recents={recents}
+            onBasculer={() => setExposDepliees(d => ({ ...d, [cle]: !d[cle] }))}
+          />
+        );
+        // Déplié, le groupe pose SES fiches — en deux colonnes, comme le reste.
+        if (deplie) {
+          sortie.push(
+            <div key={`groupe-ouvert-${cle}`} style={{ marginBottom: 12 }}>
+              <GrilleDeuxColonnes
+                fiches={e.groupeFamille} recents={recents} lang={lang}
+                favorites={favorites} onToggleFav={onToggleFav}
+                onCardClick={onCardClick} onReserver={ouvrirReservation} social={social}
+              />
+            </div>
+          );
+        }
+      } else if (Array.isArray(e.directory) && e.directory.length > 0) {
+        viderLePaquet();
+        sortie.push(renduCarte(e, sansDate, !!e._depliee, recents));
+      } else {
+        paquet.push(e);
+      }
+    }
+    viderLePaquet();
+    return sortie;
+  }
+
   // Toute fiche qui porte un annuaire se déplie SOUS elle, jamais dans une
   // fenêtre. Stéphanie, 11 oct 2026 : « je veux que cela soit cohérent partout ».
-  function renduCarte(e, sansDate, compact = false) {
-    const annuaire = Array.isArray(e.directory) && e.directory.length > 0;
-    // 🚨 LA CLÉ DOIT PORTER LE JOUR. Une fiche `ongoing` (wellness bars, musées,
-    // cinéma…) revient chaque jour AVEC LE MÊME IDENTIFIANT : avec `infos-${e.id}`
-    // seul, toucher « Infos » sur la fiche d'aujourd'hui dépliait aussi celle de
-    // demain et d'après-demain. Stéphanie, 11 oct 2026 : « y a un bug dans la
-    // fiche des bars bien-être quand on clique sur info ».
+  /**
+   * LA FICHE-MÈRE D'UN ANNUAIRE — « MUSÉES · 6 OUVERTS », « CE SOIR : 7
+   * TERRASSES », la semaine de cinéma. Elle se déplie EN SOUS-FICHES sous elle,
+   * jamais dans une fenêtre (règle posée le 11 oct 2026).
+   *
+   * 🪶 Stéphanie, 28 oct 2026 : « la carte "7 expositions à voir" est trop
+   * grande et déséquilibre la page ». Elle passe donc en bande compacte (~86 pt
+   * au lieu d'une carte pleine), avec sa vignette, son titre, son compte et son
+   * bouton « Voir les N ». Le dépliage et les sous-fiches ne changent pas.
+   */
+  function renduCarte(e, sansDate, compact = false, recentsCourants = []) {
+    // 🚨 LA CLÉ DOIT PORTER LE JOUR. Une fiche `ongoing` revient chaque jour
+    // AVEC LE MÊME IDENTIFIANT : avec `infos-${e.id}` seul, toucher « Infos »
+    // sur la fiche d'aujourd'hui dépliait aussi celle de demain.
     const cleInfos = `infos-${e.cleFil || `${e.id}-${e.date}`}`;
-    const ouvert = annuaire && !!exposDepliees[cleInfos];
+    const ouvert = !!exposDepliees[cleInfos];
     const carte = (
-            <EventCard
-              key={e.cleFil || e.id}
-              onInfos={annuaire ? () => setExposDepliees(d => ({ ...d, [cleInfos]: !d[cleInfos] })) : null}
-              infosDepliees={ouvert}
-              event={e}
-              sansDate={sansDate}
-              compact={compact}
-              jourAffiche={e.ongoing ? jourConsulte : null}
-              favorites={favorites}
-              onToggleFav={onToggleFav}
-              onCategoryClick={(cat) => { const f = CAT_TO_FILTER[cat]; if (f) onCatFilter?.(f); }}
-              onCardClick={onCardClick}
-              onReserver={ouvrirReservation}
-              lang={lang}
-              onGoingClick={onGoingClick}
-              isGoing={
-                (social?.myParticipations?.includes(e.id) ?? false)
-                // Une expo « en cours » : la coche n'appartient qu'au jour choisi.
-                && (!e.ongoing
-                    || (joursParticipation[e.id] ? joursParticipation[e.id] === e.date : !!e.premierJour))
-              }
-              // ⚠️ AUCUNE amie n'est affichée sur une fiche « en cours » dans le fil.
-              // La table `participations` ne stocke QUE l'identifiant de l'événement,
-              // sans date : impossible de savoir quel jour une amie y est allée. Les
-              // afficher sur une occurrence, c'était affirmer un jour faux — Nadège
-              // apparaissait sur « aujourd'hui » alors qu'elle y était allée la semaine
-              // précédente. Elles restent visibles dans la fiche qu'on ouvre, là où
-              // aucun jour n'est sous-entendu.
-              // ➜ Pour les remettre au bon jour, il faut une colonne `jour` dans
-              //    `participations` (voir le journal du 11 août 2026 dans CLAUDE.md).
-              friendsGoing={social ? (e.ongoing ? [] : social.friendsGoingTo(e.id)) : []}
-              loggedIn={loggedIn}
-              onShowAuth={onShowAuth}
-            />
+      <CarteRangee
+        key={e.cleFil || e.id}
+        event={e}
+        lang={lang}
+        favorites={favorites}
+        onToggleFav={onToggleFav}
+        onCardClick={onCardClick}
+        social={social}
+        onReserver={ouvrirReservation}
+        recents={recentsCourants}
+        inviteCode={inviteCode}
+        onShowAuth={onShowAuth}
+        onInfos={() => setExposDepliees(d => ({ ...d, [cleInfos]: !d[cleInfos] }))}
+        infosDepliees={ouvert}
+        nbLieux={e.directory.length}
+      />
     );
     if (!ouvert) return carte;
     return (
@@ -1711,20 +1999,14 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         {e.directory.map((d, k) => (
           <CarteLieu
             key={`lieu-${cleInfos}-${k}`}
-            lieu={d}
-            fiche={e}
-            lang={lang}
-            social={social}
-            loggedIn={loggedIn}
-            onGoingClick={onGoingClick}
+            lieu={d} fiche={e} lang={lang} social={social}
+            loggedIn={loggedIn} onGoingClick={onGoingClick}
             onOuvrir={() => onCardClick?.(e)}
-            favorites={favorites}
-            onToggleFav={onToggleFav}
+            favorites={favorites} onToggleFav={onToggleFav}
             onReserver={ouvrirReservation}
           />
         ))}
       </div>
-
     );
   }
 }

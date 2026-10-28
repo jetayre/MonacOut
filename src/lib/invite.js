@@ -54,3 +54,41 @@ export async function partagerInvitation(code, lang) {
   navigator.clipboard?.writeText(`${messageInvitation(lang)}\n${lien}`)
   return 'copie'
 }
+
+/**
+ * 🤝 INVITER SES AMIES *SUR UN ÉVÉNEMENT PRÉCIS*.
+ *
+ * Stéphanie, 28 oct 2026 : « quand tu n'as pas d'amis, mets "invite tes amis"
+ * et ça partage ton lien d'amitié pour l'event ».
+ *
+ * Le lien porte LES DEUX paramètres : `event` pour ouvrir la bonne fiche, et
+ * `invite` pour que l'amitié se fasse. C'est tout l'intérêt — un lien
+ * d'invitation nu fait arriver quelqu'un sur l'accueil, sans savoir de quelle
+ * sortie on lui parlait.
+ *
+ * ⚠️ MÊME HÔTE QUE LE RESTE : `monac-out.vercel.app`. C'est le seul déclaré
+ * dans `applinks:` côté iOS, donc le seul qui ouvre vraiment l'app ;
+ * monacout.com ouvrirait Safari. Voir l'en-tête de ce fichier.
+ *
+ * ⚠️ SANS CODE, ON NE PART PAS. Le 7 août, un lien construit avant le
+ * chargement du profil est parti avec « … » à la place du code : l'amitié a été
+ * perdue en silence, sans erreur nulle part. Le garde-fou reste le même.
+ */
+export const lienInvitationEvenement = (code, eventId) =>
+  `https://monac-out.vercel.app/?event=${eventId}&invite=${code}`
+
+export const messageInvitationEvenement = (titre, lang) => lang === 'en'
+  ? `Fancy this? "${titre}" on Monac'Out. Tap the link — we'll be connected and you'll see where I'm going 👇`
+  : `Ça te dit ? « ${titre} » sur Monac'Out. Clique sur le lien : on sera connectées et tu verras où je sors 👇`
+
+/** @returns {Promise<'partage'|'copie'|'sans-code'>} */
+export async function partagerInvitationEvenement(code, event, lang) {
+  if (!codeValide(code)) return 'sans-code'
+  const titre = String(event?.title || '').replace(/\n/g, ' ')
+  const lien = lienInvitationEvenement(code, event?.id)
+  const payload = { title: "Monac'Out", text: messageInvitationEvenement(titre, lang), url: lien }
+  if (Capacitor.isNativePlatform()) { await Share.share(payload).catch(() => {}); return 'partage' }
+  if (navigator.share) { await navigator.share(payload).catch(() => {}); return 'partage' }
+  navigator.clipboard?.writeText(`${messageInvitationEvenement(titre, lang)}\n${lien}`)
+  return 'copie'
+}

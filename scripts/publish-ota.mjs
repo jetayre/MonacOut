@@ -44,7 +44,13 @@ console.log('→ zip…');
 // que Stéphanie ne voyait pas les mises à jour sur son téléphone.
 // ⚠️ `latest.json` est exclu pour la même raison : le manifeste est servi par
 // Vercel, il n'a rien à faire DANS le paquet.
-execSync(`cd "${ROOT}/dist" && zip -qr "${join(CAPGO_DIR, zip)}" . -x 'capgo/*'`, { stdio: 'inherit' });
+// 🖼️ `media/` EST EXCLU LUI AUSSI — les photos de lieux vivent HORS du paquet.
+// Les 15 photos CC0 pèsent 4 Mo : embarquées, elles tripleraient un OTA de 1,9 Mo
+// pour une image qu'on ne regarde qu'une fois. Vercel les sert depuis
+// `monac-out.vercel.app/media/lieux/…` et `src/lib/mediatheque.js` les charge
+// paresseusement, en adresse absolue (dans l'app native, `/media/…` pointerait
+// sur `capacitor://localhost`, qui ne contient rien).
+execSync(`cd "${ROOT}/dist" && zip -qr "${join(CAPGO_DIR, zip)}" . -x 'capgo/*' 'media/*'`, { stdio: 'inherit' });
 
 // 4) Manifeste
 writeFileSync(MANIFEST, JSON.stringify({ version, url: `${BASE_URL}/${zip}` }, null, 2) + '\n');

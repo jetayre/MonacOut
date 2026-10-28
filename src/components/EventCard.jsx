@@ -8,6 +8,14 @@ import { Haptics, ImpactStyle } from "@capacitor/haptics";
 import { localizeCat, localizeDate, localizeTime, localizeTitle } from "../i18n";
 
 import { ROUGE_H, couleurCat } from "../lib/couleurs";
+import { NUIT, CREME, BLANC, OR, GRIS, SAUGE, RAYON, OMBRE, SERIF, SANS, casseNaturelle } from "../lib/theme";
+import { fondEvenement, traitsEvenement, iconeEvenement } from "../lib/habillage";
+// 🖼️ LA MÉDIATHÈQUE REMPLACE LES VISUELS DE CATÉGORIE (28 oct 2026, au soir).
+// `lib/photos.js` posait UNE IMAGE PAR CATÉGORIE, générée par IA : la photo de
+// l'Opéra atterrissait sur l'Auditorium Rainier III, des enfants sur un cours
+// de zumba. Stéphanie l'a vu le matin même. On passe par `mediaDeLaFiche`, qui
+// rattache par LIEU et sert ses fichiers hors du paquet OTA.
+import { mediaDeLaFiche } from "../lib/mediatheque";
 // Refonte du 10 oct 2026 : l'or disparaît (3,45:1 sur l'ivoire, sous la norme).
 // Le Rouge H tient toute l'ossature ; la couleur de la famille ne porte QUE le
 // mot de catégorie. Voir src/lib/couleurs.js pour le pourquoi de chaque teinte.
@@ -311,37 +319,104 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
       // plutôt que de rendre la liste inaccessible.
       onClick={() => { if (estAnnuaire && onInfos) return; onCardClick?.(event); }}
       style={{
-        // 🎨 LE CADRE PORTE LA COULEUR DE SA FAMILLE. Stéphanie, 27 oct 2026 :
-        // « nous avions prévu des couleurs différentes, là tout semble
-        // identique », puis « le bouton doit rester comme ça, mais les cadres
-        // doivent être de couleurs différentes ». Le cadre était codé en dur en
-        // Rouge H : toutes les fiches se ressemblaient, et la palette du
-        // 10 octobre — Havane pour les expos, Vert Bengale pour la scène, Bleu
-        // Encre pour les concerts — ne se voyait nulle part. Le Rouge H reste
-        // le fil conducteur (logo, bouton Réserver, cœur) ; la famille vit ici.
-        border: `${C.trait}px solid ${couleurCat(event.cat)}`,
-        borderRadius: 2,
+        // 🎨 REFONTE DU 28 OCT 2026 — LA CARTE N'A PLUS DE CADRE COLORÉ.
+        // Le brief : « supprimer les épais encadrements sur toutes les cartes ».
+        // Les 28 couleurs de catégorie faites la veille ne disparaissent pas
+        // pour autant : elles vivent désormais dans la PASTILLE de catégorie,
+        // en haut de la carte. Le repère reste, l'encadrement part.
+        // Décision prise par Stéphanie le 28 oct, après que je lui ai signalé
+        // que le brief contredisait le travail de la veille.
+        border: "1px solid rgba(23,36,60,0.06)",
+        borderRadius: RAYON.lg,
+        boxShadow: OMBRE.carte,
         padding: 0,
         marginBottom: C.marge,
         marginLeft: C.retrait, marginRight: C.retrait,
-        background: WHITE,
+        background: BLANC,
         cursor: "pointer",
         position: "relative",
+        overflow: "hidden",
       }}
     >
       {/* Inner blue frame */}
       {/* Le filet bleu intérieur est retiré : un seul trait, demandé par Stéphanie. */}
-      <div style={{ background: CREAM }}>
-
-        <div style={{ padding: C.padding, textAlign: "center" }}>
-
-          {/* Catégorie */}
+      {/* 🖼️ L'HABILLAGE, EN HAUT DE CARTE. Il tient la place qu'une photo
+          occuperait sur la maquette — mais il est GÉNÉRÉ, pas photographié :
+          dégradé de la catégorie, icône en filigrane, cercles et filets, le
+          tout décalé par `event.id` pour qu'aucune carte ne ressemble à sa
+          voisine. 0 octet ajouté à l'OTA, et rien qui puisse passer pour une
+          scène réelle. Le jour où une vraie photo existera dans les données,
+          elle prendra simplement sa place ici. */}
+      {!compact && (() => { const ph = mediaDeLaFiche(event); return ph ? (
+        /* 📷 LE VISUEL DE CATÉGORIE. Décision de Stéphanie, 28 oct 2026.
+           ⚠️ CE N'EST PAS LA PHOTO DU LIEU : une même image illustre toutes les
+           fiches de sa catégorie, et aucune n'a été prise à Monaco. D'où la
+           mention portée dessus, que le kit impose. Une vraie photo dans les
+           données passerait automatiquement devant. */
+        <div style={{ position: "relative", height: 132, overflow: "hidden", background: "#1A1F2E" }}>
+          <img src={ph.src} alt="" loading="lazy" decoding="async" style={{
+            width: "100%", height: "100%", objectFit: "cover", display: "block",
+          }} />
           <div style={{
-            fontFamily: "'Josefin Sans', sans-serif",
-            fontSize: C.cat, fontWeight: 700, letterSpacing: C.catLs,
-            textTransform: "uppercase", color: couleurCat(event.cat),
-            marginBottom: C.catBas, lineHeight: 1.15,
-          }}>{localizeCat(event.cat, lang)}</div>
+            position: "absolute", inset: 0,
+            background: "linear-gradient(180deg, rgba(18,22,34,0) 52%, rgba(18,22,34,0.55) 100%)",
+          }} />
+
+        </div>
+      ) : (
+        <div style={{
+          position: "relative", height: 112, overflow: "hidden",
+          ...fondEvenement(event),
+        }}>
+          {(() => { const t = traitsEvenement(event); return (
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"
+                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+              <circle cx={t.cx} cy={t.cy} r={t.r1} fill="none" stroke="rgba(255,255,255,0.13)" strokeWidth="0.5" />
+              <circle cx={t.cx} cy={t.cy} r={t.r2} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+              <line x1="0" y1={78 + t.incline / 4} x2="100" y2={70 + t.incline / 3}
+                    stroke="rgba(255,255,255,0.07)" strokeWidth="0.4" />
+            </svg>
+          ); })()}
+          {/* ⚠️ L'EMOJI EN FILIGRANE, PAS EN AUTOCOLLANT. Affiché tel quel, il
+              ressortait en couleurs pleines — un clap de cinéma rouge et blanc,
+              une tasse marron — et la carte avait l'air d'un sticker collé sur
+              un fond. Désaturé puis éclairci, il redevient ce que montrent les
+              76 fonds de référence : une silhouette claire, presque absente. */}
+          <div aria-hidden="true" style={{
+            position: "absolute", left: 20, top: "50%", transform: "translateY(-50%)",
+            fontSize: 46, lineHeight: 1,
+            filter: "grayscale(1) brightness(2.4) contrast(0.6)",
+            opacity: 0.22,
+          }}>{iconeEvenement(event)}</div>
+          {/* Le mot reste — il faut qu'on sache que ce n'est pas une photo —
+              mais discret : il était écrit en gros sur chaque carte du fil. */}
+          <div style={{
+            position: "absolute", right: 12, bottom: 9,
+            fontFamily: SANS, fontSize: 8, letterSpacing: 0.9,
+            textTransform: "uppercase", color: "rgba(255,255,255,0.34)",
+          }}>{lang === "en" ? "Illustration" : "Habillage"}</div>
+        </div>
+      ); })()}
+
+      <div style={{ background: BLANC }}>
+
+        <div style={{ padding: C.padding, textAlign: "left" }}>
+
+          {/* 🏷️ LA CATÉGORIE DEVIENT UNE PASTILLE. Refonte du 28 oct 2026 :
+              le cadre coloré a disparu des cartes, mais la couleur de catégorie
+              reste le repère qui permet de trier le fil d'un coup d'œil. Elle
+              se replie donc ici, sur un fond très pâle de sa propre teinte —
+              assez pour la reconnaître, assez discret pour ne pas crier. */}
+          <div style={{ marginBottom: C.catBas }}>
+            <span style={{
+              display: "inline-block", padding: "5px 12px",
+              borderRadius: RAYON.pastille,
+              background: `${couleurCat(event.cat)}14`,
+              fontFamily: SANS, fontSize: 10.5, fontWeight: 700,
+              letterSpacing: 1.1, textTransform: "uppercase",
+              color: couleurCat(event.cat), lineHeight: 1.2,
+            }}>{localizeCat(event.cat, lang)}</span>
+          </div>
 
           {/* Date + heure */}
           <div style={{
@@ -372,11 +447,20 @@ export default function EventCard({ event, favorites, onToggleFav, onCategoryCli
           </div>
 
           {/* Titre */}
+          {/* ✒️ LE TITRE EN SERIF. Le brief demande « titres soignés (serif
+              premium si la police est déjà disponible) » : Playfair Display est
+              DÉJÀ chargée par l'app, on n'ajoute donc aucune police — ce qui
+              aurait alourdi le bundle OTA et risqué un chargement fragile.
+              Les capitales disparaissent : le brief demande de « réduire les
+              capitales longues », et un titre de film en capitales sur trois
+              lignes était illisible. */}
           <div style={{
-            fontFamily: "'Josefin Sans', Georgia, sans-serif",
-            fontWeight: 400, fontSize: C.titre, letterSpacing: 0.3,
-            color: "#000000", lineHeight: 1.3, marginTop: C.titreHaut, marginBottom: C.titreBas,
-          }}>{localizeTitle(event.title.replace(/\n/g, " "), lang)}</div>
+            fontFamily: SERIF,
+            fontWeight: 600, fontSize: C.titre + 2, letterSpacing: 0,
+            textTransform: "none",
+            color: NUIT, lineHeight: 1.25,
+            marginTop: C.titreHaut, marginBottom: C.titreBas,
+          }}>{casseNaturelle(localizeTitle(event.title.replace(/\n/g, " "), lang))}</div>
 
           {/* 📍 LE BOUTON « INFOS » EST SOUS LE TITRE, ET PLUS GRAND.
               Stéphanie, 13 oct 2026 : « laisse le rectangle info et les sous-fiches.
