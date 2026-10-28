@@ -1099,7 +1099,7 @@
  },
  "/en/events/e776a26dd61a5b1931a39fd338b30361-Ligue-1-AS-MONACO-STADE-BRESTOIS-29": {
   "vuLe": "2026-08-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ligue 1 AS MONACO STADE BRESTOIS 29",
   "majLe": "2026-10-28"
  },
@@ -2101,7 +2101,7 @@
  },
  "/en/events/cd3a7b94cdca87df864846bab44742c7-Bronia-and-Altro-Canto": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Bronia and Altro Canto",
   "majLe": "2026-10-28"
  },
@@ -2113,7 +2113,7 @@
  },
  "/en/events/a76822370ae00e57506b73fdb5e01a5a-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-28"
  },
@@ -2125,7 +2125,7 @@
  },
  "/en/events/bdfaa98d5b881181bf8f974cf80620e0-Ma-Bayadere": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ma Bayadere",
   "majLe": "2026-10-28"
  },
@@ -2857,7 +2857,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-a-big-screen-concert-for-your-lunch-break": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music a big screen concert for your lunch break",
   "majLe": "2026-10-28"
  },
@@ -3013,7 +3013,7 @@
  },
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-28"
  },
@@ -3025,19 +3025,19 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-28"
  },
  "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-28"
  },
  "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-28"
  },
@@ -3049,7 +3049,7 @@
  },
  "/en/events/a890f895c9a97732d5a48baf95fae87d-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-28"
  },
@@ -3067,7 +3067,7 @@
  },
  "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-28"
  },
@@ -3085,13 +3085,13 @@
  },
  "/en/events/45330e20d5cbf91229410b984df2b017-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-28"
  },
  "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-28"
  },
@@ -3111,6 +3111,144 @@
   "vuLe": "2026-10-26",
   "etat": "deja",
   "detail": "Concert Handel s Messiah Saturday 28th November 2026",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/8cec484266d187646c6eefb15025c09b-Youth-workshops-mural-painting-for-ages-10-to-14": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Youth workshops mural painting for ages 10 to 14",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/b922d0b3c9e502b462ebf3dd8ae48370-Romeo-and-Juliet": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Romeo and Juliet",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/db2250ae79d34f18a9ceaff8d91cf17f-Romeo-and-Juliet": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "Romeo and Juliet",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/acd6c678a1c71e967e273adcc31cd90d-Children-s-workshops-storytelling-for-ages-3-to-5": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Children s workshops storytelling for ages 3 to 5",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/d68683b2900637e07b2882b8558b3e30-Romeo-and-Juliet": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Romeo and Juliet",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/ace5c0023b88ed124d54bbf7147ebf26-Romeo-and-Juliet": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Romeo and Juliet",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/932db35b6231135099cb0a1e8ed45e8a-Apero-MUSIQUE-LIVE": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "Apero MUSIQUE LIVE",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/d75ae6385713ac741b5223d7e497cc7b-Rendez-vous-des-aidants": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "Rendez vous des aidants",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/a9064f9d4a885b79b90275bc5d2e3f31-Getting-started-with-iPhone-Level-1": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Getting started with iPhone Level 1",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/d7b36cd9bdb92b530633fcb0c23b9729-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/02c7323217a1015c16496b3114c45436-Children-s-workshops-storytelling-for-ages-3-to-5": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Children s workshops storytelling for ages 3 to 5",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/a8b05eefe9b5214d48b709886e26ae8c-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/a0e5395713ba14688334d138be18026b-Spectacle-jeune-public-Pyjamas": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Spectacle jeune public Pyjamas",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/d515f04002ebe4d53b9637a65e7f8e15-Animation-Jeux": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "Animation Jeux",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/259520025fa31e5a15edb02e1dbe362c-Les-Archives-du-lundi-programme-B-de-novembre": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Les Archives du lundi programme B de novembre",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/caa3c8d1c93f18b57221d6e1ef673c44-PIAF-Le-Spectacle-avec-Nathalie-Lermitte": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "PIAF Le Spectacle avec Nathalie Lermitte",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/a5ec3b921e063376a9313180125db9a9-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/61f586999cd4679577afda4add00d806-Children-s-workshops-storytelling-for-ages-3-to-5": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Children s workshops storytelling for ages 3 to 5",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/a69f704cdddc94fbd679fd4ce2f2ff92-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
+  "vuLe": "2026-10-28",
+  "etat": "importe",
+  "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/ef9d983c22a8097ec96b3242c5e31fc3-Children-s-workshops-storytelling-for-ages-3-to-5": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Children s workshops storytelling for ages 3 to 5",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/9cf65ab3c3cc69717a1746cd4b42886a-Children-s-workshops-storytelling-for-ages-3-to-5": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Children s workshops storytelling for ages 3 to 5",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/6137c0c5b545b88ea91aebcafbb6c935-Youth-workshops-mural-painting-for-ages-10-to-14": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Youth workshops mural painting for ages 10 to 14",
+  "majLe": "2026-10-28"
+ },
+ "/en/events/54fe3cd44bde5c44245c9205ca1f15bb-Youth-workshops-mural-painting-for-ages-6-to-9": {
+  "vuLe": "2026-10-28",
+  "etat": "deja",
+  "detail": "Youth workshops mural painting for ages 6 to 9",
   "majLe": "2026-10-28"
  }
 }
