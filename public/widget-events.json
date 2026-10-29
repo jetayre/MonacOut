@@ -1,9 +1,18 @@
 {
-  "generatedAt": "2026-10-28T21:33:55.900Z",
+  "generatedAt": "2026-10-29T05:14:46.221Z",
   "events": [
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
+      "time": "14h00 — 23h00",
+      "title": "FOIRE ATTRACTIONS PORT HERCULE",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🎡"
+    },
+    {
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "09h30 — 18h30",
       "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
       "venue": "La Rose des Vents",
@@ -11,8 +20,8 @@
       "emoji": "🌺"
     },
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "En journée",
       "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
       "venue": "Francis Bacon MB Art Foundation",
@@ -20,8 +29,8 @@
       "emoji": "🖼️"
     },
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +38,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -38,8 +47,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,8 +56,8 @@
       "emoji": "🎬"
     },
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "10h00",
       "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
@@ -56,22 +65,13 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
+      "date": "Jeu 29 oct",
+      "iso": "2026-10-29",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🚩"
-    },
-    {
-      "date": "Mer 28 oct",
-      "iso": "2026-10-28",
-      "time": "11h00 — 19h00",
-      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🖼️"
     }
   ]
 }
