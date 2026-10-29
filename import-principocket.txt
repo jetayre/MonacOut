@@ -1,23 +1,11 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-28
-317 événements lus · 16 importés (16 fiches) · 269 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-29
+312 événements lus · 4 importés (4 fiches) · 275 déjà présents
 
 ■ IMPORTÉS
-   + Romeo and Juliet — Opéra Garnier Monte-Carlo (1 jour(s))
-   + Apero MUSIQUE LIVE — Marché de La Condamine (1 jour(s))
-   + Rendez vous des aidants — L'Espace Lamartine (1 jour(s))
-   + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
-   + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
-   + Getting Started with a Mac Computer Level 1 — Maison du Numérique de Monaco (1 jour(s))
-   + Animation Jeux — Marché de La Condamine (1 jour(s))
    + ChatGPT Plongez dans le monde de l IA — Maison du Numérique de Monaco (1 jour(s))
-   + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
+   + Getting Started with a Mac Computer Level 1 — Maison du Numérique de Monaco (1 jour(s))
    + Appels indesirables des solutions gratuites pour les bloquer — Maison du Numérique de Monaco (1 jour(s))
-   + Picnic Music a big screen concert for your lunch break — Médiathèque Caroline (1 jour(s))
-   + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
    + Prise en main d un ordinateur Mac niveau 2 — Maison du Numérique de Monaco (1 jour(s))
-   + Bronia and Altro Canto — Grimaldi Forum Monaco (1 jour(s))
-   + Ma Bayadere — Grimaldi Forum Monaco (1 jour(s))
-   + Ligue 1 AS MONACO STADE BRESTOIS 29 — Stade Louis II (1 jour(s))
 
 ■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main
    ? 1 nov 2026 · Vepres de la Toussaint et benediction des tombes
@@ -25,8 +13,8 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-28
    ? 9 jan 2027 · Les ateliers CycloShow
 
 ■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment
-   · Club Oceano Discovery course on the Ocean — DÉJÀ DANS L'APP (fiche 700023, ATELIER, « En journée »). Le Musée Océanographique ne publie aucun horaire pour ce cours : « En journée » est la mention honnête prévue par la règle 18. Ne pas réimporter.
    · Monaco International Triathlon — DÉJÀ DANS L'APP (fiche « MONACO INTERNATIONAL TRIATHLON », ven 6 nov, « 6 — 8 nov 2026 », plage du Larvotto). Le rapprochement automatique échoue parce que notre fiche porte une PÉRIODE dans le champ heure et non un horaire, et que le lieu est écrit différemment. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter, ce serait un doublon.
+   · Club Oceano Discovery course on the Ocean — DÉJÀ DANS L'APP (fiche 700023, ATELIER, « En journée »). Le Musée Océanographique ne publie aucun horaire pour ce cours : « En journée » est la mention honnête prévue par la règle 18. Ne pas réimporter.
    · Children and Future presents The 27th No Finish Line Monaco 14 22 November 2026 Every step counts — DÉJÀ DANS L'APP (fiche 1000369, sam 14 nov, Chapiteau de Fontvieille). La No Finish Line est une course NON-STOP sur 8 jours : elle n'a pas d'heure de début unique, d'où « En journée ». Ne pas réimporter.
    · THURSDAY LIVE SESSIONS THE SPITFIRES — DÉJÀ DANS L'APP (fiche 4853, mer 13 jan 2027, 18h30, Espace Indigo, Grimaldi Forum). Les Thursday Live Sessions sont GRATUITES sur réservation au +377 9999 3000 : apéro-mix 18h30, concert 20h30. PrinciPocket ne publie pas l'horaire, donc le rapprochement automatique échoue — mais la séance est bien là. Ne pas réimporter.
    · MARINE IN CONCERT — 17 août 2026 — PrinciPocket annonce le 27 février 2027, date FAUSSE. Vérifié sur jds.fr : le concert est le sam 13 février 2027 à 20h30 au Grimaldi Forum. Notre fiche 4741 porte la bonne date ; un doublon créé par le robot sur la fausse date a été supprimé. Ne pas réimporter.
@@ -40,8 +28,8 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-28
    · Ligue 1 AS MONACO Paris FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800050, « LIGUE 1 AS MONACO PARIS FC », Stade Louis II, dim 16 mai 2027). Match domicile de la saison 2026-2027 (Paris FC promu en Ligue 1). PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
 
 ■ ⚠️ HORS DE MONACO — écartés d'office (règle 15)
-   ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 05 ASS SPORTIVE DE MONACO INSTITUT FEDERAL DE VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 05 ASS SPORTIVE DE MONACO US ST EGREVOISE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 07 ASS SPORTIVE DE MONACO VOLLEY PRADETAN GARDEEN — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 07 ASS SPORTIVE DE MONACO LEVALLOIS PARIS SAINT CLOUD 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 09 ASS SPORTIVE DE MONACO RACING CLUB DE CANNES 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
@@ -50,11 +38,11 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-10-28
    ! Volley Ball 2MA Journee 11 ASS SPORTIVE DE MONACO ASUL LYON VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 13 ASS SPORTIVE DE MONACO VBC CHALON SUR SAONE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 13 ASS SPORTIVE DE MONACO AS CALUIRE ET CUIRE — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 15 ASS SPORTIVE DE MONACO MANDELIEU LA NAPOULE V B — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball EFB Journee 15 ASS SPORTIVE DE MONACO UNION SPORTIVE DE VILLEJUIF — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 17 ASS SPORTIVE DE MONACO UGS MHSC VB MAUGUIO — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
-   ! Volley Ball 2MA Journee 19 ASS SPORTIVE DE MONACO MARSEILLE VOLLEY 13 — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 17 ASS SPORTIVE DE MONACO U S PONTET VOLLEY AVENIR — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 19 ASS SPORTIVE DE MONACO VOLLEY MULHOUSE ALSACE 2 CFC — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
+   ! Volley Ball 2MA Journee 19 ASS SPORTIVE DE MONACO MARSEILLE VOLLEY 13 — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball 2MA Journee 21 ASS SPORTIVE DE MONACO AIX UNIVERSITE CLUB 13 VOLLEY BALL — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
    ! Volley Ball EFB Journee 22 ASS SPORTIVE DE MONACO VOLLEY BALMA QUINT FONSEGRIVES — Stade des Moneghetti · Rue Jean Bouin, Beausoleil, France
