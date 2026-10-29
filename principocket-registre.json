@@ -2857,7 +2857,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-a-big-screen-concert-for-your-lunch-break": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music a big screen concert for your lunch break",
   "majLe": "2026-10-29"
  },
@@ -3013,7 +3013,7 @@
  },
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-29"
  },
@@ -3025,19 +3025,19 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-29"
  },
  "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-29"
  },
  "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-29"
  },
@@ -3049,7 +3049,7 @@
  },
  "/en/events/a890f895c9a97732d5a48baf95fae87d-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-29"
  },
@@ -3067,7 +3067,7 @@
  },
  "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-29"
  },
@@ -3091,7 +3091,7 @@
  },
  "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-29"
  },
@@ -3169,7 +3169,7 @@
  },
  "/en/events/d7b36cd9bdb92b530633fcb0c23b9729-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-10-29"
  },
@@ -3249,6 +3249,12 @@
   "vuLe": "2026-10-28",
   "etat": "deja",
   "detail": "Youth workshops mural painting for ages 6 to 9",
+  "majLe": "2026-10-29"
+ },
+ "/en/events/528e6ae9eaef98549cbbd8d77c866a13-Bal-de-Noel-2026": {
+  "vuLe": "2026-10-29",
+  "etat": "deja",
+  "detail": "Bal de Noel 2026",
   "majLe": "2026-10-29"
  }
 }
