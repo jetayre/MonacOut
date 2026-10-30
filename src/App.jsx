@@ -49,6 +49,55 @@ async function prenomParCode(code) {
 
 const MOIS_APP = { jan:0,fév:1,mar:2,avr:3,mai:4,juin:5,juil:6,août:7,sep:8,oct:9,nov:10,déc:11 };
 
+
+/**
+ * 🕐 L'HEURE DE FIN D'UNE FICHE, EN MINUTES DEPUIS MINUIT.
+ *
+ * Stéphanie, 30 oct 2026 : le rappel du samedi 18 h proposait « Harry Potter en
+ * musique », un concert de 15 h — déjà fini. Le classement ne regardait que le
+ * JOUR, jamais l'heure : tout ce qui tombait le jour de l'envoi remontait, même
+ * terminé. Envoyer quelqu'un vers une porte fermée, c'est pire que ne rien
+ * envoyer.
+ *
+ * ⚠️ DEUX PIÈGES DÉJÀ RENCONTRÉS AILLEURS, repris ici :
+ *   · une plage s'écrit avec un tiret cadratin OU une FLÈCHE (« 9h30 → 18h30 »),
+ *     et parfois un simple trait ou « à » ;
+ *   · beaucoup de fiches n'ont qu'une heure de DÉBUT. On leur accorde alors
+ *     deux heures, plutôt que de les déclarer finies à la minute où elles
+ *     commencent.
+ * Une heure illisible rend `null` : la fiche est gardée. On ne retire jamais
+ * une sortie parce qu'on n'a pas su lire son horaire.
+ */
+function finEnMinutesNotif(e) {
+  const t = String(e?.time || "").replace(/\s/g, "");
+  if (!t) return null;
+  const plage = t.match(/^(\d{1,2})h(\d{2})?[\u2014\u2013\u2192>\-\u00e0]+(\d{1,2})h(\d{2})?/);
+  if (plage) {
+    const deb = parseInt(plage[1]) * 60 + (plage[2] ? parseInt(plage[2]) : 0);
+    const fin = parseInt(plage[3]) * 60 + (plage[4] ? parseInt(plage[4]) : 0);
+    // 🌙 UNE FICHE QUI COMMENCE APRÈS MINUIT APPARTIENT À LA NUIT DU JOUR
+    // AFFICHÉ, PAS À SON PETIT MATIN. « HALLOWEEN NIGHT TWIGA · 00h30 — 05h00 »
+    // datée du samedi, c'est la nuit de samedi à dimanche : à 18 h elle est
+    // ENCORE À VENIR. Le premier jet la déclarait finie (fin = 5 h < 18 h) et
+    // retirait du rappel la soirée la plus attendue du week-end.
+    if (deb < 6 * 60) return 30 * 60;             // au-delà de toute heure d'envoi
+    return fin <= deb ? 24 * 60 : fin;            // passe minuit → fin de journée
+  }
+  const mot = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (mot === "lematin" || mot === "matin") return 12 * 60;
+  if (mot === "lemidi" || mot === "amidi" || mot === "midi") return 15 * 60;
+  if (mot === "enjournee" || mot === "toutelajournee") return 18 * 60;
+  if (mot === "lapresmidi" || mot === "enapresmidi" || mot === "apresmidi") return 19 * 60;
+  if (mot === "ensoiree" || mot === "lesoir" || mot === "soir") return 24 * 60;
+  const seul = t.match(/^(\d{1,2})h(\d{2})?/);
+  if (seul) {
+    const deb = parseInt(seul[1]) * 60 + (seul[2] ? parseInt(seul[2]) : 0);
+    if (deb < 6 * 60) return 30 * 60;             // même règle pour une heure seule
+    return deb + 120;                              // sans fin connue : deux heures
+  }
+  return null;                                     // illisible → on garde la fiche
+}
+
 function parseForNotif(e) {
   const parts = e.date.trim().split(" ");
   const day = parseInt(parts[1]);
@@ -179,7 +228,14 @@ async function scheduleDigest(events, favorites, config, topics) {
         if (e.directory) return false;   // pas les annuaires Musées/Cinéma dans les notifs (seulement de vrais événements)
         if (e.noNotif) return false;     // fiches quotidiennes d'expo : visibles dans l'app, exclues des notifs
         const d = parseForNotif(e);
-        return d && d >= winStart && d <= winEnd;
+        if (!(d && d >= winStart && d <= winEnd)) return false;
+        // 🕐 CE QUI EST DÉJÀ FINI NE PART PAS DANS LE RAPPEL.
+        // Uniquement pour le JOUR DE L'ENVOI : les jours suivants sont entiers.
+        if (d.getTime() === sendDay.getTime()) {
+          const fin = finEnMinutesNotif(e);
+          if (fin !== null && fin <= notifHour * 60) return false;
+        }
+        return true;
       });
       if (winEvents.length === 0) continue;
       const top = [...winEvents]
