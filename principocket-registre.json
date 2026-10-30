@@ -3013,7 +3013,7 @@
  },
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Appels indesirables des solutions gratuites pour les bloquer",
   "majLe": "2026-10-30"
  },
@@ -3025,7 +3025,7 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Prise en main d un ordinateur Mac niveau 2",
   "majLe": "2026-10-30"
  },
@@ -3049,7 +3049,7 @@
  },
  "/en/events/a890f895c9a97732d5a48baf95fae87d-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ChatGPT Plongez dans le monde de l IA",
   "majLe": "2026-10-30"
  },
@@ -3067,7 +3067,7 @@
  },
  "/en/events/ff9adffd5f3fc4aa63b4d569f580f988-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Getting Started with a Mac Computer Level 1",
   "majLe": "2026-10-30"
  },
@@ -3181,7 +3181,7 @@
  },
  "/en/events/a8b05eefe9b5214d48b709886e26ae8c-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-10-30"
  },

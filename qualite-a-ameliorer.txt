@@ -1,23 +1,30 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2398 fiches inspectées le 2026-10-29.
+2398 fiches inspectées le 2026-10-30.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (3)
-   · Ven 30 oct · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — même lieu et même jour qu'une série de 6 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 800003)
-   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (8)
+   · Ven 30 oct · FRANCIS KEY AU TWIGA — même lieu et même jour qu'une série de 156 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4911)
+   · Ven 30 oct · UNDERSTANDING DIGITAL IDENTITY WITH MCONNECT — même lieu et même jour qu'une série de 7 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 800003)
+   · Ven 30 oct · DINNER SHOW TWIGA MONTE-CARLO — même lieu et même jour qu'une série de 156 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4910)
+   · Sam 31 oct · HALLOWEEN NIGHT TWIGA — même lieu et même jour qu'une série de 156 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4913)
+   · Sam 31 oct · DÍA DE LOS MUERTOS BAR AMÉRICAIN — même lieu et même jour qu'une série de 3 fiches « LIVE MUSIC ULTRA MARINE GIRLS BAND BAR AMÉRICAIN » (id 4915)
+   · Sam 31 oct · HALLOWEEN DINNER TWIGA — même lieu et même jour qu'une série de 156 fiches « SOIRÉE TWIGA MONTE-CARLO » (id 4912)
+   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800065)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990027)
 
-■ FICHES SANS CONTENU — la description répète le titre (7)
+■ FICHES SANS CONTENU — la description répète le titre (9)
+   · Jeu 5 nov · CHATGPT PLONGEZ DANS LE MONDE DE L IA — description = titre (id 800057)
    · Jeu 5 nov · RENDEZ VOUS DES AIDANTS — description = titre (id 800029)
    · Jeu 5 nov · APERO MUSIQUE LIVE — description = titre (id 800027)
-   · Mar 10 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
+   · Ven 6 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Mer 11 nov · ANIMATION JEUX — description = titre (id 800085)
-   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
-   · Lun 28 déc · MA BAYADERE — description = titre (id 800128)
+   · Sam 21 nov · PRISE EN MAIN D UN ORDINATEUR MAC NIVEAU 2 — description = titre (id 800126)
+   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
+   · Dim 20 déc · BRONIA AND ALTRO CANTO — description = titre (id 800127)
    · Dim 17 jan · LIGUE 1 AS MONACO STADE BRESTOIS 29 — description = titre (id 800129)
 
 ■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (6)
-   · Jeu 29 oct · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
+   · Ven 30 oct · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
    · Sam 31 oct · HALLOWEEN AU PARC PRINCESSE ANTOINETTE — Parc Princesse Antoinette (id 800161)
    · Sam 31 oct · NOS DIABLOTINS SONT DE SORTIE TRICK OR TREAT — Rue Princesse Caroline (id 800004)
    · Dim 1 nov · EXPOSITION DE PEINTURES DENISE SOLOMON & BEATRICE DARDY — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 800055)
