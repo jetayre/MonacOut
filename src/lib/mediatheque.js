@@ -452,6 +452,46 @@ export function imageAmbiance(event, decalage = 0) {
   };
 }
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   🎃 LES IMAGES DE THÈME — une fête, pas un lieu.
+
+   Stéphanie, 30 oct 2026 : « mets photo Halloween où tu peux ».
+
+   ⚠️ CE N'EST NI UNE PHOTO DE LIEU NI UNE AMBIANCE DE CATÉGORIE, et c'est
+   pour ça que ça passe AVANT la photo du lieu. Une citrouille sur « Halloween
+   Night Twiga » décrit l'ÉVÉNEMENT — ce qui s'y passe ce soir-là — là où la
+   façade du Twiga ne décrit que le bâtiment. Rien n'est trompeur : la fête a
+   bien lieu, et l'image ne prétend pas montrer la salle.
+
+   🚨 LE SEUL ENDROIT OÙ UN RAPPROCHEMENT PAR MOT EST LÉGITIME. Partout ailleurs
+   on compare des libellés ENTIERS (un `includes()` collerait la photo d'un lieu
+   sur un autre — l'erreur de l'Opéra sur l'Auditorium). Ici le mot cherché est
+   le NOM DE LA FÊTE, pas celui d'un établissement : « Halloween » dans un titre
+   ne peut désigner qu'Halloween.
+   ⚠️ Les motifs sont ancrés sur des mots entiers et restent peu nombreux : on
+   n'ouvre pas la porte à une liste qui s'allonge sans fin.
+   ══════════════════════════════════════════════════════════════════════════ */
+const THEMES = [
+  {
+    motif: /\b(halloween|buddhalloween|muertos|catrina|trick or treat|diablotins)\b/i,
+    f: "halloween.webp", w: 1100, h: 825,
+    alt: "Une citrouille d'Halloween sculptée, dans les feuilles",
+  },
+];
+
+/** L'image de la FÊTE à laquelle se rattache une fiche, s'il y en a une. */
+export function imageTheme(event) {
+  const texte = `${event?.title || ""} ${event?.desc || ""}`;
+  const t = THEMES.find(x => x.motif.test(texte));
+  if (!t) return null;
+  return {
+    src: `${BASE.replace("/lieux", "/" + AMB)}/${t.f}`,
+    mediaType: "theme", nomLieu: null, alt: t.alt,
+    width: t.w, height: t.h, licence: "Domaine public", auteur: "Wikimedia Commons",
+  };
+}
+
 /**
  * 🏙️ LA PHOTO DU QUARTIER — dernier recours.
  *
@@ -477,6 +517,7 @@ export function photoDuQuartier(event, decalage = 0) {
  */
 export function mediaDeLaFiche(event, decalage = 0) {
   return photoEvenement(event)
+      || imageTheme(event)
       || photoDuLieu(event)
       || photoDeLAnnuaire(event)
       || imageAmbiance(event, decalage)
