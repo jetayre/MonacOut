@@ -5,6 +5,10 @@ import { ouvrirItineraire } from "../lib/itineraire";
 import { localizeCat, localizeTitle } from "../i18n";
 import { couleurCat } from "../lib/couleurs";
 import BandeauWeb from "./BandeauWeb";
+import VueReservation from "./VueReservation";
+import { actionDeReservation } from "../lib/reservation";
+import { track } from "../lib/track";
+import { BORDEAU, NUIT, SERIF, SANS, RAYON, casseNaturelle } from "../lib/theme";
 
 const IS_NATIVE = Capacitor.isNativePlatform();
 
@@ -82,6 +86,13 @@ function HeartIcon({ color, active }) {
 }
 
 export default function Shell({ onGoingSansCompte, tab, setTab, children, lang = "fr", catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
+  // 🎟️ LA FICHE OUVERTE N'AVAIT AUCUN BOUTON « RÉSERVER ».
+  // Stéphanie, 29 oct 2026 : « les liens réserver buguent », « quand je vais
+  // voir l'événement ça ne s'affiche pas correctement ». Les cartes du fil en
+  // avaient un, la fiche détaillée non : on ouvrait la fiche et on ne pouvait
+  // plus rien réserver. La vue s'affiche DANS l'app, jamais dans un onglet
+  // (écran noir du 7 août).
+  const [resaOuverte, setResaOuverte] = useState(null);
   const [showPhone, setShowPhone] = useState(false);
   return (
     <div style={{
@@ -181,13 +192,21 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
               zIndex: 600,
             }} />
             <div style={{
+              // 🚨 LA FICHE DÉBORDAIT DE L'ÉCRAN. Stéphanie, 29 oct 2026 :
+              // « quand je vais voir l'événement ça ne s'affiche pas
+              // correctement ». Centrée par `translate(-50%, -50%)` sans
+              // hauteur maximale, une fiche à longue description dépassait en
+              // HAUT comme en BAS — et le haut, coupé, emportait la catégorie
+              // et le bouton de fermeture. On la borne à 86 % de la hauteur et
+              // on la rend défilante.
               position: "absolute",
               top: "50%", left: "50%",
               transform: "translate(-50%, -50%)",
-              width: 300,
+              width: 318, maxHeight: "86%",
+              overflowY: "auto", WebkitOverflowScrolling: "touch",
               zIndex: 601,
-              border: `1.5px solid ${GOLD_FRAME}`,
-              borderRadius: 2,
+              border: `1px solid ${BORDEAU}`,
+              borderRadius: RAYON.md,
               padding: 0,
               background: WHITE,
             }}>
@@ -208,16 +227,19 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                 <div style={{
                   fontFamily: "'Josefin Sans', sans-serif",
                   fontSize: 13, fontWeight: 700, letterSpacing: 3,
-                  textTransform: "uppercase", color: couleurCat(selectedEvent.cat),
+                  textTransform: "uppercase", color: BORDEAU,
                   marginBottom: 6, textAlign: "center",
                 }}>{localizeCat(selectedEvent.cat, lang)}</div>
 
-                {/* Titre */}
+                {/* Titre — en casse de phrase, comme dans le fil. Les données
+                    arrivent en capitales parce que les sources les publient
+                    ainsi ; `casseNaturelle` les abaisse SANS toucher aux noms
+                    propres, appris sur les sous-titres. */}
                 <div style={{
-                  fontFamily: "'Josefin Sans', sans-serif",
-                  fontWeight: 400, fontSize: 16, color: NAVY,
-                  textAlign: "center", lineHeight: 1.3, marginBottom: 14,
-                }}>{localizeTitle(selectedEvent.title.replace(/\n/g, " "), lang)}</div>
+                  fontFamily: SERIF,
+                  fontWeight: 600, fontSize: 21, color: NUIT,
+                  textAlign: "center", lineHeight: 1.22, marginBottom: 14,
+                }}>{casseNaturelle(localizeTitle(selectedEvent.title.replace(/\n/g, " "), lang))}</div>
 
                 {selectedEvent.directory ? (
                   <div style={{ marginBottom: 4 }}>
@@ -380,7 +402,44 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                   >{favorites.includes(selectedEvent.id) ? "❤️" : "🤍"}</button>
                 </div>
 
-                {/* Je réserve + téléphone */}
+                {/* 🎟️ RÉSERVER — le bouton qui manquait sur la fiche ouverte.
+                    Même règle que partout : un seul mot, « Réserver une place »
+                    ou « une table » selon la catégorie, et il fait le mieux
+                    disponible — formulaire, site, ou téléphone.
+                    ⚠️ En mode `tel`, l'objet rendu porte `tel` et PAS `url` :
+                    c'est l'oubli qui, sur les cartes, envoyait l'app sur
+                    `/undefined` et la rechargeait à l'accueil (29 oct). */}
+                {(() => {
+                  const a = actionDeReservation(selectedEvent, selectedEvent.cat, lang);
+                  if (!a) return null;
+                  return (
+                    <button
+                      onClick={() => {
+                        track("reservation_clic", { mode: a.mode, cat: selectedEvent.cat,
+                                                    lieu: selectedEvent.source || selectedEvent.subtitle });
+                        if (a.mode === "tel") { window.location.href = `tel:${a.tel}`; return; }
+                        if (!a.url) return;
+                        setResaOuverte({ url: a.url, nom: (selectedEvent.title || "").replace(/\n/g, " ") });
+                      }}
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                        width: "100%", minHeight: 44, marginBottom: 10, cursor: "pointer",
+                        border: "none", borderRadius: RAYON.pastille, background: BORDEAU,
+                        fontFamily: SANS, fontSize: 14, fontWeight: 700, letterSpacing: 0.3,
+                        color: "#FFFCF8",
+                      }}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFCF8"
+                           strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+                        {a.mode === "tel"
+                          ? <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.5 11.5 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/>
+                          : <path d="M4 7h16M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 11h6"/>}
+                      </svg>
+                      {a.mot}
+                    </button>
+                  );
+                })()}
+
+                {/* Itinéraire */}
                 {(selectedEvent.subtitle || selectedEvent.phone) && (
                   <div style={{ display: "flex", gap: 8, alignItems: "stretch", justifyContent: "center" }}>
                     {selectedEvent.subtitle && (
@@ -424,6 +483,16 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
               </div>
             </div>
           </>
+        )}
+
+        {/* 🎟️ La vue de réservation, par-dessus la fiche ouverte. */}
+        {resaOuverte && (
+          <VueReservation
+            url={resaOuverte.url}
+            titre={resaOuverte.nom}
+            lang={lang}
+            onFermer={() => setResaOuverte(null)}
+          />
         )}
 
         {/* Menu panneau */}

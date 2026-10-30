@@ -114,7 +114,21 @@ function BoutonResa({ event, lang, onReserver, compact = false }) {
   if (!a) return null;
   const toucher = e => {
     e.stopPropagation();
-    if (a.mode === "tel") { window.location.href = a.url; return; }
+    // 📊 Sans cette ligne le bouton est muet — leçon du 27 oct, où 9 030 boutons
+    // avaient été posés sans qu'aucun n'envoie de signal.
+    track("reservation_clic", { mode: a.mode, cat: event?.cat, lieu: event?.subtitle });
+
+    // 🚨 LE DÉFAUT DU 29 OCT : « les liens réserver buguent et ramènent au début
+    // de l'app ». `actionDeReservation` rend `{ mode:"tel", tel }` — il n'y a
+    // PAS de champ `url` dans ce cas. J'écrivais `window.location.href = a.url`,
+    // donc `href = undefined`, donc l'app partait sur `/undefined` et se
+    // rechargeait à l'accueil. Et le mode `tel` est le plus fréquent : c'est le
+    // moyen de réserver dans la moitié des lieux de Monaco.
+    // ⚠️ `tel:` est sûr (il ouvre le composeur, pas une page) — contrairement à
+    // `target="_blank"`, qui avait produit l'écran noir du 7 août.
+    if (a.mode === "tel") { window.location.href = `tel:${a.tel}`; return; }
+
+    if (!a.url) return;          // ceinture : jamais de navigation à vide
     onReserver?.(a.url, event.title?.replace(/\n/g, " "));
   };
   return (
