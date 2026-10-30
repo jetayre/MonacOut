@@ -1,8 +1,8 @@
 ========================================
 MONACOUT — RAPPORT VÉRIFICATION QUOTIDIENNE
-Généré le : 29/10/2026 22:00:54
-Événements analysés : 2412
-Problèmes détectés : 24
+Généré le : 30/10/2026 18:01:11
+Événements analysés : 2408
+Problèmes détectés : 25
 ========================================
 
 ✓ Tous les événements ont un champ descEn.
@@ -11,7 +11,8 @@ Problèmes détectés : 24
 
 ✓ Aucun événement trop ancien détecté.
 
-── TROUS DE COUVERTURE MENSUELLE (23) ──
+── TROUS DE COUVERTURE MENSUELLE (24) ──
+  Trou couverture : aucun événement "CONFÉRENCE" en oct 2026
   Trou couverture : aucun événement "CONFÉRENCE" en avr 2027
   Trou couverture : aucun événement "APÉRO" en mai 2027
   Trou couverture : aucun événement "BRUNCH" en mai 2027
@@ -44,9 +45,13 @@ Problèmes détectés : 24
 
 ✓ Aucun lien agrégateur interdit (visitmonaco, culture.mc, etc.).
 
-── VÉRIFICATION LIENS (121 URLs testées) ──────────
+── VÉRIFICATION LIENS (120 URLs testées) ──────────
 
-  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (901)
+  ⚠️  LIENS TROP GÉNÉRIQUES — risque > 2 clics pour réserver (934)
+     [id:4914,4757,66,448,800011,800038] MESSE DE LA TOUSSAINT CATHÉDRALE, FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES, EXTRAORDINARY CONCERT AT THE CATHEDRAL OF MONACO 29 OCTOBER …
+     → https://www.maitrisecathedrale.mc/fr/prochaines-dates
+     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+
      [id:4810] LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS
      → https://www.nmnm.mc/en/exhibitions/le-jeu-de-la-rose-et-du-carre/
      💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
@@ -55,9 +60,69 @@ Problèmes détectés : 24
      → https://map.gouv.mc/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
 
-     [id:4757,66,448,800011,800038] FÊTE DE L'ESPRIT- SAINT, CONCERT DE NOËL CATHÉDRALE, CONCERT DE NOËL CATHÉDRALE, JOURNÉE MONDIALE DE PRIÈRE POUR LES MALADES, EXTRAORDINARY CONCERT AT THE CATHEDRAL OF MONACO 29 OCTOBER …
-     → https://www.maitrisecathedrale.mc/fr/prochaines-dates
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     [id:4765,4766,4741,4742,800005,800008,800013,800028,800100,800103,800104,800106,800056,800169,800180,800218,800225,800268,800300,800310,800216,800332,800066,800107,800081,800127,800128] CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN, OPERA DE MONTE CARLO CAPE TOWN HERITAGE, MONACO DANCE FORUM LEVER LES YEUX PAR CECILE MARTINEZ, SOIREE BARTOK, SOIREE BARTOK, SOIREE BARTOK, SOIREE BARTOK, 19TH CONFERENCE OF MINISTERS RESPONSIBLE FOR SPORT, STAND UP MONACO, THURSDAY LIVE SESSIONS DIRTY DEEP, ATELIER DANSE EN FAMILLE, THE SUMMIT FORBES TRAVEL GUIDE, SOIREE BARTOK, THURSDAY LIVE SESSIONS VOILAA SOUND SYSTEM, THE SUMMIT FORBES TRAVEL GUIDE, CONCERT DE L ORCHESTRE DES CARABINIERS DU PRINCE, SHREK THE MUSICAL, SHREK THE MUSICAL, MA BAYADERE, BRONIA AND ALTRO CANTO, MA BAYADERE
+     → https://www.grimaldiforum.com/
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:4739,4740,4853,4854,4855,4856] THURSDAY LIVE SESSIONS JIMMY GNECCO, THURSDAY LIVE SESSIONS DIRTY DEEP, THURSDAY LIVE SESSIONS THE SPITFIRES, THURSDAY LIVE SESSIONS ELEPHANZ, THURSDAY LIVE SESSIONS KOMODOR, THURSDAY LIVE SESSIONS VOILAA SOUND SYSTEM
+     → https://www.grimaldiforum.com/fr/thursday-live-sessions
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4700] RÉCITAL JONATHAN TETELMAN
+     → https://www.opera.mc/en/seasons/26-27/jonathan-tetelman
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4701,4702] PORGY AND BESS GERSHWIN, PORGY AND BESS GERSHWIN
+     → https://www.opera.mc/en/seasons/26-27/porgy-and-bess
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4703,4704,4705,4706,4707] LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH, LA VIE PARISIENNE OFFENBACH
+     → https://www.opera.mc/en/seasons/26-27/la-vie-parisienne
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4710,4711] L'ITALIANA IN ALGERI ROSSINI, L'ITALIANA IN ALGERI ROSSINI
+     → https://www.opera.mc/en/seasons/26-27/l-italiana-in-algeri
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4712] RÉCITAL BARTOLI & FAGIOLI
+     → https://www.opera.mc/en/seasons/26-27/cecilia-bartoli-franco-fagioli
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4713] FIDELIO BEETHOVEN VERSION CONCERT
+     → https://www.opera.mc/en/seasons/26-27/fidelio
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4714] RÉCITAL ASMIK GRIGORIAN
+     → https://www.opera.mc/en/seasons/26-27/asmik-grigorian
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4715,4716,4717,4718] RIGOLETTO VERDI, RIGOLETTO VERDI, RIGOLETTO VERDI, RIGOLETTO VERDI
+     → https://www.opera.mc/en/seasons/26-27/rigoletto
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4719,4720,4721,4722] SIEGFRIED WAGNER, SIEGFRIED WAGNER, SIEGFRIED WAGNER, SIEGFRIED WAGNER
+     → https://www.opera.mc/en/seasons/26-27/siegfried
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4723] IL RITORNO D'ULISSE MONTEVERDI
+     → https://www.opera.mc/en/seasons/26-27/il-ritorno-d-ulisse-in-patria
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:3546] SHREK THE MUSICAL
+     → https://www.grimaldiforum.com
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:3528,4774] CONCERT DE NOËL ENTRÉE LIBRE, LES SEPT DERNIÈRES PAROLES HAYDN
+     → https://opmc.mc/venue/eglise-saint-charles-monaco/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4844,4845,4846] ONE TO ONE RETAIL & E-COMMERCE GRIMALDI FORUM, ONE TO ONE RETAIL & E-COMMERCE GRIMALDI FORUM, ONE TO ONE RETAIL & E-COMMERCE GRIMALDI FORUM
+     → https://www.grimaldiforum.com/fr/agenda-manifestations-monaco/one-to-one-retail-e-commerce-2
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4824] LE BOURGEOIS GENTILHOMME JEAN-PAUL ROUVE
+     → https://www.tpgmonaco.mc/
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:62] FÊTE NATIONALE DE MONACO
      → https://www.palais.mc/
@@ -91,12 +156,64 @@ Problèmes détectés : 24
      → (vide)
      💬 Lien manquant
 
+     [id:1306012,1306013,1306014,1306015,1306016] RENCONTRES PHILOSOPHIQUES L’AMOUR D’UN PÈRE, RENCONTRES PHILOSOPHIQUES LE CHARME, RENCONTRES PHILOSOPHIQUES DES INÉGALITÉS, RENCONTRES PHILOSOPHIQUES LE NARCISSISME, LA PHILO POUR LES JEUNES ATELIER DÈS 7 ANS
+     → https://philomonaco.com/evenements/
+     💬 Inaccessible (réseau) : This operation was aborted
+
      [id:4903,800074,800075,800087,800089,800090,800092,800093,800094,800000] ROMEO ET JULIETTE, ROMEO ET JULIETTE, ROMEO ET JULIETTE, BRONIA AND ALTRO CANTO, MA BAYADERE, BRONIA AND ALTRO CANTO, MA BAYADERE, MA BAYADERE, MA BAYADERE, ROMEO ET JULIETTE
      → https://www.balletsdemontecarlo.com/fr
      💬 Inaccessible (réseau) : fetch failed
 
+     [id:1306101] FOIRE ATTRACTIONS PORT HERCULE
+     → https://www.mairie.mc/la-foire-attractions
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1306120] CONCERT CARITATIF SOUPE DE NUIT OPMC
+     → https://opmc.mc/concert/concert-caritatif-soupe-de-nuit/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1306130] 60 ANS ORCHESTRE DES CARABINIERS DU PRINCE
+     → https://www.grimaldiforum.com/fr/centre-culturel
+     💬 Inaccessible (réseau) : fetch failed
+
      [id:1306161] CAFÉ-RENCONTRE AFCEM EXPRESSO NAPOLI
      → https://en.afce-monaco.org/agenda
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1306206,1306207,1306208,1306209,1306210,1306211,1306212,1306213,1306214,1306215,1306216,1306217,1306218] HOMMAGE À OASIS NEW MOODS, HOMMAGE À OASIS NEW MOODS, HOMMAGE À CÉLINE DION NEW MOODS, HOMMAGE À CÉLINE DION NEW MOODS, HOMMAGE À CÉLINE DION NEW MOODS, HOMMAGE À LADY GAGA NEW MOODS, HOMMAGE À LADY GAGA NEW MOODS, HOMMAGE À LADY GAGA NEW MOODS, HOMMAGE À DANIEL BALAVOINE NEW MOODS, HOMMAGE À DANIEL BALAVOINE NEW MOODS, HOMMAGE À MICHEL SARDOU NEW MOODS, HOMMAGE À MICHEL SARDOU NEW MOODS, HOMMAGE À MICHEL SARDOU NEW MOODS
+     → https://www.montecarlosbm.com/en/spectacles/new-moods
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1306303,1306304,1306305,1306306,1306307,1306308,1306309] SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA
+     → https://www.mayamia.mc/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1364854] HARP MASTER CLASS |\ GHISLAINE PETIT-VOLTA
+     → https://academierainier3.mc/en/events/harp-master-class--ghislaine-petit-volta
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1364855] « YOUNG TALENTS » CONTEST
+     → https://academierainier3.mc/en/events/-young-talents--contest-11
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1364856] ALTO'S AUDITION
+     → https://academierainier3.mc/en/events/altos-audition
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1408009,1408010,1408011,1408012,1408013,1408014] CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE
+     → https://www.cinemas2monaco.com
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1874] AMBER LOUNGE WINTER GALA
+     → https://www.amberlounge.com/events/monaco-2026/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:1931] ATELIER OCÉAN DES MERVEILLES
+     → https://musee.oceano.org/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:4794] GUCCI × LA ROSE DES VENTS LE MOTIF FLORA
+     → https://larosedesvents.com/the-beach/
      💬 Inaccessible (réseau) : fetch failed
 
      [id:800031,800032,800033,800034,800035,800036,800037,800068] LES CONCERTS DE LA VOUTE CHRISTMAS CANTATAS, LES CONCERTS DE LA VOUTE MAKE WAY FOR THE YOUNG PEOPLE, LES CONCERTS DE LA VOUTE ROMEO AND JULIET, LES CONCERTS DE LA VOUTE WOMAN POWER, LES CONCERTS DE LA VOUTE FAREWELL SONG, LES CONCERTS DE LA VOUTE DAVID AND BRUNO PUT ON A SHOW EPISO…, LES CONCERTS DE LA VOUTE SOLI DEO GLORIA BY JSB, LES CONCERTS DE LA VOUTE LA MALIBRAN
@@ -106,6 +223,10 @@ Problèmes détectés : 24
      [id:800012] L UMIERES SUR LA LAGUNE
      → https://lamprontigallery.com/
      💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+
+     [id:1023768,1023773,1023774] BANDES DESSINÉES VENTE EN SALLE HÔTEL DES VENTES, MOBILIER & TABLEAUX VACATION 1 HÔTEL DES VENTES, MOBILIER & TABLEAUX VACATION 2 HÔTEL DES VENTES
+     → https://www.hvmc.com/
+     💬 HTTP 403
 
      [id:1023769,1023770] EXCLUSIVE TIMEPIECES MONACO LEGEND, EXCLUSIVE TIMEPIECES MONACO LEGEND
      → https://monacolegendauctions.com/
@@ -135,17 +256,25 @@ Problèmes détectés : 24
      → (vide)
      💬 Lien manquant
 
+     [id:4851] CANDLELIGHT QUEEN VS ABBA
+     → https://feverup.com/m/662793
+     💬 Inaccessible (réseau) : This operation was aborted
+
+     [id:4852] CANDLELIGHT COLDPLAY VS IMAGINE DRAGONS
+     → https://feverup.com/m/614095
+     💬 Inaccessible (réseau) : fetch failed
+
      [id:4860] FRANCIS BACON PETER BEARD FIGURES IN THE RAW
      → https://www.mbartfoundation.com/activities/exhibitions/
-     💬 URL générique — aucun bouton "Réserver" trouvé sur la page. Vérifier si lien plus direct existe.
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:4879,4880,4881,4882,4890,4891] MONACO SPORTSBOAT WINTER SERIES ACTE I, MONACO SPORTSBOAT WINTER SERIES ACTE I, MONACO SPORTSBOAT WINTER SERIES ACTE I, MONACO SPORTSBOAT WINTER SERIES ACTE I, NAVICAP CHALLENGE ELENA SIVOLDAEVA YACHT CLUB, PRIMO CUP UBS TROPHY YACHT CLUB
      → https://yacht-club-monaco.mc/en/calendar/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:1928] SPORTSBOAT WINTER SERIES ACTE II
      → https://yacht-club-monaco.mc/
-     💬 Inaccessible (réseau) : This operation was aborted
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:4893] MASTERCLASS GRANDS VINS FRANÇAIS AVENUE 31
      → (vide)
@@ -187,10 +316,6 @@ Problèmes détectés : 24
      → (vide)
      💬 Lien manquant
 
-     [id:800140] ATELIERS JEUNESSE PEINTURE MURALE 6 9 ANS
-     → (vide)
-     💬 Lien manquant
-
      [id:800156] ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS
      → (vide)
      💬 Lien manquant
@@ -199,9 +324,13 @@ Problèmes détectés : 24
      → (vide)
      💬 Lien manquant
 
+     [id:800162,800179,800207,800167] STAGE D ICONES, MESSE DES FAMILLES 2026 2027, LES ATELIERS MISSION XY, STAGE D ICONES
+     → https://diocese.mc
+     💬 Inaccessible (réseau) : fetch failed
+
      [id:800172] CONFERENCE PIERRE LEGUILLON
      → https://pavillonbosio.com/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:800184] EXPOSITION MÉMOIRE DES LIEUX QUAI ANTOINE IER
      → (vide)
@@ -217,11 +346,23 @@ Problèmes détectés : 24
 
      [id:800188,800193,800196] SPECTACLE PYJAMAS, PIAF LE SPECTACLE, ANNE ROUMANOFF L AGE LIBRE
      → https://www.espaceleoferre.mc/
-     💬 Page d'accueil — aucun bouton "Réserver" détecté. Risque > 2 clics pour réserver.
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:800199] ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS
      → (vide)
      💬 Lien manquant
+
+     [id:800202,800062] NAVIGATING MARITIME CHANGE, L APERO DES FRENCHY AT MERIDIEN BEACH PLAZA
+     → https://www.marriott.com/en-us/hotels/mcmmd-le-meridien-beach-plaza/dining/
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:800205,800194] CHALLENGE PRINCE ALBERT II COASTAL ROWING, CHALLENGE PRINCE ALBERT II COASTAL ROWING
+     → https://www.mairie.mc/agenda
+     💬 Inaccessible (réseau) : fetch failed
+
+     [id:800212,800200] MONACOPHIL, MONACOPHIL
+     → https://meetings.montecarlosbm.com/en/one-monte-carlo-meeting
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:800213] ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS
      → (vide)
@@ -259,9 +400,17 @@ Problèmes détectés : 24
      → (vide)
      💬 Lien manquant
 
+     [id:800374,800129] LIGUE 1 AS MONACO O LYONNAIS, LIGUE 1 AS MONACO STADE BRESTOIS 29
+     → https://www.mairie.mc/le-stade-nautique-rainier-iii
+     💬 Inaccessible (réseau) : fetch failed
+
      [id:800004] NOS DIABLOTINS SONT DE SORTIE TRICK OR TREAT
      → (vide)
      💬 Lien manquant
+
+     [id:4904,4905,4906,4907,4908,4909] HAPPY HOUR MUSICAL QUATRE CLARINETTES DE L'OPMC, FIDELIO WIENER STAATSOPER, MARINE EN SPECTACLE GRIMALDI FORUM, CONCERT SYMPHONIQUE MATIAKH · NDJIKI NYA DAVID, CONCERT SYMPHONIQUE MATVIENKO MONTAGUE RENDALL, GAROU SOLO GRIMALDI FORUM
+     → https://montecarloticket.com/0526/fListeManifs.aspx?idstructure=0526
+     💬 Inaccessible (réseau) : fetch failed
 
      [id:800047] LE MESSIE DE HAENDEL ST PAUL'S ANGLICAN CHURCH
      → https://www.stpaulsmonaco.com/
@@ -1736,14 +1885,6 @@ Problèmes détectés : 24
      💬 Lien manquant
 
      [id:950665] MUSÉES 6 OUVERTS À MONACO
-     → (vide)
-     💬 Lien manquant
-
-     [id:930300] CE SOIR 20 TERRASSES OUVERTES
-     → (vide)
-     💬 Lien manquant
-
-     [id:960300] EN APRÈS-MIDI 2 ADRESSES OUVERTES
      → (vide)
      💬 Lien manquant
 
@@ -3347,14 +3488,6 @@ Problèmes détectés : 24
      → (vide)
      💬 Lien manquant
 
-     [id:970300] BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI
-     → (vide)
-     💬 Lien manquant
-
-     [id:980300] ATELIERS 4 THÈMES ESPACE LAMARTINE
-     → (vide)
-     💬 Lien manquant
-
      [id:970301] BIEN-ÊTRE 4 ACTIVITÉS AUJOURD'HUI
      → (vide)
      💬 Lien manquant
@@ -3652,7 +3785,7 @@ Problèmes détectés : 24
      💬 Lien manquant
 
 
-  💡 À VÉRIFIER MANUELLEMENT (28)
+  💡 À VÉRIFIER MANUELLEMENT (20)
      [id:700000,700002,700004,700007,700008,700009,700010,700011,700012,700013,700014,700015,700016,700017,700020,700021,700022,180,800082,800095,800096,800097,800098,800099,800109,800110,800111,800163,800195,800203,800219,800239,800242,800249,800258,800294,800303,800305,800306,800132,800375] LE DERNIER CÈDRE DU LIBAN, UNE VIE SUR MESURE, LA MISÉRABLE, LA CRISE, LA CATHÉDRALE ENGLOUTIE, LES MARCHANDS D'ÉTOILES, NUMÉRO DEUX, LES GROS PATINENT BIEN, DEBURAU, EN THÉRAPIE, LA HAINE ET LA VENGEANCE, BRÛLEZ-LA, DANS LE COULOIR, POTICHE, L'AFFAIRE CHRISTIAN RANUCCI, ZONE D'ATTENTE, TOUTE LA FAMILLE QUE J'AIME, MILONGA DE NOËL MONACO, TRAHISONS, LA JALOUSIE, ROSE ROYAL, LE MAL DE MERE, MUR MURE, MA CANDIDATURE, LE REPAS DES FAUVES, FETE DES MERES DIPTYQUE FAMILIAL, FESTIVAL JEUNESSE ON NE NAIT PAS FEMME, UNE VIE SUR MESURE, LA MISERABLE, LA CRISE, CONCERT DE L ORCHESTRE DES CARABINIERS DU PRINCE, LES GROS PATINENT BIEN, DEBURAU, LE PETIT PRINCE, BRULEZ LA, MA CANDIDATURE, FETE DES MERES DIPTYQUE FAMILIAL, FESTIVAL JEUNESSE ON NE NAIT PAS FEMME, LE REPAS DES FAUVES, BEHIND THE SCENES OF CULTURE IN MONACO, FESTIVAL JEUNESSE LA NUIT SANS FIN
      → https://www.tpgmonaco.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -3663,18 +3796,6 @@ Problèmes détectés : 24
 
      [id:4754,249,577,578,581,582,585,586,589,590,593,594,597,598,601,602,605,606,609,610,613,614,617,618,621,622,625,626,629,630,633,634,637,638,641,642,645,646,649,650,653,654,657,658,661,662,665,666,669,670,673,674,677,678,681,682,685,686,689,800029] MESSE VICTIMES DU SIDA, CONCERT CHORAL SACRÉ-CŒUR, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, MESSE DIMANCHE, MESSE SAMEDI, RENDEZ VOUS DES AIDANTS
      → https://saintmartin.diocese.mc
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:4764,4765,4766,4741,4742,800005,800008,800013,800028,800100,800103,800104,800106,800056,800169,800180,800218,800225,800268,800300,800310,800216,800332,800066,800107,800081,800127,800128] BNI GLOBAL CONVENTION 2026, CONFÉRENCE MINISTRES DU SPORT, THE SUMMIT FORBES, MARINE EN CONCERT, STAR WARS UN NOUVEL ESPOIR, BNI GLOBAL CONVENTION GRIMALDI FORUM, SHREK LE MUSICAL GRIMALDI FORUM, ANNA NETREBKO BRIAN JAGDE GEORGE PETEAN, OPERA DE MONTE CARLO CAPE TOWN HERITAGE, MONACO DANCE FORUM LEVER LES YEUX PAR CECILE MARTINEZ, SOIREE BARTOK, SOIREE BARTOK, SOIREE BARTOK, SOIREE BARTOK, 19TH CONFERENCE OF MINISTERS RESPONSIBLE FOR SPORT, STAND UP MONACO, THURSDAY LIVE SESSIONS DIRTY DEEP, ATELIER DANSE EN FAMILLE, THE SUMMIT FORBES TRAVEL GUIDE, SOIREE BARTOK, THURSDAY LIVE SESSIONS VOILAA SOUND SYSTEM, THE SUMMIT FORBES TRAVEL GUIDE, CONCERT DE L ORCHESTRE DES CARABINIERS DU PRINCE, SHREK THE MUSICAL, SHREK THE MUSICAL, MA BAYADERE, BRONIA AND ALTRO CANTO, MA BAYADERE
-     → https://www.grimaldiforum.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:3546] SHREK THE MUSICAL
-     → https://www.grimaldiforum.com
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:4824] LE BOURGEOIS GENTILHOMME JEAN-PAUL ROUVE
-     → https://www.tpgmonaco.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:4828] MONACO INTERNATIONAL TRIATHLON
@@ -3709,18 +3830,6 @@ Problèmes détectés : 24
      → https://masteroh.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-     [id:1306302,1306303,1306304,1306305,1306306,1306307,1306308,1306309] SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA, SOIRÉE ITALIENNE DU MERCREDI MAYA MIA
-     → https://www.mayamia.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1408008,1408009,1408010,1408011,1408012,1408013,1408014] CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE, CINÉMA À L'AFFICHE CETTE SEMAINE
-     → https://www.cinemas2monaco.com
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1931] ATELIER OCÉAN DES MERVEILLES
-     → https://musee.oceano.org/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
      [id:1938,1940,800137,800148,800077,800078,800079,800080,800083,800166,800174,800177,800178,800182,800204,800246,800331,800073] CONFÉRENCE MÉDIATHÈQUE JANVIER, CONFÉRENCE MÉDIATHÈQUE MARS, SIESTE MUSICALE INSTANT DETENTE PENDANT LA PAUSE DEJEUNER, PICNIC MUSIC UN CONCERT SUR GRAND ECRAN POUR ACCOMPAGNER VOT…, PAUSE ECRITURE ANIMEE PAR ERIC LAFITTE, LA PHILO POUR LES JEUNES C EST QUI PAPA ANIME PAR ALICIA POL…, CAFE LITTERAIRE VENEZ ECHANGER SUR VOS COUPS DE COEUR, LET S TALK SCIENCE ECONOMICS LECTURE HOW DID GOOGLE BECOME O…, PAUSE ECRITURE AUTOUR D UN ROMAN ANIMEE PAR CHRISTIANE CAMPR…, CONFERENCE PARIS MONACO AUSCHWITZ LA DESTINEE TRAGIQUE DE RE…, COLLOQUE MON NOM EST PERSONNE JOURNEE CONSACREE A L OEUVRE D…, EXPOSITION MON NOM EST PERSONNE BORIS DE SCHLOEZER LES ARCHI…, EXPOSITION MON NOM EST PERSONNE BORIS DE SCHLOEZER LES ARCHI…, PICNIC MUSIC A BIG SCREEN CONCERT FOR YOUR LUNCH BREAK, CINE FAMILLE LE PETIT PRINCE DE MARK OSBORNE 2015, D OU VIENT LE DESIR DE VENGEANCE, EXPOSITION MON NOM EST PERSONNE BORIS DE SCHLOEZER LES ARCHI…, EXPOSITION MON NOM EST PERSONNE BORIS DE SCHLOEZER LES ARCHI…
      → https://www.mediatheque.mc/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
@@ -3735,14 +3844,6 @@ Problèmes détectés : 24
 
      [id:800053,800054] EXHIBITIONS OF SCULPTURES BRONZE AND TERRACOTTA PAINTINGS AN…, EXHIBITIONS OF SCULPTURES BRONZE AND TERRACOTTA PAINTINGS AN…
      → https://www.espace22.mc/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:1023768,1023773,1023774] BANDES DESSINÉES VENTE EN SALLE HÔTEL DES VENTES, MOBILIER & TABLEAUX VACATION 1 HÔTEL DES VENTES, MOBILIER & TABLEAUX VACATION 2 HÔTEL DES VENTES
-     → https://www.hvmc.com/
-     💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
-
-     [id:800146,800162,800179,800207,800167] CINE CLUB LA SOURCE DES FEMMES, STAGE D ICONES, MESSE DES FAMILLES 2026 2027, LES ATELIERS MISSION XY, STAGE D ICONES
-     → https://diocese.mc
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
      [id:800007,800026] ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS, ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS
@@ -3765,7 +3866,7 @@ Problèmes détectés : 24
      → https://www.letheatredesmuses.com/
      💬 Page d'accueil avec bouton réservation — vérifier manuellement que c'est ≤ 2 clics.
 
-  ✓ 69 liens OK (directs, page réservation détectée)
+  ✓ 38 liens OK (directs, page réservation détectée)
 
 ========================================
 Fin du rapport
