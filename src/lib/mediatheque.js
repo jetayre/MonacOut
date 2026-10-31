@@ -206,7 +206,10 @@ export const LIEUX = [
   // Twiga le demandait, il faudrait la retirer. À faire confirmer par eux :
   // +377 9999 2550.
   { id: 22, slug: "twiga-monte-carlo", nom: "Twiga Monte-Carlo", vues: [
-      { f: "twiga-monte-carlo.webp", w: 1400, h: 956, alt: "La salle du Twiga Monte-Carlo un soir de fête" },
+      // 🐯 Stéphanie, 31 oct 2026 : « twiga » + la salle rouge et or. Elle
+      // remplace la vue précédente, qui reste en ligne mais n'est plus citée —
+      // un paquet OTA figé peut encore la réclamer.
+      { f: "twiga-salle.webp", w: 1100, h: 733, alt: "La salle du Twiga, rouge et or" },
   ] },
 
   // 🎡 LA FOIRE : photo de la MANIFESTATION, pas du quai. Édition précédente.
@@ -243,6 +246,37 @@ export const LIEUX = [
   // ⚠️ PHOTO FOURNIE PAR STÉPHANIE, pas CC0 : c'est l'image de communication de
   //    l'établissement. Accord à demander au +377 98 06 38 38, comme pour le Twiga.
   // ⚠️ 526 × 210 seulement : nette sur une carte, un peu douce en bannière.
+  // ══ LOT DU 31 OCT 2026, photos fournies par Stéphanie ════════════════════
+  { id: 38, slug: "grimaldi-forum", nom: "Grimaldi Forum", vues: [
+      { f: "grimaldi-forum.webp", w: 1100, h: 733, alt: "La façade de verre du Grimaldi Forum" },
+  ] },
+  { id: 39, slug: "salle-prince-pierre", nom: "Auditorium Prince Pierre", vues: [
+      { f: "salle-prince-pierre.webp", w: 1100, h: 619, alt: "La salle et la scène de l'Auditorium Prince Pierre" },
+  ] },
+  { id: 40, slug: "maya-mia", nom: "Maya Mia", vues: [
+      { f: "maya-mia.webp", w: 1100, h: 733, alt: "La terrasse du Maya Mia à la tombée du jour" },
+  ] },
+  { id: 41, slug: "buddha-bar", nom: "Buddha-Bar Monte-Carlo", vues: [
+      { f: "buddha-bar.webp", w: 1100, h: 733, alt: "La salle du Buddha-Bar, rouge et or" },
+  ] },
+  { id: 42, slug: "espace-lamartine", nom: "Espace Lamartine", vues: [
+      { f: "espace-lamartine.webp", w: 1100, h: 619, alt: "L'Espace Lamartine, à l'angle de la rue" },
+  ] },
+  { id: 43, slug: "mediatheque-caroline", nom: "Médiathèque Caroline", vues: [
+      { f: "mediatheque-caroline.webp", w: 1100, h: 619, alt: "La Médiathèque Caroline et sa façade de bois" },
+  ] },
+  { id: 44, slug: "academie-rainier-iii", nom: "Académie Rainier III", vues: [
+      { f: "academie-rainier-iii.webp", w: 1100, h: 619, alt: "L'entrée de l'Académie Rainier III, musique et théâtre" },
+  ] },
+  { id: 45, slug: "thermes-marins", nom: "Thermes Marins Monte-Carlo", vues: [
+      { f: "thermes-marins.webp", w: 1100, h: 825, alt: "Le bassin des Thermes Marins, vue sur le Rocher" },
+  ] },
+  { id: 46, slug: "pavillon-bosio", nom: "Pavillon Bosio", vues: [
+      { f: "pavillon-bosio.webp", w: 1100, h: 733, alt: "L'entrée du Pavillon Bosio, dans son jardin" },
+  ] },
+  { id: 47, slug: "new-moods", nom: "New Moods", vues: [
+      { f: "new-moods.webp", w: 1100, h: 618, alt: "La scène du New Moods, concert en salle rouge" },
+  ] },
   // 🎰 BAR DE LA SALLE EUROPE — 183 fiches. Photo fournie par Stéphanie, 31 oct.
   // ⚠️ Elle montre une salle de jeux baroque sous verrière, pas le comptoir :
   //    c'est l'atmosphère du Casino, et la Salle Europe EST cette salle-là.
@@ -282,6 +316,23 @@ const LIBELLES = {
 
   "bar americain": 35,
   "stars of monaco": 36,
+  "grimaldi forum": 38,
+  "grimaldi forum monaco": 38,
+  "salle prince pierre": 39,
+  "auditorium prince pierre": 39,
+  "maya mia": 40,
+  "buddha bar monte carlo": 41,
+  "buddha bar": 41,
+  "l espace lamartine": 42,
+  "espace lamartine": 42,
+  "mediatheque caroline": 43,
+  "academie de musique prince rainier iii": 44,
+  "academie rainier iii": 44,
+  "thermes marins monte carlo": 45,
+  "thermes marins": 45,
+  "ecole superieure d arts plastiques pavillon bosio": 46,
+  "pavillon bosio": 46,
+  "new moods": 47,
   "bar de la salle europe": 37,
   "salle europe": 37,
 
@@ -508,6 +559,9 @@ const AMBIANCES = [
   { f: "brunch-monaco.webp", alt: "Une table de brunch en terrasse, face au port de Monaco" },
   // 🥂 L'APÉRO. Photo fournie par Stéphanie, 31 oct 2026.
   { f: "apero-monte-carlo.webp", alt: "Deux coupes de champagne en terrasse, face au Casino à la tombée du jour" },
+  { f: "expositions-galerie.webp", alt: "Une galerie d'exposition ouverte sur la mer" },
+  { f: "spa-bien-etre.webp",       alt: "Une table de soin au bord d'un bassin, bougies et orchidée" },
+  { f: "encheres.webp",            alt: "Un marteau de commissaire-priseur et une salle de vente" },
   // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
   // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
   // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
@@ -542,14 +596,16 @@ const AMBIANCE_PAR_CAT = {
   "FOODY": ["terrasse-diner", "lounge-mer"],
   "PETIT-DÉJ": ["cafe-petit-dej", "terrasse-diner"],
   // 🥤 Le smoothie d'abord : c'est l'image que Stéphanie a choisie pour eux.
-  "BIEN-ÊTRE": ["smoothie-bien-etre", "plage-larvotto", "lounge-mer"],
+  // 🧖 Le spa pour les ACTIVITÉS bien-être ; les « wellness bars » gardent le
+  //    smoothie, qui leur est attaché nommément (thème) et passe avant.
+  "BIEN-ÊTRE": ["spa-bien-etre"],
   "SPORT": ["port-yachts", "le-rocher"],
   "FOOTBALL": ["port-yachts"],
   "BASKET": ["port-yachts"],
-  "EXPOSITION": ["casino-facade", "palais-place"],
+  "EXPOSITION": ["expositions-galerie"],
   "CONFÉRENCE": ["casino-facade", "palais-place"],
   "SALON": ["casino-facade", "palais-place"],
-  "ENCHÈRES": ["casino-facade"],
+  "ENCHÈRES": ["encheres"],
   "CONCERT": ["jazz-live", "casino-facade"],
   "OPÉRA": ["casino-facade"],
   "THÉÂTRE": ["casino-facade", "palais-place"],
@@ -652,7 +708,13 @@ const THEMES = [
     // théâtre pour une rencontre de philosophie. Stéphanie a choisi cette
     // image POUR ELLES, un choix explicite passe devant une règle par défaut.
     avantLeLieu: true,
-    motif: /(rencontres|conf[ée]rences)\s+philosophiques/i,
+    // ⚠️ Élargi le 31 oct 2026 : Stéphanie, « atelier conférence philosophique,
+    //    mets cette photo ». Les deux ATELIERS « LA PHILO POUR LES JEUNES »
+    //    tombaient sur une image de quartier. Le motif couvre donc « philo »
+    //    seul — vérifié sur les 2 400 fiches : six correspondances, les quatre
+    //    Rencontres et ces deux ateliers, rien d'autre (MONACOPHIL, qui parle
+    //    de philatélie, ne contient pas « philo »).
+    motif: /philosoph|\bphilo\b/i,
     f: "philosophie.webp", w: 1100, h: 570,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un livre ouvert sur un socle de marbre, l'Acropole au couchant",
