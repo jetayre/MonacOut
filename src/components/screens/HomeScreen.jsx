@@ -432,10 +432,48 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
   // obtenait DEUX blocs « Demain », le second avec « Après-midi » avant
   // « Matin ». Stéphanie, 11 oct 2026 : « vérifie les sous fiches des
   // expositions y a un bug ».
+  // 🚨 UNE FICHE À ANNUAIRE FINIT QUAND SA DERNIÈRE SÉANCE FINIT.
+  // Stéphanie, 31 oct 2026, 20h40 : « aujourd'hui y a pas la fiche cinéma ».
+  // Elle avait disparu de PARTOUT, et par un enchaînement de trois règles qui
+  // se tenaient chacune debout :
+  //   1. `filterByTime` la GARDE — `pinLast` vaut « ferme pour la nuit », pas
+  //      « terminé » (règle du 10 oct, celle qui sauve les expositions) ;
+  //   2. `finie` la déclarait TERMINÉE, parce que « En journée » se lit 18h00 ;
+  //      elle partait donc sous DEMAIN ;
+  //   3. demain a DÉJÀ sa fiche cinéma — même sous-titre, refabriquée chaque
+  //      nuit — alors la règle anti-doublon la laissait tomber.
+  // Gardée par la première, bannie par la troisième : plus nulle part.
+  //
+  // Le vrai défaut est au point 2, et il est factuel : la fiche N'ÉTAIT PAS
+  // terminée. Le Fantôme de l'Opéra passait à 20h50 ce soir-là. « En journée »
+  // est un mot vague posé sur la fiche-mère, alors que l'heure juste est écrite
+  // dans ses SOUS-FICHES — « VF 16:00 · VF 20:50 ».
+  // On lit donc la dernière séance quand il y en a une. Et le petit-déjeuner de
+  // 22h, lui, reste bien terminé : ses adresses ont fermé (règle du 11 oct).
+  // ⚠️ SEULEMENT LE CINÉMA (`weeklyFilms`), et la restriction est essentielle :
+  //    là, `info` liste de VRAIES SÉANCES (« VF 16:00 · VF 20:50 »). Ailleurs —
+  //    terrasses, wellness bars, petit-déj — `info` donne les HEURES D'OUVERTURE
+  //    du lieu. Prendre la plus tardive et y ajouter deux heures faisait tenir
+  //    le petit-déjeuner jusqu'à 20h30 sous « Plus tard aujourd'hui », soit très
+  //    exactement ce dont Stéphanie se plaignait le 11 oct. Une heure de
+  //    fermeture n'est pas une heure de rendez-vous.
+  const finDesSousFiches = (e) => {
+    if (e.weeklyFilms !== true) return null;
+    if (!Array.isArray(e.directory) || !e.directory.length) return null;
+    let derniere = null;
+    for (const d of e.directory) {
+      for (const m of String(d?.info || "").matchAll(/(\d{1,2})[h:](\d{2})/g)) {
+        const t = parseInt(m[1]) * 60 + parseInt(m[2]);
+        if (derniere === null || t > derniere) derniere = t;
+      }
+    }
+    return derniere === null ? null : derniere + 120;   // le temps de la séance
+  };
   const finie = (e) => {
     if (jourConsulte || e.date !== aujourdhui) return false;
     if (!(e.time && String(e.time).trim())) return false;
-    return finReelle(e) <= min;
+    const sousFiches = finDesSousFiches(e);
+    return (sousFiches === null ? finReelle(e) : sousFiches) <= min;
   };
   // ⚠️ Et si DEMAIN A DÉJÀ SA FICHE, on ne remonte pas celle d'aujourd'hui :
   // une fiche « en cours » (petit-déj, musées, expositions) existe à toutes les

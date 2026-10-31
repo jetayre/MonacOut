@@ -243,6 +243,12 @@ export const LIEUX = [
   // ⚠️ PHOTO FOURNIE PAR STÉPHANIE, pas CC0 : c'est l'image de communication de
   //    l'établissement. Accord à demander au +377 98 06 38 38, comme pour le Twiga.
   // ⚠️ 526 × 210 seulement : nette sur une carte, un peu douce en bannière.
+  // 🎰 BAR DE LA SALLE EUROPE — 183 fiches. Photo fournie par Stéphanie, 31 oct.
+  // ⚠️ Elle montre une salle de jeux baroque sous verrière, pas le comptoir :
+  //    c'est l'atmosphère du Casino, et la Salle Europe EST cette salle-là.
+  { id: 37, slug: "bar-salle-europe", nom: "Bar de la Salle Europe", vues: [
+      { f: "bar-salle-europe.webp", w: 1100, h: 733, alt: "La salle Europe du Casino de Monte-Carlo, sous sa verrière" },
+  ] },
   // ⭐ STARS OF MONACO — photo fournie par Stéphanie le 31 oct 2026, 78 fiches.
   { id: 36, slug: "stars-of-monaco", nom: "Stars of Monaco", vues: [
       { f: "stars-of-monaco.webp", w: 1004, h: 753, alt: "L'enseigne et la terrasse du Stars of Monaco" },
@@ -276,6 +282,8 @@ const LIBELLES = {
 
   "bar americain": 35,
   "stars of monaco": 36,
+  "bar de la salle europe": 37,
+  "salle europe": 37,
 
   "theatre des muses": 2,
   "theatre princesse grace": 3,
