@@ -465,17 +465,22 @@ const AMBIANCES = [
   { f: "le-rocher.webp",       alt: "Le Rocher de Monaco vu de la mer" },
   { f: "plage-larvotto.webp",  alt: "La plage et ses parasols" },
   { f: "soiree-club.webp",     alt: "Une soirée animée sous les lumières" },
+  // 🎷 LE JAZZ A SA PROPRE IMAGE. Stéphanie, 31 oct 2026 : « change la photo du
+  // live music du Bar Américain, mets un saxo ou piano ». Les 310 fiches JAZZ
+  // LIVE recevaient la salle de club générique — correcte pour une soirée DJ,
+  // muette pour un concert. Un saxophone dit ce qu'on va entendre.
+  { f: "jazz-live.webp",       alt: "Des saxophonistes en concert" },
   { f: "rooftop-sunset.webp",  alt: "Un rooftop au crépuscule, vue sur le port" },
   { f: "palais-place.webp",    alt: "La place du Palais et ses pins" },
 ];
 
 /** Catégorie → les ambiances qui lui ressemblent vraiment. */
 const AMBIANCE_PAR_CAT = {
-  "SOIRÉE": [6, 7], "DJ SET": [6, 7], "JAZZ LIVE": [6, 7], "GALA": [6, 1],
+  "SOIRÉE": [6, 7], "DJ SET": [6, 7], "JAZZ LIVE": [9], "GALA": [6, 1],
   "APÉRO": [2, 3, 7], "BRUNCH": [2, 3, 5], "FOODY": [2, 3], "PETIT-DÉJ": [2, 3],
   "BIEN-ÊTRE": [5, 3, 4], "SPORT": [0, 4], "FOOTBALL": [0], "BASKET": [0],
   "EXPOSITION": [1, 8], "CONFÉRENCE": [1, 8], "SALON": [1, 8], "ENCHÈRES": [1],
-  "CONCERT": [1, 7], "OPÉRA": [1], "THÉÂTRE": [1, 8], "MUSICAL": [1],
+  "CONCERT": [9, 1], "OPÉRA": [1], "THÉÂTRE": [1, 8], "MUSICAL": [9, 1],
   "DANSE": [1, 6], "SPECTACLE": [1, 6], "CHANTS": [8], "CINÉMA": [7, 1],
   "ATELIER": [8, 4], "MARCHÉ": [8, 0], "FESTIVAL": [0, 6], "FÊTE NATIONALE": [8, 0],
 };

@@ -1241,10 +1241,28 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
 
     const handler = () => {
       const y = el.scrollTop;
+      // 🚨 LE FIL SAUTAIT À CHAQUE HÉSITATION DU DOIGT.
+      // Stéphanie, 31 oct 2026 : « ça saute un peu quand on scrolle ».
+      // Mesuré : l'en-tête passe de 83 à 180 px quand les deux rangées de
+      // filtres reviennent — le contenu se décale donc de 97 px d'un coup.
+      //
+      // 🚨 ET C'ÉTAIT UNE BOUCLE, PAS UN SIMPLE SEUIL TROP BAS. Replier
+      // l'en-tête remonte le contenu, ce qui produit un NOUVEL événement de
+      // défilement, qui déclenche le dépliage, qui redescend le contenu… Mes
+      // deux premiers essais (seuil de 6 px, puis ancre relative à 24/56 px)
+      // mesuraient tous deux un ÉCART — et l'écart était fabriqué par le saut
+      // lui-même. Résultat : 6 bascules sur 12 petits gestes.
+      //
+      // On ne regarde donc plus l'écart mais la POSITION ABSOLUE, avec une
+      // large zone morte entre les deux seuils : entre 60 et 200 px, rien ne
+      // bouge, quel que soit le sens. Un aller-retour du pouce ne peut plus
+      // traverser les deux bornes.
+      const CACHER_AU_DELA = 200;
+      const MONTRER_EN_DECA = 60;
       if (Date.now() >= verrouJusqua) {
-        if (y < 10) basculer(true);
-        else if (y > lastY + 6) basculer(false);
-        else if (y < lastY - 6) basculer(true);
+        if (y <= MONTRER_EN_DECA) basculer(true);
+        else if (y >= CACHER_AU_DELA) basculer(false);
+        // entre les deux : on ne touche à rien.
       }
       lastY = y;
 
@@ -1510,8 +1528,16 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         .sort((a, b) => a.index - b.index)        // …puis on rétablit l'heure
         .map(x => x.e);
 
-  // Le fil, lui, est purgé de TOUTES les occurrences de ces fiches — donc par id.
-  const idsVitrine = new Set([...heros, ...misEnAvant].map(e => e.id));
+  // 🚨 LE HERO NE RETIRE PLUS RIEN DU FIL. Stéphanie, 31 oct 2026 : « quand on
+  // regarde ce soir, il n'y a plus le Castel Roc — si ça apparaît en haut, ça
+  // doit aussi apparaître dans le défilé du jour ».
+  // Elle a raison, et c'est un défaut que j'avais introduit : je retirais du
+  // fil tout ce que la vitrine montrait, pour éviter les doublons. Mais un
+  // HERO est une bannière de mise en avant, pas une place dans la journée —
+  // quelqu'un qui cherche « ce soir » doit retrouver la sortie à son heure.
+  // ⚠️ La GRILLE, elle, continue d'être retirée : elle est posée juste au-dessus
+  //    du fil, au même endroit, et la revoir deux fois d'affilée n'apporte rien.
+  const idsVitrine = new Set(misEnAvant.map(e => e.id));
 
   // 🏷️ LE TITRE DIT CE QUE LA GRILLE CONTIENT, puisqu'elle ne contient qu'un
   // seul moment. Sur « Semaine » ou « Week-end », parler de « ce soir » n'aurait
@@ -2072,14 +2098,18 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         });
         if (deplie) {
           viderLePaquet();
+          // 🚨 UN REGROUPEMENT PEUT CONTENIR UNE FICHE À ANNUAIRE.
+          // Stéphanie, 31 oct 2026 : « quand on clique sur 3 apéros, il y a une
+          // des 3 fiches qui dit "ce soir 16 terrasses" et bug ».
+          // Les apéros d'un même jour sont réunis, et la fiche récapitulative
+          // « CE SOIR : n TERRASSES » fait partie du groupe (c'est voulu depuis
+          // le 11 oct : l'en exclure créait des doublons). Mais je posais les
+          // membres du groupe dans une grille brute : la récapitulative perdait
+          // son « Voir les n » et son dépliage, et ne menait nulle part.
+          // On repasse donc par `rendreItems`, qui sait traiter chaque type.
           sortie.push(
             <div key={`groupe-ouvert-${cle}`} style={{ marginBottom: 12 }}>
-              <GrilleDeuxColonnes
-                fiches={e.groupeFamille} recents={recents} lang={lang}
-                favorites={favorites} onToggleFav={onToggleFav}
-                onCardClick={onCardClick} onReserver={ouvrirReservation} social={social}
-                inviteCode={inviteCode} onShowAuth={onShowAuth}
-              />
+              {rendreItems(e.groupeFamille, sansDate)}
             </div>
           );
         }
