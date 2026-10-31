@@ -1444,12 +1444,21 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     ? uniques
         .map(e => ({
           e,
+          // 📌 ÉPINGLÉ : passe devant tout le reste. Stéphanie, 31 oct 2026 :
+          // « mets l'event du Castel Roc en 1er ». Plutôt que de coder un
+          // identifiant en dur, la fiche porte `epingle: true` dans les
+          // données — n'importe quelle sortie peut être mise en avant, et
+          // l'épingle disparaît avec la fiche quand sa date est passée.
+          // ⚠️ Toujours soumis à la proximité : on n'épingle pas en haut de
+          //    l'accueil un événement du mois prochain.
+          epingle: e.epingle ? 0 : 1,
           jours: joursAvant(e),
           phare: e.hot ? 0 : 1,
           photo: mediaDeLaFiche(e) ? 0 : 1,
           melange: tirage(e.id),
         }))
-        .sort((a, b) => (a.jours - b.jours) || (a.phare - b.phare)
+        .sort((a, b) => (a.jours - b.jours) || (a.epingle - b.epingle)
+                     || (a.phare - b.phare)
                      || (a.photo - b.photo) || (a.melange - b.melange))
         .slice(0, 4).map(x => x.e)
     : [];
