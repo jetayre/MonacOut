@@ -498,6 +498,11 @@ const AMBIANCES = [
   { f: "cafe-petit-dej.webp", alt: "Un café et un croissant en terrasse, face au port" },
   // 🥐 LE BRUNCH. Stéphanie, 31 oct 2026 : « j'ai fait une photo brunch Monaco ».
   { f: "brunch-monaco.webp", alt: "Une table de brunch en terrasse, face au port de Monaco" },
+  // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
+  // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
+  // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
+  // existante — c'est une devanture générique, pas la façade d'un lieu précis.
+  { f: "cinema-monaco.webp", alt: "La devanture éclairée d'un cinéma" },
 ];
 
 /**
@@ -537,7 +542,7 @@ const AMBIANCE_PAR_CAT = {
   "DANSE": ["casino-facade", "soiree-club"],
   "SPECTACLE": ["casino-facade", "soiree-club"],
   "CHANTS": ["palais-place"],
-  "CINÉMA": ["rooftop-sunset", "casino-facade"],
+  "CINÉMA": ["cinema-monaco"],
   "ATELIER": ["palais-place", "le-rocher"],
   "MARCHÉ": ["palais-place", "port-yachts"],
   "FESTIVAL": ["port-yachts", "soiree-club"],

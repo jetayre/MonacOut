@@ -491,16 +491,24 @@ async function main() {
       for (const [titre, sf] of Object.entries(seancesParFilm)) {
         const heures = (sf.parJour || {})[col] || [];
         if (!heures.length) continue;
-        // 🎟️ LE LIEN « RÉSERVER UNE PLACE ». Une seule séance précommandable ce
-        // jour-là → on y va directement. Plusieurs → on ouvre la page du film,
-        // qui les liste toutes sous « Précommandez votre séance » : choisir à la
-        // place de quelqu'un serait pire que de le laisser choisir. Aucune → pas
-        // de champ, donc pas de bouton. Les deux destinations acceptent la vue
-        // intégrée (ni X-Frame-Options ni frame-ancestors, vérifié le 26 oct).
+        // 🎟️ LE LIEN « RÉSERVER UNE PLACE » : TOUJOURS LA PAGE DU FILM.
+        //
+        // 🚨 LE LIEN DIRECT `?page=10&horaire=N` NE MÈNE PAS À LA SÉANCE. Vérifié
+        // le 31 oct 2026 : les dix adresses de ce type présentes dans les données
+        // rendaient toutes 200, toutes avec EXACTEMENT la même page de 15 849
+        // octets — un mur « Se Connecter ou s'inscrire », sans le moindre nom de
+        // film. L'identifiant de séance ne sert à rien hors session.
+        // Le 26 oct on avait contrôlé que la page accepte la vue intégrée ; on
+        // n'avait pas regardé CE QU'ELLE CONTIENT. C'est la règle « un 200 ne
+        // prouve rien » : il faut lire le contenu, pas seulement le code.
+        //
+        // La page du film, elle, affiche la semaine entière séance par séance,
+        // et dit « Billetterie sur place uniquement » quand on ne peut pas
+        // réserver en ligne. On y envoie donc dans tous les cas, et faute de
+        // page du film on n'écrit pas de bouton du tout — mieux vaut rien qu'un
+        // mur de connexion.
         const liens = (sf.resaJour || {})[col] || [];
-        const resa = liens.length === 1 ? liens[0]
-                   : liens.length > 1   ? (pageDuFilm.get(plat(titre)) || '')
-                   : '';
+        const resa = liens.length ? (pageDuFilm.get(plat(titre)) || '') : '';
         // Le synopsis et la note viennent de la page du film. Un champ vide n'est
         // PAS écrit : mieux vaut pas de ligne du tout qu'une ligne « null % ».
         const f = fiches.get(titre) || {};
