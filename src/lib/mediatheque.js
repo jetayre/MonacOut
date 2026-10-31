@@ -531,7 +531,10 @@ const AMBIANCE_PAR_CAT = {
   "JAZZ LIVE": ["jazz-live"],
   "GALA": ["soiree-club", "casino-facade"],
   "APÉRO": ["terrasse-diner", "lounge-mer", "rooftop-sunset"],
-  "BRUNCH": ["brunch-monaco", "terrasse-diner", "lounge-mer"],
+  // 🥐 UNE SEULE IMAGE POUR LE BRUNCH, et c'est voulu : Stéphanie veut la
+  // reconnaître sur la fiche qui annonce les brunchs. Un lot de trois la
+  // laissait au tirage — deux fois sur trois, ce n'était pas elle.
+  "BRUNCH": ["brunch-monaco"],
   "FOODY": ["terrasse-diner", "lounge-mer"],
   "PETIT-DÉJ": ["cafe-petit-dej", "terrasse-diner"],
   // 🥤 Le smoothie d'abord : c'est l'image que Stéphanie a choisie pour eux.

@@ -2121,13 +2121,35 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         const cle = e.cleGroupe;
         const deplie = !!exposDepliees[cle];
         const tete = e.groupeFamille.find(f => f) || e;
+        // 🚨 ON COMPTE LES SORTIES, PAS LES CARTES. Stéphanie, 31 oct 2026,
+        // devant le dimanche : « et là je vois 2 brunch » — il y en avait HUIT.
+        // Le groupe comptait ses MEMBRES : le brunch du Petit Café Robuchon et
+        // la fiche « BRUNCHS · 7 ADRESSES », donc 2. Mais la seconde n'est pas
+        // une sortie, c'est un annuaire de sept adresses, et le dépliage en
+        // montre bien huit. L'étiquette mentait sur ce qu'elle cachait, et
+        // « Voir les 2 » invitait à ouvrir ce qu'on croyait déjà connaître.
+        // Une fiche à annuaire vaut donc le nombre de ses adresses.
+        const nbSorties = e.groupeFamille.reduce(
+          (n, f) => n + (Array.isArray(f.directory) && f.directory.length ? f.directory.length : 1), 0);
+        // 🖼️ UNE CARTE DE GROUPE N'EST PAS SA PREMIÈRE FICHE. Stéphanie, 31 oct :
+        // « je veux la photo brunch pour la fiche qui annonce les brunchs ».
+        // En reprenant `...tete`, la carte héritait du SOUS-TITRE et donc de la
+        // PHOTO du premier membre : « Le Petit Café Robuchon » s'affichait en
+        // tête de huit brunchs, et la photo montrait sa terrasse. Elle annonce
+        // une famille, pas une adresse : on efface le lieu, ce qui lui fait
+        // prendre l'image de sa catégorie, et on écrit ce qu'elle contient.
+        const famille = FAMILLE_DE[e.catGroupe];
+        const sousTitre = famille
+          ? (lang === "en" ? famille.nomEn(nbSorties) : famille.nomFr(nbSorties))
+          : "";
         paquet.push({
           ...tete,
+          subtitle: sousTitre,
           cleFil: `groupe-${cle}`,
-          title: `${e.catGroupe}\n${e.groupeFamille.length} ${lang === "en" ? "to see" : "à voir"}`,
+          title: `${e.catGroupe}\n${nbSorties} ${lang === "en" ? "to see" : "à voir"}`,
           _onInfos: () => setExposDepliees(d => ({ ...d, [cle]: !d[cle] })),
           _deplie: deplie,
-          _nbLieux: e.groupeFamille.length,
+          _nbLieux: nbSorties,
         });
         // 🚨 ON NE DÉPLIE RIEN ICI, ET C'EST TOUT L'INVERSE DE CE QUE J'AI
         // LIVRÉ EN v0.0.173. Stéphanie, 31 oct : « corrige le bug des apéros
