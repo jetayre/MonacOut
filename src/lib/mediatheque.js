@@ -104,6 +104,27 @@ const HOTE = "https://monac-out.vercel.app";
  * seconde sans que personne ne voie rien.
  */
 const HOTE_SECOURS = "https://monacout.com";
+
+/**
+ * 🔁 UN NUMÉRO DE VERSION COLLÉ À CHAQUE IMAGE.
+ *
+ * 🚨 POURQUOI. Le 31 oct, pendant l'heure où le serveur renvoyait 403, les
+ * téléphones ont demandé les photos et ont reçu une erreur. iOS garde ces
+ * réponses dans le cache de sa vue web : une fois le serveur réparé, l'app
+ * continuait d'afficher des carrés vides parce qu'elle ne redemandait plus
+ * rien. Stéphanie a fermé et rouvert l'app — toujours rien.
+ *
+ * Changer ce numéro change l'adresse de TOUTES les images. Pour le cache c'est
+ * une URL inconnue : il va la chercher pour de bon. C'est la seule façon de
+ * sortir un téléphone d'un échec mis en cache sans demander à la personne de
+ * vider quoi que ce soit.
+ *
+ * ⚠️ À NE BOUGER QUE POUR ÇA. Chaque changement refait télécharger les photos
+ * à tout le monde.
+ */
+const VERSION_MEDIA = "2";
+const V = `?v=${VERSION_MEDIA}`;
+
 const BASE = SUR_LE_WEB ? "/media/lieux" : `${HOTE}/media/lieux`;
 
 /**
@@ -346,8 +367,8 @@ function vueDuLieu(lieu, eventId, decalage = 0) {
 function media(lieu, eventId, type, decalage = 0) {
   const v = vueDuLieu(lieu, eventId, decalage);
   return {
-    src: `${BASE}/${v.f}`,
-    secours: `${HOTE_SECOURS}/media/lieux/${v.f}`,
+    src: `${BASE}/${v.f}${V}`,
+    secours: `${HOTE_SECOURS}/media/lieux/${v.f}${V}`,
     mediaType: type,
     venueId: lieu.id, slug: lieu.slug, nomLieu: lieu.nom,
     alt: v.alt, width: v.w, height: v.h,
@@ -470,8 +491,8 @@ export function imageAmbiance(event, decalage = 0) {
   const a = AMBIANCES[i];
   if (!a) return null;
   return {
-    src: `${BASE.replace("/lieux", "/" + AMB)}/${a.f}`,
-    secours: `${HOTE_SECOURS}/media/${AMB}/${a.f}`,
+    src: `${BASE.replace("/lieux", "/" + AMB)}/${a.f}${V}`,
+    secours: `${HOTE_SECOURS}/media/${AMB}/${a.f}${V}`,
     mediaType: "ambiance", nomLieu: null, alt: a.alt,
     width: 547, height: 303, licence: null, auteur: null,
   };
@@ -511,8 +532,8 @@ export function imageTheme(event) {
   const t = THEMES.find(x => x.motif.test(texte));
   if (!t) return null;
   return {
-    src: `${BASE.replace("/lieux", "/" + AMB)}/${t.f}`,
-    secours: `${HOTE_SECOURS}/media/${AMB}/${t.f}`,
+    src: `${BASE.replace("/lieux", "/" + AMB)}/${t.f}${V}`,
+    secours: `${HOTE_SECOURS}/media/${AMB}/${t.f}${V}`,
     mediaType: "theme", nomLieu: null, alt: t.alt,
     width: t.w, height: t.h, licence: "Domaine public", auteur: "Wikimedia Commons",
   };
@@ -675,5 +696,5 @@ export function mediasSansRepetition(fiches, recents = []) {
 /** Une photo de Monaco pour une BANNIÈRE ÉDITORIALE — jamais pour un lieu précis. */
 export function photoEditoriale() {
   const l = PAR_ID.get(30);
-  return l ? { src: `${BASE}/${l.vues[0].f}`, alt: l.vues[0].alt, mediaType: "editorial" } : null;
+  return l ? { src: `${BASE}/${l.vues[0].f}${V}`, alt: l.vues[0].alt, mediaType: "editorial" } : null;
 }
