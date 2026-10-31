@@ -65,6 +65,19 @@ jobs:
         run: node scripts/mairie-agenda.mjs
         continue-on-error: true
 
+      # 🎰 L'AGENDA DE LA SOCIÉTÉ DES BAINS DE MER — Casino, Hôtel de Paris,
+      # Hermitage, Jimmy'z, Twiga, Blue Gin, Coya, Marlow… une bonne part des
+      # soirées de Monaco. Deux pages SBM étaient déjà relues chaque nuit
+      # (bar-americain, em-sherif) ; l'agenda général ne l'était par personne.
+      # ⚠️ Il faut un navigateur ET cliquer « Accepter » : sans ce clic, on ne
+      #    lit que le bandeau de cookies — une panne qui se déguise en « rien
+      #    à l'agenda ».
+      # SIGNALE, n'ajoute pas : l'agenda SBM donne une période, rarement un
+      # horaire exploitable.
+      - name: "🎰 Agenda SBM : ce qui manque dans l'app"
+        run: node scripts/sbm-agenda.mjs
+        continue-on-error: true
+
       - name: "🤖 Auto-complétion (robot déterministe : ajoute les manquants 100 % sûrs)"
         run: node scripts/auto-complete-events.mjs
         continue-on-error: true   # n'ajoute que lieu+date+heure confirmés ; Le Policier valide juste après
@@ -184,7 +197,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in mairie-agenda.txt lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json bien-etre-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
+          for f in sbm-agenda.txt mairie-agenda.txt lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json bien-etre-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
