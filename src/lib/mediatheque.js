@@ -562,6 +562,10 @@ const AMBIANCES = [
   { f: "expositions-galerie.webp", alt: "Une galerie d'exposition ouverte sur la mer" },
   { f: "spa-bien-etre.webp",       alt: "Une table de soin au bord d'un bassin, bougies et orchidée" },
   { f: "encheres.webp",            alt: "Un marteau de commissaire-priseur et une salle de vente" },
+  // 🏀 LE SPORT. Photo fournie par Stéphanie le 31 oct 2026, la dernière famille
+  // qui n'avait pas la sienne : ses fiches empruntaient un quartier, et ça se
+  // voyait — le Rallye Monte-Carlo montrait le Rocher, le triathlon la plage.
+  { f: "sport.webp", alt: "Ballons de basket, football et volley sur un parquet de salle" },
   // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
   // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
   // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
@@ -599,7 +603,7 @@ const AMBIANCE_PAR_CAT = {
   // 🧖 Le spa pour les ACTIVITÉS bien-être ; les « wellness bars » gardent le
   //    smoothie, qui leur est attaché nommément (thème) et passe avant.
   "BIEN-ÊTRE": ["spa-bien-etre"],
-  "SPORT": ["port-yachts", "le-rocher"],
+  "SPORT": ["sport"],
   "FOOTBALL": ["port-yachts"],
   "BASKET": ["port-yachts"],
   "EXPOSITION": ["expositions-galerie"],
