@@ -15,6 +15,41 @@ import { mediaDeLaFiche } from "../../lib/mediatheque";
 import VueReservation from "../VueReservation";
 import { partagerInvitation } from "../../lib/invite";
 
+/**
+ * 🔄 LA GRAINE DE LA VISITE — ce qui fait tourner la mise en avant.
+ *
+ * Stéphanie, 31 oct 2026 : « change les fiches régulièrement en haut, pas que
+ * la 1ʳᵉ, sinon c'est ennuyant et on ne rouvre plus l'appli ».
+ *
+ * Elle a raison, et les chiffres le disent : 64 % des gens n'ouvrent l'app
+ * qu'une seule fois, et la rétention tient à ce qu'on trouve du neuf en
+ * revenant. Un classement figé donne deux fois le même écran dans la journée.
+ *
+ * ⚠️ MAIS PAS À CHAQUE RENDU. La graine est calculée UNE FOIS au chargement du
+ * module : elle ne bouge pas tant qu'on est dans l'app. Sinon la carte qu'on
+ * s'apprête à toucher se déroberait sous le doigt — et un fil qui se réordonne
+ * pendant qu'on le lit est pire qu'un fil ennuyeux.
+ *
+ * Deux composantes : le JOUR (pour que le contenu suive l'actualité) et le
+ * NUMÉRO D'OUVERTURE (pour que deux visites d'affilée ne se ressemblent pas).
+ * `monacout_sessions` existe déjà, incrémenté à chaque ouverture par App.jsx.
+ */
+const GRAINE_VISITE = (() => {
+  const n = new Date();
+  const jour = Math.floor((new Date(n.getFullYear(), n.getMonth(), n.getDate())
+                           - new Date(n.getFullYear(), 0, 0)) / 86400000);
+  let ouvertures = 0;
+  try { ouvertures = parseInt(localStorage.getItem("monacout_sessions") || "0", 10) || 0; } catch { /* navigation privée */ }
+  return jour * 7919 + ouvertures * 104729;
+})();
+
+/** Un rang pseudo-aléatoire mais STABLE pendant toute la visite. */
+function rangDeVisite(id) {
+  let x = ((Number(id) || 0) + GRAINE_VISITE) * 2654435761 % 4294967296;
+  x ^= x >>> 13; x = (x * 1274126177) % 4294967296; x ^= x >>> 16;
+  return Math.abs(x) % 100000;
+}
+
 const NAVY = NUIT;            // charte du 28 oct 2026 : bleu nuit #15263B
 const GOLD = BORDEAU;         // le « doré » historique est en fait le bordeaux d'action
 const GREY = GRIS_LISIBLE;    // gris doux assombri d'un cran pour rester lisible
@@ -1393,16 +1428,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // ⚠️ « Stable dans la journée » n'est pas un détail : la graine est le NUMÉRO
   // DU JOUR, pas l'horloge. Sans ça le hero changerait à chaque rendu, et la
   // carte qu'on s'apprêtait à toucher se déroberait sous le doigt.
-  const jourDeLAnnee = (() => {
-    const n = new Date();
-    return Math.floor((new Date(n.getFullYear(), n.getMonth(), n.getDate())
-                       - new Date(n.getFullYear(), 0, 0)) / 86400000);
-  })();
-  const tirage = (id) => {
-    let x = ((Number(id) || 0) + jourDeLAnnee * 7919) * 2654435761 % 4294967296;
-    x ^= x >>> 13; x = (x * 1274126177) % 4294967296; x ^= x >>> 16;
-    return Math.abs(x) % 1000;
-  };
+  const tirage = rangDeVisite;
   // 🚨 ET LE HERO RESTE PROCHE. Premier essai : « les phares d'abord », tous
   // jours confondus — l'accueil du 31 octobre montrait la Ligue 1 d'avril, Star
   // Wars et le feu d'artifice de la Fête Nationale, et pas un seul Halloween.
@@ -1455,9 +1481,25 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const momentVitrine = vitrineActive && duJour.length
     ? momentDeLaFiche(duJour[0], lang, jourVitrine === jourAujourdhui ? minMaintenant : null)
     : null;
-  const misEnAvant = momentVitrine
-    ? duJour.filter(e => momentDeLaFiche(e, lang, jourVitrine === jourAujourdhui ? minMaintenant : null).cle === momentVitrine.cle).slice(0, 4)
+  // 🔄 LA VITRINE TOURNE ELLE AUSSI, pas seulement le hero.
+  // Stéphanie, 31 oct : « pas que la 1ère, sinon c'est ennuyant ». Quand le
+  // moment compte plus de quatre sorties, on en montre quatre AUTRES à la
+  // visite suivante — tirées avec la même graine que le hero, donc stables
+  // pendant toute la visite.
+  // ⚠️ MAIS L'AFFICHAGE RESTE CHRONOLOGIQUE : on tire QUI apparaît, jamais
+  //    dans quel ordre. Une grille de sorties qui désordonne les heures ne
+  //    sert plus à rien — c'est la règle depuis le tri du 3 août.
+  const duMoment = momentVitrine
+    ? duJour.filter(e => momentDeLaFiche(e, lang, jourVitrine === jourAujourdhui ? minMaintenant : null).cle === momentVitrine.cle)
     : [];
+  const misEnAvant = duMoment.length <= 4
+    ? duMoment
+    : duMoment
+        .map((e, index) => ({ e, index, rang: rangDeVisite(e.id) }))
+        .sort((a, b) => a.rang - b.rang)          // on tire les quatre…
+        .slice(0, 4)
+        .sort((a, b) => a.index - b.index)        // …puis on rétablit l'heure
+        .map(x => x.e);
 
   // Le fil, lui, est purgé de TOUTES les occurrences de ces fiches — donc par id.
   const idsVitrine = new Set([...heros, ...misEnAvant].map(e => e.id));
