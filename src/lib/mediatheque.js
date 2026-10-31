@@ -237,6 +237,19 @@ export const LIEUX = [
       { f: "quartier-monaco-ville.webp",   w: 900, h: 907, alt: "Une ruelle de Monaco-Ville, sur le Rocher" },
       { f: "quartier-monaco-ville-2.webp", w: 900, h: 675, alt: "La Place du Palais" },
   ] },
+  // 🥃 LE BAR AMÉRICAIN a sa propre photo depuis le 31 oct 2026 — Stéphanie :
+  // « mets une photo comme ça pour Bar Américain ». 66 fiches concernées, qui
+  // montraient jusqu'ici le saxophone d'ambiance JAZZ LIVE.
+  // ⚠️ PHOTO FOURNIE PAR STÉPHANIE, pas CC0 : c'est l'image de communication de
+  //    l'établissement. Accord à demander au +377 98 06 38 38, comme pour le Twiga.
+  // ⚠️ 526 × 210 seulement : nette sur une carte, un peu douce en bannière.
+  // ⭐ STARS OF MONACO — photo fournie par Stéphanie le 31 oct 2026, 78 fiches.
+  { id: 36, slug: "stars-of-monaco", nom: "Stars of Monaco", vues: [
+      { f: "stars-of-monaco.webp", w: 1004, h: 753, alt: "L'enseigne et la terrasse du Stars of Monaco" },
+  ] },
+  { id: 35, slug: "bar-americain", nom: "Bar Américain", vues: [
+      { f: "bar-americain.webp", w: 526, h: 210, alt: "Le comptoir du Bar Américain, à l'Hôtel de Paris" },
+  ] },
 ];
 
 /**
@@ -260,6 +273,9 @@ const LIBELLES = {
   "zumba la digue": 1,
   "quai rainier iii": 1,
   "la digue": 1,
+
+  "bar americain": 35,
+  "stars of monaco": 36,
 
   "theatre des muses": 2,
   "theatre princesse grace": 3,
@@ -472,18 +488,64 @@ const AMBIANCES = [
   { f: "jazz-live.webp",       alt: "Des saxophonistes en concert" },
   { f: "rooftop-sunset.webp",  alt: "Un rooftop au crépuscule, vue sur le port" },
   { f: "palais-place.webp",    alt: "La place du Palais et ses pins" },
+  // 🥤 LE BIEN-ÊTRE A SON IMAGE. Stéphanie, 31 oct 2026 : « pour les bars
+  // bien-être, prends celle du bureau avec smoothie ». Les fiches BIEN-ÊTRE
+  // tombaient sur la plage ou un salon — joli, mais muet.
+  { f: "smoothie-bien-etre.webp", alt: "Un smoothie aux fruits rouges face à la mer" },
+  // ☕ LE PETIT-DÉJEUNER. Stéphanie, 31 oct 2026 : « pour les petits déj, prends
+  // celle du café ». ⚠️ Sa PREMIÈRE version portait le filigrane Adobe Stock en
+  // diagonale — l'aperçu gratuit, pas la photo achetée ; elle l'a remplacée.
+  { f: "cafe-petit-dej.webp", alt: "Un café et un croissant en terrasse, face au port" },
+  // 🥐 LE BRUNCH. Stéphanie, 31 oct 2026 : « j'ai fait une photo brunch Monaco ».
+  { f: "brunch-monaco.webp", alt: "Une table de brunch en terrasse, face au port de Monaco" },
 ];
 
-/** Catégorie → les ambiances qui lui ressemblent vraiment. */
+/**
+ * Catégorie → les ambiances qui lui ressemblent vraiment.
+ *
+ * 🚨 ON DÉSIGNE PAR LE NOM DU FICHIER, PLUS PAR SON RANG. La table tenait des
+ * NUMÉROS de ligne, et le 31 oct 2026 j'ai inséré `jazz-live` au milieu de la
+ * liste : tout ce qui suivait a glissé d'un cran, en silence. Résultat livré en
+ * v0.0.173 — les 310 fiches JAZZ LIVE ont reçu la place du Palais au lieu du
+ * saxophone que Stéphanie demandait, les expositions et conférences un rooftop
+ * au crépuscule, et les soirées des saxophonistes.
+ * Rien n'a planté, rien n'a été signalé : c'est exactement la famille de défaut
+ * des ids rattrapés par un trou. Un nom ne glisse pas.
+ */
 const AMBIANCE_PAR_CAT = {
-  "SOIRÉE": [6, 7], "DJ SET": [6, 7], "JAZZ LIVE": [9], "GALA": [6, 1],
-  "APÉRO": [2, 3, 7], "BRUNCH": [2, 3, 5], "FOODY": [2, 3], "PETIT-DÉJ": [2, 3],
-  "BIEN-ÊTRE": [5, 3, 4], "SPORT": [0, 4], "FOOTBALL": [0], "BASKET": [0],
-  "EXPOSITION": [1, 8], "CONFÉRENCE": [1, 8], "SALON": [1, 8], "ENCHÈRES": [1],
-  "CONCERT": [9, 1], "OPÉRA": [1], "THÉÂTRE": [1, 8], "MUSICAL": [9, 1],
-  "DANSE": [1, 6], "SPECTACLE": [1, 6], "CHANTS": [8], "CINÉMA": [7, 1],
-  "ATELIER": [8, 4], "MARCHÉ": [8, 0], "FESTIVAL": [0, 6], "FÊTE NATIONALE": [8, 0],
+  "SOIRÉE": ["soiree-club", "rooftop-sunset"],
+  "DJ SET": ["soiree-club", "rooftop-sunset"],
+  "JAZZ LIVE": ["jazz-live"],
+  "GALA": ["soiree-club", "casino-facade"],
+  "APÉRO": ["terrasse-diner", "lounge-mer", "rooftop-sunset"],
+  "BRUNCH": ["brunch-monaco", "terrasse-diner", "lounge-mer"],
+  "FOODY": ["terrasse-diner", "lounge-mer"],
+  "PETIT-DÉJ": ["cafe-petit-dej", "terrasse-diner"],
+  // 🥤 Le smoothie d'abord : c'est l'image que Stéphanie a choisie pour eux.
+  "BIEN-ÊTRE": ["smoothie-bien-etre", "plage-larvotto", "lounge-mer"],
+  "SPORT": ["port-yachts", "le-rocher"],
+  "FOOTBALL": ["port-yachts"],
+  "BASKET": ["port-yachts"],
+  "EXPOSITION": ["casino-facade", "palais-place"],
+  "CONFÉRENCE": ["casino-facade", "palais-place"],
+  "SALON": ["casino-facade", "palais-place"],
+  "ENCHÈRES": ["casino-facade"],
+  "CONCERT": ["jazz-live", "casino-facade"],
+  "OPÉRA": ["casino-facade"],
+  "THÉÂTRE": ["casino-facade", "palais-place"],
+  "MUSICAL": ["jazz-live", "casino-facade"],
+  "DANSE": ["casino-facade", "soiree-club"],
+  "SPECTACLE": ["casino-facade", "soiree-club"],
+  "CHANTS": ["palais-place"],
+  "CINÉMA": ["rooftop-sunset", "casino-facade"],
+  "ATELIER": ["palais-place", "le-rocher"],
+  "MARCHÉ": ["palais-place", "port-yachts"],
+  "FESTIVAL": ["port-yachts", "soiree-club"],
+  "FÊTE NATIONALE": ["palais-place", "port-yachts"],
 };
+
+/** Le nom de fichier (sans extension) → l'entrée d'ambiance. */
+const AMBIANCE_PAR_NOM = new Map(AMBIANCES.map(a => [a.f.replace(/\.webp$/, ""), a]));
 
 /**
  * Une image d'ambiance accordée à la catégorie. Choisie de façon STABLE par
@@ -492,8 +554,8 @@ const AMBIANCE_PAR_CAT = {
 export function imageAmbiance(event, decalage = 0) {
   const lot = AMBIANCE_PAR_CAT[String(event?.cat || "").toUpperCase()];
   if (!lot || !lot.length) return null;
-  const i = lot[(graine(event?.id) + decalage) % lot.length];
-  const a = AMBIANCES[i];
+  const nom = lot[(graine(event?.id) + decalage) % lot.length];
+  const a = AMBIANCE_PAR_NOM.get(nom);
   if (!a) return null;
   return {
     src: `${BASE.replace("/lieux", "/" + AMB)}/${a.f}${V}`,
@@ -529,18 +591,54 @@ const THEMES = [
     f: "halloween.webp", w: 1100, h: 825,
     alt: "Une citrouille d'Halloween sculptée, dans les feuilles",
   },
+  // 📖 LA PHILOSOPHIE. Stéphanie, 31 oct 2026 : « pour celle des conférences
+  // philosophiques, prends celle du bureau ».
+  // ⚠️ L'AFFICHE QU'ELLE M'A DONNÉE PORTAIT SON TITRE EN DUR, et il disait
+  //    « Conférences Philosophiques » alors que la série s'appelle RENCONTRES
+  //    philosophiques. Deux défauts pour le prix d'un : un texte gravé devient
+  //    illisible dans une vignette et répète le titre de la carte, et il
+  //    annonçait le mauvais nom. On ne garde donc que l'image — le buste, le
+  //    livre ouvert et l'Acropole au couchant.
+  // 🌅 LE SUNSET DJ SET DU LARVOTTO. Stéphanie, 31 oct 2026 : « prends les photos
+  // DJ sunset ».
+  // ⚠️ UN THÈME, PAS UNE AMBIANCE DE CATÉGORIE, et la nuance compte : le panneau
+  //    de la photo dit « DJ SUNSET · LARVOTTO · MONACO ». Posée sur la catégorie
+  //    DJ SET, elle aurait annoncé le Larvotto sur les soirées d'ailleurs. Elle
+  //    ne va donc qu'aux 27 fiches qui portent ce nom — pour elles, c'est leur
+  //    vraie photo, d'où `avantLeLieu`.
+  {
+    avantLeLieu: true,
+    motif: /sunset\s+dj\s+set|dj\s+sunset/i,
+    f: "dj-sunset-larvotto.webp", w: 1100, h: 825,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un DJ au coucher du soleil, sur la plage du Larvotto",
+  },
+  {
+    // 📌 AVANT LA PHOTO DU LIEU, et c'est volontaire. La règle générale dit
+    // l'inverse (le Jardin exotique bat la citrouille), mais ces quatre fiches
+    // se tiennent au Théâtre Princesse Grace : on y montrerait une façade de
+    // théâtre pour une rencontre de philosophie. Stéphanie a choisi cette
+    // image POUR ELLES, un choix explicite passe devant une règle par défaut.
+    avantLeLieu: true,
+    motif: /(rencontres|conf[ée]rences)\s+philosophiques/i,
+    f: "philosophie.webp", w: 1100, h: 570,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un livre ouvert sur un socle de marbre, l'Acropole au couchant",
+  },
 ];
 
 /** L'image de la FÊTE à laquelle se rattache une fiche, s'il y en a une. */
-export function imageTheme(event) {
+export function imageTheme(event, avantLeLieu = false) {
   const texte = `${event?.title || ""} ${event?.desc || ""}`;
-  const t = THEMES.find(x => x.motif.test(texte));
+  const t = THEMES.find(x => (avantLeLieu ? x.avantLeLieu === true : true) && x.motif.test(texte));
   if (!t) return null;
   return {
     src: `${BASE.replace("/lieux", "/" + AMB)}/${t.f}${V}`,
     secours: `${HOTE_SECOURS}/media/${AMB}/${t.f}${V}`,
     mediaType: "theme", nomLieu: null, alt: t.alt,
-    width: t.w, height: t.h, licence: "Domaine public", auteur: "Wikimedia Commons",
+    width: t.w, height: t.h,
+    licence: t.licence ?? "Domaine public",
+    auteur: t.auteur ?? "Wikimedia Commons",
   };
 }
 
@@ -597,6 +695,9 @@ export function photoDuQuartier(event, decalage = 0) {
  */
 export function mediaDeLaFiche(event, decalage = 0) {
   return photoEvenement(event)
+      // Une image de thème marquée `avantLeLieu` est un choix explicite pour
+      // CES fiches-là : elle seule devance la photo du lieu.
+      || imageTheme(event, true)
       // 🚨 LA PHOTO DU LIEU PASSE DEVANT L'IMAGE DE FÊTE.
       // Stéphanie, 31 oct 2026 : « l'activité dans la grotte, mets une photo du
       // Jardin exotique ». La citrouille d'Halloween écrasait la vraie photo du

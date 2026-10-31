@@ -1404,9 +1404,8 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   // déjà voir une belle photo de Monaco et deux ou trois propositions de
   // sorties, au lieu d'un seul grand bloc d'expositions ».
   //
-  // ⚠️ Les fiches de la vitrine sont RETIRÉES du fil en dessous — sans ça on les
-  //    verrait deux fois, ce qui est exactement le défaut des doublons d'annuaire
-  //    corrigé le 11 oct.
+  // ⚠️ Les fiches de la vitrine RESTENT dans le fil en dessous (31 oct 2026) :
+  //    le haut de l'écran met en avant, il ne retire pas de la journée.
   // ⚠️ La vitrine ne s'affiche QUE dans le fil ordinaire. Dès qu'une catégorie,
   //    une recherche ou le calendrier est demandé, on rend la liste telle quelle :
   //    le brief interdit de toucher au comportement des filtres.
@@ -1528,16 +1527,15 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
         .sort((a, b) => a.index - b.index)        // …puis on rétablit l'heure
         .map(x => x.e);
 
-  // 🚨 LE HERO NE RETIRE PLUS RIEN DU FIL. Stéphanie, 31 oct 2026 : « quand on
-  // regarde ce soir, il n'y a plus le Castel Roc — si ça apparaît en haut, ça
-  // doit aussi apparaître dans le défilé du jour ».
-  // Elle a raison, et c'est un défaut que j'avais introduit : je retirais du
-  // fil tout ce que la vitrine montrait, pour éviter les doublons. Mais un
-  // HERO est une bannière de mise en avant, pas une place dans la journée —
-  // quelqu'un qui cherche « ce soir » doit retrouver la sortie à son heure.
-  // ⚠️ La GRILLE, elle, continue d'être retirée : elle est posée juste au-dessus
-  //    du fil, au même endroit, et la revoir deux fois d'affilée n'apporte rien.
-  const idsVitrine = new Set(misEnAvant.map(e => e.id));
+  // 🚨 RIEN DE CE QUI EST EN HAUT N'EST RETIRÉ DU FIL — ni le hero, ni la grille.
+  // Stéphanie, 31 oct 2026 : « le Castel Roc tu le laisses en haut, mais tout ce
+  // qui est en haut doit réapparaître dans le fil ».
+  // C'était un défaut que j'avais introduit : je retirais du fil tout ce que la
+  // vitrine montrait, pour éviter les doublons. Mais le haut de l'écran est une
+  // BANNIÈRE DE MISE EN AVANT, pas une place dans la journée — quelqu'un qui
+  // déroule « ce soir » doit retrouver la sortie à son heure, même s'il vient de
+  // la voir en grand. Un même événement peut donc apparaître deux fois, et c'est
+  // voulu : la mise en avant ne vole pas sa place au programme.
 
   // 🏷️ LE TITRE DIT CE QUE LA GRILLE CONTIENT, puisqu'elle ne contient qu'un
   // seul moment. Sur « Semaine » ou « Week-end », parler de « ce soir » n'aurait
@@ -1558,10 +1556,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
     return jourVitrine || repli;
   })();
 
-  const aAfficher = (idsVitrine.size
-    ? filtered.filter(e => !idsVitrine.has(e.id))
-    : filtered
-  ).slice(0, nbRendues);
+  const aAfficher = filtered.slice(0, nbRendues);
 
   // Le fil se range sous des intertitres de jour (et de moment, pour aujourd'hui).
   // En recherche on garde la liste à plat : les résultats sautent d'un mois à
@@ -2096,23 +2091,22 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
           _deplie: deplie,
           _nbLieux: e.groupeFamille.length,
         });
-        if (deplie) {
-          viderLePaquet();
-          // 🚨 UN REGROUPEMENT PEUT CONTENIR UNE FICHE À ANNUAIRE.
-          // Stéphanie, 31 oct 2026 : « quand on clique sur 3 apéros, il y a une
-          // des 3 fiches qui dit "ce soir 16 terrasses" et bug ».
-          // Les apéros d'un même jour sont réunis, et la fiche récapitulative
-          // « CE SOIR : n TERRASSES » fait partie du groupe (c'est voulu depuis
-          // le 11 oct : l'en exclure créait des doublons). Mais je posais les
-          // membres du groupe dans une grille brute : la récapitulative perdait
-          // son « Voir les n » et son dépliage, et ne menait nulle part.
-          // On repasse donc par `rendreItems`, qui sait traiter chaque type.
-          sortie.push(
-            <div key={`groupe-ouvert-${cle}`} style={{ marginBottom: 12 }}>
-              {rendreItems(e.groupeFamille, sansDate)}
-            </div>
-          );
-        }
+        // 🚨 ON NE DÉPLIE RIEN ICI, ET C'EST TOUT L'INVERSE DE CE QUE J'AI
+        // LIVRÉ EN v0.0.173. Stéphanie, 31 oct : « corrige le bug des apéros
+        // qui n'apparaissent pas correctement » — le défaut était ma propre
+        // correction de la veille.
+        //
+        // `reunirLesFamillesParJour` a DÉJÀ posé les membres du groupe dans
+        // `sec.items`, juste derrière cette carte, et il les a posés selon la
+        // règle du 11 octobre : une fiche récapitulative se déplie en SES
+        // LIEUX, jamais en elle-même. En redéroulant `groupeFamille` ici,
+        // j'ajoutais une SECONDE expansion par-dessus la première : tout
+        // apparaissait deux fois, et « CE SOIR · 19 TERRASSES » revenait en
+        // carte au milieu de ses propres terrasses — très exactement ce dont
+        // Stéphanie se plaignait le 11 octobre.
+        //
+        // La carte de groupe ne fait donc qu'une chose : basculer l'état. Le
+        // dépliage appartient à celui qui construit les sections, et à lui seul.
         continue;
       }
 
