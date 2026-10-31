@@ -492,6 +492,34 @@ export function imageTheme(event) {
   };
 }
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ⛪ LA PHOTO DE CATÉGORIE — un seul cas, et il est demandé.
+
+   Stéphanie, 31 oct 2026 : « mets une photo de la cathédrale pour les messes ».
+
+   Les 82 fiches CHANTS tombaient presque toutes sur une image de quartier :
+   « 5 paroisses » et « 9 paroisses » (57 fiches à elles deux) ne sont pas des
+   lieux mais des regroupements, donc aucune photo de lieu ne s'y accrochait.
+
+   ⚠️ CE N'EST PAS UN RETOUR DE L'IMAGE PAR CATÉGORIE qui posait la photo de
+   l'Opéra sur l'Auditorium. La différence tient en une phrase : la cathédrale
+   EST une église de Monaco, et une carte de messes propose des églises de
+   Monaco. On ne prétend pas montrer la paroisse exacte — mais on ne montre pas
+   non plus un port ou un casino sur une messe.
+   ⚠️ Elle passe APRÈS la photo du lieu : une messe à Saint-Charles ou à
+   Sainte-Dévote garde la sienne le jour où on l'aura.
+   ══════════════════════════════════════════════════════════════════════════ */
+const PAR_CATEGORIE = {
+  "CHANTS": 21,          // la cathédrale de Monaco
+};
+
+export function photoDeCategorie(event) {
+  const id = PAR_CATEGORIE[String(event?.cat || "").toUpperCase()];
+  const l = id != null ? PAR_ID.get(id) : null;
+  return l ? media(l, event?.id, "categorie") : null;
+}
+
 /**
  * 🏙️ LA PHOTO DU QUARTIER — dernier recours.
  *
@@ -517,9 +545,18 @@ export function photoDuQuartier(event, decalage = 0) {
  */
 export function mediaDeLaFiche(event, decalage = 0) {
   return photoEvenement(event)
-      || imageTheme(event)
+      // 🚨 LA PHOTO DU LIEU PASSE DEVANT L'IMAGE DE FÊTE.
+      // Stéphanie, 31 oct 2026 : « l'activité dans la grotte, mets une photo du
+      // Jardin exotique ». La citrouille d'Halloween écrasait la vraie photo du
+      // lieu : on perdait une information (où ça se passe) pour un décor.
+      // La règle revient donc à l'ordre normal — une image qui montre le LIEU
+      // RÉEL bat toujours une image de thème. Les fiches sans photo de lieu
+      // (Jimmy'z, Buddha-Bar, La Rascasse, le Castelroc, le Parc Princesse
+      // Antoinette) gardent la citrouille, qui reste mieux qu'un quartier.
       || photoDuLieu(event)
+      || imageTheme(event)
       || photoDeLAnnuaire(event)
+      || photoDeCategorie(event)
       || imageAmbiance(event, decalage)
       || photoDuQuartier(event, decalage);
 }
@@ -563,7 +600,18 @@ export function mediasSansRepetition(fiches, recents = []) {
     let m = mediaDeLaFiche(e);
     const memeFiche = precedent && precedent.id === e.id;
 
-    if (m && !memeFiche && recents.includes(m.src)) {
+    // 🚨 ON NE FAIT VARIER QUE CE QUI EST DÉCORATIF.
+    // Stéphanie, 31 oct 2026, en voyant les cartes de messes : la deuxième
+    // « Messe dimanche » affichait le PALAIS PRINCIER, la suivante le port.
+    // La règle anti-répétition s'appliquait à TOUTES les images : la photo de
+    // la cathédrale, pourtant juste, se faisait écarter dès qu'elle avait déjà
+    // servi, et la cascade descendait jusqu'au quartier.
+    // Une photo qui DIT quelque chose — le lieu exact, un lieu de l'annuaire,
+    // la cathédrale pour une messe, la citrouille pour Halloween — a le droit
+    // de se répéter : deux messes, c'est deux fois une église. Seuls le
+    // quartier et l'ambiance, qui ne sont que du décor, doivent tourner.
+    const decoratif = m && (m.mediaType === "quartier" || m.mediaType === "ambiance");
+    if (decoratif && !memeFiche && recents.includes(m.src)) {
       // 1) essayer une autre vue (du lieu, du quartier ou de l'ambiance)
       for (let d = 1; d <= 3 && recents.includes(m.src); d++) {
         const autre = mediaDeLaFiche(e, d);

@@ -1373,17 +1373,58 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
   const vus = new Set();
   const uniques = candidats.filter(e => (vus.has(e.id) ? false : (vus.add(e.id), true)));
 
-  // 📷 LE HERO PRÉFÈRE LES FICHES QUI ONT UNE VRAIE PHOTO DE LEUR LIEU.
-  // La maquette montre une grande photo ; un dégradé en pleine page ferait pâle
-  // figure. Le tri est STABLE (`index` en second critère), donc à égalité
-  // l'ordre chronologique tient. Un hero est une MISE EN AVANT, il n'affirme
-  // aucun moment de la journée — c'est pourquoi lui seul peut se réordonner.
-  // ⚠️ On ne fabrique aucune photo pour autant : s'il n'y en a aucune, le hero
-  //    prend simplement l'habillage graphique.
+  // 📷 LE HERO CHANGE TOUS LES JOURS.
+  //
+  // Stéphanie, 31 oct 2026 : « change régulièrement les photos du haut, qu'on
+  // ne tombe pas tous les jours sur le musée d'Anthropologie — aujourd'hui on
+  // pourrait tomber sur un event Halloween par exemple ».
+  //
+  // 🚨 POURQUOI C'ÉTAIT TOUJOURS LA MÊME. Le classement était « celles qui ont
+  // une photo d'abord, puis l'ordre chronologique » — strictement déterministe.
+  // Tant que les données ne bougeaient pas, le même hero revenait matin et
+  // soir, jour après jour.
+  //
+  // Trois critères maintenant, dans cet ordre :
+  //   1. **un événement phare** (`hot`) passe devant — c'est ce qui fait
+  //      remonter Halloween aujourd'hui, les Ballets demain ;
+  //   2. une fiche qui a une VRAIE photo passe devant un habillage graphique ;
+  //   3. à égalité, un tirage STABLE DANS LA JOURNÉE mais différent chaque jour.
+  //
+  // ⚠️ « Stable dans la journée » n'est pas un détail : la graine est le NUMÉRO
+  // DU JOUR, pas l'horloge. Sans ça le hero changerait à chaque rendu, et la
+  // carte qu'on s'apprêtait à toucher se déroberait sous le doigt.
+  const jourDeLAnnee = (() => {
+    const n = new Date();
+    return Math.floor((new Date(n.getFullYear(), n.getMonth(), n.getDate())
+                       - new Date(n.getFullYear(), 0, 0)) / 86400000);
+  })();
+  const tirage = (id) => {
+    let x = ((Number(id) || 0) + jourDeLAnnee * 7919) * 2654435761 % 4294967296;
+    x ^= x >>> 13; x = (x * 1274126177) % 4294967296; x ^= x >>> 16;
+    return Math.abs(x) % 1000;
+  };
+  // 🚨 ET LE HERO RESTE PROCHE. Premier essai : « les phares d'abord », tous
+  // jours confondus — l'accueil du 31 octobre montrait la Ligue 1 d'avril, Star
+  // Wars et le feu d'artifice de la Fête Nationale, et pas un seul Halloween.
+  // Un hero sert à faire sortir CE SOIR, pas dans six mois. La proximité passe
+  // donc en premier, et le reste départage à l'intérieur de la journée.
+  const aujourd8 = (() => { const n = new Date(); n.setHours(0,0,0,0); return n; })();
+  const joursAvant = (e) => {
+    const d = parseEventDate(e);
+    if (!d) return 9;
+    return Math.min(9, Math.max(0, Math.round((d - aujourd8) / 86400000)));
+  };
   const heros = vitrineActive
     ? uniques
-        .map((e, index) => ({ e, index, photo: mediaDeLaFiche(e) ? 0 : 1 }))
-        .sort((a, b) => (a.photo - b.photo) || (a.index - b.index))
+        .map(e => ({
+          e,
+          jours: joursAvant(e),
+          phare: e.hot ? 0 : 1,
+          photo: mediaDeLaFiche(e) ? 0 : 1,
+          melange: tirage(e.id),
+        }))
+        .sort((a, b) => (a.jours - b.jours) || (a.phare - b.phare)
+                     || (a.photo - b.photo) || (a.melange - b.melange))
         .slice(0, 4).map(x => x.e)
     : [];
   const idsHero = new Set(heros.map(e => e.id));

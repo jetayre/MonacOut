@@ -210,6 +210,10 @@ function legendeMedia(media, lang) {
         : `${media.nomLieu} — photo du quartier`;
     case "theme":
       return lang === "en" ? "Halloween" : "Halloween";
+    case "categorie":
+      return media.nomLieu
+        ? (lang === "en" ? `${media.nomLieu}` : `${media.nomLieu}`)
+        : "";
     case "groupe":
       return lang === "en"
         ? `${media.nomLieu} — one of the venues`
