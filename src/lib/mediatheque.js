@@ -566,6 +566,13 @@ const AMBIANCES = [
   // qui n'avait pas la sienne : ses fiches empruntaient un quartier, et ça se
   // voyait — le Rallye Monte-Carlo montrait le Rocher, le triathlon la plage.
   { f: "sport.webp", alt: "Ballons de basket, football et volley sur un parquet de salle" },
+  // 🎤 LES CONFÉRENCES. Stéphanie, 1er nov 2026 : « mets cette photo pour les
+  // conférences, toutes sauf conférence philo ».
+  // ⚠️ RIEN À FAIRE POUR L'EXCEPTION : les quatre « Rencontres philosophiques »
+  //    et les deux ateliers « La philo pour les jeunes » passent par un THÈME,
+  //    marqué `avantLeLieu`, qui est lu AVANT les images de famille. Ils gardent
+  //    donc leur livre ouvert sans qu'on ait à les écarter ici.
+  { f: "conference-monaco.webp", alt: "Une conférence en salle, intervenant au pupitre et public" },
   // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
   // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
   // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
@@ -607,7 +614,7 @@ const AMBIANCE_PAR_CAT = {
   "FOOTBALL": ["port-yachts"],
   "BASKET": ["port-yachts"],
   "EXPOSITION": ["expositions-galerie"],
-  "CONFÉRENCE": ["casino-facade", "palais-place"],
+  "CONFÉRENCE": ["conference-monaco"],
   "SALON": ["casino-facade", "palais-place"],
   "ENCHÈRES": ["encheres"],
   "CONCERT": ["jazz-live", "casino-facade"],
@@ -690,6 +697,18 @@ const THEMES = [
     f: "smoothie-bien-etre.webp", w: 1100, h: 825,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un smoothie aux fruits rouges face à la mer",
+  },
+  // ♠️ LE BRIDGE. Stéphanie, 1er nov 2026 : « photo pour le bridge ».
+  // ⚠️ UN THÈME ET NON UNE AMBIANCE DE CATÉGORIE : les 38 tournois sont rangés
+  //    en ATELIER, famille qui compte aussi la zumba, la céramique et les cours
+  //    d'informatique. Une image par catégorie aurait mis une table de bridge
+  //    sur tout le monde. Le motif ne vise que ces fiches-là.
+  {
+    avantLeLieu: true,
+    motif: /\bbridge\b/i,
+    f: "bridge.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une table de bridge dressée, cartes et boîtes d'enchères",
   },
   // 🌅 LE SUNSET DJ SET DU LARVOTTO. Stéphanie, 31 oct 2026 : « prends les photos
   // DJ sunset ».
