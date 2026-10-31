@@ -281,6 +281,27 @@ for (const f of fiches) {
   if (DECISIONS[f.sl]) { tranches.push(`${f.titre} — ${DECISIONS[f.sl]}`); note(f.sl, "tranche", DECISIONS[f.sl]); continue; }
 
   // ── RÈGLE 15 : Monaco uniquement, jugé sur l'ADRESSE ───────────────────────
+  // 🏐 UNE SEULE EXCEPTION, ET ELLE EST NOMMÉE. Stéphanie, 31 oct 2026, après
+  // avoir vu que deux matchs de volley manquaient : « prends-les de
+  // PrinciPocket » — puis, la règle expliquée, elle a choisi l'option 2,
+  // « ouvrir une exception pour ce seul stade ».
+  //
+  // Le Stade des Moneghetti porte un nom monégasque mais se trouve rue Jean
+  // Bouin à BEAUSOLEIL, en France, à 400 m du Rocher. L'équipe est l'AS Monaco
+  // Volley, le public est monégasque : la règle 15 l'écartait au sens strict,
+  // et elle avait raison de le faire tant que personne n'avait tranché.
+  //
+  // ⚠️ L'EXCEPTION NE MENT PAS SUR LE LIEU. La fiche n'écrit pas « · Monaco »
+  //    comme les autres : elle écrit « · Beausoleil ». Faire entrer un lieu
+  //    français en le déguisant en monégasque serait pire que de l'exclure —
+  //    c'est la leçon des quatre Candlelight annoncés à Monaco alors qu'ils se
+  //    jouaient à Menton.
+  // ⚠️ On vise le LIEU ET la commune, pas le lieu seul : un homonyme ailleurs
+  //    ne doit pas passer par la même porte.
+  const EXCEPTIONS = [
+    { lieu: /stade des moneghetti/i, commune: "Beausoleil", dans: /beausoleil/i },
+  ];
+  const exception = EXCEPTIONS.find(x => x.lieu.test(f.lieu || "") && x.dans.test(f.adr || ""));
   // C'était seulement une ligne de rapport, APRÈS la création des fiches, et elle ne
   // regardait que le nom du lieu. Les 22 matchs de l'AS Monaco Volley se jouent au
   // Stade des Moneghetti, rue Jean Bouin à BEAUSOLEIL (France) : le nom ne le dit pas,
@@ -293,7 +314,7 @@ for (const f of fiches) {
   const bouts = (f.adr || "").split(",").map(x => x.trim()).filter(Boolean);
   const HORS = /^(france|italie|italy|suisse|beausoleil|cap\s?d['\u2019\s]?ail|roquebrune(-cap-martin)?|menton|nice|cannes|la\s?turbie|[\u00e8e]ze|vintimille|ventimiglia|san\s?remo)$/i;
   const queue = bouts.slice(-2);
-  if (queue.length && (queue.some(x => HORS.test(x)) || /\b0[6]\d{3}\b/.test(queue[queue.length - 1]))) {
+  if (!exception && queue.length && (queue.some(x => HORS.test(x)) || /\b0[6]\d{3}\b/.test(queue[queue.length - 1]))) {
     horsMonaco.push(`${f.titre} — ${f.lieu} · ${f.adr}`);
     note(f.sl, "horsmonaco", `hors de Monaco (règle 15) : ${f.adr}`);
     continue;
@@ -317,7 +338,7 @@ for (const f of fiches) {
     const id = idLibre();
     const an = d.getFullYear() !== 2026 ? `year:${d.getFullYear()},` : "";
     const titre = f.titre.length > 62 ? f.titre.slice(0, 60) + "…" : f.titre;
-    lignes.push(`  {id:${id},${an}cat:"${cat}",date:"${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}",time:"${heure}",title:"${esc(titre.toUpperCase())}",subtitle:"${esc(f.lieu)} · Monaco",desc:"${esc(f.titre)} — ${esc(f.lieu)}.",descEn:"${esc(f.titre)} — ${esc(f.lieu)}.",free:false,hot:false,fallback:"${bg}",accent:"${ac}",emoji:"${emo}",${v && v.link ? `link:"${v.link}",` : ""}${v && v.phone ? `phone:"${v.phone}",` : ""}source:"${esc(f.lieu)}",quarter:"${v ? v.quarter : "Monaco"}"},`);
+    lignes.push(`  {id:${id},${an}cat:"${cat}",date:"${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}",time:"${heure}",title:"${esc(titre.toUpperCase())}",subtitle:"${esc(f.lieu)} · ${exception ? exception.commune : "Monaco"}",desc:"${esc(f.titre)} — ${esc(f.lieu)}.",descEn:"${esc(f.titre)} — ${esc(f.lieu)}.",free:false,hot:false,fallback:"${bg}",accent:"${ac}",emoji:"${emo}",${v && v.link ? `link:"${v.link}",` : ""}${v && v.phone ? `phone:"${v.phone}",` : ""}source:"${esc(f.lieu)}",quarter:"${exception ? exception.commune : (v ? v.quarter : "Monaco")}"},`);
     ajoutePour++;
   }
   if (ajoutePour) { ajoutes.push(`${f.titre} — ${f.lieu} (${ajoutePour} jour(s))`); note(f.sl, "importe", f.titre); }

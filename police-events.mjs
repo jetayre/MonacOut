@@ -171,7 +171,27 @@ function inspect(events) {
     //  source par source-check.mjs.)
 
     // 4. GÉOGRAPHIE : quartier dans Monaco
-    if (e.quarter && !MONACO_DISTRICTS.has(e.quarter)) fault(e, `Hors Monaco : quartier "${e.quarter}"`);
+    //
+    // 🏐 UNE EXCEPTION NOMMÉE, ET UNE SEULE. Stéphanie, 31 oct 2026, après avoir
+    // vu que le volley de l'AS Monaco manquait : elle a choisi d'ouvrir la règle
+    // « pour ce seul stade ». Le Stade des Moneghetti porte un nom monégasque
+    // mais se trouve rue Jean Bouin à BEAUSOLEIL, en France, à 400 m du Rocher.
+    // L'équipe est celle de Monaco et le public est monégasque.
+    //
+    // ⚠️ L'EXCEPTION PORTE SUR UN LIEU, PAS SUR UNE COMMUNE. Autoriser
+    //    « Beausoleil » en bloc ferait entrer tout ce qui s'y passe. On exige
+    //    donc que le SOUS-TITRE nomme ce stade : une fiche de Beausoleil qui ne
+    //    s'y tient pas reste refusée, comme avant.
+    // ⚠️ Et la fiche doit le DIRE : elle écrit « · Beausoleil », jamais
+    //    « · Monaco ». Une exception qui se cache est un mensonge sur le lieu —
+    //    la leçon des quatre Candlelight annoncés à Monaco et joués à Menton.
+    const EXCEPTIONS_LIEU = [
+      { quartier: "Beausoleil", lieu: /stade des moneghetti/i },
+    ];
+    const exceptionGeo = EXCEPTIONS_LIEU.some(
+      x => x.quartier === e.quarter && x.lieu.test(e.subtitle || ""));
+    if (e.quarter && !MONACO_DISTRICTS.has(e.quarter) && !exceptionGeo)
+      fault(e, `Hors Monaco : quartier "${e.quarter}"`);
 
     // 5. LIENS : pas d'agrégateur interdit, pas de HTTP non sécurisé
     if (e.link) {
