@@ -34,6 +34,13 @@ jobs:
         run: node cross-check-dates.mjs
         continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
 
+      # 🌐 Chromium : mairie.mc/agenda/ ne rend ses événements qu'en JavaScript,
+      # et seulement au défilement. Un fetch simple donne 113 Ko sans un seul
+      # événement (vérifié le 31 oct 2026).
+      - name: Installer Playwright Chromium
+        run: npx playwright install chromium --with-deps
+        continue-on-error: true
+
       - name: 📋 Scan complétude PrinciPocket (events manquants → rapport, sans email)
         run: node principocket-scan.mjs
         continue-on-error: true   # réseau : ne bloque pas si PrinciPocket est down
@@ -45,6 +52,17 @@ jobs:
       - name: "📥 Reprise intégrale PrinciPocket (registre + alerte)"
         id: import
         run: node scripts/import-principocket.mjs
+        continue-on-error: true
+
+      # 🏛️ L'AGENDA DE LA MAIRIE, l'autre source. Leçon du 1er août 2026 : le feu
+      # d'artifice était dans l'app, mais les châteaux gonflables de l'après-midi
+      # et la soirée pop-rock qui l'encadraient manquaient — ils étaient au
+      # programme de la Mairie, pas sur PrinciPocket. La règle disait déjà de lire
+      # les deux ; elle ne s'appliquait que lorsqu'un humain y pensait.
+      # SIGNALE, n'ajoute pas : un titre d'agenda ne donne ni horaire ni lieu
+      # exploitable, et publier à l'aveugle fabriquerait des fiches fausses.
+      - name: "🏛️ Agenda de la Mairie : ce qui manque dans l'app"
+        run: node scripts/mairie-agenda.mjs
         continue-on-error: true
 
       - name: "🤖 Auto-complétion (robot déterministe : ajoute les manquants 100 % sûrs)"
@@ -166,7 +184,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json bien-etre-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
+          for f in mairie-agenda.txt lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json bien-etre-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
