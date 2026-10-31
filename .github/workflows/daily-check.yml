@@ -137,6 +137,14 @@ jobs:
       - name: 🎬 Rafraîchir la carte cinéma (date du jour)
         run: node scripts/refresh-cinema.mjs
 
+      # ⚽ Confronte nos fiches FOOTBALL au calendrier officiel de l'AS Monaco.
+      # SIGNALE, ne redate jamais (règle du 10 oct). Sans --strict : un écart sur
+      # une rencontre que le club lui-même dit « non définitive » ne doit pas
+      # faire échouer la nuit, il doit se lire dans le journal.
+      - name: "⚽ Calendrier AS Monaco : comparer à la source"
+        run: node scripts/asm-foot.mjs
+        continue-on-error: true
+
       # DÉBRANCHÉ le 11 août 2026. Le carré d'annonce a été retiré du code, mais les
       # apps restées sur un ancien bundle OTA l'affichaient encore (19 personnes
       # déclenchaient annonce_vue sur 3 jours) — avec un bouton « Découvrir » qui
