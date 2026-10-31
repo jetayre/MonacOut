@@ -604,6 +604,18 @@ const THEMES = [
   //    illisible dans une vignette et répète le titre de la carte, et il
   //    annonçait le mauvais nom. On ne garde donc que l'image — le buste, le
   //    livre ouvert et l'Acropole au couchant.
+  // 🥤 LES WELLNESS BARS. Stéphanie, 31 oct 2026, en renvoyant la photo :
+  // « wellness bar ». Le smoothie était bien dans le lot BIEN-ÊTRE, mais ce lot
+  // se tire au hasard stable : la fiche « WELLNESS BARS · 5 ADRESSES » était
+  // tombée sur `lounge-mer`, et c'est précisément celle qu'elle regardait.
+  // Un lot ne garantit rien pour UNE fiche donnée — quand une photo est choisie
+  // POUR une fiche, elle se nomme ici, pas dans un tirage.
+  {
+    motif: /wellness\s*bars?/i,
+    f: "smoothie-bien-etre.webp", w: 1100, h: 825,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un smoothie aux fruits rouges face à la mer",
+  },
   // 🌅 LE SUNSET DJ SET DU LARVOTTO. Stéphanie, 31 oct 2026 : « prends les photos
   // DJ sunset ».
   // ⚠️ UN THÈME, PAS UNE AMBIANCE DE CATÉGORIE, et la nuance compte : le panneau
