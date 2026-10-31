@@ -83,16 +83,37 @@ if (Capacitor.isNativePlatform()) {
   // 1) Confirme que le bundle actuel démarre bien — sinon Capgo revient à la version précédente (anti-brique).
   CapacitorUpdater.notifyAppReady().catch(() => {});
   // 2) Cherche une nouvelle interface ; si dispo, la télécharge et l'applique (auto-appliquant).
-  const OTA_MANIFEST = 'https://monac-out.vercel.app/capgo/latest.json';
+  // 🚑 DEUX HÔTES POUR LA MISE À JOUR AUSSI. C'était le dernier point unique
+  // de rupture : le 31 oct 2026, une adresse IP mise au défi par Vercel a
+  // coupé `monac-out.vercel.app` pour un téléphone — plus de données, plus de
+  // photos, ET plus de moyen de recevoir le correctif. L'app ne pouvait pas se
+  // réparer elle-même.
+  // `monacout.com` est un projet Vercel DISTINCT qui sert les mêmes fichiers.
+  const OTA_HOTES = ['https://monac-out.vercel.app', 'https://monacout.com'];
   // L'instant du lancement : il décide si l'on peut appliquer sans déranger.
   const DEBUT = Date.now();
   window.addEventListener('load', () => {
     (async () => {
       try {
-        const res = await fetch(`${OTA_MANIFEST}?t=${Date.now()}`, { cache: 'no-store' });
-        if (!res.ok) return;
-        const { version, url } = await res.json();
+        // On essaie chaque hôte ; le premier qui répond vraiment gagne.
+        // ⚠️ `res.ok` est indispensable : un 403 « Security Checkpoint » rend
+        // une PAGE HTML, et `res.json()` échouerait en silence.
+        let manifeste = null, hoteRetenu = null;
+        for (const h of OTA_HOTES) {
+          try {
+            const r = await fetch(`${h}/capgo/latest.json?t=${Date.now()}`, { cache: 'no-store' });
+            if (r.ok) { manifeste = await r.json(); hoteRetenu = h; break; }
+          } catch { /* hôte injoignable → on tente le suivant */ }
+        }
+        if (!manifeste) return;
+        const { version } = manifeste;
+        let { url } = manifeste;
         if (!version || !url) return;                         // rien à publier
+        // Le paquet se télécharge sur l'hôte qui a répondu, pas sur celui que
+        // le manifeste cite : sinon on repart sur l'hôte bloqué.
+        if (hoteRetenu !== OTA_HOTES[0]) {
+          url = url.replace(OTA_HOTES[0], hoteRetenu);
+        }
         const cur = await CapacitorUpdater.current();
         if (cur?.bundle?.version === version) return;         // déjà à jour
         const bundle = await CapacitorUpdater.download({ version, url });
