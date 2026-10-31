@@ -506,6 +506,8 @@ const AMBIANCES = [
   { f: "cafe-petit-dej.webp", alt: "Un café et un croissant en terrasse, face au port" },
   // 🥐 LE BRUNCH. Stéphanie, 31 oct 2026 : « j'ai fait une photo brunch Monaco ».
   { f: "brunch-monaco.webp", alt: "Une table de brunch en terrasse, face au port de Monaco" },
+  // 🥂 L'APÉRO. Photo fournie par Stéphanie, 31 oct 2026.
+  { f: "apero-monte-carlo.webp", alt: "Deux coupes de champagne en terrasse, face au Casino à la tombée du jour" },
   // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
   // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
   // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
@@ -530,7 +532,9 @@ const AMBIANCE_PAR_CAT = {
   "DJ SET": ["soiree-club", "rooftop-sunset"],
   "JAZZ LIVE": ["jazz-live"],
   "GALA": ["soiree-club", "casino-facade"],
-  "APÉRO": ["terrasse-diner", "lounge-mer", "rooftop-sunset"],
+  // 🥂 Une seule image, même raison que le brunch : Stéphanie doit la
+  // reconnaître sur la fiche qui annonce les apéros, pas une fois sur trois.
+  "APÉRO": ["apero-monte-carlo"],
   // 🥐 UNE SEULE IMAGE POUR LE BRUNCH, et c'est voulu : Stéphanie veut la
   // reconnaître sur la fiche qui annonce les brunchs. Un lot de trois la
   // laissait au tirage — deux fois sur trois, ce n'était pas elle.
