@@ -239,6 +239,15 @@ const LIBELLES = {
   "salle garnier": 8,
   "palais princier": 9,
   "place du palais": 9,
+  // 🏰 LE CASTEL ROC N'A PAS DE PHOTO, ET LE PALAIS N'EN EST PAS UNE.
+  // Stéphanie, 31 oct 2026 : « pour Scary Castle Castel Roc tu as mis la photo
+  // du Twiga, change ça ». Vérifié six fois dans l'app : la fiche affiche bien
+  // la CITROUILLE, pas le Twiga — et la photo du Twiga ne peut atteindre que
+  // des fiches du Twiga (deux libellés, 159 fiches, toutes vérifiées).
+  // J'ai essayé de lever l'ambiguïté en lui donnant la Place du Palais, son
+  // adresse — mauvaise idée : on aurait posé le PALAIS PRINCIER sur la carte
+  // d'un restaurant. C'est exactement « la photo d'un lieu pour un autre ».
+  // La citrouille reste, et c'est la première des deux options qu'elle citait.
   "stade louis ii": 10,
   "salle gaston medecin": 10,
   "jardin japonais": 11,
