@@ -118,8 +118,23 @@ const titres = evs.flatMap(e => [
   ...(e.directory || []).map(d => plat(d.name) + plat(d.adr)),
 ]);
 
+// 🚨 UNE PÉRIODE DE PLUSIEURS MOIS N'EST PAS UN ÉVÉNEMENT, C'EST UNE OFFRE.
+// Les quatre « manquants » du premier passage étaient tous de ce genre :
+//   « L'expérience brunch chez Marlow »        21 mars 2025 → 31 déc. 2030
+//   « Le Brunch du Pavyllon »                   5 oct. 2025 → 31 déc. 2026
+//   « Menu Matataki à L'Abysse »                1 avr. 2026 → 31 déc. 2026
+//   « L'année 2027 s'annonce festive au Jimmy'z » 1 janv. → 31 déc. 2027
+// Ce sont des cartes de restaurant et des annonces de saison, pas des soirées :
+// elles n'ont ni date ni heure, et les publier donnerait des fiches qui ne
+// disent pas quand venir. L'app les couvre déjà autrement — le brunch du Marlow
+// et celui du Pavyllon sont des entrées de l'annuaire « BRUNCHS ».
+// Au-delà de 60 jours, on range donc à part au lieu d'alerter.
+const PERMANENT = 60 * 24 * 3600 * 1000;
+const offres = aVenir.filter(o => o.fin - o.debut > PERMANENT);
+const ponctuels = aVenir.filter(o => o.fin - o.debut <= PERMANENT);
+
 const manquants = [];
-for (const o of aVenir) {
+for (const o of ponctuels) {
   const mots = motsPorteurs(o.titre);
   if (!mots.length) continue;
   const trouve = titres.some(t => {
@@ -134,7 +149,7 @@ const periode = o => o.debut.getTime() === o.fin.getTime() ? jour(o.debut) : `${
 
 const lignes = [
   `AGENDA SBM — ${new Date().toISOString().slice(0, 10)}`,
-  `${tous.length} entrées lues · ${tous.length - aVenir.length} terminées · ${aVenir.length} à venir · ${manquants.length} à regarder`,
+  `${tous.length} entrées lues · ${tous.length - aVenir.length} terminées · ${ponctuels.length} à date · ${offres.length} offre(s) permanente(s) · ${manquants.length} à regarder`,
   "",
 ];
 if (manquants.length) {
@@ -147,7 +162,14 @@ if (manquants.length) {
 } else {
   lignes.push("■ Rien ne manque : tout l'agenda SBM à venir est déjà dans l'app.");
 }
-lignes.push("", "■ TOUT CE QUI EST À VENIR", ...aVenir.map(o => `   · ${periode(o)} · ${o.titre}`));
+if (offres.length) {
+  lignes.push("", "■ OFFRES PERMANENTES — pas des événements, aucune date à publier");
+  offres.forEach(o => lignes.push(`   · ${periode(o)} · ${o.titre}`));
+}
+if (ponctuels.length) {
+  lignes.push("", "■ ÉVÉNEMENTS DATÉS À VENIR");
+  ponctuels.forEach(o => lignes.push(`   · ${periode(o)} · ${o.titre}`));
+}
 
 const rapport = lignes.join("\n") + "\n";
 writeFileSync(SORTIE, rapport);
