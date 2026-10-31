@@ -612,7 +612,19 @@ const FAMILLE_DE = Object.fromEntries(FAMILLES_REUNIES.map(f => [f.cat, f]));
 // finir la journée, l'absorber dans un groupe lui ferait perdre sa place. Une
 // famille peut lever la règle (`pinLastOk`) quand sa carte de groupe prend
 // exactement la place de la fiche — c'est le cas du cinéma, seul de son jour.
-const estGroupable = (e, fam) => fam?.pinLastOk === true || e.pinLast !== true;
+// 🍸 ET UNE FICHE PEUT DEMANDER À RESTER SEULE. Stéphanie, 1er nov 2026 :
+// « l'apéro des Frenchy, c'est un apéro séparé, pas un spectacle, mais un
+// event séparé des listes des apéros ».
+// La nuance est juste : les autres membres du groupe APÉRO sont des ADRESSES
+// ouvertes ce soir-là — une terrasse, un bar d'hôtel. L'apéro des Frenchy est
+// un RENDEZ-VOUS auquel on se rend, à une heure, avec des gens : le noyer
+// dans « 23 adresses ce jour-là » le ferait disparaître en tant qu'événement.
+// ⚠️ `horsGroupe` ET NON `pinLast` : `pinLast` veut dire « finit la journée »
+//    et, pour tout ce qui n'est pas le cinéma, `estAnnuairePermanent` RETIRE
+//    la fiche du fil tant qu'on n'a pas demandé sa catégorie. On l'aurait
+//    sortie du groupe en la faisant disparaître.
+const estGroupable = (e, fam) =>
+  e.horsGroupe !== true && (fam?.pinLastOk === true || e.pinLast !== true);
 
 // Une fiche qui n'est qu'un annuaire : elle ne se déplie pas en elle-même, mais
 // en ses entrées. Les terrasses du soir, les brunchs, les films de la semaine.

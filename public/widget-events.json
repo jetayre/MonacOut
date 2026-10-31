@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-10-31T22:52:59.707Z",
+  "generatedAt": "2026-10-31T23:06:38.492Z",
   "events": [
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
-      "time": "09h30 — 18h30",
-      "title": "GUCCI × LA ROSE DES VENTS LE MOTIF FLORA",
-      "venue": "La Rose des Vents",
-      "quarter": "Larvotto",
-      "emoji": "🌺"
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
+      "time": "En journée",
+      "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
+      "venue": "Francis Bacon MB Art Foundation",
+      "quarter": "Monte-Carlo",
+      "emoji": "🖼️"
     },
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
-      "time": "00h30 — 05h00",
-      "title": "HALLOWEEN NIGHT TWIGA",
-      "venue": "Twiga Monte Carlo",
-      "quarter": "Larvotto",
-      "emoji": "🎃"
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
+      "time": "En journée",
+      "title": "EXCLUSIVE TIMEPIECES MONACO LEGEND",
+      "venue": "Monaco Legend Auctions",
+      "quarter": "Monaco",
+      "emoji": "🔨"
     },
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +29,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -38,8 +38,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,8 +47,17 @@
       "emoji": "🎬"
     },
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
+      "time": "9h30 → 18h30",
+      "title": "MESSE DIMANCHE",
+      "venue": "9 paroisses",
+      "quarter": "Monaco",
+      "emoji": "⛪"
+    },
+    {
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
       "time": "10h00",
       "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
@@ -56,22 +65,13 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
-      "time": "11h00 — 19h00",
-      "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🚩"
-    },
-    {
-      "date": "Sam 31 oct",
-      "iso": "2026-10-31",
-      "time": "11h00 — 19h00",
-      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
-      "venue": "Villa Paloma",
-      "quarter": "Monaco",
-      "emoji": "🖼️"
+      "date": "Dim 1 nov",
+      "iso": "2026-11-01",
+      "time": "10h30",
+      "title": "MESSE DE LA TOUSSAINT CATHÉDRALE",
+      "venue": "Cathédrale de Monaco",
+      "quarter": "Monaco-Ville",
+      "emoji": "🕯️"
     }
   ]
 }
