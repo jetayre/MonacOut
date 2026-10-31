@@ -4,7 +4,31 @@
 
 import { ALL_EVENTS } from "./events";
 
-const LIVE_URL = "https://monac-out.vercel.app/events.json";
+/**
+ * 🚑 DEUX HÔTES, PAS UN. Leçon du 31 oct 2026 : Vercel a mis une adresse IP au
+ * défi et, pour ce téléphone-là, `monac-out.vercel.app` a cessé de répondre —
+ * plus d'événements, plus de photos, plus de mises à jour. L'app est retombée
+ * sur ses données embarquées sans que rien ne le signale.
+ * `monacout.com` est un projet Vercel DISTINCT qui sert les MÊMES fichiers.
+ * On l'essaie si le premier échoue : deux projets ne tombent pas ensemble.
+ */
+const HOTES = ["https://monac-out.vercel.app", "https://monacout.com"];
+const LIVE_URL = `${HOTES[0]}/events.json`;
+
+/** Essaie chaque hôte dans l'ordre. Rend la première réponse exploitable. */
+async function litSurUnDesHotes(chemin) {
+  let derniere = null;
+  for (const h of HOTES) {
+    try {
+      const res = await fetch(`${h}${chemin}?t=${Date.now()}`, { cache: "no-store" });
+      // ⚠️ Un 403 « Security Checkpoint » renvoie une PAGE HTML avec un code
+      // d'erreur : sans ce contrôle, on prendrait la page pour une réponse.
+      if (res.ok) return res;
+      derniere = res;
+    } catch (e) { derniere = null; }
+  }
+  return derniere;
+}
 const MOIS = { jan: 0, "fév": 1, mar: 2, avr: 3, mai: 4, juin: 5, juil: 6, "août": 7, sep: 8, oct: 9, nov: 10, "déc": 11 };
 
 function eventDate(e) {
@@ -43,7 +67,8 @@ function normalize(events) {
 
 export async function fetchLiveEvents() {
   try {
-    const res = await fetch(`${LIVE_URL}?t=${Date.now()}`, { cache: "no-store" });
+    const res = await litSurUnDesHotes("/events.json");
+    if (!res || !res.ok) throw new Error("hôtes injoignables");
     if (!res.ok) return null;
     const data = await res.json();
     if (!data?.events?.length) return null;
@@ -61,8 +86,8 @@ const JOUR_OFFSET = { lundi: 0, mardi: 1, mercredi: 2, jeudi: 3, vendredi: 4, sa
 
 export async function fetchNotifConfig() {
   try {
-    const res = await fetch(`${NOTIF_CONFIG_URL}?t=${Date.now()}`, { cache: "no-store" });
-    if (!res.ok) return null;
+    const res = await litSurUnDesHotes("/notif-config.json");
+    if (!res || !res.ok) return null;
     const c = await res.json();
     const offsets = Array.isArray(c.jours)
       ? [...new Set(c.jours.map(j => JOUR_OFFSET[String(j).toLowerCase().trim()]).filter(n => n !== undefined))].sort((a, b) => a - b)
