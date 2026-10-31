@@ -88,10 +88,23 @@
  * l'absolue : en local, les photos renvoyaient toutes leur texte de
  * remplacement et l'accueil s'affichait sans aucune image.
  */
-const BASE =
-  (typeof window !== "undefined" && /^https?:$/.test(window.location.protocol))
-    ? "/media/lieux"
-    : "https://monac-out.vercel.app/media/lieux";
+const SUR_LE_WEB = typeof window !== "undefined" && /^https?:$/.test(window.location.protocol);
+const HOTE = "https://monac-out.vercel.app";
+/**
+ * 🚑 UN SECOND HÔTE, POUR QUE LES PHOTOS NE DISPARAISSENT PLUS JAMAIS.
+ *
+ * Le 31 oct 2026, Vercel a mis notre adresse IP au défi (« Security
+ * Checkpoint ») parce que mes boucles de vérification l'avaient martelée :
+ * d'un coup, `monac-out.vercel.app` a répondu 403 à TOUT — événements, photos,
+ * mises à jour — et l'app s'est retrouvée sans images un samedi d'Halloween.
+ *
+ * `monacout.com` est un PROJET VERCEL DISTINCT qui sert les mêmes fichiers et
+ * qui, lui, est resté à 200 pendant tout l'incident. Chaque image reçoit donc
+ * une adresse de secours : si la première échoue, l'interface bascule sur la
+ * seconde sans que personne ne voie rien.
+ */
+const HOTE_SECOURS = "https://monacout.com";
+const BASE = SUR_LE_WEB ? "/media/lieux" : `${HOTE}/media/lieux`;
 
 /**
  * LE REGISTRE DES LIEUX. `id` est STABLE et ne se réattribue JAMAIS — même
@@ -333,7 +346,9 @@ function vueDuLieu(lieu, eventId, decalage = 0) {
 function media(lieu, eventId, type, decalage = 0) {
   const v = vueDuLieu(lieu, eventId, decalage);
   return {
-    src: `${BASE}/${v.f}`, mediaType: type,
+    src: `${BASE}/${v.f}`,
+    secours: `${HOTE_SECOURS}/media/lieux/${v.f}`,
+    mediaType: type,
     venueId: lieu.id, slug: lieu.slug, nomLieu: lieu.nom,
     alt: v.alt, width: v.w, height: v.h,
     edition: lieu.edition || null,
@@ -456,6 +471,7 @@ export function imageAmbiance(event, decalage = 0) {
   if (!a) return null;
   return {
     src: `${BASE.replace("/lieux", "/" + AMB)}/${a.f}`,
+    secours: `${HOTE_SECOURS}/media/${AMB}/${a.f}`,
     mediaType: "ambiance", nomLieu: null, alt: a.alt,
     width: 547, height: 303, licence: null, auteur: null,
   };
@@ -496,6 +512,7 @@ export function imageTheme(event) {
   if (!t) return null;
   return {
     src: `${BASE.replace("/lieux", "/" + AMB)}/${t.f}`,
+    secours: `${HOTE_SECOURS}/media/${AMB}/${t.f}`,
     mediaType: "theme", nomLieu: null, alt: t.alt,
     width: t.w, height: t.h, licence: "Domaine public", auteur: "Wikimedia Commons",
   };

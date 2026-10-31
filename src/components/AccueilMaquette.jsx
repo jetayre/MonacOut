@@ -245,7 +245,20 @@ function Visuel({ event, ratio = 75, arrondi = 0, lang = "fr", media: fourni = n
           {/* L'`alt` porte la nature exacte de la photo — lieu, l'un des lieux
               d'un groupe, quartier, édition passée — puisque la légende visible
               a été retirée. */}
+          {/* 🚑 SI LA PREMIÈRE ADRESSE ÉCHOUE, ON BASCULE SUR LA SECONDE.
+              Le 31 oct, un hôte a répondu 403 à tout pendant une heure et les
+              photos ont disparu sans que l'app puisse rien y faire. Désormais
+              chaque image a un second hôte, et le basculement est silencieux.
+              ⚠️ Une seule tentative (`dejaBascule`) : sans ce garde-fou, une
+              image vraiment absente ferait boucler les deux adresses à
+              l'infini. */}
           <img src={media.src} alt={legendeMedia(media, lang)} loading="lazy" decoding="async"
+               onError={e => {
+                 const img = e.currentTarget;
+                 if (img.dataset.dejaBascule || !media.secours) return;
+                 img.dataset.dejaBascule = "1";
+                 img.src = media.secours;
+               }}
                width={media.width} height={media.height}
                style={{
                  position: "absolute", inset: 0, width: "100%", height: "100%",
