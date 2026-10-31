@@ -94,9 +94,17 @@ function Coeur({ actif, onClick, taille = 28 }) {
 function PastilleCat({ cat }) {
   return (
     <span style={{
-      display: "inline-block", padding: "4px 9px", borderRadius: RAYON.pastille,
+      // 🔎 11 px ET NON 8,5. Stéphanie, 31 oct 2026 : « je voudrais que les
+      // titres ateliers, conférence etc. ressortent plus ».
+      // Le contraste n'était pas en cause — bleu nuit sur pastille blanche fait
+      // 15,6:1, très au-dessus de la norme. C'était la TAILLE : 8,5 px, le plus
+      // petit texte de toute l'interface, plus petit que l'heure (11,5) et que
+      // le lieu, et posé sur une photo par-dessus le marché.
+      // On ne touche donc ni à la couleur ni à la pastille : juste la taille,
+      // et l'interligne qui va avec.
+      display: "inline-block", padding: "5px 11px", borderRadius: RAYON.pastille,
       background: "rgba(255,255,255,0.94)", color: NUIT,
-      fontFamily: SANS, fontSize: 8.5, fontWeight: 800,
+      fontFamily: SANS, fontSize: 11, fontWeight: 800, lineHeight: 1,
       letterSpacing: 1, textTransform: "uppercase", whiteSpace: "nowrap",
       boxShadow: "0 2px 7px rgba(21,38,59,0.16)",
     }}>{cat}</span>
@@ -667,7 +675,7 @@ export function BandeRegroupement({ fiches, cat, lang, deplie, onBasculer, recen
         <Visuel event={avecPhoto} ratio={75} arrondi={9} lang={lang} media={mediaBande} />
       </div>
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "center", gap: 4 }}>
-        <div style={{ fontFamily: SANS, fontSize: 8.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: BORDEAU }}>{cat}</div>
+        <div style={{ fontFamily: SANS, fontSize: 11, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: BORDEAU }}>{cat}</div>
         <div style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 15.5, color: NUIT, lineHeight: 1.2 }}>
           {lang === "en" ? `${n} to see today` : `${n} à voir aujourd'hui`}
         </div>
