@@ -1,6 +1,6 @@
 # MONAC'OUT — LE CODE DE L'APPLICATION
 
-**31 octobre 2026.** 42 fichiers, 590 Ko.
+**1 novembre 2026.** 42 fichiers, 593 Ko.
 Chaque fichier est reproduit **intégralement et tel quel** : rien n'est coupé,
 résumé ni reformaté.
 
@@ -23,7 +23,7 @@ résumé ni reformaté.
 | `capacitor.config.json` | 0.6 Ko |
 | `src/App.css` | 0.0 Ko |
 | `src/App.jsx` | 72.7 Ko |
-| `src/components/AccueilMaquette.jsx` | 37.8 Ko |
+| `src/components/AccueilMaquette.jsx` | 40.2 Ko |
 | `src/components/BandeauWeb.jsx` | 6.8 Ko |
 | `src/components/CalendarPicker.jsx` | 9.1 Ko |
 | `src/components/EventCard.jsx` | 51.6 Ko |
@@ -51,7 +51,7 @@ résumé ni reformaté.
 | `src/lib/habillage.js` | 3.7 Ko |
 | `src/lib/invite.js` | 4.8 Ko |
 | `src/lib/itineraire.js` | 1.6 Ko |
-| `src/lib/mediatheque.js` | 46.9 Ko |
+| `src/lib/mediatheque.js` | 47.2 Ko |
 | `src/lib/phone.js` | 3.4 Ko |
 | `src/lib/prenom.js` | 3.9 Ko |
 | `src/lib/reservation.js` | 7.4 Ko |
@@ -1658,6 +1658,43 @@ function Coeur({ actif, onClick, taille = 28 }) {
 }
 
 /**
+ * ⓘ LE BOUTON D'INFORMATION, sur chaque carte.
+ *
+ * Stéphanie, 31 oct 2026 : « rajoute un (i) sur chaque fiche ».
+ *
+ * ⚠️ CE N'EST PAS LE RETOUR DU « ⓘ » SUPPRIMÉ EN v0.0.134. Celui-là était un
+ * CARACTÈRE collé à la fin de chaque titre par `gen-events-json` : il salissait
+ * les données, se retrouvait dans les partages et dans la recherche, et on ne
+ * pouvait pas le toucher. Ici c'est un vrai bouton d'interface, posé à côté du
+ * cœur, et les titres restent propres.
+ *
+ * Il ouvre la FICHE DÉTAILLÉE. C'est surtout utile sur les cartes à annuaire :
+ * depuis le 11 octobre, toucher « 19 TERRASSES » déplie la liste au lieu
+ * d'ouvrir la fiche — le détail (description, téléphone, partage) n'était donc
+ * plus atteignable du tout. Le (i) rouvre ce chemin sans reprendre le geste du
+ * dépliage.
+ */
+function BoutonInfo({ onClick, taille = 26 }) {
+  return (
+    <button onClick={e => { e.stopPropagation(); onClick?.(); }}
+            aria-label="Voir le détail"
+            style={{
+              width: taille, height: taille, borderRadius: "50%", border: "none", cursor: "pointer",
+              background: "rgba(255,255,255,0.94)", padding: 0,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 2px 7px rgba(23,36,60,0.18)",
+            }}>
+      <svg width={taille * 0.62} height={taille * 0.62} viewBox="0 0 24 24"
+           fill="none" stroke={BORDEAU} strokeWidth="2" strokeLinecap="round">
+        <circle cx="12" cy="12" r="9.2" />
+        <path d="M12 11v5.4" />
+        <path d="M12 7.6v0.1" strokeWidth="2.6" />
+      </svg>
+    </button>
+  );
+}
+
+/**
  * La pastille de catégorie.
  *
  * 🎨 UNE SEULE PALETTE POUR TOUTES LES CARTES. Stéphanie, 28 oct 2026 : « les
@@ -2079,6 +2116,16 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
           <PastilleCat cat={event.cat} />
           <Coeur actif={fav} onClick={() => onToggleFav?.(event.id)} taille={26} />
         </div>
+        {/* ⓘ EN BAS À DROITE DE LA PHOTO, ET NON À CÔTÉ DU CŒUR.
+            Mesuré avant de poser : la carte fait 173 pt, moins 14 de marges il
+            reste 159. Depuis que l'étiquette est à 11 px, « EXPOSITION » —
+            385 fiches, le cas courant — occupe environ 102 pt ; deux boutons de
+            26 pt et leur écart en prennent 58. 160 pt pour 159 disponibles :
+            l'étiquette aurait débordé ou se serait coupée sur la carte la plus
+            fréquente de l'app. En bas, le (i) ne gêne personne. */}
+        <div style={{ position: "absolute", bottom: 7, right: 7 }}>
+          <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
+        </div>
       </div>
       <div style={{ padding: "9px 10px 11px", display: "flex", flexDirection: "column", gap: 5, flex: 1 }}>
         <h4 style={{
@@ -2178,6 +2225,7 @@ export function CarteRangee({ event, lang, favorites, onToggleFav, onCardClick, 
             flex: 1, margin: 0, fontFamily: SERIF, fontWeight: 600, fontSize: 15, lineHeight: 1.2, color: NUIT,
             display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
           }}>{casseNaturelle(event.title?.replace(/\n/g, " "))}</h4>
+          <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
           <Coeur actif={fav} onClick={() => onToggleFav?.(event.id)} taille={26} />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
@@ -10703,6 +10751,10 @@ const AMBIANCES = [
   { f: "expositions-galerie.webp", alt: "Une galerie d'exposition ouverte sur la mer" },
   { f: "spa-bien-etre.webp",       alt: "Une table de soin au bord d'un bassin, bougies et orchidée" },
   { f: "encheres.webp",            alt: "Un marteau de commissaire-priseur et une salle de vente" },
+  // 🏀 LE SPORT. Photo fournie par Stéphanie le 31 oct 2026, la dernière famille
+  // qui n'avait pas la sienne : ses fiches empruntaient un quartier, et ça se
+  // voyait — le Rallye Monte-Carlo montrait le Rocher, le triathlon la plage.
+  { f: "sport.webp", alt: "Ballons de basket, football et volley sur un parquet de salle" },
   // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
   // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
   // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
@@ -10740,7 +10792,7 @@ const AMBIANCE_PAR_CAT = {
   // 🧖 Le spa pour les ACTIVITÉS bien-être ; les « wellness bars » gardent le
   //    smoothie, qui leur est attaché nommément (thème) et passe avant.
   "BIEN-ÊTRE": ["spa-bien-etre"],
-  "SPORT": ["port-yachts", "le-rocher"],
+  "SPORT": ["sport"],
   "FOOTBALL": ["port-yachts"],
   "BASKET": ["port-yachts"],
   "EXPOSITION": ["expositions-galerie"],

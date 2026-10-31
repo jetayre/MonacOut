@@ -74,6 +74,14 @@ jobs:
       #    à l'agenda ».
       # SIGNALE, n'ajoute pas : l'agenda SBM donne une période, rarement un
       # horaire exploitable.
+      # 📄 SOURCE_APP.md doit suivre le code, sinon il ment en silence. Généré
+      # le 31 oct à 23h18, il était déjà périmé à minuit : trois OTA avaient
+      # touché AccueilMaquette et mediatheque entre-temps. Un document de source
+      # que personne ne régénère est pire qu'absent — on le croit à jour.
+      - name: "📄 SOURCE_APP.md : régénérer d'après le code"
+        run: node scripts/gen-source-md.mjs
+        continue-on-error: true
+
       - name: "🎰 Agenda SBM : ce qui manque dans l'app"
         run: node scripts/sbm-agenda.mjs
         continue-on-error: true
@@ -197,7 +205,7 @@ jobs:
           # ⚠️ Ces deux fichiers n'existent pas à tous les passages (le robot ne les écrit
           # que s'il a quelque chose à signaler). Toujours tester leur présence : un
           # « git add » sur un fichier absent renvoie 128 et casse toute l'étape.
-          for f in sbm-agenda.txt mairie-agenda.txt lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json bien-etre-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
+          for f in SOURCE_APP.md sbm-agenda.txt mairie-agenda.txt lieux-a-completer.txt auto-complete-report.txt qualite-a-ameliorer.txt soirees-du-jour.txt soirees-du-jour.json bien-etre-du-jour.json musees-du-jour.txt liens-morts.txt import-principocket.txt principocket-registre.json piscines.txt; do
             if [ -f "$f" ]; then git add -f "$f"; fi
           done
           if ! git diff --quiet --cached || ! git diff --quiet src/data/events.js public/notif-config.json; then
