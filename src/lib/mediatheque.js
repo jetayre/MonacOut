@@ -698,6 +698,19 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un smoothie aux fruits rouges face à la mer",
   },
+  // ⛵ LA VOILE ET LES RÉGATES. Stéphanie, 1er nov 2026 : « photo pour events de
+  // voile bateaux ». Un THÈME et non une ambiance : ces fiches sont rangées en
+  // SPORT, famille qui compte aussi le volley en salle et le rallye — une image
+  // par catégorie aurait mis des spinnakers sur un match de volley.
+  // ⚠️ L'aviron de mer y est compris : c'est la même baie, les mêmes quais, et
+  //    la photo ne prétend pas montrer une épreuve précise.
+  {
+    avantLeLieu: true,
+    motif: /\b(voile|r[ée]gate|sportsboat|primo cup|navicap|optimist|aviron|rowing|yacht club)\b/i,
+    f: "voile-regate.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Des voiliers en régate dans la baie de Monaco, le Rocher en fond",
+  },
   // ♠️ LE BRIDGE. Stéphanie, 1er nov 2026 : « photo pour le bridge ».
   // ⚠️ UN THÈME ET NON UNE AMBIANCE DE CATÉGORIE : les 38 tournois sont rangés
   //    en ATELIER, famille qui compte aussi la zumba, la céramique et les cours
