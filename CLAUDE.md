@@ -736,6 +736,37 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Guides et Scouts de Monaco | https://www.guides-scouts-monaco.com/ | jeunesse | |
 | _— Économie & réseau_ | | | |
 | Monaco Economic Board | https://www.meb.mc/ | CONFÉRENCE économie/business | |
+
+## ⏳ CE QUI ATTEND UNE RÉPONSE
+
+**Relevé des 31 oct – 1er nov 2026.** Une quinzaine de sorties ont été écartées
+non pas parce qu'elles étaient fausses, mais parce qu'il manquait UNE pièce.
+Ces dossiers se rouvrent le jour où la pièce arrive.
+
+🤖 `scripts/a-verifier.mjs` les relit CHAQUE NUIT et écrit `a-verifier.txt`.
+Il ne publie rien : il dit « à rouvrir », c'est-à-dire « va regarder ».
+**Un signe n'est pas une preuve**, et une page injoignable n'est pas une
+réponse négative (leçon du 18 août).
+
+| Dossier | Ce qui bloque | Ce qui débloque |
+|---|---|---|
+| LENA Céramiques | aucune séance publiée après le 23 mai 2026 | une date à venir sur lena.mc ⚠️ sans jamais reprendre COMBO, à Beausoleil |
+| Aritual | « prochaine session à consulter », rien de daté | une session datée |
+| Ateliers chocolat SBM | introuvable sur montecarlosbm.com, même au navigateur | ☎️ **+377 98 06 71 71** — et même alors : « sur demande », 5 à 8 personnes, 15 jours avant, donc JAMAIS de fiche datée |
+| Bal de la Rose 2027 | la SBM n'a pas publié la date ; le « 20 mars » vient d'un tiers | l'annonce de la SBM, qui seule fait foi |
+| AS Monaco Basket | calendrier vide, billetterie vide, Monaco absent de la LNB | ☎️ le club — une « Décision du CNOSF » du 18 sep 2026 reste inexpliquée. ⚠️ Nos 2 fiches Eurocup ne sont confirmées par AUCUNE source |
+| Médiathèque le dimanche | lun 14h30-18h30 · mar-ven 10h-18h30 · sam 10h-13h · **dim fermé** | ☎️ **+377 93 15 29 40** — débloquerait les séances du 15 et du 22 nov. C'est ce point qui a permis de dater de 2024 l'article de la Mairie et d'éviter 5 fiches fausses |
+| Plantes succulentes | la page de la Mairie dit encore « fermé pour travaux » alors que le Jardin a rouvert en mars 2026 | ☎️ **+377 93 15 29 80**. ⚠️ Lun-ven 10h et 14h = 10 fiches/semaine : ne pas publier sur une page périmée |
+| Half Day Wellness (YCM) | « réservé aux membres du Yacht Club » | rien : même règle que le Bar Salle Blanche |
+| Dîner célibataires | « adresse communiquée après inscription » | rien : une fiche sans lieu ne peut pas exister |
+| Happy You · Musique Monaco · Harmoniesens · Studio 22 | prestations à réserver, pas des sorties datées | rien à attendre — ils vivent au tableau des sources |
+| Lounge Bar du CREM | « tous les mercredis dès 18h30 » sans salle ni adresse publiée | une adresse sur leur agenda |
+
+⚠️ **Et deux écarts sans arbitre**, à trancher à la source :
+* atelier IA du **12 nov** — 11h chez nous, 15h chez un tiers ;
+* sieste musicale du **17 nov** — 13h45 chez nous, la Médiathèque ne publie que les deux prochaines dates.
+
+
 | Jeune Chambre Économique de Monaco | https://www.jcemonaco.mc/ | SOIRÉE, CONFÉRENCE — réseau de jeunes actifs et entrepreneurs, économie et citoyenneté. Deux rendez-vous relevés le 1er nov 2026 : « JCE Connect », apéro networking au Fernet (1 av. Saint-Charles), 18h30, deux boissons et petits fours, 45 € pour le public sans adhésion ; et « Monaco Inspire », conférences et entrepreneuriat au Méridien Beach Plaza, 8h30-13h. Dates à confirmer sur leur site | |
 | Association des Industries Hôtelières Monégasques | https://www.aihm.mc/ | professionnel, hôtellerie | |
 | **Agendas de référence** | | | |
