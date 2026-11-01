@@ -61,6 +61,14 @@ jobs:
       # les deux ; elle ne s'appliquait que lorsqu'un humain y pensait.
       # SIGNALE, n'ajoute pas : un titre d'agenda ne donne ni horaire ni lieu
       # exploitable, et publier à l'aveugle fabriquerait des fiches fausses.
+      # 🎨 Les cours publics de l'ESAP (Pavillon Bosio, Foyer Sainte-Dévote,
+      # Espace Lamartine). Une fiche par jour qui se déplie en ses cours —
+      # huit cours hebdomadaires sur 34 semaines feraient des centaines de
+      # fiches. Le script régénère la fenêtre glissante et s'éteint hors saison.
+      - name: "🎨 Ateliers ESAP du jour"
+        run: node scripts/esap-du-jour.mjs --ecrire
+        continue-on-error: true
+
       - name: "🏛️ Agenda de la Mairie : ce qui manque dans l'app"
         run: node scripts/mairie-agenda.mjs
         continue-on-error: true
