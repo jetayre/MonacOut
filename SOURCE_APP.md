@@ -1,6 +1,6 @@
 # MONAC'OUT — LE CODE DE L'APPLICATION
 
-**1 novembre 2026.** 42 fichiers, 593 Ko.
+**1 novembre 2026.** 42 fichiers, 596 Ko.
 Chaque fichier est reproduit **intégralement et tel quel** : rien n'est coupé,
 résumé ni reformaté.
 
@@ -37,7 +37,7 @@ résumé ni reformaté.
 | `src/components/screens/DetailScreen.jsx` | 13.2 Ko |
 | `src/components/screens/FavoritesScreen.jsx` | 6.2 Ko |
 | `src/components/screens/FriendsScreen.jsx` | 23.4 Ko |
-| `src/components/screens/HomeScreen.jsx` | 118.4 Ko |
+| `src/components/screens/HomeScreen.jsx` | 119.2 Ko |
 | `src/components/screens/MapScreen.jsx` | 9.2 Ko |
 | `src/components/screens/ProfileScreen.jsx` | 9.0 Ko |
 | `src/components/screens/WelcomeScreen.jsx` | 3.2 Ko |
@@ -51,7 +51,7 @@ résumé ni reformaté.
 | `src/lib/habillage.js` | 3.7 Ko |
 | `src/lib/invite.js` | 4.8 Ko |
 | `src/lib/itineraire.js` | 1.6 Ko |
-| `src/lib/mediatheque.js` | 47.2 Ko |
+| `src/lib/mediatheque.js` | 49.1 Ko |
 | `src/lib/phone.js` | 3.4 Ko |
 | `src/lib/prenom.js` | 3.9 Ko |
 | `src/lib/reservation.js` | 7.4 Ko |
@@ -6743,7 +6743,19 @@ const FAMILLE_DE = Object.fromEntries(FAMILLES_REUNIES.map(f => [f.cat, f]));
 // finir la journée, l'absorber dans un groupe lui ferait perdre sa place. Une
 // famille peut lever la règle (`pinLastOk`) quand sa carte de groupe prend
 // exactement la place de la fiche — c'est le cas du cinéma, seul de son jour.
-const estGroupable = (e, fam) => fam?.pinLastOk === true || e.pinLast !== true;
+// 🍸 ET UNE FICHE PEUT DEMANDER À RESTER SEULE. Stéphanie, 1er nov 2026 :
+// « l'apéro des Frenchy, c'est un apéro séparé, pas un spectacle, mais un
+// event séparé des listes des apéros ».
+// La nuance est juste : les autres membres du groupe APÉRO sont des ADRESSES
+// ouvertes ce soir-là — une terrasse, un bar d'hôtel. L'apéro des Frenchy est
+// un RENDEZ-VOUS auquel on se rend, à une heure, avec des gens : le noyer
+// dans « 23 adresses ce jour-là » le ferait disparaître en tant qu'événement.
+// ⚠️ `horsGroupe` ET NON `pinLast` : `pinLast` veut dire « finit la journée »
+//    et, pour tout ce qui n'est pas le cinéma, `estAnnuairePermanent` RETIRE
+//    la fiche du fil tant qu'on n'a pas demandé sa catégorie. On l'aurait
+//    sortie du groupe en la faisant disparaître.
+const estGroupable = (e, fam) =>
+  e.horsGroupe !== true && (fam?.pinLastOk === true || e.pinLast !== true);
 
 // Une fiche qui n'est qu'un annuaire : elle ne se déplie pas en elle-même, mais
 // en ses entrées. Les terrasses du soir, les brunchs, les films de la semaine.
@@ -10755,6 +10767,13 @@ const AMBIANCES = [
   // qui n'avait pas la sienne : ses fiches empruntaient un quartier, et ça se
   // voyait — le Rallye Monte-Carlo montrait le Rocher, le triathlon la plage.
   { f: "sport.webp", alt: "Ballons de basket, football et volley sur un parquet de salle" },
+  // 🎤 LES CONFÉRENCES. Stéphanie, 1er nov 2026 : « mets cette photo pour les
+  // conférences, toutes sauf conférence philo ».
+  // ⚠️ RIEN À FAIRE POUR L'EXCEPTION : les quatre « Rencontres philosophiques »
+  //    et les deux ateliers « La philo pour les jeunes » passent par un THÈME,
+  //    marqué `avantLeLieu`, qui est lu AVANT les images de famille. Ils gardent
+  //    donc leur livre ouvert sans qu'on ait à les écarter ici.
+  { f: "conference-monaco.webp", alt: "Une conférence en salle, intervenant au pupitre et public" },
   // 🎬 LE CINÉMA. Photo fournie par Stéphanie le 31 oct 2026. ⚠️ Son enseigne dit
   // « CINÉMA DE MONACO » : la salle de Monaco s'appelle en réalité le Cinéma des
   // Beaux-Arts (Cinémas 2 Monaco). L'enseigne ne désigne donc aucune maison
@@ -10796,7 +10815,7 @@ const AMBIANCE_PAR_CAT = {
   "FOOTBALL": ["port-yachts"],
   "BASKET": ["port-yachts"],
   "EXPOSITION": ["expositions-galerie"],
-  "CONFÉRENCE": ["casino-facade", "palais-place"],
+  "CONFÉRENCE": ["conference-monaco"],
   "SALON": ["casino-facade", "palais-place"],
   "ENCHÈRES": ["encheres"],
   "CONCERT": ["jazz-live", "casino-facade"],
@@ -10879,6 +10898,31 @@ const THEMES = [
     f: "smoothie-bien-etre.webp", w: 1100, h: 825,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un smoothie aux fruits rouges face à la mer",
+  },
+  // ⛵ LA VOILE ET LES RÉGATES. Stéphanie, 1er nov 2026 : « photo pour events de
+  // voile bateaux ». Un THÈME et non une ambiance : ces fiches sont rangées en
+  // SPORT, famille qui compte aussi le volley en salle et le rallye — une image
+  // par catégorie aurait mis des spinnakers sur un match de volley.
+  // ⚠️ L'aviron de mer y est compris : c'est la même baie, les mêmes quais, et
+  //    la photo ne prétend pas montrer une épreuve précise.
+  {
+    avantLeLieu: true,
+    motif: /\b(voile|r[ée]gate|sportsboat|primo cup|navicap|optimist|aviron|rowing|yacht club)\b/i,
+    f: "voile-regate.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Des voiliers en régate dans la baie de Monaco, le Rocher en fond",
+  },
+  // ♠️ LE BRIDGE. Stéphanie, 1er nov 2026 : « photo pour le bridge ».
+  // ⚠️ UN THÈME ET NON UNE AMBIANCE DE CATÉGORIE : les 38 tournois sont rangés
+  //    en ATELIER, famille qui compte aussi la zumba, la céramique et les cours
+  //    d'informatique. Une image par catégorie aurait mis une table de bridge
+  //    sur tout le monde. Le motif ne vise que ces fiches-là.
+  {
+    avantLeLieu: true,
+    motif: /\bbridge\b/i,
+    f: "bridge.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une table de bridge dressée, cartes et boîtes d'enchères",
   },
   // 🌅 LE SUNSET DJ SET DU LARVOTTO. Stéphanie, 31 oct 2026 : « prends les photos
   // DJ sunset ».
