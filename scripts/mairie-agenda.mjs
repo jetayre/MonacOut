@@ -38,16 +38,46 @@ async function lireAgenda() {
     const page = await (await nav.newContext({ userAgent: "Mozilla/5.0 (MonacOut)", locale: "fr-FR" })).newPage();
     await page.goto("https://www.mairie.mc/agenda/", { waitUntil: "networkidle", timeout: 60000 });
     await page.waitForTimeout(3000);
-    // La liste s'allonge au défilement : on descend jusqu'à ce qu'elle ne bouge plus.
-    let precedent = 0;
-    for (let i = 0; i < 15; i++) {
-      await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
-      await page.waitForTimeout(900);
-      const n = await page.evaluate(() => document.body.innerText.length);
-      if (n === precedent) break;
-      precedent = n;
+
+    // 🚨 L'AGENDA NE MONTRE PAS LES MOIS SUIVANTS TOUT SEUL.
+    // Premier jet (31 oct) : le script lisait 3 entrées et concluait « rien ne
+    // manque ». Il disait vrai pour ce qu'il voyait — et faux pour l'agenda,
+    // qui contenait aussi le don de plantes du 11 novembre, les jeux de société
+    // et le Repair Café du 28. Un contrôle qui ne voit qu'un mois rassure à tort.
+    // La page porte un menu MOIS : on le parcourt, du mois courant aux trois
+    // suivants, et on cumule.
+    const MOIS = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet",
+                  "Août","Septembre","Octobre","Novembre","Décembre"];
+    const aujourd = new Date();
+    const aVoir = [0, 1, 2, 3].map(k => MOIS[(aujourd.getMonth() + k) % 12]);
+    let tout = "";
+    const derouler = async () => {
+      let precedent = 0;
+      for (let i = 0; i < 15; i++) {
+        await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+        await page.waitForTimeout(900);
+        const n = await page.evaluate(() => document.body.innerText.length);
+        if (n === precedent) break;
+        precedent = n;
+      }
+      tout += (await page.evaluate(() => document.body.innerText)) + "\n";
+    };
+    await derouler();                       // ce qui s'affiche par défaut
+    for (const mois of aVoir) {
+      try {
+        const ok = await page.evaluate(m => {
+          for (const s of document.querySelectorAll("select")) {
+            const o = [...s.options].find(x => x.textContent.trim() === m);
+            if (o) { s.value = o.value; s.dispatchEvent(new Event("change", { bubbles: true })); return true; }
+          }
+          return false;
+        }, mois);
+        if (!ok) continue;
+        await page.waitForTimeout(2500);
+        await derouler();
+      } catch { /* un mois illisible n'empêche pas les autres */ }
     }
-    return await page.evaluate(() => document.body.innerText);
+    return tout;
   } finally {
     await nav.close();
   }
