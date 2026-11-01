@@ -737,6 +737,149 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | _— Économie & réseau_ | | | |
 | Monaco Economic Board | https://www.meb.mc/ | CONFÉRENCE économie/business | |
 
+## 🧭 CE QUE LES 31 OCT – 1ER NOV 2026 ONT APPRIS
+
+Deux jours à confronter l'app à ses sources, fiche par fiche. Chaque règle
+ci-dessous vient d'une erreur réelle — la mienne le plus souvent. Elles sont
+écrites ici pour ne pas être réapprises.
+
+### Dater une source avant de la croire
+
+**Une source non datée se date en croisant TOUTES ses dates avec les jours ET
+heures d'ouverture du lieu.** Un article de la Mairie annonçait sept rendez-vous
+à la Médiathèque. Deux tombaient un dimanche : je les ai écartés un par un et
+j'ai publié les cinq autres. Erreur de niveau — **deux anomalies dans un même
+article ne sont pas deux exceptions, c'est la preuve que l'article parle d'une
+autre année.** Il était de 2024 : seule année où les sept dates tombent un jour
+ouvert, l'atelier de 10h30 un lundi étant impossible puisque la bibliothèque
+n'ouvre qu'à 14h30. Cinq fiches publiées, puis retirées.
+➜ Horaires Louis Notari : lun 14h30-18h30 · mar-ven 10h-18h30 · sam 10h-13h ·
+  **dim fermé**.
+
+**Une page sans date de publication est un piège permanent.** Celle des plantes
+succulentes décrit encore le Jardin Exotique comme « fermé pour travaux » alors
+qu'il a rouvert en mars 2026.
+
+### Lire vraiment une page
+
+**Un `fetch` qui répond n'est pas une page lue.** Trois fois en deux jours :
+mairie.mc/agenda rend 113 Ko sans un seul événement, l'ESAP 225 Ko sans un seul
+horaire, le calendrier du bridge vit dans une iframe Google. Il faut un
+navigateur.
+
+**Et un navigateur ne suffit pas si un bandeau de cookies couvre la page.** Sur
+l'agenda SBM, sans clic sur « Accepter », on ne lit que 45 lignes de cases à
+cocher — une panne qui se déguise en « rien à l'agenda ».
+
+**Un contrôle qui ne voit qu'un mois rassure à tort**, et c'est pire que pas de
+contrôle : « 0 à regarder » se lit comme une garantie. Mon lecteur de l'agenda
+Mairie lisait 3 entrées sur 15 parce qu'il ignorait le menu « mois ».
+
+**Google écrit avec des espaces insécables.** Une regex à espace ordinaire ne
+trouve rien et conclut « aucun tournoi » devant six tournois affichés.
+
+### Ne pas se mentir à soi-même
+
+**`toISOString()` ment sur une date locale.** À Monaco (UTC+1),
+`new Date(2026,10,2)` vaut `2026-11-01T23:00Z` : le rapport annonçait les
+38 tournois de bridge un jour trop tôt. Les fiches, construites avec
+`getDate()`, étaient justes. **Un rapport faux est la pire espèce de faux :
+c'est lui qu'on relit pour vérifier.**
+
+**Un garde-fou simple et décisif : comparer le jour calculé au jour ÉCRIT par
+la source** (« LUN. », « SAM. »). Il a validé 38 dates d'un coup.
+
+**Un contrôle peut être faux dans l'autre sens.** « Toute date après le
+19 décembre » condamnait janvier : une période a deux bornes.
+
+### Chercher au bon endroit
+
+**Chercher dans les SOUS-fiches, pas seulement les mères.** Le brunch du Marlow
+et celui du Pavyllon étaient donnés manquants alors qu'ils sont dans l'app
+depuis des mois, comme entrées d'annuaire.
+
+**Un titre contient des retours à la ligne.** `grep "NO FINISH LINE"` rend 0 :
+le titre porte un `\n` entre « NO FINISH » et « LINE ». Toute recherche dans un
+titre doit d'abord les aplatir — sinon elle conclut « absent » pour une fiche
+présente.
+
+**`normalize("NFD")` ne défait pas les ligatures.** æ et ø ne sont pas des
+lettres accentuées : ils disparaissent au filtre `[^A-Z0-9]`. « Nordsjælland »
+devenait NORDSJLLAND et le match était déclaré absent.
+
+**Avant d'ajouter une source, chercher le LIEU, pas le libellé.** « CREM — Club
+des Résidents » et « CREM Monaco » ne partagent aucune chaîne : j'ai créé un
+doublon une heure après avoir écrit qu'« une source en double, c'est deux
+vérités » — et avec l'adresse que la ligne d'origine signalait comme périmée.
+
+**Désigner par le NOM, jamais par le rang.** En insérant une image au milieu
+d'une liste, tout ce qui suivait a glissé d'un cran : 255 fiches JAZZ LIVE ont
+reçu la place du Palais au lieu du saxophone, en silence.
+
+### Ce qui manque ne crie pas
+
+**Une épreuve de plusieurs jours entre dans l'app par UN seul jour.** La No
+Finish Line court 9 jours, elle n'en avait qu'un. Le Navicap 3 jours, un seul.
+Le Sportsboat Acte II 4 jours, un seul. **Nos contrôles cherchent le faux,
+jamais le tronqué.**
+
+**Une date fausse mais plausible est invisible.** La Primo Cup était annoncée le
+7 mars ; l'officiel dit 10-14 mars. Seule la source la trahit.
+
+### Ce qui n'a pas sa place dans l'app
+
+**Un service qu'on réserve n'est pas une sortie à une heure donnée.** Ateliers
+chocolat « sur demande » à 5-8 personnes, cours de chant, soin individuel au
+spa : ils vivent au tableau des sources, jamais en fiche datée.
+
+**« Ouvert aux non-membres » décide de tout.** C'est ce qui fait entrer le
+Lounge Bar du CREM et la British Association, et sortir le Bar Salle Blanche et
+la matinée bien-être du Yacht Club.
+
+**Une offre permanente n'est pas un événement.** Au-delà de 60 jours de durée,
+l'agenda SBM annonce une carte de restaurant, pas une soirée. Un contrôle qui
+crie tous les jours pour rien finit par ne plus être lu.
+
+### Règle 15, et son unique exception
+
+**Le Stade des Moneghetti est à BEAUSOLEIL**, en France, malgré son nom. Les
+18 matchs de l'AS Monaco Volley y entrent par décision de Stéphanie, et leurs
+fiches écrivent « · Beausoleil », jamais « · Monaco ».
+**L'exception porte sur un LIEU nommé, pas sur une commune, et elle est inscrite
+aux DEUX endroits qui appliquent la règle** — l'importeur et Le Policier. Le
+Policier a refusé mon premier commit parce que je n'avais ouvert que
+l'importeur : deux gardiens de la même règle doivent apprendre l'exception
+ensemble.
+
+Autres pièges géographiques : le troisième lieu de LENA (COMBO) est à
+Beausoleil ; quatre Candlelight annoncés « Monaco » se jouent à Menton ; Happy
+You travaille « à Monaco et alentours ».
+
+### Deux salles d'un même bâtiment
+
+**Le Gymnase scolaire Louis-II n'est PAS la Salle Gaston Médecin**, bien que les
+deux soient dans le complexe Louis-II. Les matchs de NM3 s'y tiennent. Envoyer
+quelqu'un dans la mauvaise salle d'un même bâtiment le fait tourner en rond.
+
+### Après une suppression
+
+**Le prochain import reprend les trous.** `idLibre()` a réattribué 800128 et
+800129 — deux doublons supprimés deux heures plus tôt — à des matchs de volley.
+Qui avait mis l'ancienne fiche en favori se serait retrouvé avec un match.
+Renuméroter plutôt que supposer.
+
+### Les images
+
+**Un texte gravé dans une image est juste une fois et faux ensuite.** Recadré
+trois fois : l'affiche philo annonçait « Conférences » pour des « Rencontres »,
+le tableau noir du Marché portait « Jeudi 5 novembre », l'enseigne du DJ nommait
+le Larvotto. **Et un filigrane Adobe Stock n'est pas une photo achetée.**
+
+**Une image de famille se pose par THÈME quand la catégorie est trop large** :
+les tournois de bridge sont rangés en ATELIER, avec la zumba et la céramique.
+
+---
+
 ## ⏳ CE QUI ATTEND UNE RÉPONSE
 
 **Relevé des 31 oct – 1er nov 2026.** Une quinzaine de sorties ont été écartées
