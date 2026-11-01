@@ -39,6 +39,36 @@ const SAISON_DEBUT = new Date(2026, 9, 5);
 const SAISON_FIN = new Date(2027, 4, 29);
 const HORIZON_JOURS = 70;   // on ne pose pas la saison entière d'un coup
 
+/**
+ * 🚨 PAS DE COURS PENDANT LES VACANCES SCOLAIRES NI LES JOURS FÉRIÉS.
+ * La Mairie écrit « lundis, HORS VACANCES SCOLAIRES ». Je l'avais manqué au
+ * premier jet : l'app aurait annoncé la céramique le lundi 21 décembre, école
+ * fermée — exactement le genre de fiche qui envoie quelqu'un devant une porte.
+ * Calendrier officiel 2026/2027 : Arrêté Ministériel n° 2026-132 du 16 mars
+ * 2026, publié au Journal de Monaco.
+ * ⚠️ Les bornes sont « après la classe » / « au matin » : le premier jour de
+ *    vacances se termine normalement, le jour de rentrée reprend normalement.
+ *    On exclut donc l'INTÉRIEUR de chaque période, bornes non comprises.
+ */
+const VACANCES = [
+  ["2026-10-22", "2026-11-02"],   // Toussaint
+  ["2026-12-19", "2027-01-03"],   // Noël
+  ["2027-02-20", "2027-03-07"],   // Hiver
+  ["2027-04-18", "2027-05-02"],   // Printemps
+];
+const FERIES = [
+  "2026-11-19",   // Fête du Prince
+  "2026-12-08",   // Immaculée Conception
+  "2027-01-27",   // Sainte Dévote
+];
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const horsCours = d => {
+  const j = iso(d);
+  if (FERIES.includes(j)) return "férié";
+  for (const [a, b] of VACANCES) if (j >= a && j <= b) return "vacances scolaires";
+  return null;
+};
+
 const BOSIO = "Pavillon Bosio · ESAP";
 const FOYER = "Foyer Sainte-Dévote · Annexe";
 const LAMARTINE = "Espace Lamartine";
@@ -92,12 +122,15 @@ const esc = s => String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/
 
 const auj = new Date(); auj.setHours(0, 0, 0, 0);
 const lignes = [];
+const fermes = [];
 let id = 920000;
 let nbJours = 0;
 
 for (let k = 0; k < HORIZON_JOURS; k++) {
   const d = new Date(auj); d.setDate(auj.getDate() + k);
   if (d < SAISON_DEBUT || d > SAISON_FIN) continue;
+  const ferme = horsCours(d);
+  if (ferme) { fermes.push(`${iso(d)} (${ferme})`); continue; }
   const duJour = COURS[d.getDay()];
   if (!duJour || !duJour.length) continue;
   nbJours++;
@@ -122,6 +155,7 @@ for (let k = 0; k < HORIZON_JOURS; k++) {
 }
 
 console.log(`🎨 ESAP : ${lignes.length} fiche(s) sur ${HORIZON_JOURS} jours (saison 5 oct 2026 → 29 mai 2027)`);
+if (fermes.length) console.log(`   ${fermes.length} jour(s) écarté(s) — école fermée : ${fermes.slice(0, 5).join(", ")}${fermes.length > 5 ? "…" : ""}`);
 for (const j of [1, 2, 3, 4, 5, 6]) {
   const c = COURS[j];
   if (c) console.log(`   ${JOURS_FR[j]} : ${c.map(x => `${x.nom} (${x.h})`).join(" · ")}`);
