@@ -508,6 +508,7 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Ballet de Monte-Carlo | https://www.balletsdemontecarlo.com/ | DANSE | |
 | Philomonaco | https://philomonaco.com | CONFÉRENCE | |
 | Médiathèque de Monaco | https://www.mediatheque.mc/ | CONFÉRENCE, MUSICAL | +377 9898 8008 |
+| La Bookinerie _(ajoutée le 1 nov 2026 — agent chercheur)_ | https://www.labookineriemonaco.com | ATELIER, CONFÉRENCE — librairie-café indépendante (Arthur et Camille Laure), ouverte août 2025, inaugurée par le Prince Albert II et la Princesse Caroline le 10 nov 2025 ; ateliers d'écriture, club de lecture mensuel (depuis déc. 2025), café/boissons sur place, Promenade Honoré II (Jardins d'Apolline) · La Condamine ; lun-ven 10h-19h, sam jusqu'à 16h d'après la presse (horaires non vérifiés directement — site officiel non résolu depuis cet environnement). Repérée via PrinciPocket (atelier peinture céramique parent-enfant) et la presse locale (Monaco Tribune, news.mc). ⚠️ Aucun téléphone publié trouvé | |
 | Cinémas 2 Monaco | https://www.cinemas2monaco.com | CINÉMA | +377 9325 3681 |
 | Musée Océanographique | https://musee.oceano.org/ | ATELIER | |
 | Monaco Run | https://www.monacorun.com/ | SPORT | |
