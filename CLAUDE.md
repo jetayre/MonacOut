@@ -622,6 +622,8 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | Monaco Founders Summit | https://www.monacotech.mc/ | CONFÉRENCE startups/tech | |
 | WAIB Summit Monaco | https://www.waibsummit.com/ | CONFÉRENCE Web3/IA/crypto (post-GP, One Monte-Carlo) | |
 | Hoolon Wellness Monaco | https://hoolonwellness.com/ | BIEN-ÊTRE, ATELIER (yoga, breathwork, massage) | +377 9992 5510 |
+| Harmoniesens Monaco | https://harmoniesens.mc/ | BIEN-ÊTRE, ATELIER — yoga (hatha, vinyasa, yin, prénatal), pilates, garuda, relaxation, sophrologie, réflexologie, méditation ; Villa Les Gaumates, 1 bd Princesse Charlotte · Monte-Carlo. ⚠️ Le planning hebdomadaire n'est PAS publié en clair sur le site : ne pas inventer d'horaires de cours | +377 9999 7676 |
+| Studio 22 by MWS | https://www.marriott.com/en-us/hotels/mcmmd-le-meridien-beach-plaza/ | BIEN-ÊTRE — cours collectifs face à la mer : pilates au sol, hatha yoga, vinyasa yoga, renforcement doux, mobilité ; 22 av. Princesse Grace, au Méridien Beach Plaza · Larvotto. Séance découverte 35 € (30 € carte partenaire), réservable à l'unité. ⚠️ Pas de site propre : lien de son hôtel, règle 16 | +377 93 30 98 80 |
 | Sohn Monaco Investment Conference | https://sohnconferences.org/ | CONFÉRENCE hedge funds/finance | |
 | Smart & Sustainable Marina | https://m3monaco.com/smart-events/smart-marina/ | CONFÉRENCE maritime/innovation | |
 | MonacoTech | https://www.monacotech.mc/ | CONFÉRENCE startups/IA/Web3 (événements réguliers) | +377 9999 0009 |
