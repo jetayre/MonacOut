@@ -51,7 +51,7 @@ résumé ni reformaté.
 | `src/lib/habillage.js` | 3.7 Ko |
 | `src/lib/invite.js` | 4.8 Ko |
 | `src/lib/itineraire.js` | 1.6 Ko |
-| `src/lib/mediatheque.js` | 49.1 Ko |
+| `src/lib/mediatheque.js` | 50.0 Ko |
 | `src/lib/phone.js` | 3.4 Ko |
 | `src/lib/prenom.js` | 3.9 Ko |
 | `src/lib/reservation.js` | 7.4 Ko |
@@ -10898,6 +10898,21 @@ const THEMES = [
     f: "smoothie-bien-etre.webp", w: 1100, h: 825,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un smoothie aux fruits rouges face à la mer",
+  },
+  // 🍷 L'APÉRO MUSIQUE LIVE AU MARCHÉ. Photo fournie par Stéphanie le 1er nov
+  // 2026 : « place d'armes Condamine ».
+  // ⚠️ SON TABLEAU NOIR PORTAIT UNE DATE EN DUR — « Jeudi 5 novembre, 18h30-21h ».
+  //    Une date gravée dans une image est juste une fois et fausse ensuite ;
+  //    elle a été recadrée. La halle, les musiciens et les tablées suffisent.
+  // ⚠️ UN THÈME ET NON UNE VUE DU LIEU : le Marché de la Condamine a déjà sa
+  //    photo de jour, juste pour un marché. Une terrasse au crépuscule n'a rien
+  //    à faire sur une fiche de marché du matin.
+  {
+    avantLeLieu: true,
+    motif: /ap[ée]ro\s+musique\s+live/i,
+    f: "marche-condamine-apero.webp", w: 1100, h: 1048,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "L'apéro en musique sur la place du Marché de la Condamine, à la tombée du jour",
   },
   // ⛵ LA VOILE ET LES RÉGATES. Stéphanie, 1er nov 2026 : « photo pour events de
   // voile bateaux ». Un THÈME et non une ambiance : ces fiches sont rangées en
