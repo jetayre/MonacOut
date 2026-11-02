@@ -1,5 +1,5 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-11-01 — 129 liens, 2486 fiches.
+Contrôle du 2026-11-02 — 128 liens, 2476 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
@@ -10,4 +10,8 @@ du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
    panne ou en maintenance (5xx). Ce n'est PAS une preuve de lien mort : la page
    n'a pas pu être lue, c'est tout. Si la même adresse revient plusieurs jours de
    suite, il faut aller voir.
+     · https://opmc.mc/en/concert/ — HTTP 503 — serveur momentanément indisponible — 68 fiche(s)
      · https://en.afce-monaco.org/agenda — ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE — 1 fiche(s)
+     · https://opmc.mc/concert/concert-caritatif-soupe-de-nuit/ — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
+     · https://opmc.mc/venue/eglise-saint-charles-monaco/ — HTTP 503 — serveur momentanément indisponible — 2 fiche(s)
+     · https://opmc.mc/en/opera/ — HTTP 503 — serveur momentanément indisponible — 1 fiche(s)
