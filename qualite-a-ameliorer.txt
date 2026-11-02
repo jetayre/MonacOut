@@ -1,23 +1,24 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2485 fiches inspectées le 2026-11-01.
+2486 fiches inspectées le 2026-11-02.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
+   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800065)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990027)
 
-■ FICHES SANS CONTENU — la description répète le titre (22)
+■ FICHES SANS CONTENU — la description répète le titre (23)
    · Jeu 5 nov · RENDEZ VOUS DES AIDANTS — description = titre (id 800029)
    · Jeu 5 nov · APERO MUSIQUE LIVE — description = titre (id 800027)
+   · Ven 6 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Sam 7 nov · ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS — description = titre (id 800007)
-   · Mar 10 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Mer 11 nov · ANIMATION JEUX — description = titre (id 800085)
    · Sam 21 nov · VOLLEY BALL EFB JOURNEE 07 ASS SPORTIVE DE MONACO LEVALLOIS … — description = titre (id 800124)
    · Sam 21 nov · VOLLEY BALL 2MA JOURNEE 07 ASS SPORTIVE DE MONACO VOLLEY PRA… — description = titre (id 800088)
-   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
    · Sam 5 déc · VOLLEY BALL EFB JOURNEE 09 ASS SPORTIVE DE MONACO RACING CLU… — description = titre (id 800377)
    · Dim 6 déc · VOLLEY BALL 2MA JOURNEE 09 ASS SPORTIVE DE MONACO AGDE VOLLE… — description = titre (id 800378)
+   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
    · Sam 19 déc · VOLLEY BALL EFB JOURNEE 10 ASS SPORTIVE DE MONACO ISTRES PRO… — description = titre (id 800130)
+   · Dim 20 déc · BRONIA AND ALTRO CANTO — description = titre (id 800127)
    · Sam 9 jan · VOLLEY BALL 2MA JOURNEE 11 ASS SPORTIVE DE MONACO ASUL LYON … — description = titre (id 800131)
    · Sam 30 jan · VOLLEY BALL EFB JOURNEE 13 ASS SPORTIVE DE MONACO VBC CHALON… — description = titre (id 800135)
    · Dim 31 jan · VOLLEY BALL 2MA JOURNEE 13 ASS SPORTIVE DE MONACO AS CALUIRE… — description = titre (id 800133)
