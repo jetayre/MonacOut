@@ -1,24 +1,25 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2462 fiches inspectées le 2026-11-05.
+2449 fiches inspectées le 2026-11-05.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800065)
+   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990027)
 
-■ FICHES SANS CONTENU — la description répète le titre (23)
+■ FICHES SANS CONTENU — la description répète le titre (24)
+   · Jeu 5 nov · CHATGPT PLONGEZ DANS LE MONDE DE L IA — description = titre (id 800000)
    · Jeu 5 nov · RENDEZ VOUS DES AIDANTS — description = titre (id 800029)
    · Jeu 5 nov · APERO MUSIQUE LIVE — description = titre (id 800027)
-   · Ven 6 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Sam 7 nov · ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS — description = titre (id 800007)
+   · Mar 10 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Mer 11 nov · ANIMATION JEUX — description = titre (id 800085)
    · Sam 21 nov · VOLLEY BALL EFB JOURNEE 07 ASS SPORTIVE DE MONACO LEVALLOIS … — description = titre (id 800124)
    · Sam 21 nov · VOLLEY BALL 2MA JOURNEE 07 ASS SPORTIVE DE MONACO VOLLEY PRA… — description = titre (id 800088)
+   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
    · Sam 5 déc · VOLLEY BALL EFB JOURNEE 09 ASS SPORTIVE DE MONACO RACING CLU… — description = titre (id 800377)
    · Dim 6 déc · VOLLEY BALL 2MA JOURNEE 09 ASS SPORTIVE DE MONACO AGDE VOLLE… — description = titre (id 800378)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
    · Sam 19 déc · VOLLEY BALL EFB JOURNEE 10 ASS SPORTIVE DE MONACO ISTRES PRO… — description = titre (id 800130)
-   · Dim 20 déc · BRONIA AND ALTRO CANTO — description = titre (id 800127)
+   · Lun 28 déc · MA BAYADERE — description = titre (id 800071)
    · Sam 9 jan · VOLLEY BALL 2MA JOURNEE 11 ASS SPORTIVE DE MONACO ASUL LYON … — description = titre (id 800131)
    · Sam 30 jan · VOLLEY BALL EFB JOURNEE 13 ASS SPORTIVE DE MONACO VBC CHALON… — description = titre (id 800135)
    · Dim 31 jan · VOLLEY BALL 2MA JOURNEE 13 ASS SPORTIVE DE MONACO AS CALUIRE… — description = titre (id 800133)
@@ -32,8 +33,8 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 24 avr · VOLLEY BALL EFB JOURNEE 22 ASS SPORTIVE DE MONACO VOLLEY BAL… — description = titre (id 800145)
 
 ■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (12)
-   · Mer 4 nov · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
    · Jeu 5 nov · APÉRO DE LA BRITISH ASSOCIATION CHEZ ANOÏA — Anoïa Monaco (id 5030)
+   · Jeu 5 nov · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
    · Sam 7 nov · MONACO WRITERS MEET & GREET MÉDIATHÈQUE CAROLINE — Médiathèque Caroline (id 5031)
    · Sam 7 nov · EXPOSITION DE PEINTURES\nDENISE SOLOMON\n& BEATRICE DARDY — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 800070)
    · Lun 9 nov · MONACO WOMEN NETWORK RENCONTRE CULTURELLE THÉÂTRE PRINCESSE GRACE — Théâtre Princesse Grace (id 5032)
