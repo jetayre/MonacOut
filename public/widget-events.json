@@ -1,18 +1,9 @@
 {
-  "generatedAt": "2026-11-06T21:26:04.290Z",
+  "generatedAt": "2026-11-07T10:48:20.941Z",
   "events": [
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
-      "time": "En journée",
-      "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
-      "venue": "Francis Bacon MB Art Foundation",
-      "quarter": "Monte-Carlo",
-      "emoji": "🖼️"
-    },
-    {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
       "time": "11h00 — 22h30",
       "title": "VILLAGE DE NOËL LA FORÊT ENCHANTÉE PORT HERCULE",
       "venue": "Quai Albert Ier",
@@ -20,8 +11,8 @@
       "emoji": "🎄"
     },
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -29,8 +20,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -38,8 +29,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -47,17 +38,17 @@
       "emoji": "🎬"
     },
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
-      "time": "10h00 — 18h30",
-      "title": "EXPOSITION MON NOM EST PERSONNE BORIS DE SCHLOEZER LES ARCHI…",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
+      "time": "10h00 — 18h00",
+      "title": "COLLOQUE MON NOM EST PERSONNE JOURNEE CONSACREE A L OEUVRE D…",
       "venue": "Médiathèque Caroline",
       "quarter": "Monaco",
-      "emoji": "🖼️"
+      "emoji": "🎤"
     },
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
       "time": "10h00",
       "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
@@ -65,13 +56,22 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Ven 6 nov",
-      "iso": "2026-11-06",
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🚩"
+    },
+    {
+      "date": "Sam 7 nov",
+      "iso": "2026-11-07",
+      "time": "11h00 — 19h00",
+      "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
+      "venue": "Villa Paloma",
+      "quarter": "Monaco",
+      "emoji": "🖼️"
     }
   ]
 }

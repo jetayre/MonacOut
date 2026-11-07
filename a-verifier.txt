@@ -1,5 +1,5 @@
-CE QUI ATTEND UNE RÉPONSE — 2026-11-06
-7 dossiers · 0 à rouvrir · 0 injoignable(s)
+CE QUI ATTEND UNE RÉPONSE — 2026-11-07
+7 dossiers · 0 à rouvrir · 1 injoignable(s)
 
 🚨 Ce rapport ne publie RIEN. « À rouvrir » veut dire « va regarder »,
    jamais « c'est bon » : un signe n'est pas une preuve.
@@ -33,7 +33,7 @@ CE QUI ATTEND UNE RÉPONSE — 2026-11-06
    rouvrir si : La SBM annonce la date — et c'est ELLE qui fait foi, pas un tiers.
    Dernière édition confirmée : 21 mars 2026.
 
-·  inchangé
+⚠️  INJOIGNABLE (fetch failed) — ce n'est PAS une réponse négative
    AS Monaco Basket — calendrier
    https://asmonaco.basketball/calendar/monthcalendar.php
    état connu : Calendrier VIDE même au navigateur, billetterie « aucun évènement », Monaco absent de la LNB (1er nov 2026).
