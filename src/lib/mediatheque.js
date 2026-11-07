@@ -698,6 +698,21 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un smoothie aux fruits rouges face à la mer",
   },
+  // 🏃 LA NO FINISH LINE. Photo fournie par Stéphanie le 7 nov 2026.
+  // ⚠️ C'ÉTAIT UNE AFFICHE : titre gravé en haut, badge « une course solidaire
+  //    sans fin » et quatre mentions en bas. Tout recadré — il ne reste que les
+  //    coureurs, le port et le Casino. Quatrième fois que je retire du texte
+  //    d'une image : un titre gravé répète celui de la carte et devient
+  //    illisible en vignette.
+  // ⚠️ Le `\s` du motif traverse les retours à la ligne, et c'est nécessaire :
+  //    le titre de la fiche s'écrit « 27e NO FINISH\nLINE\nMONACO ».
+  {
+    avantLeLieu: true,
+    motif: /no\s*finish\s*line/i,
+    f: "no-finish-line.webp", w: 1100, h: 535,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Des coureurs de tous âges sur le front de mer de Monaco, au coucher du soleil",
+  },
   // 🍷 L'APÉRO MUSIQUE LIVE AU MARCHÉ. Photo fournie par Stéphanie le 1er nov
   // 2026 : « place d'armes Condamine ».
   // ⚠️ SON TABLEAU NOIR PORTAIT UNE DATE EN DUR — « Jeudi 5 novembre, 18h30-21h ».
