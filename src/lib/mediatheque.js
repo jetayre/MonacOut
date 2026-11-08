@@ -547,6 +547,11 @@ const AMBIANCES = [
   { f: "jazz-live.webp",       alt: "Des saxophonistes en concert" },
   { f: "rooftop-sunset.webp",  alt: "Un rooftop au crépuscule, vue sur le port" },
   { f: "palais-place.webp",    alt: "La place du Palais et ses pins" },
+  // ⛪ L'image générale des messes. ⚠️ Son libellé ne NOMME aucune église :
+  //    elle sert aux récapitulatifs « 5 paroisses » / « 9 paroisses », qui ne
+  //    désignent pas une paroisse en particulier. Prétendre le contraire
+  //    enverrait quelqu'un à la mauvaise adresse un dimanche matin.
+  { f: "eglise-messes.webp",   alt: "La façade d'une église, clochers et rosace" },
   // 🥤 LE BIEN-ÊTRE A SON IMAGE. Stéphanie, 31 oct 2026 : « pour les bars
   // bien-être, prends celle du bureau avec smoothie ». Les fiches BIEN-ÊTRE
   // tombaient sur la plage ou un salon — joli, mais muet.
@@ -623,7 +628,12 @@ const AMBIANCE_PAR_CAT = {
   "MUSICAL": ["jazz-live", "casino-facade"],
   "DANSE": ["casino-facade", "soiree-club"],
   "SPECTACLE": ["casino-facade", "soiree-club"],
-  "CHANTS": ["palais-place"],
+  // ⛪ Stéphanie, 8 nov 2026 : « mets ça pour l'image générale des messes ».
+  // 54 des 76 fiches CHANTS sont des récapitulatifs — « 5 paroisses »,
+  // « 9 paroisses » — qui ne désignent AUCUNE église en particulier. Une
+  // façade d'église leur convient mieux que la cathédrale, qui, elle, en
+  // désignait une précise.
+  "CHANTS": ["eglise-messes"],
   "CINÉMA": ["cinema-monaco"],
   "ATELIER": ["palais-place", "le-rocher"],
   "MARCHÉ": ["palais-place", "port-yachts"],
@@ -820,8 +830,15 @@ export function imageTheme(event, avantLeLieu = false) {
    ⚠️ Elle passe APRÈS la photo du lieu : une messe à Saint-Charles ou à
    Sainte-Dévote garde la sienne le jour où on l'aura.
    ══════════════════════════════════════════════════════════════════════════ */
+// 🚨 VIDÉE LE 8 NOV 2026, et c'est voulu. Les messes passaient par ici pour
+// recevoir la photo de la CATHÉDRALE — une église précise posée sur des fiches
+// qui n'en désignent aucune (« 5 paroisses », « 9 paroisses »). Stéphanie a
+// fourni une façade d'église générique : elle part dans AMBIANCE_PAR_CAT, un
+// cran plus bas, ce qui laisse intactes les fiches qui ont leur VRAI lieu —
+// Saint-Charles, Sainte-Dévote, le Sacré-Cœur gardent le leur.
+// On garde la table : elle reste le bon outil le jour où une catégorie aura
+// besoin d'un lieu réel plutôt que d'une ambiance.
 const PAR_CATEGORIE = {
-  "CHANTS": 21,          // la cathédrale de Monaco
 };
 
 export function photoDeCategorie(event) {
