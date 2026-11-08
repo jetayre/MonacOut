@@ -811,6 +811,23 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
   },
+  // 🧵 LES ATELIERS DE L'ESPACE LAMARTINE. Stéphanie, 8 nov 2026 : « mets cette
+  // image pour la fiche atelier Lamartine ».
+  // ⚠️ À NE PAS CONFONDRE AVEC LES ATELIERS ESAP, juste en dessous. Les deux
+  //    sont des cours de la Mairie, et l'Espace Lamartine accueille même un
+  //    cours de l'ESAP le mardi — mais ce sont deux programmes distincts : 30
+  //    fiches « ATELIERS · 4 THÈMES · ESPACE LAMARTINE » d'un côté, 44 fiches
+  //    « ATELIERS ESAP · PAVILLON BOSIO » de l'autre. Croisement vérifié : zéro.
+  // ⚠️ La photo montre QUATRE activités à la même table — couture, perles,
+  //    dessin botanique, création sur écran — parce que la carte en annonce
+  //    quatre. Une seule discipline aurait menti sur ce qu'on y trouve.
+  {
+    avantLeLieu: true,
+    motif: /espace\s+lamartine/i,
+    f: "atelier-lamartine.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Quatre personnes à un grand établi : couture, perles, dessin et création sur écran",
+  },
   // 🏺 LES ATELIERS DE L'ESAP AU PAVILLON BOSIO. Stéphanie, 8 nov 2026 : « pour
   // atelier Bosio reliure et poterie, image carte principale atelier Bosio ».
   // ⚠️ UN THÈME ET NON UNE PHOTO DE LIEU : la carte du jour réunit jusqu'à trois
