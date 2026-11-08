@@ -1,6 +1,6 @@
 # MONAC'OUT — LE CODE DE L'APPLICATION
 
-**8 novembre 2026.** 42 fichiers, 607 Ko.
+**8 novembre 2026.** 42 fichiers, 617 Ko.
 Chaque fichier est reproduit **intégralement et tel quel** : rien n'est coupé,
 résumé ni reformaté.
 
@@ -37,7 +37,7 @@ résumé ni reformaté.
 | `src/components/screens/DetailScreen.jsx` | 13.2 Ko |
 | `src/components/screens/FavoritesScreen.jsx` | 6.2 Ko |
 | `src/components/screens/FriendsScreen.jsx` | 23.4 Ko |
-| `src/components/screens/HomeScreen.jsx` | 119.2 Ko |
+| `src/components/screens/HomeScreen.jsx` | 120.2 Ko |
 | `src/components/screens/MapScreen.jsx` | 9.2 Ko |
 | `src/components/screens/ProfileScreen.jsx` | 9.0 Ko |
 | `src/components/screens/WelcomeScreen.jsx` | 3.2 Ko |
@@ -51,7 +51,7 @@ résumé ni reformaté.
 | `src/lib/habillage.js` | 3.7 Ko |
 | `src/lib/invite.js` | 4.8 Ko |
 | `src/lib/itineraire.js` | 1.6 Ko |
-| `src/lib/mediatheque.js` | 59.0 Ko |
+| `src/lib/mediatheque.js` | 68.3 Ko |
 | `src/lib/phone.js` | 3.4 Ko |
 | `src/lib/prenom.js` | 3.9 Ko |
 | `src/lib/reservation.js` | 7.4 Ko |
@@ -6742,9 +6742,21 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
 // puis « idem pour apéro y a hermitage et en dessous 10 terrasses ouvertes ».
 // Une famille, un jour, UNE carte.
 const FAMILLES_REUNIES = [
-  { cat: "EXPOSITION", seuil: 3,
-    fr: "Expositions", en: "Exhibitions",
-    nomFr: n => `${n} expositions à voir`,  nomEn: n => `${n} exhibitions on view` },
+  // 🖼️ PAS DE FAMILLE « EXPOSITION » — retirée le 8 nov 2026. Stéphanie :
+  // « sépare la fiche expo par exposition indépendante ».
+  // Elle a existé depuis le 6 septembre : dès 3 expositions du même jour, elles
+  // se réunissaient derrière une carte « n expositions à voir », dépliable sur
+  // place. L'intention était d'éviter de noyer le fil ; l'effet était qu'une
+  // exposition ne se montrait plus d'elle-même — il fallait savoir qu'il y avait
+  // quelque chose derrière la carte pour la trouver. Une exposition tient par
+  // son affiche et par son nom, pas par un compte.
+  // ⚠️ CE N'EST PAS LE DOUBLON DU 11 OCTOBRE QUI REVIENT. Ce jour-là Stéphanie
+  //    voyait « une fiche qui dit 7 expo ET une fiche qui dit musées ouverts » :
+  //    c'était la carte de REGROUPEMENT posée à côté du récapitulatif des
+  //    musées. En supprimant le regroupement, la carte fautive disparaît avec
+  //    lui. Il reste les expositions elles-mêmes et la fiche « MUSÉES · n
+  //    ouverts », qui sont deux choses différentes.
+  // ⚠️ CONSÉQUENCE ASSUMÉE : le fil porte ~6 cartes de plus par jour.
   { cat: "BRUNCH", seuil: 2,
     fr: "Brunchs", en: "Brunch",
     nomFr: n => `${n} brunchs ce jour-là`,  nomEn: n => `${n} brunches that day` },
@@ -10777,6 +10789,10 @@ const AMBIANCES = [
   { f: "le-rocher.webp",       alt: "Le Rocher de Monaco vu de la mer" },
   { f: "plage-larvotto.webp",  alt: "La plage et ses parasols" },
   { f: "soiree-club.webp",     alt: "Une soirée animée sous les lumières" },
+  // 🌃 Photo fournie par Stéphanie le 8 nov 2026, avec sa liste des clubs. Elle
+  //    montre le PORT et les yachts derrière les danseurs : c'est Monaco, là où
+  //    « soiree-club » pouvait être n'importe quelle ville.
+  { f: "nightlife-monaco.webp", alt: "Une soirée animée face au port de Monaco, DJ et lumières" },
   // 🎷 LE JAZZ A SA PROPRE IMAGE. Stéphanie, 31 oct 2026 : « change la photo du
   // live music du Bar Américain, mets un saxo ou piano ». Les 310 fiches JAZZ
   // LIVE recevaient la salle de club générique — correcte pour une soirée DJ,
@@ -10835,8 +10851,8 @@ const AMBIANCES = [
  * des ids rattrapés par un trou. Un nom ne glisse pas.
  */
 const AMBIANCE_PAR_CAT = {
-  "SOIRÉE": ["soiree-club", "rooftop-sunset"],
-  "DJ SET": ["soiree-club", "rooftop-sunset"],
+  "SOIRÉE": ["nightlife-monaco", "soiree-club", "rooftop-sunset"],
+  "DJ SET": ["nightlife-monaco", "soiree-club", "rooftop-sunset"],
   "JAZZ LIVE": ["jazz-live"],
   "GALA": ["soiree-club", "casino-facade"],
   // 🥂 Une seule image, même raison que le brunch : Stéphanie doit la
@@ -10847,24 +10863,46 @@ const AMBIANCE_PAR_CAT = {
   // laissait au tirage — deux fois sur trois, ce n'était pas elle.
   "BRUNCH": ["brunch-monaco"],
   "FOODY": ["terrasse-diner", "lounge-mer"],
-  "PETIT-DÉJ": ["cafe-petit-dej", "terrasse-diner"],
+  // ☕ `terrasse-diner` RETIRÉ le 8 nov 2026 : une table dressée pour le DÎNER
+  //    sur une fiche de petit-déjeuner ne correspond pas. Tant que le lot
+  //    tirait toujours la même image par fiche, l'erreur passait inaperçue ;
+  //    en rotation elle reviendrait une semaine sur deux.
+  "PETIT-DÉJ": ["cafe-petit-dej"],
   // 🥤 Le smoothie d'abord : c'est l'image que Stéphanie a choisie pour eux.
   // 🧖 Le spa pour les ACTIVITÉS bien-être ; les « wellness bars » gardent le
   //    smoothie, qui leur est attaché nommément (thème) et passe avant.
   "BIEN-ÊTRE": ["spa-bien-etre"],
   "SPORT": ["sport"],
-  "FOOTBALL": ["port-yachts"],
-  "BASKET": ["port-yachts"],
+  // ⚽🏀 CORRIGÉ le 8 nov 2026 : les deux montraient LE PORT ET SES YACHTS sur
+  //    un match. L'image `sport.webp` — ballons de basket, football et volley
+  //    sur un parquet — existe depuis le 1er nov et servait déjà à SPORT ;
+  //    personne ne l'avait branchée ici. Trouvé en appliquant la règle de
+  //    Stéphanie : « il faut juste que chaque photo corresponde à la carte ».
+  "FOOTBALL": ["sport"],
+  "BASKET": ["sport"],
   "EXPOSITION": ["expositions-galerie"],
   "CONFÉRENCE": ["conference-monaco"],
-  "SALON": ["casino-facade", "palais-place"],
+  // 🤝 `palais-place` RETIRÉ : un salon professionnel se tient au Grimaldi
+  //    Forum ou à One Monte-Carlo, pas sur la place du Palais.
+  "SALON": ["casino-facade"],
   "ENCHÈRES": ["encheres"],
-  "CONCERT": ["jazz-live", "casino-facade"],
+  // 🎼 `jazz-live` RETIRÉ du lot CONCERT : des saxophonistes sur un concert
+  //    symphonique annoncent autre chose que ce qu'on va entendre. Les
+  //    concerts de l'OPMC ont leur orchestre (thème), le jazz garde sa
+  //    catégorie JAZZ LIVE. ⚠️ Pas de photo de concert classique : à demander.
+  "CONCERT": ["casino-facade"],
   "OPÉRA": ["casino-facade"],
-  "THÉÂTRE": ["casino-facade", "palais-place"],
-  "MUSICAL": ["jazz-live", "casino-facade"],
-  "DANSE": ["casino-facade", "soiree-club"],
-  "SPECTACLE": ["casino-facade", "soiree-club"],
+  // 🎭 `palais-place` RETIRÉ : la place du Palais ne dit rien du théâtre.
+  //    ⚠️ Pas de photo de théâtre : à demander.
+  "THÉÂTRE": ["casino-facade"],
+  // 🎵 idem pour MUSICAL.
+  "MUSICAL": ["casino-facade"],
+  // 💃 `soiree-club` RETIRÉ : une boîte de nuit sur un ballet des Ballets de
+  //    Monte-Carlo, c'est faux. Il ne reste qu'une façade — faute de mieux.
+  //    ⚠️ LA DANSE N'A PAS DE PHOTO À ELLE : à demander.
+  "DANSE": ["casino-facade"],
+  // 🎭 `soiree-club` RETIRÉ, même raison. ⚠️ Pas de photo de spectacle : à demander.
+  "SPECTACLE": ["casino-facade"],
   // ⛪ Stéphanie, 8 nov 2026 : « mets ça pour l'image générale des messes ».
   // 54 des 76 fiches CHANTS sont des récapitulatifs — « 5 paroisses »,
   // « 9 paroisses » — qui ne désignent AUCUNE église en particulier. Une
@@ -10872,9 +10910,16 @@ const AMBIANCE_PAR_CAT = {
   // désignait une précise.
   "CHANTS": ["eglise-messes"],
   "CINÉMA": ["cinema-monaco"],
-  "ATELIER": ["palais-place", "le-rocher"],
-  "MARCHÉ": ["palais-place", "port-yachts"],
-  "FESTIVAL": ["port-yachts", "soiree-club"],
+  // 🎨 `le-rocher` RETIRÉ : une vue du Rocher ne dit rien d'un atelier. Il n'en
+  //    reste qu'une, faute de mieux. ⚠️ PAS DE PHOTO D'ATELIER GÉNÉRIQUE :
+  //    celles qu'on a sont attachées à un lieu précis (Bosio, Lamartine) ou à
+  //    une discipline (dessin) — les poser sur tout annoncerait du dessin à
+  //    un cours de zumba. À demander.
+  "ATELIER": ["palais-place"],
+  // 🧺 Ni la place du Palais ni le port ne sont un marché. ⚠️ À demander.
+  "MARCHÉ": ["palais-place"],
+  // 🎪 `soiree-club` RETIRÉ : une boîte de nuit n'est pas un festival. ⚠️ À demander.
+  "FESTIVAL": ["port-yachts"],
   "FÊTE NATIONALE": ["palais-place", "port-yachts"],
 };
 
@@ -10885,10 +10930,40 @@ const AMBIANCE_PAR_NOM = new Map(AMBIANCES.map(a => [a.f.replace(/\.webp$/, ""),
  * Une image d'ambiance accordée à la catégorie. Choisie de façon STABLE par
  * `event.id`, comme les photos de lieu.
  */
+/**
+ * 🔄 LE NUMÉRO DE LA SEMAINE, pour que l'app change de visage sans qu'on y
+ * touche. Stéphanie, 8 nov 2026 : « c'est bien de changer régulièrement les
+ * photos, ça rend l'appli plus vivante », puis « oui, il faut juste que chaque
+ * photo corresponde à la carte ».
+ *
+ * ⚠️ C'EST SA CONDITION QUI A DEMANDÉ LE PLUS DE TRAVAIL, pas la rotation.
+ *    Tant qu'une fiche gardait TOUJOURS la même image, un lot approximatif
+ *    passait inaperçu : la fiche tombait une fois pour toutes sur la bonne, ou
+ *    sur la moins mauvaise, et personne ne comparait. En rotation, une image
+ *    qui ne correspond pas revient périodiquement et saute aux yeux. Sept lots
+ *    ont donc été resserrés le même jour — table de dîner sur un petit-déj,
+ *    boîte de nuit sur un ballet, saxophones sur un concert symphonique.
+ *    ➜ Règle : on ne met dans un lot QUE des images qui conviennent toutes.
+ *      Une catégorie sans image juste garde UNE image, et attend la sienne.
+ *
+ * ⚠️ Semaines comptées depuis une date fixe, PAS avec getWeek() : il n'existe
+ *    pas en JavaScript, et une approximation par mois ferait sauter l'image au
+ *    milieu d'une semaine.
+ */
+function numeroDeSemaine(d = new Date()) {
+  const ORIGINE = Date.UTC(2026, 0, 5);            // lundi 5 janvier 2026
+  const jour = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+  return Math.floor((jour - ORIGINE) / 604800000); // 7 × 24 × 3600 × 1000
+}
+
 export function imageAmbiance(event, decalage = 0) {
   const lot = AMBIANCE_PAR_CAT[String(event?.cat || "").toUpperCase()];
   if (!lot || !lot.length) return null;
-  const nom = lot[(graine(event?.id) + decalage) % lot.length];
+  // Un lot d'une seule image ne tourne pas : le calcul ne changerait rien, et
+  // l'écrire montre que ce n'est pas un oubli.
+  const nom = lot.length === 1
+    ? lot[0]
+    : lot[(graine(event?.id) + decalage + numeroDeSemaine()) % lot.length];
   const a = AMBIANCE_PAR_NOM.get(nom);
   if (!a) return null;
   return {
@@ -10996,9 +11071,13 @@ const THEMES = [
   {
     avantLeLieu: true,
     motif: /\bbridge\b/i,
-    f: "bridge.webp", w: 1100, h: 619,
+    // 🔄 Remplacée le 8 nov 2026 par la photo de Stéphanie : tapis vert, étuis
+    //    rouges, et LE PORT derrière la baie vitrée. L'ancienne `bridge.webp`
+    //    n'est PAS supprimée — un paquet OTA figé continue de la réclamer
+    //    pendant une à deux semaines.
+    f: "bridge-monaco.webp", w: 1100, h: 733,
     licence: "Image fournie par Monac'Out", auteur: null,
-    alt: "Une table de bridge dressée, cartes et boîtes d'enchères",
+    alt: "Une table de bridge au bord du port de Monaco, cartes et boîtes d'enchères",
   },
   // 🌅 LE SUNSET DJ SET DU LARVOTTO. Stéphanie, 31 oct 2026 : « prends les photos
   // DJ sunset ».
@@ -11067,6 +11146,110 @@ const THEMES = [
     f: "village-noel.webp", w: 1100, h: 734,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
+  },
+  // 🎼 LE CHANT CHORAL et 💃 LES COURS DE DANSE. Deux affiches fournies par
+  // Stéphanie le 8 nov 2026, pour les fiches créées le même jour.
+  // ⚠️ LEUR TITRE GRAVÉ A ÉTÉ RECADRÉ — cinquième et sixième fois. « CHANT
+  //    CHORAL ADULTES » et « COURS DE DANSE ADULTES » étaient écrits en gros
+  //    dans l'image : un texte gravé répète le titre de la carte et devient
+  //    illisible en vignette. Le badge « Spécial débutants » de la seconde est
+  //    parti avec. Il reste les chanteurs et leur cheffe, les danseurs et leur
+  //    professeure — ce qu'on vient voir.
+  // ⚠️ L'ORIGINAL ARCHIVÉ EST L'AFFICHE ENTIÈRE, bandeau compris : un recadrage
+  //    futur doit pouvoir repartir du document complet, pas de ma découpe.
+  {
+    avantLeLieu: true,
+    motif: /\bchorale\b/i,
+    f: "chant-choral.webp", w: 1100, h: 838,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un chœur d'adultes en répétition, partitions en main, face à leur cheffe",
+  },
+  {
+    avantLeLieu: true,
+    motif: /cours\s+de\s+danse/i,
+    f: "cours-de-danse.webp", w: 1100, h: 660,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un cours de danse pour adultes dans une salle claire, tous niveaux",
+  },
+  // 🌃 LES SOIRÉES CLUBS. Stéphanie, 8 nov 2026 : « pour les soirées clubs mets
+  // la photo des gens qui dansent que je t'ai donnée ».
+  // ⚠️ POURQUOI UN THÈME ET PAS LA SIMPLE AMBIANCE DE CATÉGORIE. Cette photo
+  //    était DÉJÀ dans le lot SOIRÉE / DJ SET depuis ce matin — mais un lot se
+  //    tire au hasard stable entre trois images, et la carte « CETTE NUIT »
+  //    était tombée sur `soiree-club`, la générique. C'est exactement ce qui
+  //    s'était passé avec les wellness bars le 31 octobre : un lot ne garantit
+  //    rien pour UNE fiche donnée. Quand une photo est choisie POUR des fiches,
+  //    elle se nomme ici, pas dans un tirage.
+  // ⚠️ Elle reste aussi dans le lot SOIRÉE / DJ SET : les galas et les DJ sets
+  //    d'ailleurs y gagnent une vraie image de Monaco, port et yachts compris.
+  {
+    avantLeLieu: true,
+    motif: /cette\s+nuit[\s\S]{0,40}clubs?\s+ouvert|soir[ée]e\s+twiga|soir[ée]e\s+sass/i,
+    f: "nightlife-monaco.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une piste de danse face au port de Monaco, DJ et lumières",
+  },
+  // ♟️🏓🧗🤺🎲 SEPT PHOTOS POSÉES D'AVANCE. Stéphanie, 8 nov 2026 : « voici des
+  // photos que tu peux utiliser ». Elles viennent de sa liste des jeux et des
+  // sports de loisir.
+  // 🚨 À CE JOUR, AUCUNE NE S'AFFICHE, ET CE N'EST PAS UN DÉFAUT : l'app n'a
+  //    ZÉRO fiche d'échecs, de tennis de table, d'escalade, d'escrime, de
+  //    backgammon, de belote et de jeux de société. Ces rendez-vous n'ont pas
+  //    pu être publiés faute d'une pièce — une salle, une heure, ou la preuve
+  //    qu'on accepte les non-membres (voir `scripts/a-verifier.mjs`).
+  // ➜ Les motifs sont écrits MAINTENANT pour que l'image soit là le jour où la
+  //   fiche arrive. Une image qui attend ne coûte rien ; une fiche qui sort
+  //   sans image se remarque.
+  // ⚠️ Motifs volontairement ÉTROITS, et placés avant « stage de dessin » sans
+  //    jamais le croiser : la leçon du mot « dessin », qui touchait 26 fiches.
+  {
+    avantLeLieu: true,
+    motif: /\b[ée]checs?\b|tournoi\s+d['\u2019]?[ée]checs/i,
+    f: "echecs.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Deux joueurs d'échecs et leur pendule, dans un club lumineux",
+  },
+  {
+    avantLeLieu: true,
+    motif: /tennis\s+de\s+table|ping.?pong/i,
+    f: "tennis-de-table.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un échange de tennis de table dans une salle de sport",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bescalade\b|mur\s+d['\u2019]?escalade/i,
+    f: "escalade.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une grimpeuse sur un mur d'escalade, assurée depuis le sol",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bescrime\b|\bfleuret\b|\bsabre\b|\b[ée]p[ée]e\s+(?:de\s+)?escrime/i,
+    f: "escrime.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Deux escrimeurs en garde dans une salle d'armes",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bbackgammon\b/i,
+    f: "backgammon.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une partie de backgammon face à la mer",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bbelote\b|\bcoinche\b/i,
+    f: "belote.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une partie de belote en terrasse, face au port",
+  },
+  {
+    avantLeLieu: true,
+    motif: /jeux?\s+de\s+soci[ée]t[ée]|ludoth[èe]que/i,
+    f: "jeux-de-societe.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une tablée autour d'un jeu de société, dans un café à jeux",
   },
   // ✏️ LE STAGE DE DESSIN. Stéphanie, 8 nov 2026 : « image pour atelier dessin ».
   // ⚠️ LE MOTIF DIT « STAGE DE DESSIN », PAS « DESSIN ». Le mot seul apparaît

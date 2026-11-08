@@ -2185,7 +2185,7 @@
  },
  "/en/events/f4a346f64d8f0a33ea49c3893b0953e4-Le-pere": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Le pere",
   "majLe": "2026-11-08"
  },
@@ -2857,7 +2857,7 @@
  },
  "/en/events/4f23178e8365218aacf59608fa2c3cd4-Picnic-Music-a-big-screen-concert-for-your-lunch-break": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Picnic Music a big screen concert for your lunch break",
   "majLe": "2026-11-08"
  },
@@ -3014,7 +3014,7 @@
  "/en/events/0b40465844757e39e2844e669d99c2c5-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
   "etat": "deja",
-  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/ae64e979bfaf090602b03c54d1e115e6-Feu-d-artifice-de-Fete-Nationale-2026": {
@@ -3025,20 +3025,20 @@
  },
  "/en/events/be0da3e95e24e8b2608104e9f65356e4-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
-  "detail": "Prise en main d un ordinateur Mac niveau 2",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
   "etat": "deja",
-  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/97ffc7c6b28061739994fcbab2744d8e-Prise-en-main-d-un-ordinateur-Mac-niveau-2": {
   "vuLe": "2026-10-20",
   "etat": "deja",
-  "detail": "Prise en main d un ordinateur Mac niveau 2",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/45e600d51ced42f95990a08170784825-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
@@ -3074,25 +3074,25 @@
  "/en/events/e74e9449331bfc1ef40b6382b086856d-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
   "etat": "deja",
-  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/8ec1b4def9246b90a23bde2c8d11b5c7-Appels-indesirables-des-solutions-gratuites-pour-les-bloquer": {
   "vuLe": "2026-10-20",
   "etat": "deja",
-  "detail": "Appels indesirables des solutions gratuites pour les bloquer",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/45330e20d5cbf91229410b984df2b017-Getting-Started-with-a-Mac-Computer-Level-1": {
   "vuLe": "2026-10-20",
   "etat": "deja",
-  "detail": "Getting Started with a Mac Computer Level 1",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Plongez-dans-le-monde-de-l-IA": {
   "vuLe": "2026-10-20",
-  "etat": "importe",
-  "detail": "ChatGPT Plongez dans le monde de l IA",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
   "majLe": "2026-11-08"
  },
  "/en/events/a5b3cd5a0976524d5429de6623f89009-NOS-DIABLOTINS-SONT-DE-SORTIE-Trick-or-Treat": {
@@ -3211,7 +3211,7 @@
  },
  "/en/events/a5ec3b921e063376a9313180125db9a9-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-08"
  },
@@ -3223,7 +3223,7 @@
  },
  "/en/events/a69f704cdddc94fbd679fd4ce2f2ff92-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-08"
  },

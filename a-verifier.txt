@@ -1,5 +1,5 @@
 CE QUI ATTEND UNE RÉPONSE — 2026-11-08
-11 dossiers · 0 à rouvrir · 3 injoignable(s)
+15 dossiers · 0 à rouvrir · 3 injoignable(s)
 
 🚨 Ce rapport ne publie RIEN. « À rouvrir » veut dire « va regarder »,
    jamais « c'est bon » : un signe n'est pas une preuve.
@@ -72,16 +72,41 @@ CE QUI ATTEND UNE RÉPONSE — 2026-11-08
    Le café du mardi, lui, est déjà dans l'app (10 nov, 8h45).
 
 ·  inchangé
-   Monte-Carlo Backgammon Association — mercredi 16h au Novotel
-   https://www.ffbg.fr/clubs-de-backgammon/33-monte-carlo-backgammon-association-%28mcba%29
-   état connu : Parties amicales annoncées le mercredi dès 16h au Novotel Monte-Carlo, mais la présentation ne parle que des MEMBRES.
-   rouvrir si : Une mention d'accueil des visiteurs ou des non-membres.
-   ⚠️ « Ouvert aux non-membres » décide de tout : c'est ce qui fait entrer le Lounge Bar du CREM et sortir le Bar Salle Blanche.
-
-·  inchangé
    AS Monaco Tennis de table — calendrier du championnat
    https://asmonacott.com/
    état connu : Relevé : rencontres les 21 nov, 5 et 12 déc. ⚠️ NON VÉRIFIÉ : asmonacott.com/calendrier répond 404 le 8 nov 2026, et aucune salle ni heure n'est publiée.
    rouvrir si : Un calendrier avec SALLE et HEURE — sans quoi on ne sait pas où aller.
    ⚠️ Ne pas confondre avec les 7 fausses correspondances du mot « table » dans l'app : il n'y a AUCUNE fiche de tennis de table aujourd'hui.
+
+·  inchangé
+   Mairie — Animation jeux de société, 11 nov
+   https://www.mairie.mc/agenda/
+   état connu : L'agenda confirme la DATE et la nature (« jeux de société, détente et convivialité »). Un relevé annonce 16h-18h au Marché de la Condamine, entrée libre — non confirmé par la Mairie, ni sur sa page du Marché.
+   rouvrir si : Un lieu et un horaire publiés.
+   ☎️  +377 93 15 28 63 — le même appel vaut pour les trois entrées suivantes.
+
+·  inchangé
+   Mairie — Spectacle jeune public « Pyjamas », 14 nov
+   https://www.mairie.mc/agenda/
+   état connu : « Pour toute la famille, dès 3 ans. » Ni salle ni horaire.
+   rouvrir si : Une salle et une heure.
+
+·  inchangé
+   Mairie — « Piaf, le spectacle » avec Nathalie Lermitte, 18 nov
+   https://www.mairie.mc/agenda/
+   état connu : « Le spectacle officiel en hommage à Édith Piaf. » Ni salle ni horaire.
+   rouvrir si : Une salle et une heure.
+
+·  inchangé
+   Mairie — Fête Nationale au Marché de la Condamine, 19 nov
+   https://www.mairie.mc/agenda/
+   état connu : Le LIEU est dans le titre (Marché de la Condamine), mais aucun horaire n'est publié.
+   rouvrir si : Un horaire — le lieu, lui, est acquis.
+
+·  inchangé
+   Escrime — compétitions seniors à l'épée, 28-29 nov
+   https://www.mairie.mc/agenda/
+   état connu : Relevé : Espace Saint-Antoine, Fontvieille, les 28 et 29 nov. Inscription réservée aux licenciés, horaires non publiés.
+   rouvrir si : Un horaire, et de quoi dire si l'on peut venir REGARDER.
+   ⚠️ Une compétition fermée aux non-licenciés peut rester une sortie — on y assiste. Mais sans horaire, rien n'est publiable (règle 18).
 
