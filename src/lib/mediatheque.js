@@ -776,9 +776,13 @@ const THEMES = [
   {
     avantLeLieu: true,
     motif: /\bbridge\b/i,
-    f: "bridge.webp", w: 1100, h: 619,
+    // 🔄 Remplacée le 8 nov 2026 par la photo de Stéphanie : tapis vert, étuis
+    //    rouges, et LE PORT derrière la baie vitrée. L'ancienne `bridge.webp`
+    //    n'est PAS supprimée — un paquet OTA figé continue de la réclamer
+    //    pendant une à deux semaines.
+    f: "bridge-monaco.webp", w: 1100, h: 733,
     licence: "Image fournie par Monac'Out", auteur: null,
-    alt: "Une table de bridge dressée, cartes et boîtes d'enchères",
+    alt: "Une table de bridge au bord du port de Monaco, cartes et boîtes d'enchères",
   },
   // 🌅 LE SUNSET DJ SET DU LARVOTTO. Stéphanie, 31 oct 2026 : « prends les photos
   // DJ sunset ».
@@ -847,6 +851,68 @@ const THEMES = [
     f: "village-noel.webp", w: 1100, h: 734,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
+  },
+  // ♟️🏓🧗🤺🎲 SEPT PHOTOS POSÉES D'AVANCE. Stéphanie, 8 nov 2026 : « voici des
+  // photos que tu peux utiliser ». Elles viennent de sa liste des jeux et des
+  // sports de loisir.
+  // 🚨 À CE JOUR, AUCUNE NE S'AFFICHE, ET CE N'EST PAS UN DÉFAUT : l'app n'a
+  //    ZÉRO fiche d'échecs, de tennis de table, d'escalade, d'escrime, de
+  //    backgammon, de belote et de jeux de société. Ces rendez-vous n'ont pas
+  //    pu être publiés faute d'une pièce — une salle, une heure, ou la preuve
+  //    qu'on accepte les non-membres (voir `scripts/a-verifier.mjs`).
+  // ➜ Les motifs sont écrits MAINTENANT pour que l'image soit là le jour où la
+  //   fiche arrive. Une image qui attend ne coûte rien ; une fiche qui sort
+  //   sans image se remarque.
+  // ⚠️ Motifs volontairement ÉTROITS, et placés avant « stage de dessin » sans
+  //    jamais le croiser : la leçon du mot « dessin », qui touchait 26 fiches.
+  {
+    avantLeLieu: true,
+    motif: /\b[ée]checs?\b|tournoi\s+d['\u2019]?[ée]checs/i,
+    f: "echecs.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Deux joueurs d'échecs et leur pendule, dans un club lumineux",
+  },
+  {
+    avantLeLieu: true,
+    motif: /tennis\s+de\s+table|ping.?pong/i,
+    f: "tennis-de-table.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un échange de tennis de table dans une salle de sport",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bescalade\b|mur\s+d['\u2019]?escalade/i,
+    f: "escalade.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une grimpeuse sur un mur d'escalade, assurée depuis le sol",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bescrime\b|\bfleuret\b|\bsabre\b|\b[ée]p[ée]e\s+(?:de\s+)?escrime/i,
+    f: "escrime.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Deux escrimeurs en garde dans une salle d'armes",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bbackgammon\b/i,
+    f: "backgammon.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une partie de backgammon face à la mer",
+  },
+  {
+    avantLeLieu: true,
+    motif: /\bbelote\b|\bcoinche\b/i,
+    f: "belote.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une partie de belote en terrasse, face au port",
+  },
+  {
+    avantLeLieu: true,
+    motif: /jeux?\s+de\s+soci[ée]t[ée]|ludoth[èe]que/i,
+    f: "jeux-de-societe.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une tablée autour d'un jeu de société, dans un café à jeux",
   },
   // ✏️ LE STAGE DE DESSIN. Stéphanie, 8 nov 2026 : « image pour atelier dessin ».
   // ⚠️ LE MOTIF DIT « STAGE DE DESSIN », PAS « DESSIN ». Le mot seul apparaît

@@ -588,9 +588,21 @@ function decouperEnSections(liste, lang, jourConsulte = null) {
 // puis « idem pour apéro y a hermitage et en dessous 10 terrasses ouvertes ».
 // Une famille, un jour, UNE carte.
 const FAMILLES_REUNIES = [
-  { cat: "EXPOSITION", seuil: 3,
-    fr: "Expositions", en: "Exhibitions",
-    nomFr: n => `${n} expositions à voir`,  nomEn: n => `${n} exhibitions on view` },
+  // 🖼️ PAS DE FAMILLE « EXPOSITION » — retirée le 8 nov 2026. Stéphanie :
+  // « sépare la fiche expo par exposition indépendante ».
+  // Elle a existé depuis le 6 septembre : dès 3 expositions du même jour, elles
+  // se réunissaient derrière une carte « n expositions à voir », dépliable sur
+  // place. L'intention était d'éviter de noyer le fil ; l'effet était qu'une
+  // exposition ne se montrait plus d'elle-même — il fallait savoir qu'il y avait
+  // quelque chose derrière la carte pour la trouver. Une exposition tient par
+  // son affiche et par son nom, pas par un compte.
+  // ⚠️ CE N'EST PAS LE DOUBLON DU 11 OCTOBRE QUI REVIENT. Ce jour-là Stéphanie
+  //    voyait « une fiche qui dit 7 expo ET une fiche qui dit musées ouverts » :
+  //    c'était la carte de REGROUPEMENT posée à côté du récapitulatif des
+  //    musées. En supprimant le regroupement, la carte fautive disparaît avec
+  //    lui. Il reste les expositions elles-mêmes et la fiche « MUSÉES · n
+  //    ouverts », qui sont deux choses différentes.
+  // ⚠️ CONSÉQUENCE ASSUMÉE : le fil porte ~6 cartes de plus par jour.
   { cat: "BRUNCH", seuil: 2,
     fr: "Brunchs", en: "Brunch",
     nomFr: n => `${n} brunchs ce jour-là`,  nomEn: n => `${n} brunches that day` },
