@@ -553,6 +553,10 @@ const AMBIANCES = [
   { f: "le-rocher.webp",       alt: "Le Rocher de Monaco vu de la mer" },
   { f: "plage-larvotto.webp",  alt: "La plage et ses parasols" },
   { f: "soiree-club.webp",     alt: "Une soirée animée sous les lumières" },
+  // 🌃 Photo fournie par Stéphanie le 8 nov 2026, avec sa liste des clubs. Elle
+  //    montre le PORT et les yachts derrière les danseurs : c'est Monaco, là où
+  //    « soiree-club » pouvait être n'importe quelle ville.
+  { f: "nightlife-monaco.webp", alt: "Une soirée animée face au port de Monaco, DJ et lumières" },
   // 🎷 LE JAZZ A SA PROPRE IMAGE. Stéphanie, 31 oct 2026 : « change la photo du
   // live music du Bar Américain, mets un saxo ou piano ». Les 310 fiches JAZZ
   // LIVE recevaient la salle de club générique — correcte pour une soirée DJ,
@@ -611,8 +615,8 @@ const AMBIANCES = [
  * des ids rattrapés par un trou. Un nom ne glisse pas.
  */
 const AMBIANCE_PAR_CAT = {
-  "SOIRÉE": ["soiree-club", "rooftop-sunset"],
-  "DJ SET": ["soiree-club", "rooftop-sunset"],
+  "SOIRÉE": ["nightlife-monaco", "soiree-club", "rooftop-sunset"],
+  "DJ SET": ["nightlife-monaco", "soiree-club", "rooftop-sunset"],
   "JAZZ LIVE": ["jazz-live"],
   "GALA": ["soiree-club", "casino-facade"],
   // 🥂 Une seule image, même raison que le brunch : Stéphanie doit la
