@@ -107,19 +107,56 @@ const DOSSIERS = [
     rouvrir: "Une salle apparaît. Une fiche sans lieu ne peut pas exister (règle 13).",
     piege: "Le café du mardi, lui, est déjà dans l'app (10 nov, 8h45)." },
 
-  { nom: "Monte-Carlo Backgammon Association — mercredi 16h au Novotel",
-    url: "https://www.ffbg.fr/clubs-de-backgammon/33-monte-carlo-backgammon-association-%28mcba%29",
-    motif: /(visiteur|non-?membre|ouvert à tous|invit)/i,
-    attendu: "Parties amicales annoncées le mercredi dès 16h au Novotel Monte-Carlo, mais la présentation ne parle que des MEMBRES.",
-    rouvrir: "Une mention d'accueil des visiteurs ou des non-membres.",
-    piege: "⚠️ « Ouvert aux non-membres » décide de tout : c'est ce qui fait entrer le Lounge Bar du CREM et sortir le Bar Salle Blanche." },
-
+  // ⛔ BACKGAMMON — DOSSIER CLOS LE 8 NOV 2026, quelques heures après son
+  // ouverture. Stéphanie, après vérification : « les rencontres du mercredi
+  // sont annoncées POUR LES MEMBRES ». C'est une réponse, pas une absence de
+  // réponse : même règle que le Bar Salle Blanche et la matinée bien-être du
+  // Yacht Club. Ne pas rouvrir sans une mention d'ouverture aux visiteurs.
   { nom: "AS Monaco Tennis de table — calendrier du championnat",
     url: "https://asmonacott.com/",
     motif: /\d{1,2}[\/\s](nov|d[ée]c|janv)/i,
     attendu: "Relevé : rencontres les 21 nov, 5 et 12 déc. ⚠️ NON VÉRIFIÉ : asmonacott.com/calendrier répond 404 le 8 nov 2026, et aucune salle ni heure n'est publiée.",
     rouvrir: "Un calendrier avec SALLE et HEURE — sans quoi on ne sait pas où aller.",
     piege: "⚠️ Ne pas confondre avec les 7 fausses correspondances du mot « table » dans l'app : il n'y a AUCUNE fiche de tennis de table aujourd'hui." },
+
+  // ── Agenda de la Mairie, relevé du 8 nov 2026 ────────────────────────────
+  // 🚨 QUATRE ENTRÉES SANS LIEU NI HEURE. L'agenda de la Mairie annonce la date
+  // et une phrase de présentation, puis plus rien : pas de page dédiée (vérifié
+  // au navigateur — seul « Don de plantes » est cliquable), pas de salle, pas
+  // d'horaire. La règle 13 exige une salle précise : une fiche qui envoie au
+  // mauvais endroit est pire qu'une fiche absente.
+  // ☎️ UN SEUL APPEL AU +377 93 15 28 63 DÉBLOQUERAIT LES QUATRE.
+  { nom: "Mairie — Animation jeux de société, 11 nov",
+    url: "https://www.mairie.mc/agenda/",
+    motif: /animation jeux[\s\S]{0,400}(\d{1,2}\s?h|march[ée])/i,
+    attendu: "L'agenda confirme la DATE et la nature (« jeux de société, détente et convivialité »). Un relevé annonce 16h-18h au Marché de la Condamine, entrée libre — non confirmé par la Mairie, ni sur sa page du Marché.",
+    rouvrir: "Un lieu et un horaire publiés.",
+    humain: "+377 93 15 28 63 — le même appel vaut pour les trois entrées suivantes." },
+
+  { nom: "Mairie — Spectacle jeune public « Pyjamas », 14 nov",
+    url: "https://www.mairie.mc/agenda/",
+    motif: /pyjamas[\s\S]{0,300}\d{1,2}\s?h/i,
+    attendu: "« Pour toute la famille, dès 3 ans. » Ni salle ni horaire.",
+    rouvrir: "Une salle et une heure." },
+
+  { nom: "Mairie — « Piaf, le spectacle » avec Nathalie Lermitte, 18 nov",
+    url: "https://www.mairie.mc/agenda/",
+    motif: /piaf[\s\S]{0,300}\d{1,2}\s?h/i,
+    attendu: "« Le spectacle officiel en hommage à Édith Piaf. » Ni salle ni horaire.",
+    rouvrir: "Une salle et une heure." },
+
+  { nom: "Mairie — Fête Nationale au Marché de la Condamine, 19 nov",
+    url: "https://www.mairie.mc/agenda/",
+    motif: /f[eê]te nationale au march[\s\S]{0,300}\d{1,2}\s?h/i,
+    attendu: "Le LIEU est dans le titre (Marché de la Condamine), mais aucun horaire n'est publié.",
+    rouvrir: "Un horaire — le lieu, lui, est acquis." },
+
+  { nom: "Escrime — compétitions seniors à l'épée, 28-29 nov",
+    url: "https://www.mairie.mc/agenda/",
+    motif: /escrime|[ée]p[ée]e/i,
+    attendu: "Relevé : Espace Saint-Antoine, Fontvieille, les 28 et 29 nov. Inscription réservée aux licenciés, horaires non publiés.",
+    rouvrir: "Un horaire, et de quoi dire si l'on peut venir REGARDER.",
+    piege: "⚠️ Une compétition fermée aux non-licenciés peut rester une sortie — on y assiste. Mais sans horaire, rien n'est publiable (règle 18)." },
 ];
 
 const lire = async u => {

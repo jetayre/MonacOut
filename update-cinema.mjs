@@ -545,7 +545,15 @@ async function main() {
         : filmListEsc;
       premier = false;
       entries.push(
-        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinémas 2 Monaco · Monte-Carlo",desc:"${listeJour}",descEn:"${listeJour}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"${annu || `,venues:${venuesStr}`}},`
+      // 🎬 LE LIEU S'APPELLE LE CINÉMA DES BEAUX-ARTS, 12 av. d'Ostende.
+      // Stéphanie, 8 nov 2026 : « il n'y a pas de cinéma au Sporting ». Elle
+      // corrigeait une bêtise que j'avais dite ; la fiche, elle, n'écrivait pas
+      // « Sporting » — mais « Cinémas 2 Monaco · Monte-Carlo », qui est le nom
+      // de l'EXPLOITANT et un quartier, pas une adresse. La règle 13 demande la
+      // SALLE : on sait désormais où aller sans chercher.
+      // ⚠️ À ne pas confondre avec le Théâtre des Variétés, 1 bd Albert-Ier, où
+      //    projette l'Institut Audiovisuel — deux salles, deux programmations.
+        `  {id:${nextId++}${yearF},cat:"CINÉMA",date:"${dateFr}",time:"En journée",title:"CINÉMA\\nÀ L'AFFICHE\\nCETTE SEMAINE",subtitle:"Cinéma des Beaux-Arts · 12 av. d'Ostende · Monte-Carlo",desc:"${listeJour}",descEn:"${listeJour}",free:false,hot:false,weeklyFilms:true,pinLast:true,fallback:"linear-gradient(150deg,#1A0A3A,#3A1A6A,#0A0020)",accent:"#C0A0F0",emoji:"🎬",link:"https://www.cinemas2monaco.com",phone:"+377 9325 3681",source:"Cinémas 2 Monaco",quarter:"Monte-Carlo"${annu || `,venues:${venuesStr}`}},`
       );
       d.setDate(d.getDate() + 1);
     }
