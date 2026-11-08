@@ -379,12 +379,25 @@ function carteMidi(id, date, annee, lieux) {
 // ⚠️ ON N'ÉCRIT PAS « JUSQU'À 5H » SUR LA CARTE : tous ne ferment pas à la même
 //    heure, et la liste le dit lieu par lieu. Une généralité commode est une
 //    petite contre-vérité.
+// Trois noms, puis un compte. Stéphanie, 8 nov 2026 : « le Twiga n'est pas
+// ouvert ce soir ? » — il l'était, mais la carte n'annonçait qu'un chiffre.
+// Un nom se reconnaît en passant ; « 5 adresses ouvertes » n'apprend rien.
+function sousTitreNuit(lieux) {
+  const noms = lieux.map(e => e.lieu).map(x => String(x).replace(/"/g, "\u0022"));
+  if (noms.length <= 3) return noms.join(" · ") + " · Monaco";
+  return noms.slice(0, 3).join(" · ") + ` + ${noms.length - 3} autres`;
+}
+
 function carteNuit(id, date, annee, lieux) {
   const noms = lieux.map(e => e.heure && /^\d/.test(e.heure) ? `${e.lieu} (${e.heure})` : e.lieu);
   const premiere = lieux.map(e => (e.heure || "").match(/^(\d{1,2})h(\d{2})?/))
     .filter(Boolean).map(m => +m[1] * 60 + (+m[2] || 0)).sort((a, b) => a - b)[0];
-  const heure = premiere === undefined ? "En soirée"
-    : `${String(Math.floor(premiere / 60)).padStart(2, "0")}h${String(premiere % 60).padStart(2, "0")}`;
+  // ⚠️ JAMAIS AVANT 20h. L'heure de la carte est son PLACEMENT dans le fil, pas
+  //    une affirmation sur un lieu : chacun garde la sienne dans la liste. Depuis
+  //    que les terrasses tardives y entrent, le plus matinal pouvait être Gustave,
+  //    ouvert dès midi — la carte « CETTE NUIT » serait alors apparue à 12h00.
+  const debut = premiere === undefined ? 20 * 60 : Math.max(premiere, 20 * 60);
+  const heure = `${String(Math.floor(debut / 60)).padStart(2, "0")}h${String(debut % 60).padStart(2, "0")}`;
   const desc = `Les clubs et les adresses qui font la nuit à Monaco : ${noms.join(" · ")}.`
     + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
     + ` Les soirées qui portent un nom — un DJ, un concert — gardent leur propre fiche.`;
@@ -403,8 +416,13 @@ function carteNuit(id, date, annee, lieux) {
     // ➜ Jusqu'à trois lieux, le sous-titre PORTE LEURS NOMS. Au-delà il faut
     //   bien compter, mais à deux clubs « Twiga · Sass Café » dit tout, et
     //   « 2 clubs ouverts » ne dit rien.
-    + `title:"CETTE NUIT${NL}${lieux.length} CLUB${lieux.length > 1 ? "S" : ""}${NL}OUVERT${lieux.length > 1 ? "S" : ""}",`
-    + `subtitle:"${lieux.length <= 3 ? lieux.map(e => e.lieu).join(" · ").replace(/"/g, "\u0022") + " · Monaco" : "Clubs & nuit · Principauté"}",`
+    // ⚠️ « ADRESSES » ET NON « CLUBS » depuis que les terrasses tardives y
+    //    entrent : Gustave est le bar de l'Hermitage et Amazónico un rooftop
+    //    de restaurant. Les appeler « clubs » serait annoncer une piste de
+    //    danse là où il y a un comptoir. Le mot doit couvrir ce qu'il y a
+    //    vraiment dans la liste.
+    + `title:"CETTE NUIT${NL}${lieux.length} ADRESSE${lieux.length > 1 ? "S" : ""}${NL}OUVERTE${lieux.length > 1 ? "S" : ""}",`
+    + `subtitle:"${sousTitreNuit(lieux)}",`
     + `desc:"${desc}",descEn:"${descEn}",free:false,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
     + `fallback:"linear-gradient(150deg,#1A0A2A,#4A2060,#0C0418)",accent:"#C8A0F0",emoji:"🌃",`
     + `source:"Monac'Out",quarter:"Monaco"},`;
@@ -421,7 +439,26 @@ for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a
   // Même convention que le reste du fichier : pas de `year` pour l'année courante.
   const annee = Number(an) === ANNEE_COURANTE ? "" : an;
   const s = listeLieux(v.soir || []), b = listeLieux(v.brunch || []), m = listeLieux(v.midi || []);
-  const n = listeLieux(v.nuit || []);
+  // 🌙 LES TERRASSES QUI FERMENT APRÈS MINUIT REJOIGNENT LA NUIT. Stéphanie,
+  // 8 nov 2026 : « les terrasses ouvertes après minuit peuvent aller dans
+  // club ». Elle a raison : à minuit passé, la question n'est plus « où boire
+  // un verre ce soir » mais « qu'est-ce qui est encore ouvert ». Un bar qui
+  // sert jusqu'à 2h est une réponse à cette question-là.
+  // ⚠️ ELLES RESTENT AUSSI DANS « CE SOIR », et ce n'est pas un doublon : le
+  //    même lieu répond à DEUX questions à deux heures différentes. Amazónico
+  //    ouvre à 18h — l'effacer de la carte de 18h serait faux.
+  // ⚠️ On ne retient qu'une fin LUE, entre minuit et 5h. Un horaire absent ou
+  //    « En soirée » ne permet pas d'affirmer qu'un lieu est ouvert à 2h.
+  const finNocturne = e => {
+    const m2 = String(e.heure || "").match(/[—–-]\s*(\d{1,2})h(\d{2})?/);
+    if (!m2) return null;
+    const h = +m2[1];
+    return h <= 5 ? h + (+(m2[2] || 0)) / 60 : null;
+  };
+  const n = listeLieux([...(v.nuit || []), ...(v.soir || []).filter(e => finNocturne(e) !== null)]);
+  // Le plus tard d'abord : c'est le sens même de « cette nuit », et c'est un
+  // critère, pas un classement de faveur. Une fermeture inconnue passe après.
+  n.sort((x, y) => (finNocturne(y) ?? -1) - (finNocturne(x) ?? -1));
   // ⚠️ Identifiant DÉDUIT DE LA DATE, jamais d'un compteur : une amie qui coche
   // « J'y vais » ce soir doit retrouver le même identifiant demain, après que le CI a
   // purgé les journées passées. Un compteur ferait glisser la participation d'un jour.
