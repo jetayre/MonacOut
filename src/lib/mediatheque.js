@@ -627,24 +627,46 @@ const AMBIANCE_PAR_CAT = {
   // laissait au tirage — deux fois sur trois, ce n'était pas elle.
   "BRUNCH": ["brunch-monaco"],
   "FOODY": ["terrasse-diner", "lounge-mer"],
-  "PETIT-DÉJ": ["cafe-petit-dej", "terrasse-diner"],
+  // ☕ `terrasse-diner` RETIRÉ le 8 nov 2026 : une table dressée pour le DÎNER
+  //    sur une fiche de petit-déjeuner ne correspond pas. Tant que le lot
+  //    tirait toujours la même image par fiche, l'erreur passait inaperçue ;
+  //    en rotation elle reviendrait une semaine sur deux.
+  "PETIT-DÉJ": ["cafe-petit-dej"],
   // 🥤 Le smoothie d'abord : c'est l'image que Stéphanie a choisie pour eux.
   // 🧖 Le spa pour les ACTIVITÉS bien-être ; les « wellness bars » gardent le
   //    smoothie, qui leur est attaché nommément (thème) et passe avant.
   "BIEN-ÊTRE": ["spa-bien-etre"],
   "SPORT": ["sport"],
-  "FOOTBALL": ["port-yachts"],
-  "BASKET": ["port-yachts"],
+  // ⚽🏀 CORRIGÉ le 8 nov 2026 : les deux montraient LE PORT ET SES YACHTS sur
+  //    un match. L'image `sport.webp` — ballons de basket, football et volley
+  //    sur un parquet — existe depuis le 1er nov et servait déjà à SPORT ;
+  //    personne ne l'avait branchée ici. Trouvé en appliquant la règle de
+  //    Stéphanie : « il faut juste que chaque photo corresponde à la carte ».
+  "FOOTBALL": ["sport"],
+  "BASKET": ["sport"],
   "EXPOSITION": ["expositions-galerie"],
   "CONFÉRENCE": ["conference-monaco"],
-  "SALON": ["casino-facade", "palais-place"],
+  // 🤝 `palais-place` RETIRÉ : un salon professionnel se tient au Grimaldi
+  //    Forum ou à One Monte-Carlo, pas sur la place du Palais.
+  "SALON": ["casino-facade"],
   "ENCHÈRES": ["encheres"],
-  "CONCERT": ["jazz-live", "casino-facade"],
+  // 🎼 `jazz-live` RETIRÉ du lot CONCERT : des saxophonistes sur un concert
+  //    symphonique annoncent autre chose que ce qu'on va entendre. Les
+  //    concerts de l'OPMC ont leur orchestre (thème), le jazz garde sa
+  //    catégorie JAZZ LIVE. ⚠️ Pas de photo de concert classique : à demander.
+  "CONCERT": ["casino-facade"],
   "OPÉRA": ["casino-facade"],
-  "THÉÂTRE": ["casino-facade", "palais-place"],
-  "MUSICAL": ["jazz-live", "casino-facade"],
-  "DANSE": ["casino-facade", "soiree-club"],
-  "SPECTACLE": ["casino-facade", "soiree-club"],
+  // 🎭 `palais-place` RETIRÉ : la place du Palais ne dit rien du théâtre.
+  //    ⚠️ Pas de photo de théâtre : à demander.
+  "THÉÂTRE": ["casino-facade"],
+  // 🎵 idem pour MUSICAL.
+  "MUSICAL": ["casino-facade"],
+  // 💃 `soiree-club` RETIRÉ : une boîte de nuit sur un ballet des Ballets de
+  //    Monte-Carlo, c'est faux. Il ne reste qu'une façade — faute de mieux.
+  //    ⚠️ LA DANSE N'A PAS DE PHOTO À ELLE : à demander.
+  "DANSE": ["casino-facade"],
+  // 🎭 `soiree-club` RETIRÉ, même raison. ⚠️ Pas de photo de spectacle : à demander.
+  "SPECTACLE": ["casino-facade"],
   // ⛪ Stéphanie, 8 nov 2026 : « mets ça pour l'image générale des messes ».
   // 54 des 76 fiches CHANTS sont des récapitulatifs — « 5 paroisses »,
   // « 9 paroisses » — qui ne désignent AUCUNE église en particulier. Une
@@ -652,9 +674,16 @@ const AMBIANCE_PAR_CAT = {
   // désignait une précise.
   "CHANTS": ["eglise-messes"],
   "CINÉMA": ["cinema-monaco"],
-  "ATELIER": ["palais-place", "le-rocher"],
-  "MARCHÉ": ["palais-place", "port-yachts"],
-  "FESTIVAL": ["port-yachts", "soiree-club"],
+  // 🎨 `le-rocher` RETIRÉ : une vue du Rocher ne dit rien d'un atelier. Il n'en
+  //    reste qu'une, faute de mieux. ⚠️ PAS DE PHOTO D'ATELIER GÉNÉRIQUE :
+  //    celles qu'on a sont attachées à un lieu précis (Bosio, Lamartine) ou à
+  //    une discipline (dessin) — les poser sur tout annoncerait du dessin à
+  //    un cours de zumba. À demander.
+  "ATELIER": ["palais-place"],
+  // 🧺 Ni la place du Palais ni le port ne sont un marché. ⚠️ À demander.
+  "MARCHÉ": ["palais-place"],
+  // 🎪 `soiree-club` RETIRÉ : une boîte de nuit n'est pas un festival. ⚠️ À demander.
+  "FESTIVAL": ["port-yachts"],
   "FÊTE NATIONALE": ["palais-place", "port-yachts"],
 };
 
@@ -665,10 +694,40 @@ const AMBIANCE_PAR_NOM = new Map(AMBIANCES.map(a => [a.f.replace(/\.webp$/, ""),
  * Une image d'ambiance accordée à la catégorie. Choisie de façon STABLE par
  * `event.id`, comme les photos de lieu.
  */
+/**
+ * 🔄 LE NUMÉRO DE LA SEMAINE, pour que l'app change de visage sans qu'on y
+ * touche. Stéphanie, 8 nov 2026 : « c'est bien de changer régulièrement les
+ * photos, ça rend l'appli plus vivante », puis « oui, il faut juste que chaque
+ * photo corresponde à la carte ».
+ *
+ * ⚠️ C'EST SA CONDITION QUI A DEMANDÉ LE PLUS DE TRAVAIL, pas la rotation.
+ *    Tant qu'une fiche gardait TOUJOURS la même image, un lot approximatif
+ *    passait inaperçu : la fiche tombait une fois pour toutes sur la bonne, ou
+ *    sur la moins mauvaise, et personne ne comparait. En rotation, une image
+ *    qui ne correspond pas revient périodiquement et saute aux yeux. Sept lots
+ *    ont donc été resserrés le même jour — table de dîner sur un petit-déj,
+ *    boîte de nuit sur un ballet, saxophones sur un concert symphonique.
+ *    ➜ Règle : on ne met dans un lot QUE des images qui conviennent toutes.
+ *      Une catégorie sans image juste garde UNE image, et attend la sienne.
+ *
+ * ⚠️ Semaines comptées depuis une date fixe, PAS avec getWeek() : il n'existe
+ *    pas en JavaScript, et une approximation par mois ferait sauter l'image au
+ *    milieu d'une semaine.
+ */
+function numeroDeSemaine(d = new Date()) {
+  const ORIGINE = Date.UTC(2026, 0, 5);            // lundi 5 janvier 2026
+  const jour = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+  return Math.floor((jour - ORIGINE) / 604800000); // 7 × 24 × 3600 × 1000
+}
+
 export function imageAmbiance(event, decalage = 0) {
   const lot = AMBIANCE_PAR_CAT[String(event?.cat || "").toUpperCase()];
   if (!lot || !lot.length) return null;
-  const nom = lot[(graine(event?.id) + decalage) % lot.length];
+  // Un lot d'une seule image ne tourne pas : le calcul ne changerait rien, et
+  // l'écrire montre que ce n'est pas un oubli.
+  const nom = lot.length === 1
+    ? lot[0]
+    : lot[(graine(event?.id) + decalage + numeroDeSemaine()) % lot.length];
   const a = AMBIANCE_PAR_NOM.get(nom);
   if (!a) return null;
   return {
