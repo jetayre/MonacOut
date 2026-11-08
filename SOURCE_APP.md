@@ -1,6 +1,6 @@
 # MONAC'OUT — LE CODE DE L'APPLICATION
 
-**7 novembre 2026.** 42 fichiers, 597 Ko.
+**8 novembre 2026.** 42 fichiers, 607 Ko.
 Chaque fichier est reproduit **intégralement et tel quel** : rien n'est coupé,
 résumé ni reformaté.
 
@@ -23,7 +23,7 @@ résumé ni reformaté.
 | `capacitor.config.json` | 0.6 Ko |
 | `src/App.css` | 0.0 Ko |
 | `src/App.jsx` | 72.7 Ko |
-| `src/components/AccueilMaquette.jsx` | 40.2 Ko |
+| `src/components/AccueilMaquette.jsx` | 41.7 Ko |
 | `src/components/BandeauWeb.jsx` | 6.8 Ko |
 | `src/components/CalendarPicker.jsx` | 9.1 Ko |
 | `src/components/EventCard.jsx` | 51.6 Ko |
@@ -51,7 +51,7 @@ résumé ni reformaté.
 | `src/lib/habillage.js` | 3.7 Ko |
 | `src/lib/invite.js` | 4.8 Ko |
 | `src/lib/itineraire.js` | 1.6 Ko |
-| `src/lib/mediatheque.js` | 50.8 Ko |
+| `src/lib/mediatheque.js` | 59.0 Ko |
 | `src/lib/phone.js` | 3.4 Ko |
 | `src/lib/prenom.js` | 3.9 Ko |
 | `src/lib/reservation.js` | 7.4 Ko |
@@ -1675,14 +1675,26 @@ function Coeur({ actif, onClick, taille = 28 }) {
  * dépliage.
  */
 function BoutonInfo({ onClick, taille = 26 }) {
+  // 🚨 LE CLIC DOIT ÊTRE ARRÊTÉ SUR TOUTE LA ZONE, PAS SEULEMENT SUR LE CERCLE.
+  // Stéphanie, 7 nov 2026 : « quand on clique sur (i) ça n'ouvre pas toujours
+  // pareil ». Le bouton arrêtait bien la propagation, mais il vivait dans un
+  // conteneur qui, lui, ne faisait rien : un appui à deux pixels du cercle
+  // traversait jusqu'à la carte — et la carte d'un annuaire DÉPLIE en dessous
+  // au lieu d'ouvrir la fenêtre. Même geste, deux résultats.
+  // Un cercle dans une boîte carrée laisse toujours quatre coins morts ; ici
+  // ils tombaient sur une autre action.
+  // ⚠️ `onPointerDown` AUTANT QUE `onClick` : sur iPhone c'est le premier qui
+  //    part, et c'est lui qui déclenchait le dépliage avant que le clic arrive.
   return (
-    <button onClick={e => { e.stopPropagation(); onClick?.(); }}
+    <button onPointerDown={e => e.stopPropagation()}
+            onClick={e => { e.stopPropagation(); onClick?.(); }}
             aria-label="Voir le détail"
             style={{
               width: taille, height: taille, borderRadius: "50%", border: "none", cursor: "pointer",
               background: "rgba(255,255,255,0.94)", padding: 0,
               display: "flex", alignItems: "center", justifyContent: "center",
               boxShadow: "0 2px 7px rgba(23,36,60,0.18)",
+              WebkitTapHighlightColor: "transparent",
             }}>
       <svg width={taille * 0.62} height={taille * 0.62} viewBox="0 0 24 24"
            fill="none" stroke={BORDEAU} strokeWidth="2" strokeLinecap="round">
@@ -2123,7 +2135,12 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
             26 pt et leur écart en prennent 58. 160 pt pour 159 disponibles :
             l'étiquette aurait débordé ou se serait coupée sur la carte la plus
             fréquente de l'app. En bas, le (i) ne gêne personne. */}
-        <div style={{ position: "absolute", bottom: 7, right: 7 }}>
+        {/* La zone autour du cercle bloque elle aussi : c'est elle qui laissait
+            passer les appuis « à côté » vers le dépliage de la carte.
+            `padding: 5` élargit la cible tactile sans grossir le dessin. */}
+        <div onPointerDown={e => e.stopPropagation()}
+             onClick={e => e.stopPropagation()}
+             style={{ position: "absolute", bottom: 2, right: 2, padding: 5 }}>
           <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
         </div>
       </div>
@@ -2225,8 +2242,14 @@ export function CarteRangee({ event, lang, favorites, onToggleFav, onCardClick, 
             flex: 1, margin: 0, fontFamily: SERIF, fontWeight: 600, fontSize: 15, lineHeight: 1.2, color: NUIT,
             display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
           }}>{casseNaturelle(event.title?.replace(/\n/g, " "))}</h4>
-          <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
-          <Coeur actif={fav} onClick={() => onToggleFav?.(event.id)} taille={26} />
+          {/* Les deux boutons dans une zone qui bloque : l'écart de 8 pt entre
+              eux était du vide qui retombait sur la carte. */}
+          <div onPointerDown={e => e.stopPropagation()}
+               onClick={e => e.stopPropagation()}
+               style={{ display: "inline-flex", gap: 8, flexShrink: 0 }}>
+            <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
+            <Coeur actif={fav} onClick={() => onToggleFav?.(event.id)} taille={26} />
+          </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
           {event.time && (
@@ -10488,6 +10511,15 @@ export const LIEUX = [
   { id: 36, slug: "stars-of-monaco", nom: "Stars of Monaco", vues: [
       { f: "stars-of-monaco.webp", w: 1004, h: 753, alt: "L'enseigne et la terrasse du Stars of Monaco" },
   ] },
+  // 🎼 L'AUDITORIUM RAINIER III. Photo fournie par Stéphanie le 8 nov 2026 :
+  // « ça pour auditorium générique ». Il portait 45 fiches et n'avait AUCUNE
+  // photo : elles tombaient toutes sur une image de catégorie.
+  // 🚨 CE N'EST PAS L'ACADÉMIE RAINIER III (id 44), qui est l'école de musique
+  //    et de théâtre. Deux maisons, deux adresses, deux photos. Les rattacher
+  //    l'une à l'autre aurait été l'erreur du Gymnase Louis-II à l'envers.
+  { id: 48, slug: "auditorium-rainier-iii", nom: "Auditorium Rainier III", vues: [
+      { f: "auditorium-rainier-iii.webp", w: 1100, h: 619, alt: "La salle de l'Auditorium Rainier III, scène vide et fauteuils rouges" },
+  ] },
   { id: 35, slug: "bar-americain", nom: "Bar Américain", vues: [
       { f: "bar-americain.webp", w: 526, h: 210, alt: "Le comptoir du Bar Américain, à l'Hôtel de Paris" },
   ] },
@@ -10527,6 +10559,10 @@ const LIBELLES = {
   "l espace lamartine": 42,
   "espace lamartine": 42,
   "mediatheque caroline": 43,
+  // ⚠️ L'AUDITORIUM (48) N'EST PAS L'ACADÉMIE (44) : ne jamais les fondre.
+  //    Les fiches écrivent les deux quartiers, « · Monte-Carlo » et « · Monaco » ;
+  //    seule la partie AVANT le « · » sert de clé, donc une seule ligne suffit.
+  "auditorium rainier iii": 48,
   "academie de musique prince rainier iii": 44,
   "academie rainier iii": 44,
   "thermes marins monte carlo": 45,
@@ -10748,6 +10784,11 @@ const AMBIANCES = [
   { f: "jazz-live.webp",       alt: "Des saxophonistes en concert" },
   { f: "rooftop-sunset.webp",  alt: "Un rooftop au crépuscule, vue sur le port" },
   { f: "palais-place.webp",    alt: "La place du Palais et ses pins" },
+  // ⛪ L'image générale des messes. ⚠️ Son libellé ne NOMME aucune église :
+  //    elle sert aux récapitulatifs « 5 paroisses » / « 9 paroisses », qui ne
+  //    désignent pas une paroisse en particulier. Prétendre le contraire
+  //    enverrait quelqu'un à la mauvaise adresse un dimanche matin.
+  { f: "eglise-messes.webp",   alt: "La façade d'une église, clochers et rosace" },
   // 🥤 LE BIEN-ÊTRE A SON IMAGE. Stéphanie, 31 oct 2026 : « pour les bars
   // bien-être, prends celle du bureau avec smoothie ». Les fiches BIEN-ÊTRE
   // tombaient sur la plage ou un salon — joli, mais muet.
@@ -10824,7 +10865,12 @@ const AMBIANCE_PAR_CAT = {
   "MUSICAL": ["jazz-live", "casino-facade"],
   "DANSE": ["casino-facade", "soiree-club"],
   "SPECTACLE": ["casino-facade", "soiree-club"],
-  "CHANTS": ["palais-place"],
+  // ⛪ Stéphanie, 8 nov 2026 : « mets ça pour l'image générale des messes ».
+  // 54 des 76 fiches CHANTS sont des récapitulatifs — « 5 paroisses »,
+  // « 9 paroisses » — qui ne désignent AUCUNE église en particulier. Une
+  // façade d'église leur convient mieux que la cathédrale, qui, elle, en
+  // désignait une précise.
+  "CHANTS": ["eglise-messes"],
   "CINÉMA": ["cinema-monaco"],
   "ATELIER": ["palais-place", "le-rocher"],
   "MARCHÉ": ["palais-place", "port-yachts"],
@@ -10968,6 +11014,105 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un DJ au coucher du soleil, sur la plage du Larvotto",
   },
+  // 🎻 L'ORCHESTRE PHILHARMONIQUE EN CONCERT SYMPHONIQUE. Stéphanie, 8 nov
+  // 2026 : « ça pour orchestre philharmonique ».
+  // ⚠️ LE MOTIF DIT « CONCERT SYMPHONIQUE », PAS « PHILHARMONIQUE ». Tentant,
+  //    mais faux : « orchestre philharmonique » apparaît aussi dans 21 fiches
+  //    dont certaines à la SALLE GARNIER et à l'ÉGLISE SAINT-CHARLES — les
+  //    concerts spirituels, qui viennent de recevoir leur photo d'église. Un
+  //    thème passe devant une image de catégorie : l'orchestre au complet
+  //    aurait effacé l'église. « Concert symphonique » (+ sa forme anglaise)
+  //    ne vise que les 20 fiches de l'Auditorium, toutes vérifiées.
+  // ⚠️ ET PAS LA MUSIQUE DE CHAMBRE : quatre fiches « MUSIQUE DE CHAMBRE ·
+  //    OPMC » se jouent au même endroit, à quelques musiciens. Un orchestre de
+  //    soixante annoncerait autre chose que ce qu'on va entendre. Elles
+  //    gardent la salle vide, qui ne promet rien de faux.
+  {
+    avantLeLieu: true,
+    motif: /concert\s+symphonique|symphonic\s+concert/i,
+    f: "orchestre-philharmonique.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "L'Orchestre Philharmonique de Monte-Carlo au complet sur la scène de l'Auditorium",
+  },
+  // 🎹 LE RÉCITAL DE PIANO À L'AUDITORIUM. Stéphanie, 8 nov 2026 : « mets ça
+  // quand récital piano à Rainier 3 ».
+  // ⚠️ LE MOTIF EXIGE LES DEUX, et c'est tout l'objet de sa forme bizarre : les
+  //    deux regards en avant demandent « récital piano » ET « auditorium
+  //    rainier » n'importe où dans le texte, sans imposer leur ordre. Sept
+  //    fiches portent « RÉCITAL PIANO » ; la septième, András Schiff, se joue
+  //    SALLE GARNIER, et la Salle Garnier a sa propre photo — dorures et
+  //    velours rouge — qu'un piano sur scène nue remplacerait à tort.
+  // ⚠️ L'Auditorium Rainier III n'est toujours PAS au registre des lieux : ses
+  //    45 fiches tombent sur une image de catégorie. Ce thème en couvre 6. Il
+  //    reste à lui donner sa photo, et surtout à ne pas le confondre avec
+  //    l'« Académie de Musique Prince Rainier III », qui est une autre maison.
+  {
+    avantLeLieu: true,
+    motif: /(?=[\s\S]*(?:r[ée]cital\s+piano|piano\s+recital))(?=[\s\S]*auditorium rainier)/i,
+    f: "recital-piano.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un piano à queue ouvert sur la scène d'un auditorium, fauteuils rouges en fond",
+  },
+  // 🎄 LE VILLAGE DE NOËL. Photo fournie par Stéphanie le 8 nov 2026.
+  // ⚠️ DEUX FICHES, ET C'EST VOULU : le Village lui-même (4 déc → 3 jan) et le
+  //    RÉVEILLON du 31 décembre, qui se tient dans ce village. La seconde parle
+  //    surtout de son feu d'artifice, mais c'est bien ce décor-là qu'on y
+  //    trouve, chalets et sapin compris.
+  // ⚠️ Le motif ne touche PAS les fiches « MARCHÉ DE NOËL » de la Place du
+  //    Casino : elles ne portent pas ces mots-là. Deux rendez-vous différents,
+  //    deux endroits différents.
+  {
+    avantLeLieu: true,
+    motif: /village\s+de\s+no[ëe]l/i,
+    f: "village-noel.webp", w: 1100, h: 734,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
+  },
+  // ✏️ LE STAGE DE DESSIN. Stéphanie, 8 nov 2026 : « image pour atelier dessin ».
+  // ⚠️ LE MOTIF DIT « STAGE DE DESSIN », PAS « DESSIN ». Le mot seul apparaît
+  //    dans 26 fiches : 21 cartes d'ateliers ESAP (dont le programme du jour
+  //    cite le cours de dessin), l'exposition Victor Brauner et un concert
+  //    jeune public. Posé largement, il aurait remplacé la photo de l'ESAP et
+  //    mis des crayons sur une rétrospective de peinture. Il ne vise que les
+  //    3 séances du Comité National Monégasque A.I.A.P. — U.N.E.S.C.O.
+  {
+    avantLeLieu: true,
+    motif: /stage\s+de\s+dessin/i,
+    f: "atelier-dessin.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un cours de dessin d'après nature, carnets ouverts sur une nature morte",
+  },
+  // 🧵 LES ATELIERS DE L'ESPACE LAMARTINE. Stéphanie, 8 nov 2026 : « mets cette
+  // image pour la fiche atelier Lamartine ».
+  // ⚠️ À NE PAS CONFONDRE AVEC LES ATELIERS ESAP, juste en dessous. Les deux
+  //    sont des cours de la Mairie, et l'Espace Lamartine accueille même un
+  //    cours de l'ESAP le mardi — mais ce sont deux programmes distincts : 30
+  //    fiches « ATELIERS · 4 THÈMES · ESPACE LAMARTINE » d'un côté, 44 fiches
+  //    « ATELIERS ESAP · PAVILLON BOSIO » de l'autre. Croisement vérifié : zéro.
+  // ⚠️ La photo montre QUATRE activités à la même table — couture, perles,
+  //    dessin botanique, création sur écran — parce que la carte en annonce
+  //    quatre. Une seule discipline aurait menti sur ce qu'on y trouve.
+  {
+    avantLeLieu: true,
+    motif: /espace\s+lamartine/i,
+    f: "atelier-lamartine.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Quatre personnes à un grand établi : couture, perles, dessin et création sur écran",
+  },
+  // 🏺 LES ATELIERS DE L'ESAP AU PAVILLON BOSIO. Stéphanie, 8 nov 2026 : « pour
+  // atelier Bosio reliure et poterie, image carte principale atelier Bosio ».
+  // ⚠️ UN THÈME ET NON UNE PHOTO DE LIEU : la carte du jour réunit jusqu'à trois
+  //    cours — reliure, céramique, gravure, dessin, peinture — et se tient selon
+  //    les jours au Pavillon Bosio, au Foyer Sainte-Dévote OU à l'Espace
+  //    Lamartine. Une façade de bâtiment en désignerait un seul ; les mains au
+  //    travail les disent tous.
+  {
+    avantLeLieu: true,
+    motif: /ateliers?\s+esap/i,
+    f: "atelier-bosio.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un tour de potier et une reliure cousue à la main, sur un établi d'atelier",
+  },
   {
     // 📌 AVANT LA PHOTO DU LIEU, et c'est volontaire. La règle générale dit
     // l'inverse (le Jardin exotique bat la citrouille), mais ces quatre fiches
@@ -11021,8 +11166,15 @@ export function imageTheme(event, avantLeLieu = false) {
    ⚠️ Elle passe APRÈS la photo du lieu : une messe à Saint-Charles ou à
    Sainte-Dévote garde la sienne le jour où on l'aura.
    ══════════════════════════════════════════════════════════════════════════ */
+// 🚨 VIDÉE LE 8 NOV 2026, et c'est voulu. Les messes passaient par ici pour
+// recevoir la photo de la CATHÉDRALE — une église précise posée sur des fiches
+// qui n'en désignent aucune (« 5 paroisses », « 9 paroisses »). Stéphanie a
+// fourni une façade d'église générique : elle part dans AMBIANCE_PAR_CAT, un
+// cran plus bas, ce qui laisse intactes les fiches qui ont leur VRAI lieu —
+// Saint-Charles, Sainte-Dévote, le Sacré-Cœur gardent le leur.
+// On garde la table : elle reste le bon outil le jour où une catégorie aura
+// besoin d'un lieu réel plutôt que d'une ambiance.
 const PAR_CATEGORIE = {
-  "CHANTS": 21,          // la cathédrale de Monaco
 };
 
 export function photoDeCategorie(event) {

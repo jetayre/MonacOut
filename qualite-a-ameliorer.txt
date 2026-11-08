@@ -1,23 +1,24 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2413 fiches inspectées le 2026-11-07.
+2395 fiches inspectées le 2026-11-08.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (5)
+   · Mer 18 nov · APPRENDRE A RECONNAITRE LES ARNAQUES EN LIGNE — même lieu et même jour qu'une série de 4 fiches « APPELS INDESIRABLES DES SOLUTIONS GRATUITES POUR LES BLOQUER » (id 962005)
+   · Mer 25 nov · BLABLACAR DAILY LA PRINCIPAUTE FINANCE VOS COVOITURAGES QUOTIDIENS — même lieu et même jour qu'une série de 4 fiches « DEPOSER SA DEMANDE DE LOGEMENT DOMANIAL EN LIGNE » (id 962007)
+   · Jeu 26 nov · REALISER UNE DEMARCHE EN LIGNE SUR MONGUICHET MC — même lieu et même jour qu'une série de 4 fiches « DEPOSER SA DEMANDE DE LOGEMENT DOMANIAL EN LIGNE » (id 962015)
+   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800065)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990025)
 
-■ FICHES SANS CONTENU — la description répète le titre (23)
-   · Sam 7 nov · ATELIERS JEUNESSE HISTOIRE CONTEE 3 5 ANS — description = titre (id 800007)
-   · Sam 7 nov · GETTING STARTED WITH A MAC COMPUTER LEVEL 1 — description = titre (id 800000)
+■ FICHES SANS CONTENU — la description répète le titre (20)
    · Mar 10 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800002)
    · Mer 11 nov · ANIMATION JEUX — description = titre (id 800085)
    · Sam 21 nov · VOLLEY BALL EFB JOURNEE 07 ASS SPORTIVE DE MONACO LEVALLOIS … — description = titre (id 800124)
    · Sam 21 nov · VOLLEY BALL 2MA JOURNEE 07 ASS SPORTIVE DE MONACO VOLLEY PRA… — description = titre (id 800088)
-   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
    · Sam 5 déc · VOLLEY BALL EFB JOURNEE 09 ASS SPORTIVE DE MONACO RACING CLU… — description = titre (id 800377)
    · Dim 6 déc · VOLLEY BALL 2MA JOURNEE 09 ASS SPORTIVE DE MONACO AGDE VOLLE… — description = titre (id 800378)
+   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800065)
    · Sam 19 déc · VOLLEY BALL EFB JOURNEE 10 ASS SPORTIVE DE MONACO ISTRES PRO… — description = titre (id 800130)
-   · Lun 28 déc · MA BAYADERE — description = titre (id 800071)
+   · Dim 20 déc · BRONIA AND ALTRO CANTO — description = titre (id 800127)
    · Sam 9 jan · VOLLEY BALL 2MA JOURNEE 11 ASS SPORTIVE DE MONACO ASUL LYON … — description = titre (id 800131)
    · Sam 30 jan · VOLLEY BALL EFB JOURNEE 13 ASS SPORTIVE DE MONACO VBC CHALON… — description = titre (id 800135)
    · Dim 31 jan · VOLLEY BALL 2MA JOURNEE 13 ASS SPORTIVE DE MONACO AS CALUIRE… — description = titre (id 800133)
@@ -29,12 +30,9 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 27 mar · VOLLEY BALL 2MA JOURNEE 19 ASS SPORTIVE DE MONACO MARSEILLE … — description = titre (id 800143)
    · Sam 17 avr · VOLLEY BALL 2MA JOURNEE 21 ASS SPORTIVE DE MONACO AIX UNIVER… — description = titre (id 800144)
    · Sam 24 avr · VOLLEY BALL EFB JOURNEE 22 ASS SPORTIVE DE MONACO VOLLEY BAL… — description = titre (id 800145)
-   · Mar 27 avr · SOIREE BARTOK — description = titre (id 800005)
 
-■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (11)
-   · Sam 7 nov · MONACO WRITERS MEET & GREET MÉDIATHÈQUE CAROLINE — Médiathèque Caroline (id 5031)
-   · Sam 7 nov · EXPOSITION DE PEINTURES\nDENISE SOLOMON\n& BEATRICE DARDY — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 800070)
-   · Sam 7 nov · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
+■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (9)
+   · Dim 8 nov · PETIT-DÉJ & CAFÉ 14 ADRESSES À MONACO — Cafés & petits-déjeuners (id 1304430)
    · Lun 9 nov · MONACO WOMEN NETWORK RENCONTRE CULTURELLE THÉÂTRE PRINCESSE GRACE — Théâtre Princesse Grace (id 5032)
    · Mar 10 nov · STAGE DE DESSIN DE L'IMPRESSIONNISME AU FAUVISME — Comité National Monégasque A.I.A.P - U.N.E.S.C.O. (id 4991)
    · Sam 14 nov · NATIONALE 3 AS MONACO BASKET TERRES FROIDES BASKET — Gymnase scolaire Louis-II (id 5040)
