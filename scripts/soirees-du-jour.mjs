@@ -392,7 +392,19 @@ function carteNuit(id, date, annee, lieux) {
     + ` Tap the card to see them one by one and call in a single move.`
     + ` Named nights — a guest DJ, a concert — keep their own cards.`;
   return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"SOIRÉE",date:"${date}",time:"${heure}",`
-    + `title:"CETTE NUIT${NL}${lieux.length} CLUB${lieux.length > 1 ? "S" : ""}${NL}OUVERT${lieux.length > 1 ? "S" : ""}",subtitle:"Clubs & nuit · Principauté",`
+    // 🚨 QUAND ILS SONT PEU NOMBREUX, ON LES NOMME. Stéphanie, 8 nov 2026, une
+    // heure après la création de cette carte : « le Twiga n'est pas ouvert ce
+    // soir ? et Amazónico… ». Les deux L'ÉTAIENT, et tous deux figuraient dans
+    // l'app — mais pliés dans un récapitulatif qui n'annonçait qu'un COMPTE.
+    // Elle a parcouru le fil, n'a lu nulle part « Twiga », et en a conclu que
+    // c'était fermé. Un regroupement qui cache les noms transforme une sortie
+    // disponible en sortie invisible : c'est exactement ce qu'elle reprochait
+    // le matin même aux expositions réunies derrière « 7 expositions à voir ».
+    // ➜ Jusqu'à trois lieux, le sous-titre PORTE LEURS NOMS. Au-delà il faut
+    //   bien compter, mais à deux clubs « Twiga · Sass Café » dit tout, et
+    //   « 2 clubs ouverts » ne dit rien.
+    + `title:"CETTE NUIT${NL}${lieux.length} CLUB${lieux.length > 1 ? "S" : ""}${NL}OUVERT${lieux.length > 1 ? "S" : ""}",`
+    + `subtitle:"${lieux.length <= 3 ? lieux.map(e => e.lieu).join(" · ").replace(/"/g, "\u0022") + " · Monaco" : "Clubs & nuit · Principauté"}",`
     + `desc:"${desc}",descEn:"${descEn}",free:false,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
     + `fallback:"linear-gradient(150deg,#1A0A2A,#4A2060,#0C0418)",accent:"#C8A0F0",emoji:"🌃",`
     + `source:"Monac'Out",quarter:"Monaco"},`;
