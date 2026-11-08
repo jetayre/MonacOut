@@ -280,6 +280,29 @@ for (const f of fiches) {
   // On regarde donc D'ABORD si c'est déjà là ; on n'écarte que ce qui manque vraiment.
   if (DECISIONS[f.sl]) { tranches.push(`${f.titre} — ${DECISIONS[f.sl]}`); note(f.sl, "tranche", DECISIONS[f.sl]); continue; }
 
+  // ── LES LIEUX QUI ONT LEUR PROPRE LECTEUR ──────────────────────────────────
+  // 🚨 ÉPROUVÉ LE 8 NOV 2026, QUELQUES HEURES APRÈS AVOIR BRANCHÉ
+  //    `maison-du-numerique.mjs`. Le passage de nuit a recréé trois fiches de la
+  //    Maison du Numérique depuis PrinciPocket, et les trois étaient mauvaises :
+  //      · 14 nov 11h00 — DOUBLON d'une fiche déjà posée par le lecteur officiel
+  //      · 12 nov 15h00 — la séance ChatGPT, qui est COMPLÈTE
+  //      · 21 nov 11h00 — une date QUI N'EXISTE PAS : l'agenda du lieu ne donne
+  //        qu'une séance de « Mac niveau 2 », le 28 novembre
+  //    Elles ont repris les ids 800000/800001/800003, c'est-à-dire exactement les
+  //    trous laissés par la suppression du matin — le risque que `idLibre()`
+  //    signale depuis le 10 oct.
+  // ➜ Quand un lieu publie son agenda et qu'un script le lit, l'agrégateur
+  //   n'apporte plus que du bruit. On l'écarte ici, en nommant le script qui
+  //   prend le relais, pour que personne ne croie à un oubli.
+  const LECTEUR_DEDIE = [
+    { lieu: /maison du num[ée]rique/i, script: "scripts/maison-du-numerique.mjs" },
+  ];
+  const dedie = LECTEUR_DEDIE.find(x => x.lieu.test(f.lieu || "") || x.lieu.test(f.adr || ""));
+  if (dedie) {
+    note(f.sl, "deja", `lu directement par ${dedie.script}, pas par PrinciPocket`);
+    continue;
+  }
+
   // ── RÈGLE 15 : Monaco uniquement, jugé sur l'ADRESSE ───────────────────────
   // 🏐 UNE SEULE EXCEPTION, ET ELLE EST NOMMÉE. Stéphanie, 31 oct 2026, après
   // avoir vu que deux matchs de volley manquaient : « prends-les de
