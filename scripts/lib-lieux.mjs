@@ -41,6 +41,18 @@ export const BASE_MUSEES = 950000;
 // dessus (l'identifiant d'un lieu vaut id_fiche × 1000 + numéro du lieu).
 export const BASE_MIDI = 960000;
 
+// 🌃 LES CLUBS DE LA NUIT, ajoutés le 8 nov 2026. Stéphanie, en regardant le
+// fil : « pourquoi tu mets Twiga à part et pas toute la liste », puis « oui fais
+// la carte cette nuit ».
+// ⚠️ PAS DANS LA CARTE « CE SOIR » : celle-là réunit les TERRASSES, à 18h. Un
+//    club ouvert de 20h à 5h du matin n'est pas une terrasse d'apéritif, et
+//    l'annoncer à 18h ferait venir devant une porte fermée.
+// ⚠️ Sa propre plage, comme les autres : deux cartes du même jour ne peuvent pas
+//    partager un identifiant, sinon les « J'y vais » se marchent dessus
+//    (l'identifiant d'un lieu vaut id_fiche × 1000 + numéro du lieu).
+// La plage 900000 était libre, vérifié sur les 2 587 fiches.
+export const BASE_NUIT = 900000;
+
 // Le bien-être du jour, ajouté le 11 oct 2026. Stéphanie : « on doit faire une
 // fiche bien être et de là ressort aquagym et lamartine ». Sa propre plage,
 // comme les autres : deux cartes du même jour ne peuvent pas partager un id,

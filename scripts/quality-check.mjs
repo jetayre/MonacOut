@@ -96,6 +96,36 @@ for (const [cle, groupe] of parTitre) {
     pb.invisible.push(`${e.date} · ${titre(e)} — « until » illisible : « ${e.until} » (attendu AAAA-MM-JJ) (id ${e.id})`);
   }
 
+  // ── 1 ter. L'AUTRE BOUT DE LA PÉRIODE : une fiche « ongoing » QUI N'A PAS
+  //    ENCORE OUVERT. `refresh-cinema.mjs` redate sur aujourd'hui toute fiche
+  //    `ongoing` dont la FIN est à venir — il ne connaissait que cette borne-là.
+  //    Une chose qui ouvre plus tard remplit donc la condition dès maintenant et
+  //    s'affiche des semaines trop tôt, en se faisant réécrire chaque nuit.
+  //    Trois cas trouvés le 8 nov 2026, dont deux en ligne : le Village de Noël
+  //    (ouvre le 4 déc, affiché le 8 nov), la No Finish Line (14 nov) et le
+  //    chalet alpin du Blue Gin (17 nov). Aucun n'avait levé d'alerte.
+  //    ➜ Le champ `depuis:"AAAA-MM-JJ"` dit quand ça commence. On le réclame dès
+  //      que la DESCRIPTION annonce elle-même une date de début à venir.
+  // ⚠️ On ne lit que « du <jour> <mois> » : une date de début écrite en toutes
+  //    lettres par celui qui a saisi la fiche. C'est volontairement étroit —
+  //    mieux vaut rater un cas que crier sur des fiches justes, une alarme qui
+  //    sonne pour rien finit par ne plus être lue.
+  if (e.ongoing && e.until && !e.depuis) {
+    const MOISL = { janvier:0, "février":1, mars:2, avril:3, mai:4, juin:5, juillet:6,
+                    "août":7, septembre:8, octobre:9, novembre:10, "décembre":11 };
+    const m = `${e.desc || ""}`.match(
+      /\bdu\s+(?:lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)?\s*(\d{1,2})(?:er)?\s+(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i);
+    if (m) {
+      const bout = (e.desc || "").slice(m.index, m.index + 60).match(/20\d\d/);
+      const debut = new Date(bout ? +bout[0] : new Date().getFullYear(), MOISL[m[2].toLowerCase()], +m[1]);
+      const auj = new Date(); auj.setHours(0, 0, 0, 0);
+      const fin = new Date(e.until + "T00:00:00");
+      if (!isNaN(debut) && debut > auj && debut <= fin) {
+        pb.invisible.push(`${e.date} · ${titre(e)} — « ongoing » mais sa description dit qu'elle n'ouvre que le ${m[1]} ${m[2]} : elle s'affiche TROP TÔT et sera redatée chaque nuit. Ajouter depuis:"AAAA-MM-JJ" (id ${e.id})`);
+      }
+    }
+  }
+
   // ── 2. Description qui ne fait que répéter le titre : la fiche n'apprend rien.
   const d = norm(e.desc), ti = norm(titre(e));
   const lieu = norm((e.subtitle || "").split(" · ")[0]);

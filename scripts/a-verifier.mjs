@@ -88,6 +88,38 @@ const DOSSIERS = [
     rouvrir: "La page est mise à jour et ne parle plus de fermeture.",
     piege: "Lundi au vendredi 10h et 14h = 10 fiches par semaine : ne pas publier sur une page périmée.",
     humain: "Réservation au +377 93 15 29 80 — un appel dit si les ateliers ont lieu." },
+
+  // ── Relevé de Stéphanie du 8 nov 2026 ────────────────────────────────────
+  // Quatre lignes de sa liste n'ont PAS pu être publiées. Aucune n'est fausse :
+  // il manque à chacune une pièce. Elles se rouvrent le jour où elle arrive.
+
+  { nom: "British Association — café-rencontre à La Note Bleue",
+    url: "https://www.britishassociationmonaco.com/",
+    motif: /note bleue|coffee morning|caf[ée].{0,30}(rencontre|matin)/i,
+    attendu: "Relevé : 10 nov et 7 déc à 9h30 à La Note Bleue, sans réservation. ⚠️ NON VÉRIFIÉ : le site ne répond pas depuis cet environnement (HTTP 000 le 8 nov 2026).",
+    rouvrir: "Le site redevient joignable et confirme la date et l'heure.",
+    piege: "⚠️ Injoignable n'est PAS une réponse négative (leçon du 18 août) — mais ce n'est pas une confirmation non plus. L'Afternoon Tea du 24 nov, lui, est déjà dans l'app." },
+
+  { nom: "AFCEM — soirée de Noël du 10 décembre",
+    url: "https://en.afce-monaco.org/agenda",
+    motif: /no[eë]l.{0,80}(19\s?h|19:00|\d{1,2}\s?h\s?\d{0,2})/i,
+    attendu: "Date et horaire annoncés (10 déc, 19h-23h) mais AUCUN LIEU publié.",
+    rouvrir: "Une salle apparaît. Une fiche sans lieu ne peut pas exister (règle 13).",
+    piege: "Le café du mardi, lui, est déjà dans l'app (10 nov, 8h45)." },
+
+  { nom: "Monte-Carlo Backgammon Association — mercredi 16h au Novotel",
+    url: "https://www.ffbg.fr/clubs-de-backgammon/33-monte-carlo-backgammon-association-%28mcba%29",
+    motif: /(visiteur|non-?membre|ouvert à tous|invit)/i,
+    attendu: "Parties amicales annoncées le mercredi dès 16h au Novotel Monte-Carlo, mais la présentation ne parle que des MEMBRES.",
+    rouvrir: "Une mention d'accueil des visiteurs ou des non-membres.",
+    piege: "⚠️ « Ouvert aux non-membres » décide de tout : c'est ce qui fait entrer le Lounge Bar du CREM et sortir le Bar Salle Blanche." },
+
+  { nom: "AS Monaco Tennis de table — calendrier du championnat",
+    url: "https://asmonacott.com/",
+    motif: /\d{1,2}[\/\s](nov|d[ée]c|janv)/i,
+    attendu: "Relevé : rencontres les 21 nov, 5 et 12 déc. ⚠️ NON VÉRIFIÉ : asmonacott.com/calendrier répond 404 le 8 nov 2026, et aucune salle ni heure n'est publiée.",
+    rouvrir: "Un calendrier avec SALLE et HEURE — sans quoi on ne sait pas où aller.",
+    piege: "⚠️ Ne pas confondre avec les 7 fausses correspondances du mot « table » dans l'app : il n'y a AUCUNE fiche de tennis de table aujourd'hui." },
 ];
 
 const lire = async u => {

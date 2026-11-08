@@ -31,7 +31,7 @@
  * Usage : node scripts/soirees-du-jour.mjs [--dry]
  */
 import { existsSync, readFileSync, writeFileSync } from "fs";
-import { BASE_SOIR, BASE_BRUNCH, BASE_MIDI, idFiche, chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
+import { BASE_SOIR, BASE_BRUNCH, BASE_MIDI, BASE_NUIT, idFiche, chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -89,6 +89,23 @@ const GENERIQUES_SOIR = [
   "OLD WILD WEST PORT HERCULE",
 ];
 
+// ── Les clubs : « la boîte est ouverte, comme d'habitude » ────────────────────
+// 🌃 Stéphanie, 8 nov 2026 : « pourquoi tu mets Twiga à part et pas toute la
+// liste », puis « oui fais la carte cette nuit ».
+// Le Twiga paraissait privilégié ; il était simplement le seul club que l'app
+// générait tous les soirs. Ces titres-là disent « le lieu ouvre », pas « il se
+// passe quelque chose » : ils se réunissent donc, comme les terrasses.
+// ⚠️ MAIS PAS AVEC LES TERRASSES. La carte « CE SOIR » est à 18h et parle de
+//    verres en terrasse. Un club de 20h à 5h du matin n'est pas cela.
+// ⚠️ LISTE FERMÉE, comme les deux autres. « SOIRÉE TWIGA » est générique,
+//    « FAT JOE AU TWIGA » ne l'est pas — une soirée qui porte un nom garde sa
+//    fiche. En cas de doute : garder la fiche séparée.
+const GENERIQUES_NUIT = [
+  "SOIREE TWIGA MONTE-CARLO",
+  "SOIREE SASS CAFE LARVOTTO",
+  "LA RASCASSE LIVE & DJ PORT HERCULE",
+];
+
 const GENERIQUES_BRUNCH = [
   "BRUNCH CLUB D AVIRON PORT HERCULE",
   "BRUNCH MARLOW MARETERRA",
@@ -138,7 +155,8 @@ lignes.forEach((l, i) => {
   if (!titre) return;
   const soir = estGenerique(titre, GENERIQUES_SOIR);
   const brunch = estGenerique(titre, GENERIQUES_BRUNCH);
-  if (!soir && !brunch) return;                       // un vrai rendez-vous : on le laisse
+  const nuit = estGenerique(titre, GENERIQUES_NUIT);
+  if (!soir && !brunch && !nuit) return;              // un vrai rendez-vous : on le laisse
 
   const date = champ(l, "date");
   if (!date) return;
@@ -148,11 +166,11 @@ lignes.forEach((l, i) => {
   // moitié des lieux. Repéré à l'essai : le 11 août n'affichait que le Sass Café.
   const annee = String((l.match(/year:(\d+)/) || [])[1] || ANNEE_COURANTE);
   const cle = `${date}|${annee}`;
-  if (!parJour.has(cle)) parJour.set(cle, { soir: [], brunch: [], midi: [] });
+  if (!parJour.has(cle)) parJour.set(cle, { soir: [], brunch: [], midi: [], nuit: [] });
 
   const lieu = (champ(l, "subtitle").split(" · ")[0] || "").trim();
   const entree = { lieu, heure: champ(l, "time"), tel: champ(l, "phone"), lien: champ(l, "link"), titre: plat(titre) };
-  parJour.get(cle)[soir ? "soir" : "brunch"].push(entree);
+  parJour.get(cle)[soir ? "soir" : nuit ? "nuit" : "brunch"].push(entree);
   aSupprimer.add(i);
 });
 
@@ -198,7 +216,7 @@ const union = (a = [], b = []) => {
 // sinon un lieu reste dans le fil sans que personne le remarque (cas Club d'Aviron).
 registre.__titresFondus = Array.isArray(registre.__titresFondus) ? registre.__titresFondus : [];
 for (const [, v] of parJour) {
-  for (const e of [...(v.soir || []), ...(v.brunch || []), ...(v.midi || [])]) {
+  for (const e of [...(v.soir || []), ...(v.brunch || []), ...(v.midi || []), ...(v.nuit || [])]) {
     if (e.titre && !registre.__titresFondus.includes(e.titre)) registre.__titresFondus.push(e.titre);
   }
 }
@@ -213,6 +231,7 @@ for (const [cle, v] of parJour) {
     // le désigne. Il vient du registre seul, où on l'écrit à la main. L'union le
     // préserve donc d'un passage à l'autre.
     midi: union(registre[cle]?.midi, v.midi),
+    nuit: union(registre[cle]?.nuit, v.nuit),
   };
 }
 
@@ -351,9 +370,37 @@ function carteMidi(id, date, annee, lieux) {
     + `source:"Monac'Out",quarter:"Monaco"},`;
 }
 
+// 🌃 LA CARTE « CETTE NUIT ». Stéphanie, 8 nov 2026 : « oui fais la carte cette
+// nuit ». Elle réunit les clubs comme « CE SOIR » réunit les terrasses.
+// ⚠️ SON HEURE EST CELLE DU PREMIER QUI OUVRE, pas une heure ronde choisie par
+//    confort : le fil trie à l'heure, et une carte annoncée à 22h alors que le
+//    Sass ouvre à 20h30 se placerait après des fiches plus tardives qu'elle.
+//    Chaque lieu garde la sienne dans la liste dépliable.
+// ⚠️ ON N'ÉCRIT PAS « JUSQU'À 5H » SUR LA CARTE : tous ne ferment pas à la même
+//    heure, et la liste le dit lieu par lieu. Une généralité commode est une
+//    petite contre-vérité.
+function carteNuit(id, date, annee, lieux) {
+  const noms = lieux.map(e => e.heure && /^\d/.test(e.heure) ? `${e.lieu} (${e.heure})` : e.lieu);
+  const premiere = lieux.map(e => (e.heure || "").match(/^(\d{1,2})h(\d{2})?/))
+    .filter(Boolean).map(m => +m[1] * 60 + (+m[2] || 0)).sort((a, b) => a - b)[0];
+  const heure = premiere === undefined ? "En soirée"
+    : `${String(Math.floor(premiere / 60)).padStart(2, "0")}h${String(premiere % 60).padStart(2, "0")}`;
+  const desc = `Les clubs et les adresses qui font la nuit à Monaco : ${noms.join(" · ")}.`
+    + ` Touchez la fiche pour les voir un par un et appeler d'un geste.`
+    + ` Les soirées qui portent un nom — un DJ, un concert — gardent leur propre fiche.`;
+  const descEn = `Monaco's clubs and late-night addresses that night: ${noms.join(" · ")}.`
+    + ` Tap the card to see them one by one and call in a single move.`
+    + ` Named nights — a guest DJ, a concert — keep their own cards.`;
+  return `  {id:${id},${annee ? `year:${annee},` : ""}cat:"SOIRÉE",date:"${date}",time:"${heure}",`
+    + `title:"CETTE NUIT${NL}${lieux.length} CLUB${lieux.length > 1 ? "S" : ""}${NL}OUVERT${lieux.length > 1 ? "S" : ""}",subtitle:"Clubs & nuit · Principauté",`
+    + `desc:"${desc}",descEn:"${descEn}",free:false,hot:false,recap:true,sdj:1,directory:${annuaireJSON(lieux)},`
+    + `fallback:"linear-gradient(150deg,#1A0A2A,#4A2060,#0C0418)",accent:"#C8A0F0",emoji:"🌃",`
+    + `source:"Monac'Out",quarter:"Monaco"},`;
+}
+
 // Les ids 93xxxx sont réservés à ce script (aucune autre plage ne les utilise).
 const nouvelles = [];
-let nbSoir = 0, nbBrunch = 0, nbMidi = 0;
+let nbSoir = 0, nbBrunch = 0, nbMidi = 0, nbNuit = 0;
 // On génère depuis le REGISTRE, pas depuis la seule extraction : c'est ce qui rend le
 // script rejouable. Tri par date pour que les ids restent stables d'un passage à l'autre.
 for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a, b) => (dateDeLaCle(a) || 0) - (dateDeLaCle(b) || 0))) {
@@ -362,6 +409,7 @@ for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a
   // Même convention que le reste du fichier : pas de `year` pour l'année courante.
   const annee = Number(an) === ANNEE_COURANTE ? "" : an;
   const s = listeLieux(v.soir || []), b = listeLieux(v.brunch || []), m = listeLieux(v.midi || []);
+  const n = listeLieux(v.nuit || []);
   // ⚠️ Identifiant DÉDUIT DE LA DATE, jamais d'un compteur : une amie qui coche
   // « J'y vais » ce soir doit retrouver le même identifiant demain, après que le CI a
   // purgé les journées passées. Un compteur ferait glisser la participation d'un jour.
@@ -370,6 +418,7 @@ for (const cle of Object.keys(registre).filter(k => !k.startsWith("__")).sort((a
   if (s.length) { nouvelles.push(carteSoir(idFiche(BASE_SOIR, d), date, annee, s)); nbSoir++; }
   if (b.length) { nouvelles.push(carteBrunch(idFiche(BASE_BRUNCH, d), date, annee, b)); nbBrunch++; }
   if (m.length) { nouvelles.push(carteMidi(idFiche(BASE_MIDI, d), date, annee, m)); nbMidi++; }
+  if (n.length) { nouvelles.push(carteNuit(idFiche(BASE_NUIT, d), date, annee, n)); nbNuit++; }
 }
 
 // ── Écriture ──────────────────────────────────────────────────────────────────

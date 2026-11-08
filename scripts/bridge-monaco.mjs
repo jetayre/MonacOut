@@ -132,8 +132,19 @@ const lignes = liste.map(s => {
   const jour = `${JOURS_FR[s.d.getDay()]} ${s.d.getDate()} ${MOIS_FR[s.d.getMonth()]}`;
   const an = s.d.getFullYear() !== 2026 ? `year:${s.d.getFullYear()},` : "";
   const nom = /lundi|Monday/i.test(s.titre) ? "TOURNOI DU LUNDI" : /samedi|Sat/i.test(s.titre) ? "TOURNOI DU SAMEDI" : "TOURNOI";
-  const desc = `Tournoi du Monte Carlo Bridge Club, de ${s.h1} à ${s.h2} à ${s.salle.nom.split(" · ")[0]}. Inscription sur le site du club ; le club tient aussi une école de bridge.`;
-  const descEn = `Monte Carlo Bridge Club tournament, ${s.h1.replace("h", ":")} to ${s.h2.replace("h", ":")} at ${s.salle.nom.split(" · ")[0]}. Sign up on the club's website; the club also runs a bridge school.`;
+  // 💶 LES TARIFS ET L'OUVERTURE AUX NON-MEMBRES, relevés sur
+  // montecarlobridgeclub.com/fr/tournament/ le 8 nov 2026, après un relevé de
+  // Stéphanie. C'est l'information qui décide : « ouvert aux non-membres » fait
+  // entrer un rendez-vous dans l'app, et un prix évite d'arriver sans monnaie.
+  // ⚠️ Trois tarifs, pas un : le bridge décontracté n'est pas le tournoi, et un
+  //    visiteur non licencié FFB paie encore autrement. Les écrire tous les
+  //    trois plutôt que d'en choisir un « représentatif ».
+  const desc = `Tournoi du Monte Carlo Bridge Club, de ${s.h1} à ${s.h2} à ${s.salle.nom.split(" · ")[0]}. `
+    + `Ouvert aux non-membres : 10 € le tournoi, 11 € pour un visiteur non licencié FFB, 5 € le bridge décontracté. `
+    + `Arriver 15 minutes avant le début. Inscription sur le site du club ; le club tient aussi une école de bridge.`;
+  const descEn = `Monte Carlo Bridge Club tournament, ${s.h1.replace("h", ":")} to ${s.h2.replace("h", ":")} at ${s.salle.nom.split(" · ")[0]}. `
+    + `Non-members welcome: €10 per tournament, €11 for visitors without an FFB licence, €5 for casual bridge. `
+    + `Arrive 15 minutes early. Sign up on the club's website; the club also runs a bridge school.`;
   return `  {id:${id++},${an}cat:"ATELIER",date:"${jour}",time:"${s.h1} — ${s.h2}",`
     + `title:"BRIDGE\\n${esc(nom)}\\nMONTE-CARLO",subtitle:"${esc(s.salle.nom)} · ${s.salle.quartier}",`
     + `desc:"${esc(desc)}",descEn:"${esc(descEn)}",free:false,hot:false,${MARQUE},`
