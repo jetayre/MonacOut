@@ -287,6 +287,15 @@ export const LIEUX = [
   { id: 36, slug: "stars-of-monaco", nom: "Stars of Monaco", vues: [
       { f: "stars-of-monaco.webp", w: 1004, h: 753, alt: "L'enseigne et la terrasse du Stars of Monaco" },
   ] },
+  // 🎼 L'AUDITORIUM RAINIER III. Photo fournie par Stéphanie le 8 nov 2026 :
+  // « ça pour auditorium générique ». Il portait 45 fiches et n'avait AUCUNE
+  // photo : elles tombaient toutes sur une image de catégorie.
+  // 🚨 CE N'EST PAS L'ACADÉMIE RAINIER III (id 44), qui est l'école de musique
+  //    et de théâtre. Deux maisons, deux adresses, deux photos. Les rattacher
+  //    l'une à l'autre aurait été l'erreur du Gymnase Louis-II à l'envers.
+  { id: 48, slug: "auditorium-rainier-iii", nom: "Auditorium Rainier III", vues: [
+      { f: "auditorium-rainier-iii.webp", w: 1100, h: 619, alt: "La salle de l'Auditorium Rainier III, scène vide et fauteuils rouges" },
+  ] },
   { id: 35, slug: "bar-americain", nom: "Bar Américain", vues: [
       { f: "bar-americain.webp", w: 526, h: 210, alt: "Le comptoir du Bar Américain, à l'Hôtel de Paris" },
   ] },
@@ -326,6 +335,10 @@ const LIBELLES = {
   "l espace lamartine": 42,
   "espace lamartine": 42,
   "mediatheque caroline": 43,
+  // ⚠️ L'AUDITORIUM (48) N'EST PAS L'ACADÉMIE (44) : ne jamais les fondre.
+  //    Les fiches écrivent les deux quartiers, « · Monte-Carlo » et « · Monaco » ;
+  //    seule la partie AVANT le « · » sert de clé, donc une seule ligne suffit.
+  "auditorium rainier iii": 48,
   "academie de musique prince rainier iii": 44,
   "academie rainier iii": 44,
   "thermes marins monte carlo": 45,
@@ -777,6 +790,26 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un DJ au coucher du soleil, sur la plage du Larvotto",
   },
+  // 🎻 L'ORCHESTRE PHILHARMONIQUE EN CONCERT SYMPHONIQUE. Stéphanie, 8 nov
+  // 2026 : « ça pour orchestre philharmonique ».
+  // ⚠️ LE MOTIF DIT « CONCERT SYMPHONIQUE », PAS « PHILHARMONIQUE ». Tentant,
+  //    mais faux : « orchestre philharmonique » apparaît aussi dans 21 fiches
+  //    dont certaines à la SALLE GARNIER et à l'ÉGLISE SAINT-CHARLES — les
+  //    concerts spirituels, qui viennent de recevoir leur photo d'église. Un
+  //    thème passe devant une image de catégorie : l'orchestre au complet
+  //    aurait effacé l'église. « Concert symphonique » (+ sa forme anglaise)
+  //    ne vise que les 20 fiches de l'Auditorium, toutes vérifiées.
+  // ⚠️ ET PAS LA MUSIQUE DE CHAMBRE : quatre fiches « MUSIQUE DE CHAMBRE ·
+  //    OPMC » se jouent au même endroit, à quelques musiciens. Un orchestre de
+  //    soixante annoncerait autre chose que ce qu'on va entendre. Elles
+  //    gardent la salle vide, qui ne promet rien de faux.
+  {
+    avantLeLieu: true,
+    motif: /concert\s+symphonique|symphonic\s+concert/i,
+    f: "orchestre-philharmonique.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "L'Orchestre Philharmonique de Monte-Carlo au complet sur la scène de l'Auditorium",
+  },
   // 🎹 LE RÉCITAL DE PIANO À L'AUDITORIUM. Stéphanie, 8 nov 2026 : « mets ça
   // quand récital piano à Rainier 3 ».
   // ⚠️ LE MOTIF EXIGE LES DEUX, et c'est tout l'objet de sa forme bizarre : les
@@ -791,7 +824,7 @@ const THEMES = [
   //    l'« Académie de Musique Prince Rainier III », qui est une autre maison.
   {
     avantLeLieu: true,
-    motif: /(?=[\s\S]*r[ée]cital\s+piano)(?=[\s\S]*auditorium rainier)/i,
+    motif: /(?=[\s\S]*(?:r[ée]cital\s+piano|piano\s+recital))(?=[\s\S]*auditorium rainier)/i,
     f: "recital-piano.webp", w: 1100, h: 619,
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un piano à queue ouvert sur la scène d'un auditorium, fauteuils rouges en fond",
