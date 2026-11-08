@@ -740,6 +740,35 @@ Vérifier les sources officielles **2 fois par jour** (6h et 18h), identifier le
 | _— Économie & réseau_ | | | |
 | Monaco Economic Board | https://www.meb.mc/ | CONFÉRENCE économie/business | |
 
+## 📸 LES PHOTOS NE SUIVENT PAS LA RÈGLE DE L'OTA (vérifié le 8 nov 2026)
+
+Stéphanie, 8 nov 2026 : « c'est bien de changer régulièrement les photos, ça
+rend l'appli plus vivante ». Vérification faite, c'est **beaucoup moins cher
+qu'il n'y paraît** — à une condition.
+
+Les fichiers d'image ne sont PAS dans le paquet OTA : ils sont servis depuis
+`/media/…`, et l'en-tête renvoyé par Vercel est
+`cache-control: public, max-age=0, must-revalidate`. Autrement dit chaque
+téléphone **revalide l'image à chaque affichage**.
+
+| Ce qu'on change | Quand ça arrive |
+|---|---|
+| **Le CONTENU d'une image, nom de fichier inchangé** | **le jour même, sur tous les téléphones** |
+| Une image NOUVELLE, ou quelle fiche reçoit quelle image | OTA → une à deux semaines |
+
+➜ **Pour renouveler l'app sans rien attendre : remplacer le contenu d'un fichier
+existant.** `bridge.webp` qui devient une autre table de bridge arrive tout de
+suite ; `bridge-monaco.webp`, nom neuf, attend l'OTA. C'est le même partage que
+pour les données et l'interface — et la même conclusion : **privilégier ce qui
+arrive le jour même.**
+
+⚠️ Ne PAS bumper `VERSION_MEDIA` (le `?v=2` de `mediatheque.js`) pour forcer un
+rafraîchissement : il est dans le paquet, donc il attendrait l'OTA — exactement
+ce qu'on cherchait à éviter. Il ne sert qu'aux changements déjà livrés par OTA.
+
+⚠️ Et **ne jamais supprimer** l'ancien fichier en le remplaçant par un nom neuf :
+un paquet figé continue de le réclamer une à deux semaines.
+
 ## 🧭 CE QUE LES 31 OCT – 1ER NOV 2026 ONT APPRIS
 
 Deux jours à confronter l'app à ses sources, fiche par fiche. Chaque règle
