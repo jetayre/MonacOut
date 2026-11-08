@@ -69,6 +69,14 @@ jobs:
         run: node scripts/esap-du-jour.mjs --ecrire
         continue-on-error: true
 
+      # 💻 Les ateliers numériques de la Mairie, lus sur LEUR agenda.
+      # Ils arrivaient par PrinciPocket : sur 17 séances de novembre, l'app en
+      # avait 6, dont 4 à la mauvaise heure. Quand un lieu publie son programme,
+      # c'est lui la source. Le script saute les séances « Complet ».
+      - name: "💻 Ateliers de la Maison du Numérique"
+        run: node scripts/maison-du-numerique.mjs --ecrire
+        continue-on-error: true
+
       - name: "🏛️ Agenda de la Mairie : ce qui manque dans l'app"
         run: node scripts/mairie-agenda.mjs
         continue-on-error: true

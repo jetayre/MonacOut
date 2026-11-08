@@ -844,6 +844,20 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
   },
+  // ✏️ LE STAGE DE DESSIN. Stéphanie, 8 nov 2026 : « image pour atelier dessin ».
+  // ⚠️ LE MOTIF DIT « STAGE DE DESSIN », PAS « DESSIN ». Le mot seul apparaît
+  //    dans 26 fiches : 21 cartes d'ateliers ESAP (dont le programme du jour
+  //    cite le cours de dessin), l'exposition Victor Brauner et un concert
+  //    jeune public. Posé largement, il aurait remplacé la photo de l'ESAP et
+  //    mis des crayons sur une rétrospective de peinture. Il ne vise que les
+  //    3 séances du Comité National Monégasque A.I.A.P. — U.N.E.S.C.O.
+  {
+    avantLeLieu: true,
+    motif: /stage\s+de\s+dessin/i,
+    f: "atelier-dessin.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un cours de dessin d'après nature, carnets ouverts sur une nature morte",
+  },
   // 🧵 LES ATELIERS DE L'ESPACE LAMARTINE. Stéphanie, 8 nov 2026 : « mets cette
   // image pour la fiche atelier Lamartine ».
   // ⚠️ À NE PAS CONFONDRE AVEC LES ATELIERS ESAP, juste en dessous. Les deux
