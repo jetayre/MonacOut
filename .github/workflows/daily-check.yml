@@ -77,6 +77,12 @@ jobs:
         run: node scripts/maison-du-numerique.mjs --ecrire
         continue-on-error: true
 
+      # 🎼 Les chorales de la paroisse Saint-Charles : française le vendredi 20h,
+      # anglaise le dimanche 11h30. Fenêtre glissante de 120 jours.
+      - name: "🎼 Chorales Saint-Charles"
+        run: node scripts/chorales-saint-charles.mjs --ecrire
+        continue-on-error: true
+
       - name: "🏛️ Agenda de la Mairie : ce qui manque dans l'app"
         run: node scripts/mairie-agenda.mjs
         continue-on-error: true
