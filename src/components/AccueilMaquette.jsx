@@ -97,14 +97,26 @@ function Coeur({ actif, onClick, taille = 28 }) {
  * dépliage.
  */
 function BoutonInfo({ onClick, taille = 26 }) {
+  // 🚨 LE CLIC DOIT ÊTRE ARRÊTÉ SUR TOUTE LA ZONE, PAS SEULEMENT SUR LE CERCLE.
+  // Stéphanie, 7 nov 2026 : « quand on clique sur (i) ça n'ouvre pas toujours
+  // pareil ». Le bouton arrêtait bien la propagation, mais il vivait dans un
+  // conteneur qui, lui, ne faisait rien : un appui à deux pixels du cercle
+  // traversait jusqu'à la carte — et la carte d'un annuaire DÉPLIE en dessous
+  // au lieu d'ouvrir la fenêtre. Même geste, deux résultats.
+  // Un cercle dans une boîte carrée laisse toujours quatre coins morts ; ici
+  // ils tombaient sur une autre action.
+  // ⚠️ `onPointerDown` AUTANT QUE `onClick` : sur iPhone c'est le premier qui
+  //    part, et c'est lui qui déclenchait le dépliage avant que le clic arrive.
   return (
-    <button onClick={e => { e.stopPropagation(); onClick?.(); }}
+    <button onPointerDown={e => e.stopPropagation()}
+            onClick={e => { e.stopPropagation(); onClick?.(); }}
             aria-label="Voir le détail"
             style={{
               width: taille, height: taille, borderRadius: "50%", border: "none", cursor: "pointer",
               background: "rgba(255,255,255,0.94)", padding: 0,
               display: "flex", alignItems: "center", justifyContent: "center",
               boxShadow: "0 2px 7px rgba(23,36,60,0.18)",
+              WebkitTapHighlightColor: "transparent",
             }}>
       <svg width={taille * 0.62} height={taille * 0.62} viewBox="0 0 24 24"
            fill="none" stroke={BORDEAU} strokeWidth="2" strokeLinecap="round">
@@ -545,7 +557,12 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
             26 pt et leur écart en prennent 58. 160 pt pour 159 disponibles :
             l'étiquette aurait débordé ou se serait coupée sur la carte la plus
             fréquente de l'app. En bas, le (i) ne gêne personne. */}
-        <div style={{ position: "absolute", bottom: 7, right: 7 }}>
+        {/* La zone autour du cercle bloque elle aussi : c'est elle qui laissait
+            passer les appuis « à côté » vers le dépliage de la carte.
+            `padding: 5` élargit la cible tactile sans grossir le dessin. */}
+        <div onPointerDown={e => e.stopPropagation()}
+             onClick={e => e.stopPropagation()}
+             style={{ position: "absolute", bottom: 2, right: 2, padding: 5 }}>
           <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
         </div>
       </div>
@@ -647,8 +664,14 @@ export function CarteRangee({ event, lang, favorites, onToggleFav, onCardClick, 
             flex: 1, margin: 0, fontFamily: SERIF, fontWeight: 600, fontSize: 15, lineHeight: 1.2, color: NUIT,
             display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
           }}>{casseNaturelle(event.title?.replace(/\n/g, " "))}</h4>
-          <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
-          <Coeur actif={fav} onClick={() => onToggleFav?.(event.id)} taille={26} />
+          {/* Les deux boutons dans une zone qui bloque : l'écart de 8 pt entre
+              eux était du vide qui retombait sur la carte. */}
+          <div onPointerDown={e => e.stopPropagation()}
+               onClick={e => e.stopPropagation()}
+               style={{ display: "inline-flex", gap: 8, flexShrink: 0 }}>
+            <BoutonInfo onClick={() => onCardClick?.(event)} taille={26} />
+            <Coeur actif={fav} onClick={() => onToggleFav?.(event.id)} taille={26} />
+          </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
           {event.time && (
