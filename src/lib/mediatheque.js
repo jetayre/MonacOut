@@ -852,6 +852,24 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
   },
+  // 🌃 LES SOIRÉES CLUBS. Stéphanie, 8 nov 2026 : « pour les soirées clubs mets
+  // la photo des gens qui dansent que je t'ai donnée ».
+  // ⚠️ POURQUOI UN THÈME ET PAS LA SIMPLE AMBIANCE DE CATÉGORIE. Cette photo
+  //    était DÉJÀ dans le lot SOIRÉE / DJ SET depuis ce matin — mais un lot se
+  //    tire au hasard stable entre trois images, et la carte « CETTE NUIT »
+  //    était tombée sur `soiree-club`, la générique. C'est exactement ce qui
+  //    s'était passé avec les wellness bars le 31 octobre : un lot ne garantit
+  //    rien pour UNE fiche donnée. Quand une photo est choisie POUR des fiches,
+  //    elle se nomme ici, pas dans un tirage.
+  // ⚠️ Elle reste aussi dans le lot SOIRÉE / DJ SET : les galas et les DJ sets
+  //    d'ailleurs y gagnent une vraie image de Monaco, port et yachts compris.
+  {
+    avantLeLieu: true,
+    motif: /cette\s+nuit[\s\S]{0,40}clubs?\s+ouvert|soir[ée]e\s+twiga|soir[ée]e\s+sass/i,
+    f: "nightlife-monaco.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Une piste de danse face au port de Monaco, DJ et lumières",
+  },
   // ♟️🏓🧗🤺🎲 SEPT PHOTOS POSÉES D'AVANCE. Stéphanie, 8 nov 2026 : « voici des
   // photos que tu peux utiliser ». Elles viennent de sa liste des jeux et des
   // sports de loisir.
