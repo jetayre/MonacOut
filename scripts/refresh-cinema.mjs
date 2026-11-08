@@ -52,7 +52,22 @@ s = s.split("\n").map((line) => {
     const u = line.match(/until:"([^"]+)"/);
     if (u) {
       const until = new Date(u[1] + "T00:00:00");
-      if (now <= until) return redate(line);
+      // 🚨 UNE FICHE « EN COURS » QUI N'A PAS COMMENCÉ NE SE REDATE PAS.
+      // Le Village de Noël ouvre le 4 décembre et ferme le 3 janvier. Écrit
+      // ongoing + until, il remplissait la seule condition que ce script
+      // connaissait — « la fin est à venir » — et se faisait donc redater sur
+      // AUJOURD'HUI chaque nuit : il s'affichait le 8 novembre, près d'un mois
+      // trop tôt (signalé par Stéphanie, 8 nov 2026). Corriger sa date à la
+      // main n'aurait tenu qu'une nuit.
+      // ➜ `depuis:"AAAA-MM-JJ"` dit quand la chose ouvre. Avant ce jour, on ne
+      //   touche pas à la fiche : elle garde sa vraie date de début et reste
+      //   visible comme un événement à venir, ce qu'elle est.
+      // ⚠️ Champ FACULTATIF : sans lui, le comportement d'avant est conservé —
+      //   une expo déjà ouverte n'a rien à déclarer.
+      const dep = line.match(/depuis:"([^"]+)"/);
+      const debut = dep ? new Date(dep[1] + "T00:00:00") : null;
+      const pasEncoreOuvert = debut && !isNaN(debut) && now < debut;
+      if (now <= until && !pasEncoreOuvert) return redate(line);
     }
   }
   return line;

@@ -777,6 +777,54 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Un DJ au coucher du soleil, sur la plage du Larvotto",
   },
+  // 🎹 LE RÉCITAL DE PIANO À L'AUDITORIUM. Stéphanie, 8 nov 2026 : « mets ça
+  // quand récital piano à Rainier 3 ».
+  // ⚠️ LE MOTIF EXIGE LES DEUX, et c'est tout l'objet de sa forme bizarre : les
+  //    deux regards en avant demandent « récital piano » ET « auditorium
+  //    rainier » n'importe où dans le texte, sans imposer leur ordre. Sept
+  //    fiches portent « RÉCITAL PIANO » ; la septième, András Schiff, se joue
+  //    SALLE GARNIER, et la Salle Garnier a sa propre photo — dorures et
+  //    velours rouge — qu'un piano sur scène nue remplacerait à tort.
+  // ⚠️ L'Auditorium Rainier III n'est toujours PAS au registre des lieux : ses
+  //    45 fiches tombent sur une image de catégorie. Ce thème en couvre 6. Il
+  //    reste à lui donner sa photo, et surtout à ne pas le confondre avec
+  //    l'« Académie de Musique Prince Rainier III », qui est une autre maison.
+  {
+    avantLeLieu: true,
+    motif: /(?=[\s\S]*r[ée]cital\s+piano)(?=[\s\S]*auditorium rainier)/i,
+    f: "recital-piano.webp", w: 1100, h: 619,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un piano à queue ouvert sur la scène d'un auditorium, fauteuils rouges en fond",
+  },
+  // 🎄 LE VILLAGE DE NOËL. Photo fournie par Stéphanie le 8 nov 2026.
+  // ⚠️ DEUX FICHES, ET C'EST VOULU : le Village lui-même (4 déc → 3 jan) et le
+  //    RÉVEILLON du 31 décembre, qui se tient dans ce village. La seconde parle
+  //    surtout de son feu d'artifice, mais c'est bien ce décor-là qu'on y
+  //    trouve, chalets et sapin compris.
+  // ⚠️ Le motif ne touche PAS les fiches « MARCHÉ DE NOËL » de la Place du
+  //    Casino : elles ne portent pas ces mots-là. Deux rendez-vous différents,
+  //    deux endroits différents.
+  {
+    avantLeLieu: true,
+    motif: /village\s+de\s+no[ëe]l/i,
+    f: "village-noel.webp", w: 1100, h: 734,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
+  },
+  // 🏺 LES ATELIERS DE L'ESAP AU PAVILLON BOSIO. Stéphanie, 8 nov 2026 : « pour
+  // atelier Bosio reliure et poterie, image carte principale atelier Bosio ».
+  // ⚠️ UN THÈME ET NON UNE PHOTO DE LIEU : la carte du jour réunit jusqu'à trois
+  //    cours — reliure, céramique, gravure, dessin, peinture — et se tient selon
+  //    les jours au Pavillon Bosio, au Foyer Sainte-Dévote OU à l'Espace
+  //    Lamartine. Une façade de bâtiment en désignerait un seul ; les mains au
+  //    travail les disent tous.
+  {
+    avantLeLieu: true,
+    motif: /ateliers?\s+esap/i,
+    f: "atelier-bosio.webp", w: 1100, h: 733,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un tour de potier et une reliure cousue à la main, sur un établi d'atelier",
+  },
   {
     // 📌 AVANT LA PHOTO DU LIEU, et c'est volontaire. La règle générale dit
     // l'inverse (le Jardin exotique bat la citrouille), mais ces quatre fiches
