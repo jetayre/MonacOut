@@ -79,6 +79,12 @@ jobs:
 
       # 🎼 Les chorales de la paroisse Saint-Charles : française le vendredi 20h,
       # anglaise le dimanche 11h30. Fenêtre glissante de 120 jours.
+      # 💃 Les cours de danse des trois associations monégasques, une fiche par
+      # jour qui se déplie en ses cours. Cours à l'année : chaque fiche le dit.
+      - name: "💃 Cours de danse du jour"
+        run: node scripts/danse-du-jour.mjs --ecrire
+        continue-on-error: true
+
       - name: "🎼 Chorales Saint-Charles"
         run: node scripts/chorales-saint-charles.mjs --ecrire
         continue-on-error: true

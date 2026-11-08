@@ -911,6 +911,30 @@ const THEMES = [
     licence: "Image fournie par Monac'Out", auteur: null,
     alt: "Les chalets illuminés du Village de Noël sur le port, sapin et manège",
   },
+  // 🎼 LE CHANT CHORAL et 💃 LES COURS DE DANSE. Deux affiches fournies par
+  // Stéphanie le 8 nov 2026, pour les fiches créées le même jour.
+  // ⚠️ LEUR TITRE GRAVÉ A ÉTÉ RECADRÉ — cinquième et sixième fois. « CHANT
+  //    CHORAL ADULTES » et « COURS DE DANSE ADULTES » étaient écrits en gros
+  //    dans l'image : un texte gravé répète le titre de la carte et devient
+  //    illisible en vignette. Le badge « Spécial débutants » de la seconde est
+  //    parti avec. Il reste les chanteurs et leur cheffe, les danseurs et leur
+  //    professeure — ce qu'on vient voir.
+  // ⚠️ L'ORIGINAL ARCHIVÉ EST L'AFFICHE ENTIÈRE, bandeau compris : un recadrage
+  //    futur doit pouvoir repartir du document complet, pas de ma découpe.
+  {
+    avantLeLieu: true,
+    motif: /\bchorale\b/i,
+    f: "chant-choral.webp", w: 1100, h: 838,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un chœur d'adultes en répétition, partitions en main, face à leur cheffe",
+  },
+  {
+    avantLeLieu: true,
+    motif: /cours\s+de\s+danse/i,
+    f: "cours-de-danse.webp", w: 1100, h: 660,
+    licence: "Image fournie par Monac'Out", auteur: null,
+    alt: "Un cours de danse pour adultes dans une salle claire, tous niveaux",
+  },
   // 🌃 LES SOIRÉES CLUBS. Stéphanie, 8 nov 2026 : « pour les soirées clubs mets
   // la photo des gens qui dansent que je t'ai donnée ».
   // ⚠️ POURQUOI UN THÈME ET PAS LA SIMPLE AMBIANCE DE CATÉGORIE. Cette photo
