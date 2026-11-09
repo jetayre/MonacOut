@@ -1,17 +1,13 @@
-REPRISE INTÉGRALE PRINCIPOCKET — 2026-11-08
-268 événements lus · 3 importés (3 fiches) · 240 déjà présents
+REPRISE INTÉGRALE PRINCIPOCKET — 2026-11-09
+261 événements lus · 1 importés (1 fiches) · 238 déjà présents
 
 ■ IMPORTÉS
    + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
-   + Picnic Music a big screen concert for your lunch break — Médiathèque Caroline (1 jour(s))
-   + Le pere — Théâtre Princesse Grace (1 jour(s))
 
 ■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main
-   ? 8 nov 2026 · Optimum Rendre les hommes meilleurs
    ? 9 jan 2027 · Les ateliers CycloShow
 
 ■ ✔️ DÉCISIONS DÉJÀ PRISES — laissées de côté sciemment
-   · Monaco International Triathlon — DÉJÀ DANS L'APP (fiche « MONACO INTERNATIONAL TRIATHLON », ven 6 nov, « 6 — 8 nov 2026 », plage du Larvotto). Le rapprochement automatique échoue parce que notre fiche porte une PÉRIODE dans le champ heure et non un horaire, et que le lieu est écrit différemment. Faux positif vérifié le 6 septembre 2026 — ne pas réimporter, ce serait un doublon.
    · Children and Future presents The 27th No Finish Line Monaco 14 22 November 2026 Every step counts — DÉJÀ DANS L'APP (fiche 1000369, sam 14 nov, Chapiteau de Fontvieille). La No Finish Line est une course NON-STOP sur 8 jours : elle n'a pas d'heure de début unique, d'où « En journée ». Ne pas réimporter.
    · THURSDAY LIVE SESSIONS THE SPITFIRES — DÉJÀ DANS L'APP (fiche 4853, mer 13 jan 2027, 18h30, Espace Indigo, Grimaldi Forum). Les Thursday Live Sessions sont GRATUITES sur réservation au +377 9999 3000 : apéro-mix 18h30, concert 20h30. PrinciPocket ne publie pas l'horaire, donc le rapprochement automatique échoue — mais la séance est bien là. Ne pas réimporter.
    · MARINE IN CONCERT — 17 août 2026 — PrinciPocket annonce le 27 février 2027, date FAUSSE. Vérifié sur jds.fr : le concert est le sam 13 février 2027 à 20h30 au Grimaldi Forum. Notre fiche 4741 porte la bonne date ; un doublon créé par le robot sur la fausse date a été supprimé. Ne pas réimporter.
