@@ -4,10 +4,3 @@ Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site off
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
 ✅ Aucun lien mort.
-
-■ INJOIGNABLES POUR LE MOMENT — probablement vivants, à revérifier
-   Soit l'hôte refuse les adresses de centres de données, soit son serveur est en
-   panne ou en maintenance (5xx). Ce n'est PAS une preuve de lien mort : la page
-   n'a pas pu être lue, c'est tout. Si la même adresse revient plusieurs jours de
-   suite, il faut aller voir.
-     · https://lamprontigallery.com/ — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
