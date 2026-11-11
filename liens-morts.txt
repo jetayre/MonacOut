@@ -1,5 +1,5 @@
 LIENS MORTS DES FICHES MonacOut
-Contrôle du 2026-11-10 — 127 liens, 2472 fiches.
+Contrôle du 2026-11-11 — 125 liens, 2455 fiches.
 Un lien mort = « Réserver » ouvre une page vide. À remplacer par le site officiel
 du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
 
@@ -10,4 +10,4 @@ du lieu (jamais un agrégateur, jamais un lien inventé — règle 16).
    panne ou en maintenance (5xx). Ce n'est PAS une preuve de lien mort : la page
    n'a pas pu être lue, c'est tout. Si la même adresse revient plusieurs jours de
    suite, il faut aller voir.
-     · https://en.afce-monaco.org/agenda — ERR_SSL_SSLV3_ALERT_HANDSHAKE_FAILURE — 1 fiche(s)
+     · https://lamprontigallery.com/ — UND_ERR_CONNECT_TIMEOUT — 1 fiche(s)
