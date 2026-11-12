@@ -1995,7 +1995,7 @@
   "vuLe": "2026-09-22",
   "etat": "deja",
   "detail": "Trahisons",
-  "majLe": "2026-11-11"
+  "majLe": "2026-11-12"
  },
  "/en/events/18e4472d1f0b2cd3f8728d6c9fee6162-Pause-ecriture-autour-d-un-roman-animee-par-Christiane-Campredon": {
   "vuLe": "2026-09-22",
@@ -2187,7 +2187,7 @@
   "vuLe": "2026-09-22",
   "etat": "deja",
   "detail": "Le pere",
-  "majLe": "2026-11-11"
+  "majLe": "2026-11-12"
  },
  "/en/events/59334a768c47880780de43f9e1a2cefa-Dans-le-couloir": {
   "vuLe": "2026-09-22",
@@ -2277,7 +2277,7 @@
   "vuLe": "2026-09-22",
   "etat": "deja",
   "detail": "Monaco Dance Forum Scirocco par WINNDance",
-  "majLe": "2026-11-11"
+  "majLe": "2026-11-12"
  },
  "/en/events/c18fd8d1a340c1d2457fb09849a109dd-Monaco-Dance-Forum-Songs-of-the-Bulbul-par-Aakash-Odedra": {
   "vuLe": "2026-09-22",
@@ -2347,7 +2347,7 @@
  },
  "/en/events/75f66a77327cb8d777cbdbd84c47bfbd-La-Megere-apprivoisee": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "La Megere apprivoisee",
   "majLe": "2026-11-12"
  },
@@ -2365,7 +2365,7 @@
  },
  "/en/events/0bbbb19b9309bf8d3f39a326de97002a-La-Megere-apprivoisee": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "La Megere apprivoisee",
   "majLe": "2026-11-12"
  },
@@ -2493,7 +2493,7 @@
   "vuLe": "2026-09-24",
   "etat": "deja",
   "detail": "Jour de fete de Jacques Tati",
-  "majLe": "2026-11-11"
+  "majLe": "2026-11-12"
  },
  "/en/events/c1441c161b4de500ff6d7c30d72033df-L-Homme-au-bras-d-or-d-Otto-Preminger": {
   "vuLe": "2026-09-24",
@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-12"
  },
@@ -2995,13 +2995,13 @@
  },
  "/en/events/f139a15dfffaba6f327adcbaf6d85d60-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Gala de l Academie",
   "majLe": "2026-11-12"
  },
  "/en/events/1d7185b288c693abcddc54dd0dade5c4-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Gala de l Academie",
   "majLe": "2026-11-12"
  },
@@ -3211,7 +3211,7 @@
  },
  "/en/events/a5ec3b921e063376a9313180125db9a9-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-12"
  },
@@ -3223,7 +3223,7 @@
  },
  "/en/events/a69f704cdddc94fbd679fd4ce2f2ff92-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-12"
  },
@@ -3277,8 +3277,326 @@
  },
  "/en/events/c95a6d835d64d05e7d7d49bea0e38527-Grand-Gala-du-Monte-Carlo-Film-Festival-de-la-Comedie": {
   "vuLe": "2026-11-12",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Grand Gala du Monte Carlo Film Festival de la Comedie",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/754ab1f529ece8647e70b4c180abd570-ChatGPT-Discover-the-World-of-Artificial-Intelligence": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/8ec1b4def9246b90a23bde2c8d11b5c7-Unwanted-Calls-Free-Solutions-to-Block-Them": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/5975db71d729b9e7a339d6778a161a09-Concert-Daniel-Lavoie-and-Jean-Philippe-Sylvestre-un-nouveau-souffle-classique": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert Daniel Lavoie and Jean Philippe Sylvestre un nouveau souffle classique",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/af4f0cb5880fdd7df37fbdba596a3e1a-Projection-Philipppe-Favier-Aux-Dechirants-Departs-des-Archipels-Superbes-1983": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "Projection Philipppe Favier Aux Dechirants Departs des Archipels Superbes 1983",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/67cc366d115c65f731462ee26fbe5194-Monday-archives-November-programme-A": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "Monday archives November programme A",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/fa8a32b575b728eaf7e50380e2a0d0b0-Musical-siesta-a-moment-of-relaxation-during-your-lunch-break": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "Musical siesta a moment of relaxation during your lunch break",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/fe399efc12d64d821cb652b3cefffca5-My-name-is-nobody-exhibition-Boris-de-Schloezer-the-archives-of-a-20th-century-thinker-on-the-arts": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "My name is nobody exhibition Boris de Schloezer the archives of a 20th century thinker on the arts",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/f116570d0ef0e2b55c0ef3bb5e9c387f-Apprendre-a-reconnaitre-les-arnaques-en-ligne": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/7162e5ddc1627923038845adec942a88-APPEL-A-CANDIDATURES-Residence-Internationale-d-Artistes": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "APPEL A CANDIDATURES Residence Internationale d Artistes",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/2a05364f641dfd4f044b2a1498db331f-Deposer-sa-demande-de-logement-domanial-en-ligne": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/b438309ec48cea0bd5f740fce6ff9ef0-Unwanted-Calls-Free-Solutions-to-Block-Them": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/3b83e0861ab464d3ea92903cea8d541b-Fete-nationale-au-Marche-de-la-Condamine": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Fete nationale au Marche de la Condamine",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/0b40465844757e39e2844e669d99c2c5-Unwanted-Calls-Free-Solutions-to-Block-Them": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/be0da3e95e24e8b2608104e9f65356e4-Getting-Started-with-a-Mac-Computer-Level-2": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/7c61968b4f856bdc3801c9d4ce9f21fc-Concert-de-polyphonies-corses-Alternatim": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert de polyphonies corses Alternatim",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/2800682f75ef76550556e66d3777a69a-Can-you-tell-AI-everything": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/69774a3a654a55b3e9a440e259d6e91f-Resonance-Festival-2026": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "Resonance Festival 2026",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/f363744340a988776424987e60260def-Comment-faciliter-vos-deplacements-au-quotidien": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/47a76754dee7a3e79e17285aaf91e6ad-Ethical-and-responsible-AI-in-public-Administration": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/b57a7cefc9b38e8aa6935655c60548c3-Can-we-stay-in-control-of-AI": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/132afb2efda31c47ca5ee6f51cd11dd7-Lecture-musicale-Voici-l-homme-Ecce-Homo": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Lecture musicale Voici l homme Ecce Homo",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/cec0e10d8c3d07ab43a7f319b9a7f529-Deposer-sa-demande-de-logement-domanial-en-ligne": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/2d97ee4386b7d819e372643c6870739c-BlaBlaCar-Daily-la-Principaute-finance-vos-covoiturages-quotidiens": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/2df8b8566d19d5353d64e8c894eef279-Responsible-prompting-A-hands-on-workshop-to-set-guardrails-for-everyday-AI": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/0b6397db944ae32bdbde7c7fb72c57ab-Sovereign-AI-What-if-your-data-stayed-in-Monaco": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/0effd9f18b9b7b0ff9ace6ed72867689-Responsible-AI-around-the-world": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/a283918e026c4fb3ce97d469e20c43be-Deposer-sa-demande-de-logement-domanial-en-ligne": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/c3d2daaeade0e27ffe7d5d5d1f36222b-Apply-online-at-MonGuichet-mc": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/c22c7b6213dd200e2a8701bc8c6b5034-Learn-how-to-use-the-Monapass-ticketing-application": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/a8b7721864ca879cf1b7a0322107867e-Les-Cent-Ans-du-Renaudot-autour-d-Armand-Lunel-Premier-Prix-1926-Une-conference-de-Manuel-Carcassonne-Editeur": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Les Cent Ans du Renaudot autour d Armand Lunel Premier Prix 1926 Une conference de Manuel Carcassonne Editeur",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/1ba3573b9c094d6f8462144f20efaf3b-Concert-hommage-a-Marie-Claire-Alain-a-l-occasion-du-centenaire-de-sa-naissance": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert hommage a Marie Claire Alain a l occasion du centenaire de sa naissance",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/d2dfd38544845473700ef995c61be294-Spectacle-Rendez-vous-avec-Serge-Reggiani-Annick-Cisaruk-chant-et-David-Ventucci-accordeon-sous-le-regard-complice-d-Ariane-Ascaride": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Spectacle Rendez vous avec Serge Reggiani Annick Cisaruk chant et David Ventucci accordeon sous le regard complice d Ariane Ascaride",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/02886803e03619620c43fd70502889b2-Learn-how-to-set-up-the-Your-Monaco-application": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/b86ffd9694f89db93c48b37bbb29c734-Digital-technology-and-AI-by-and-for-Inclusion": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/11df0e8d049dae499f4d70247c1ea685-AI-Agent-Workshop": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/97ffc7c6b28061739994fcbab2744d8e-Getting-Started-with-a-Mac-Computer-Level-2": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/9426470aa6c5843e2cf8c6fd2501f052-Concert-Stylus-Phantasticus-un-dialogue-vers-l-inattendu": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert Stylus Phantasticus un dialogue vers l inattendu",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/f9f82f80cfb5c121ffc3aff9cc7fe36a-Soiree-contre-les-violences-faites-aux-femmes-Projection-de-La-maison-des-femmes-2026-de-Melisa-Godet-suivie-d-une-table-ronde": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Soiree contre les violences faites aux femmes Projection de La maison des femmes 2026 de Melisa Godet suivie d une table ronde",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/ec33b1bb5e78c6b27372506ae799c082-Concert-Hear-the-voice-Tears-of-London": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert Hear the voice Tears of London",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/39a1e0c3ca0a97a63571d6cd9b242dbb-Parlons-sciences-Medecine-Conference-Du-laboratoire-au-patient-comment-naissent-les-traitements-de-demain-par-Alain-Piton-ancien-directeur-de-recherches": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Parlons sciences Medecine Conference Du laboratoire au patient comment naissent les traitements de demain par Alain Piton ancien directeur de recherches",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/deccdc4fd76c9bd9b3c12e89f098ad37-Sieste-Musicale-Instant-detente-pendant-la-pause-dejeuner": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Sieste Musicale Instant detente pendant la pause dejeuner",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/ef7c860a0d344d4d1fe0798c6f539b32-Concert-duo-orgue-et-trompette": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "Concert duo orgue et trompette",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/b47902cc3c398b5cab345f65db4bfe80-Women-s-Mental-Health-with-YANA-association": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Women s Mental Health with YANA association",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/d38b77dc520928326e08a48fc66870ca-Samedi-Baleti-Musique-trad-et-danse": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Samedi Baleti Musique trad et danse",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/8c1570254e3678ba6469e4d6770d50ef-Cafe-Musique-Cinema-Venez-partager-vos-coups-de-coeur-musicaux-et-cinematographiques": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Cafe Musique Cinema Venez partager vos coups de coeur musicaux et cinematographiques",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/56d10b8d7e0a689f8a0314cc0537073d-Village-de-Noel-2026-La-Foret-enchantee": {
+  "vuLe": "2026-11-12",
+  "etat": "deja",
+  "detail": "Village de Noel 2026 La Foret enchantee",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/d22417348ca798ab00059f2665e5f8af-Concert-famille-Alice-au-pays-des-merveilles": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert famille Alice au pays des merveilles",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/86ad20c157f642bbbd86a4c2405a1ef4-Concert-Cantata-a-2": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert Cantata a 2",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/bc6698ec4181f9ba7aa45353784cca1f-Cafe-Litteraire-Venez-echanger-sur-vos-coups-de-coeur": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Cafe Litteraire Venez echanger sur vos coups de coeur",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/c958113b54c42ad067f1de13247dffa3-Pause-ecriture-animee-par-Eric-Lafitte": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Pause ecriture animee par Eric Lafitte",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/a0ba395da6a63fefff2928941b69c2d6-Concert-Live-Wild-Roses-Duo-Indie-Folk": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Concert Live Wild Roses Duo Indie Folk",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/ddfd6d1b05170f957e342d1e3dda1e08-Picnic-Music-Un-concert-sur-grand-ecran-pour-accompagner-votre-pause-dejeuner": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Picnic Music Un concert sur grand ecran pour accompagner votre pause dejeuner",
+  "majLe": "2026-11-12"
+ },
+ "/en/events/9c904b4845aafa6c0291e714f08fec46-Atelier-philo-D-ou-vient-le-desir-de-vengeance-pour-les-7-11-ans": {
+  "vuLe": "2026-11-12",
+  "etat": "importe",
+  "detail": "Atelier philo D ou vient le desir de vengeance pour les 7 11 ans",
   "majLe": "2026-11-12"
  }
 }
