@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-13"
  },
@@ -2953,7 +2953,7 @@
  },
  "/en/events/00aeb7734cdf3f4d968119296a0a7194-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-13"
  },
@@ -3211,7 +3211,7 @@
  },
  "/en/events/a5ec3b921e063376a9313180125db9a9-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-13"
  },
@@ -3223,7 +3223,7 @@
  },
  "/en/events/a69f704cdddc94fbd679fd4ce2f2ff92-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-13"
  },
