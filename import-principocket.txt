@@ -1,8 +1,10 @@
 REPRISE INTÉGRALE PRINCIPOCKET — 2026-11-15
-292 événements lus · 2 importés (2 fiches) · 252 déjà présents
+292 événements lus · 4 importés (4 fiches) · 250 déjà présents
 
 ■ IMPORTÉS
    + ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — Crèche de Monaco-Ville (1 jour(s))
+   + Musical Happy Hour — Auditorium Rainier III (1 jour(s))
+   + Benediction des Malades — Eglise Saint-Charles (1 jour(s))
    + Celebration Ordre de Malte Monegasque — Eglise Saint-Charles (1 jour(s))
 
 ■ SANS LIEU EXPLOITABLE — non importés, à compléter à la main
@@ -20,5 +22,5 @@ REPRISE INTÉGRALE PRINCIPOCKET — 2026-11-15
    · Ligue 1 AS MONACO STADE RENNAIS FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800048, « LIGUE 1 AS MONACO STADE RENNAIS FC », Stade Louis II, sam 10 avr 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire du match, donc le rapprochement auto par date échoue — mais le match est bien présent. Un seul match domicile par adversaire et par saison. Ne pas réimporter (doublon).
    · Ligue 1 AS MONACO RC STRASBOURG — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800049, « LIGUE 1 AS MONACO RC STRASBOURG », Stade Louis II, sam 17 avr 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
    · Ligue 1 AS MONACO FC LORIENT — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800051, « LIGUE 1 AS MONACO FC LORIENT », Stade Louis II, sam 1 mai 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
-   · Ligue 1 AS MONACO ESTAC Troyes — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800052, « LIGUE 1 AS MONACO ESTAC TROYES », Stade Louis II, sam 29 mai 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
    · Ligue 1 AS MONACO Paris FC — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800050, « LIGUE 1 AS MONACO PARIS FC », Stade Louis II, dim 16 mai 2027). Match domicile de la saison 2026-2027 (Paris FC promu en Ligue 1). PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).
+   · Ligue 1 AS MONACO ESTAC Troyes — 29 septembre 2026 — DÉJÀ DANS L APP (fiche 800052, « LIGUE 1 AS MONACO ESTAC TROYES », Stade Louis II, sam 29 mai 2027). Date confirmée sur le calendrier officiel asmonaco.com/LFP. PrinciPocket ne publie pas l horaire, le rapprochement auto échoue mais le match est présent. Ne pas réimporter (doublon).

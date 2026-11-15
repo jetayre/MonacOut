@@ -1,18 +1,20 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2415 fiches inspectées le 2026-11-15.
+2427 fiches inspectées le 2026-11-15.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (4)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (6)
    · Mer 18 nov · APPRENDRE A RECONNAITRE LES ARNAQUES EN LIGNE — même lieu et même jour qu'une série de 4 fiches « DEPOSER SA DEMANDE DE LOGEMENT DOMANIAL EN LIGNE » (id 962003)
    · Mer 25 nov · BLABLACAR DAILY LA PRINCIPAUTE FINANCE VOS COVOITURAGES QUOTIDIENS — même lieu et même jour qu'une série de 4 fiches « DEPOSER SA DEMANDE DE LOGEMENT DOMANIAL EN LIGNE » (id 962005)
    · Jeu 26 nov · REALISER UNE DEMARCHE EN LIGNE SUR MONGUICHET MC — même lieu et même jour qu'une série de 4 fiches « DEPOSER SA DEMANDE DE LOGEMENT DOMANIAL EN LIGNE » (id 962012)
-   · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990021)
+   · Mar 1 déc · HAPPY HOUR MUSICAL QUATRE CLARINETTES DE L'OPMC — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 4904)
+   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
+   · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990020)
 
 ■ FICHES SANS CONTENU — la description répète le titre (36)
    · Jeu 19 nov · FETE NATIONALE AU MARCHE DE LA CONDAMINE — description = titre (id 800002)
-   · Ven 20 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Sam 21 nov · VOLLEY BALL EFB JOURNEE 07 ASS SPORTIVE DE MONACO LEVALLOIS … — description = titre (id 800124)
    · Sam 21 nov · VOLLEY BALL 2MA JOURNEE 07 ASS SPORTIVE DE MONACO VOLLEY PRA… — description = titre (id 800088)
+   · Mar 24 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Mar 24 nov · CONCERT DE POLYPHONIES CORSES ALTERNATIM — description = titre (id 800006)
    · Mer 25 nov · LECTURE MUSICALE VOICI L HOMME ECCE HOMO — description = titre (id 800007)
    · Ven 27 nov · CONCERT HOMMAGE A MARIE CLAIRE ALAIN A L OCCASION DU CENTENA… — description = titre (id 800029)
@@ -29,7 +31,7 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Ven 11 déc · CONCERT LIVE WILD ROSES DUO INDIE FOLK — description = titre (id 800077)
    · Mar 15 déc · PICNIC MUSIC UN CONCERT SUR GRAND ECRAN POUR ACCOMPAGNER VOT… — description = titre (id 800078)
    · Sam 19 déc · VOLLEY BALL EFB JOURNEE 10 ASS SPORTIVE DE MONACO ISTRES PRO… — description = titre (id 800130)
-   · Dim 20 déc · BRONIA AND ALTRO CANTO — description = titre (id 800127)
+   · Lun 28 déc · MA BAYADERE — description = titre (id 800071)
    · Sam 9 jan · VOLLEY BALL 2MA JOURNEE 11 ASS SPORTIVE DE MONACO ASUL LYON … — description = titre (id 800131)
    · Mer 27 jan · ATELIER PHILO D OU VIENT LE DESIR DE VENGEANCE POUR LES 7 11… — description = titre (id 800084)
    · Sam 30 jan · VOLLEY BALL EFB JOURNEE 13 ASS SPORTIVE DE MONACO VBC CHALON… — description = titre (id 800135)
