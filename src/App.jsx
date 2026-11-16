@@ -957,6 +957,15 @@ export default function App() {
       showMenu={showMenu}
       setShowMenu={setShowMenu}
       selectedEvent={selectedEvent}
+      // 🚨 LA FICHE QU'ON OUVRE N'AVAIT PAS DE « J'Y VAIS ». Stéphanie, 16 nov
+      // 2026 : « chaque fiche doit avoir j'y vais et l'icône amis ». Le bouton
+      // existait sur la carte du fil et sur les sous-fiches d'annuaire, mais
+      // la fenêtre de détail d'un événement SIMPLE n'en avait aucun — on
+      // pouvait lire la fiche entière sans jamais pouvoir dire qu'on y allait.
+      // On passe le MÊME gestionnaire qu'au fil, pour que la règle du jour
+      // choisi sur une fiche « en cours » s'applique aussi ici.
+      onGoingClick={handleGoingClick}
+      joursParticipation={joursParticipation}
       onClosePopup={() => setSelectedEvent(null)}
       onToggleFav={toggleFav}
       favorites={favorites}

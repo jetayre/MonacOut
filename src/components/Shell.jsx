@@ -85,7 +85,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ onGoingSansCompte, tab, setTab, children, lang = "fr", catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
+export default function Shell({ onGoingSansCompte, onGoingClick, joursParticipation = {}, tab, setTab, children, lang = "fr", catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
   // 🎟️ LA FICHE OUVERTE N'AVAIT AUCUN BOUTON « RÉSERVER ».
   // Stéphanie, 29 oct 2026 : « les liens réserver buguent », « quand je vais
   // voir l'événement ça ne s'affiche pas correctement ». Les cartes du fil en
@@ -362,10 +362,64 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                   marginBottom: 18, textAlign: "left",
                 }}>{lang === "en" ? (selectedEvent.descEn || selectedEvent.desc) : selectedEvent.desc}</div>
 
+                {/* 🙋 « J'Y VAIS » DANS LA FICHE OUVERTE. Stéphanie, 16 nov 2026 :
+                    « chaque fiche doit avoir j'y vais et l'icône amis, pour qu'on
+                    voie qui va à quelle activité ». Le bouton existait sur la carte
+                    du fil et sur chaque sous-fiche d'annuaire — mais la fenêtre de
+                    détail d'un événement SIMPLE n'en avait aucun. On pouvait lire la
+                    fiche entière, voir qui y allait, et n'avoir aucun moyen de s'y
+                    joindre : il fallait refermer et retrouver la carte dans le fil.
+                    ⚠️ Une fiche À ANNUAIRE n'en reçoit pas ici : ses lieux ont déjà
+                       chacun le leur, juste au-dessus. On ne va pas à « 6 musées ». */}
+                {!selectedEvent.directory && onGoingClick && (() => {
+                  const jyVais = (social?.myParticipations || []).includes(selectedEvent.id);
+                  return (
+                    <div style={{ textAlign: "center", marginBottom: 14 }}>
+                      <button
+                        onClick={() => onGoingClick(selectedEvent.id, selectedEvent.date, !!selectedEvent.ongoing)}
+                        aria-pressed={jyVais}
+                        style={{
+                          display: "inline-flex", alignItems: "center", gap: 6,
+                          padding: "9px 22px", cursor: "pointer",
+                          border: `1px solid ${GOLD_FRAME}`, borderRadius: 1,
+                          background: jyVais ? "#FBF2F0" : "none",
+                          fontFamily: "'Josefin Sans', sans-serif",
+                          fontSize: 12, fontWeight: 600, letterSpacing: 1.5,
+                          textTransform: "uppercase", color: jyVais ? GOLD_FRAME : NAVY,
+                        }}
+                      >{jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}</button>
+                    </div>
+                  );
+                })()}
+
                 {/* Amis qui y vont */}
                 {(() => {
                   const going = social?.friendsGoingTo?.(selectedEvent.id) || [];
-                  if (!going.length) return null;
+                  // 👥 L'INDICATEUR RESTE VISIBLE MÊME QUAND PERSONNE N'Y VA.
+                  // Même demande du 16 nov : « l'icône amis » doit être là pour
+                  // qu'on puisse REGARDER qui y va. Un indicateur qui n'apparaît
+                  // qu'une fois quelqu'un inscrit n'apprend rien tant qu'il est
+                  // absent — on ne sait pas s'il n'y a personne ou si la fiche
+                  // ne le dit pas. La silhouette grise répond « personne, pour
+                  // l'instant », comme sur la carte du fil.
+                  if (!going.length) {
+                    if (selectedEvent.directory) return null;
+                    return (
+                      <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+                        <span title={lang === "en" ? "No friends going yet" : "Aucun ami inscrit pour l'instant"}
+                              style={{ display: "inline-flex", alignItems: "center", gap: 7,
+                                       border: "1px solid rgba(15,29,58,0.14)", borderRadius: 20, padding: "6px 13px" }}>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C7C1B4" aria-hidden="true">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                          </svg>
+                          <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+                                         color: "#8A8578", letterSpacing: 0.3 }}>
+                            {lang === "en" ? "No friends going yet" : "Aucun ami pour l'instant"}
+                          </span>
+                        </span>
+                      </div>
+                    );
+                  }
                   const n = going.map(f => f.display_name).filter(Boolean);
                   // 🚨 SUR UNE FICHE « EN COURS », LE PRESENT MENT.
                   // La table participations ne stocke PAS de date : sur une expo ouverte
