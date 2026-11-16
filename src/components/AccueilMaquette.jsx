@@ -60,6 +60,50 @@ const IcHorloge = p => <Ic {...p} d={<><circle cx="12" cy="12" r="9" /><path d="
 const IcCalendrier = p => <Ic {...p} d={<><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></>} />;
 const IcLieu = p => <Ic {...p} d={<><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" /></>} />;
 
+/**
+ * 🙋 « J'Y VAIS » SUR LA CARTE DU FIL.
+ *
+ * Stéphanie, 16 nov 2026 : « mets le j'y vais aussi sur la fiche 1ère ».
+ *
+ * 🚨 IL N'Y EN AVAIT AUCUN DEPUIS LA REFONTE DU 10 OCTOBRE. L'ancien `EventCard`
+ * en portait un ; la refonte a donné au fil ses propres cartes — Hero,
+ * CarteIllustree, CarteRangee — et le bouton n'a pas suivi. `EventCard` est
+ * toujours IMPORTÉ par HomeScreen, mais plus rendu : c'est ce qui m'a trompé
+ * quand j'ai « vérifié » le fil le matin même et annoncé qu'il allait bien.
+ * ➜ Vérifier le composant qui EST RENDU, pas celui qui est importé.
+ *
+ * ⚠️ UNE FICHE À ANNUAIRE EN A UN AUSSI, désormais. La règle du 13 oct disait
+ *    l'inverse — « on ne va pas à 12 adresses » — et elle se défend. Mais
+ *    Stéphanie a demandé le contraire : sur « CINÉMA » ou « CETTE NUIT », dire
+ *    qu'on sort ce soir a un sens en soi, et les lieux gardent le leur. Les
+ *    identifiants ne se croisent pas : la mère répond de `id`, un lieu de
+ *    `id × 1000 + vid`.
+ */
+function BoutonJyVais({ event, lang = "fr", social, onGoingClick, compact = false, surPhoto = false }) {
+  if (!onGoingClick) return null;
+  const jyVais = (social?.myParticipations || []).includes(event.id);
+  return (
+    <button
+      onPointerDown={e => e.stopPropagation()}
+      onClick={e => { e.stopPropagation(); onGoingClick(event.id, event.date, !!event.ongoing); }}
+      aria-pressed={jyVais}
+      style={{
+        display: "inline-flex", alignItems: "center", gap: 4,
+        padding: compact ? "5px 9px" : "7px 13px", cursor: "pointer",
+        // ⚠️ SUR LA PHOTO DU HERO, le bordeaux et le bleu nuit ne se lisent pas.
+        //    La variante `surPhoto` passe en blanc, comme le lien « invite tes
+        //    amis » juste au-dessus, qui avait déjà ce problème.
+        border: `1px solid ${surPhoto ? "rgba(255,255,255,0.75)" : jyVais ? BORDEAU : "rgba(15,29,58,0.18)"}`,
+        borderRadius: RAYON.sm,
+        background: surPhoto ? (jyVais ? "rgba(255,255,255,0.22)" : "rgba(0,0,0,0.22)") : jyVais ? "#FBF2F0" : "transparent",
+        fontFamily: SANS, fontSize: compact ? 9 : 10, fontWeight: 700,
+        letterSpacing: 0.8, textTransform: "uppercase",
+        color: surPhoto ? "#FFFFFF" : jyVais ? BORDEAU : NUIT, whiteSpace: "nowrap", lineHeight: 1,
+      }}
+    >{jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}</button>
+  );
+}
+
 /** Le cœur en pastille blanche, posé sur l'image. */
 function Coeur({ actif, onClick, taille = 28 }) {
   return (
@@ -382,7 +426,7 @@ export function BandeauEditorial({ lang, nbSorties }) {
    Critère n° 3 du brief : « le titre et le CTA sont SUR l'image du hero, pas
    sous un rectangle vide ».
    ══════════════════════════════════════════════════════════════════════════ */
-function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null }) {
+function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, social, onGoingClick }) {
   const fav = favorites?.includes(event.id);
   const lieu = String(event.subtitle || "").trim();
   return (
@@ -443,6 +487,12 @@ function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserv
           </div>
         )}
 
+        {onGoingClick && (
+          <div style={{ marginTop: 11 }}>
+            <BoutonJyVais event={event} lang={lang} social={social} onGoingClick={onGoingClick} surPhoto />
+          </div>
+        )}
+
         <button onClick={e => { e.stopPropagation(); onCardClick?.(event); }} style={{
           marginTop: 13, width: "100%", minHeight: 46,
           background: BORDEAU, color: "#FFFFFF", border: "none",
@@ -463,7 +513,7 @@ function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserv
  * ⚠️ Les points n'apparaissent QUE s'il y a vraiment plusieurs fiches à faire
  * défiler — le brief l'exige (« uniquement si carrousel réel »).
  */
-export function CarrouselHero({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth }) {
+export function CarrouselHero({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth, onGoingClick }) {
   const [actif, setActif] = useState(0);
   const ref = useRef(null);
   // On fait défiler quatre heros : deux vues identiques à la suite donneraient
@@ -489,6 +539,7 @@ export function CarrouselHero({ fiches, lang, favorites, onToggleFav, onCardClic
           }}>
             <Hero event={e} lang={lang} media={medias[i]} favorites={favorites} onToggleFav={onToggleFav}
                   onCardClick={onCardClick} onReserver={onReserver}
+                  social={social} onGoingClick={onGoingClick}
                   inviteCode={inviteCode} onShowAuth={onShowAuth}
                   amis={social && !e.ongoing ? social.friendsGoingTo(e.id) : []} />
           </div>
@@ -529,7 +580,7 @@ export function TitreSection({ titre, onToutVoir, lang }) {
 /* ══════════════════════════════════════════════════════════════════════════
    6 · LA CARTE ILLUSTRÉE — 4:3, deux par rangée (173 pt en largeur 390).
    ══════════════════════════════════════════════════════════════════════════ */
-function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, onInfos = null, infosDepliees = false, nbLieux = 0 }) {
+function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, onInfos = null, infosDepliees = false, nbLieux = 0, social, onGoingClick }) {
   const fav = favorites?.includes(event.id);
   const lieu = String(event.subtitle || "").split("·")[0].trim();
   return (
@@ -606,6 +657,7 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
           ) : (
             <BoutonResa event={event} lang={lang} onReserver={onReserver} compact />
           )}
+          <BoutonJyVais event={event} lang={lang} social={social} onGoingClick={onGoingClick} compact />
         </div>
       </div>
     </div>
@@ -613,7 +665,7 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
 }
 
 /** La grille deux colonnes : gouttière 16, écart 12 → 173 pt par carte. */
-export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth, recents }) {
+export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth, recents, onGoingClick }) {
   if (!fiches?.length) return null;
   // 🔁 Les photos sont résolues POUR TOUTE LA GRILLE, dans l'ordre d'affichage :
   // c'est la seule façon d'éviter deux fois la même vue côte à côte.
@@ -630,6 +682,7 @@ export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCar
                         favorites={favorites} onToggleFav={onToggleFav} onCardClick={onCardClick}
                         onReserver={onReserver} inviteCode={inviteCode} onShowAuth={onShowAuth}
                         onInfos={e._onInfos || null} infosDepliees={!!e._deplie} nbLieux={e._nbLieux || 0}
+                        social={social} onGoingClick={onGoingClick}
                         amis={social && !e.ongoing ? social.friendsGoingTo(e.id) : []} />
       ))}
     </div>
@@ -712,6 +765,7 @@ export function CarteRangee({ event, lang, favorites, onToggleFav, onCardClick, 
         ) : (
           <BoutonResa event={event} lang={lang} onReserver={onReserver} />
         )}
+        <BoutonJyVais event={event} lang={lang} social={social} onGoingClick={onGoingClick} />
       </div>
     </div>
   );

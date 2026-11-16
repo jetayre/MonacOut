@@ -1998,6 +1998,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             onCardClick={onCardClick}
             onReserver={ouvrirReservation}
             social={social}
+            onGoingClick={onGoingClick}
             inviteCode={inviteCode}
             onShowAuth={onShowAuth}
           />
@@ -2023,6 +2024,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 onCardClick={onCardClick}
                 onReserver={ouvrirReservation}
                 social={social}
+                onGoingClick={onGoingClick}
                 inviteCode={inviteCode}
                 onShowAuth={onShowAuth}
               />
@@ -2125,6 +2127,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             onCardClick={onCardClick}
             onReserver={ouvrirReservation}
             social={social}
+            onGoingClick={onGoingClick}
             inviteCode={inviteCode}
             onShowAuth={onShowAuth}
           />
