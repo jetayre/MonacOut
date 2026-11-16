@@ -895,6 +895,15 @@ export default function App() {
   // jour. On retient donc localement LE jour choisi et on n'affiche la coche que là.
   // La base, elle, ne stocke qu'une ligne par événement — c'est ce qui permet aux
   // amies de voir « elle va à Brauner ». Le jour précis reste sur l'appareil.
+  // 🚨 CE GESTIONNAIRE ATTEND UN IDENTIFIANT NUMÉRIQUE, pas une fiche.
+  // Pendant 36 jours (11 oct → 16 nov 2026), les sous-fiches d'annuaire l'ont
+  // appelé avec `{ ...fiche, id }` : la base refusait l'écriture et le bouton
+  // se cochait quand même. Stéphanie : « quand je clique sur j'y vais ça ne
+  // marche pas ». Voir le garde-fou dans useSocial.toggleParticipation.
+  //
+  // Il est aussi passé au Shell depuis le 16 nov, pour que la fiche OUVERTE ait
+  // son « J'y vais » — elle n'en avait aucun — et que la règle du jour choisi
+  // sur une fiche « en cours » s'y applique de la même façon.
   function handleGoingClick(eventId, jour, enCours) {
     // 18 personnes ont touché « J'y vais » depuis juillet, 3 seulement ont une
     // participation enregistrée. Celles qui n'avaient pas de compte tombaient sur
@@ -957,13 +966,6 @@ export default function App() {
       showMenu={showMenu}
       setShowMenu={setShowMenu}
       selectedEvent={selectedEvent}
-      // 🚨 LA FICHE QU'ON OUVRE N'AVAIT PAS DE « J'Y VAIS ». Stéphanie, 16 nov
-      // 2026 : « chaque fiche doit avoir j'y vais et l'icône amis ». Le bouton
-      // existait sur la carte du fil et sur les sous-fiches d'annuaire, mais
-      // la fenêtre de détail d'un événement SIMPLE n'en avait aucun — on
-      // pouvait lire la fiche entière sans jamais pouvoir dire qu'on y allait.
-      // On passe le MÊME gestionnaire qu'au fil, pour que la règle du jour
-      // choisi sur une fiche « en cours » s'applique aussi ici.
       onGoingClick={handleGoingClick}
       joursParticipation={joursParticipation}
       onClosePopup={() => setSelectedEvent(null)}

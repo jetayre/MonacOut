@@ -108,12 +108,25 @@ export function useSocial(userId) {
 
   async function toggleParticipation(eventId) {
     if (!supabase || !userId) return
+    // 🚨 UN IDENTIFIANT, ET RIEN D'AUTRE. Pendant 36 jours, les sous-fiches
+    // d'annuaire ont appelé cette fonction avec un OBJET au lieu d'un nombre :
+    // la base refusait l'écriture, personne ne le voyait, et le bouton se
+    // cochait quand même à l'écran. On refuse désormais à l'entrée, en le
+    // DISANT — un défaut muet se paie en semaines.
+    if (typeof eventId !== "number" || !Number.isFinite(eventId)) {
+      console.error("[MonacOut] toggleParticipation attend un identifiant numérique, reçu :", eventId)
+      return
+    }
     const isGoing = myParticipations.includes(eventId)
     if (isGoing) {
       await supabase.from('participations').delete().eq('user_id', userId).eq('event_id', eventId)
       setMyParticipations(prev => prev.filter(id => id !== eventId))
     } else {
-      await supabase.from('participations').insert({ user_id: userId, event_id: eventId })
+      // ⚠️ ON LIT L'ERREUR. Sans ce test, une écriture refusée laissait quand
+      // même le bouton coché : la personne croyait s'être inscrite, et son
+      // « J'y vais » disparaissait au rechargement suivant, sans explication.
+      const { error } = await supabase.from('participations').insert({ user_id: userId, event_id: eventId })
+      if (error) { console.error("[MonacOut] participation refusée :", error.message); return }
       setMyParticipations(prev => [...prev, eventId])
     }
   }

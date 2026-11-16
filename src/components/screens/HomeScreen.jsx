@@ -1078,7 +1078,17 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
           )}
           {idLieu && (
             <button
-              onClick={() => onGoingClick?.({ ...fiche, id: idLieu })}
+              // 🚨 ON PASSE UN IDENTIFIANT, PAS UNE FICHE. Signalé par Stéphanie
+              // le 16 nov 2026 : « quand je clique sur j'y vais ça ne marche pas ».
+              // Depuis le 11 octobre, cette ligne envoyait `{ ...fiche, id }` —
+              // un OBJET — à `handleGoingClick(eventId, jour, enCours)`, qui
+              // attend un nombre. L'objet filait jusqu'à `toggleParticipation`,
+              // puis jusqu'à une colonne `event_id` entière : l'écriture était
+              // refusée par la base. Et comme l'erreur n'était pas vérifiée,
+              // l'affichage cochait quand même le bouton — il se décochait au
+              // rechargement. Trente-six jours de « J'y vais » perdus sur TOUTES
+              // les sous-fiches : musées, films, terrasses, brunchs, cours.
+              onClick={() => onGoingClick?.(idLieu, fiche.date, !!fiche.ongoing)}
               aria-pressed={jyVais}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 3,
