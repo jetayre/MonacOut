@@ -26,6 +26,7 @@
  *   node scripts/esap-du-jour.mjs --ecrire   → met à jour src/data/events.js
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import { chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
 
 const ECRIRE = process.argv.includes("--ecrire");
 const FICHIER = new URL("../src/data/events.js", import.meta.url);
@@ -120,6 +121,19 @@ const JOURS_FR = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 const MOIS_FR = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"];
 const esc = s => String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, " ").trim();
 
+// 🚨 SANS `vid`, LE « J'Y VAIS » DISPARAÎT. Signalé par Stéphanie le 16 nov
+// 2026 ; ces fiches en étaient privées DEPUIS LE 1ER NOVEMBRE, soit quinze
+// jours, sans que rien ne le dise. Une fiche à annuaire masque son propre
+// « J'y vais » et le descend sur ses sous-fiches ; une sous-fiche ne l'affiche
+// que si elle porte un `vid`, puisque son identifiant vaut
+// `id_fiche × 1000 + vid`. Sans numéro de lieu, le bouton n'est NI sur la mère
+// NI sur les filles.
+// ⚠️ Le registre est APPEND-ONLY : un numéro attribué ne se réattribue jamais.
+// ⚠️ On numérote le COURS, pas la salle : trois cours peuvent se tenir au même
+//    endroit le même jour, et « J'y vais » doit distinguer la reliure de la
+//    céramique.
+const regLieux = chargerRegistreLieux();
+
 const auj = new Date(); auj.setHours(0, 0, 0, 0);
 const lignes = [];
 const fermes = [];
@@ -135,7 +149,7 @@ for (let k = 0; k < HORIZON_JOURS; k++) {
   if (!duJour || !duJour.length) continue;
   nbJours++;
   const sous = duJour.map(c =>
-    `{name:"${esc(c.nom)}",info:"${esc(c.h)}",adr:"${esc(c.lieu)} · Monaco",`
+    `{name:"${esc(c.nom)}",vid:${numeroLieu(regLieux, "ESAP · " + c.nom)},info:"${esc(c.h)}",adr:"${esc(c.lieu)} · Monaco",`
     + `desc:"${esc(c.desc)} Enseignant·e : ${esc(c.prof)}. ${esc(String(c.places))} places. ${esc(RAPPEL)}",`
     + `tel:"${TEL}"}`).join(",");
   const date = `${JOURS_FR[d.getDay()]} ${d.getDate()} ${MOIS_FR[d.getMonth()]}`;
@@ -170,4 +184,5 @@ const ancre = src.indexOf("\n", src.indexOf("const _RAW = ["));
 if (ancre < 0) { console.log("❌ Tableau _RAW introuvable — rien n'est écrit."); process.exit(1); }
 src = src.slice(0, ancre + 1) + (lignes.length ? lignes.join("\n") + "\n" : "") + src.slice(ancre + 1);
 writeFileSync(FICHIER, src);
+ecrireRegistreLieux(regLieux);
 console.log(`\n✓ events.js : ${avant} ancienne(s) fiche(s) remplacée(s) par ${lignes.length}.`);

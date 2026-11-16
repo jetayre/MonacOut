@@ -35,6 +35,7 @@
  *   node scripts/danse-du-jour.mjs --ecrire   → met à jour events.js
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import { chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./lib-lieux.mjs";
 
 const ECRIRE = process.argv.includes("--ecrire");
 const FICHIER = new URL("../src/data/events.js", import.meta.url);
@@ -77,6 +78,18 @@ const COURS = {
 };
 
 const esc = s => String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, " ").trim();
+
+// 🚨 SANS `vid`, LE « J'Y VAIS » DISPARAÎT — défaut signalé par Stéphanie le
+// 16 nov 2026 : « il semble que les icônes j'y vais aient disparu ».
+// Une fiche à annuaire masque son propre « J'y vais » (on ne va pas à « 2 cours »,
+// on en choisit un) et le descend sur ses sous-fiches. Mais une sous-fiche ne
+// l'affiche que si elle porte un `vid` : son identifiant vaut
+// `id_fiche × 1000 + vid`, et sans numéro de lieu il n'y a rien à cocher.
+// Résultat : le bouton n'était NI sur la mère NI sur les filles — il avait
+// purement disparu de ces fiches. Je l'avais oublié en écrivant ce script.
+// ⚠️ Le registre est APPEND-ONLY : un numéro attribué ne se réattribue jamais,
+//    sinon les participations déjà enregistrées glisseraient sur un autre lieu.
+const regLieux = chargerRegistreLieux();
 const auj = new Date(); auj.setHours(0, 0, 0, 0);
 const lignes = [];
 let id = ID0, nbJours = 0;
@@ -87,7 +100,7 @@ for (let k = 0; k < HORIZON; k++) {
   if (!duJour || !duJour.length) continue;
   nbJours++;
   const sous = duJour.map(c =>
-    `{name:"${esc(c.nom)}",info:"${esc(c.h)}",adr:"${esc(c.salle)}",`
+    `{name:"${esc(c.nom)}",vid:${numeroLieu(regLieux, c.salle.split(" · ")[0])},info:"${esc(c.h)}",adr:"${esc(c.salle)}",`
     + `desc:"${esc(c.desc + " " + c.org.nom + ". " + c.org.prix + INSCRIT + (c.org.reserve ? RESERVE : ""))}",`
     + `tel:"${c.org.tel}"}`).join(",");
   const date = `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
@@ -118,4 +131,5 @@ const ancre = src.indexOf("\n", src.indexOf("const _RAW = ["));
 if (ancre < 0) { console.log("❌ Tableau _RAW introuvable."); process.exit(1); }
 src = src.slice(0, ancre + 1) + lignes.join("\n") + "\n" + src.slice(ancre + 1);
 writeFileSync(FICHIER, src);
+ecrireRegistreLieux(regLieux);
 console.log(`\n✓ events.js : ${avant} ancienne(s) fiche(s) remplacée(s) par ${lignes.length}.`);

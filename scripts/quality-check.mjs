@@ -110,6 +110,27 @@ for (const [cle, groupe] of parTitre) {
   //    lettres par celui qui a saisi la fiche. C'est volontairement étroit —
   //    mieux vaut rater un cas que crier sur des fiches justes, une alarme qui
   //    sonne pour rien finit par ne plus être lue.
+  // ── 1 quater. UNE SOUS-FICHE SANS `vid` N'A PAS DE « J'Y VAIS ».
+  //    Stéphanie, 16 nov 2026 : « il semble que les icônes j'y vais aient
+  //    disparu ». Elles avaient disparu pour de bon sur deux familles.
+  //    Le mécanisme : une fiche à annuaire MASQUE son propre « J'y vais » —
+  //    on ne va pas à « 2 cours », on en choisit un — et le descend sur ses
+  //    sous-fiches. Mais une sous-fiche ne l'affiche que si elle porte un
+  //    `vid` : son identifiant vaut `id_fiche × 1000 + vid`. Sans numéro de
+  //    lieu, le bouton n'est NI sur la mère NI sur les filles.
+  //    Les ateliers ESAP en étaient privés depuis le 1er novembre — QUINZE
+  //    JOURS — et les cours de danse depuis leur création la veille. Rien ne
+  //    l'avait signalé : nos contrôles cherchent des fiches fausses, pas des
+  //    BOUTONS absents.
+  // ⚠️ `recap` n'exempte PAS de ce contrôle : une fiche récapitulative est
+  //    justement celle qui délègue son « J'y vais » à ses sous-fiches.
+  if (Array.isArray(e.directory) && e.directory.length) {
+    const sans = e.directory.filter(l => !(l && l.vid > 0)).length;
+    if (sans) {
+      pb.invisible.push(`${e.date} · ${titre(e)} — ${sans}/${e.directory.length} sous-fiche(s) SANS vid : le « J'y vais » n'apparaît ni sur la fiche ni sur ses sous-fiches (id ${e.id})`);
+    }
+  }
+
   if (e.ongoing && e.until && !e.depuis) {
     const MOISL = { janvier:0, "février":1, mars:2, avril:3, mai:4, juin:5, juillet:6,
                     "août":7, septembre:8, octobre:9, novembre:10, "décembre":11 };
