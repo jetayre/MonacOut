@@ -10,10 +10,14 @@
  */
 
 import { chromium } from 'playwright';
+import { chargerRegistreLieux, ecrireRegistreLieux, numeroLieu } from "./scripts/lib-lieux.mjs";
 import { readFileSync, writeFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+
+// Registre partagé des lieux : append-only, un numéro attribué ne se réattribue jamais.
+const regLieux = chargerRegistreLieux();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVENTS_FILE = join(__dirname, 'src/data/events.js');
@@ -519,7 +523,14 @@ async function main() {
           (f.genre    ? `,genre:"${echapper(f.genre)}"`                 : '') +
           (typeof f.rt === 'number' ? `,rt:${f.rt}` : '') +
           (resa ? `,resa:"${echapper(resa)}"` : '');
-        lignes.push(`{name:"${echapper(titre)}",info:"${echapper(heures.join(' · '))}"${sup}}`);
+        // 🚨 SANS `vid`, PAS DE « J'Y VAIS » — ni sur la carte cinéma ni sur ses
+        // films. Signalé par Stéphanie le 16 nov 2026. Une fiche à annuaire
+        // masque son propre bouton et le descend sur ses sous-fiches ; une
+        // sous-fiche ne l'affiche que si elle porte un `vid`, son identifiant
+        // valant `id_fiche × 1000 + vid`.
+        // ⚠️ ON NUMÉROTE LE FILM, PAS LA SALLE : les six films sont dans la MÊME
+        //    salle, et « J'y vais » doit distinguer celui qu'on va voir.
+        lignes.push(`{name:"${echapper(titre)}",vid:${numeroLieu(regLieux, 'FILM · ' + titre)},info:"${echapper(heures.join(' · '))}"${sup}}`);
       }
       return lignes.length ? `,directory:[${lignes.join(',')}]` : '';
     };
@@ -604,6 +615,7 @@ async function main() {
     }
   }
 
+  ecrireRegistreLieux(regLieux);
   console.log('\n  Terminé.');
 }
 
