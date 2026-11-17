@@ -1,6 +1,6 @@
 # MONAC'OUT — LE CODE DE L'APPLICATION
 
-**16 novembre 2026.** 42 fichiers, 617 Ko.
+**17 novembre 2026.** 42 fichiers, 627 Ko.
 Chaque fichier est reproduit **intégralement et tel quel** : rien n'est coupé,
 résumé ni reformaté.
 
@@ -22,14 +22,14 @@ résumé ni reformaté.
 | `vite.config.js` | 1.7 Ko |
 | `capacitor.config.json` | 0.6 Ko |
 | `src/App.css` | 0.0 Ko |
-| `src/App.jsx` | 72.7 Ko |
-| `src/components/AccueilMaquette.jsx` | 41.7 Ko |
+| `src/App.jsx` | 73.4 Ko |
+| `src/components/AccueilMaquette.jsx` | 44.7 Ko |
 | `src/components/BandeauWeb.jsx` | 6.8 Ko |
 | `src/components/CalendarPicker.jsx` | 9.1 Ko |
 | `src/components/EventCard.jsx` | 51.6 Ko |
 | `src/components/MonacOutLogo.jsx` | 2.0 Ko |
 | `src/components/SectionTitle.jsx` | 0.7 Ko |
-| `src/components/Shell.jsx` | 37.6 Ko |
+| `src/components/Shell.jsx` | 41.5 Ko |
 | `src/components/VueReservation.jsx` | 4.8 Ko |
 | `src/components/screens/AdminScreen.jsx` | 10.2 Ko |
 | `src/components/screens/AgendaScreen.jsx` | 7.9 Ko |
@@ -37,13 +37,13 @@ résumé ni reformaté.
 | `src/components/screens/DetailScreen.jsx` | 13.2 Ko |
 | `src/components/screens/FavoritesScreen.jsx` | 6.2 Ko |
 | `src/components/screens/FriendsScreen.jsx` | 23.4 Ko |
-| `src/components/screens/HomeScreen.jsx` | 120.2 Ko |
+| `src/components/screens/HomeScreen.jsx` | 121.1 Ko |
 | `src/components/screens/MapScreen.jsx` | 9.2 Ko |
 | `src/components/screens/ProfileScreen.jsx` | 9.0 Ko |
 | `src/components/screens/WelcomeScreen.jsx` | 3.2 Ko |
 | `src/data/liveEvents.js` | 4.8 Ko |
 | `src/hooks/useAuth.js` | 6.2 Ko |
-| `src/hooks/useSocial.js` | 10.1 Ko |
+| `src/hooks/useSocial.js` | 11.0 Ko |
 | `src/i18n.js` | 13.8 Ko |
 | `src/index.css` | 1.0 Ko |
 | `src/lib/avatar.js` | 5.0 Ko |
@@ -1178,6 +1178,15 @@ export default function App() {
   // jour. On retient donc localement LE jour choisi et on n'affiche la coche que là.
   // La base, elle, ne stocke qu'une ligne par événement — c'est ce qui permet aux
   // amies de voir « elle va à Brauner ». Le jour précis reste sur l'appareil.
+  // 🚨 CE GESTIONNAIRE ATTEND UN IDENTIFIANT NUMÉRIQUE, pas une fiche.
+  // Pendant 36 jours (11 oct → 16 nov 2026), les sous-fiches d'annuaire l'ont
+  // appelé avec `{ ...fiche, id }` : la base refusait l'écriture et le bouton
+  // se cochait quand même. Stéphanie : « quand je clique sur j'y vais ça ne
+  // marche pas ». Voir le garde-fou dans useSocial.toggleParticipation.
+  //
+  // Il est aussi passé au Shell depuis le 16 nov, pour que la fiche OUVERTE ait
+  // son « J'y vais » — elle n'en avait aucun — et que la règle du jour choisi
+  // sur une fiche « en cours » s'y applique de la même façon.
   function handleGoingClick(eventId, jour, enCours) {
     // 18 personnes ont touché « J'y vais » depuis juillet, 3 seulement ont une
     // participation enregistrée. Celles qui n'avaient pas de compte tombaient sur
@@ -1240,6 +1249,8 @@ export default function App() {
       showMenu={showMenu}
       setShowMenu={setShowMenu}
       selectedEvent={selectedEvent}
+      onGoingClick={handleGoingClick}
+      joursParticipation={joursParticipation}
       onClosePopup={() => setSelectedEvent(null)}
       onToggleFav={toggleFav}
       favorites={favorites}
@@ -1638,6 +1649,50 @@ const IcHorloge = p => <Ic {...p} d={<><circle cx="12" cy="12" r="9" /><path d="
 const IcCalendrier = p => <Ic {...p} d={<><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></>} />;
 const IcLieu = p => <Ic {...p} d={<><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" /></>} />;
 
+/**
+ * 🙋 « J'Y VAIS » SUR LA CARTE DU FIL.
+ *
+ * Stéphanie, 16 nov 2026 : « mets le j'y vais aussi sur la fiche 1ère ».
+ *
+ * 🚨 IL N'Y EN AVAIT AUCUN DEPUIS LA REFONTE DU 10 OCTOBRE. L'ancien `EventCard`
+ * en portait un ; la refonte a donné au fil ses propres cartes — Hero,
+ * CarteIllustree, CarteRangee — et le bouton n'a pas suivi. `EventCard` est
+ * toujours IMPORTÉ par HomeScreen, mais plus rendu : c'est ce qui m'a trompé
+ * quand j'ai « vérifié » le fil le matin même et annoncé qu'il allait bien.
+ * ➜ Vérifier le composant qui EST RENDU, pas celui qui est importé.
+ *
+ * ⚠️ UNE FICHE À ANNUAIRE EN A UN AUSSI, désormais. La règle du 13 oct disait
+ *    l'inverse — « on ne va pas à 12 adresses » — et elle se défend. Mais
+ *    Stéphanie a demandé le contraire : sur « CINÉMA » ou « CETTE NUIT », dire
+ *    qu'on sort ce soir a un sens en soi, et les lieux gardent le leur. Les
+ *    identifiants ne se croisent pas : la mère répond de `id`, un lieu de
+ *    `id × 1000 + vid`.
+ */
+function BoutonJyVais({ event, lang = "fr", social, onGoingClick, compact = false, surPhoto = false }) {
+  if (!onGoingClick) return null;
+  const jyVais = (social?.myParticipations || []).includes(event.id);
+  return (
+    <button
+      onPointerDown={e => e.stopPropagation()}
+      onClick={e => { e.stopPropagation(); onGoingClick(event.id, event.date, !!event.ongoing); }}
+      aria-pressed={jyVais}
+      style={{
+        display: "inline-flex", alignItems: "center", gap: 4,
+        padding: compact ? "5px 9px" : "7px 13px", cursor: "pointer",
+        // ⚠️ SUR LA PHOTO DU HERO, le bordeaux et le bleu nuit ne se lisent pas.
+        //    La variante `surPhoto` passe en blanc, comme le lien « invite tes
+        //    amis » juste au-dessus, qui avait déjà ce problème.
+        border: `1px solid ${surPhoto ? "rgba(255,255,255,0.75)" : jyVais ? BORDEAU : "rgba(15,29,58,0.18)"}`,
+        borderRadius: RAYON.sm,
+        background: surPhoto ? (jyVais ? "rgba(255,255,255,0.22)" : "rgba(0,0,0,0.22)") : jyVais ? "#FBF2F0" : "transparent",
+        fontFamily: SANS, fontSize: compact ? 9 : 10, fontWeight: 700,
+        letterSpacing: 0.8, textTransform: "uppercase",
+        color: surPhoto ? "#FFFFFF" : jyVais ? BORDEAU : NUIT, whiteSpace: "nowrap", lineHeight: 1,
+      }}
+    >{jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}</button>
+  );
+}
+
 /** Le cœur en pastille blanche, posé sur l'image. */
 function Coeur({ actif, onClick, taille = 28 }) {
   return (
@@ -1960,7 +2015,7 @@ export function BandeauEditorial({ lang, nbSorties }) {
    Critère n° 3 du brief : « le titre et le CTA sont SUR l'image du hero, pas
    sous un rectangle vide ».
    ══════════════════════════════════════════════════════════════════════════ */
-function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null }) {
+function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, social, onGoingClick }) {
   const fav = favorites?.includes(event.id);
   const lieu = String(event.subtitle || "").trim();
   return (
@@ -2021,6 +2076,12 @@ function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserv
           </div>
         )}
 
+        {onGoingClick && (
+          <div style={{ marginTop: 11 }}>
+            <BoutonJyVais event={event} lang={lang} social={social} onGoingClick={onGoingClick} surPhoto />
+          </div>
+        )}
+
         <button onClick={e => { e.stopPropagation(); onCardClick?.(event); }} style={{
           marginTop: 13, width: "100%", minHeight: 46,
           background: BORDEAU, color: "#FFFFFF", border: "none",
@@ -2041,7 +2102,7 @@ function Hero({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserv
  * ⚠️ Les points n'apparaissent QUE s'il y a vraiment plusieurs fiches à faire
  * défiler — le brief l'exige (« uniquement si carrousel réel »).
  */
-export function CarrouselHero({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth }) {
+export function CarrouselHero({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth, onGoingClick }) {
   const [actif, setActif] = useState(0);
   const ref = useRef(null);
   // On fait défiler quatre heros : deux vues identiques à la suite donneraient
@@ -2067,6 +2128,7 @@ export function CarrouselHero({ fiches, lang, favorites, onToggleFav, onCardClic
           }}>
             <Hero event={e} lang={lang} media={medias[i]} favorites={favorites} onToggleFav={onToggleFav}
                   onCardClick={onCardClick} onReserver={onReserver}
+                  social={social} onGoingClick={onGoingClick}
                   inviteCode={inviteCode} onShowAuth={onShowAuth}
                   amis={social && !e.ongoing ? social.friendsGoingTo(e.id) : []} />
           </div>
@@ -2107,7 +2169,7 @@ export function TitreSection({ titre, onToutVoir, lang }) {
 /* ══════════════════════════════════════════════════════════════════════════
    6 · LA CARTE ILLUSTRÉE — 4:3, deux par rangée (173 pt en largeur 390).
    ══════════════════════════════════════════════════════════════════════════ */
-function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, onInfos = null, infosDepliees = false, nbLieux = 0 }) {
+function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis, onReserver, inviteCode, onShowAuth, media = null, onInfos = null, infosDepliees = false, nbLieux = 0, social, onGoingClick }) {
   const fav = favorites?.includes(event.id);
   const lieu = String(event.subtitle || "").split("·")[0].trim();
   return (
@@ -2184,6 +2246,7 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
           ) : (
             <BoutonResa event={event} lang={lang} onReserver={onReserver} compact />
           )}
+          <BoutonJyVais event={event} lang={lang} social={social} onGoingClick={onGoingClick} compact />
         </div>
       </div>
     </div>
@@ -2191,7 +2254,7 @@ function CarteIllustree({ event, lang, favorites, onToggleFav, onCardClick, amis
 }
 
 /** La grille deux colonnes : gouttière 16, écart 12 → 173 pt par carte. */
-export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth, recents }) {
+export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCardClick, social, onReserver, inviteCode, onShowAuth, recents, onGoingClick }) {
   if (!fiches?.length) return null;
   // 🔁 Les photos sont résolues POUR TOUTE LA GRILLE, dans l'ordre d'affichage :
   // c'est la seule façon d'éviter deux fois la même vue côte à côte.
@@ -2208,6 +2271,7 @@ export function GrilleDeuxColonnes({ fiches, lang, favorites, onToggleFav, onCar
                         favorites={favorites} onToggleFav={onToggleFav} onCardClick={onCardClick}
                         onReserver={onReserver} inviteCode={inviteCode} onShowAuth={onShowAuth}
                         onInfos={e._onInfos || null} infosDepliees={!!e._deplie} nbLieux={e._nbLieux || 0}
+                        social={social} onGoingClick={onGoingClick}
                         amis={social && !e.ongoing ? social.friendsGoingTo(e.id) : []} />
       ))}
     </div>
@@ -2290,6 +2354,7 @@ export function CarteRangee({ event, lang, favorites, onToggleFav, onCardClick, 
         ) : (
           <BoutonResa event={event} lang={lang} onReserver={onReserver} />
         )}
+        <BoutonJyVais event={event} lang={lang} social={social} onGoingClick={onGoingClick} />
       </div>
     </div>
   );
@@ -3664,7 +3729,7 @@ function HeartIcon({ color, active }) {
   );
 }
 
-export default function Shell({ onGoingSansCompte, tab, setTab, children, lang = "fr", catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
+export default function Shell({ onGoingSansCompte, onGoingClick, joursParticipation = {}, tab, setTab, children, lang = "fr", catFilters = [], onCatFilter, onClearFilters, showMenu, setShowMenu, selectedEvent, onClosePopup, onToggleFav, favorites = [], adminOverlay = null, contactEmail = "contact@monacout.com", auth, social, onShowAuth, pendingCount = 0 }) {
   // 🎟️ LA FICHE OUVERTE N'AVAIT AUCUN BOUTON « RÉSERVER ».
   // Stéphanie, 29 oct 2026 : « les liens réserver buguent », « quand je vais
   // voir l'événement ça ne s'affiche pas correctement ». Les cartes du fil en
@@ -3941,10 +4006,64 @@ export default function Shell({ onGoingSansCompte, tab, setTab, children, lang =
                   marginBottom: 18, textAlign: "left",
                 }}>{lang === "en" ? (selectedEvent.descEn || selectedEvent.desc) : selectedEvent.desc}</div>
 
+                {/* 🙋 « J'Y VAIS » DANS LA FICHE OUVERTE. Stéphanie, 16 nov 2026 :
+                    « chaque fiche doit avoir j'y vais et l'icône amis, pour qu'on
+                    voie qui va à quelle activité ». Le bouton existait sur la carte
+                    du fil et sur chaque sous-fiche d'annuaire — mais la fenêtre de
+                    détail d'un événement SIMPLE n'en avait aucun. On pouvait lire la
+                    fiche entière, voir qui y allait, et n'avoir aucun moyen de s'y
+                    joindre : il fallait refermer et retrouver la carte dans le fil.
+                    ⚠️ Une fiche À ANNUAIRE n'en reçoit pas ici : ses lieux ont déjà
+                       chacun le leur, juste au-dessus. On ne va pas à « 6 musées ». */}
+                {!selectedEvent.directory && onGoingClick && (() => {
+                  const jyVais = (social?.myParticipations || []).includes(selectedEvent.id);
+                  return (
+                    <div style={{ textAlign: "center", marginBottom: 14 }}>
+                      <button
+                        onClick={() => onGoingClick(selectedEvent.id, selectedEvent.date, !!selectedEvent.ongoing)}
+                        aria-pressed={jyVais}
+                        style={{
+                          display: "inline-flex", alignItems: "center", gap: 6,
+                          padding: "9px 22px", cursor: "pointer",
+                          border: `1px solid ${GOLD_FRAME}`, borderRadius: 1,
+                          background: jyVais ? "#FBF2F0" : "none",
+                          fontFamily: "'Josefin Sans', sans-serif",
+                          fontSize: 12, fontWeight: 600, letterSpacing: 1.5,
+                          textTransform: "uppercase", color: jyVais ? GOLD_FRAME : NAVY,
+                        }}
+                      >{jyVais ? "✓ " : ""}{lang === "en" ? "Going" : "J'y vais"}</button>
+                    </div>
+                  );
+                })()}
+
                 {/* Amis qui y vont */}
                 {(() => {
                   const going = social?.friendsGoingTo?.(selectedEvent.id) || [];
-                  if (!going.length) return null;
+                  // 👥 L'INDICATEUR RESTE VISIBLE MÊME QUAND PERSONNE N'Y VA.
+                  // Même demande du 16 nov : « l'icône amis » doit être là pour
+                  // qu'on puisse REGARDER qui y va. Un indicateur qui n'apparaît
+                  // qu'une fois quelqu'un inscrit n'apprend rien tant qu'il est
+                  // absent — on ne sait pas s'il n'y a personne ou si la fiche
+                  // ne le dit pas. La silhouette grise répond « personne, pour
+                  // l'instant », comme sur la carte du fil.
+                  if (!going.length) {
+                    if (selectedEvent.directory) return null;
+                    return (
+                      <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+                        <span title={lang === "en" ? "No friends going yet" : "Aucun ami inscrit pour l'instant"}
+                              style={{ display: "inline-flex", alignItems: "center", gap: 7,
+                                       border: "1px solid rgba(15,29,58,0.14)", borderRadius: 20, padding: "6px 13px" }}>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C7C1B4" aria-hidden="true">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                          </svg>
+                          <span style={{ fontFamily: "'Josefin Sans', sans-serif", fontSize: 11, fontWeight: 600,
+                                         color: "#8A8578", letterSpacing: 0.3 }}>
+                            {lang === "en" ? "No friends going yet" : "Aucun ami pour l'instant"}
+                          </span>
+                        </span>
+                      </div>
+                    );
+                  }
                   const n = going.map(f => f.display_name).filter(Boolean);
                   // 🚨 SUR UNE FICHE « EN COURS », LE PRESENT MENT.
                   // La table participations ne stocke PAS de date : sur une expo ouverte
@@ -7232,7 +7351,17 @@ export function CarteLieu({ lieu, fiche, lang, social, loggedIn, onGoingClick, o
           )}
           {idLieu && (
             <button
-              onClick={() => onGoingClick?.({ ...fiche, id: idLieu })}
+              // 🚨 ON PASSE UN IDENTIFIANT, PAS UNE FICHE. Signalé par Stéphanie
+              // le 16 nov 2026 : « quand je clique sur j'y vais ça ne marche pas ».
+              // Depuis le 11 octobre, cette ligne envoyait `{ ...fiche, id }` —
+              // un OBJET — à `handleGoingClick(eventId, jour, enCours)`, qui
+              // attend un nombre. L'objet filait jusqu'à `toggleParticipation`,
+              // puis jusqu'à une colonne `event_id` entière : l'écriture était
+              // refusée par la base. Et comme l'erreur n'était pas vérifiée,
+              // l'affichage cochait quand même le bouton — il se décochait au
+              // rechargement. Trente-six jours de « J'y vais » perdus sur TOUTES
+              // les sous-fiches : musées, films, terrasses, brunchs, cours.
+              onClick={() => onGoingClick?.(idLieu, fiche.date, !!fiche.ongoing)}
               aria-pressed={jyVais}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 3,
@@ -8142,6 +8271,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             onCardClick={onCardClick}
             onReserver={ouvrirReservation}
             social={social}
+            onGoingClick={onGoingClick}
             inviteCode={inviteCode}
             onShowAuth={onShowAuth}
           />
@@ -8167,6 +8297,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
                 onCardClick={onCardClick}
                 onReserver={ouvrirReservation}
                 social={social}
+                onGoingClick={onGoingClick}
                 inviteCode={inviteCode}
                 onShowAuth={onShowAuth}
               />
@@ -8269,6 +8400,7 @@ export default function HomeScreen({ favorites = [], onToggleFav, onCategoryClic
             onCardClick={onCardClick}
             onReserver={ouvrirReservation}
             social={social}
+            onGoingClick={onGoingClick}
             inviteCode={inviteCode}
             onShowAuth={onShowAuth}
           />
@@ -9378,12 +9510,25 @@ export function useSocial(userId) {
 
   async function toggleParticipation(eventId) {
     if (!supabase || !userId) return
+    // 🚨 UN IDENTIFIANT, ET RIEN D'AUTRE. Pendant 36 jours, les sous-fiches
+    // d'annuaire ont appelé cette fonction avec un OBJET au lieu d'un nombre :
+    // la base refusait l'écriture, personne ne le voyait, et le bouton se
+    // cochait quand même à l'écran. On refuse désormais à l'entrée, en le
+    // DISANT — un défaut muet se paie en semaines.
+    if (typeof eventId !== "number" || !Number.isFinite(eventId)) {
+      console.error("[MonacOut] toggleParticipation attend un identifiant numérique, reçu :", eventId)
+      return
+    }
     const isGoing = myParticipations.includes(eventId)
     if (isGoing) {
       await supabase.from('participations').delete().eq('user_id', userId).eq('event_id', eventId)
       setMyParticipations(prev => prev.filter(id => id !== eventId))
     } else {
-      await supabase.from('participations').insert({ user_id: userId, event_id: eventId })
+      // ⚠️ ON LIT L'ERREUR. Sans ce test, une écriture refusée laissait quand
+      // même le bouton coché : la personne croyait s'être inscrite, et son
+      // « J'y vais » disparaissait au rechargement suivant, sans explication.
+      const { error } = await supabase.from('participations').insert({ user_id: userId, event_id: eventId })
+      if (error) { console.error("[MonacOut] participation refusée :", error.message); return }
       setMyParticipations(prev => [...prev, eventId])
     }
   }
