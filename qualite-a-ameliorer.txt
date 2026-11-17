@@ -2,19 +2,18 @@ CONTRÔLE DE QUALITÉ DES FICHES MonacOut
 2413 fiches inspectées le 2026-11-17.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
-■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (3)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 800004)
-   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
+■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (1)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990019)
 
 ■ FICHES SANS CONTENU — la description répète le titre (36)
    · Jeu 19 nov · FETE NATIONALE AU MARCHE DE LA CONDAMINE — description = titre (id 800002)
-   · Ven 20 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Sam 21 nov · VOLLEY BALL EFB JOURNEE 07 ASS SPORTIVE DE MONACO LEVALLOIS … — description = titre (id 800124)
    · Sam 21 nov · VOLLEY BALL 2MA JOURNEE 07 ASS SPORTIVE DE MONACO VOLLEY PRA… — description = titre (id 800088)
+   · Mar 24 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Mar 24 nov · CONCERT DE POLYPHONIES CORSES ALTERNATIM — description = titre (id 800006)
    · Mer 25 nov · LECTURE MUSICALE VOICI L HOMME ECCE HOMO — description = titre (id 800007)
    · Ven 27 nov · CONCERT HOMMAGE A MARIE CLAIRE ALAIN A L OCCASION DU CENTENA… — description = titre (id 800029)
+   · Mar 1 déc · MUSICAL HAPPY HOUR — description = titre (id 800004)
    · Mar 1 déc · CONCERT STYLUS PHANTASTICUS UN DIALOGUE VERS L INATTENDU — description = titre (id 800039)
    · Mer 2 déc · CONCERT HEAR THE VOICE TEARS OF LONDON — description = titre (id 800057)
    · Jeu 3 déc · WOMEN S MENTAL HEALTH WITH YANA ASSOCIATION — description = titre (id 800064)
@@ -23,7 +22,6 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 5 déc · VOLLEY BALL EFB JOURNEE 09 ASS SPORTIVE DE MONACO RACING CLU… — description = titre (id 800377)
    · Dim 6 déc · VOLLEY BALL 2MA JOURNEE 09 ASS SPORTIVE DE MONACO AGDE VOLLE… — description = titre (id 800378)
    · Mer 9 déc · CONCERT FAMILLE ALICE AU PAYS DES MERVEILLES — description = titre (id 800072)
-   · Mer 9 déc · MUSICAL HAPPY HOUR — description = titre (id 800004)
    · Jeu 10 déc · CONCERT CANTATA A 2 — description = titre (id 800073)
    · Ven 11 déc · PAUSE ECRITURE ANIMEE PAR ERIC LAFITTE — description = titre (id 800075)
    · Ven 11 déc · CONCERT LIVE WILD ROSES DUO INDIE FOLK — description = titre (id 800077)
