@@ -387,7 +387,6 @@ const _RAW = [
   // ── ATELIERS — mois manquants 2026 ───────────────────────────
 
   // ── OPÉRA & MUSICAL — saison lyrique 2026-2027 ───────────────
-  {id:238,cat:"OPÉRA",date:"Dim 6 déc",time:"20h00",title:"DON\nGIOVANNI\nMOZART",subtitle:"Salle Garnier · Opéra de Monaco",desc:"Don Giovanni de Mozart mis en scène avec audace et élégance à la Salle Garnier. L'un des plus grands opéras du répertoire, revisité pour la saison 2026-2027.",descEn:"Mozart's Don Giovanni staged with boldness and elegance at the Salle Garnier. One of the greatest operas in the repertoire, reimagined for the 2026–2027 season.",free:false,hot:true,fallback:"linear-gradient(150deg,#682828,#884848,#481818)",accent:"#F0C0C0",emoji:"🎭",link:"https://opmc.mc/en/opera/",source:"Opéra de Monte-Carlo",phone:"+377 9815 8828",quarter:"Monte-Carlo"},
 
   // ── BIEN-ÊTRE — automne-hiver 2026 ───────────────────────────
 
