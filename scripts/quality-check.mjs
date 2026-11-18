@@ -196,6 +196,40 @@ for (const [cle, groupe] of parTitre) {
   }
 }
 
+// ══════════════════════════════════════════════════════════════════════════
+// 🎬 LE CINÉMA DOIT ÊTRE LÀ DEMAIN. Stéphanie, 18 nov 2026 : « assure-toi que
+// le programme cinéma apparaisse bien tous les jours correctement — très
+// important ». Cette carte a déjà disparu DEUX FOIS, les 29 et 31 juillet, et
+// chaque fois en silence : aucune fiche n'était fausse, il n'y en avait plus.
+//
+// ⚠️ ON NE CONTRÔLE PAS AUJOURD'HUI, MAIS DEMAIN ET APRÈS-DEMAIN. La carte du
+//    jour disparaît légitimement quand la dernière séance est passée — c'est
+//    même ce qu'on vient de corriger, une carte « À L'AFFICHE » sans rien à
+//    l'affiche. Demain, en revanche, il doit toujours y avoir un programme :
+//    s'il manque, c'est que le générateur est mort.
+// ⚠️ ET UNE CARTE VIDE EST PIRE QU'UNE CARTE ABSENTE : le bouton annonce
+//    « Voir les 0 », rien ne se déplie, et il n'y a aucun « J'y vais » faute
+//    de sous-fiche.
+{
+  const J = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
+  const M = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"];
+  const auj = new Date(); auj.setHours(0, 0, 0, 0);
+  const cine = ev.filter(e => e.weeklyFilms === true);
+
+  for (const e of cine) {
+    if (!Array.isArray(e.directory) || !e.directory.length) {
+      pb.invisible.push(`${e.date} · CINÉMA — carte publiée SANS AUCUN FILM : « Voir les 0 », rien à déplier (id ${e.id})`);
+    }
+  }
+  for (let k = 1; k <= 2; k++) {
+    const d = new Date(auj); d.setDate(auj.getDate() + k);
+    const jour = `${J[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]}`;
+    if (!cine.some(e => e.date === jour)) {
+      pb.invisible.push(`${jour} · CINÉMA — AUCUN programme ce jour-là. La carte a déjà disparu deux fois en juillet : vérifier update-cinema.mjs`);
+    }
+  }
+}
+
 const sections = [
   ["IDENTIFIANTS EN DOUBLE — deux fiches partagent un id (casse les favoris)", pb.idDouble],
   ["FICHES INTROUVABLES — une période est annoncée mais une seule fiche existe", pb.invisible],

@@ -555,6 +555,18 @@ async function main() {
         ? duJour.join(' · ').replace(/\\/g, '\\\\').replace(/"/g, '\\"')
         : filmListEsc;
       premier = false;
+      // 🚨 PAS DE CARTE POUR UN JOUR SANS SÉANCE. Stéphanie, 18 nov 2026 :
+      // « assure-toi que le programme cinéma apparaisse bien tous les jours
+      // correctement ». En vérifiant, la carte DU JOUR était vide : à 20h50,
+      // toutes les séances étaient passées, l'annuaire sortait à zéro film, et
+      // la fiche s'affichait quand même — « À L'AFFICHE » sans rien à l'affiche,
+      // un bouton « Voir les 0 » qui ne déplie rien, et aucun « J'y vais »
+      // puisqu'il n'y a pas de sous-fiche.
+      // ⚠️ Le texte, lui, avait déjà été corrigé (il retombait sur la liste de
+      //    la semaine) : on avait réparé la phrase sans réparer la carte.
+      // ➜ Un jour sans séance restante ne produit plus de fiche. Celle de
+      //   demain prend le relais, et le fil ne ment pas.
+      if (!annu) { d.setDate(d.getDate() + 1); continue; }
       entries.push(
       // 🎬 LE LIEU S'APPELLE LE CINÉMA DES BEAUX-ARTS, 12 av. d'Ostende.
       // Stéphanie, 8 nov 2026 : « il n'y a pas de cinéma au Sporting ». Elle
