@@ -7,7 +7,15 @@ on:
 
 jobs:
   scan:
-    runs-on: ubuntu-latest
+    # 🚨 ÉPINGLÉ À 24.04, PAS « latest ». Le 18 nov 2026, GitHub a basculé
+    # `ubuntu-latest` sur Ubuntu 26.04 — que Playwright 1.60 ne sait pas
+    # installer : « ERROR: Playwright does not support chromium on
+    # ubuntu26.04-x64 ». Tous les scripts qui lisent une page au navigateur se
+    # sont arrêtés d'un coup, sans que personne ne change une ligne de code.
+    # ⚠️ « latest » veut dire « ce que GitHub décidera demain » : pour une
+    #    chaîne qui dépend d'un navigateur, c'est une dépendance non maîtrisée.
+    #    À relever quand Playwright annoncera la prise en charge de 26.04.
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4

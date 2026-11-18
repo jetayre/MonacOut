@@ -8,7 +8,15 @@ on:
 
 jobs:
   police:
-    runs-on: ubuntu-latest
+    # 🚨 ÉPINGLÉ À 24.04, PAS « latest ». Le 18 nov 2026, GitHub a basculé
+    # `ubuntu-latest` sur Ubuntu 26.04 — que Playwright 1.60 ne sait pas
+    # installer : « ERROR: Playwright does not support chromium on
+    # ubuntu26.04-x64 ». Tous les scripts qui lisent une page au navigateur se
+    # sont arrêtés d'un coup, sans que personne ne change une ligne de code.
+    # ⚠️ « latest » veut dire « ce que GitHub décidera demain » : pour une
+    #    chaîne qui dépend d'un navigateur, c'est une dépendance non maîtrisée.
+    #    À relever quand Playwright annoncera la prise en charge de 26.04.
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
 
@@ -40,6 +48,30 @@ jobs:
       - name: Installer Playwright Chromium
         run: npx playwright install chromium --with-deps
         continue-on-error: true
+
+      # 🚨 UN NAVIGATEUR MANQUANT N'EST PAS UN SITE ILLISIBLE. Le 18 nov 2026,
+      # GitHub est passé à Ubuntu 26.04 et Playwright a cessé de s'installer.
+      # Les scripts qui lisent une page au navigateur ont alors écrit, chacun
+      # poliment, « mairie.mc illisible — contrôle non concluant » : le garde-fou
+      # du 18 août, qui refuse de faire échouer la nuit pour un site injoignable,
+      # a transformé une panne GÉNÉRALE en haussement d'épaules. Le passage s'est
+      # déclaré RÉUSSI tout en étant aveugle, deux jours durant.
+      # ➜ On distingue désormais les deux. Un site qui ne répond pas, c'est la
+      #   vie ; un navigateur absent, c'est NOTRE chaîne qui est cassée, et ça
+      #   doit se voir en rouge.
+      - name: "Le navigateur est-il vraiment la ?"
+        run: |
+          if npx playwright install --dry-run chromium >/dev/null 2>&1 && node -e "
+            const { chromium } = require('playwright');
+            chromium.launch().then(b => b.close()).then(
+              () => process.exit(0),
+              e => { console.error('Chromium ne demarre pas :', e.message.split('\n')[0]); process.exit(1); });
+          "; then
+            echo "Chromium demarre."
+          else
+            echo "::error::Chromium indisponible : les lectures au navigateur (Mairie, SBM, ESAP, piscines, cinema) ne verront RIEN. Ce n'est pas un site injoignable, c'est la chaine qui est cassee."
+            exit 1
+          fi
 
       - name: 📋 Scan complétude PrinciPocket (events manquants → rapport, sans email)
         run: node principocket-scan.mjs
