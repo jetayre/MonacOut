@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-11-18T20:47:55.722Z",
+  "generatedAt": "2026-11-18T20:51:28.639Z",
   "events": [
+    {
+      "date": "Mer 18 nov",
+      "iso": "2026-11-18",
+      "time": "14h00 — 23h00",
+      "title": "FOIRE ATTRACTIONS PORT HERCULE",
+      "venue": "Port Hercule",
+      "quarter": "La Condamine",
+      "emoji": "🎡"
+    },
     {
       "date": "Mer 18 nov",
       "iso": "2026-11-18",
@@ -63,15 +72,6 @@
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🖼️"
-    },
-    {
-      "date": "Mer 18 nov",
-      "iso": "2026-11-18",
-      "time": "14h00",
-      "title": "COURS DE DANSE 2 COURS À MONACO",
-      "venue": "Associations de danse",
-      "quarter": "Monaco",
-      "emoji": "💃"
     }
   ]
 }
