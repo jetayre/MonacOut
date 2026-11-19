@@ -1,16 +1,16 @@
 CONTRÔLE DE QUALITÉ DES FICHES MonacOut
-2379 fiches inspectées le 2026-11-19.
+2385 fiches inspectées le 2026-11-19.
 Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichir.
 
 ■ DOUBLONS PROBABLES — même lieu, même jour qu'une série existante (2)
-   · Sam 19 déc · ATELIER DANSE EN FAMILLE — même lieu et même jour qu'une série de 3 fiches « BRONIA AND ALTRO CANTO » (id 800225)
+   · Mar 1 déc · HAPPY HOUR MUSICAL QUATRE CLARINETTES DE L'OPMC — même lieu et même jour qu'une série de 4 fiches « HAPPY HOUR MUSICAL OPMC » (id 4904)
    · Jeu 31 déc · EIFFEL FOLLIE'S 2ᵉ SÉANCE — même lieu et même jour qu'une série de 3 fiches « EIFFEL FOLLIE'S » (id 990019)
 
-■ FICHES SANS CONTENU — la description répète le titre (35)
+■ FICHES SANS CONTENU — la description répète le titre (34)
    · Jeu 19 nov · FETE NATIONALE AU MARCHE DE LA CONDAMINE — description = titre (id 800002)
-   · Ven 20 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Sam 21 nov · VOLLEY BALL EFB JOURNEE 07 ASS SPORTIVE DE MONACO LEVALLOIS … — description = titre (id 800124)
    · Sam 21 nov · VOLLEY BALL 2MA JOURNEE 07 ASS SPORTIVE DE MONACO VOLLEY PRA… — description = titre (id 800088)
+   · Mar 24 nov · ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN — description = titre (id 800030)
    · Mar 24 nov · CONCERT DE POLYPHONIES CORSES ALTERNATIM — description = titre (id 800006)
    · Mer 25 nov · LECTURE MUSICALE VOICI L HOMME ECCE HOMO — description = titre (id 800007)
    · Ven 27 nov · CONCERT HOMMAGE A MARIE CLAIRE ALAIN A L OCCASION DU CENTENA… — description = titre (id 800029)
@@ -40,7 +40,6 @@ Ce fichier SIGNALE, il ne corrige rien. L'agent chercheur l'utilise pour enrichi
    · Sam 27 mar · VOLLEY BALL 2MA JOURNEE 19 ASS SPORTIVE DE MONACO MARSEILLE … — description = titre (id 800143)
    · Sam 17 avr · VOLLEY BALL 2MA JOURNEE 21 ASS SPORTIVE DE MONACO AIX UNIVER… — description = titre (id 800144)
    · Sam 24 avr · VOLLEY BALL EFB JOURNEE 22 ASS SPORTIVE DE MONACO VOLLEY BAL… — description = titre (id 800145)
-   · Mar 27 avr · SOIREE BARTOK — description = titre (id 800005)
    · Ven 18 juin · GALA DE L ACADEMIE — description = titre (id 800091)
 
 ■ SANS LIEN OFFICIEL — impossible de réserver ou de se renseigner (12)
