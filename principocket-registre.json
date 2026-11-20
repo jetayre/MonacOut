@@ -1251,7 +1251,7 @@
   "vuLe": "2026-08-25",
   "etat": "deja",
   "detail": "Symphonic Concert F Beerman M Goerne",
-  "majLe": "2026-11-19"
+  "majLe": "2026-11-20"
  },
  "/en/events/64f5a5b6953b946200824abc58bad303-Music-Chamber-Jorge-Emilio-Gonzalez-Buajasan-and-the-Soloists-of-the-OPMC": {
   "vuLe": "2026-08-25",
@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-20"
  },
@@ -2953,7 +2953,7 @@
  },
  "/en/events/00aeb7734cdf3f4d968119296a0a7194-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-20"
  },
@@ -3211,7 +3211,7 @@
  },
  "/en/events/a5ec3b921e063376a9313180125db9a9-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-20"
  },
@@ -3223,7 +3223,7 @@
  },
  "/en/events/a69f704cdddc94fbd679fd4ce2f2ff92-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-10-28",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-20"
  },
@@ -3237,7 +3237,7 @@
   "vuLe": "2026-10-28",
   "etat": "deja",
   "detail": "Children s workshops storytelling for ages 3 to 5",
-  "majLe": "2026-11-19"
+  "majLe": "2026-11-20"
  },
  "/en/events/6137c0c5b545b88ea91aebcafbb6c935-Youth-workshops-mural-painting-for-ages-10-to-14": {
   "vuLe": "2026-10-28",
@@ -3255,7 +3255,7 @@
   "vuLe": "2026-10-29",
   "etat": "deja",
   "detail": "Bal de Noel 2026",
-  "majLe": "2026-11-19"
+  "majLe": "2026-11-20"
  },
  "/en/events/c2c621c52ccdf2f725bfe9afb1344477-Monte-Carlo-Gastronomie": {
   "vuLe": "2026-11-05",
@@ -3603,6 +3603,12 @@
   "vuLe": "2026-11-16",
   "etat": "deja",
   "detail": "ROLL LITTLE GALETTE",
+  "majLe": "2026-11-20"
+ },
+ "/en/events/441b04b02d787a8c2d2cec191a58d445-LUCIE-AND-THE-CHRISTMAS-PROMISE": {
+  "vuLe": "2026-11-20",
+  "etat": "importe",
+  "detail": "LUCIE AND THE CHRISTMAS PROMISE",
   "majLe": "2026-11-20"
  }
 }
