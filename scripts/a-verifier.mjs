@@ -157,6 +157,14 @@ const DOSSIERS = [
     attendu: "Relevé : Espace Saint-Antoine, Fontvieille, les 28 et 29 nov. Inscription réservée aux licenciés, horaires non publiés.",
     rouvrir: "Un horaire, et de quoi dire si l'on peut venir REGARDER.",
     piege: "⚠️ Une compétition fermée aux non-licenciés peut rester une sortie — on y assiste. Mais sans horaire, rien n'est publiable (règle 18)." },
+
+  // 🔔 LE PLUS GROS GISEMENT DE L'ANNÉE, à ne pas manquer deux fois.
+  { nom: "Printemps des Arts de Monte-Carlo — programmation 2027",
+    url: "https://www.printempsdesarts.mc/",
+    motif: /2027/,
+    attendu: "Le site n'affiche que « Programme 2026 » au 21 nov 2026. L'édition 2026 s'est tenue du 11 mars au 19 avril : elle est passée, l'app n'a donc AUCUNE fiche, et c'est normal.",
+    rouvrir: "Le chiffre 2027 apparaît sur le site : la programmation est sortie.",
+    piege: "⚠️ Plusieurs dizaines de concerts sur six semaines, dans des salles variées — c'est une reprise complète, pas deux fiches. Billetterie sur montecarloticket.com, qui accepte le cadre : les boutons « Réserver » seront posables." },
 ];
 
 const lire = async u => {
