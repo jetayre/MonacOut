@@ -226,6 +226,20 @@ for (const slug of slugs) {
   if (!title) continue;
   const places = [...d.matchAll(/href="\/en\/places\/[^"]+"[^>]*>([\s\S]*?)<\/a>/g)].map(x=>x[1].replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
   const venueRaw = [...new Set(places)][0] || '';
+  // 🚨 LES LIEUX QUI ONT LEUR PROPRE LECTEUR SONT ÉCARTÉS ICI AUSSI.
+  // J'avais posé cette garde dans `import-principocket.mjs` le 8 nov, en
+  // oubliant que DEUX robots lisent PrinciPocket. Le 22 nov, celui-ci a
+  // republié « Prise en main d'un ordinateur Mac - niveau 2 » du 28 novembre —
+  // une séance que le lecteur officiel écarte parce qu'elle est **COMPLÈTE**.
+  // Une fiche qui invite à un atelier plein envoie quelqu'un devant une porte.
+  // ➜ Une exception posée dans un robot doit être posée dans TOUS ceux qui
+  //   lisent la même source. Même leçon que la règle 15 et Le Policier, qui
+  //   avaient dû apprendre ensemble l'exception du Stade des Moneghetti.
+  const LECTEUR_DEDIE = [/maison du num[ée]rique/i];
+  if (LECTEUR_DEDIE.some(rx => rx.test(venueRaw || ''))) {
+    report.push(`  = « ${title} » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket`);
+    continue;
+  }
   let venue = findVenue(venueRaw);
   // sessions : « Weekday D Month YYYY from HH:MM »
   const txt = d.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
@@ -255,7 +269,14 @@ for (const slug of slugs) {
         //    maintenant les liens externes de la page : c'est la piste à suivre.
         //    (Et une fois suivie, on a découvert que l'un des deux se tenait à
         //    Cap d'Ail, en France — donc hors périmètre, règle 15.)
-        const pistes = [...new Set([...html.matchAll(/href="(https?:\/\/[^"]+)"/g)].map(m => m[1]))]
+        // 🚨 LA VARIABLE S'APPELLE , PAS . Écrite , cette ligne
+        //    levait un ReferenceError et FAISAIT PLANTER TOUT LE ROBOT — pas
+        //    seulement cet événement — dès qu'une fiche arrivait sans lieu
+        //    exploitable. L'étape étant en , le passage de
+        //    nuit restait vert : seul le « statut final » virait au rouge, et
+        //    il ne nomme pas le coupable. Trouvé le 22 nov 2026 en remontant
+        //    un échec que Stéphanie n'avait pas vu passer.
+        const pistes = [...new Set([...d.matchAll(/href="(https?:\/\/[^"]+)"/g)].map(m => m[1]))]
           .filter(u => !/principocket|monacoplatform|facebook|instagram|twitter|linkedin|youtube|google|apple\.com|whatsapp|\.(png|jpg|svg|css|js)/i.test(u))
           .slice(0, 3);
         report.push(`  SKIP « ${title} » [${dateStr} ${Y}] — aucun lieu sur la fiche` +

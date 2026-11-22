@@ -1,13 +1,41 @@
-PrinciPocket : 264 fiches scannées.
-  = « Les Archives du lundi - programme A d'octobre » [Lun 19 oct 2026] — déjà couvert par une expo en cours au même lieu
-  ~ « Invente ton spectacle de lanterne magique » [Ven 23 oct 2026] — heure non publiée → « En journée »
-  = « Invente ton spectacle de lanterne magique » [Ven 23 oct 2026] — déjà couvert par une expo en cours au même lieu
-  = « Que le spectacle commence ! » [Ven 23 oct 2026] — déjà couvert par une expo en cours au même lieu
-  = « Les Archives du lundi - programme B d'octobre » [Lun 26 oct 2026] — déjà couvert par une expo en cours au même lieu
-  SKIP « LETTERS TO ANNE » [Dim 15 nov 2026] — heure inconnue
+PrinciPocket : 263 fiches scannées.
+  = « Comment faciliter vos déplacements au quotidien ! » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Ethical and responsible AI in public Administration » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Can you tell AI everything? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  SKIP « Résonance Festival 2026 » [Jeu 10 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://www.festivalresonance.com/ https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   SKIP « IF A STORY KNOCKS AT YOUR DOOR » [Dim 22 nov 2026] — heure inconnue
+  = « Déposer sa demande de logement domanial en ligne » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « BlaBlaCar Daily, la Principauté finance vos covoiturages quotidiens » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Can we stay in control of AI? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Responsible prompting : A hands-on workshop to set guardrails for everyday AI » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  SKIP « ROLL, LITTLE GALETTE! » [Dim 29 nov 2026] — heure inconnue
+  SKIP « Tant qu’un cœur bat… De la mort imminente à la greffe d’un cœur » [Mer 16 déc 2026] — heure inconnue
+  = « Apply online at MonGuichet.mc » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Déposer sa demande de logement domanial en ligne » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Responsible AI around the world » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Sovereign AI: What if your data stayed in Monaco? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   SKIP « WIN-WIN » [Dim 29 nov 2026] — heure inconnue
+  = « Learn how to use the Monapass ticketing application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Learn how to set up the Your Monaco application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « Digital technology and AI by and for Inclusion » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  = « AI Agent Workshop » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  + LIEU NOUVEAU « St Paul&#039;s Anglican Church » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  SKIP « Concert Handel’s Messiah - Saturday 28th November 2026 » [Sam 28 nov 2026] — heure inconnue
+  = « Getting Started with a Mac Computer - Level 2 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  ~ « Les Archives du lundi - programme B de novembre » [Lun 30 nov 2026] — heure non publiée → « En journée »
+  = « Les Archives du lundi - programme B de novembre » [Lun 30 nov 2026] — déjà couvert par une expo en cours au même lieu
+  ~ « Monday archives: November programme A » [Lun 23 nov 2026] — heure non publiée → « En journée »
+  = « Monday archives: November programme A » [Lun 23 nov 2026] — déjà couvert par une expo en cours au même lieu
+  SKIP « [APPEL A CANDIDATURES] Résidence Internationale d'Artistes » [Lun 7 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://culture.mc/acteurs-de-la-culture/les-acteurs-professionnels-de-la-culture/services-culturels-du-gouvernement-princier/direction-des-affaires-culturelles/evenements/appel-a-candidatures-residence-internationale-d-artistes https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Le « Mariage du siècle » vu par la télévision et le cinéma » [Jeu 10 déc 2026] — déjà couvert par une expo en cours au même lieu
+  SKIP « Bal de Noël 2026 » [Ven 11 déc 2026] — heure inconnue
+  = « Children's workshops, storytelling for ages 3 to 5 » [Sam 12 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
+  = « Children's workshops, storytelling for ages 3 to 5 » [Sam 19 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
+  = « Youth workshops: mural painting for ages 10 to 14 » [Mer 23 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
+  = « Youth workshops: mural painting for ages 6 to 9 » [Mer 23 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
+  SKIP « Les ateliers CycloShow » [Sam 9 jan 2027] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://diocese.mc/evenement/les-ateliers-cycloshow-3 https://www.fcfrealestate.com https://www.montecarlomultimedia.com
+  ~ « Exhibition: Memory of places » [Dim 24 jan 2027] — heure non publiée → « En journée »
+  = « Exhibition: Memory of places » [Dim 24 jan 2027] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
   = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
 
