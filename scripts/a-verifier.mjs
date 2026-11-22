@@ -165,6 +165,20 @@ const DOSSIERS = [
     attendu: "Le site n'affiche que « Programme 2026 » au 21 nov 2026. L'édition 2026 s'est tenue du 11 mars au 19 avril : elle est passée, l'app n'a donc AUCUNE fiche, et c'est normal.",
     rouvrir: "Le chiffre 2027 apparaît sur le site : la programmation est sortie.",
     piege: "⚠️ Plusieurs dizaines de concerts sur six semaines, dans des salles variées — c'est une reprise complète, pas deux fiches. Billetterie sur montecarloticket.com, qui accepte le cadre : les boutons « Réserver » seront posables." },
+
+  // ── Les deux grands rendez-vous 2027 encore sans date publiée ────────────
+  { nom: "Rolex Monte-Carlo Masters — dates 2027",
+    url: "https://rolexmontecarlomasters.mc/",
+    motif: /\d{1,2}\s*[-–—]\s*\d{1,2}\s+avril\s+2027|avril\s+2027/i,
+    attendu: "Le site annonce « Dates et billets 2027 » mais n'affiche pas la période sur sa page d'accueil (lu le 22 nov 2026). Un relevé tiers donne 3-11 avril — NON CONFIRMÉ.",
+    rouvrir: "Une période d'avril 2027 apparaît sur le site du tournoi.",
+    piege: "⚠️ montecarlomasters.com ne répond pas depuis cet environnement ; c'est rolexmontecarlomasters.mc qui marche." },
+
+  { nom: "Meeting Herculis EBS — date 2027",
+    url: "https://monaco.diamondleague.com/",
+    motif: /\d{1,2}\s+juillet\s+2027|juillet\s+2027/i,
+    attendu: "Le site annonce « les disciplines 2027 dévoilées » mais AUCUNE date (lu le 22 nov 2026). Un relevé tiers donne le 9 juillet — NON CONFIRMÉ. 40e édition, Stade Louis-II.",
+    rouvrir: "Une date de juillet 2027 apparaît." },
 ];
 
 const lire = async u => {
