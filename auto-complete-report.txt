@@ -1,9 +1,8 @@
-PrinciPocket : 263 fiches scannées.
+PrinciPocket : 259 fiches scannées.
   = « Comment faciliter vos déplacements au quotidien ! » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Ethical and responsible AI in public Administration » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Can you tell AI everything? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   SKIP « Résonance Festival 2026 » [Jeu 10 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://www.festivalresonance.com/ https://www.fcfrealestate.com https://www.montecarlomultimedia.com
-  SKIP « IF A STORY KNOCKS AT YOUR DOOR » [Dim 22 nov 2026] — heure inconnue
   = « Déposer sa demande de logement domanial en ligne » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « BlaBlaCar Daily, la Principauté finance vos covoiturages quotidiens » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Can we stay in control of AI? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
@@ -12,7 +11,6 @@ PrinciPocket : 263 fiches scannées.
   SKIP « Tant qu’un cœur bat… De la mort imminente à la greffe d’un cœur » [Mer 16 déc 2026] — heure inconnue
   = « Apply online at MonGuichet.mc » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Déposer sa demande de logement domanial en ligne » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « Responsible AI around the world » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Sovereign AI: What if your data stayed in Monaco? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   SKIP « WIN-WIN » [Dim 29 nov 2026] — heure inconnue
   = « Learn how to use the Monapass ticketing application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket

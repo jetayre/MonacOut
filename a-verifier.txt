@@ -1,5 +1,5 @@
 CE QUI ATTEND UNE RÉPONSE — 2026-11-22
-16 dossiers · 0 à rouvrir · 3 injoignable(s)
+18 dossiers · 0 à rouvrir · 3 injoignable(s)
 
 🚨 Ce rapport ne publie RIEN. « À rouvrir » veut dire « va regarder »,
    jamais « c'est bon » : un signe n'est pas une preuve.
@@ -116,4 +116,17 @@ CE QUI ATTEND UNE RÉPONSE — 2026-11-22
    état connu : Le site n'affiche que « Programme 2026 » au 21 nov 2026. L'édition 2026 s'est tenue du 11 mars au 19 avril : elle est passée, l'app n'a donc AUCUNE fiche, et c'est normal.
    rouvrir si : Le chiffre 2027 apparaît sur le site : la programmation est sortie.
    ⚠️ Plusieurs dizaines de concerts sur six semaines, dans des salles variées — c'est une reprise complète, pas deux fiches. Billetterie sur montecarloticket.com, qui accepte le cadre : les boutons « Réserver » seront posables.
+
+·  inchangé
+   Rolex Monte-Carlo Masters — dates 2027
+   https://rolexmontecarlomasters.mc/
+   état connu : Le site annonce « Dates et billets 2027 » mais n'affiche pas la période sur sa page d'accueil (lu le 22 nov 2026). Un relevé tiers donne 3-11 avril — NON CONFIRMÉ.
+   rouvrir si : Une période d'avril 2027 apparaît sur le site du tournoi.
+   ⚠️ montecarlomasters.com ne répond pas depuis cet environnement ; c'est rolexmontecarlomasters.mc qui marche.
+
+·  inchangé
+   Meeting Herculis EBS — date 2027
+   https://monaco.diamondleague.com/
+   état connu : Le site annonce « les disciplines 2027 dévoilées » mais AUCUNE date (lu le 22 nov 2026). Un relevé tiers donne le 9 juillet — NON CONFIRMÉ. 40e édition, Stade Louis-II.
+   rouvrir si : Une date de juillet 2027 apparaît.
 
