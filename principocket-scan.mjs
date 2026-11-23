@@ -7,7 +7,7 @@
  * PrinciPocket agrège tous les lieux de Monaco → ce scan couvre implicitement
  * tous les lieux ajoutés (OPMC, musées, hôtels, etc.).
  *
- * Écrit principocket-scan-report.txt et envoie un email (Resend) si des events manquent.
+ * Écrit principocket-scan-report.txt. Détection pure : n'envoie aucun email.
  * Toujours exit 0 : ne bloque jamais le workflow CI.
  *
  * Usage : node principocket-scan.mjs
@@ -26,7 +26,7 @@ const __dirname   = dirname(fileURLToPath(import.meta.url));
 const EVENTS_FILE = join(__dirname, 'src/data/events.js');
 const REPORT_FILE = join(__dirname, 'principocket-scan-report.txt');
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const EMAIL_TO    = 'stephanie.ayre@icloud.com';
+const EMAIL_TO    = process.env.ALERT_EMAIL_TO || '';
 const NAVY = '#0F1D3A', GOLD = '#C4A241';
 
 const MON  = { jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11 };
