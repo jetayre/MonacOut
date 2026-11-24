@@ -535,7 +535,7 @@
  },
  "/en/events/699f5061f460482242b3bb67728069d8-Musical-Happy-Hour": {
   "vuLe": "2026-08-11",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Musical Happy Hour",
   "majLe": "2026-11-24"
  },
@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-24"
  },
@@ -2953,7 +2953,7 @@
  },
  "/en/events/00aeb7734cdf3f4d968119296a0a7194-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-24"
  },
@@ -3619,7 +3619,7 @@
  },
  "/en/events/4e49c6ea7211b4e41a480b0f7c86fa16-THE-TENT": {
   "vuLe": "2026-11-24",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "THE TENT",
   "majLe": "2026-11-24"
  }
