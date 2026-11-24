@@ -1,4 +1,4 @@
-PrinciPocket : 260 fiches scannées.
+PrinciPocket : 259 fiches scannées.
   = « Comment faciliter vos déplacements au quotidien ! » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Ethical and responsible AI in public Administration » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Can you tell AI everything? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
@@ -22,12 +22,10 @@ PrinciPocket : 260 fiches scannées.
   = « Getting Started with a Mac Computer - Level 2 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   ~ « Les Archives du lundi - programme B de novembre » [Lun 30 nov 2026] — heure non publiée → « En journée »
   = « Les Archives du lundi - programme B de novembre » [Lun 30 nov 2026] — déjà couvert par une expo en cours au même lieu
-  ~ « Monday archives: November programme A » [Lun 23 nov 2026] — heure non publiée → « En journée »
-  = « Monday archives: November programme A » [Lun 23 nov 2026] — déjà couvert par une expo en cours au même lieu
-  SKIP « [APPEL A CANDIDATURES] Résidence Internationale d'Artistes » [Lun 7 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://culture.mc/acteurs-de-la-culture/les-acteurs-professionnels-de-la-culture/services-culturels-du-gouvernement-princier/direction-des-affaires-culturelles/evenements/appel-a-candidatures-residence-internationale-d-artistes https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Le « Mariage du siècle » vu par la télévision et le cinéma » [Jeu 10 déc 2026] — déjà couvert par une expo en cours au même lieu
   SKIP « THE OTHER » [Dim 13 déc 2026] — heure inconnue
   SKIP « Bal de Noël 2026 » [Ven 11 déc 2026] — heure inconnue
+  SKIP « [APPEL A CANDIDATURES] Résidence Internationale d'Artistes » [Lun 7 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://culture.mc/acteurs-de-la-culture/les-acteurs-professionnels-de-la-culture/services-culturels-du-gouvernement-princier/direction-des-affaires-culturelles/evenements/appel-a-candidatures-residence-internationale-d-artistes https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Children's workshops, storytelling for ages 3 to 5 » [Sam 12 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   = « Children's workshops, storytelling for ages 3 to 5 » [Sam 19 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   = « Youth workshops: mural painting for ages 10 to 14 » [Mer 23 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-23T13:56:40.469Z",
+  "generatedAt": "2026-11-24T02:58:02.097Z",
   "events": [
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "En journée",
       "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
       "venue": "Francis Bacon MB Art Foundation",
@@ -11,8 +11,8 @@
       "emoji": "🖼️"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -20,8 +20,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -29,8 +29,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -38,17 +38,17 @@
       "emoji": "🎬"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "10h00",
-      "title": "MUSÉES 4 OUVERTS À MONACO",
+      "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
       "quarter": "Monaco",
       "emoji": "🏛️"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
@@ -56,8 +56,8 @@
       "emoji": "🚩"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
       "time": "11h00 — 19h00",
       "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
       "venue": "Villa Paloma",
@@ -65,13 +65,13 @@
       "emoji": "🖼️"
     },
     {
-      "date": "Lun 23 nov",
-      "iso": "2026-11-23",
-      "time": "08h00 — 20h00",
-      "title": "BIEN-ÊTRE MONACO SPAS & STUDIOS",
-      "venue": "Monte-Carlo",
-      "quarter": "Monte-Carlo",
-      "emoji": "💆"
+      "date": "Mar 24 nov",
+      "iso": "2026-11-24",
+      "time": "11h15 — 12h45",
+      "title": "PICNIC MUSIC A BIG SCREEN CONCERT FOR YOUR LUNCH BREAK",
+      "venue": "Médiathèque Caroline",
+      "quarter": "Monaco",
+      "emoji": "🎻"
     }
   ]
 }
