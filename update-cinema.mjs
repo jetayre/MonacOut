@@ -611,6 +611,13 @@ async function main() {
     // direct dans public/events.json (liveEvents.js). Ne pousser que la source revenait
     // à publier un programme cinéma invisible jusqu'au prochain passage de daily-check —
     // et indéfiniment si ce passage n'avait, lui, rien à modifier.
+    // 🚨 EN MODE « SANS GIT », ON S'ARRÊTE ICI. Le passage quotidien commite et
+    // pousse lui-même à la fin ; deux `git push` dans le même job se marchent
+    // dessus. Voir la variable SANS_GIT ci-dessous.
+    if (process.env.CINEMA_SANS_GIT === '1') {
+      console.log('  (mode sans git : events.js écrit, le passage quotidien committera)');
+      return;
+    }
     execSync(`git add src/data/events.js public/events.json public/widget-events.json`, { cwd: __dirname });
     const filmList = films.map(f => f.title).join(', ').slice(0, 80);
     const msg = entries.length > 0

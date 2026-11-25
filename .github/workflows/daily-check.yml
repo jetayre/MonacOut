@@ -117,6 +117,23 @@ jobs:
         run: node scripts/danse-du-jour.mjs --ecrire
         continue-on-error: true
 
+      # 🎬 LE PROGRAMME CINÉMA, TOUS LES JOURS ET PLUS SEULEMENT LE MERCREDI.
+      # Stéphanie, 18 nov : « assure-toi que le programme cinéma apparaisse bien
+      # tous les jours correctement — très important ». Le 25 novembre, un
+      # mercredi, le passage hebdomadaire N'A PAS TOURNÉ : GitHub n'a pas
+      # déclenché le cron, et l'app s'est retrouvée avec ZÉRO fiche cinéma, les
+      # précédentes ayant été nettoyées en tant que journées passées.
+      # ➜ Une seule exécution par semaine est un point de rupture unique : si
+      #   elle saute, le cinéma disparaît jusqu'au mercredi suivant. Le passage
+      #   quotidien, lui, tourne deux fois par jour depuis des mois.
+      # ⚠️ `CINEMA_SANS_GIT=1` : le script n'a pas à pousser lui-même, le
+      #   passage quotidien commite tout à la fin. Deux `git push` dans le même
+      #   job se marcheraient dessus.
+      # ⚠️ Le workflow hebdomadaire RESTE en place, en ceinture et bretelles.
+      - name: "🎬 Programme cinéma"
+        run: CINEMA_SANS_GIT=1 node update-cinema.mjs
+        continue-on-error: true
+
       - name: "🎼 Chorales Saint-Charles"
         run: node scripts/chorales-saint-charles.mjs --ecrire
         continue-on-error: true
