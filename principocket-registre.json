@@ -2365,7 +2365,7 @@
  },
  "/en/events/0bbbb19b9309bf8d3f39a326de97002a-La-Megere-apprivoisee": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "La Megere apprivoisee",
   "majLe": "2026-11-25"
  },
@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-25"
  },
@@ -2953,7 +2953,7 @@
  },
  "/en/events/00aeb7734cdf3f4d968119296a0a7194-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-25"
  },
@@ -3001,7 +3001,7 @@
  },
  "/en/events/1d7185b288c693abcddc54dd0dade5c4-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Gala de l Academie",
   "majLe": "2026-11-25"
  },
