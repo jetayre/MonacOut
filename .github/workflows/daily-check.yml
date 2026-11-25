@@ -356,6 +356,14 @@ jobs:
       - name: Statut final (échec visible si le policier ou les invitations ont vu rouge)
         if: steps.police.outcome == 'failure' || steps.invitations.outcome == 'failure' || steps.liens.outcome == 'failure' || steps.import.outcome == 'failure' || steps.piscines.outcome == 'failure' || steps.soirees.outcome == 'failure' || steps.musees.outcome == 'failure'
         run: |
+          # 🎬 LE CINÉMA EN PREMIER, ET NOMMÉ. Le 24 nov 2026, Le Policier a
+          # DÉTECTÉ l'absence de programme — « 2 FICHES INTROUVABLES » — mais
+          # noyée parmi 48 points dans un fichier que personne n'ouvre. Un
+          # ::error:: remonte en tête de l'exécution et figure dans l'e-mail
+          # d'échec de GitHub : c'est la seule forme qui atteint un humain.
+          if grep -q "CINÉMA — AUCUN programme" qualite-a-ameliorer.txt 2>/dev/null; then
+            echo "::error::CINEMA ABSENT — aucun programme pour demain. L app se retrouvera SANS CINEMA, comme les 29-31 juillet et le 25 novembre. Relancer update-cinema.mjs."
+          fi
           if [ "${{ steps.soirees.outcome }}" = "failure" ]; then
             echo "::error::Les fiches « ce soir » n ont pas pu etre reconstruites — registre soirees-du-jour.json vide ou illisible. Le fil est INCHANGE, rien n a ete perdu."
           fi
