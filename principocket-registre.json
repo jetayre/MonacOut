@@ -2347,13 +2347,13 @@
  },
  "/en/events/75f66a77327cb8d777cbdbd84c47bfbd-La-Megere-apprivoisee": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "La Megere apprivoisee",
   "majLe": "2026-11-26"
  },
  "/en/events/4836ead904fbd9e9680fbebaf6b846fe-See-you-and-Violin-concerto": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "See you and Violin concerto",
   "majLe": "2026-11-26"
  },
@@ -2365,7 +2365,7 @@
  },
  "/en/events/0bbbb19b9309bf8d3f39a326de97002a-La-Megere-apprivoisee": {
   "vuLe": "2026-09-22",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "La Megere apprivoisee",
   "majLe": "2026-11-26"
  },
@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-26"
  },
@@ -2953,7 +2953,7 @@
  },
  "/en/events/00aeb7734cdf3f4d968119296a0a7194-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-26"
  },
@@ -2995,13 +2995,13 @@
  },
  "/en/events/f139a15dfffaba6f327adcbaf6d85d60-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Gala de l Academie",
   "majLe": "2026-11-26"
  },
  "/en/events/1d7185b288c693abcddc54dd0dade5c4-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Gala de l Academie",
   "majLe": "2026-11-26"
  },
@@ -3625,7 +3625,7 @@
  },
  "/en/events/b11bb2b71b1addc04a2e81c92b9c9df1-Christmas-Wreath-workshop": {
   "vuLe": "2026-11-26",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Christmas Wreath workshop",
   "majLe": "2026-11-26"
  }
