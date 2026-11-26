@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-25T16:25:21.241Z",
+  "generatedAt": "2026-11-26T00:09:22.489Z",
   "events": [
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "En journée",
       "title": "FRANCIS BACON PETER BEARD FIGURES IN THE RAW",
       "venue": "Francis Bacon MB Art Foundation",
@@ -11,8 +11,8 @@
       "emoji": "🖼️"
     },
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "09h00 — 18h00",
       "title": "MAGIES D'AILLEURS ANTHROPOLOGIE",
       "venue": "Musée d'Anthropologie Préhistorique",
@@ -20,8 +20,8 @@
       "emoji": "🦴"
     },
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "09h00 — 19h00",
       "title": "JARDIN EXOTIQUE ET GROTTE",
       "venue": "62 bd du Jardin Exotique",
@@ -29,8 +29,8 @@
       "emoji": "🌵"
     },
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "09h30 — 17h30",
       "title": "UN MARIAGE SOUS LES PROJECTEURS",
       "venue": "Institut Audiovisuel",
@@ -38,17 +38,8 @@
       "emoji": "🎬"
     },
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
-      "time": "10h00 — 18h00",
-      "title": "L UMIERES SUR LA LAGUNE",
-      "venue": "Hartford Fine Art Lampronti Gallery",
-      "quarter": "Monaco",
-      "emoji": "🎪"
-    },
-    {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "10h00",
       "title": "MUSÉES 6 OUVERTS À MONACO",
       "venue": "Musées de Monaco",
@@ -56,8 +47,8 @@
       "emoji": "🏛️"
     },
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
@@ -65,13 +56,22 @@
       "emoji": "🚩"
     },
     {
-      "date": "Mer 25 nov",
-      "iso": "2026-11-25",
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
       "time": "11h00 — 19h00",
       "title": "VICTOR BRAUNER L'AVENTURE MAGIQUE",
       "venue": "Villa Paloma",
       "quarter": "Monaco",
       "emoji": "🖼️"
+    },
+    {
+      "date": "Jeu 26 nov",
+      "iso": "2026-11-26",
+      "time": "07h30 — 08h30",
+      "title": "YOGA SUR LA PLAGE PANTHER YOGA LARVOTTO",
+      "venue": "Plage du Larvotto",
+      "quarter": "Larvotto",
+      "emoji": "🧘"
     }
   ]
 }

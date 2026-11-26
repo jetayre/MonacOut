@@ -1,22 +1,18 @@
-PrinciPocket : 252 fiches scannées.
-  = « Déposer sa demande de logement domanial en ligne » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « BlaBlaCar Daily, la Principauté finance vos covoiturages quotidiens » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « Can we stay in control of AI? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « Responsible prompting : A hands-on workshop to set guardrails for everyday AI » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  SKIP « ROLL, LITTLE GALETTE! » [Dim 29 nov 2026] — heure inconnue
-  SKIP « Tant qu’un cœur bat… De la mort imminente à la greffe d’un cœur » [Mer 16 déc 2026] — heure inconnue
+PrinciPocket : 245 fiches scannées.
   = « Apply online at MonGuichet.mc » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Déposer sa demande de logement domanial en ligne » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Responsible AI around the world » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Sovereign AI: What if your data stayed in Monaco? » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   SKIP « WIN-WIN » [Dim 29 nov 2026] — heure inconnue
-  SKIP « Résonance Festival 2026 » [Jeu 10 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://www.festivalresonance.com/ https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Learn how to use the Monapass ticketing application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Learn how to set up the Your Monaco application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Digital technology and AI by and for Inclusion » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « AI Agent Workshop » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  SKIP « ROLL, LITTLE GALETTE! » [Dim 29 nov 2026] — heure inconnue
+  SKIP « Tant qu’un cœur bat… De la mort imminente à la greffe d’un cœur » [Mer 16 déc 2026] — heure inconnue
   SKIP « Concert Handel’s Messiah - Saturday 28th November 2026 » [Sam 28 nov 2026] — heure inconnue
   = « Getting Started with a Mac Computer - Level 2 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  SKIP « Résonance Festival 2026 » [Jeu 10 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://www.festivalresonance.com/ https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   ~ « Les Archives du lundi - programme B de novembre » [Lun 30 nov 2026] — heure non publiée → « En journée »
   = « Les Archives du lundi - programme B de novembre » [Lun 30 nov 2026] — déjà couvert par une expo en cours au même lieu
   = « Le « Mariage du siècle » vu par la télévision et le cinéma » [Jeu 10 déc 2026] — déjà couvert par une expo en cours au même lieu
