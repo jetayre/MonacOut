@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T13:24:21.944Z",
+  "generatedAt": "2026-11-27T05:14:45.607Z",
   "events": [
     {
       "date": "Jeu 26 nov",
@@ -9,6 +9,15 @@
       "venue": "Francis Bacon MB Art Foundation",
       "quarter": "Monte-Carlo",
       "emoji": "🖼️"
+    },
+    {
+      "date": "Ven 27 nov",
+      "iso": "2026-11-27",
+      "time": "10h00 — 21h00",
+      "title": "MONTE-CARLO GASTRONOMIE CHAPITEAU DE FONTVIEILLE",
+      "venue": "Chapiteau de Fontvieille",
+      "quarter": "Fontvieille",
+      "emoji": "🍽️"
     },
     {
       "date": "Jeu 26 nov",
@@ -40,15 +49,6 @@
     {
       "date": "Jeu 26 nov",
       "iso": "2026-11-26",
-      "time": "10h00",
-      "title": "MUSÉES 6 OUVERTS À MONACO",
-      "venue": "Musées de Monaco",
-      "quarter": "Monaco",
-      "emoji": "🏛️"
-    },
-    {
-      "date": "Jeu 26 nov",
-      "iso": "2026-11-26",
       "time": "11h00 — 19h00",
       "title": "LE JEU DE LA ROSE ET DU CARRÉ 8 FLAGS",
       "venue": "Villa Paloma",
@@ -67,11 +67,11 @@
     {
       "date": "Jeu 26 nov",
       "iso": "2026-11-26",
-      "time": "07h30 — 08h30",
-      "title": "YOGA SUR LA PLAGE PANTHER YOGA LARVOTTO",
-      "venue": "Plage du Larvotto",
-      "quarter": "Larvotto",
-      "emoji": "🧘"
+      "time": "En journée",
+      "title": "WELLNESS BARS 5 ADRESSES À MONACO",
+      "venue": "Jus, matcha & bowls",
+      "quarter": "Monaco",
+      "emoji": "🥤"
     }
   ]
 }
