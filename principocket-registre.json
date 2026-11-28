@@ -2347,7 +2347,7 @@
  },
  "/en/events/75f66a77327cb8d777cbdbd84c47bfbd-La-Megere-apprivoisee": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "La Megere apprivoisee",
   "majLe": "2026-11-27"
  },
@@ -2371,7 +2371,7 @@
  },
  "/en/events/bdc94294740c18f2a074ace955a11a55-See-you-and-Violin-concerto": {
   "vuLe": "2026-09-22",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "See you and Violin concerto",
   "majLe": "2026-11-27"
  },
@@ -2929,7 +2929,7 @@
  },
  "/en/events/622e6bf899602431e9bed4f9460521c6-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-27"
  },
@@ -2953,7 +2953,7 @@
  },
  "/en/events/00aeb7734cdf3f4d968119296a0a7194-Celebration-Ordre-de-Malte-Monegasque": {
   "vuLe": "2026-10-19",
-  "etat": "deja",
+  "etat": "importe",
   "detail": "Celebration Ordre de Malte Monegasque",
   "majLe": "2026-11-27"
  },
@@ -2995,7 +2995,7 @@
  },
  "/en/events/f139a15dfffaba6f327adcbaf6d85d60-Gala-de-l-Academie": {
   "vuLe": "2026-10-19",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Gala de l Academie",
   "majLe": "2026-11-27"
  },
@@ -3643,7 +3643,7 @@
  },
  "/en/events/f9ffe660c5be8cfafbf53ce82a84140d-Mise-en-lumiere-de-la-ville": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Mise en lumiere de la ville",
   "majLe": "2026-11-27"
  },
@@ -3661,7 +3661,7 @@
  },
  "/en/events/9b9933ecf96ccc171c29de0045aec91c-Atelier-Calendrier-de-l-Avent": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Atelier Calendrier de l Avent",
   "majLe": "2026-11-27"
  },
@@ -3727,19 +3727,19 @@
  },
  "/en/events/89847b9f29b4a3b58f76943ff92d0124-Apero-MUSIQUE-LIVE-au-Marche-de-la-Condamine": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Apero MUSIQUE LIVE au Marche de la Condamine",
   "majLe": "2026-11-27"
  },
  "/en/events/dfae6af9caab3248704e714567b9ecba-Les-jeudis-de-l-Agora": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les jeudis de l Agora",
   "majLe": "2026-11-27"
  },
  "/en/events/9f9b2cda4c436b0ec46387429259f073-LE-JUGEMENT-DERNIER-DE-MICHEL-ANGE-DE-LA-CHAPELLE-SIXTINE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "LE JUGEMENT DERNIER DE MICHEL ANGE DE LA CHAPELLE SIXTINE",
   "majLe": "2026-11-27"
  },
@@ -3757,7 +3757,7 @@
  },
  "/en/events/dfb1c5405a340fb0987f307264e48d16-Art-and-scenography-symposium-What-endures-and-what-is-forgotten-performance-scenography-through-the-lens-of-memory": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Art and scenography symposium What endures and what is forgotten performance scenography through the lens of memory",
   "majLe": "2026-11-27"
  },
@@ -3769,19 +3769,19 @@
  },
  "/en/events/64afd835bdd58e0f39e859353bd949dc-Chokolashow": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Chokolashow",
   "majLe": "2026-11-27"
  },
  "/en/events/d35abc50dd05a9d0a9b42c24fa9c9538-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-27"
  },
  "/en/events/64277e0be180f43b015eda9c22e6efe5-Premiers-samedis-du-mois": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Premiers samedis du mois",
   "majLe": "2026-11-27"
  },
@@ -3799,13 +3799,13 @@
  },
  "/en/events/f44362adec1bc3add51e4a9ee6eb1e13-RANDO-SPI": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "RANDO SPI",
   "majLe": "2026-11-27"
  },
  "/en/events/1727158797225941be8c4b2e3ac0252b-Oursinade-au-Marche-de-la-Condamine": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Oursinade au Marche de la Condamine",
   "majLe": "2026-11-27"
  },
@@ -3829,19 +3829,19 @@
  },
  "/en/events/198219479e0cc32a8fc7bffa9acd63e4-Monaco-and-Spain-five-centuries-of-shared-history": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Monaco and Spain five centuries of shared history",
   "majLe": "2026-11-27"
  },
  "/en/events/5fc46bf62b79775defb1b6e6348a519d-Fete-de-l-Immaculee-Conception": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Fete de l Immaculee Conception",
   "majLe": "2026-11-27"
  },
  "/en/events/ddc322c773d3270664c8b4ae119d6730-Animation-jeux-au-Marche-de-la-Condamine": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Animation jeux au Marche de la Condamine",
   "majLe": "2026-11-27"
  },
@@ -3901,13 +3901,13 @@
  },
  "/en/events/3e7ea78fa7ec7b011f76a4ffea298f80-SALVE-REGINA-Concert-spirituel": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "SALVE REGINA Concert spirituel",
   "majLe": "2026-11-27"
  },
  "/en/events/b7e24e2a642db397f359a73d64a87626-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-27"
  },
@@ -3919,7 +3919,7 @@
  },
  "/en/events/8b7b2181d69b5f473214a7832f3ce229-Concert-de-Noel-a-la-bougie": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Concert de Noel a la bougie",
   "majLe": "2026-11-27"
  },
@@ -3937,7 +3937,7 @@
  },
  "/en/events/219f78d3d77c6892ac5cda98b7b9e123-ECHANGES-AUTOUR-DE-LA-PARENTALITE-DISCUTONS-EN": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ECHANGES AUTOUR DE LA PARENTALITE DISCUTONS EN",
   "majLe": "2026-11-27"
  },
@@ -3961,7 +3961,7 @@
  },
  "/en/events/8cf94900816140e3ddc7373802dfdec9-Les-jeudis-de-l-Agora": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Les jeudis de l Agora",
   "majLe": "2026-11-27"
  },
@@ -3979,7 +3979,7 @@
  },
  "/en/events/1f6ae65ceb4941d6eef626a2812913ec-Ensemble-Iris-Chantons-Noel": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Ensemble Iris Chantons Noel",
   "majLe": "2026-11-27"
  },
@@ -4027,7 +4027,7 @@
  },
  "/en/events/45466d0a9d17b813f8ca2225ee4952fb-Concert-d-ouverture": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "Concert d ouverture",
   "majLe": "2026-11-27"
  },
@@ -4039,19 +4039,19 @@
  },
  "/en/events/529728cb685f7502785e88e1b45c2e0b-ETUDE-D-APRES-FRANCIS-BACON": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ETUDE D APRES FRANCIS BACON",
   "majLe": "2026-11-27"
  },
  "/en/events/f0fb54413a8e9b4c022c228d80629358-L-EQUILBEY-M-A-BOUCHARD-LESIEUR-V-DAVID": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "L EQUILBEY M A BOUCHARD LESIEUR V DAVID",
   "majLe": "2026-11-27"
  },
  "/en/events/5653078d5225a6299c14d30c4607740e-GIRAUD-CHOSTAKOVITCH": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "GIRAUD CHOSTAKOVITCH",
   "majLe": "2026-11-27"
  },
@@ -4063,55 +4063,55 @@
  },
  "/en/events/4eabddcf4a66a0a6b6a3aa28117564b6-PORTRAIT-WOLFGANG-RIHM": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "PORTRAIT WOLFGANG RIHM",
   "majLe": "2026-11-27"
  },
  "/en/events/2b9f4a4c9790f64902adf88ad7b6dd99-MANFRED": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "MANFRED",
   "majLe": "2026-11-27"
  },
  "/en/events/207fd09ae7c544ab6fc48414e46c295e-TRIBUTE-TO-GEORGE-GERSHWIN": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "TRIBUTE TO GEORGE GERSHWIN",
   "majLe": "2026-11-27"
  },
  "/en/events/4afdf208e1d926ae9ed8b88bec95e729-MUSIQUE-SACREE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "MUSIQUE SACREE",
   "majLe": "2026-11-27"
  },
  "/en/events/34c9d6dfa054e64b98ade470eabb4712-REPECKAITE-BRUCKNER-WEBERN": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "REPECKAITE BRUCKNER WEBERN",
   "majLe": "2026-11-27"
  },
  "/en/events/b813618f0c90516f5c4a92cc1c76cdf7-CONCERT-D-ORGUE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "CONCERT D ORGUE",
   "majLe": "2026-11-27"
  },
  "/en/events/3167963af093a748291c30cf41e62a3b-PIERRE-HENRY-OU-L-ART-DES-SONS": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "PIERRE HENRY OU L ART DES SONS",
   "majLe": "2026-11-27"
  },
  "/en/events/6405b62d2b4a4a40621065deb39f8bce-NOCTURNE-ACOUSMATIQUE-2": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "NOCTURNE ACOUSMATIQUE 2",
   "majLe": "2026-11-27"
  },
  "/en/events/e87bcf7a338352a512341d93e30f5da2-NOCTURNE-ACOUSMATIQUE-1": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "NOCTURNE ACOUSMATIQUE 1",
   "majLe": "2026-11-27"
  },
@@ -4123,19 +4123,19 @@
  },
  "/en/events/cedea576329ac887871385b460c3c4ef-VEPRES-A-LA-VIERGE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "VEPRES A LA VIERGE",
   "majLe": "2026-11-27"
  },
  "/en/events/b540bb4c8bf4e98f4bdbfbd0354f2a7b-CONCERT-AUX-BOUGIES": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "CONCERT AUX BOUGIES",
   "majLe": "2026-11-27"
  },
  "/en/events/eedf642e0f1097f8a2f774f9e3f758e9-CARTE-BLANCHE-A-L-ACADEMIE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "CARTE BLANCHE A L ACADEMIE",
   "majLe": "2026-11-27"
  },
@@ -4147,37 +4147,37 @@
  },
  "/en/events/ce75a7080cfc9716dfa29ccef8dceffd-OR-LUMIERE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "OR LUMIERE",
   "majLe": "2026-11-27"
  },
  "/en/events/6f394ac9bd644cf36772d1267a3650db-ENTRE-ORIENT-ET-OCCIDENT": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "ENTRE ORIENT ET OCCIDENT",
   "majLe": "2026-11-27"
  },
  "/en/events/306a860e6732e198df04b9baefcaee87-MENDELSSOHN-FAURE-1": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "MENDELSSOHN FAURE 1",
   "majLe": "2026-11-27"
  },
  "/en/events/56edfdd1ce8cb973aaf011d86d7e1d9b-MUSIQUE-INDIENNE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "MUSIQUE INDIENNE",
   "majLe": "2026-11-27"
  },
  "/en/events/38eba600b0878cb2ac7ec00c31ffcb26-MENDELSSOHN-FAURE-2": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "MENDELSSOHN FAURE 2",
   "majLe": "2026-11-27"
  },
  "/en/events/15cb1457211f5aef39458950757345a3-CONCERT-DE-CLOTURE": {
   "vuLe": "2026-11-27",
-  "etat": "importe",
+  "etat": "deja",
   "detail": "CONCERT DE CLOTURE",
   "majLe": "2026-11-27"
  },
@@ -4185,6 +4185,18 @@
   "vuLe": "2026-11-27",
   "etat": "ecarte",
   "detail": "heure non publiée et catégorie SPECTACLE en exige une",
+  "majLe": "2026-11-27"
+ },
+ "/en/events/efde137c334ea5d167ce2d3447c5e278-Concert-de-Noel-caritatif": {
+  "vuLe": "2026-11-27",
+  "etat": "importe",
+  "detail": "Concert de Noel caritatif",
+  "majLe": "2026-11-27"
+ },
+ "/en/events/4233eca88b3ed85dd0a26e501122c6c6-PORTRAIT-PETER-EOTVOS": {
+  "vuLe": "2026-11-27",
+  "etat": "importe",
+  "detail": "PORTRAIT PETER EOTVOS",
   "majLe": "2026-11-27"
  }
 }

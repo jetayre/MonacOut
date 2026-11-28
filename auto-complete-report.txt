@@ -1,29 +1,24 @@
-PrinciPocket : 297 fiches scannées.
-  = « Learn how to use the Monapass ticketing application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « Learn how to set up the Your Monaco application » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « Digital technology and AI by and for Inclusion » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  = « AI Agent Workshop » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+PrinciPocket : 300 fiches scannées.
   SKIP « Concert Handel’s Messiah - Saturday 28th November 2026 » [Sam 28 nov 2026] — heure inconnue
   = « Getting Started with a Mac Computer - Level 2 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   + LIEU NOUVEAU « A casa d&#039;i Soci - Maison des Associations » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
   = « Munegu Repair Café - SERD » [Sam 28 nov 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
-  SKIP « WIN-WIN » [Dim 29 nov 2026] — heure inconnue
   SKIP « Retraite spirituelle à l'École de saint Augustin » [Dim 29 nov 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://diocese.mc/evenement/retraite-spirituelle-a-lecole-de-saint-augustin https://www.fcfrealestate.com https://www.montecarlomultimedia.com
-  SKIP « ROLL, LITTLE GALETTE! » [Dim 29 nov 2026] — heure inconnue
   SKIP « Concert de chant baroque » [Dim 29 nov 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://diocese.mc/evenement/concert-de-chant-baroque https://www.fcfrealestate.com https://www.montecarlomultimedia.com
+  SKIP « WIN-WIN » [Dim 29 nov 2026] — heure inconnue
+  SKIP « ROLL, LITTLE GALETTE! » [Dim 29 nov 2026] — heure inconnue
   SKIP « Tant qu’un cœur bat… De la mort imminente à la greffe d’un cœur » [Mer 16 déc 2026] — heure inconnue
-  SKIP « Résonance festival 2026 » [Jeu 10 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://www.festivalresonance.com/ https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Getting started with iPhone - Level 1 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  SKIP « Résonance festival 2026 » [Jeu 10 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://www.festivalresonance.com/ https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Unwanted Calls : Free Solutions to Block Them » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « ChatGPT: Discover the World of Artificial Intelligence » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   SKIP « Patinoire de Monaco » [Ven 4 déc 2026] — heure inconnue
   SKIP « Patinoire de Monaco » [Dim 7 mar 2027] — heure inconnue
   + LIEU NOUVEAU « A casa d&#039;i Soci - Maison des Associations » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
   = « Munegu Repair Giüghëti » [Sam 5 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
+  = « Getting started with Android phone - Level 1 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   ~ « Monday at the archives: November programme B » [Lun 30 nov 2026] — heure non publiée → « En journée »
   = « Monday at the archives: November programme B » [Lun 30 nov 2026] — déjà couvert par une expo en cours au même lieu
-  = « Getting started with Android phone - Level 1 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  SKIP « Découvrez le Cart'lendrier de l'Avent 2026 » [Dim 29 nov 2026] — heure inconnue
   = « The "wedding of the century" on television and film » [Jeu 10 déc 2026] — déjà couvert par une expo en cours au même lieu
   = « Getting Started with a Windows Computer - Level 1 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   SKIP « THE OTHER » [Dim 13 déc 2026] — heure inconnue
@@ -33,15 +28,15 @@ PrinciPocket : 297 fiches scannées.
   = « Getting Started with a Mac Computer - Level 1 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Getting started with iPhone - Level 2 » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Unwanted Calls : Free Solutions to Block Them » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  SKIP « [CALL FOR APPLICATIONS] International artist residence » [Lun 7 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://culture.mc/acteurs-de-la-culture/les-acteurs-professionnels-de-la-culture/services-culturels-du-gouvernement-princier/direction-des-affaires-culturelles/evenements/appel-a-candidatures-residence-internationale-d-artistes https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « ChatGPT: Discover the World of Artificial Intelligence » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Children's workshops, storytelling for ages 3 to 5 » [Sam 19 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   = « Getting started with the Apple TV » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
-  + LIEU NOUVEAU « Galerie des Pêcheurs » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
-  SKIP « Visions of Mountains and Light » [Dim 3 jan 2027] — heure inconnue
+  SKIP « [CALL FOR APPLICATIONS] International artist residence » [Lun 7 déc 2026] — aucun lieu sur la fiche · ORGANISATEUR À SUIVRE : https://culture.mc/acteurs-de-la-culture/les-acteurs-professionnels-de-la-culture/services-culturels-du-gouvernement-princier/direction-des-affaires-culturelles/evenements/appel-a-candidatures-residence-internationale-d-artistes https://www.fcfrealestate.com https://www.montecarlomultimedia.com
   = « Youth workshops: mural painting for ages 10 to 14 » [Mer 23 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   = « Youth workshops: mural painting for ages 6 to 9 » [Mer 23 déc 2026] — une fiche existe déjà à ce lieu ce jour-là (nom écrit autrement)
   = « Unwanted Calls : Free Solutions to Block Them » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
+  + LIEU NOUVEAU « Galerie des Pêcheurs » — publié sans lien ni téléphone, à compléter dans CLAUDE.md
+  SKIP « Visions of Mountains and Light » [Dim 3 jan 2027] — heure inconnue
   = « Unwanted Calls : Free Solutions to Block Them » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Unwanted Calls : Free Solutions to Block Them » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
   = « Unwanted Calls : Free Solutions to Block Them » — lu directement par scripts/maison-du-numerique.mjs, pas par PrinciPocket
@@ -54,5 +49,4 @@ PrinciPocket : 297 fiches scannées.
   ~ « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — heure non publiée → « En journée »
   = « A Wedding in the Spotlight. Rainier III and Grace Kelly. 12–19 April 1956 » [Ven 26 fév 2027] — déjà couvert par une expo en cours au même lieu
 
-AJOUTÉS : 1
-+ [Sam 28 nov 2026] Marché de l'Avent 2026 @ Église Saint-Charles (CHANTS 09h00)
+AJOUTÉS : 0
